@@ -1,0 +1,29 @@
+
+<span class="dropdown" x-uib-dropdown>
+    <span class="glyphicon glyphicon-plus dropdown-toggle"
+          x-uib-dropdown-toggle
+    ></span>
+
+    <ul class="dropdown-menu dropdown-menu-right">
+        <li>
+            <a ng-href="lyg?back={{ page_path }}">
+                <img width="17" class="lyg" ng-src="assets/image/lyg-icon.png"> 0元购
+            </a>
+        </li>
+        <li class="divider"></li>
+        <li>
+            <a href="dashboard/invite" target="_self">
+                <img width="23" class="invite" ng-src="assets/image/nav-tab/user-on.png"> 邀请
+             </a>
+        </li>
+        <li class="divider"></li>
+        <li>
+            <a ng-href="dashboard/recharge?back={{ page_path }}">
+                <img width="22" class="recharge" ng-src="assets/image/dashboard-icons/recharge.png"> 充值
+            </a>
+        </li>
+
+        <li ng-if="self.user.has_logged_in" class="divider" x-gyro-comment></li>
+        <li ng-if="self.user.has_logged_in" x-gyro-comment><a href="dashboard/invite"><span class="glyphicon glyphicon-share"></span> 邀请好友</a></li>
+    </ul>
+</span>

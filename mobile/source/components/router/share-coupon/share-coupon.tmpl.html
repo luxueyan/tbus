@@ -1,0 +1,67 @@
+
+<div id="share-coupon">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" ng-href="{{ self.next_path || 'list' }}"><param class="glyphicon glyphicon-menu-left"></a>
+        <span class="col-xs-6 title">分享红包</span>
+        <span class="col-xs-3">&nbsp;</span>
+    </div>
+    </nav>
+
+    <div>
+        <param ng-model="msg" ng-init="msg = {
+            SOCIAL_TITLE: '嘘寒问暖，不如来笔巨款',
+            SOCIAL_DESC: '我在国美金融领到大红包，分你一个！一样的国美，不一样的体验！',
+            SOCIAL_IMG: 'assets/image/share-icon-coupon.png',
+        }">
+    </div>
+
+    <section class="panel" ng-init="show_tip = false">
+
+        <div ng-if="self.wechat.inside">
+            <ul class="list list-unstyled list-inline" ng-click="$parent.show_tip = true">
+                <li class="item">
+                    <img width="34" height="34" src="assets/image/social-icon-wechat.png">
+                    <div class="note">微信</div>
+                </li>
+                <li class="item">
+                    <img width="34" height="34" src="assets/image/social-icon-wechat-timeline.png">
+                    <div class="note">朋友圈</div>
+                </li>
+                <li class="item">
+                    <img width="34" height="34" src="assets/image/social-icon-qq.png">
+                    <div class="note">QQ</div>
+                </li>
+            </ul>
+
+            <hr />
+        </div>
+
+        <p>
+            <qrcode data="{{ share_link }}"
+                    size="200"
+                    version="5"
+                    error-correction-level="M"
+            >
+        </p>
+        <div>好友扫描二维码领取红包</div>
+
+        <div ng-if="!self.wechat.inside">
+            <hr />
+
+            <p><a ng-href="{{ share_link }}" target="_blank">{{ share_link }}</a></p>
+            <div>或长按复制链接以发送</div>
+        </div>
+    </section>
+
+    <div class="arrow-tip"
+         ng-if="self.wechat.inside"
+         ng-show="$parent.show_tip"
+         ng-click="$parent.show_tip = false"
+    >
+        <div class="arrow"><img width="55" ng-src="assets/image/arrowhead.png"></div>
+        <p class="tip">点击右上角按钮，发送给朋友</p>
+    </div>
+
+</div>

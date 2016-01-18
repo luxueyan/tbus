@@ -1,0 +1,103 @@
+
+@import "utils";
+
+
+.form-horizontal .control-label {
+    &:after {
+        content: ':';
+    }
+}
+
+.btn {
+    border-radius: 2px;
+
+    &-theme {
+        .button-variant(#FFF; @color-theme-main; transparent);
+    }
+}
+
+.list-group {
+
+    &-flat {
+        background-color: #FFF;
+        border-top: 1px solid @color-gray-light-double;
+        border-bottom: 1px solid @color-gray-light-double;
+    }
+
+    &-flat &-item {
+
+        line-height: 1;
+        padding: 20px;
+        color: #333;
+        font-size: 14px;
+        border-color: #EEE;
+
+        &:first-child {
+            border-radius: 0;
+            border-top: none;
+        }
+
+        &:last-child {
+            border-radius: 0;
+            border-bottom: none;
+        }
+
+        &.rsaquo:after {
+            font-family: 'Glyphicons Halflings';
+            content: "\e258";
+            color: #A5A5A5;
+            display: inline;
+            float: right;
+        }
+    }
+}
+
+.inline {
+    > .nav-tabs.nav-justified {
+        display: table;
+        width: 100%;
+        border-bottom: 1px solid #D9D9D9;
+        background-color: #FFF;
+
+        > li {
+            width: auto;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            display: table-cell;
+
+            > a {
+                color: #333;
+                padding: 0;
+                margin-bottom: 0;
+
+                border: none !important;
+                border-radius: 0 !important;
+                border-left: 1px solid #DDD !important;
+            }
+
+            &:first-child > a {
+                border-left: none !important;
+            }
+
+            &.active {
+                border-bottom: 3px solid @color-theme-main !important;
+
+                > a {
+                    color: @color-theme-main;
+                }
+            }
+
+            &:not(.active) {
+                border-bottom: 3px solid transparent;
+            }
+        }
+    }
+
+    &.flex > .nav-tabs.nav-justified {
+        .flex-display();
+
+        > li {
+            .flex(1);
+        }
+    }
+}

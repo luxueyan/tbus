@@ -1,0 +1,71 @@
+
+<div id="dashboard-funds">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" ng-href="{{ self.$routeParams.back || 'dashboard' }}">
+            <span class="glyphicon glyphicon-menu-left"></span>
+        </a>
+        <span class="col-xs-6 title">资金记录</span>
+        <span class="col-xs-3">&nbsp;</a>
+    </div>
+    </nav>
+
+    <section class="funds-list">
+        <ul class="list list-group no-label list-group-flat u-off-margin-bottom"
+            ng-if="list.length"
+        >
+            <li class="item list-group-item"
+                ng-repeat="item in list"
+            >
+                <div class="clearfix info">
+                    <span ng-if class="operation" ng-switch="item.operation">
+                        <span ng-switch-when="IN" class="green">收</span>
+                        <span ng-switch-when="OUT" class="red">支</span>
+                        <span ng-switch-when="FREEZE" class="blue">冻</span>
+                        <span ng-switch-when="RELEASE" class="orange">解</span>
+                    </span>
+
+                    <div class="pull-left">
+                        <div class="type">{{ item.type | fund_type_cn }}</div>
+                        <div class="date">{{ item.date | date :"yyyy-MM-dd HH:mm:ss" }}</div>
+                    </div>
+
+                    <div class="pull-right text-right">
+                        <div class="amount"
+                             ng-class="item.status === 'SUCCESSFUL' && item.sign_css_class"
+                        >
+                            {{ item.sign }}{{ item.amount | number }}
+                        </div>
+
+                        <div class="description">
+                            <span ng-switch="item.operation">
+                                <span ng-switch-when="IN">资金转入</span>
+                                <span ng-switch-when="OUT">资金转出</span>
+                                <span ng-switch-when="FREEZE">资金冻结</span>
+                                <span ng-switch-when="RELEASE">资金解冻</span>
+                            </span>
+
+                            <span ng-switch="item.status">
+                                <span ng-switch-when="INITIALIZED">初始</span>
+                                <span ng-switch-when="PROCESSING">处理中</span>
+                                <span ng-switch-when="AUDITING">审核中</span>
+                                <span ng-switch-when="PAY_PENDING">支付结果待查</span>
+                                <span ng-switch-when="CUT_PENDING">代扣结果待查</span>
+                                <span ng-switch-when="SUCCESSFUL">成功</span>
+                                <span ng-switch-when="FAILED">失败</span>
+                                <span ng-switch-when="REJECTED">拒绝</span>
+                                <span ng-switch-when="CANCELED">取消</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <div ng-if="!list.length" class="container">
+            <h4 class="alert alert-info text-center">暂时没有资金纪录</h4>
+        </div>
+    </section>
+
+</div>

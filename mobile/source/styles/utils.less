@@ -1,0 +1,60 @@
+
+@import "mixins/gradients";
+@import "mixins/buttons";
+
+
+.transition (@duration: 0.3s; @property: all; @function: ease) {
+    -webkit-transition: @property @duration @function;
+       -moz-transition: @property @duration @function;
+        -ms-transition: @property @duration @function;
+         -o-transition: @property @duration @function;
+            transition: @property @duration @function;
+}
+
+.transform (@property) {
+    -webkit-transform: @property;
+       -moz-transform: @property;
+        -ms-transform: @property;
+         -o-transform: @property;
+            transform: @property;
+}
+
+.filter (@property) {
+    -webkit-filter: @property;
+       -moz-filter: @property;
+        -ms-filter: @property;
+         -o-filter: @property;
+            filter: @property;
+}
+
+.opacity (@opacity) {
+    opacity: @opacity;
+    @opacity-ie: (@opacity * 100);
+    filter: ~"alpha(opacity=@{opacity-ie})";
+}
+
+.flex (@unit: 1) {
+    -webkit-box-flex: @unit;
+        -webkit-flex: @unit;
+            -ms-flex: @unit;
+                flex: @unit;
+
+    display: block;
+}
+
+.flex-display (@align: stretch; @justify: flex-start) {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+
+    -webkit-box-align: @align;
+    -webkit-align-items: @align;
+    -ms-flex-align: @align;
+    align-items: @align;
+
+    -webkit-box-pack: @justify;
+    -webkit-justify-content: @justify;
+    -ms-justify-content: @justify;
+    justify-content: @justify;
+}

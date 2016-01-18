@@ -1,0 +1,75 @@
+
+<div id="dashboard-bank-card" class="">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" href="dashboard"><span class="glyphicon glyphicon-menu-left"></span></a>
+        <span class="col-xs-6 title">我的银行卡</span>
+        <span class="col-xs-3">&nbsp;</a>
+    </div>
+    </nav>
+
+    <div class="page-content container" ng-if="self.user.has_bank_card">
+    <section>
+
+        <div class="clip clearfix">
+            <span class="icon pull-left">
+                <img width="42" ng-src="assets/image/bank-icons/{{ bank_account.bank_code | lowercase }}.png">
+            </span>
+            <div class="info">
+                <div class="name">
+                    {{ bank_account.bank }}
+                </div>
+                <div class="card">
+                    {{ bank_account.mask }}
+                </div>
+            </div>
+        </div>
+
+        <p class="text-center" ng-show="clicked !== true">
+            <button class="btn btn-theme" ng-click="clicked = true">删除银行卡</button>
+        </p>
+    </section>
+
+    <section class="" ng-if="clicked">
+        <div ng-if="!self.user.has_payment_password">
+            请先设置 <a href="dashboard/payment/password" class="btn btn-link u-vb">交易密码</a>
+        </div>
+
+        <form ng-if="self.user.has_payment_password"
+              class="password-form"
+        >
+            <input class="form-control input-sm"
+                   type="password"
+                   ng-model="password"
+                   placeholder="请输入交易密码"
+            >
+
+            <button class="btn btn-danger btn-sm"
+                    ng-click="self.unbind(bank_account.account, password)"
+                    ng-disabled="!password"
+            >确认删除</button>
+        </form>
+    </section>
+    </div>
+
+
+
+
+    <div class="page-content" ng-if="!self.user.has_bank_card">
+        <a href="dashboard/payment/bind-card?next=dashboard/bank-card" class="bind-card">
+            <param class="glyphicon glyphicon-plus"> 添加银行卡
+        </a>
+    </div>
+
+    <section class="container notice">
+        <h2 class="title">温馨提示：</h2>
+        <ol class="list">
+            <li><p>为保障您的资金安全，绑卡前请先进行实名认证。
+            <li><p>您所绑定的银行卡须是借记卡，718bank理财严禁利用信用卡套现。
+            <li><p>718bank理财目前只支持绑定一张银行卡，认证支付充值、提现采用同卡进出原则，即提现银行卡需与充值银行卡一致。
+            <li><p>已绑定的银行卡如需更换，请联系客服：<a href="tel:4008189696">400-818-9696</a>。
+        </ol>
+    </section>
+
+</div>

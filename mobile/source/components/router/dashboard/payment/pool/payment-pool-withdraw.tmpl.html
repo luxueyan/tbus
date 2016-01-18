@@ -1,0 +1,102 @@
+
+<div id="dashboard-withdraw" class="">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" href="dashboard"><param class="glyphicon glyphicon-menu-left"></a>
+        <span class="col-xs-6 title">提现</span>
+        <span class="col-xs-3">&nbsp;</a>
+    </div>
+    </nav>
+
+    <div>
+        <param ng-model="msg" ng-init="msg = {
+            INCORRECT_PASSWORD: '交易密码不正确',
+
+            SUCCEED: '提现申请已经提交，请等待审核',
+            UNKNOWN: '提现失败',
+        }">
+    </div>
+
+    <section class="text-center balance">
+        <div class="title">可提现余额</div>
+        <div class="num">{{ available_amount | number: 2 }}</div>
+    </section>
+
+    <section class="form-wrapper">
+        <form class="form-horizontal form-flatten"
+              name="form"
+              ng-submit="self.submit(amount, password)"
+              autocapitalize="none"
+              autocomplete="off"
+              autocorrect="off"
+              novalidate
+        >
+            <div class="inputs container">
+
+                <div class="form-group merge">
+                    <label>{{ bank_account.bank }}</label>
+                    <input class="form-control input-target input-lg blank"
+                           type="text"
+                           value="{{ bank_account.mask }}"
+                           disabled
+                    >
+                </div>
+
+                <div class="form-group merge">
+                    <label for="withdraw">提现金额</label>
+                    <input name="withdraw"
+                           id="withdraw"
+                           ng-model="amount"
+                           type="number"
+                           class="form-control input-target input-lg"
+                           min="0.01"
+                           max="{{ available_amount }}"
+                           placeholder="请输入提现金额"
+                           autocapitalize="none"
+                           autocomplete="off"
+                           autocorrect="off"
+                           required
+                    >
+                </div>
+
+                <div class="form-group merge">
+                    <label for="password">交易密码</label>
+                    <input name="password"
+                           id="password"
+                           ng-model="password"
+                           type="password"
+                           class="form-control input-target input-lg"
+                           placeholder="请输入交易密码"
+                           required
+                    >
+                </div>
+            </div>
+
+            <p class="container"
+               ng-init="invalid = available_amount <= 0.01 || amount > available_amount"
+            >
+                <button class="btn btn-theme btn-block btn-lg"
+                        type="submit"
+                        ng-if="self.user.has_payment_account && self.user.has_bank_card"
+                        ng-disabled="form.$invalid || invalid || self.submit_sending"
+                >
+                    <span ng-if="!invalid">确认</span>
+                    <span ng-if="invalid">余额不足</span>
+                </button>
+            </p>
+        </form>
+    </section>
+
+    <section class="container notice">
+        <h2 class="title">温馨提示：</h2>
+
+        <ol class="list">
+            <li><p>试运营期间，充值提现手续费平台承担，由第三方支付平台连连支付收取；每日提现限制3次以内(含3次)。718bank理财试运营结束后相关手续费另行公告。
+            <li><p>提现到账时间：提现申请提交成功后，资金预计在1-2个工作日（双休日或法定节假日顺延）到账，请您注意查收。
+            <li><p>根据《反洗钱法》规定，718bank理财禁止洗钱、信用卡套现、虚假交易等行为。
+            <li><p>提现过程遇到问题，请联系客服：<a href="tel:4008189696">400-818-9696</a>。
+        </ol>
+    </section>
+
+</div>

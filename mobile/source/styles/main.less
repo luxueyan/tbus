@@ -1,0 +1,2742 @@
+
+@import "utils";
+@import "bootstrap-theme-gyro";
+
+
+/*=============================================================================
+                                                                    Scaffolding
+----*/
+
+@color-gray-dark-double: #333;
+@color-gray-dark: #666666;
+@color-gray: #999CA5;
+@color-gray-light: #BBBBBB;
+@color-gray-light-double: #EBEBEB;
+
+@color-theme-primary: #0194FF;
+@color-theme-success: #20A121;
+@color-theme-warning: #EE6754;
+@color-theme-danger: #EE6754;
+@color-theme-info: #31B0D5;
+
+@color-theme-emphasize: #F06F2E;
+@color-theme-main: #5B9DFF;
+@color-theme-link: #0574E6;
+
+
+@path-image: '../assets/image';
+
+
+body {
+    color: @color-gray-dark-double;
+    font-family: "Helvetica", "Arial", "Verdana", "Hiragino Sans GB", "STHeiti", "sans-serif";
+    font-size: 14px;
+    background-color: #F5F5F5;
+    // -webkit-tap-highlight-color: rgba(26, 26, 26, 0.5);
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button,
+    {
+        -webkit-appearance: none !important;
+    }
+}
+
+a {
+    color: @color-theme-main;
+    text-decoration: none;
+
+    &:hover {
+        color: @color-theme-main;
+        text-decoration: none;
+    }
+}
+
+.modal {
+    &.center {
+        .modal-dialog {
+            position: absolute;
+            left: 10px;
+            right: 10px;
+            top: 50%;
+            margin: 0;
+        }
+
+        &.in {
+            .modal-dialog {
+                .transform(translateY(-50%));
+            }
+        }
+    }
+
+    &.modal-alert {
+        left: 10%;
+        right: 10%;
+        margin: 0;
+
+        .modal-footer {
+            padding: 3px;
+
+            .btn-theme {
+                color: #1A7FF2;
+                font-size: 16px;
+            }
+        }
+
+        .modal-body {
+            text-align: center;
+
+            .alert-title {
+                display: block;
+                font-size: 16px;
+                color: #333;
+            }
+        }
+    }
+
+    &-confirm {
+        font-size: 16px;
+        color: #333;
+
+        .modal-buttons {
+            .flex-display(stretch; space-between);
+        }
+
+        .modal-button {
+            .flex(1);
+
+            border-top: 1px solid #D8D8D8;
+            border-left: 1px solid #D8D8D8;
+            font-size: 17px;
+            line-height: 44px;
+            text-align: center;
+            color: #CC3333;
+
+            &:first-child {
+                border-left: 0;
+                border-radius: 0 0 0 7px;
+            }
+
+            &:last-child {
+                border-radius: 0 0 7px 0;
+            }
+
+            &:first-child:last-child {
+                border-radius: 0 0 7px 7px;
+            }
+        }
+    }
+}
+
+.list-group {
+
+    &, &-flat {
+        padding-left: 16px;
+        margin: 22px/2 auto;
+    }
+
+    &-flat {
+        border-color: #E5E5E5;
+    }
+
+    &-flat &-item {
+        padding: 28px/2 34px/2 28px/2 0;
+        color: #999;
+        font-size: 15px;
+        border-color: #F2F2F2;
+        border-left: none;
+        border-right: none;
+
+        &.rsaquo:after {
+            color: #CCC;
+        }
+    }
+
+    &:not(.no-label) &-item:before {
+        content: "";
+        border-left: 4px solid @color-theme-main;
+        margin-right: 8px;
+    }
+}
+
+.color {
+    &-ltb {
+        &-text {
+            color: #FFC808;
+        }
+
+        &-border {
+            border-color: #FFC808;
+        }
+    }
+
+    &-lxy {
+        &-text {
+            color: @color-theme-main;
+        }
+
+        &-border {
+            border-color: @color-theme-main;
+        }
+    }
+
+    &-qt {
+        &-text {
+            color: #4A4A4A;
+        }
+
+        &-border {
+            border-color: #4A4A4A;
+        }
+    }
+}
+
+// utils
+.u {
+    &-left {
+        float: left;
+    }
+    &-right {
+        float: right;
+    }
+
+    &-off-margin-top {
+        margin-top: 0 !important;
+    }
+    &-off-margin-bottom {
+        margin-bottom: 0 !important;
+    }
+
+    &-off-border-radius {
+        border-radius: 0;
+    }
+
+    &-table-align-middle {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+
+        > .table-cell {
+            display: table-cell;
+            vertical-align: middle;
+        }
+    }
+
+    &-color-main {
+        color: @color-theme-main;
+    }
+}
+
+// components
+.c {
+    &-list-panel {
+        border-top: 1px solid #D9D9D9;
+        border-bottom: 1px solid #D9D9D9;
+        color: @color-gray-dark-double;
+        background-color: #FFF;
+        list-style: none;
+        padding-left: 0;
+
+        > .item {
+            margin-left: 16px;
+            padding: 14px;
+            padding-left: 0;
+            line-height: 1;
+            font-size: 28px/2 + 1;
+            position: relative;
+
+            &:before {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                content: "";
+                display: block;
+                color: @color-gray-light-double;
+                border-top: 1px solid @color-gray-light-double;
+            }
+
+            &:first-child:before {
+                display: none;
+            }
+
+            &.title {
+                font-size: 32px/2 + 2;
+            }
+        }
+    }
+}
+
+/*=============================================================================
+                                                                    Page Header
+----*/
+
+#page-header {
+    position: relative;
+    padding-left: 36px/2;
+    padding-right: 46px/2;
+    min-height: 0;
+    height: 44px;
+    background-color: #FFF;
+
+    .flex-display(center; space-between);
+
+    .logo {
+        .flex(1);
+    }
+
+    .userbar {
+        .flex(none);
+
+        font-size: 24px/2 + 2;
+
+        a {
+            + a {
+                margin-left: 24px/2;
+            }
+        }
+    }
+}
+
+.page-nav {
+    position: fixed;
+    z-index: 9;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 44px;
+    max-height: 44px;
+    line-height: 1;
+    background-color: #FFF;
+    color: @color-theme-main;
+    border-bottom: 1px solid @color-gray-light-double;
+
+    a {
+        &, &:hover, &:visited {
+            color: inherit;
+        }
+    }
+
+    &.light {
+        color: #CCC;
+        background-color: transparent;
+        border-bottom-color: transparent;
+
+        a {
+            &, &:hover, &:visited {
+                color: inherit;
+            }
+        }
+
+        .title, .actions {
+            visibility: hidden;
+        }
+    }
+
+    & + *:before {
+        display: block;
+        content: "";
+        height: 44px;
+    }
+
+    &:not(.omit-margin) + *:before {
+        margin-bottom: 20px;
+    }
+
+    &.margin-down {
+        margin-bottom: 20px;
+    }
+
+    *[class*="col-"] {
+        padding: 12px 0;
+        font-size: 18px;
+
+        &:first-child {
+            padding-left: 15px;
+        }
+
+        &:last-child {
+            padding-right: 15px;
+        }
+
+        &.back, &.actions {
+            .glyphicon {
+            }
+        }
+        &.title {
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        &.actions {
+            text-align: right;
+        }
+    }
+}
+
+/*=============================================================================
+                                                                   Page Tab Nav
+----*/
+
+#page-tab-nav {
+    position: fixed;
+    z-index: 10;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #FFF;
+    padding: 4px 0;
+    line-height: 1;
+    font-size: 12px + 2;
+    text-align: center;
+    box-shadow: 0px 0px 15px -3px rgba(175, 175, 175, 0.75);
+    border-top: 1px solid #EBEAE8;
+
+    li {
+        color: #A09E9E;
+
+        &.active {
+            color: @color-theme-main;
+        }
+
+        a {
+            color: inherit;
+            display: block;
+        }
+
+        .icon {
+            display: block;
+            margin: 3px auto 6px;
+            background: url("@{path-image}/nav-tab/icons.png") no-repeat;
+            background-size: 96px/2 68px/2;
+            width: 32px/2;
+            height: 34px/2;
+            overflow: hidden;
+
+            &-logo {
+                background-position: 0 0;
+            }
+
+            &-money {
+                background-position: -32px/2 0;
+            }
+
+            &-user {
+                background-position: -64px/2 0;
+            }
+        }
+
+        &.active {
+            .icon {
+                &-logo {
+                    background-position: 0 -34px/2;
+                }
+
+                &-money {
+                    background-position: -32px/2 -34px/2;
+                }
+
+                &-user {
+                    background-position: -64px/2 -34px/2;
+                }
+            }
+        }
+    }
+}
+
+/*=============================================================================
+                                                                      Home Page
+----*/
+
+#homepage {
+    .nav-page {
+        padding-top: 14px;
+        padding-bottom: 14px;
+        background-color: #FFF;
+
+        &-list {
+            .flex-display(flex-start; space-between);
+
+            > li {
+                .flex(1);
+
+                a {
+                    font-size: 24px/2 + 2;
+                    color: #777;
+                }
+
+                .icon {
+                    display: block;
+                    margin: 0 auto 5px;
+                    background: #0190DF url("@{path-image}/nav-icons.png") no-repeat;
+                    background-size: 288px/2 72px/2;
+                    width: 72px/2;
+                    height: 72px/2;
+                    border-radius: 50%;
+                    overflow: hidden;
+
+                    &-user {
+                        background-position: 0 0;
+                    }
+
+                    &-usd {
+                        background-position: -72px/2 0;
+                    }
+
+                    &-gift {
+                        background-position: -144px/2 0;
+                    }
+
+                    &-volume-up {
+                        background-position: -216px/2 0;
+                    }
+                }
+            }
+        }
+    }
+
+    > .loan {
+        background-color: #FFF;
+    }
+
+    .list-loan-row {
+        .flex-display();
+
+        margin-left: 10px;
+        margin-right: 10px;
+        border-top: 1px solid #EFEFEF;
+        padding: 15px 0;
+        -webkit-box-shadow: 0 -1px #F6F6F6;
+                box-shadow: 0 -1px #F6F6F6;
+
+        > .item {
+            .flex(1);
+
+            + .item {
+                margin-left: 20px;
+                border-left: 1px solid #CFCFCF;
+                padding-left: 20px;
+            }
+
+            a {
+                color: inherit;
+            }
+
+            .subject {
+                .media-heading {
+                    margin: 0;
+                    font-size: 24px/2 + 2;
+                }
+            }
+
+            .rate-duration {
+                .flex-display(flex-end; space-between);
+
+                -webkit-box-align: end;
+                margin-top: 10px;
+                margin-bottom: 15px;
+
+                .rate {
+                    .flex(1);
+
+                    font-size: 46px/2 + 2;
+                    color: #FF7200;
+                    line-height: 1;
+
+                    small {
+                        font-size: 30px/2 + 2;
+                    }
+                }
+
+                .duration {
+                    .flex(none);
+                }
+            }
+
+            .status {
+                text-align: center;
+
+                .btn {
+                    &-invest {
+                        .button-variant(#FFF; #0190DF; #0190DF);
+                    }
+
+                    &-disabled {
+                        .button-variant(#FFF; #BEBEBE; #BEBEBE);
+                    }
+                }
+            }
+        }
+    }
+
+    .list-loan {
+        background-color: #FFF;
+
+        > .item {
+            margin-left: 10px;
+            margin-right: 10px;
+
+            a {
+                color: inherit;
+            }
+
+            .subject {
+                border-top: 1px solid #EFEFEF;
+                padding: 10px 0;
+                -webkit-box-shadow: 0 -1px #F6F6F6;
+                        box-shadow: 0 -1px #F6F6F6;
+
+                .media-heading {
+                    margin: 0;
+                    font-size: 24px/2 + 2;
+                }
+            }
+
+            .detail {
+                border-top: 1px solid #F5F5F5;
+                padding-top: 10px;
+                padding-bottom: 20px;
+            }
+
+            .title {
+                margin: 0 0 15px;
+                padding-left: 10px;
+                font-size: 28px/2 + 2;
+                color: #7A7A7A;
+            }
+
+            .info-list {
+                .flex-display(center; space-between);
+
+                > .item {
+                    text-align: center;
+
+                    .flex(1);
+
+                    .value {
+                        margin-bottom: 4px;
+                        font-size: 30px/2 + 2;
+                    }
+
+                    &.rate {
+                        .value {
+                            font-size: 46px/2 + 2;
+                            color: #FF7200;
+                            line-height: 1;
+
+                            small {
+                                font-size: 30px/2 + 2;
+                            }
+                        }
+                    }
+
+                    &.duration {
+                    }
+
+                    &.status {
+                        .btn {
+                            &-invest {
+                                .button-variant(#0090E0; #FFF; #0190DF);
+                            }
+
+                            &-disabled {
+                                .button-variant(#FFF; #BEBEBE; #BEBEBE);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*=============================================================================
+                                                                      List Page
+----*/
+
+#list {
+    .dropdown-filter {
+        .dropdown-menu {
+            > li > a {
+                font-size: 16px;
+                color: #333;
+
+                img {
+                    margin-top: -3px;
+                    margin-right: 10px;
+                }
+            }
+
+            .divider {
+                margin: 5px 0;
+            }
+        }
+    }
+
+    > .subject {
+        padding: 20px/2 40px/2;
+        background-color: #FFF;
+
+        .media {
+            font-size: 24px/2 + 1;
+            color: #7A7A7A;
+
+            &-heading {
+                font-size: 24px/2 + 2;
+                color: #333;
+            }
+        }
+    }
+
+    .list-loan {
+        #homepage .list-loan;
+    }
+}
+
+/*=============================================================================
+                                                               [Router] Sign Up
+----*/
+
+#register {
+
+    .head-image {
+        padding: 16px;
+        display: block;
+    }
+
+    .icon-doll {
+        #login .icon-doll;
+    }
+
+    .form-flatten {
+        #login > .form-flatten;
+    }
+
+    .form {
+
+        .form-group {
+
+            .help-block {
+                margin: 0;
+                text-align: right;
+                padding: 2px 6px;
+            }
+
+            &.captcha {
+                .action {
+                    position: absolute;
+                    top: 9px;
+                    right: 9px;
+                    line-height: 1;
+                    padding: 2px;
+                    border-radius: 2px;
+                    border: 1px solid @color-gray-light;
+                }
+            }
+
+            &.mobile-captcha {
+                .btn-action {
+                    position: absolute;
+                    top: 9px;
+                    right: 9px;
+                    line-height: 1;
+                    padding: 8px 8px;
+                    border: 1px solid @color-gray-light;
+                    border-color: transparent;
+                    border-radius: 4px;
+                    min-width: 78px;
+
+                    &:disabled {
+                        background-color: #FFF;
+                        color: @color-theme-main;
+                    }
+                }
+
+                &.init {
+                    .btn-action {
+                        .icon, .count {
+                            display: none;
+                        }
+                    }
+                }
+                &:not(.init) {
+                    .btn-action {
+                        .text {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        .agreement {
+            margin: 10px auto;
+            font-size: 11px;
+            text-align: center;
+            color: @color-gray-light;
+
+            a {
+                color: @color-theme-link;
+            }
+        }
+    }
+
+    footer {
+        margin-top: 20px;
+
+        .title {
+            font-size: 16px;
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+        .list {
+            list-style-type: decimal;
+            padding-left: 20px;
+            line-height: 1.5;
+        }
+        .list li {
+            font-size: 14px;
+        }
+    }
+
+    .register-coupon {
+        margin: 0 auto;
+        padding-top: 16px/2;
+        width: 500px/2;
+        height: 184px/2;
+        background: url("@{path-image}/register-coupon-bg.png") no-repeat 0 0;
+        background-size: 500px/2 184px/2;
+        color: @color-theme-main;
+        text-align: center;
+
+        .amount {
+            display: inline-block;
+            vertical-align: middle;
+            margin-bottom: 10px/2;
+            border-bottom: 1px solid #FEDEDC;
+            padding: 10px/2;
+            font-size: 60px/2 + 2;
+            line-height: 1;
+
+            .unit {
+                font-size: 40%;
+            }
+        }
+
+        .type {
+            font-size: 26px/2 + 2;
+        }
+    }
+}
+
+/*=============================================================================
+                                                                [Router] Log In
+----*/
+
+#login {
+
+    .page-nav {
+        margin-bottom: 0;
+    }
+
+    .page-content {
+
+        .form {
+            input.form-control {
+                padding-left: 6px;
+                padding-right: 6px;
+                -webkit-box-shadow: none !important;
+                        box-shadow: none !important;
+            }
+
+            .form-group.merge {
+                margin-bottom: 0;
+                border-top: 1px solid @color-gray-light-double;
+
+                &:first-child {
+                    border-top-color: transparent;
+                }
+
+                input {
+                    border-radius: 0;
+                    border: none;
+                }
+            }
+        }
+    }
+
+    .form-flatten {
+
+        input.form-control {
+            padding-left: 8px;
+            -webkit-box-shadow: none !important;
+            -webkit-appearance: none !important;
+            box-shadow: none !important;
+            border-radius: 0;
+            border: none;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .form-group.merge {
+            .flex-display();
+
+            > .form-control,
+            > .form-control-wrap {
+                .flex(1);
+            }
+
+            position: relative;
+            margin-bottom: 0;
+            background-color: #FFF;
+
+            label {
+                padding: 16px 15px 0;
+                font-size: 15px;
+                font-weight: normal;
+                margin: 0;
+                line-height: 1;
+                color: @color-gray-dark-double;
+                min-width: 3em;
+
+                &:empty {
+                    min-width: auto;
+                }
+            }
+        }
+
+        .inputs {
+            overflow: hidden;
+            margin-bottom: 15px;
+            border-top: 1px solid @color-gray-light-double;
+            border-bottom: 1px solid  @color-gray-light-double;
+
+            .form-group {
+                &:not(:first-child) {
+                    position: relative;
+
+                    &:after {
+                        position: absolute;
+                        display: block;
+                        top: 0;
+                        right: 0;
+                        left: 14px;
+                        height: 1px;
+                        background-color: #F2F2F2;
+                    }
+                }
+            }
+        }
+    }
+
+    .icon-doll {
+        margin: 10px auto 20px;
+        text-align: center;
+    }
+
+    .flash-message {
+        .opacity(0);
+        .transition();
+
+        margin-bottom: 15px;
+        color: @color-theme-main;
+
+        &.on {
+            .opacity(1);
+        }
+    }
+
+    .links {
+        .flex-display(center; space-between);
+
+        margin-top: 28px;
+        color: @color-theme-link;
+
+        a {
+            color: inherit;
+        }
+
+        .left {
+            .flex(1);
+        }
+    }
+}
+
+/*=============================================================================
+                                                       [Router] Password Forgot
+----*/
+
+#password-forgot {
+    #register;
+
+    .form {
+        .inputs {
+        }
+    }
+}
+
+/*=============================================================================
+                                                       [Router] Password Change
+----*/
+
+#password-change {
+
+    #password-forgot;
+
+    .form-wrapper label {
+        min-width: 7em !important;
+    }
+}
+
+/*=============================================================================
+                                                           [Router] Loan detail
+----*/
+
+#loan {
+    section:not(.omit-margin) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .loan-summary {
+        padding-top: 6px;
+        padding-bottom: 6px;
+        background-color: #FFF;
+
+        .rate-duration {
+            .flex-display(flex-end; space-between);
+
+            -webkit-box-align: end;
+            margin-bottom: 5px;
+            border-bottom: 1px solid #E2E2E2;
+            padding-top: 22px;
+            padding-bottom: 22px;
+            text-align: center;
+
+            .value {
+                margin-bottom: 4px;
+                line-height: 1;
+            }
+
+            .name {
+                color: #808080;
+            }
+
+            .rate {
+                .flex(1);
+
+                .value {
+                    font-size: 46px/2 + 2;
+                    color: #FF7200;
+
+                    small {
+                        font-size: 36px/2 + 2;
+                    }
+                }
+            }
+
+            .duration {
+                .flex(1);
+
+                border-left: 1px solid #BEBEBE;
+
+                .value {
+                    font-size: 40px/2 + 2;
+
+                    small {
+                        font-size: 22px/2 + 2;
+                    }
+                }
+            }
+        }
+
+        .progress-wrap {
+            .num {
+                margin-left: 7px;
+                color: #B1B1B1;
+            }
+
+            .progress {
+                margin-top: 10px;
+                margin-bottom: 0;
+                height: 2px;
+                background-color: #B1B1B1;
+                border-radius: 0;
+                -webkit-box-shadow: none;
+                        box-shadow: none;
+
+                &-bar {
+                    background-color: #0090E0;
+                }
+            }
+        }
+
+        .balance {
+            .name {
+                color: #808080;
+            }
+        }
+
+        .time-close {
+            margin-top: 3px;
+            margin-bottom: 3px;
+            color: #808080;
+
+            .num {
+                color: #0082B8;
+            }
+        }
+    }
+
+    section.loan-status {
+        margin-bottom: 15px;
+
+        .btn {
+            &-invest {
+                .button-variant(#FFF; #0190DF; #0190DF);
+            }
+
+            &-disabled {
+                .button-variant(#FFF; #BEBEBE; #BEBEBE);
+            }
+        }
+    }
+
+    .loan-detail {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        background-color: #FFF;
+
+        > .item {
+            .flex-display();
+
+            font-size: 28px/2 + 2;
+
+            + .item {
+                margin-top: 10px;
+            }
+
+            .name {
+                .flex(none);
+
+                color: #808080;
+            }
+
+            .value {
+                .flex(1);
+
+                text-align: right;
+            }
+        }
+    }
+
+    .loan-info {
+        background-color: #FFF;
+
+        .content {
+            padding: 15px;
+            text-align: justify;
+            word-break: break-word;
+            color: #4A4A4A;
+
+            img {
+                max-width: 100% !important;
+                height: auto !important;
+            }
+
+            .investors-list {
+                border: 0;
+
+                > .item {
+                    margin: 0;
+                    padding-right: 0;
+                    font-size: 28px/2 + 2;
+                    color: #4A4A4A;
+
+                    .name {
+                        padding-right: 5px;
+                        min-width: 120px;
+                    }
+
+                    .amount {
+                    }
+
+                    .date {
+                        margin-top: 8px;
+                        font-size: 24px/2 + 2;
+                        color: #999;
+                    }
+                }
+            }
+        }
+    }
+
+    .inline > .nav-tabs.nav-justified > li {
+        > a {
+            border-left: none !important;
+            color: #808080;
+        }
+
+        &.active {
+            border-bottom: 2px solid #FE8008 !important;
+
+            > a {
+                color: #FE8008;
+            }
+        }
+    }
+}
+
+/*=============================================================================
+                                                        [Router] Loan investors
+----*/
+
+#loan-investors {
+    .investors-list {
+        border: 0;
+
+        > .item {
+            padding-left: 10px;
+            padding-right: 25px;
+            font-size: 28px/2 + 2;
+            color: #4A4A4A;
+
+            .name {
+                padding-right: 5px;
+                min-width: 120px;
+            }
+
+            .amount {
+            }
+
+            .date {
+                margin-top: 5px;
+                font-size: 24px/2 + 2;
+                color: #999;
+            }
+        }
+    }
+}
+
+/*=============================================================================
+                                                             [Router] Loan info
+----*/
+
+#loan-info {
+    .info-list {
+        padding-left: 15px;
+        padding-right: 15px;
+        background-color: #FFF;
+
+        > .item {
+            border-bottom: 1px solid @color-gray-light-double;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            color: #4A4A4A;
+
+            .title {
+                margin: 0;
+                font-size: 32px/2 + 2;
+            }
+
+            .content {
+                margin-top: 12px;
+                font-size: 28px/2 + 2;
+            }
+        }
+    }
+}
+
+/*=============================================================================
+                                                           [Router] Loan invest
+----*/
+
+.multi-line-container {
+    background-color: #FFF;
+    margin-bottom: 1em;
+
+    &-item {
+        margin-left: 13px;
+        margin-right: 13px;
+        font-size: 14px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        line-height: 1;
+        border-top: 1px solid @color-gray-light-double;
+
+        &:first-child {
+            border-top: none;
+        }
+
+        &.title {
+            font-size: 16px;
+            color: @color-gray-dark-double;
+        }
+
+        .title {
+            color: #A5A5A5;
+            font-weight: normal;
+
+            &:after {
+                content: ":";
+                display: inline;
+                margin: 0 1em 0 0.5em;
+            }
+        }
+
+        .control-label {
+            padding-top: 8px;
+            margin-bottom: 0;
+            font-weight: normal;
+            font-size: 16px;
+            color: #000;
+
+            &:after {
+                content: "";
+            }
+        }
+
+        .form-control-static {
+            font-size: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 0;
+        }
+
+        .form-control {
+            height: 28px;
+            border: 0;
+            font-size: inherit;
+            -webkit-appearance: none;
+            -webkit-box-shadow: none;
+                    box-shadow: none;
+        }
+    }
+}
+
+.ngt-share-coupon {
+
+    text-align: center;
+
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: @color-gray;
+        font-size: 20px;
+    }
+
+    .modal-body {
+        h2 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        h3 {
+            font-size: 15px;
+            color: @color-gray;
+        }
+    }
+
+    .modal-footer .btn {
+        background-color: @color-theme-main;
+        color: #FFF;
+        border: none;
+    }
+}
+
+#loan-invest {
+    section:not(.omit-margin) {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .loan-summary {
+        #loan .loan-summary;
+
+        .rate-duration {
+            border-bottom: 0;
+
+            .duration {
+                border-left: 0;
+            }
+        }
+    }
+
+    .form-invest {
+        margin-top: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: #FFF;
+
+        .form-group {
+            label {
+                margin-top: 5px;
+                padding-right: 0;
+                font-weight: normal;
+            }
+
+            .omit-padding {
+                padding: 0;
+            }
+
+            .available-amount {
+                margin-top: 5px;
+            }
+
+            .earning {
+                margin-top: 5px;
+                padding-left: 3px;
+                color: #C0C0C0;
+            }
+
+            &.rule {
+                margin-top: -5px;
+                margin-bottom: 10px;
+                color: #C0C0C0;
+            }
+
+            .num {
+                color: #FE8008;
+            }
+
+            .coupon-tip {
+                margin-top: 5px;
+                color: #C0C0C0;
+            }
+        }
+
+        .agreement {
+            padding: 5px;
+
+            label {
+                font-weight: normal;
+            }
+        }
+
+        .btn {
+            &-polish {
+                .button-variant(#FE8008; #FFF; #FE8008);
+            }
+
+            &-recharge {
+                .button-variant(#0090E0; #FFF; #0190DF);
+            }
+
+            &-invest {
+                .button-variant(#FFF; #FE8008; #FE8008);
+            }
+
+            + .btn {
+                margin-left: 5px;
+            }
+        }
+    }
+}
+
+/*=============================================================================
+                                                      [Router] [Dashboard] Home
+----*/
+
+#dashboard {
+    section:not(.omit-margin) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .c-list-panel {
+        > .item {
+            img {
+                margin-right: 7px;
+
+                &.user-icon {
+                    margin-left: 2px;
+                    margin-right: 8px;
+                }
+
+                &.coupon-icon {
+                    margin-left: 2px;
+                }
+            }
+
+            .name {
+                display: inline-block;
+                vertical-align: -2px;
+                margin-right: 2px;
+                min-width: 5em;
+                font-size: 28px/2 + 2;
+                color: #777;
+            }
+
+            .value {
+                vertical-align: middle;
+                font-size: 24px/2 + 2;
+                color: #999;
+
+                .num {
+                    color: #FF7200;
+                }
+            }
+
+            .glyphicon {
+                color: #999;
+            }
+
+            .btn {
+                margin-top: -4px;
+                padding-left: 20px;
+                padding-right: 20px;
+                border-radius: 999px;
+                font-size: 24px/2 + 2;
+                line-height: 1;
+            }
+
+            &.password {
+                .icon {
+                    color: #2D94CF;
+                    padding-right: 9px;
+                    vertical-align: text-bottom;
+                }
+            }
+        }
+
+        > a {
+            display: block;
+            color: #777;
+        }
+    }
+
+    .info-list {
+    }
+
+    .links {
+    }
+
+    section.action {
+        margin-top: 15px;
+        margin-bottom: 25px;
+    }
+
+    .btn {
+        &-withdraw {
+            .button-variant(@color-theme-emphasize ; #FFF; @color-theme-emphasize);
+        }
+
+        &-recharge {
+            .button-variant(@color-theme-main ; #FFF; @color-theme-main);
+        }
+    }
+}
+
+/*=============================================================================
+                                              [Router] [Dashboard] Total Assets
+----*/
+
+#dashboard-total-assets {
+    section:not(.omit-margin) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    > section.detail {
+        margin-bottom: 100px;
+        border-top: 1px solid #D9D9D9;
+        border-bottom: 1px solid #D9D9D9;
+        padding: 0 15px;
+        background-color: #FFF;
+
+        .info {
+            .flex-display(center; space-between);
+
+            padding: 8px 35px;
+            font-size: 30px/2 + 1;
+            line-height: 1.4;
+
+            .name {
+                .flex(none);
+
+                margin-right: 10px;
+                color: #777;
+            }
+
+            .value {
+                .flex(1);
+
+                text-align: right;
+                color: #FF7200;
+            }
+
+            &.total {
+                padding-top: 14px;
+                padding-bottom: 20px;
+            }
+
+            &-list {
+                border-bottom: 1px solid #E6E6E6;
+                padding: 13px 0 3px;
+
+                > :last-child {
+                    position: relative;
+
+                    &:before {
+                        content: "+";
+                        position: absolute;
+                        left: 0;
+                        top: 2px;
+                        font-size: 28px;
+                        line-height: 1;
+                        color: #D9D9D9;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*=============================================================================
+                                                 [Router] [Dashboard] Bank Card
+----*/
+
+#dashboard-bank-card {
+
+    .page-content section {
+        margin-top: 16px;
+        margin-bottom: 20px;
+    }
+
+    .u-vb {
+        vertical-align: baseline;
+    }
+
+    .clip {
+        background-color: #FFF;
+        margin-bottom: 16px;
+        padding: 20px;
+        border-radius: 6px;
+        font-size: 16px;
+        border: 1px solid @color-gray-light;
+
+        .icon {
+            margin-right: 20px;
+        }
+    }
+
+    .password-form {
+        .flex-display();
+
+        input {
+            .flex(1);
+
+            margin-right: 20px;
+        }
+    }
+
+    .bind-card {
+        display: block;
+        margin: 16px;
+        border: 2px dashed;
+        color: @color-gray;
+        line-height: 1;
+        text-align: center;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        font-size: 20px;
+    }
+
+    .notice {
+        #dashboard-recharge .notice;
+    }
+}
+
+/*=============================================================================
+                                                    [Router] [Dashboard] Coupon
+----*/
+
+#dashboard-coupon {
+    section:not(.omit-margin) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .page-nav {
+        small {
+            font-size: 70%;
+        }
+    }
+
+    .coupon-list {
+        > .item {
+            margin-bottom: 10px;
+            border-top: 1px solid #D9D9D9;
+            border-bottom: 1px solid #D9D9D9;
+            padding: 15px 12px;
+            background-color: #FFF;
+            font-size: 24px/2 + 1;
+            color: #4A4A4A;
+
+            .media {
+                &-left {
+                    padding-right: 23px;
+                }
+
+                &-body {
+                    padding-top: 5px;
+                    position: relative;
+                }
+
+                &-object {
+                    display: inline-block;
+                    vertical-align: middle;
+                    background: url("@{path-image}/coupon-icons.png") no-repeat;
+                    background-size: cover;
+                    background-position: 0 0;
+                    width: 124px/2;
+                    height: 156px/2;
+                    overflow: hidden;
+                }
+            }
+
+            .status {
+                height: 22px;
+                line-height: 22px;
+                color: #FF4D4D;
+            }
+
+            .value {
+                height: 55px;
+                line-height: 55px;
+                color: #FFF;
+
+                .num {
+                    font-size: 34px/2 + 1;
+                }
+            }
+
+            .type {
+                display: inline-block;
+                vertical-align: middle;
+                margin-bottom: 6px;
+                border: 1px solid #FF4D4D;
+                padding-left: 4px;
+                padding-right: 4px;
+                color: #FF4D4D;
+            }
+
+            .expire {
+                margin-bottom: 10px;
+            }
+
+            .desc {
+                color: #999;
+            }
+
+            .redeem {
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+
+            &-status-redeemed,
+            &-status-expired,
+            &-status-cancelled {
+                background-color: #E5E5E5;
+
+                .media-object {
+                    background-position: 0 -156px/2;
+                }
+
+                .status {
+                    color: #999;
+                }
+
+                .type {
+                    border: 1px solid #999;
+                    color: #999;
+                }
+
+                .expire {
+                    color: #999;
+                }
+            }
+        }
+    }
+}
+
+/*=============================================================================
+                                              [Router] [Dashboard] Notification
+----*/
+
+#dashboard-notification {
+    .notifications {
+        background-color: #FFF;
+
+        .list-notification {
+            > .item {
+                border-bottom: 1px solid #DADADA;
+                padding: 10px/2 40px/2;
+                font-size: 24px/2 + 2;
+
+                .title {
+                    margin: 12px/2 0;
+                    font-size: 26px/2 + 2;
+
+                    .glyphicon {
+                        font-size: 12px;
+                        color: #777;
+                    }
+                }
+
+                .content {
+                    border-top: 1px solid #E9E9E9;
+                    padding-top: 12px/2;
+                }
+
+                .date {
+                    margin-bottom: 6px/2;
+                    color: #777;
+                }
+
+                &-status-new {
+                    position: relative;
+
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        left: 12px/2;
+                        top: 30px/2;
+                        border-radius: 999px;
+                        border: 4px solid @color-theme-main;
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+
+        .load-more {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+    }
+}
+
+/*=============================================================================
+                                                    [Router] [Dashboard] Invest
+----*/
+
+#dashboard-invest {
+    padding-bottom: 46px;
+
+    .invest-list {
+        .inline > .nav-tabs.nav-justified {
+            // #list .invest-list .inline > .nav-tabs.nav-justified;
+        }
+
+        .item {
+            margin-bottom: 16px/2;
+            padding: 30px/2 42px/2;
+            background-color: #FFF;
+            font-size: 26px/2 + 2;
+
+            .head {
+                .title {
+                    margin: 0;
+                    font-size: 26px/2 + 2;
+                    color: @color-gray-dark-double;
+                    display: block;
+                }
+
+                img {
+                    margin-right: 5px;
+                    vertical-align: bottom;
+                }
+            }
+
+            .body {
+                margin: 20px/2 0;
+                border: 1px solid #D5D3D4;
+                border-left: none;
+                border-right: none;
+                padding: 20px/2 0;
+
+                .name {
+                    color: #9A9A9A;
+                }
+
+                .value {
+                    font-size: 36px/2 + 2;
+                }
+            }
+
+            .foot {
+            }
+        }
+
+        .alert {
+            margin: 25px 10px;
+        }
+    }
+
+    > .action {
+        position: fixed;
+        z-index: 11;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+/*=============================================================================
+                                             [Router] [Dashboard] Invest Detail
+----*/
+
+#dashboard-invest-detail {
+    section:not(.omit-margin) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    > .info-list {
+        margin: 0 12px/2 20px/2;
+        border: 0;
+        padding: 0;
+        -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .175);
+                box-shadow: 0 1px 4px rgba(0, 0, 0, .175);
+
+        > .item {
+            margin-left: 18px/2;
+            margin-right: 18px/2;
+            padding: 18px/2 0;
+            font-size: 24px/2 + 2;
+        }
+
+        .title {
+        }
+
+        .info {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            line-height: 40px/2;
+
+            .info-row {
+                margin-bottom: 3px;
+
+                .flex-display(center; space-between);
+
+                .name {
+                    position: relative;
+                    width: 5em;
+
+                    .flex(none);
+
+                    &:after {
+                        position: absolute;
+                        right: 0.6em;
+                        content: ":";
+                    }
+
+                    &.word-5 {
+                        width: 6em;
+                    }
+                }
+
+                .value {
+                    .flex(1);
+
+                    word-break: break-word;
+                }
+            }
+        }
+    }
+}
+
+/*=============================================================================
+                                      [Router] [Dashboard] Payment Ump Register
+----*/
+
+#dashboard-payment-ump-register {
+
+    #dashboard-payment-register;
+
+    .info-list {
+        border-top: 1px solid #C3BEBE;
+        border-bottom: 1px solid #C3BEBE;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        background-color: #FFF;
+        font-size: 16px;
+        overflow-x: scroll;
+
+        dt {
+            margin-bottom: 3px;
+
+            &:not(:first-child) {
+                margin-top: 10px;
+                border-top: 1px solid #BBB9B9;
+                padding-top: 10px;
+            }
+
+            &:after {
+                content: ":";
+            }
+        }
+    }
+}
+
+/*=============================================================================
+                                     [Router] [Dashboard] Payment Ump Agreement
+----*/
+
+#dashboard-payment-ump-agreement {
+
+    .agreement {
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+
+}
+
+/*=============================================================================
+                                     [Router] [Dashboard] Payment Ump Bind Card
+----*/
+
+#dashboard-payment-ump-bind-card {
+
+    .bank-card {
+        margin-top: 20px;
+    }
+
+    .multi-line-container {
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+
+}
+
+/*=============================================================================
+                                          [Router] [Dashboard] Payment Register
+----*/
+
+#dashboard-payment-register {
+
+    section:not(.omit-margin) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .form-flatten {
+        #login > .form-flatten;
+
+        .form-group {
+
+            &.merge {
+                -webkit-flex-wrap: wrap;
+                        flex-wrap: wrap;
+            }
+
+            input.form-control {
+                padding-left: 15px;
+            }
+
+            .help-block {
+                .flex(1 1 100%);
+
+                margin: 0;
+                margin-right: 8px;
+
+                text-align: right;
+                padding: 2px 6px;
+            }
+        }
+    }
+
+    .alert {
+        border-radius: 0;
+    }
+
+    .flash-message {
+        .opacity(0);
+        .transition();
+
+        padding: 6px 10px;
+
+        &.on {
+            .opacity(1);
+        }
+    }
+
+    .notice {
+        #dashboard-recharge .notice;
+    }
+}
+
+/*=============================================================================
+                                          [Router] [Dashboard] Payment Password
+----*/
+
+#dashboard-payment-password {
+
+    #dashboard-payment-register;
+
+    .form-group.mobile-captcha {
+        #register .form .form-group.mobile-captcha;
+    }
+
+}
+
+/*=============================================================================
+                                      [Router] [Dashboard] Payment Password New
+----*/
+
+#dashboard-payment-password-new {
+
+    .password-input-componet {
+
+        margin: 0 auto;
+        border: 1px solid @color-gray-light;
+        height: 40px;
+
+        input {
+            width: 100%;
+            height: 100%;
+
+            font-size: 14px;
+            text-align: center;
+            letter-spacing: 1em;
+
+            &, &:focus {
+                outline: none;
+                border: none;
+                box-shadow: none;
+                -webkit-box-shadow: none !important;
+                -webkit-appearance: none !important;
+            }
+        }
+    }
+
+    section {
+
+        &:not(.unstyled) {
+            width: 75%;
+            margin: 60px auto;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 27px/2 + 2;
+            margin-bottom: 20px;
+        }
+
+        .submit.btn {
+            border-radius: 999px;
+            border: 1px solid @color-theme-main;
+            margin-top: 14px;
+        }
+
+        .note {
+            color: @color-theme-main;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+    }
+
+    .form-flatten {
+        #dashboard-payment-register .form-flatten;
+    }
+
+    .form-group.mobile-captcha {
+        #register .form .form-group.mobile-captcha;
+    }
+}
+
+/*=============================================================================
+                                         [Router] [Dashboard] Payment Bind Card
+----*/
+
+#dashboard-payment-bind-card {
+
+    .form-flatten {
+        #login > .form-flatten;
+
+        select.form-control {
+            .flex(1);
+
+            margin: 10px;
+            padding: 0;
+            font-size: 13px;
+            color: #333;
+            border: none;
+            box-shadow: none;
+            -webkit-box-shadow: none !important;
+            -webkit-appearance: none !important;
+        }
+
+        label {
+            min-width: 6em !important;
+        }
+
+        .info {
+            .flex-display();
+
+            padding: 12px 15px;
+            font-size: 15px;
+
+            .name {
+                .flex(1);
+            }
+        }
+    }
+
+    .form-group.mobile-captcha {
+        #register .form .form-group.mobile-captcha;
+    }
+
+    .mobile {
+        font-size: 68px/2;
+        margin: 50px/2 auto;
+        text-align: center;
+        color: @color-gray-dark-double;
+    }
+
+    .flash-message {
+        .opacity(0);
+        .transition();
+
+        padding: 6px 10px;
+
+        &.on {
+            .opacity(1);
+        }
+    }
+
+    .notice {
+        #dashboard-recharge .notice;
+    }
+}
+
+/*=============================================================================
+                                                  [Router] [Dashboard] Recharge
+----*/
+
+#dashboard-recharge {
+
+    > .balance {
+        #gradient .vertical(#3C9ED5; #78CEFF);
+
+        padding-top: 15px;
+        padding-bottom: 7px;
+        text-align: center;
+        color: #FFF;
+
+        .title {
+            font-size: 24px/2 + 2;
+        }
+
+        .num {
+            font-size: 60px/2 + 2;
+        }
+    }
+
+    > .form-wrapper {
+        .form-flatten {
+            #login > .form-flatten;
+        }
+
+        input.blank {
+            background-color: #FFF;
+        }
+    }
+
+    > .notice {
+        color: @color-gray;
+
+        .title {
+            font-size: 20px;
+        }
+
+        .list {
+            padding-left: 20px;
+        }
+    }
+}
+
+/*=============================================================================
+                                                  [Router] [Dashboard] Withdraw
+----*/
+
+#dashboard-withdraw {
+
+    #dashboard-recharge;
+
+    .form-wrapper label {
+        min-width: 7em !important;
+    }
+
+}
+
+/*=============================================================================
+                                         [Router] [Dashboard] Invest Repayments
+----*/
+
+#dashboard-repayment {
+    > .repayment-loan {
+        #dashboard-invest .invest-list .item;
+
+        .body {
+            margin-bottom: 0;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .foot {
+            display: none;
+        }
+    }
+
+    > .repayments {
+        padding: 0 40px/2;
+        background-color: #FFF;
+        font-size: 26px/2 + 2;
+
+        .table > thead > tr > th {
+            border-bottom: 1px solid #F5F5F5;
+            padding-left: 0;
+            padding-right: 0;
+            font-weight: normal;
+            color: #9A9A9A;
+        }
+
+        .table > tbody > tr > td {
+            border: 0;
+            border-bottom: 1px solid #F5F5F5;
+            padding-left: 0;
+            padding-right: 0;
+
+            &.type-amount {
+                .type > span {
+                    margin-right: 5px;
+                    border-width: 1px;
+                    border-style: solid;
+                    border-radius: 2px;
+                    padding: 2px 3px;
+                    font-size: 20px/2 + 2;
+                }
+
+                .amount {
+                    font-size: 30px/2 + 2;
+                    vertical-align: middle;
+                }
+
+                &.green {
+                    color: #05A64D;
+
+                    .type > span {
+                        border-color: #05A64D;
+                    }
+                }
+
+                &.blue {
+                    color: #1497F3;
+
+                    .type > span {
+                        border-color: #1497F3;
+                    }
+                }
+
+                &.red {
+                    color: #F63C43;
+
+                    .type > span {
+                        border-color: #F63C43;
+                    }
+                }
+            }
+
+            &.date {
+                color: #777;
+            }
+        }
+    }
+
+    .repayment-list {
+        #dashboard-funds > .funds-list;
+    }
+
+    .repayment-list > .list > .item {
+
+        .gary {
+            -webkit-filter: grayscale(1) contrast(0.5);
+                    filter: grayscale(1) contrast(0.5);
+        }
+
+        .repayment-type {
+            padding: 4px 6px;
+            margin-right: 6px;
+            border-radius: 6px;
+            font-size: 18px;
+            display: inline-block;
+            color: #FFF;
+
+            &.red {
+                background-color: @color-theme-main;
+            }
+            &.green {
+                background-color: #7EC741;
+            }
+            &.orange {
+                background-color: #FF4800;
+            }
+        }
+
+        .date {
+            font-size: 14px;
+            top: 2px;
+        }
+    }
+}
+
+/*=============================================================================
+                                                     [Router] [Dashboard] Funds
+----*/
+
+#dashboard-funds {
+    > .funds-list {
+        background-color: #FFF;
+
+        > .list {
+            margin: 0;
+            margin-left: 10px;
+            border-top: 0;
+            border-color: #D8D8D8;
+            padding: 0;
+        }
+
+        > .list > .item {
+            border-left: 0;
+            border-right: 0;
+            padding: 14px 10px 14px 5px;
+
+            .info {
+                .operation > * {
+                    position: absolute;
+                    left: -6px;
+                    top: -2px;
+                    line-height: 1;
+                    color: #FFF;
+                    border-radius: 999px;
+                    padding: 6px;
+                    font-size: 18px;
+
+                    &.red {
+                        background-color: @color-theme-main;
+                    }
+                    &.orange {
+                        background-color: #FF7200;
+                    }
+                    &.green {
+                        background-color: #7EC741;
+                    }
+                    &.blue {
+                        background-color: #70B1DF;
+                    }
+                }
+            }
+
+            .type {
+                margin-bottom: 8px;
+                font-size: 28px/2 + 2;
+                color: #000;
+            }
+
+            .date {
+                font-size: 24px/2 + 2;
+                color: #BBB;
+            }
+
+            .amount {
+                margin-bottom: 5px;
+                font-size: 30px/2 + 2;
+
+                &.red {
+                    color: #E70012;
+                }
+                &.green {
+                    color: #79CB3C;
+                }
+                &.gray {
+                    color: #333;
+                }
+            }
+
+            .description {
+                font-size: 24px/2 + 2;
+                color: #A3A3A3;
+
+                em {
+                    color: @color-gray-light;
+                    font-style: normal;
+                }
+            }
+        }
+    }
+}
+
+/*=============================================================================
+                                                    [Router] [Dashboard] invite
+----*/
+
+#dashboard-invite {
+
+    section:not(.omit-margin) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .panel {
+        background-color: #FFF;
+        text-align: center;
+        padding: 20px;
+
+        .list {
+            .flex-display();
+
+            .item {
+                .flex(1);
+            }
+        }
+    }
+
+    .arrow-tip {
+        position: fixed;
+        z-index: 12;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        text-align: right;
+
+        .arrow {
+            padding-top: 30px;
+            padding-right: 23px;
+        }
+
+        .tip {
+            display: inline-block;
+            vertical-align: middle;
+            margin-top: -2px;
+            margin-right: 8px;
+            background-color: #FFF;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #000;
+        }
+    }
+}
+
+/*=============================================================================
+                                                          [Router] Share Coupon
+----*/
+
+#share-coupon {
+    #dashboard-invite;
+}
+
+/*=============================================================================
+                                         [Router] [Dashboard] invite registered
+----*/
+
+#dashboard-invite-registered {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    min-height: 100%;
+    background-color: #FFF677;
+
+    section:not(.omit-margin) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .links {
+        .btn-block {
+            & + .btn-block {
+                margin-top: 25px;
+                margin-bottom: 25px;
+            }
+        }
+    }
+}
+
+/*=============================================================================
+                                                              [Router] Activity
+----*/
+
+#activity {
+    section:not(.omit-margin) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+/*=============================================================================
+                                                          [Router] Announcement
+----*/
+
+#announcement {
+    .announcements {
+        margin-left: 15px;
+        margin-right: 10px;
+        border-left: 2px solid #D9D9D9;
+        padding-left: 15px;
+        padding-bottom: 40px;
+
+        .list {
+            .item {
+                position: relative;
+                padding-top: 5px;
+                color: #999;
+
+                .pub-date {
+                    font-size: 24px/2 + 2;
+                    line-height: 34px;
+                }
+
+                .detail {
+                    word-wrap: break-word;
+                    border: 1px solid #D9D9D9;
+                    padding: 5px 15px;
+                    background-color: #FFF;
+
+                    .title {
+                        font-size: 28px/2 + 2;
+                        color: @color-theme-emphasize;
+                    }
+
+                    .content {
+                        font-size: 24px/2 + 2;
+
+                        img {
+                            width: 100% !important;
+                            height: auto !important;
+                        }
+                    }
+                }
+
+                &:before {
+                    content: "";
+                    position: absolute;
+                    left: -22px;
+                    top: 16px;
+                    border: 2px solid #D9D9D9;
+                    background-color: #F6F6F6;
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                }
+            }
+        }
+
+        .load-more {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+    }
+}
+
+/*=============================================================================
+                                   [Router] [Dashboard] privilege certification
+----*/
+
+#privilege-certification {
+    .privilege {
+        .provilege-bac{
+            height: 177px/2;
+            background: url("@{path-image}/privilege-certification.png") no-repeat #F5F5F5;
+            background-size: 142px/2 108px/2;
+            background-position: center;
+        }
+
+        h3 {
+            margin: 0;
+        }
+        .container {
+            width: 96%;
+            margin: 20px auto;
+
+            .btn-block {
+                height: 40px;
+            }
+        }
+    }
+
+
+
+    .input-lg {
+        margin: 0;
+        height: 100px /2;
+        border: 0;
+        border-radius: 0;
+        -wekit-border-radius: 0;
+        color: #999;
+        font-size: 30px/2;
+        text-align: center;
+        box-shadow: nobne;
+        -webkit-box-shadow: none;
+        }
+}
+
+/*=============================================================================
+                                                                  [Router] Help
+----*/
+
+#help {
+    section:not(.omit-margin) {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .help-info .panel {
+        // #loan .loan-info .panel;
+
+        &-heading,
+        &-body {
+            margin-left: 8px;
+            margin-right: 8px;
+        }
+    }
+}
+
+/*=============================================================================
+                                                                    Page Footer
+----*/
+
+#page-footer {
+    padding-top: 17px;
+    padding-bottom: 20px;
+    background-color: #E4E4E4;
+    font-size: 24px/2 + 2;
+    color: #777;
+
+    .copyright {
+        margin-bottom: 2px;
+    }
+
+    .contact {
+        margin-left: 10px;
+
+        a {
+            color: inherit;
+        }
+    }
+
+    .certification {
+        img {
+            + img {
+                margin-left: 9px;
+            }
+        }
+    }
+}
