@@ -1,0 +1,23 @@
+{
+  "name": "project-hrjk",
+  "version": "0.0.0",
+  "description": "这个根目录下只放 @cc/node-sh 等公用脚本，其他还是放具体各子项目下",
+  "scripts": {
+    "postinstall": "ds-init-sub-projects",
+    "prepush": "cd web/ && ccnpm run build && NODE_ENV=production PORT=`next-port 8000` node index --start-then-close",
+    "postmerge": "cc-post-merge",
+    "dev": "cd web/ && npm run dev",
+    "deploy": "node-deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@gitlab.creditcloud.com:10022/ccfe/project-demo.git"
+  },
+  "author": "CCFE",
+  "license": "private",
+  "dependencies": {
+    "@cc/node-sh": "^3.3.7",
+    "@cc/scripts": "^2.2.0",
+    "husky": "^0.8.1"
+  }
+}

@@ -1,0 +1,12 @@
+[
+    ["lodash-compat", "lodash"],
+    ["bluebird"],
+    ["baconflux"],
+    ["jquery"],
+    ["baconjs"],
+    ["moment/moment", "moment"],
+    ["moment/locale/zh-cn"],
+    ["ractive/ractive-legacy", "ractive"],
+    ["qs"],
+    ["promisingagent"]
+]
