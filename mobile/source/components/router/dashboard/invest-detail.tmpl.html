@@ -1,0 +1,162 @@
+
+<div id="dashboard-invest-detail">
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" href="dashboard/invest"><param class="glyphicon glyphicon-menu-left"></a>
+        <span class="col-xs-6 title">投资记录详情</span>
+        <span class="col-xs-3">&nbsp;</a>
+    </div>
+    </nav>
+
+    <section class="c-list-panel info-list">
+        <div class="item title">项目信息</div>
+
+        <div class="item info">
+            <div class="info-row">
+                <span class="name">项目名称</span>
+                <span class="value">{{ item.title }}</span>
+            </div>
+
+            <div class="info-row">
+                <span class="name">项目金额</span>
+                <span class="value" ng-if="item.loan_amount">{{ item.loan_amount / 10000 }}万</span>
+            </div>
+
+            <div class="info-row">
+                <span class="name">项目期限</span>
+                <span class="value" ng-if="item.oddment_days">
+                    {{ item.total_days }}天
+                </span>
+                <span class="value" ng-if="!item.oddment_days">
+                    {{ item.total_months }}个月
+                </span>
+            </div>
+
+            <div class="info-row">
+                <span class="name">年 利 率</span>
+                <span class="value">{{ item.rate }}%</span>
+            </div>
+
+            <div class="info-row">
+                <span class="name">回款方式</span>
+                <span class="value">
+                    <span ng-switch="item.method">
+                        <span ng-switch-when="MonthlyInterest">按月付息, 到期还本</span>
+                        <span ng-switch-when="EqualInstallment">按月等额本息</span>
+                        <span ng-switch-when="EqualPrincipal">按月等额本金</span>
+                        <span ng-switch-when="BulletRepayment">一次性还本付息</span>
+                        <span ng-switch-when="EqualInterest">月平息</span>
+                        <span ng-switch-when="YearlyInterest">按年付息到期还本</span>
+                    </span>
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <section class="c-list-panel info-list" x-gyro-comment>
+        <div class="item title">项目信息</div>
+
+        <div class="item info">
+            <div class="info-row">
+                <div class="name word-5">计息开始日</div>
+                <div ng-if="item.value_date" class="value">{{ item.value_date | date: 'yyyy-MM-dd' }}</div>
+                <div ng-if="!item.value_date" class="value">-</div>
+            </div>
+
+            <div class="info-row">
+                <div class="name word-5">计息到期日</div>
+                <div ng-if="item.end_date" class="value">{{ item.end_date | date: 'yyyy-MM-dd' }}</div>
+                <div ng-if="!item.end_date" class="value">-</div>
+            </div>
+
+            <div class="info-row">
+                <div class="name word-5">回款方式</div>
+                <div class="value">
+                    <span ng-switch="item.method">
+                        <span ng-switch-when="MonthlyInterest">按月付息, 到期还本</span>
+                        <span ng-switch-when="EqualInstallment">按月等额本息</span>
+                        <span ng-switch-when="EqualPrincipal">按月等额本金</span>
+                        <span ng-switch-when="BulletRepayment">一次性还本付息</span>
+                        <span ng-switch-when="EqualInterest">月平息</span>
+                        <span ng-switch-when="YearlyInterest">按年付息到期还本</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section ng-if="item.is_show_repayment" class="c-list-panel info-list">
+        <div class="item title">回款情况</div>
+
+        <div class="item info">
+            <div class="info-row">
+                <span class="name">回款进度</span>
+                <span class="value">{{ item.progress }}期</span>
+            </div>
+
+            <div class="info-row">
+                <span class="name">已付利息</span>
+                <span class="value">{{ item.amount_repayed }}元</span>
+            </div>
+
+            <div class="info-row">
+                <span class="name">剩余利息</span>
+                <span class="value">{{ item.amount_unrepay }}元</span>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+    <section class="c-list-panel info" x-gyro-comment>
+        <div class="item title">订单信息</div>
+
+        <div class="item">
+            <div class="name">产品名称</div>
+            <div class="value">{{ item.loan.title }}</div>
+        </div>
+        <div class="item">
+            <div class="name">年化收益率</div>
+            <div class="value">{{ item.rate }}%</div>
+        </div>
+        <div class="item">
+            <div class="name">投资金额(元)</div>
+            <div class="value">{{ item.amount | number }}</div>
+        </div>
+        <div class="item">
+            <div class="name">到期收益(元)</div>
+            <div class="value" ng-if="!!item.amount_outstanding">{{ item.amount_outstanding | number }}</div>
+            <div class="value" ng-if="!item.amount_outstanding">-</div>
+        </div>
+        <div class="item">
+            <div class="name">下单时间</div>
+            <div class="value">{{ item.submit_time | date: 'yyyy-MM-dd HH:mm:ss' }}</div>
+        </div>
+        <div class="item">
+            <div class="name">起息日</div>
+            <div class="value" ng-if="item.loan.value_date">{{ item.loan.value_date | date: 'yyyy-MM-dd' }}</div>
+            <div class="value" ng-if="!item.loan.value_date">结标后第二天</div>
+        </div>
+        <div class="item">
+            <div class="name">到期日</div>
+            <div class="value" ng-if="item.end_date">{{ item.end_date | date: 'yyyy-MM-dd' }}</div>
+            <div class="value" ng-if="!item.end_date">-</div>
+        </div>
+    </section>
+
+    <section class="actions container" x-gyro-comment>
+        <a class="item btn btn-block btn-lg btn-theme" target="_blank"
+           ng-if="contract_url"
+           ng-href="{{ contract_url }}"
+        >合同下载</a>
+        <a class="item btn btn-block btn-lg btn-default"
+           ng-href="loan/{{ item.loan.id }}"
+        >产品详情</a>
+    </section>
+</div>

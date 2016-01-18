@@ -1,0 +1,100 @@
+
+<div id="dashboard-repayment" class="">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" href="dashboard/invest"><span class="glyphicon glyphicon-menu-left"></span></a>
+        <span class="col-xs-6 title">回款计划</span>
+        <span class="col-xs-3">&nbsp;</a>
+    </div>
+    </nav>
+
+    <section class="repayment-loan"
+             x-invest-summary
+             data-item="repayment_loan.item"
+             data-type="repayment_loan.type">
+    ></section>
+
+    <section class="repayments">
+        <table class="table u-off-margin-bottom" ng-if="data.length">
+            <thead>
+                <tr>
+                    <th>金额</th>
+                    <th class="text-right">日期</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in data">
+                    <td class="type-amount"
+                        ng-class="{
+                            green: item.type == 'both',
+                            blue: item.type == 'principal',
+                            red: item.type == 'interest'
+                        }"
+                    >
+                        <span class="type"
+                              ng-switch="item.type"
+                        >
+                            <span ng-switch-when="both">本息</span>
+                            <span ng-switch-when="interest">利息</span>
+                            <span ng-switch-when="principal">本金</span>
+                        </span>
+
+                        <span class="amount">
+                            {{ item.amount | number: 2 }}
+                        </span>
+                    </td>
+                    <td class="date text-right">{{ item.date }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div ng-if="!data.length">
+            <h4 class="alert alert-info text-center">暂时没有回款计划</h4>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+    <section class="repayment-list" x-gyro-comment>
+        <ul class="list list-group list-group-flat u-off-margin-bottom">
+            <li class="container" ng-if="!data.length"><p>暂时没有回款计划</p></li>
+
+            <li class="item list-group-item"
+                ng-repeat="item in data"
+            >
+                <div class="clearfix" ng-class="{ gary: item.status != 'REPAYED' }">
+                    <span class="pull-left">
+                        <span class="repayment-type"
+                              ng-switch="item.type"
+                              ng-class="{
+                                  red: item.type == 'both',
+                                  orange: item.type == 'principal',
+                                  green: item.type == 'interest'
+                              }"
+                        >
+                            <span ng-switch-when="both">本息</span>
+                            <span ng-switch-when="interest">付息</span>
+                            <span ng-switch-when="principal">还本</span>
+                        </span>
+                        <span class="date">{{ item.date }}</span>
+                    </span>
+
+                    <span class="pull-right amount green">
+                        +{{ item.amount | number }}
+                    </span>
+                </div>
+                <div class="text-right description" ng-if="item.description">
+                    <em>备注：</em>{{ item.description }}
+                </div>
+            </li>
+        </ul>
+    </section>
+
+</div>

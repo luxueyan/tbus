@@ -1,0 +1,19 @@
+
+<header id="page-header" class="navbar u-off-margin-bottom">
+    <div class="logo">
+        <a href="./">
+            <img width="120" src="assets/image/nav-logo.png">
+        </a>
+    </div>
+
+    <div class="userbar" ng-if="!user.has_logged_in">
+        <a href="register">注册</a>
+        <a href="login">登录</a>
+    </div>
+
+    <div class="userbar" ng-if="user.has_logged_in">
+        <a href="dashboard">
+            {{ user.info.name || user.info.mobile }}
+        </a>
+    </div>
+</header>

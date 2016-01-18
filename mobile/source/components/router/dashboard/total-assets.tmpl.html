@@ -1,0 +1,48 @@
+
+<div id="dashboard-total-assets">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" href="dashboard">
+            <param class="glyphicon glyphicon-menu-left">
+        </a>
+        <span class="col-xs-6 title">总资产</span>
+        <span class="col-xs-3">&nbsp;</span>
+    </div>
+    </nav>
+
+    <section class="text-right">
+        <a href="dashboard/funds?back=dashboard/total-assets" class="btn btn-link">查看资金记录</a>
+    </section>
+
+    <section class="detail">
+        <ul class="list-unstyled u-off-margin-bottom info-list">
+            <li class="info">
+                <span class="name">可用余额</span>
+                <span class="value">&yen; {{ fund.available }}</span>
+            </li>
+            <li class="info">
+                <span class="name">待收本金</span>
+                <span class="value">&yen; {{ fund.outstanding_principal }}</span>
+            </li>
+            <li class="info">
+                <span class="name">待收利息</span>
+                <span class="value">&yen; {{ fund.outstanding_interest }}</span>
+            </li>
+            <li class="info">
+                <span class="name">出借冻结</span>
+                <span class="value">&yen; {{ fund.invest_frozen }}</span>
+            </li>
+            <li class="info">
+                <span class="name">提现冻结</span>
+                <span class="value">&yen; {{ fund.withdraw_frozen }}</span>
+            </li>
+        </ul>
+
+        <div class="info total">
+            <span class="name">总资产</span>
+            <span class="value">&yen; {{ fund.total }}</span>
+        </div>
+    </section>
+
+</div>

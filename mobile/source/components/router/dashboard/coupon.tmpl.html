@@ -1,0 +1,111 @@
+
+<div id="dashboard-coupon">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" ng-href="{{ self.back_path || 'dashboard' }}">
+            <param class="glyphicon glyphicon-menu-left">
+        </a>
+
+        <span class="col-xs-6 title">{{ picking ? '选择' : '我的' }}红包</span>
+
+        <span class="col-xs-3" ng-if="!picking">&nbsp;</span>
+        <a class="col-xs-3 actions" ng-href="{{ self.back_path }}"
+           ng-if="picking"
+        ><small>不使用红包</small></a>
+    </div>
+    </nav>
+
+    <div>
+        <param ng-model="msg" ng-init="msg = {
+            SUCCEED: '兑换成功',
+            FAILED: '兑换失败',
+        }">
+    </div>
+
+    <section class="coupons">
+        <ul class="list-unstyled u-off-margin-bottom coupon-list">
+            <li class="item"
+                ng-repeat="item in data"
+                ng-click="picking && item.status != 'DISABLED' && self.select(item.id)"
+                ng-class="'item-status-' + (item.status | lowercase)"
+            >
+                <div class="media">
+                    <div class="media-left text-center">
+                        <div class="media-object">
+                            <div class="status" ng-switch="item.status">
+                                <span ng-switch-when="INITIATED">未使用</span>
+                                <span ng-switch-when="PLACED">未使用</span>
+                                <span ng-switch-when="USED">待处理</span>
+                                <span ng-switch-when="REDEEMED">已兑换</span>
+                                <span ng-switch-when="EXPIRED">已过期</span>
+                                <span ng-switch-when="CANCELLED">已失效</span>
+                            </div>
+
+                            <div class="value">
+                                <div ng-switch="item.couponPackage.type">
+                                    <span ng-switch-when="INTEREST">
+                                        <span class="num">{{ item.couponPackage.parValue / 100 }}</span>%
+                                    </span>
+                                    <span ng-switch-default>
+                                        &yen;
+                                        <span class="num"
+                                              ng-if="item.couponPackage.parValue >= 10000"
+                                        >{{ item.couponPackage.parValue / 10000 }}万</span>
+                                        <span class="num"
+                                              ng-if="!(item.couponPackage.parValue >= 10000)"
+                                        >{{ item.couponPackage.parValue }}</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media-body">
+                        <div class="type" ng-switch="item.couponPackage.type">
+                            <span ng-switch-when="CASH">现金券</span>
+                            <span ng-switch-when="INTEREST">加息券</span>
+                            <span ng-switch-when="PRINCIPAL">增值券</span>
+                            <span ng-switch-when="REBATE">返现券</span>
+                        </div>
+
+                        <div class="expire">
+                            <span ng-if="item.couponPackage.timeExpire">
+                                有效期至 {{ item.couponPackage.timeExpire | date: "yyyy-MM-dd" }}
+                            </span>
+                            <span ng-if="!item.couponPackage.timeExpire">永不过期</span>
+                        </div>
+
+                        <div class="desc">{{ item.couponPackage.displayName || '暂无描述' }}</div>
+
+                        <div class="desc">
+                            最低投资 {{ item.couponPackage.minimumInvest | number }}元，
+                            最短期限 {{ item.couponPackage.minimumDuration }}个月
+                        </div>
+
+                        <button class="btn btn-sm btn-info redeem"
+                                ng-click="self.redeem(item.id)"
+                                ng-if="
+                                    !picking
+                                 && item.couponPackage.type === 'CASH'
+                                 && ['INITIATED', 'PLACED'].indexOf(item.status) > -1
+                                "
+                        >兑换</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <div ng-if="!data.length" class="container">
+            <h4 class="alert alert-info text-center">抱歉，您还没有奖券！</h4>
+        </div>
+
+        <p ng-if="data.length && self.has_more(data)" class="container">
+            <button class="load-more btn btn-default btn-block"
+                    ng-click="self.add_more(data)"
+            >点击查看更多</button>
+        </p>
+    </section>
+
+</div>
+

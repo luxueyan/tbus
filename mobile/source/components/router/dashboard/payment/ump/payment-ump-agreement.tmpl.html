@@ -1,0 +1,46 @@
+
+<div id="dashboard-payment-ump-agreement" class="">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" ng-href="{{ self.back_path }}"><param class="glyphicon glyphicon-menu-left">取消</a>
+        <span class="col-xs-6 title">开通无密投资协议</span>
+        <span class="col-xs-3 actions" ng-click="self.logout()">注销</span>
+    </div>
+    </nav>
+
+    <form name="form" class="form-horizontal"
+          action="/upayment/bindAgreement"
+          method="post"
+          target="_self"
+          ng-submit="self.submit($event)"
+          novalidate
+    >
+
+        <input type="hidden" name="agreementList" value="ZTBB0G00">
+        <input type="hidden" name="isWAP" value="true">
+
+        <div class="container agreement">
+            <p>
+                您签订协议后，将开通快速投资功能，无需重复输入第三方支付平台（联动优势）支付密码，
+                便可进行投资操作。该协议签订后，不会造成您的资金流失，您的资金一直存在联动优势资金托管账户中，
+                不会被提出到其他人的银行卡，若您需要提出到银行卡，仍需要输入联动优势的支付密码才能进行提现，
+                并且只能提现到您绑定的本人银行卡中。所以请确保尽快绑定属于本人的提现银行卡，绑定后将不能更换，
+                保证您资金的安全。
+            </p>
+
+            <label>
+                <input type="checkbox" ng-init="agreement = false" ng-model="agreement" required>
+                <span class="u-color-main">开通快速投资协议</span>
+            </label>
+        </div>
+
+        <p class="container">
+            <button class="btn btn-theme btn-lg btn-block"
+                    type="submit"
+                    ng-disabled="form.$invalid || self.submit_sending"
+            >确定</button>
+        </p>
+    </form>
+
+</div>

@@ -1,0 +1,99 @@
+
+API_SERVER   = 'http://localhost:8080'
+API_ENDPOINT = '/api/v2'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+module.exports = (path_sets) ->
+
+    request = require 'request'
+
+    proxy = (path) -> (req, res) ->
+        req.pipe request path + req.url
+           .pipe res
+
+
+    path_sets.trim().split(/\s+/).forEach (path) =>
+        [raw, method, path] = path.match /(^\w+)?(.*$)/i
+        method ?= 'POST'
+
+        @[method.toLowerCase()] path, proxy API_SERVER
+
+    @use API_ENDPOINT, proxy API_SERVER + API_ENDPOINT

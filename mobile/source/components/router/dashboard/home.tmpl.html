@@ -1,0 +1,80 @@
+
+<div id="dashboard">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" href="./">
+            <span class="glyphicon glyphicon-menu-left"></span>
+        </a>
+        <span class="col-xs-6 title">我的账户</span>
+        <span class="col-xs-3">&nbsp;</span>
+    </div>
+    </nav>
+
+    <div class="banner" x-carousel-banner data-delay-in-seconds="4"></div>
+
+    <section class="c-list-panel info-list">
+        <div class="item">
+            <img class="user-icon" width="14" src="assets/image/dashboard-user-icon.png">
+            <span class="name">账户</span>
+            <span class="value">{{ self.user.info.name || self.user.info.mobile }}</span>
+        </div>
+
+        <div class="item">
+            <img width="17" src="assets/image/dashboard-profit-icon.png">
+            <span class="name">累计收益</span>
+            <span class="value">&yen; {{ fund.total_interest | number: 2 }}</span>
+            <a class="btn btn-sm btn-withdraw pull-right" href="dashboard/withdraw">提现</a>
+        </div>
+
+        <div class="item">
+            <img width="17" src="assets/image/dashboard-available-icon.png">
+            <span class="name">可用余额</span>
+            <span class="value">&yen; {{ fund.available | number: 2 }}</span>
+            <a class="btn btn-sm btn-recharge pull-right" href="dashboard/recharge">充值</a>
+        </div>
+
+        <a href="dashboard/total-assets" class="item">
+            <img width="17" src="assets/image/dashboard-total-icon.png">
+            <span class="name">总资产</span>
+            <span class="value">&yen; {{ fund.total | number: 2 }}</span>
+            <param class="glyphicon glyphicon-menu-right pull-right">
+        </a>
+
+        <a href="dashboard/bank-card" class="item">
+            <img width="17" src="assets/image/dashboard-card-icon.png">
+            <span class="name">我的银行卡</span>
+            <param class="glyphicon glyphicon-menu-right pull-right">
+        </a>
+
+        <a href="dashboard/coupon" class="item">
+            <img class="coupon-icon" width="15" src="assets/image/dashboard-coupon-icon.png">
+            <span class="name">我的红包</span>
+            <span class="value" ng-if="available_coupon_length">
+                <span class="num">{{ available_coupon_length }}</span>个可用红包
+            </span>
+            <param class="glyphicon glyphicon-menu-right pull-right">
+        </a>
+    </section>
+
+    <section class="c-list-panel links">
+        <a href="dashboard/payment/password" class="item password">
+            <param class="glyphicon glyphicon-lock icon">
+            <span class="name">交易密码</span>
+            <param class="glyphicon glyphicon-menu-right pull-right">
+        </a>
+
+        <a href="password/change" class="item password">
+            <param class="glyphicon glyphicon-lock icon">
+            <span class="name">登录密码</span>
+            <param class="glyphicon glyphicon-menu-right pull-right">
+        </a>
+    </section>
+
+    <section class="container action">
+        <button class="btn btn-block btn-lg btn-theme"
+                ng-click="self.logout()"
+        >退出登录</button>
+    </section>
+
+</div>

@@ -1,0 +1,38 @@
+
+<div id="dashboard-settings">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" ng-href="{{ self.next_path || 'dashboard' }}"><param class="glyphicon glyphicon-menu-left"></a>
+        <span class="col-xs-6 title">设置</span>
+        <span class="col-xs-3">&nbsp;</span>
+    </div>
+    </nav>
+
+    <div class="padding"></div>
+
+    <h2 class="mobile text-center">
+        {{ self.user.info.mobile | string_replace: '^(\\d{3})(.*)(\\d{4})$' : '$1****$3' }}
+    </h2>
+
+    <section class="list-group-flat">
+        <a class="list-group-item rsaquo" href="dashboard/bank-card">我的银行卡</a>
+    </section>
+
+    <section class="list-group-flat">
+        <a class="list-group-item rsaquo" href="dashboard/invite" target="_self">邀请好友</a>
+    </section>
+
+    <section class="list-group-flat">
+        <a class="list-group-item rsaquo" href="dashboard/privilege-certification">特权认证</a>
+        <a class="list-group-item rsaquo" href="password/change">修改登录密码</a>
+        <a class="list-group-item rsaquo" href="dashboard/payment/password?back=dashboard/settings">
+            {{ self.user.has_payment_password ? '修改' : '设置' }}交易密码
+        </a>
+    </section>
+
+    <div class="logout container">
+        <button class="btn btn-theme btn-block" ng-click="self.logout()">安全退出</button>
+    </div>
+
+</div>
