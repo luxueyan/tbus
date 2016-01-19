@@ -14,11 +14,6 @@ Object.defineProperties(GLOBAL, {
     Promise: {value: require('bluebird')},
     Bacon: {value: require('baconjs').Bacon},
 });
-GLOBAL.Promise.config({
-    warnings: false,
-    longStackTraces: true,
-    cancellation: false,
-});
 Object.defineProperties(GLOBAL, {
     jQuery: {get: getJQuery},
     $: {get: getJQuery},
