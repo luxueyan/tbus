@@ -1,5 +1,5 @@
 {
-  "name": "jbjk-web",
+  "name": "hrjr-web",
   "version": "0.0.0",
   "dependencies": {
     "@cc/oauth2": "^1.15.2",
@@ -16,7 +16,7 @@
     "@ds/i18n": "^1.2.1",
     "baconjs": "^0.7",
     "baconflux": "^2",
-    "bluebird": "^3",
+    "bluebird": "^2",
     "bootstrap": "^3",
     "bunyan-hub-logger": "^1",
     "cc-body": "^1",
