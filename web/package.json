@@ -43,6 +43,7 @@
   "scripts": {
     "browserify": "browserify",
     "build": "gulp build",
+    "build-config": "gulp build-config",
     "dev": "gulp dev",
     "gulp": "gulp",
     "postinstall": "mkdir -p src/ccc/global/img/fonts && cp node_modules/bootstrap/fonts/* src/ccc/global/img/fonts/ && cp node_modules/font-awesome/fonts/* src/ccc/global/img/fonts/",
