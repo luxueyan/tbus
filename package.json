@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "ssh://git@gitlab.creditcloud.com:10022/ccfe/project-demo.git"
+    "url": "ssh://git@gitlab.creditcloud.com:10022/ccfe/project-hrjk.git"
   },
   "author": "CCFE",
   "license": "private",
