@@ -4,7 +4,7 @@
   "dependencies": {
     "@cc/oauth2": "^1.15.2",
     "@cc/redis": "^1.0.0",
-    "@ccc/ie8fix": "^1.1.0",
+    "@ccc/ie8fix": "^2.0.0",
     "@ccc/inspect": "^2.0.2",
     "@ccc/login": "^2.7.0",
     "@ccc/payment": "^1.7.0",
@@ -14,8 +14,8 @@
     "@ccc/wx": "^1.2.2",
     "@ds/format": "^3.2.2",
     "@ds/i18n": "^1.2.1",
-    "baconjs": "^0.7",
     "baconflux": "^2",
+    "baconjs": "^0.7",
     "bluebird": "^2",
     "bootstrap": "^3",
     "bunyan-hub-logger": "^1",

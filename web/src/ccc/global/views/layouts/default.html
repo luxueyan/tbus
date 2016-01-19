@@ -1,0 +1,23 @@
+<!doctype html>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8,chrome=1">
+<link rel="stylesheet" href="/ccc/global/css/base.css">
+<!--[if lt IE 8]><script src="http://wuyongzhiyong.b0.upaiyun.com/iedie/v1.1/script.min.js"></script><![endif]-->
+<!--[if lt IE 10]>
+<script src="/ccc/ie8fix/js/dist/console-html5-es5shim-excanvas.js"></script>
+<![endif]-->
+<script src="/ccc/global-common.js" async></script>
+<meta charset="utf-8" />
+<title>{{title}}</title>
+<script>
+    {{{ state }}};
+    window.global = window.global || window;
+    window.process = window.process || CC.process;
+    if(process.env.NODE_ENV === 'development'){document.write('<script src="/ccc/template-watch/js/dist/getRactiveTemplate.js"></'+'script>');}
+    if(process.env.NODE_ENV === 'development' || process.env.NODE_APP_INSTANCE === 'uat'){document.write('<script src="/ccc/inspect/js/main/inspect.js"></'+'script>');}
+</script>
+<meta name="Keywords" content="{{keywords}}">
+<meta name="Description" content="{{description}}">
+
+{{>content}}
