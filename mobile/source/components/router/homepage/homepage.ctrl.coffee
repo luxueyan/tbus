@@ -3,10 +3,12 @@ do (_, angular) ->
 
     angular.module('controller').controller 'HomepageCtrl',
 
-        _.ai '            @api, @user, @$scope, @$window, map_loan_summary, @$location', class
-            constructor: (@api, @user, @$scope, @$window, map_loan_summary, @$location) ->
+        _.ai '            @api, @user, @$scope, @$rootScope, @$window, map_loan_summary, @$location', class
+            constructor: (@api, @user, @$scope, @$rootScope, @$window, map_loan_summary, @$location) ->
 
                 @$window.scrollTo 0, 0
+
+                @$rootScope.state = 'landing'
 
                 angular.extend @$scope, {
                     list: {}
