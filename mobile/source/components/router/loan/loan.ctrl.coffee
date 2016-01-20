@@ -103,11 +103,11 @@ do (_ ,angular, moment, Math, Date) ->
     angular.module('factory').factory 'map_loan_summary', -> (item) ->
 
         CHART_OPTIONS = ->
-            size: 80
-            lineWidth: 7
+            size: 64
+            lineWidth: 4
             scaleColor: false
-            barColor: '#F94141'
-            trackColor: '#EDECEC'
+            barColor: '#FFC777'
+            trackColor: '#EBEDF2'
 
         loanRequest = item.loanRequest
 
@@ -167,6 +167,6 @@ do (_ ,angular, moment, Math, Date) ->
             total_months: item.duration.totalMonths
 
             chart_options: _.merge CHART_OPTIONS(), do (data = {}) ->
-                data.barColor = '#F94141' unless item.status is 'OPENED'
+                data.barColor = '#FFC777' unless item.status is 'OPENED'
                 return data
         }

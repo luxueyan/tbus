@@ -3,6 +3,160 @@
 
     <nav class="omit-margin container page-nav">
     <div class="row">
+        <span class="col-xs-12 text-center btn-group-wrap">
+            <div class="btn-group">
+                <a href="list" class="btn btn-tab selected">理财</a>
+                <a href="list" class="btn btn-tab">基金</a>
+            </div>
+        </span>
+    </div>
+    </nav>
+
+    <div ng-if="filter_type">
+        <div class="container text-center loan-filter">
+            <div class="row">
+                <div class="col-xs-6" x-uib-dropdown>
+                    <div x-uib-dropdown-toggle>
+                        利率<param class="glyphicon glyphicon-menu-down">
+                    </div>
+                    <ul x-uib-dropdown-menu>
+                        <li><a href="">demo</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-6 dropdown" x-uib-dropdown>
+                    <div x-uib-dropdown-toggle>
+                        状态<param class="glyphicon glyphicon-menu-down">
+                    </div>
+                    <ul x-uib-dropdown-menu>
+                        <li><a href="" class="active">全部状态</a></li>
+                        <li><a href="">进行中</a></li>
+                        <li><a href="">即将开始</a></li>
+                        <li><a href="">已满额</a></li>
+                        <li><a href="">计息中</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <section class="loan-panel"
+                 ng-class="'loan-panel-' + filter_type | lowercase"
+        >
+            <div ng-switch="filter_type">
+                <div class="heading container" ng-switch-when="LHB">
+                    <h3 class="title">灵活宝</h3>
+                    <span class="desc">1元起投 随时提取</span>
+                </div>
+
+                <div class="heading container" ng-switch-when="DCB">
+                    <h3 class="title">定存宝</h3>
+                    <span class="desc">稳定收入最低风险</span>
+                </div>
+
+                <div class="heading container" ng-switch-when="SBLC">
+                    <h3 class="title">散标理财</h3>
+                    <span class="desc">稳定收入最低风险</span>
+                </div>
+            </div>
+
+            <div ng-hide="loading">
+                <ul class="list-unstyled u-off-margin-bottom loan-list">
+                    <li ng-repeat="item in ::list track by $index">
+                        <a ng-href="loan/{{ ::item.id }}?back={{ ::page_path }}"
+                           x-loan-summary
+                           data-loan="item"
+                           data-layout="'has-chart'"
+                        ></a>
+                    </li>
+                </ul>
+
+                <div ng-if="!list.length" class="container">
+                    <h4 class="alert alert-info text-center">暂无数据</h4>
+                </div>
+            </div>
+
+            <p class="text-center" ng-show="loading">
+                <img src="assets/image/spinner.gif">
+            </p>
+        </section>
+    </div>
+
+    <div ng-if="!filter_type">
+        <section class="loan-panel loan-panel-lhb">
+            <a href="list/LHB">
+                <div class="heading container">
+                    <h3 class="title">灵活宝</h3>
+                    <span class="desc">
+                        1元起投 随时提取
+                        <param class="glyphicon glyphicon-menu-right">
+                    </span>
+                </div>
+            </a>
+            <ul class="list-unstyled u-off-margin-bottom loan-list">
+                <li ng-repeat="item in ::list.LHB | limitTo: 3 track by $index">
+                    <a ng-href="loan/{{ ::item.id }}?back={{ ::page_path }}"
+                       x-loan-summary
+                       data-loan="item"
+                       data-layout="'has-chart'"
+                    ></a>
+                </li>
+            </ul>
+        </section>
+
+        <section class="loan-panel loan-panel-dcb">
+            <a href="list/DCB">
+                <div class="heading container">
+                    <h3 class="title">定存宝</h3>
+                    <span class="desc">
+                        稳定收入最低风险
+                        <param class="glyphicon glyphicon-menu-right">
+                    </span>
+                </div>
+            </a>
+            <ul class="list-unstyled u-off-margin-bottom loan-list">
+                <li ng-repeat="item in ::list.DCB | limitTo: 3 track by $index">
+                    <a ng-href="loan/{{ ::item.id }}?back={{ ::page_path }}"
+                       x-loan-summary
+                       data-loan="item"
+                       data-layout="'has-chart'"
+                    ></a>
+                </li>
+            </ul>
+        </section>
+
+        <section class="loan-panel loan-panel-sblc">
+            <a href="list/SBLC">
+                <div class="heading container">
+                    <h3 class="title">散标理财</h3>
+                    <span class="desc">
+                        稳定收入最低风险
+                        <param class="glyphicon glyphicon-menu-right">
+                    </span>
+                </div>
+            </a>
+            <ul class="list-unstyled u-off-margin-bottom loan-list">
+                <li ng-repeat="item in ::list.SBLC | limitTo: 3 track by $index">
+                    <a ng-href="loan/{{ ::item.id }}?back={{ ::page_path }}"
+                       x-loan-summary
+                       data-loan="item"
+                       data-layout="'has-chart'"
+                    ></a>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <nav class="omit-margin container page-nav" x-gyro-comment>
+    <div class="row">
         <a class="col-xs-3 back" href="./">
             <param class="glyphicon glyphicon-menu-left">
         </a>
@@ -44,7 +198,7 @@
     </div>
     </nav>
 
-    <section class="subject" ng-if="filter_type">
+    <section class="subject" ng-if="filter_type" x-gyro-comment>
         <div class="media">
             <div class="media-left">
                 <img class="media-object" width="24"
@@ -73,7 +227,7 @@
         </div>
     </section>
 
-    <section class="loan omit-margin">
+    <section class="loan omit-margin" x-gyro-comment>
         <div ng-hide="loading">
             <ul class="list-unstyled u-off-margin-bottom list-loan">
                 <li class="item"
