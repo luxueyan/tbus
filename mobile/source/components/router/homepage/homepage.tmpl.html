@@ -18,7 +18,7 @@
     <section class="loan-type">
         <ul class="list-unstyled u-off-margin-bottom loan-type-list">
             <li class="u-off-margin-top">
-                <a href="">
+                <a href="list/DCB">
                     <div class="media media-dcb">
                         <div class="media-left">
                             <img width="38" class="media-object" ng-src="assets/image/loan-icons/dcb.png">
@@ -32,7 +32,7 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="list/LHB">
                     <div class="media media-lhb">
                         <div class="media-left">
                             <img width="36" class="media-object" ng-src="assets/image/loan-icons/lhb.png">
@@ -46,7 +46,7 @@
                 </a>
             </li>
             <li class="u-off-margin-bottom">
-                <a href="">
+                <a href="list/SBLC">
                     <div class="media media-sbtz">
                         <div class="media-left">
                             <img width="38" class="media-object" ng-src="assets/image/loan-icons/sbtz.png">
@@ -67,34 +67,15 @@
             <h3 class="title">新手专享</h3>
             <span class="desc">现金红包＋超高收益</span>
         </div>
-        <div class="body text-center">
-            <ul class="list-unstyled u-off-margin-bottom loan-list without-chart">
-                <li>
-                    <a href="">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-xs-6 info rate">
-                                    <div class="value">
-                                        <span class="num">8.8</span><span class="unit">%</span>
-                                    </div>
-                                    <div class="name">预期年化</div>
-                                </div>
-                                <div class="col-xs-6 info duration">
-                                    <div class="value">
-                                        <span class="num">23</span><span class="unit">天</span>
-                                    </div>
-                                    <div class="name">项目周期</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="desc">多重保障确保资金安全</div>
-
-                        <div class="btn btn-block btn-theme">立即抢购</div>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <ul class="list-unstyled u-off-margin-bottom loan-list text-center">
+            <li ng-repeat="item in ::list.XSZX | limitTo: 1 track by $index">
+                <a ng-href="loan/{{ ::item.id }}?back={{ ::page_path }}"
+                   x-loan-summary
+                   data-loan="item"
+                   data-layout="'without-chart'"
+                ></a>
+            </li>
+        </ul>
     </section>
 
     <section class="loan-panel loan-panel-rmtj">
@@ -102,77 +83,25 @@
             <h3 class="title">热门推荐</h3>
             <span class="desc">1元起投 随时提取</span>
         </div>
-        <div class="body">
-            <ul class="list-unstyled u-off-margin-bottom loan-list has-chart"
-                ng-init="chart_options = {
-                    size: 64,
-                    lineWidth: 4,
-                    scaleColor: false,
-                    barColor: '#FFC777',
-                    trackColor: '#EBEDF2'
-                }"
-            >
-                <li>
-                    <a href="">
-                        <h4 class="title">月月赚-20150808</h4>
-                        <div class="container text-center">
-                            <div class="row">
-                                <div class="col-xs-4 info rate">
-                                    <div class="value">
-                                        <span class="num">8.8</span><span class="unit">%</span>
-                                    </div>
-                                    <div class="name">预期年化</div>
-                                </div>
-                                <div class="col-xs-4 info duration">
-                                    <div class="value">
-                                        <span class="num">22</span><span class="unit">天</span>
-                                    </div>
-                                    <div class="name">项目周期</div>
-                                </div>
-                                <div class="col-xs-4 info percent">
-                                    <span class="chart"
-                                          x-easypiechart
-                                          percent="100"
-                                          options="chart_options"
-                                    ></span>
-                                    <span class="status">满标</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <h4 class="title">月月赚-20150808</h4>
-                        <div class="container text-center">
-                            <div class="row">
-                                <div class="col-xs-4 info rate">
-                                    <div class="value">
-                                        <span class="num">8.8</span><span class="unit">%</span>
-                                    </div>
-                                    <div class="name">预期年化</div>
-                                </div>
-                                <div class="col-xs-4 info duration">
-                                    <div class="value">
-                                        <span class="num">3</span><span class="unit">个月</span>
-                                    </div>
-                                    <div class="name">项目周期</div>
-                                </div>
-                                <div class="col-xs-4 info percent">
-                                    <span class="chart"
-                                          x-easypiechart
-                                          percent="75"
-                                          options="chart_options"
-                                    ></span>
-                                    <span class="status">进行中</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <ul class="list-unstyled u-off-margin-bottom loan-list">
+            <li ng-repeat="item in ::list.RMTJ | limitTo: 3 track by $index">
+                <a ng-href="loan/{{ ::item.id }}?back={{ ::page_path }}"
+                   x-loan-summary
+                   data-loan="item"
+                   data-layout="'has-chart'"
+                ></a>
+            </li>
+        </ul>
     </section>
+
+
+
+
+
+
+
+
+
 
     <nav class="nav-page container text-center" x-gyro-comment>
         <ul class="list-unstyled u-off-margin-bottom nav-page-list">

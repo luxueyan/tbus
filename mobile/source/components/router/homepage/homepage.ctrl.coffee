@@ -17,9 +17,10 @@ do (_, angular) ->
                         # width * 300 / 640 # aspect ratio of banner image
                 }
 
-                _.split('XSZX HDZX XNB FB XJB').forEach (product) =>
+                # mock data (TODO: use real data instead )
+                _.split('XSZX RMTJ').forEach (product) =>
 
-                    @api.get_loan_list_by_config product, 1, false
+                    @api.get_loan_list_by_config '', 3, false
                         .then ({results}) =>
 
                             @$scope.list[product] =
