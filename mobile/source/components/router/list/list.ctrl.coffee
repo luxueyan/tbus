@@ -12,7 +12,11 @@ do (_, angular) ->
 
                 filter_type = @$routeParams.type
 
+                search =
+                    status: @$routeParams.status
+
                 angular.extend @$scope, {
+                    search
                     filter_type
                     page_path: @$location.path()[1..]
                     loading: true

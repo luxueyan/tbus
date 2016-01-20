@@ -16,7 +16,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                         # redirectTo: '/list'
                     }
 
-                    .when '/list/:type?', {
+                    .when '/list/:type?/:status?', {
                         controller: 'ListCtrl as self'
                         templateUrl: 'components/router/list/list.tmpl.html'
                     }

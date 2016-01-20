@@ -23,16 +23,38 @@
                         <li><a href="">demo</a></li>
                     </ul>
                 </div>
-                <div class="col-xs-6 dropdown" x-uib-dropdown>
+                <div class="col-xs-6 dropdown" x-uib-dropdown
+                     ng-model="search.status"
+                >
                     <div x-uib-dropdown-toggle>
                         状态<param class="glyphicon glyphicon-menu-down">
                     </div>
                     <ul x-uib-dropdown-menu>
-                        <li><a href="" class="active">全部状态</a></li>
-                        <li><a href="">进行中</a></li>
-                        <li><a href="">即将开始</a></li>
-                        <li><a href="">已满额</a></li>
-                        <li><a href="">计息中</a></li>
+                        <li>
+                            <a ng-href="list/{{ filter_type }}"
+                               ng-class="{ active: !search.status}"
+                            >全部状态</a>
+                        </li>
+                        <li>
+                            <a ng-href="list/{{ filter_type }}/OPENED"
+                               ng-class="{ active: search.status === 'OPENED'}"
+                            >进行中</a>
+                        </li>
+                        <li>
+                            <a ng-href="list/{{ filter_type }}/SCHEDULED"
+                               ng-class="{ active: search.status === 'SCHEDULED'}"
+                            >即将开始</a>
+                        </li>
+                        <li>
+                            <a ng-href="list/{{ filter_type }}/FINISHED"
+                               ng-class="{ active: search.status === 'FINISHED'}"
+                            >已满额</a>
+                        </li>
+                        <li>
+                            <a ng-href="list/{{ filter_type }}/SETTLED"
+                               ng-class="{ active: search.status === 'SETTLED'}"
+                            >计息中</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -60,7 +82,7 @@
 
             <div ng-hide="loading">
                 <ul class="list-unstyled u-off-margin-bottom loan-list">
-                    <li ng-repeat="item in ::list track by $index">
+                    <li ng-repeat="item in ::list | filter: search as filter_list  track by $index">
                         <a ng-href="loan/{{ ::item.id }}?back={{ ::page_path }}"
                            x-loan-summary
                            data-loan="item"
@@ -69,7 +91,7 @@
                     </li>
                 </ul>
 
-                <div ng-if="!list.length" class="container">
+                <div ng-if="!filter_list.length" class="container">
                     <h4 class="alert alert-info text-center">暂无数据</h4>
                 </div>
             </div>
