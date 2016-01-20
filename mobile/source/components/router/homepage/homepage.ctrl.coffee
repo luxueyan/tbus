@@ -19,6 +19,7 @@ do (_, angular) ->
 
                 # mock data (TODO: use real data instead )
                 _.split('XSZX RMTJ').forEach (product) =>
+                    @$scope["loading_#{ product }"] = true
 
                     @api.get_loan_list_by_config '', 3, false
                         .then ({results}) =>
@@ -28,6 +29,9 @@ do (_, angular) ->
                                     .compact()
                                     .map map_loan_summary
                                     .value()
+
+                        .finally =>
+                            @$scope["loading_#{ product }"] = false
 
 
             num: (amount) ->
