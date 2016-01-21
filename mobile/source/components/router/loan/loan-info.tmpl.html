@@ -1,7 +1,34 @@
 
-<div id="loan-info" class="">
+<div id="loan-info">
 
     <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-2 back" ng-href="loan/{{ loan.id }}">
+            <span class="glyphicon glyphicon-menu-left"></span>
+        </a>
+        <span class="col-xs-8 title">{{ loan.title }}</span>
+        <span class="col-xs-2">&nbsp;</a>
+    </div>
+    </nav>
+
+    <div class="text-center btn-group-wrap">
+        <div class="btn-group">
+            <a class="btn btn-tab"
+               ng-href="loan/{{ loan.id }}/info?tab=security"
+               ng-class="{ selected: tab === 'security' }"
+            >安全保障</a>
+            <a class="btn btn-tab"
+               ng-href="loan/{{ loan.id }}/info?tab=profit"
+               ng-class="{ selected: tab === 'profit' }"
+            >收益方式</a>
+            <a class="btn btn-tab"
+               ng-href="loan/{{ loan.id }}/info?tab=faq"
+               ng-class="{ selected: tab === 'faq' }"
+            >常见问题</a>
+        </div>
+    </div>
+
+    <nav class="omit-margin container page-nav" x-gyro-comment>
     <div class="row">
         <span class="col-xs-3 back" x-go-back>
             <param class="glyphicon glyphicon-menu-left">
@@ -11,7 +38,7 @@
     </div>
     </nav>
 
-    <section class="info-list">
+    <section class="info-list" x-gyro-comment>
         <div class="item">
             <h4 class="title hidden">项目信息</h4>
             <div class="content"

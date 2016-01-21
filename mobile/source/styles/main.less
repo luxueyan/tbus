@@ -307,7 +307,7 @@ a {
     max-height: 44px;
     line-height: 1;
     background-color: #FFF;
-    color: @color-theme-main;
+    color: #BE8B41;
     box-shadow: inset 0 -1px rgba(0, 0, 0, 0.19);
 
     a {
@@ -1420,196 +1420,196 @@ a {
 ----*/
 
 #loan {
+    padding-bottom: 70px;
+
     section:not(.omit-margin) {
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 8px;
+        margin-bottom: 8px;
     }
 
     .loan-summary {
-        padding-top: 6px;
-        padding-bottom: 6px;
-        background-color: #FFF;
+        position: relative;
+        padding-top: 14px;
+        background: url("@{path-image}/graph.png") no-repeat 0 0;
+        background-size: cover;
+        height: 296px/2;
+        overflow: hidden;
 
-        .rate-duration {
-            .flex-display(flex-end; space-between);
-
-            -webkit-box-align: end;
-            margin-bottom: 5px;
-            border-bottom: 1px solid #E2E2E2;
-            padding-top: 22px;
-            padding-bottom: 22px;
-            text-align: center;
+        .rate {
+            color: #FFF;
 
             .value {
-                margin-bottom: 4px;
-                line-height: 1;
+                text-shadow: 0 1px 3px rgba(156, 133, 99, 0.66);
+                font-size: 34px;
             }
+        }
 
-            .name {
-                color: #808080;
-            }
+        .footer {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 15px 30px;
+            background-color: rgba(255, 255, 255, 0.4);
+            color: #B37C37;
 
-            .rate {
-                .flex(1);
+            .inner {
+                .flex-display(center; space-between);
 
-                .value {
-                    font-size: 46px/2 + 2;
-                    color: #FF7200;
-
-                    small {
-                        font-size: 36px/2 + 2;
-                    }
+                > * {
+                    .flex(1);
                 }
-            }
-
-            .duration {
-                .flex(1);
-
-                border-left: 1px solid #BEBEBE;
-
-                .value {
-                    font-size: 40px/2 + 2;
-
-                    small {
-                        font-size: 22px/2 + 2;
-                    }
-                }
-            }
-        }
-
-        .progress-wrap {
-            .num {
-                margin-left: 7px;
-                color: #B1B1B1;
-            }
-
-            .progress {
-                margin-top: 10px;
-                margin-bottom: 0;
-                height: 2px;
-                background-color: #B1B1B1;
-                border-radius: 0;
-                -webkit-box-shadow: none;
-                        box-shadow: none;
-
-                &-bar {
-                    background-color: #0090E0;
-                }
-            }
-        }
-
-        .balance {
-            .name {
-                color: #808080;
-            }
-        }
-
-        .time-close {
-            margin-top: 3px;
-            margin-bottom: 3px;
-            color: #808080;
-
-            .num {
-                color: #0082B8;
-            }
-        }
-    }
-
-    section.loan-status {
-        margin-bottom: 15px;
-
-        .btn {
-            &-invest {
-                .button-variant(#FFF; #0190DF; #0190DF);
-            }
-
-            &-disabled {
-                .button-variant(#FFF; #BEBEBE; #BEBEBE);
-            }
-        }
-    }
-
-    .loan-detail {
-        padding-top: 15px;
-        padding-bottom: 15px;
-        background-color: #FFF;
-
-        > .item {
-            .flex-display();
-
-            font-size: 28px/2 + 2;
-
-            + .item {
-                margin-top: 10px;
-            }
-
-            .name {
-                .flex(none);
-
-                color: #808080;
-            }
-
-            .value {
-                .flex(1);
-
-                text-align: right;
             }
         }
     }
 
     .loan-info {
+        border-top: 1px solid #DEDFE1;
+        border-bottom: 1px solid #DEDFE1;
+        padding-top: 15px;
+        padding-bottom: 15px;
         background-color: #FFF;
 
+        .list-link {
+            > li {
+                text-align: center;
+                color: #62666F;
+
+                + li {
+                    border-left: 1px solid #EAEBED;
+                }
+
+                a {
+                    position: relative;
+                    color: inherit;
+                    display: block;
+                    height: 58px;
+                    padding-top: 38px;
+                }
+
+                img {
+                    .transform(translateX(-50%));
+
+                    position: absolute;
+                    left: 50%;
+                    top: 0;
+                }
+            }
+        }
+    }
+
+    .loan-panel {
+        border-top: 1px solid #EAEBED;
+        border-bottom: 1px solid #EAEBED;
+        padding-bottom: 20px;
+        background-color: #FFF;
+
+        .heading {
+            border-bottom: 1px solid #EAEBED;
+            padding-top: 15px;
+            padding-bottom: 9px;
+
+            .title {
+                position: relative;
+                margin: 0;
+                padding-left: 16px;
+                font-size: 16px;
+
+                &:before {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    bottom: 0;
+                    width: 4px;
+                    background-color: #BE8B41;
+                }
+            }
+        }
+
+        .info-list {
+            margin-left: 16px;
+            margin-right: 16px;
+
+            > li {
+                .flex-display(center; space-between);
+
+                padding-top: 10px;
+                padding-bottom: 10px;
+
+                + li {
+                    border-top: 1px solid #EAEBED;
+                }
+
+                .value {
+                    .flex(1);
+
+                    text-align: right;
+                    color: #62666F;
+                }
+            }
+        }
+
         .content {
-            padding: 15px;
-            text-align: justify;
-            word-break: break-word;
-            color: #4A4A4A;
+            padding: 16px;
 
             img {
                 max-width: 100% !important;
                 height: auto !important;
             }
+        }
 
-            .investors-list {
-                border: 0;
+        .table {
+            > thead > tr {
+                &:nth-of-type(odd) {
+                    background-color: #F4F4F6;
+                }
 
-                > .item {
-                    margin: 0;
-                    padding-right: 0;
-                    font-size: 28px/2 + 2;
-                    color: #4A4A4A;
+                > th {
+                    border-bottom: 1px solid #EAEBED;
+                    font-weight: normal;
 
-                    .name {
-                        padding-right: 5px;
-                        min-width: 120px;
+                    + th {
+                        border-left: 1px solid #EAEAEA;
                     }
+                }
+            }
 
-                    .amount {
+            > tbody > tr {
+                &:nth-of-type(even) {
+                    background-color: #F4F4F6;
+                }
+
+                > td {
+                    border-top: 0;
+                    color: #62666F;
+
+                    + td {
+                        border-left: 1px solid #EAEAEA;
                     }
+                }
 
-                    .date {
-                        margin-top: 8px;
-                        font-size: 24px/2 + 2;
-                        color: #999;
+                &:last-child {
+                    > td {
+                        border-bottom: 1px solid #EAEBED;
                     }
                 }
             }
         }
     }
 
-    .inline > .nav-tabs.nav-justified > li {
-        > a {
-            border-left: none !important;
-            color: #808080;
-        }
+    .loan-status {
+        position: fixed;
+        z-index: 11;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #FFF;
 
-        &.active {
-            border-bottom: 2px solid #FE8008 !important;
-
-            > a {
-                color: #FE8008;
-            }
+        .btn {
+            border-radius: 0;
+            padding-top: 15px;
+            padding-bottom: 15px;
         }
     }
 }
@@ -1650,6 +1650,10 @@ a {
 ----*/
 
 #loan-info {
+    .btn-group {
+        #list .page-nav .btn-group;
+    }
+
     .info-list {
         padding-left: 15px;
         padding-right: 15px;
