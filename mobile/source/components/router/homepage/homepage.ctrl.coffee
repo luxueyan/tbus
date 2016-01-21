@@ -21,7 +21,7 @@ do (_, angular) ->
                 _.split('XSZX RMTJ').forEach (product) =>
                     @$scope["loading_#{ product }"] = true
 
-                    @api.get_loan_list_by_config '', 3, false
+                    @api.get_loan_list_by_config {}, false
                         .then ({results}) =>
 
                             @$scope.list[product] =
