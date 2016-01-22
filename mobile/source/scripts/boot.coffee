@@ -503,10 +503,11 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                         controller: 'LoanInvestorsCtrl as self'
                         templateUrl: 'components/router/loan/loan-investors.tmpl.html'
                         resolve:
-                            investors: _.ai 'api, $location, $route',
-                                (       api, $location, $route) ->
-                                    api.get_loan_investors($route.current.params.id).$promise.catch ->
+                            investors: _.ai 'api, $location, $route, $q',
+                                (            api, $location, $route, $q) ->
+                                    api.get_loan_investors($route.current.params.id).catch ->
                                         $location.path '/'
+                                        do $q.reject
                     }
 
                     .when '/loan/:id/info', {
