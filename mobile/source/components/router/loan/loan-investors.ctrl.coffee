@@ -1,5 +1,5 @@
 
-do (_ ,angular, decodeURI) ->
+do (_, angular, decodeURI) ->
 
     angular.module('controller').controller 'LoanInvestorsCtrl',
 
@@ -13,8 +13,7 @@ do (_ ,angular, decodeURI) ->
                     name = item.userLoginName.trim()
 
                     _.each [
-                        /// ^zzhj_ ///
-                        /// ^ZZHJ_ ///
+                        /// ^[a-zA-Z]{4}_ ///
                         /// ^ #{ decodeURI '%E6%89%8B%E6%9C%BA%E7%94%A8%E6%88%B7' } ///
 
                     ], (reg) -> name = name.replace reg, ''

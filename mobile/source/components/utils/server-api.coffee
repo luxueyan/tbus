@@ -171,9 +171,9 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_DATA
 
 
-            get_loan_list_by_config: (product, size = 10, cache = true) ->
+            get_loan_list_by_config: (query_set = {}, cache = true) ->
 
-                query_set = {
+                _.defaults query_set, {
                     status: 'SCHEDULED'
                     minDuration: 0
                     maxDuration: 100
@@ -181,16 +181,17 @@ do (_, angular, moment, Array) ->
                     maxRate: 100
                     minAmount: 1
                     maxAmount: 100000000
-                    pageSize: size
+                    pageSize: 20
                     currentPage: 1
                 }
 
                 @$http
-                    .get "/api/v2/loans/getLoanWithPage",
-                        params: _.compact _.merge {product}, query_set
+                    .get '/api/v2/loans/getLoanWithPage',
+                        params: query_set
                         cache: cache
 
                     .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             get_loan_detail: (id, cache = false) ->
