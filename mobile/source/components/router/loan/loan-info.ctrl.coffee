@@ -1,5 +1,5 @@
 
-do (_ ,angular) ->
+do (_, angular) ->
 
     angular.module('controller').controller 'LoanInfoCtrl',
 
@@ -8,6 +8,6 @@ do (_ ,angular) ->
 
                 @$window.scrollTo 0, 0
 
-                @$scope.tab = @$routeParams.tab or 'security'
+                @$scope.current_tab = @$routeParams.tab or 'security'
 
                 @$scope.loan = map_loan_summary @loan

@@ -15,18 +15,94 @@
         <div class="btn-group">
             <a class="btn btn-tab"
                ng-href="loan/{{ loan.id }}/info?tab=security"
-               ng-class="{ selected: tab === 'security' }"
+               ng-class="{ selected: current_tab === 'security' }"
             >安全保障</a>
             <a class="btn btn-tab"
                ng-href="loan/{{ loan.id }}/info?tab=profit"
-               ng-class="{ selected: tab === 'profit' }"
+               ng-class="{ selected: current_tab === 'profit' }"
             >收益方式</a>
             <a class="btn btn-tab"
                ng-href="loan/{{ loan.id }}/info?tab=faq"
-               ng-class="{ selected: tab === 'faq' }"
+               ng-class="{ selected: current_tab === 'faq' }"
             >常见问题</a>
         </div>
     </div>
+
+    <div ng-switch="current_tab">
+        <div ng-switch-when="security">
+            <section class="loan-panel">
+                <div class="content"
+                     ng-bind-html="loan.raw.loanRequest.riskInfo | sanitize"
+                ></div>
+            </section>
+        </div>
+
+        <div ng-switch-when="profit">
+            <section class="loan-panel">
+                <div class="heading">
+                    <h3 class="title">收益方式</h3>
+                </div>
+                <div class="content">
+                    <div ng-switch="loan.method">
+                        <span ng-switch-when="MonthlyInterest">按月付息到期还本</span>
+                        <span ng-switch-when="EqualInstallment">按月等额本息</span>
+                        <span ng-switch-when="EqualPrincipal">按月等额本金</span>
+                        <span ng-switch-when="BulletRepayment">一次性还本付息</span>
+                        <span ng-switch-when="EqualInterest">月平息</span>
+                        <span ng-switch-when="YearlyInterest">按年付息到期还本</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="loan-panel">
+                <div class="heading">
+                    <h3 class="title">计划收益</h3>
+                </div>
+                <h5 class="container">
+                    <span class="pull-left">以明日满标为例</span>
+                    <span class="pull-right">单位:元</span>
+                </h5>
+                <table class="table u-off-margin-bottom">
+                    <thead>
+                        <tr>
+                            <th>日期</th>
+                            <th class="text-right">回款利息</th>
+                            <th class="text-right">回款本金</th>
+                            <th class="text-right">剩余本金</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class=""></td>
+                            <td class="text-right"></td>
+                            <td class="text-right"></td>
+                            <td class="text-right"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+
+        <div ng-switch-when="faq">
+            <section class="loan-panel">
+                <div class="content">
+                    <h5>Q1 平台如何保障我的资产安全？</h5>
+                    <p>作为平台上有关融资项目的见证机构，珠海华润银行为融资人提供资信见证服务（包括但不限于各类基本资料见证、财务见证、银行账户信息见证等），并向投资人全部或部分披露上述见证信息。</p>
+                    <h5>Q2 平台如何保障我的资产安全？</h5>
+                    <p>作为平台上有关融资项目的见证机构，珠海华润银行为融资人提供资信见证服务（包括但不限于各类基本资料见证、财务见证、银行账户信息见证等），并向投资人全部或部分披露上述见证信息。</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
 
     <nav class="omit-margin container page-nav" x-gyro-comment>
     <div class="row">
