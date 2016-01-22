@@ -26,19 +26,19 @@
 
     <div ng-switch="::loan.status">
         <span ng-switch-when="SCHEDULED"
-              class="btn btn-block btn-default"
+              class="btn btn-block btn-default disabled"
         >即将开始</span>
         <span ng-switch-when="OPENED"
               class="btn btn-block btn-theme"
         >立即抢购</span>
         <span ng-switch-when="FINISHED"
-              class="btn btn-block btn-default"
+              class="btn btn-block btn-default disabled"
         >已满标</span>
         <span ng-switch-when="SETTLED"
-              class="btn btn-block btn-default"
+              class="btn btn-block btn-default disabled"
         >计息中</span>
         <span ng-switch-when="CLEARED"
-              class="btn btn-block btn-default"
+              class="btn btn-block btn-default disabled"
         >已结息</span>
     </div>
 

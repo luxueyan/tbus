@@ -1,5 +1,5 @@
 
-do (_ ,angular, moment, Math, Date) ->
+do (_, angular, moment, Math, Date) ->
 
     angular.module('controller').controller 'LoanCtrl',
 
@@ -11,29 +11,36 @@ do (_ ,angular, moment, Math, Date) ->
                 angular.extend @$scope, {
                     back_path: @$routeParams.back
                     loan: map_loan_summary @loan
+                    loading_investors: true
                 }
 
-                @api.get_loan_investors(@loan.id).then (data) =>
+                (@api.get_loan_investors(@loan.id)
 
-                    @$scope.investors = data.map (item) ->
+                    .then (data) =>
 
-                        item.userLoginName = item.userLoginName.trim()
+                        @$scope.investors = data.map (item) ->
 
-                        prefix = new RegExp decodeURI '^%E6%89%8B%E6%9C%BA%E7%94%A8%E6%88%B7'
-                        name = item.userLoginName.replace prefix, ''
+                            item.userLoginName = item.userLoginName.trim()
 
-                        prefix = /^[a-zA-Z]{4}_/
-                        name = name.replace prefix, ''
+                            prefix = new RegExp decodeURI '^%E6%89%8B%E6%9C%BA%E7%94%A8%E6%88%B7'
+                            name = item.userLoginName.replace prefix, ''
 
-                        if name isnt item.userLoginName
-                            item.name = name.replace /(\d{2})(\d+)(\d{2})$/, '$1*******$3'
-                        else
-                            [empty, head, tail] = name.split /^(..)/
+                            prefix = /^[a-zA-Z]{4}_/
+                            name = name.replace prefix, ''
 
-                            item.name = head + tail.replace /./g, '*'
-                            item.name = "#{ head[0] }*" if name.length < 3
+                            if name isnt item.userLoginName
+                                item.name = name.replace /(\d{3})(\d+)(\d{4})$/, '$1****$3'
+                            else
+                                [empty, head, tail] = name.split /^(..)/
 
-                        return item
+                                item.name = head + tail.replace /./g, '*'
+                                item.name = "#{ head[0] }*" if name.length < 3
+
+                            return item
+
+                    .finally =>
+                        @$scope.loading_investors = false
+                )
 
 
                 time_open_left = @loan.timeOpen - Date.now()

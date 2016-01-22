@@ -16,7 +16,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                         # redirectTo: '/list'
                     }
 
-                    .when '/list/:type?/:status?', {
+                    .when '/list/:type?', {
                         controller: 'ListCtrl as self'
                         templateUrl: 'components/router/list/list.tmpl.html'
                     }
@@ -503,20 +503,33 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                         controller: 'LoanInvestorsCtrl as self'
                         templateUrl: 'components/router/loan/loan-investors.tmpl.html'
                         resolve:
-                            investors: _.ai 'api, $location, $route',
-                                (       api, $location, $route) ->
-                                    api.get_loan_investors($route.current.params.id).$promise.catch ->
+                            investors: _.ai 'api, $location, $route, $q',
+                                (            api, $location, $route, $q) ->
+                                    api.get_loan_investors($route.current.params.id).catch ->
                                         $location.path '/'
+                                        do $q.reject
                     }
 
                     .when '/loan/:id/info', {
                         controller: 'LoanInfoCtrl as self'
                         templateUrl: 'components/router/loan/loan-info.tmpl.html'
                         resolve:
-                            loan: _.ai 'api, $location, $route',
-                                (       api, $location, $route) ->
+                            loan: _.ai 'api, $location, $route, $q',
+                                (       api, $location, $route, $q) ->
                                     api.get_loan_detail($route.current.params.id, true).catch ->
                                         $location.path '/'
+                                        do $q.reject
+                    }
+
+                    .when '/loan/:id/detail', {
+                        controller: 'LoanDetailCtrl as self'
+                        templateUrl: 'components/router/loan/loan-detail.tmpl.html'
+                        resolve:
+                            loan: _.ai 'api, $location, $route, $q',
+                                (       api, $location, $route, $q) ->
+                                    api.get_loan_detail($route.current.params.id, false).catch ->
+                                        $location.path '/'
+                                        do $q.reject
                     }
 
                     .when '/loan/:id/invest/:amount?/:coupon?', {

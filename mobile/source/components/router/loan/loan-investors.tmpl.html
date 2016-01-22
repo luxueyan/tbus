@@ -1,5 +1,5 @@
 
-<div id="loan-investors" class="">
+<div id="loan-investors">
 
     <nav class="omit-margin container page-nav">
     <div class="row">
@@ -11,7 +11,40 @@
     </div>
     </nav>
 
-    <section class="c-list-panel investors-list">
+    <div></div>
+
+    <section class="loan-panel">
+        <div class="heading">
+            <h3 class="title">参投记录</h3>
+        </div>
+        <table class="table off-border-top">
+            <thead>
+                <tr>
+                    <th>日期</th>
+                    <th>投资人</th>
+                    <th class="text-right">投资金额</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in investors">
+                    <td class="date">{{ item.submitTime | date: 'yy-MM-dd HH:mm' }}</td>
+                    <td class="name">{{ item.name }}</td>
+                    <td class="amount text-right">{{ item.amount | number: 2 }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <section class="c-list-panel investors-list" x-gyro-comment>
         <div class="item" ng-repeat="item in investors">
             <div class="clearfix">
                 <div class="name pull-left">{{ item.name }}</div>
