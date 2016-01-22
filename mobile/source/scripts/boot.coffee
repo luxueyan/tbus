@@ -520,6 +520,16 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         $location.path '/'
                                         do $q.reject
                     }
+
+                    .when '/loan/:id/detail', {
+                        controller: 'LoanDetailCtrl as self'
+                        templateUrl: 'components/router/loan/loan-detail.tmpl.html'
+                        resolve:
+                            loan: _.ai 'api, $location, $route, $q',
+                                (       api, $location, $route, $q) ->
+                                    api.get_loan_detail($route.current.params.id, false).catch ->
+                                        $location.path '/'
+                                        do $q.reject
                     }
 
                     .when '/loan/:id/invest/:amount?/:coupon?', {

@@ -1,0 +1,87 @@
+
+<div id="loan-detail">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <span class="col-xs-3 back" x-go-back>
+            <param class="glyphicon glyphicon-menu-left">
+        </span>
+        <span class="col-xs-6 title">项目详情</span>
+        <span class="col-xs-3">&nbsp;</span>
+    </div>
+    </nav>
+
+    <div></div>
+
+    <section class="loan-panel">
+        <div class="heading">
+            <h3 class="title">项目概览</h3>
+        </div>
+        <ul class="list-unstyled u-off-margin-bottom info-list">
+            <li>
+                <span class="name">募资规模</span>
+                <span class="value">
+                    {{ (loan.amount_myriad || loan.amount) | number }}<!--
+                    --><span ng-if="loan.amount_myriad">万</span><!--
+                    --><span ng-if="!loan.amount_myriad">元</span>
+                </span>
+            </li>
+            <li>
+                <span class="name">募集截止日</span>
+                <span class="value">{{ loan.time_close | date: 'yyyy-MM-dd' }}</span>
+            </li>
+            <li>
+                <span class="name">项目期限</span>
+                <span class="value">
+                    <span ng-if="loan.raw.duration.days">
+                        {{ loan.total_days }}<small>天</small>
+                    </span>
+                    <span ng-if="!loan.raw.duration.days">
+                        {{ loan.total_months }}<small>个月</small>
+                    </span>
+                </span>
+            </li>
+            <li>
+                <span class="name">起投金额</span>
+                <span class="value">{{ loan.raw.loanRequest.investRule.minAmount | number }}元</span>
+            </li>
+            <li>
+                <span class="name">还款方式</span>
+                <span class="value" ng-switch="loan.method">
+                    <span ng-switch-when="MonthlyInterest">按月付息到期还本</span>
+                    <span ng-switch-when="EqualInstallment">按月等额本息</span>
+                    <span ng-switch-when="EqualPrincipal">按月等额本金</span>
+                    <span ng-switch-when="BulletRepayment">一次性还本付息</span>
+                    <span ng-switch-when="EqualInterest">月平息</span>
+                    <span ng-switch-when="YearlyInterest">按年付息到期还本</span>
+                </span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="loan-panel">
+        <div class="heading">
+            <h3 class="title">资产说明</h3>
+        </div>
+        <div class="content"
+             ng-bind-html="loan.raw.loanRequest.description | sanitize"
+        ></div>
+    </section>
+
+    <section class="loan-panel">
+        <div class="heading">
+            <h3 class="title">融资方信息</h3>
+        </div>
+        <div class="content"
+             ng-bind-html="loan.raw.loanRequest.mortgageInfo | sanitize"
+        ></div>
+    </section>
+
+    <section class="loan-panel">
+        <div class="heading">
+            <h3 class="title">还款来源</h3>
+        </div>
+        <div class="content"></div>
+    </section>
+
+</div>
