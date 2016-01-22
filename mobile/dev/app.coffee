@@ -1,7 +1,7 @@
 
 require 'coffee-script/register'
 
-{argv} = require 'optimist'
+argv = require('minimist')(process.argv[2..])
 
 path = require 'path'
 express = require 'express'
