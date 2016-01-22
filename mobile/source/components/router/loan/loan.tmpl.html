@@ -34,7 +34,7 @@
     </section>
 
     <section class="omit-margin container loan-info">
-        <ul class="row list-unstyled u-off-margin-bottom list-link">
+        <ul class="row list-unstyled u-off-margin-bottom link-list">
             <li class="col-xs-4">
                 <a ng-href="loan/{{ loan.id }}/info?tab=security">
                     <img width="26" ng-src="assets/image/loan/shield.png">
@@ -62,7 +62,7 @@
         <div class="heading">
             <h3 class="title">项目概览</h3>
         </div>
-        <ul class="list-unstyled u-off-margin-bottom info-list">
+        <ul class="list-unstyled info-list">
             <li>
                 <span class="name">募资规模</span>
                 <span class="value">
@@ -102,53 +102,40 @@
                 </span>
             </li>
         </ul>
-    </section>
-
-    <section class="loan-panel">
-        <div class="heading">
-            <h3 class="title">资产说明</h3>
+        <div class="container text-center">
+            <a class="btn btn-more"
+               ng-href="loan/{{ loan.id }}/detail"
+            >点击查看项目详情</a>
         </div>
-        <div class="content"
-             ng-bind-html="loan.raw.loanRequest.description | sanitize"
-        ></div>
-    </section>
-
-    <section class="loan-panel">
-        <div class="heading">
-            <h3 class="title">融资方信息</h3>
-        </div>
-        <div class="content"
-             ng-bind-html="loan.raw.loanRequest.mortgageInfo | sanitize"
-        ></div>
-    </section>
-
-    <section class="loan-panel">
-        <div class="heading">
-            <h3 class="title">还款来源</h3>
-        </div>
-        <div class="content"></div>
     </section>
 
     <section class="loan-panel">
         <div class="heading">
             <h3 class="title">参投记录</h3>
         </div>
-        <table class="table u-off-margin-bottom">
-            <thead>
-                <tr>
-                    <th class="text-center">日期</th>
-                    <th class="text-center">投资人</th>
-                    <th class="text-right">投资金额</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="item in investors">
-                    <td class="date text-center">{{ item.submitTime | date: 'yy-MM-dd HH:mm' }}</td>
-                    <td class="name text-center">{{ item.name }}</td>
-                    <td class="amount text-right">{{ item.amount | number: 2 }}</td>
-                </tr>
-            </tbody>
-        </table>
+
+        <div ng-hide="loading_investors">
+            <ul class="list-unstyled info-list" ng-if="investors.length">
+                <li ng-repeat="item in investors | limitTo: 3">
+                    <span class="name">{{ item.submitTime | date: 'yy-MM-dd HH:mm' }}</span>
+                    <span class="value">用户{{ item.name }}投资{{ item.amount }}元</span>
+                </li>
+            </ul>
+
+            <div class="container" ng-if="!investors.length">
+                <h4 class="alert alert-info text-center">暂无记录</h4>
+            </div>
+
+            <div class="container text-center" ng-if="investors.length > 3">
+                <a class="btn btn-more"
+                   ng-href="loan/{{ loan.id }}/investors"
+                >点击查看更多</a>
+            </div>
+        </div>
+
+        <p class="text-center loading" ng-show="loading_investors">
+            <img src="assets/image/spinner.gif">
+        </p>
     </section>
 
     <section class="omit-margin loan-status" ng-switch="loan.status">

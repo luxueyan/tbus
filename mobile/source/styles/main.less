@@ -1416,7 +1416,7 @@ a {
 }
 
 /*=============================================================================
-                                                           [Router] Loan detail
+                                                                  [Router] Loan
 ----*/
 
 #loan {
@@ -1470,7 +1470,7 @@ a {
         padding-bottom: 15px;
         background-color: #FFF;
 
-        .list-link {
+        .link-list {
             > li {
                 text-align: center;
                 color: #62666F;
@@ -1499,8 +1499,8 @@ a {
     }
 
     .loan-panel {
-        border-top: 1px solid #EAEBED;
-        border-bottom: 1px solid #EAEBED;
+        border-top: 1px solid #DEDFE1;
+        border-bottom: 1px solid #DEDFE1;
         padding-bottom: 20px;
         background-color: #FFF;
 
@@ -1560,6 +1560,13 @@ a {
         }
 
         .table {
+            border-top: 1px solid #EAEBED;
+            border-bottom: 1px solid #EAEBED;
+
+            &.off-border-top {
+                border-top: 0;
+            }
+
             > thead > tr {
                 &:nth-of-type(odd) {
                     background-color: #F4F4F6;
@@ -1568,6 +1575,11 @@ a {
                 > th {
                     border-bottom: 1px solid #EAEBED;
                     font-weight: normal;
+                    text-align: center;
+
+                    &.text-right {
+                        text-align: right;
+                    }
 
                     + th {
                         border-left: 1px solid #EAEAEA;
@@ -1583,18 +1595,24 @@ a {
                 > td {
                     border-top: 0;
                     color: #62666F;
+                    text-align: center;
+
+                    &.text-right {
+                        text-align: right;
+                    }
 
                     + td {
                         border-left: 1px solid #EAEAEA;
                     }
                 }
-
-                &:last-child {
-                    > td {
-                        border-bottom: 1px solid #EAEBED;
-                    }
-                }
             }
+        }
+
+        .btn-more {
+            .button-variant(#9699A0; #DEDFE1; #DEDFE1);
+            .button-size(8px; 12px; 14px; 1; 999px);
+
+            min-width: 208px;
         }
     }
 
