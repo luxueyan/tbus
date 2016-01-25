@@ -1,25 +1,45 @@
 
 <div class="head">
-    <a class="title"
-       ng-href="lyg-order/{{ item.id }}"
-       ng-if="item.gome_goods_pick"
-    >
-        <img width="47"
-             ng-src="assets/image/lyg-logo.png"
-             ng-if="item.gome_goods_pick"
-        >
-        {{ item.title }}
-    </a>
-
-    <a class="title"
-       ng-href="loan/{{ item.loan_id }}?go_back=dashboard/invest"
-       ng-if="!item.gome_goods_pick"
-    >
-        {{ item.title }}
-    </a>
+    <h4 class="title">{{ item.title }}</h4>
+    <span class="date"
+          ng-if="type === 'raising'"
+    >投资日期: {{ item.submit_time | date: "yyyy-MM-dd" }}</span>
+    <span class="date"
+          ng-if="type !== 'raising'"
+    >结束日期: {{ item.end_date | date: "yyyy-MM-dd" }}</span>
 </div>
 
 <div class="body">
+    <div class="rate">
+        <div class="value">{{ item.rate }}<small>%</small></div>
+        <div class="name">预期年化</div>
+    </div>
+    <div class="info-list">
+        <div class="info">
+            <span class="name" ng-switch="type">
+                <span ng-switch-when="raising">预期收益(元)</span>
+                <span ng-switch-when="repaying">到期收益(元)</span>
+                <span ng-switch-when="done">累计收益(元)</span>
+            </span>
+            <span class="value">{{ item.amount_interest | number: 2 }}</span>
+        </div>
+        <div class="info">
+            <span class="name">投资金额(元)</span>
+            <span class="value">{{ item.amount | number: 2 }}</span>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="body" x-gyro-comment>
     <div class="row">
         <div class="col-xs-4">
             <div class="name">
@@ -42,7 +62,7 @@
     </div>
 </div>
 
-<div class="foot clearfix" ng-if="type !== 'raising'">
+<div class="foot clearfix" ng-if="type !== 'raising'" x-gyro-comment>
     <span class="pull-left">
         到期日:
         <span ng-if="item.end_date">{{ item.end_date | date: "yyyy-MM-dd" }}</span>
@@ -54,7 +74,7 @@
     >查看回款计划</a>
 </div>
 
-<div class="foot clearfix" ng-if="type === 'raising'">
+<div class="foot clearfix" ng-if="type === 'raising'" x-gyro-comment>
     <span class="pull-left">
         <span ng-switch="item.method">
             <span ng-switch-when="MonthlyInterest">按月付息到期还本</span>

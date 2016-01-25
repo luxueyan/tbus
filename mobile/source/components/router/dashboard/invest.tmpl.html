@@ -3,21 +3,25 @@
     <nav class="omit-margin container page-nav">
     <div class="row">
         <a class="col-xs-3 back" href="dashboard"><span class="glyphicon glyphicon-menu-left"></span></a>
-        <span class="col-xs-6 title">投资管理</span>
+        <span class="col-xs-6 title">我的投资</span>
         <span class="col-xs-3">&nbsp;</a>
     </div>
     </nav>
 
     <section class="invest-list">
-        <uib-tabset class="invest-tab flex inline list" justified="true">
+        <uib-tabset class="invest-tab inline list" justified="true">
             <uib-tab ng-repeat="tab in tabs"
-                 heading="{{ { raising: '募集中', repaying: '回款中', done: '已完结'}[tab.type] }}"
+                 heading="{{ { raising: '投资冻结', repaying: '回款中', done: '已结束'}[tab.type] }}"
             >
                 <ul class="list list-unstyled u-off-margin-bottom">
                     <li class="item"
                         ng-repeat="item in tab.data"
                     >
-                        <div x-invest-summary data-item="item" data-type="tab.type"></div>
+                        <a ng-href="dashboard/invest/{{ item.id }}"
+                           x-invest-summary
+                           data-item="item"
+                           data-type="tab.type"
+                        ></a>
                     </li>
                 </ul>
 
@@ -28,7 +32,7 @@
         </uib-tabset>
     </section>
 
-    <section class="action">
+    <section class="action" x-gyro-comment>
         <a class="btn btn-block btn-lg btn-theme" href="list">继续投资</a>
     </section>
 </div>
