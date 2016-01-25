@@ -15,6 +15,7 @@ do (_, angular) ->
                     total: @user.fund.availableAmount + @user.fund.dueInAmount + @user.fund.frozenAmount
                     daily: @user.statistics.yesterdayIncome
                     total_interest: @user.statistics.investInterestAmount
+                    outstanding_interest: @user.fund.outstandingInterest
                 }
 
                 (@api
@@ -31,6 +32,12 @@ do (_, angular) ->
                                 .value()
 
                         @$scope.available_coupon_length = available_coupon_list.length
+                )
+
+                (@api
+                    .get_user_investments()
+                    .then (data) =>
+                        @$scope.investments_length = data.length
                 )
 
                 (@api
@@ -52,7 +59,6 @@ do (_, angular) ->
                 # prefetch following API calls for getting out from cache directly later on
 
                 @api.get_user_funds()
-                @api.get_user_investments()
                 @api.get_available_bank_list()
 
 

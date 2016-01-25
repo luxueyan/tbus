@@ -3,6 +3,151 @@
 
     <nav class="omit-margin container page-nav">
     <div class="row">
+        <span class="col-xs-12 text-center btn-group-wrap">
+            <div class="btn-group">
+                <a href="dashboard" class="btn btn-tab selected">理财账户</a>
+                <a href="dashboard" class="btn btn-tab">基金账户</a>
+            </div>
+        </span>
+    </div>
+    </nav>
+
+    <div></div>
+
+    <section class="omit-margin dashboard-summary text-center">
+        <div class="subject">
+            <div class="name">
+                {{ self.user.info.name || self.user.info.mobile }}您好，您的账户总资产 (元)
+                <span class="question-mark">?</span>
+            </div>
+            <div class="value">{{ fund.total | number: 2 }}</div>
+        </div>
+        <div class="footer">
+            <div class="inner">
+                <div class="item">
+                    <div class="name">累积收益 (元)</div>
+                    <div class="value">{{ fund.total_interest | number: 2 }}</div>
+                </div>
+                <div class="item">
+                    <div class="name">预计收益 (元)</div>
+                    <div class="value">{{ fund.outstanding_interest | number: 2 }}</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="omit-margin dashboard-info">
+        <div class="inner">
+            <span class="available">
+                <span class="name">可用余额</span>
+                <span class="value">{{ fund.available | number: 2 }}</span>
+            </span>
+            <span class="btns">
+                <a class="btn btn-theme" href="dashboard/recharge">充值</a>
+                <a class="btn btn-plain" href="dashboard/withdraw">提现</a>
+            </span>
+        </div>
+    </section>
+
+    <section class="container dashboard-list">
+        <div class="row list-row">
+            <div class="col-xs-6 item">
+                <a href="dashboard/invest">
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="media-object" width="16" ng-src="assets/image/dashboard-icons/cash.png">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">我的投资</h4>
+                            <p class="desc">已投{{ investments_length }}笔</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-xs-6 item">
+                <a href="dashboard/repayment">
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="media-object" width="20" ng-src="assets/image/dashboard-icons/payment.png">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">预期回款</h4>
+                            <p class="desc">{{   }}元</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="row list-row">
+            <div class="col-xs-6 item">
+                <a href="dashboard/funds">
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="media-object" width="13" ng-src="assets/image/dashboard-icons/record.png">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">资金记录</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-xs-6 item">
+                <a href="dashboard/invite">
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="media-object" width="16" ng-src="assets/image/dashboard-icons/gift.png">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">邀请有礼</h4>
+                            <p class="desc">邀请得10元红包</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="row list-row">
+            <div class="col-xs-6 item">
+                <a href="dashboard/coupon">
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="media-object" width="14" ng-src="assets/image/dashboard-icons/coupon.png">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">红包</h4>
+                            <p class="desc" ng-if="available_coupon_length">{{ available_coupon_length }}个可用</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-xs-6 item">
+                <a href="dashboard/bank-card">
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="media-object" width="17" ng-src="assets/image/dashboard-icons/card.png">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">银行卡</h4>
+                            <p class="desc">{{  }}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <nav class="omit-margin container page-nav" x-gyro-comment>
+    <div class="row">
         <a class="col-xs-3 back" href="./">
             <span class="glyphicon glyphicon-menu-left"></span>
         </a>
@@ -11,9 +156,9 @@
     </div>
     </nav>
 
-    <div class="banner" x-carousel-banner data-delay-in-seconds="4"></div>
+    <div class="banner" x-carousel-banner data-delay-in-seconds="4" x-gyro-comment></div>
 
-    <section class="c-list-panel info-list">
+    <section class="c-list-panel info-list" x-gyro-comment>
         <div class="item">
             <img class="user-icon" width="14" src="assets/image/dashboard-user-icon.png">
             <span class="name">账户</span>
@@ -57,7 +202,7 @@
         </a>
     </section>
 
-    <section class="c-list-panel links">
+    <section class="c-list-panel links" x-gyro-comment>
         <a href="dashboard/payment/password" class="item password">
             <param class="glyphicon glyphicon-lock icon">
             <span class="name">交易密码</span>
@@ -71,7 +216,7 @@
         </a>
     </section>
 
-    <section class="container action">
+    <section class="container action" x-gyro-comment>
         <button class="btn btn-block btn-lg btn-theme"
                 ng-click="self.logout()"
         >退出登录</button>

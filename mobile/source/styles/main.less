@@ -1948,8 +1948,179 @@ a {
 
 #dashboard {
     section:not(.omit-margin) {
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+
+    .page-nav .btn-group {
+        #list .page-nav .btn-group;
+
+        .btn-tab {
+            padding: 3px 9px;
+        }
+    }
+
+    .dashboard-summary {
+        position: relative;
+        padding-top: 14px;
+        background: url("@{path-image}/graph-lg.png") no-repeat 0 0;
+        background-size: cover;
+        height: 360px/2;
+        overflow: hidden;
+
+        .subject {
+            .name {
+                margin-bottom: 12px;
+                color: #B37C37;
+            }
+
+            .value {
+                font-size: 34px;
+                color: #FFF;
+                text-shadow: 0 1px 3px rgba(156, 133, 99, 0.66);
+            }
+
+            .question-mark {
+                display: inline-block;
+                vertical-align: 1px;
+                width: 14px;
+                height: 14px;
+                text-align: center;
+                border-radius: 50%;
+                font-size: 12px;
+                line-height: 14px;
+                color: #FFE5C0;
+                background-color: rgba(187, 133, 64, 0.87);
+            }
+        }
+
+        .footer {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding-top: 15px;
+            padding-bottom: 12px;
+            background-color: rgba(255, 255, 255, 0.4);
+            color: #B37C37;
+
+            .inner {
+                .flex-display();
+
+                .item {
+                    .flex(1);
+
+                    line-height: 1;
+
+                    .name {
+                        margin-bottom: 5px;
+                        font-size: 12px;
+                    }
+
+                    .value {
+                        font-size: 20px;
+                    }
+
+                    + .item {
+                        position: relative;
+
+                        &:before {
+                            content: "";
+                            position: absolute;
+                            left: 0;
+                            top: 2px;
+                            bottom: 2px;
+                            width: 1px;
+                            background-color: rgba(179, 124, 55, 0.3);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .dashboard-info {
+        border-top: 1px solid #DEDFE1;
+        border-bottom: 1px solid #DEDFE1;
+        padding: 9px 16px;
+        background-color: #FFF;
+
+        .inner {
+            .flex-display(center; space-between);
+
+            .available {
+                .flex(1);
+
+                .name {
+                    color: #62666F;
+                }
+
+                .value {
+                    color: #F8AA42;
+                }
+            }
+
+            .btns {
+                .btn {
+                    letter-spacing: 3px;
+
+                    &-theme {
+                        .button-size(6px; 11px; 14px; 1; 2px);
+                    }
+
+                    &-plain {
+                        .button-variant(@color-theme-main; #FFF; @color-theme-main);
+                        .button-size(7px; 13px; 12px; 1; 2px);
+                    }
+
+                    & + .btn {
+                        margin-left: 5px;
+                    }
+                }
+            }
+        }
+    }
+
+    .dashboard-list {
+        border-top: 1px solid #DEDFE1;
+        border-bottom: 1px solid #DEDFE1;
+        background-color: #FFF;
+
+        a {
+            display: block;
+            color: inherit;
+        }
+
+        .list-row {
+            > .item {
+                padding: 12px 18px;
+                height: 72px;
+
+                + .item {
+                    border-left: 1px solid #F0F0F0;
+                }
+            }
+
+            + .list-row {
+                border-top: 1px solid #F0F0F0;
+            }
+        }
+
+        .media {
+            &-left {
+                min-width: 30px;
+            }
+
+            &-heading {
+                font-size: 16px;
+                color: #333;
+            }
+
+            .desc {
+                font-size: 12px;
+                color: #9699A0;
+            }
+        }
     }
 
     .c-list-panel {
