@@ -15,6 +15,7 @@ do (_, angular) ->
                     total: @user.fund.availableAmount + @user.fund.dueInAmount + @user.fund.frozenAmount
                     daily: @user.statistics.yesterdayIncome
                     total_interest: @user.statistics.investInterestAmount
+                    outstanding_interest: @user.fund.outstandingInterest
                 }
 
                 (@api
@@ -34,26 +35,14 @@ do (_, angular) ->
                 )
 
                 (@api
-                    .fetch_user_notifications()
-
+                    .get_user_investments()
                     .then (data) =>
-
-                        all_notification_list = _.clone data.results
-
-                        new_notification_list =
-                            _(all_notification_list)
-                                .filter (item) ->
-                                    item.status is 'NEW'
-                                .value()
-
-                        @$scope.new_notification_length = new_notification_list.length
+                        @$scope.investments_length = data.length
                 )
 
                 # prefetch following API calls for getting out from cache directly later on
 
                 @api.get_user_funds()
-                @api.get_user_investments()
-                @api.get_available_bank_list()
 
 
             logout: ->

@@ -338,10 +338,13 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                         controller: 'FundsCtrl as self'
                         templateUrl: 'components/router/dashboard/funds.tmpl.html'
                         resolve:
-                            data: _.ai 'api, $location, $q',
+                            user: _.ai 'api, $location, $q',
                                 (       api, $location, $q) ->
-                                    api.get_user_funds().catch ->
-                                        $location.path '/dashboard'
+                                    api.fetch_current_user().catch ->
+                                        $location
+                                            .replace()
+                                            .path '/login'
+                                            .search next: 'dashboard/funds'
                                         return $q.reject()
 
                             _fund: _.ai 'update_user_funds', (update_user_funds) ->
