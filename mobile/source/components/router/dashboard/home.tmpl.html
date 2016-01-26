@@ -18,7 +18,7 @@
         <div class="subject">
             <div class="name">
                 {{ self.user.info.name || self.user.info.mobile }}您好，您的账户总资产 (元)
-                <span class="question-mark">?</span>
+                <param class="glyphicon glyphicon-question-sign">
             </div>
             <div class="value">{{ fund.total | number: 2 }}</div>
         </div>
@@ -43,8 +43,8 @@
                 <span class="value">{{ fund.available | number: 2 }}</span>
             </span>
             <span class="btns">
-                <a class="btn btn-theme" href="dashboard/recharge">充值</a>
-                <a class="btn btn-plain" href="dashboard/withdraw">提现</a>
+                <a class="btn btn-theme" href="dashboard/recharge">充&nbsp;值</a>
+                <a class="btn btn-plain" href="dashboard/withdraw">提&nbsp;现</a>
             </span>
         </div>
     </section>

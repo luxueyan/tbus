@@ -1980,17 +1980,8 @@ a {
                 text-shadow: 0 1px 3px rgba(156, 133, 99, 0.66);
             }
 
-            .question-mark {
-                display: inline-block;
-                vertical-align: 1px;
-                width: 14px;
-                height: 14px;
-                text-align: center;
-                border-radius: 50%;
-                font-size: 12px;
-                line-height: 14px;
-                color: #FFE5C0;
-                background-color: rgba(187, 133, 64, 0.87);
+            .glyphicon-question-sign {
+                vertical-align: -1px;
             }
         }
 
@@ -2062,15 +2053,15 @@ a {
 
             .btns {
                 .btn {
-                    letter-spacing: 3px;
+                    min-width: 52px;
 
                     &-theme {
-                        .button-size(6px; 11px; 14px; 1; 2px);
+                        .button-size(6px; 9px; 14px; 1; 2px);
                     }
 
                     &-plain {
                         .button-variant(@color-theme-main; #FFF; @color-theme-main);
-                        .button-size(7px; 13px; 12px; 1; 2px);
+                        .button-size(7px; 9px; 12px; 1; 2px);
                     }
 
                     & + .btn {
