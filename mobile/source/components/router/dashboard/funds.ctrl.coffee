@@ -1,14 +1,42 @@
 
-do (_, angular) ->
+do (_, angular, moment) ->
 
     angular.module('controller').controller 'FundsCtrl',
 
-        _.ai '            @data, @$scope, @$window, @$routeParams, map_funds_summary', class
-            constructor: (@data, @$scope, @$window, @$routeParams, map_funds_summary) ->
+        _.ai '            @api, @$scope, @$window, @$routeParams, @map_funds_summary', class
+            constructor: (@api, @$scope, @$window, @$routeParams, @map_funds_summary) ->
 
                 @$window.scrollTo 0, 0
 
-                @$scope.list = @data.results.map map_funds_summary
+                query_set = {}
+
+                angular.extend @$scope, {
+                    query_set
+                }
+
+                @query(query_set)
+
+
+            query: (query_set) ->
+
+                @$scope.loading = true
+
+                (@api.get_user_funds(query_set, false)
+
+                    .then ({results}) =>
+
+                        @$scope.list = results.map @map_funds_summary
+
+                    .finally =>
+                        @$scope.loading = false
+                )
+
+
+            convert_start_date: (num, unit) ->
+
+                date = moment().subtract(num, unit)
+
+                return moment(date.format 'YYYY-MM-DD').unix() * 1000
 
 
 
