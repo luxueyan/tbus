@@ -2323,18 +2323,182 @@ a {
 ----*/
 
 #dashboard-coupon {
-    section:not(.omit-margin) {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
+    .coupon-tab > .nav-tabs {
+        #dashboard-invest .invest-list .inline > .nav-tabs.nav-justified;
 
-    .page-nav {
-        small {
-            font-size: 70%;
+        & + *:before {
+            height: 46px;
+        }
+
+        > li a {
+            min-width: 70px;
         }
     }
 
     .coupon-list {
+        > .item {
+            position: relative;
+            margin: 8px 16px;
+
+            .media {
+                &-left {
+                    position: relative;
+                    border-top-left-radius: 4px;
+                    border-bottom-left-radius: 4px;
+                    padding-right: 0;
+                    min-width: 94px;
+                    color: #FFF;
+
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        z-index: 10;
+                        top: 0;
+                        bottom: 0;
+                        right: 0;
+                        border-top: 1px solid #E0D9D1;
+                        border-bottom: 1px solid #E0D9D1;
+                        width: 4px;
+                        background-image: -webkit-gradient(linear,
+                                                           left center,
+                                                           right top,
+                                                           from(transparent),
+                                                           color-stop(.5, transparent),
+                                                           color-stop(.5, #fff),
+                                                           to(#fff)
+                                                          ),
+                                          -webkit-gradient(linear,
+                                                           left center,
+                                                           right bottom,
+                                                           from(transparent),
+                                                           color-stop(.5, transparent),
+                                                           color-stop(.5, #fff),
+                                                           to(#fff)
+                                                          );
+                        background-size: 4px 8px;
+                        background-repeat: repeat-y;
+                        background-position: right top;
+                    }
+                }
+
+                &-body {
+                    border-top-right-radius: 4px;
+                    border-bottom-right-radius: 4px;
+                    border: 1px solid #E0D9D1;
+                    border-left: 0;
+                    padding: 12px;
+                    background-color: #FFF;
+                }
+            }
+
+            .value {
+                .num {
+                    font-size: 26px;
+                }
+
+                .unit {
+                    font-size: 12px;
+                }
+            }
+
+            .type {
+                font-size: 16px;
+            }
+
+            .desc {
+                & + .desc {
+                    margin-top: 5px;
+                }
+            }
+
+            .expire {
+                margin-top: 10px;
+                border-top: 1px solid #DEDFE1;
+                padding-top: 8px;
+                font-size: 12px;
+                color: #9699A0;
+            }
+
+            .redeem {
+                position: absolute;
+                top: 4px;
+                right: 4px;
+            }
+
+            &:before {
+                .transform(rotate(-15deg));
+
+                display: none;
+                content: attr(data-mask);
+                position: absolute;
+                z-index: 11;
+                left: 20%;
+                bottom: 10%;
+                overflow: hidden;
+                border-radius: 50%;
+                border: 4px solid rgba(127, 127, 127, 0.2);
+                width: 152px/2;
+                height: 152px/2;
+                line-height: 152px/2 - 8;
+                font-size: 15px;
+                color: rgba(127, 127, 127, 0.3);
+                text-align: center;
+            }
+
+            &-type {
+                &-cash {
+                    .media-left {
+                        background-color: #FF8C7E;
+                    }
+                }
+
+                &-interest {
+                    .media-left {
+                        background-color: #F9CC8D;
+                    }
+                }
+
+                &-principal {
+                    .media-left {
+                        background-color: #FFAA70;
+                    }
+                }
+
+                &-rebate {
+                    .media-left {
+                        background-color: @color-theme-main;
+                    }
+                }
+            }
+
+            &-status {
+                &-placed {
+                }
+
+                &-used {
+                }
+
+                &-redeemed,
+                &-expired {
+                    &:before {
+                        display: block;
+                    }
+
+                    .desc {
+                        color: #9699A0;
+                    }
+                }
+
+                &-disabled {
+                    .desc {
+                        color: #9699A0;
+                    }
+                }
+            }
+        }
+    }
+
+    .coupon-list-backup {
         > .item {
             margin-bottom: 10px;
             border-top: 1px solid #D9D9D9;

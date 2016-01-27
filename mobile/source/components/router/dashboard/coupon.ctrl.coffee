@@ -10,11 +10,43 @@ do (_, angular) ->
 
                 input = +@$routeParams.input
 
-                @$scope.picking = 'amount' of @$routeParams
+                picking = 'amount' of @$routeParams
+
+                @$scope.picking = picking
 
                 @back_path = @$routeParams.back
 
-                coupon_list = _.clone @data
+                list =
+                    _(_.clone @data)
+                        .each (coupon) ->
+                            expire = coupon.couponPackage.timeExpire
+
+                            if expire and expire < Date.now() and coupon.status in _.split 'INITIATED PLACED USED'
+                                coupon.status = 'EXPIRED'
+
+                            if input > 0 and input < coupon.couponPackage.minimumInvest
+                                coupon.status = 'DISABLED'
+
+                        .value()
+
+                (if picking
+                    @$scope.list = list
+
+                else
+                    @$scope.tabs = do (list, {filter} = {}) ->
+
+                        filter = (status_list) ->
+                            _.filter list, (item) -> _.includes status_list, item.status
+
+                        return [
+                            {} = type: 'placed', data: filter _.split 'PLACED'
+                            {} = type: 'used', data: filter _.split 'USED'
+                            {} = type: 'redeemed', data: filter _.split 'REDEEMED'
+                            {} = type: 'expired', data: filter _.split 'EXPIRED'
+                        ]
+                )
+
+                return
 
                 status_list = _.split 'INITIATED PLACED USED REDEEMED EXPIRED CANCELLED DISABLED'
 
@@ -87,4 +119,20 @@ do (_, angular) ->
                 while list.remain.length and PAGE_SIZE--
                     list.push list.remain.shift()
 
+
+
+
+
+
+
+
+    angular.module('directive').directive 'couponSummary', ->
+
+        restrict: 'AE'
+        templateUrl: 'ngt-coupon-summary.tmpl'
+
+        scope:
+            list: '='
+            picking: '='
+            self: '='
 

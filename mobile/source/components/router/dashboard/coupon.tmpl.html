@@ -6,13 +6,8 @@
         <a class="col-xs-3 back" ng-href="{{ self.back_path || 'dashboard' }}">
             <param class="glyphicon glyphicon-menu-left">
         </a>
-
-        <span class="col-xs-6 title">{{ picking ? '选择' : '我的' }}红包</span>
-
-        <span class="col-xs-3" ng-if="!picking">&nbsp;</span>
-        <a class="col-xs-3 actions" ng-href="{{ self.back_path }}"
-           ng-if="picking"
-        ><small>不使用红包</small></a>
+        <span class="col-xs-6 title">红包</span>
+        <span class="col-xs-3">&nbsp;</span>
     </div>
     </nav>
 
@@ -23,7 +18,40 @@
         }">
     </div>
 
-    <section class="coupons">
+    <section class="coupons" ng-if="!picking">
+        <uib-tabset class="coupon-tab inline list" justified="true">
+            <uib-tab ng-repeat="tab in tabs"
+                 heading="{{ { placed: '未使用', used: '审核中', redeemed: '已使用', expired: '已过期'}[tab.type] }}"
+            >
+                <div x-coupon-summary
+                     data-list="tab.data"
+                     data-picking="picking"
+                     data-self="self"
+                ></div>
+            </uib-tab>
+        </uib-tabset>
+    </section>
+
+    <section class="coupons" ng-if="picking">
+        <div x-coupon-summary
+             data-list="list"
+             data-picking="picking"
+             data-self="self"
+        ></div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+    <section class="coupons" x-gyro-comment>
         <ul class="list-unstyled u-off-margin-bottom coupon-list">
             <li class="item"
                 ng-repeat="item in data"
@@ -109,3 +137,79 @@
 
 </div>
 
+
+
+
+
+
+
+
+<script type="text/ng-template" id="ngt-coupon-summary.tmpl">
+    <ul class="list-unstyled u-off-margin-bottom coupon-list">
+        <li class="item"
+            ng-repeat="item in list"
+            ng-click="picking && item.status != 'DISABLED' && self.select(item.id)"
+            ng-class="[
+                'item-status-' + (item.status | lowercase),
+                'item-type-' + (item.couponPackage.type | lowercase)
+            ]"
+            data-mask="{{ { placed: '未使用', used: '审核中', redeemed: '已使用', expired: '已过期'}[(item.status | lowercase)] }}"
+        >
+            <div class="media">
+                <div class="media-left media-middle text-center">
+                    <div class="value" ng-switch="item.couponPackage.type">
+                        <span ng-switch-when="INTEREST">
+                            <span class="num">{{ item.couponPackage.parValue / 100 }}</span>
+                            <span class="unit">%</span>
+                        </span>
+                        <span ng-switch-default>
+                            <span ng-if="item.couponPackage.parValue >= 10000">
+                                <span class="num">{{ item.couponPackage.parValue / 10000 | number }}</span>
+                                <span class="unit">万</span>
+                            </span>
+                            <span ng-if="item.couponPackage.parValue < 10000">
+                                <span class="num">{{ item.couponPackage.parValue | number }}</span>
+                                <span class="unit">元</span>
+                            </span>
+                        </span>
+                    </div>
+
+                    <div class="type" ng-switch="item.couponPackage.type">
+                        <span ng-switch-when="CASH">现金券</span>
+                        <span ng-switch-when="INTEREST">加息券</span>
+                        <span ng-switch-when="PRINCIPAL">增值券</span>
+                        <span ng-switch-when="REBATE">返现券</span>
+                    </div>
+                </div>
+
+                <div class="media-body">
+                    <div class="desc">{{ item.couponPackage.description || '暂无描述' }}</div>
+
+                    <div class="desc">
+                        投资满{{ item.couponPackage.minimumInvest | number }}元，{{ item.couponPackage.minimumDuration }}个月可使用
+                    </div>
+
+                    <div class="expire">
+                        <span ng-if="item.couponPackage.timeExpire">
+                            有效期至 {{ item.couponPackage.timeExpire | date: "yyyy-MM-dd" }}
+                        </span>
+                        <span ng-if="!item.couponPackage.timeExpire">永不过期</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-xs btn-info redeem"
+                    ng-click="self.redeem(item.id)"
+                    ng-if="
+                           !picking
+                        && item.couponPackage.type === 'CASH'
+                        && ['INITIATED', 'PLACED'].indexOf(item.status) > -1
+                    "
+            >兑换</button>
+        </li>
+    </ul>
+
+    <div class="container" ng-if="!list.length">
+        <h4 class="alert alert-info text-center">暂无数据</h4>
+    </div>
+</script>
