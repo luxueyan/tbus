@@ -351,6 +351,20 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                 return update_user_funds()
                     }
 
+                    .when '/dashboard/repayments', {
+                        controller: 'RepaymentsCtrl as self'
+                        templateUrl: 'components/router/dashboard/repayments.tmpl.html'
+                        resolve:
+                            user: _.ai 'api, $location, $q',
+                                (       api, $location, $q) ->
+                                    api.fetch_current_user().catch ->
+                                        $location
+                                            .replace()
+                                            .path '/login'
+                                            .search next: 'dashboard/repayments'
+                                        return $q.reject()
+                    }
+
                     .when '/dashboard/recharge', {
                         controller: 'RechargeCtrl as self'
                         templateUrl: 'components/router/dashboard/payment/pool/payment-pool-recharge.tmpl.html'

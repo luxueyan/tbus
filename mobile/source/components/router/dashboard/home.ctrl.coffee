@@ -40,6 +40,13 @@ do (_, angular) ->
                         @$scope.investments_length = data.length
                 )
 
+                (@api.get_user_repayments()
+                    .then (response) =>
+                        @$scope.next_month_undue_repayment =
+                            do (list = _.get(response, 'data.results')) ->
+                                _.sum list, (item) -> item.amount
+                )
+
                 # prefetch following API calls for getting out from cache directly later on
 
                 @api.get_user_funds()
