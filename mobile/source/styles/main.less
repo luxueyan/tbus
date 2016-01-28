@@ -2352,7 +2352,7 @@ a {
                     &:after {
                         content: "";
                         position: absolute;
-                        z-index: 10;
+                        z-index: 2;
                         top: 0;
                         bottom: 0;
                         right: 0;
@@ -2364,16 +2364,16 @@ a {
                                                            right top,
                                                            from(transparent),
                                                            color-stop(.5, transparent),
-                                                           color-stop(.5, #fff),
-                                                           to(#fff)
+                                                           color-stop(.5, #FFF),
+                                                           to(#FFF)
                                                           ),
                                           -webkit-gradient(linear,
                                                            left center,
                                                            right bottom,
                                                            from(transparent),
                                                            color-stop(.5, transparent),
-                                                           color-stop(.5, #fff),
-                                                           to(#fff)
+                                                           color-stop(.5, #FFF),
+                                                           to(#FFF)
                                                           );
                         background-size: 4px 8px;
                         background-repeat: repeat-y;
@@ -2421,8 +2421,8 @@ a {
 
             .redeem {
                 position: absolute;
-                top: 4px;
-                right: 4px;
+                bottom: 10px;
+                right: 13px;
             }
 
             &:before {
@@ -2431,42 +2431,43 @@ a {
                 display: none;
                 content: attr(data-mask);
                 position: absolute;
-                z-index: 11;
+                z-index: 3;
                 left: 20%;
-                bottom: 10%;
+                bottom: 15%;
                 overflow: hidden;
                 border-radius: 50%;
-                border: 4px solid rgba(127, 127, 127, 0.2);
-                width: 152px/2;
-                height: 152px/2;
-                line-height: 152px/2 - 8;
+                border: 4px solid transparent;
+                box-shadow: 0 0 0 4px rgba(127, 127, 127, 0.2), inset 0 0 0 1px rgba(127, 127, 127, 0.2);
+                width: 68px;
+                height: 68px;
+                line-height: 60px;
                 font-size: 15px;
-                color: rgba(127, 127, 127, 0.3);
+                color: rgba(150, 153, 160, 0.44);
                 text-align: center;
             }
 
             &-type {
                 &-cash {
                     .media-left {
-                        background-color: #FF8C7E;
+                        #gradient .vertical(#FF8C7E; #F86969);
                     }
                 }
 
                 &-interest {
                     .media-left {
-                        background-color: #F9CC8D;
+                        #gradient .vertical(#F9CC8D; #F4C580);
                     }
                 }
 
                 &-principal {
                     .media-left {
-                        background-color: #FFAA70;
+                        #gradient .vertical(#FFAA70; #F7934B);
                     }
                 }
 
                 &-rebate {
                     .media-left {
-                        background-color: @color-theme-main;
+                        #gradient .vertical(@color-theme-main; #BE8B41);
                     }
                 }
             }
