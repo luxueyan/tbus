@@ -2323,18 +2323,183 @@ a {
 ----*/
 
 #dashboard-coupon {
-    section:not(.omit-margin) {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
+    .coupon-tab > .nav-tabs {
+        #dashboard-invest .invest-list .inline > .nav-tabs.nav-justified;
 
-    .page-nav {
-        small {
-            font-size: 70%;
+        & + *:before {
+            height: 46px;
+        }
+
+        > li a {
+            min-width: 70px;
         }
     }
 
     .coupon-list {
+        > .item {
+            position: relative;
+            margin: 8px 16px;
+
+            .media {
+                &-left {
+                    position: relative;
+                    border-top-left-radius: 4px;
+                    border-bottom-left-radius: 4px;
+                    padding-right: 0;
+                    min-width: 94px;
+                    color: #FFF;
+
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        z-index: 2;
+                        top: 0;
+                        bottom: 0;
+                        right: 0;
+                        border-top: 1px solid #E0D9D1;
+                        border-bottom: 1px solid #E0D9D1;
+                        width: 4px;
+                        background-image: -webkit-gradient(linear,
+                                                           left center,
+                                                           right top,
+                                                           from(transparent),
+                                                           color-stop(.5, transparent),
+                                                           color-stop(.5, #FFF),
+                                                           to(#FFF)
+                                                          ),
+                                          -webkit-gradient(linear,
+                                                           left center,
+                                                           right bottom,
+                                                           from(transparent),
+                                                           color-stop(.5, transparent),
+                                                           color-stop(.5, #FFF),
+                                                           to(#FFF)
+                                                          );
+                        background-size: 4px 8px;
+                        background-repeat: repeat-y;
+                        background-position: right top;
+                    }
+                }
+
+                &-body {
+                    border-top-right-radius: 4px;
+                    border-bottom-right-radius: 4px;
+                    border: 1px solid #E0D9D1;
+                    border-left: 0;
+                    padding: 12px;
+                    background-color: #FFF;
+                }
+            }
+
+            .value {
+                .num {
+                    font-size: 26px;
+                }
+
+                .unit {
+                    font-size: 12px;
+                }
+            }
+
+            .type {
+                font-size: 16px;
+            }
+
+            .desc {
+                & + .desc {
+                    margin-top: 5px;
+                }
+            }
+
+            .expire {
+                margin-top: 10px;
+                border-top: 1px solid #DEDFE1;
+                padding-top: 8px;
+                font-size: 12px;
+                color: #9699A0;
+            }
+
+            .redeem {
+                position: absolute;
+                bottom: 10px;
+                right: 13px;
+            }
+
+            &:before {
+                .transform(rotate(-15deg));
+
+                display: none;
+                content: attr(data-mask);
+                position: absolute;
+                z-index: 3;
+                left: 20%;
+                bottom: 15%;
+                overflow: hidden;
+                border-radius: 50%;
+                border: 4px solid transparent;
+                box-shadow: 0 0 0 4px rgba(127, 127, 127, 0.2), inset 0 0 0 1px rgba(127, 127, 127, 0.2);
+                width: 68px;
+                height: 68px;
+                line-height: 60px;
+                font-size: 15px;
+                color: rgba(150, 153, 160, 0.44);
+                text-align: center;
+            }
+
+            &-type {
+                &-cash {
+                    .media-left {
+                        #gradient .vertical(#FF8C7E; #F86969);
+                    }
+                }
+
+                &-interest {
+                    .media-left {
+                        #gradient .vertical(#F9CC8D; #F4C580);
+                    }
+                }
+
+                &-principal {
+                    .media-left {
+                        #gradient .vertical(#FFAA70; #F7934B);
+                    }
+                }
+
+                &-rebate {
+                    .media-left {
+                        background-color: #CCC;
+                    }
+                }
+            }
+
+            &-status {
+                &-placed {
+                }
+
+                &-used {
+                }
+
+                &-redeemed,
+                &-expired {
+                    &:before {
+                        display: block;
+                    }
+
+                    .desc {
+                        color: #9699A0;
+                    }
+                }
+
+                &-disabled {
+                    .desc {
+                        color: #9699A0;
+                    }
+                }
+            }
+        }
+    }
+
+    .coupon-list-backup {
         > .item {
             margin-bottom: 10px;
             border-top: 1px solid #D9D9D9;
@@ -2650,8 +2815,127 @@ a {
 
 #dashboard-invest-detail {
     section:not(.omit-margin) {
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+
+    .repayment-summary {
+        #loan .loan-summary;
+
+        margin-bottom: 23px !important;
+
+        .rate, .type {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .type {
+            margin-left: 36px;
+            margin-top: 3px;
+            border: 1px solid #FFF;
+            border-radius: 50%;
+            width: 64px;
+            height: 64px;
+            line-height: 62px;
+            color: #FFF;
+        }
+
+        .footer .inner .next-repay-days {
+            .flex(none);
+
+            .num {
+                color: #DE5A28;
+            }
+        }
+    }
+
+    .repayment-panel {
+        #loan .loan-panel;
+    }
+
+    .dynamic {
+        padding-bottom: 0;
+
+        .dynamic-detail {
+            #dashboard-repayment .repayment-detail;
+
+            margin-bottom: 0;
+            border-bottom: 0;
+
+            .list li {
+                .subject .date {
+                    color: #9699A0;
+                }
+
+                .info {
+                    font-size: 16px;
+
+                    .value {
+                        color: #333;
+                    }
+                }
+            }
+        }
+    }
+
+    .plan {
+        .plan-detail {
+            h5 {
+                margin-top: 15px;
+                margin-bottom: 15px;
+            }
+
+            .table {
+                font-size: 12px;
+            }
+
+            .status {
+                .green {
+                    color: #83B13E;
+                }
+
+                .red {
+                    color: #CF5F48;
+                }
+
+                .gray {
+                    color: #9699A0;
+                }
+            }
+        }
+    }
+
+    .links {
+        padding-left: 0;
+
+        a {
+            padding-left: 45px;
+            font-size: 16px;
+            color: #333;
+
+            img, .desc {
+                .transform(translateY(-50%));
+
+                position: absolute;
+                top: 50%;
+            }
+
+            img {
+                left: 17px;
+            }
+
+            .desc {
+                right: 37px;
+                font-size: 12px;
+                color: #9699A0;
+            }
+
+            &:after {
+                margin-top: 1px;
+                font-size: 12px;
+                color: #CBCCD0;
+            }
+        }
     }
 
     > .info-list {
@@ -3037,6 +3321,79 @@ a {
 ----*/
 
 #dashboard-repayment {
+    .repayment-summary {
+        #dashboard .dashboard-summary;
+    }
+
+    .repayment-detail {
+        margin-bottom: 8px;
+        border-bottom: 1px solid #DEDFE1;
+        padding-top: 15px;
+        padding-left: 20px;
+        background-color: #FFF;
+
+        .list {
+            position: relative;
+
+            &:before {
+                content: "";
+                position: absolute;
+                z-index: 2;
+                left: 0;
+                top: 5px;
+                bottom: 0;
+                width: 2px;
+                background-color: #DEDFE1;
+            }
+
+            > li {
+                position: relative;
+                padding-left: 16px;
+                padding-bottom: 30px;
+
+                &:before {
+                    content: "";
+                    position: absolute;
+                    z-index: 3;
+                    left: -3px;
+                    top: 5px;
+                    border-radius: 50%;
+                    width: 8px;
+                    height: 8px;
+                    background-color: @color-theme-main;
+                }
+
+                .subject {
+                    .date {
+                    }
+
+                    .title {
+                        display: inline-block;
+                        vertical-align: middle;
+                        margin: 0 0 0 5px;
+                    }
+                }
+
+                .info {
+                    margin-top: 5px;
+
+                    .name {
+                    }
+
+                    .value {
+                        margin-left: 5px;
+                        color: @color-theme-main;
+                    }
+                }
+            }
+        }
+    }
+
+    .loading {
+        padding: 10px;
+        background-color: #FFF;
+    }
+
     > .repayment-loan {
         #dashboard-invest .invest-list .item;
 

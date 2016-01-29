@@ -72,7 +72,7 @@
                         </div>
                         <div class="media-body">
                             <h4 class="media-heading">预期回款</h4>
-                            <p class="desc">{{   }}元</p>
+                            <p class="desc" ng-if="next_month_undue_repayment">{{ next_month_undue_repayment | number: 2 }}元</p>
                         </div>
                     </div>
                 </a>
