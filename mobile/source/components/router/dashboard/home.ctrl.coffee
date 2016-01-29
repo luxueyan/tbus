@@ -44,7 +44,7 @@ do (_, angular) ->
                     .then (response) =>
                         @$scope.next_month_undue_repayment =
                             do (list = _.get(response, 'data.results')) ->
-                                _.sum list, (item) -> item.amount
+                                _.sum list, 'amount'
                 )
 
                 # prefetch following API calls for getting out from cache directly later on
