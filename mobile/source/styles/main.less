@@ -2815,8 +2815,127 @@ a {
 
 #dashboard-invest-detail {
     section:not(.omit-margin) {
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+
+    .repayment-summary {
+        #loan .loan-summary;
+
+        margin-bottom: 23px !important;
+
+        .rate, .type {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .type {
+            margin-left: 36px;
+            margin-top: 3px;
+            border: 1px solid #FFF;
+            border-radius: 50%;
+            width: 64px;
+            height: 64px;
+            line-height: 62px;
+            color: #FFF;
+        }
+
+        .footer .inner .next-repay-days {
+            .flex(none);
+
+            .num {
+                color: #DE5A28;
+            }
+        }
+    }
+
+    .repayment-panel {
+        #loan .loan-panel;
+    }
+
+    .dynamic {
+        padding-bottom: 0;
+
+        .dynamic-detail {
+            #dashboard-repayment .repayment-detail;
+
+            margin-bottom: 0;
+            border-bottom: 0;
+
+            .list li {
+                .subject .date {
+                    color: #9699A0;
+                }
+
+                .info {
+                    font-size: 16px;
+
+                    .value {
+                        color: #333;
+                    }
+                }
+            }
+        }
+    }
+
+    .plan {
+        .plan-detail {
+            h5 {
+                margin-top: 15px;
+                margin-bottom: 15px;
+            }
+
+            .table {
+                font-size: 12px;
+            }
+
+            .status {
+                .green {
+                    color: #83B13E;
+                }
+
+                .red {
+                    color: #CF5F48;
+                }
+
+                .gray {
+                    color: #9699A0;
+                }
+            }
+        }
+    }
+
+    .links {
+        padding-left: 0;
+
+        a {
+            padding-left: 45px;
+            font-size: 16px;
+            color: #333;
+
+            img, .desc {
+                .transform(translateY(-50%));
+
+                position: absolute;
+                top: 50%;
+            }
+
+            img {
+                left: 17px;
+            }
+
+            .desc {
+                right: 37px;
+                font-size: 12px;
+                color: #9699A0;
+            }
+
+            &:after {
+                margin-top: 1px;
+                font-size: 12px;
+                color: #CBCCD0;
+            }
+        }
     }
 
     > .info-list {
