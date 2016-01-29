@@ -107,16 +107,37 @@ do (_, angular, moment, Array) ->
                         response.data?.results or []
 
 
-            get_user_funds: ->
+            get_user_repayments: (query_set = {}, cache = false) ->
 
                 convert_to_day = (date) ->
                     moment(date.format 'YYYY-MM-DD').unix() * 1000
 
-                query_set = {
-                    type: _.split 'INVEST WITHDRAW DEPOSIT INVEST_REPAY FEE_WITHDRAW TRANSFER'
-                    allStatus: false
-                    allOperation: true
-                    startDate: convert_to_day moment().subtract 1, 'y'
+                _.defaults query_set, {
+                    status: 'UNDUE'
+                    from: convert_to_day moment().add 1, 'd'
+                    to: convert_to_day moment().add 1, 'M'
+                }
+
+                @$http
+                    .get '/api/v2/user/MYSELF/investRepayments/1/99',
+                        params: query_set
+                        cache: cache
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
+            get_user_funds: (query_set = {}, cache = false) ->
+
+                convert_to_day = (date) ->
+                    moment(date.format 'YYYY-MM-DD').unix() * 1000
+
+                _.defaults query_set, {
+                    # type: _.split 'INVEST WITHDRAW DEPOSIT INVEST_REPAY FEE_WITHDRAW TRANSFER'
+                    # allStatus: false
+                    # allOperation: true
+                    type: ''
+                    startDate: convert_to_day moment().subtract 10, 'y'
                     endDate: convert_to_day moment().add 1, 'd'
                     page: 1
                     pageSize: 99
@@ -124,10 +145,11 @@ do (_, angular, moment, Array) ->
 
                 @$http
                     .get '/api/v2/user/MYSELF/funds/query',
-                        params: query_set
-                        cache: false
+                        params: _.compact query_set
+                        cache: cache
 
                     .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             get_carousel_banners: ->

@@ -18,7 +18,7 @@ do (_, angular) ->
                         repayed_num = _.filter(repayments, status: 'REPAYED').length
 
                         filter = _.partial _.filter, repayments
-                        sum = (item, key = 'amountInterest') -> _.fixed_in_2(_.sum item, (item) -> item.repayment[key])
+                        sum = (item, key = 'amount') -> _.fixed_in_2(_.sum item, (item) -> item.repayment[key])
                         status = (item) -> item.status is 'REPAYED'
 
                         return {
@@ -26,7 +26,7 @@ do (_, angular) ->
                             unrepay:     sum filter _.negate status
                             progress:    "#{ repayed_num }/#{ repayments.length }"
                             interest:    sum repayments, 'amountInterest'
-                            outstanding: sum filter _.negate status
+                            outstanding: sum filter(_.negate status), 'amountInterest'
                             end_date:    new Date(_.get _.last(repayments), 'repayment.dueDate')
                         }
 
@@ -54,8 +54,7 @@ do (_, angular) ->
 
                         end_date: repayment.end_date
                         submit_time: item.submitTime
-
-                        gome_goods_pick: item.gomeGoodsPick
+                        repayments: item.repayments
                     }
                 )
 

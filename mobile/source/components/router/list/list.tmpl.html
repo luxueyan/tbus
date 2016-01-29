@@ -15,7 +15,7 @@
     <div ng-if="filter_type">
         <div class="container text-center loan-filter">
             <div class="row">
-                <div class="col-xs-6" x-uib-dropdown is-open="open_dropdown_rate">
+                <div class="col-xs-4" x-uib-dropdown is-open="open_dropdown_rate">
                     <div x-uib-dropdown-toggle>
                         利率<param class="glyphicon glyphicon-menu-down">
                     </div>
@@ -23,9 +23,12 @@
                         <li ng-class="{ active: query_set.minRate === 0 && query_set.maxRate === 100 }"
                             ng-click="query_set.minRate = 0; query_set.maxRate = 100"
                         >全部利率</li>
-                        <li ng-class="{ active: query_set.minRate === 0 && query_set.maxRate === 6 }"
-                            ng-click="query_set.minRate = 0; query_set.maxRate = 6"
-                        >6%以下</li>
+                        <li ng-class="{ active: query_set.minRate === 0 && query_set.maxRate === 5 }"
+                            ng-click="query_set.minRate = 0; query_set.maxRate = 5"
+                        >5%以下</li>
+                        <li ng-class="{ active: query_set.minRate === 5 && query_set.maxRate === 6 }"
+                            ng-click="query_set.minRate = 5; query_set.maxRate = 6"
+                        >5%~6%</li>
                         <li ng-class="{ active: query_set.minRate === 6 && query_set.maxRate === 7 }"
                             ng-click="query_set.minRate = 6; query_set.maxRate = 7"
                         >6%~7%</li>
@@ -37,7 +40,34 @@
                         >8%以上</li>
                     </ul>
                 </div>
-                <div class="col-xs-6 dropdown" x-uib-dropdown is-open="open_dropdown_status">
+
+                <div class="col-xs-4" x-uib-dropdown is-open="open_dropdown_duration">
+                    <div x-uib-dropdown-toggle>
+                        期限<param class="glyphicon glyphicon-menu-down">
+                    </div>
+                    <ul x-uib-dropdown-menu ng-click="self.query(query_set); open_dropdown_duration = false">
+                        <li ng-class="{ active: query_set.minDuration === 0 && query_set.maxDuration === 100 }"
+                            ng-click="query_set.minDuration = 0; query_set.maxDuration = 100"
+                        >全部期限</li>
+                        <li ng-class="{ active: query_set.minDuration === 0 && query_set.maxDuration === 1 }"
+                            ng-click="query_set.minDuration = 0; query_set.maxDuration = 1"
+                        >1个月内</li>
+                        <li ng-class="{ active: query_set.minDuration === 1 && query_set.maxDuration === 3 }"
+                            ng-click="query_set.minDuration = 1; query_set.maxDuration = 3"
+                        >1~3个月</li>
+                        <li ng-class="{ active: query_set.minDuration === 3 && query_set.maxDuration === 6 }"
+                            ng-click="query_set.minDuration = 3; query_set.maxDuration = 6"
+                        >3~6个月</li>
+                        <li ng-class="{ active: query_set.minDuration === 6 && query_set.maxDuration === 12 }"
+                            ng-click="query_set.minDuration = 6; query_set.maxDuration = 12"
+                        >6~12个月</li>
+                        <li ng-class="{ active: query_set.minDuration === 12 && query_set.maxDuration === 100 }"
+                            ng-click="query_set.minDuration = 12; query_set.maxDuration = 100"
+                        >1年以上</li>
+                    </ul>
+                </div>
+
+                <div class="col-xs-4 dropdown" x-uib-dropdown is-open="open_dropdown_status">
                     <div x-uib-dropdown-toggle>
                         状态<param class="glyphicon glyphicon-menu-down">
                     </div>

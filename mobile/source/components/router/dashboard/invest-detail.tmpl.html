@@ -2,13 +2,145 @@
 <div id="dashboard-invest-detail">
     <nav class="omit-margin container page-nav">
     <div class="row">
+        <a class="col-xs-2 back" href="dashboard/invest"><param class="glyphicon glyphicon-menu-left"></a>
+        <span class="col-xs-8 title">{{ item.title }}</span>
+        <span class="col-xs-2">&nbsp;</a>
+    </div>
+    </nav>
+
+    <div></div>
+
+    <section class="u-off-margin-top repayment-summary">
+        <div class="subject text-center">
+            <div class="rate">
+                <div class="value">{{ item.rate }}%</div>
+                <div class="name">年化利率</div>
+            </div>
+            <div class="type" ng-switch="type">
+                <span ng-switch-when="raising">投资冻结</span>
+                <span ng-switch-when="repaying">回款中</span>
+                <span ng-switch-when="done">已结束</span>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="inner" ng-if="item.is_show_repayment">
+                <span class="next-repay-days">距下次回款: <span class="num"></span>天</span>
+                <span class="text-right">待回本息: {{ item.amount_unrepay | number: 2 }}元</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="repayment-panel dynamic">
+        <div class="heading">
+            <h3 class="title">投资动态</h3>
+        </div>
+        <div class="dynamic-detail">
+            <ul class="list list-unstyled u-off-margin-bottom">
+                <li>
+                    <div class="subject">
+                        <span class="date"></span>
+                    </div>
+                    <div class="info">
+                        <span class="name">投资冻结</span>
+                        <span class="value">元</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="subject">
+                        <span class="date"></span>
+                    </div>
+                    <div class="info">
+                        <span class="name">投资放款</span>
+                        <span class="value">元</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="subject">
+                        <span class="date"></span>
+                    </div>
+                    <div class="info">
+                        <span class="name">回款本息</span>
+                        <span class="value">元</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="repayment-panel plan" ng-if="item.is_show_repayment">
+        <div class="heading">
+            <h3 class="title">回款计划</h3>
+        </div>
+        <div class="plan-detail">
+            <h5 class="container">
+                <span class="pull-left">距下次回款还有<span class="u-color-main"></span>天</span>
+                <span class="pull-right">单位:元</span>
+            </h5>
+            <table class="table u-off-margin-bottom">
+                <thead>
+                    <tr>
+                        <th>日期</th>
+                        <th class="text-right">回款本息</th>
+                        <th class="text-right">剩余本金</th>
+                        <th>回款状态</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in repayments">
+                        <td>{{ item.due_date | date: "yy-MM-dd" }}</td>
+                        <td class="text-right">{{ item.amount | number: 2 }}</td>
+                        <td class="text-right">{{ item.amount_outstanding | number: 2 }}</td>
+                        <td>
+                            <div class="status" ng-switch="item.status">
+                                <span class="green" ng-switch-when="REPAYED">已回款</span>
+                                <span class="red" ng-switch-when="OVERDUE">已逾期</span>
+                                <span class="gray" ng-switch-when="UNDUE">待回款</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="list-group-flat no-label links">
+        <a class="list-group-item rsaquo"
+           target="_blank"
+           ng-if="contract_url"
+           ng-href="{{ contract_url }}"
+        >
+            <img width="14" ng-src="assets/image/contract-icon.png">
+            投资协议书
+            <span class="desc">查看</span>
+        </a>
+        <a class="list-group-item rsaquo"
+           ng-href="loan/{{ item.loan_id }}?back={{ page_path }}"
+        >
+            <img width="14" ng-src="assets/image/detail-icon.png">
+            项目详情
+            <span class="desc">查看</span>
+        </a>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+    <nav class="omit-margin container page-nav" x-gyro-comment>
+    <div class="row">
         <a class="col-xs-3 back" href="dashboard/invest"><param class="glyphicon glyphicon-menu-left"></a>
         <span class="col-xs-6 title">投资记录详情</span>
         <span class="col-xs-3">&nbsp;</a>
     </div>
     </nav>
 
-    <section class="c-list-panel info-list">
+    <section class="c-list-panel info-list" x-gyro-comment>
         <div class="item title">项目信息</div>
 
         <div class="item info">
@@ -85,7 +217,7 @@
         </div>
     </section>
 
-    <section ng-if="item.is_show_repayment" class="c-list-panel info-list">
+    <section ng-if="item.is_show_repayment" class="c-list-panel info-list" x-gyro-comment>
         <div class="item title">回款情况</div>
 
         <div class="item info">
