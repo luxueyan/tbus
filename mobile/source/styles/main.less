@@ -3202,6 +3202,79 @@ a {
 ----*/
 
 #dashboard-repayment {
+    .repayment-summary {
+        #dashboard .dashboard-summary;
+    }
+
+    .repayment-detail {
+        margin-bottom: 8px;
+        border-bottom: 1px solid #DEDFE1;
+        padding-top: 15px;
+        padding-left: 20px;
+        background-color: #FFF;
+
+        .list {
+            position: relative;
+
+            &:before {
+                content: "";
+                position: absolute;
+                z-index: 2;
+                left: 0;
+                top: 5px;
+                bottom: 0;
+                width: 2px;
+                background-color: #DEDFE1;
+            }
+
+            > li {
+                position: relative;
+                padding-left: 16px;
+                padding-bottom: 30px;
+
+                &:before {
+                    content: "";
+                    position: absolute;
+                    z-index: 3;
+                    left: -3px;
+                    top: 5px;
+                    border-radius: 50%;
+                    width: 8px;
+                    height: 8px;
+                    background-color: @color-theme-main;
+                }
+
+                .subject {
+                    .date {
+                    }
+
+                    .title {
+                        display: inline-block;
+                        vertical-align: middle;
+                        margin: 0 0 0 5px;
+                    }
+                }
+
+                .info {
+                    margin-top: 5px;
+
+                    .name {
+                    }
+
+                    .value {
+                        margin-left: 5px;
+                        color: @color-theme-main;
+                    }
+                }
+            }
+        }
+    }
+
+    .loading {
+        padding: 10px;
+        background-color: #FFF;
+    }
+
     > .repayment-loan {
         #dashboard-invest .invest-list .item;
 
@@ -3421,87 +3494,6 @@ a {
                 }
             }
         }
-    }
-}
-
-/*=============================================================================
-                                                [Router] [Dashboard] Repayments
-----*/
-
-#dashboard-repayments {
-    .repayments-summary {
-        #dashboard .dashboard-summary;
-    }
-
-    .repayments-detail {
-        margin-bottom: 8px;
-        border-bottom: 1px solid #DEDFE1;
-        padding-top: 15px;
-        padding-left: 20px;
-        background-color: #FFF;
-
-        .repayment-list {
-            position: relative;
-
-            &:before {
-                content: "";
-                position: absolute;
-                z-index: 2;
-                left: 0;
-                top: 5px;
-                bottom: 0;
-                width: 2px;
-                background-color: #DEDFE1;
-            }
-
-            > li {
-                position: relative;
-                padding-left: 16px;
-                padding-bottom: 30px;
-
-                &:before {
-                    content: "";
-                    position: absolute;
-                    z-index: 3;
-                    left: -3px;
-                    top: 5px;
-                    border-radius: 50%;
-                    width: 8px;
-                    height: 8px;
-                    background-color: @color-theme-main;
-                }
-
-                .subject {
-                    .date {
-                    }
-
-                    .title {
-                        display: inline-block;
-                        vertical-align: middle;
-                        margin: 0 0 0 5px;
-                    }
-                }
-
-                .info-list {
-                    .info {
-                        margin-top: 5px;
-
-                        .name {
-                        }
-
-                        .value {
-                            margin-left: 5px;
-                            color: @color-theme-main;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    .loading {
-        padding: 10px;
-        background-color: #FFF;
     }
 }
 

@@ -1,7 +1,68 @@
 
-<div id="dashboard-repayment" class="">
+<div id="dashboard-repayment">
 
     <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" href="dashboard">
+            <span class="glyphicon glyphicon-menu-left"></span>
+        </a>
+        <span class="col-xs-6 title">预期回款</span>
+        <span class="col-xs-3">&nbsp;</a>
+    </div>
+    </nav>
+
+    <div></div>
+
+    <section class="omit-margin repayment-summary text-center" ng-hide="loading">
+        <div class="subject">
+            <div class="name">
+                未来一个月，预期回款(元)
+            </div>
+            <div class="value">{{ amount | number: 2 }}</div>
+        </div>
+        <div class="footer">
+            <div class="inner">
+                <div class="item">
+                    <div class="name">本金(元)</div>
+                    <div class="value">{{ amount_principal | number: 2 }}</div>
+                </div>
+                <div class="item">
+                    <div class="name">利息(元)</div>
+                    <div class="value">{{ amount_interest | number: 2 }}</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="omit-margin repayment-detail" ng-hide="loading">
+        <ul class="list list-unstyled u-off-margin-bottom">
+            <li ng-repeat="item in list">
+                <div class="subject">
+                    <span class="date">{{ item.due_date | date: "yy年MM月dd日" }}</span>
+                    <h5 class="title">{{ item.loanTitle }}</h5>
+                </div>
+                <div class="info">
+                    <span class="name">回款本息(元)</span>
+                    <span class="value">{{ item.amount | number: 2 }}</span>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <p class="text-center loading" ng-show="loading">
+        <img src="assets/image/spinner.gif">
+    </p>
+
+
+
+
+
+
+
+
+
+
+    <nav class="omit-margin container page-nav" x-gyro-comment>
     <div class="row">
         <a class="col-xs-3 back" href="dashboard/invest"><span class="glyphicon glyphicon-menu-left"></span></a>
         <span class="col-xs-6 title">回款计划</span>
@@ -12,10 +73,11 @@
     <section class="repayment-loan"
              x-invest-summary
              data-item="repayment_loan.item"
-             data-type="repayment_loan.type">
+             data-type="repayment_loan.type"
+             x-gyro-comment
     ></section>
 
-    <section class="repayments">
+    <section class="repayments" x-gyro-comment>
         <table class="table u-off-margin-bottom" ng-if="data.length">
             <thead>
                 <tr>
