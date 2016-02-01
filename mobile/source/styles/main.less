@@ -1262,6 +1262,11 @@ a {
 
 #login {
 
+    .logo {
+        margin: 30px auto;
+        text-align: center;
+    }
+
     .page-nav {
         margin-bottom: 0;
     }
@@ -1295,7 +1300,8 @@ a {
     .form-flatten {
 
         input.form-control {
-            padding-left: 8px;
+            padding-left: 4px;
+            height: 52px;
             -webkit-box-shadow: none !important;
             -webkit-appearance: none !important;
             box-shadow: none !important;
@@ -1318,13 +1324,13 @@ a {
             background-color: #FFF;
 
             label {
-                padding: 16px 15px 0;
-                font-size: 15px;
+                margin: 0 15px;
+                font-size: 16px;
                 font-weight: normal;
-                margin: 0;
-                line-height: 1;
+                line-height: 52px;
                 color: @color-gray-dark-double;
                 min-width: 3em;
+                text-align: right;
 
                 &:empty {
                     min-width: auto;
@@ -1334,9 +1340,9 @@ a {
 
         .inputs {
             overflow: hidden;
-            margin-bottom: 15px;
-            border-top: 1px solid @color-gray-light-double;
-            border-bottom: 1px solid  @color-gray-light-double;
+            margin-bottom: 32px;
+            border-top: 1px solid #DEDFE1;
+            border-bottom: 1px solid #DEDFE1;
 
             .form-group {
                 &:not(:first-child) {
@@ -1347,11 +1353,40 @@ a {
                         display: block;
                         top: 0;
                         right: 0;
-                        left: 14px;
+                        left: 0;
                         height: 1px;
-                        background-color: #F2F2F2;
+                        background-color: #EAEBED;
                     }
                 }
+
+                &.ng-hide + .form-group {
+                    &:after {
+                        display: none;
+                    }
+                }
+
+                .help-block {
+                    margin: 0;
+                    text-align: right;
+                    padding: 2px 6px;
+                }
+            }
+        }
+
+        .btn-circular {
+            border-radius: 999px;
+            padding-top: 9px;
+            padding-bottom: 9px;
+            outline: none;
+        }
+
+        .hint {
+            font-size: 12px;
+            color: #9699A0;
+
+            &.hint-mobile {
+                margin-top: -10px;
+                margin-bottom: 20px;
             }
         }
     }
@@ -1365,7 +1400,8 @@ a {
         .opacity(0);
         .transition();
 
-        margin-bottom: 15px;
+        margin-top: -25px;
+        margin-bottom: 5px;
         color: @color-theme-main;
 
         &.on {
@@ -1374,10 +1410,10 @@ a {
     }
 
     .links {
-        .flex-display(center; space-between);
+        // .flex-display(center; space-between);
 
-        margin-top: 28px;
-        color: @color-theme-link;
+        margin-top: 20px;
+        color: #64A7F5;
 
         a {
             color: inherit;
