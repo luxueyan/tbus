@@ -6,9 +6,14 @@ do (_, angular) ->
         _.ai '            @api, @$scope, @$interval, @$location, @$routeParams, @$window, @$cookies, @$q, @$uibModal, @mg_alert, @baseURI', class
             constructor: (@api, @$scope, @$interval, @$location, @$routeParams, @$window, @$cookies, @$q, @$uibModal, @mg_alert, @baseURI) ->
 
-                @$scope.store =
+                {mobile} = @$routeParams
+                @$scope.back_path = "login?mobile=#{ mobile }" if mobile
+
+                @$scope.store = {
+                    mobile
                     referral: do ({ref, rel, refm, reftf, referral} = @$routeParams) ->
                         _.first _.compact [ref, rel, refm, reftf, referral]
+                }
 
                 @cell_buffering = false
                 @cell_buffering_count = 59.59

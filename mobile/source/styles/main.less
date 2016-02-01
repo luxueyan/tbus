@@ -1126,6 +1126,10 @@ a {
 
 #register {
 
+    .logo {
+        #login .logo;
+    }
+
     .head-image {
         padding: 16px;
         display: block;
@@ -1173,9 +1177,12 @@ a {
                     border-radius: 4px;
                     min-width: 78px;
 
+                    &.btn-plain {
+                        .button-variant(@color-theme-main; #FFF; @color-theme-main);
+                    }
+
                     &:disabled {
-                        background-color: #FFF;
-                        color: @color-theme-main;
+                        .button-variant(#FFF; #9699A0; #9699A0);
                     }
                 }
 
@@ -1194,6 +1201,11 @@ a {
                     }
                 }
             }
+        }
+
+        .hint-captcha {
+            margin-top: -23px;
+            margin-bottom: 6px;
         }
 
         .agreement {
