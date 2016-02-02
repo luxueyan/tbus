@@ -125,6 +125,149 @@ a {
             }
         }
     }
+
+    &-payment-state {
+        &-page {
+            &-invest {
+                + .modal-backdrop {
+                    background-color: #2D3440;
+
+                    &.in {
+                        .opacity(0.59);
+                    }
+                }
+            }
+
+            &-register,
+            &-login,
+            &-bind-card {
+                + .modal-backdrop {
+                    #gradient .vertical(#F7D3A2; #EEAB4B);
+
+                    top: 44px;
+
+                    &.in {
+                        .opacity(1);
+                    }
+                }
+            }
+        }
+
+        &.center {
+            .modal-dialog {
+                left: 16px;
+                right: 16px;
+                max-height: 100%;
+                overflow-y: auto;
+            }
+        }
+
+        .modal-content {
+            border: 0;
+            -webkit-box-shadow: none;
+                    box-shadow: none;
+        }
+
+        .modal-header {
+            margin-left: 15px;
+            margin-right: 15px;
+            border-bottom: 2px solid #F2F2F2;
+            padding-top: 28px;
+            text-align: center;
+
+            .icon {
+                display: block;
+                position: relative;
+                left: 5px;
+                margin: 0 auto;
+            }
+
+            h4 {
+                font-size: 18px;
+                color: @color-theme-main;
+            }
+        }
+
+        .modal-body {
+            padding: 10px 30px;
+            text-align: center;
+
+            h5 {
+                line-height: 1.5;
+                color: #62666F;
+            }
+
+            .state-list {
+                padding-top: 5px;
+
+                > li {
+                    display: inline-block;
+                    vertical-align: middle;
+                    color: #9699A0;
+
+                    .icon {
+                        display: block;
+                        margin: 0 auto 5px;
+                        border: 2px solid @color-theme-main;
+                        border-radius: 50%;
+                        width: 62px;
+                        height: 62px;
+
+                        &-bank-card {
+                            background: url("@{path-image}/bank-card-icon.png") no-repeat center center;
+                            background-size: 60px/2 42px/2;
+                        }
+
+                        &-payment-password {
+                            background: url("@{path-image}/payment-password-icon.png") no-repeat center center;
+                            background-size: 70px/2 46px/2;
+                        }
+                    }
+
+                    &.gray .state {
+                        .opacity(0.45);
+                    }
+
+                    + li {
+                        position: relative;
+                        padding-left: 60px;
+
+                        &:before {
+                            content: "";
+                            position: absolute;
+                            left: 25px;
+                            top: 31px;
+                            overflow: hidden;
+                            border-radius: 50%;
+                            width: 3px;
+                            height: 3px;
+                            background-color: @color-theme-main;
+                            box-shadow: 8px 0 @color-theme-main,
+                                       -8px 0 @color-theme-main,
+                                       16px 0 @color-theme-main,
+                                      -16px 0 @color-theme-main;
+                        }
+                    }
+                }
+            }
+        }
+
+        .modal-footer {
+            border-top: 0;
+            padding: 10px 30px;
+
+            .btn-action {
+                .button-size(10px; 10px; 18px; 1; 999px);
+            }
+
+            .btn-link {
+                margin-top: 8px;
+                color: #64A7F5;
+                text-decoration: none;
+            }
+        }
+    }
+
 }
 
 .list-group {
