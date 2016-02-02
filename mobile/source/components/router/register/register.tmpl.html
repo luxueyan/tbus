@@ -15,6 +15,7 @@
       <param ng-model="msg" ng-init="msg = {
           MOBILE_EXISTS: '手机号已被占用',
           MOBILE_USED: '手机号已被占用',
+          CAPTCHA_INVALID: '手机验证码不匹配',
           MOBILE_CAPTCHA_INVALID: '手机验证码不匹配',
           MOBILE_CAPTCHA_ALREADY_SENT: '验证码已发送',
           MOBILE_SMS_CAPTCHA_ALREADY_SEND: '验证码已发送',
@@ -240,7 +241,7 @@
         </div>
 
         <p class="container hint hint-captcha" ng-show="self.cell_buffering">
-          已将验证码发送至手机<span class="u-color-main">{{ store.mobile | string_replace: '^(\\d{3})(\\d{4})(\\d{4})$' : '$1-$2-$3' }}</span>
+            已将验证码发送至手机<span class="u-color-main">{{ store.mobile | string_replace: '^(\\d{3})(\\d{4})(\\d{4})$' : '$1-$2-$3' }}</span>
         </p>
 
         <p class="container">
