@@ -23,4 +23,5 @@ do (angular) ->
                     @$scope.amount = @$routeParams.amount // 100 * 100 + 100
 
                 @api.get_available_bank_list().then (data) =>
+                    @$scope.bank_account.bank_code = @$scope.bank_account.bank
                     @$scope.bank_account.bank = data[@$scope.bank_account.bank]

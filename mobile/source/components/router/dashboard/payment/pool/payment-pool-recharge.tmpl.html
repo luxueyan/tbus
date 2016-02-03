@@ -1,11 +1,11 @@
 
 <div id="dashboard-recharge" class="">
 
-    <nav class="omit-margin container page-nav">
+    <nav class="container page-nav">
     <div class="row">
         <a class="col-xs-3 back" ng-href="{{ self.back_path || self.next_path || 'dashboard' }}"><span class="glyphicon glyphicon-menu-left"></span></a>
         <span class="col-xs-6 title">充值</span>
-        <span class="col-xs-3">&nbsp;</a>
+        <span class="col-xs-3">&nbsp;</span>
     </div>
     </nav>
 
@@ -13,7 +13,7 @@
         <param ng-model="msg.success" ng-init="msg.success = '充值成功'">
     </div>
 
-    <section class="text-center balance">
+    <section class="text-center balance" x-gyro-comment>
         <div class="title">账户余额</div>
         <div class="num">{{ available_amount | number: 2 }}</div>
     </section>
@@ -44,13 +44,33 @@
                     </div>
                 </div>
 
-                <div class="form-group merge">
+                <div class="form-group merge" x-gyro-comment>
                     <label>{{ bank_account.bank }}</label>
                     <input class="form-control input-target input-lg blank"
                            type="text"
                            value="{{ bank_account.mask }}"
                            disabled
                     >
+                </div>
+
+                <div class="form-group merge">
+                    <div class="container">
+                        <div class="media media-bank">
+                            <div class="media-left">
+                                <img width="30" ng-src="assets/image/bank-icons/{{ bank_account.bank_code | lowercase }}.png">
+                            </div>
+                            <div class="media-body media-middle">
+                                <h4 class="media-heading">
+                                    {{ bank_account.bank }} ｜
+                                    {{ bank_account.account | string_replace: '^\\d+(\\d{4})$' : '****$1' }}
+                                </h4>
+                                <p class="desc">首笔 / 单笔 / 日限额</p>
+                            </div>
+                            <div class="media-right media-middle">
+                                <param class="glyphicon glyphicon-menu-right">
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group merge">
@@ -76,12 +96,12 @@
                         type="submit"
                         ng-if="self.user.has_payment_account"
                         ng-disabled="form.$invalid || self.submit_sending"
-                >确认</button>
+                >确认充值</button>
             </p>
     </form>
     </section>
 
-    <section class="container notice">
+    <section class="container notice" x-gyro-comment>
         <h2 class="title">温馨提示：</h2>
 
         <ol class="list">
