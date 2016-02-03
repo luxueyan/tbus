@@ -293,7 +293,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         .then (user) ->
                                             return user if type in _.split 'set change reset'
 
-                                            type = if user.has_payment_password then 'change' else 'set'
+                                            type = if user.has_payment_password then 'reset' else 'set'
 
                                             $location
                                                 .replace()
