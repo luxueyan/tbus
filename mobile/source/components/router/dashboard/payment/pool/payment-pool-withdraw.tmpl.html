@@ -1,11 +1,11 @@
 
 <div id="dashboard-withdraw" class="">
 
-    <nav class="omit-margin container page-nav">
+    <nav class="container page-nav">
     <div class="row">
         <a class="col-xs-3 back" href="dashboard"><param class="glyphicon glyphicon-menu-left"></a>
         <span class="col-xs-6 title">提现</span>
-        <span class="col-xs-3">&nbsp;</a>
+        <span class="col-xs-3">&nbsp;</span>
     </div>
     </nav>
 
@@ -18,7 +18,7 @@
         }">
     </div>
 
-    <section class="text-center balance">
+    <section class="text-center balance" x-gyro-comment>
         <div class="title">可提现余额</div>
         <div class="num">{{ available_amount | number: 2 }}</div>
     </section>
@@ -34,7 +34,7 @@
         >
             <div class="inputs container">
 
-                <div class="form-group merge">
+                <div class="form-group merge" x-gyro-comment>
                     <label>{{ bank_account.bank }}</label>
                     <input class="form-control input-target input-lg blank"
                            type="text"
@@ -44,15 +44,34 @@
                 </div>
 
                 <div class="form-group merge">
+                    <div class="container">
+                        <div class="media media-bank">
+                            <div class="media-left">
+                                <img width="30" ng-src="assets/image/bank-icons/{{ bank_account.bank_code | lowercase }}.png">
+                            </div>
+                            <div class="media-body media-middle">
+                                <h4 class="media-heading">
+                                    {{ bank_account.bank }} ｜
+                                    {{ bank_account.account | string_replace: '^\\d+(\\d{4})$' : '****$1' }}
+                                </h4>
+                            </div>
+                            <div class="media-right media-middle">
+                                <param class="glyphicon glyphicon-menu-right">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group merge">
                     <label for="withdraw">提现金额</label>
                     <input name="withdraw"
                            id="withdraw"
                            ng-model="amount"
                            type="number"
                            class="form-control input-target input-lg"
-                           min="0.01"
+                           min="3"
                            max="{{ available_amount }}"
-                           placeholder="请输入提现金额"
+                           placeholder="可提现金额：{{ available_amount | number: 2 }}元"
                            autocapitalize="none"
                            autocomplete="off"
                            autocorrect="off"
@@ -60,7 +79,7 @@
                     >
                 </div>
 
-                <div class="form-group merge">
+                <div class="form-group merge" x-gyro-comment>
                     <label for="password">交易密码</label>
                     <input name="password"
                            id="password"
@@ -73,6 +92,11 @@
                 </div>
             </div>
 
+            <div class="container hint">
+                <p class="fee">提现费用3元/笔,由支付通道收取</p>
+                <p class="amount" ng-class="{ invisible: !form.withdraw.$valid }">实际到账: <span class="u-color-main">{{ amount - 3 }}元</span></p>
+            </div>
+
             <p class="container"
                ng-init="invalid = available_amount <= 0.01 || amount > available_amount"
             >
@@ -81,14 +105,14 @@
                         ng-if="self.user.has_payment_account && self.user.has_bank_card"
                         ng-disabled="form.$invalid || invalid || self.submit_sending"
                 >
-                    <span ng-if="!invalid">确认</span>
+                    <span ng-if="!invalid">确认提现</span>
                     <span ng-if="invalid">余额不足</span>
                 </button>
             </p>
         </form>
     </section>
 
-    <section class="container notice">
+    <section class="container notice" x-gyro-comment>
         <h2 class="title">温馨提示：</h2>
 
         <ol class="list">
