@@ -1,11 +1,11 @@
 
 <div id="dashboard-payment-bind-card" class="">
 
-    <nav class="omit-margin container page-nav">
+    <nav class="container page-nav">
     <div class="row">
-        <a class="col-xs-3 back" href="{{ self.back_path || 'dashboard/bank-card' }}"><span class="glyphicon glyphicon-menu-left"></span></a>
-        <span class="col-xs-6 title">添加银行卡</span>
-        <span class="col-xs-3">&nbsp;</a>
+        <a class="col-xs-3 back" ng-href="{{ self.back_path || 'dashboard/bank-card' }}"><span class="glyphicon glyphicon-menu-left"></span></a>
+        <span class="col-xs-6 title">银行卡绑定</span>
+        <span class="col-xs-3">&nbsp;</span>
     </div>
     </nav>
 
@@ -31,7 +31,7 @@
         }">
     </div>
 
-    <div class="alert alert-info u-off-border-radius">
+    <div class="alert alert-info u-off-border-radius" x-gyro-comment>
         <param class="glyphicon glyphicon-exclamation-sign">
         重要提示：此银行卡的开户名必须为
         <strong>{{ self.user.info.name }}</strong>
@@ -47,9 +47,64 @@
               novalidate
         >
             <div class="inputs container">
+                <div class="form-group merge"
+                     ng-class="{'has-error': form.id_number.$invalid && form.id_number.$dirty}"
+                >
+                    <label for="id-number">身份证</label>
+                    <div class="form-control-wrap">
+                        <input id="id-number" class="form-control input-target input-lg" type="text"
+                               name="id_number"
+                               ng-model="id_number"
+                               ng-init="id_number = self.user.info.idNumber"
+                               ng-readonly="self.user.info.idNumber"
+                               minlength="18"
+                               maxlength="18"
+                               placeholder="18位身份证号"
+                               required
+                               x-id-number
+                        >
+                        <div class="help-block"
+                             ng-show="form.id_number.$invalid && form.id_number.$dirty"
+                        >
+                            <span ng-show="form.id_number.$error.required">必须填写</span>
+                            <span ng-show="form.id_number.$viewValue && form.id_number.$error.id_number">请填写正确的 18 位身份证号码</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group merge"
+                     ng-class="{'has-error': form.user_name.$invalid && form.user_name.$dirty}"
+                    >
+                    <label for="user-name">姓名</label>
+                    <div class="form-control-wrap">
+                        <input id="user-name" class="form-control input-target input-lg" type="text"
+                               name="user_name"
+                               autocapitalize="none"
+                               autocomplete="off"
+                               autocorrect="off"
+                               ng-model="user_name"
+                               ng-init="user_name = self.user.info.name"
+                               ng-readonly="self.user.info.name"
+                               minlength="2"
+                               maxlength="15"
+                               pattern="[\u4E00-\u9FBF]{2,15}"
+                               placeholder="身份证上的姓名"
+                               required
+                        >
+                        <div class="help-block"
+                             ng-show="form.user_name.$invalid && form.user_name.$dirty"
+                        >
+                            <span ng-show="form.user_name.$error.required">必须填写</span>
+                            <span ng-show="form.user_name.$error.pattern">2 至 15 位中文</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="inputs container">
 
                 <div class="form-group merge">
-                    <label for="card-no">银行卡号</label>
+                    <label for="card-no">银行卡</label>
                     <input id="card-no" class="form-control input-target input-lg" type="tel"
                            name="card-no"
                            ng-model="store.cardNo"
@@ -58,13 +113,13 @@
                                debounce: {blur: 0, default: 300},
                            }"
                            ng-change="self.fetch_branch(city[store.city], store.cardNo)"
-                           placeholder="填写银行卡号"
+                           placeholder="输入本人借记卡号"
                            required
                     >
                 </div>
 
                 <div class="form-group merge">
-                    <label for="bank-name">开户银行</label>
+                    <label for="bank-name">银行</label>
                     <select name="bankName" class="form-control input-sm"
                             id="bank-name"
                             ng-model="store.bankName"
@@ -75,7 +130,7 @@
                     </select>
                 </div>
 
-                <div class="form-group merge" ng-show="self.need_location()">
+                <div class="form-group merge" ng-show="self.need_location()" x-gyro-comment>
                     <label>选择省市</label>
 
                     <select name="province" class="form-control input-sm"
@@ -97,7 +152,7 @@
                     </select>
                 </div>
 
-                <div class="form-group merge" ng-show="self.need_location()">
+                <div class="form-group merge" ng-show="self.need_location()" x-gyro-comment>
                     <label for="branch-name">开户支行</label>
                     <input id="branch-name" class="form-control input-target input-lg" type="tel"
                            name="branch-name"
@@ -107,13 +162,13 @@
                     >
                 </div>
 
-                <div class="form-group merge hidden">
-                    <label for="card-phone"></label>
+                <div class="form-group merge">
+                    <label for="card-phone">手机号</label>
                     <input id="card-phone" class="form-control input-target input-lg" type="tel"
                            name="card-phone"
                            ng-model="store.cardPhone"
                            ng-init="store.cardPhone = self.user.info.mobile"
-                           placeholder="预留手机号"
+                           placeholder="请输入银行预留手机号"
                            required
                     >
                 </div>
@@ -138,24 +193,29 @@
                            required
                     >
 
-                    <button class="btn btn-sm btn-action btn-theme" type="button"
+                    <button class="btn btn-sm btn-action btn-plain" type="button"
                             ng-click="self.send_mobile_captcha()"
                             ng-disabled="self.captcha.buffering"
                     >
-                        <span class="text">获取</span>
+                        <span class="text">获取验证码</span>
                         <span class="count" ng-show="self.captcha.buffering">
-                            {{ self.captcha.count | number: 0 }}
+                            {{ self.captcha.count | number: 0 }}秒
                         </span>
                         <span class="icon" ng-hide="self.captcha.buffering">重发</span>
                     </button>
                 </div>
             </div>
 
+            <p class="container hint hint-captcha" ng-show="self.captcha.buffering">
+                已将验证码发送至手机<span class="u-color-main">{{ self.user.info.mobile | string_replace: '^(\\d{3})(\\d{4})(\\d{4})$' : '$1-$2-$3' }}</span>
+            </p>
+
             <div class="container">
                 <div class="form-group container">
                     <button type="submit" class="btn btn-theme btn-block btn-lg"
                             ng-disabled="self.submit_sending"
-                    >完成</button>
+                    >下一步</button>
+                    <a class="btn btn-link btn-block" ng-href="{{ self.back_path || 'dashboard' }}">以后再说</a>
                 </div>
 
                 <div class="form-group container">
@@ -168,7 +228,7 @@
             </div>
         </form>
 
-        <section class="container notice">
+        <section class="container notice" x-gyro-comment>
             <h2 class="title">温馨提示：</h2>
             <ol class="list">
                 <li><p>为保障您的资金安全，绑卡前请先进行实名认证。
