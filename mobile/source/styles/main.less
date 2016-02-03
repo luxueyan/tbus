@@ -2050,23 +2050,182 @@ a {
 
 #loan-invest {
     section:not(.omit-margin) {
-        margin-top: 15px;
-        margin-bottom: 15px;
+        margin-top: 16px;
+        margin-bottom: 16px;
     }
 
     .loan-summary {
         #loan .loan-summary;
+    }
 
-        .rate-duration {
-            border-bottom: 0;
+    .form-invest {
 
-            .duration {
-                border-left: 0;
+        section {
+            > .hd {
+                padding-top: 3px;
+                padding-bottom: 5px;
+            }
+
+            > .bd {
+                border-top: 1px solid #DEDFE1;
+                border-bottom: 1px solid #DEDFE1;
+                background-color: #FFF;
+            }
+        }
+
+        .earning {
+            margin-bottom: 10px;
+            margin-left: 45px;
+        }
+
+        .invest-input {
+            padding-top: 10px;
+            padding-bottom: 24px;
+        }
+
+        .form-control-wrap {
+            .flex-display(center; space-between);
+
+            .form-control {
+                .flex(1);
+
+                border: 1px solid #CBCCD0;
+                height: 36px;
+                -webkit-box-shadow: none;
+                        box-shadow: none;
+            }
+
+            .icon {
+                position: relative;
+                display: block;
+                border-radius: 50%;
+                border: 1px solid @color-theme-main;
+                width: 28px;
+                height: 28px;
+                color: @color-theme-main;
+
+                &:before {
+                    .transform(translateY(-50%));
+
+                    content: "";
+                    position: absolute;
+                    left: 5px;
+                    right: 5px;
+                    top: 50%;
+                    height: 1px;
+                    background-color: @color-theme-main;
+                }
+
+                &-minus {
+                    margin-right: 15px;
+                }
+
+                &-plus {
+                   margin-left: 15px;
+
+                   &:after {
+                       .transform(translateX(-50%));
+
+                       content: "";
+                       position: absolute;
+                       top: 5px;
+                       bottom: 5px;
+                       left: 50%;
+                       width: 1px;
+                       background-color: @color-theme-main;
+                   }
+                }
+            }
+        }
+
+        .coupon-wrap {
+            padding-top: 9px;
+            padding-bottom: 9px;
+
+            &.rsaquo {
+                position: relative;
+
+                &:after {
+                    .transform(translateY(-50%));
+
+                    position: absolute;
+                    right: 7px;
+                    top: 50%;
+                    font-family: "Glyphicons Halflings";
+                    content: "\e258";
+                    color: #CBCCD0;
+                    font-size: 18px;
+                }
+            }
+
+            .form-control {
+                border: none;
+                padding-left: 0;
+                padding-right: 0;
+                color: #333;
+                font-size: 16px;
+                -webkit-appearance: none;
+                -webkit-box-shadow: none;
+                        box-shadow: none;
+            }
+
+            .hint {
+                padding: 7px 0;
+                color: #9699A0;
+            }
+        }
+
+        button[type="submit"] {
+            .button-size(12px; 12px; 18px; 1; 999px);
+        }
+    }
+
+    .invest-result {
+        .state {
+            border-bottom: 1px solid #DEDFE1;
+            background-color: #FFF;
+            text-align: center;
+
+            .desc {
+                margin-top: -28px;
+                margin-left: 10px;
+                font-size: 18px;
+                color: @color-theme-main;
+            }
+
+            .detail {
+                margin-top: 20px;
+                margin-bottom: 20px;
+                font-size: 16px;
+                color: #B37C37;
+
+                p {
+                    margin-bottom: 2px;
+                }
+            }
+        }
+
+        .action {
+            margin-top: 32px;
+            margin-bottom: 32px;
+
+            .btn {
+                .button-size(12px; 12px; 18px; 1; 999px);
+
+                &-plain {
+                    .button-variant(@color-theme-main; transparent; @color-theme-main);
+                }
+
+                &-block {
+                    + .btn-block {
+                        margin-top: 16px;
+                    }
+                }
             }
         }
     }
 
-    .form-invest {
+    .form-invest-backup {
         margin-top: 10px;
         padding-top: 10px;
         padding-bottom: 10px;
