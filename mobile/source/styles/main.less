@@ -3818,14 +3818,59 @@ a {
 #dashboard-invite {
 
     section:not(.omit-margin) {
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+
+    .info-list {
+        border-top: 1px solid #DEDFE1;
+        border-bottom: 1px solid #DEDFE1;
+
+        > li {
+            padding: 14px 16px;
+            background-color: #FFF;
+
+            + li {
+                border-top: 1px solid #EAEBED;
+            }
+
+            .info {
+                .flex-display(center; space-between);
+
+                .name {
+                    font-size: 16px;
+                }
+
+                .value {
+                    .flex(1);
+
+                    text-align: right;
+                    font-size: 12px;
+                    color: #9699A0;
+                }
+            }
+        }
     }
 
     .panel {
+        border-top: 1px solid #DEDFE1;
+        border-bottom: 1px solid #DEDFE1;
         background-color: #FFF;
         text-align: center;
         padding: 20px;
+
+        .btn-share {
+            .button-size(12px; 12px; 18px; 1; 999px);
+
+            margin-top: 20px;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        h4 {
+            margin-top: 25px;
+            font-size: 16px;
+        }
 
         .list {
             .flex-display();
@@ -3838,29 +3883,43 @@ a {
 
     .arrow-tip {
         position: fixed;
-        z-index: 12;
+        z-index: 99;
         left: 0;
         right: 0;
         top: 0;
         bottom: 0;
-        background: rgba(0, 0, 0, 0.5);
-        text-align: right;
+        background: rgba(0, 0, 0, 0.62);
 
         .arrow {
-            padding-top: 30px;
-            padding-right: 23px;
+            margin-bottom: 20px;
+            padding-top: 10px;
+            padding-right: 26px;
+            text-align: right;
         }
 
         .tip {
-            display: inline-block;
-            vertical-align: middle;
-            margin-top: -2px;
-            margin-right: 8px;
+            margin-left: 16px;
+            margin-right: 16px;
+            border-radius: 6px;
+            padding: 5px 30px;
             background-color: #FFF;
-            padding: 10px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #000;
+            text-align: center;
+
+            .desc {
+                font-size: 18px;
+                color: #9699A0;
+
+                p {
+                    margin-bottom: 0;
+                }
+            }
+
+            .btn-know {
+                .button-size(10px; 10px; 18px; 1; 999px);
+
+                margin-top: 23px;
+                margin-bottom: 23px;
+            }
         }
     }
 }
