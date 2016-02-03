@@ -25,6 +25,6 @@ Deployment
 
 0. 安装 [Node.js](https://nodejs.org) 开发环境
 0. 进入 `mobile` 文件夹
-0. 执行 `./build.sh` 编译静态文件
+0. 执行 `npm run build` 编译静态文件
 
 完毕后会在该目录下生成 `dist` 文件夹，内含待部署的目标文件
