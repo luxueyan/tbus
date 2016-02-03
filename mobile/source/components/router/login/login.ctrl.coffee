@@ -6,8 +6,9 @@ do (_, angular) ->
         _.ai '            @api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @mg_alert, @$q, @$http', class
             constructor: (@api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @mg_alert, @$q, @$http) ->
 
-                {next, mobile, bind_social_weixin} = @$routeParams
+                {back, next, mobile, bind_social_weixin} = @$routeParams
 
+                @back_path = back
                 @next_path = next
                 @page_path = @$location.path()
 
