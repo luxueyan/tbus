@@ -21,6 +21,11 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                         templateUrl: 'components/router/list/list.tmpl.html'
                     }
 
+                    .when '/more', {
+                        controller: 'MoreCtrl as self'
+                        templateUrl: 'components/router/more/more.tmpl.html'
+                    }
+
                     .when '/login', {
                         controller: 'LoginCtrl as self'
                         templateUrl: 'components/router/login/login.tmpl.html'

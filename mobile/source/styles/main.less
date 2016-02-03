@@ -4040,6 +4040,105 @@ a {
 }
 
 /*=============================================================================
+                                                                  [Router] More
+----*/
+
+#more {
+    .masthead {
+        background-color: #424A55;
+        color: #FFF;
+
+        .password-list {
+            padding-top: 29px;
+            padding-bottom: 15px;
+
+            > .item {
+                + .item {
+                    position: relative;
+
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        top: 5px;
+                        bottom: 10px;
+                        width: 1px;
+                        background-color: #9699A0;
+                    }
+                }
+
+                a {
+                    display: block;
+                    color: inherit;
+                }
+
+                .icon {
+                    display: block;
+                    margin: 0 auto 12px;
+                }
+
+                .title {
+                }
+            }
+        }
+
+        .hint-login {
+            padding-top: 15px;
+            padding-bottom: 15px;
+
+            .hint {
+                font-size: 16px;
+            }
+
+            .btn {
+                .button-size(10px; 20px; 18px; 1; 999px);
+            }
+        }
+    }
+
+    .links {
+        .link-list {
+            border-top: 1px solid #DEDFE1;
+            border-bottom: 1px solid #DEDFE1;
+
+            > li {
+                background-color: #FFF;
+
+                + li {
+                    border-top: 1px solid #EAEBED;
+                }
+
+                a {
+                    display: block;
+                    padding: 15px;
+                    color: #9699A0;
+
+                    .inner {
+                        .flex-display(center; space-between);
+
+                        .title {
+                            .flex(1);
+
+                            font-size: 16px;
+                            color: #333;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .action {
+        margin-top: 25px;
+        margin-bottom: 25px;
+
+        .btn {
+            .button-size(11px; 10px; 18px; 1; 999px);
+        }
+    }
+}
+
+/*=============================================================================
                                                                     Page Footer
 ----*/
 
