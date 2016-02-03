@@ -2623,6 +2623,64 @@ a {
 
 #dashboard-bank-card {
 
+    .banks {
+        .bank-list {
+            > li {
+                margin-top: 8px;
+                margin-bottom: 8px;
+                border-top: 1px solid #DEDFE1;
+                border-bottom: 1px solid #DEDFE1;
+                padding: 13px 16px;
+                background-color: #FFF;
+
+                .media-bank {
+                    position: relative;
+
+                    .media-heading {
+                        margin-bottom: 0;
+                        font-size: 16px;
+                    }
+
+                    .desc {
+                        margin-top: 15px;
+                        margin-bottom: 0;
+                        color: #9699A0;
+                    }
+
+                    .default-card {
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                        padding: 2px 10px;
+                        border-radius: 999px;
+                        background-color: @color-theme-main;
+                        color: #FFF;
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+
+        .action {
+            margin-top: 32px;
+            margin-bottom: 32px;
+
+            .btn {
+                .button-size(11px; 11px; 18px; 1; 999px);
+
+                &-block {
+                    + .btn-block {
+                        margin-top: 16px;
+                    }
+                }
+
+                &-delete {
+                    .button-variant(#FFF; #EC6858; #EC6858);
+                }
+            }
+        }
+    }
+
     .page-content section {
         margin-top: 16px;
         margin-bottom: 20px;
