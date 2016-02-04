@@ -5,11 +5,108 @@
     <div class="row">
         <a class="col-xs-2 back" ng-href="loan/{{loan.id}}"><param class="glyphicon glyphicon-menu-left"></a>
         <span class="col-xs-8 title">{{ loan.title }}</span>
-        <span class="col-xs-2">&nbsp;</a>
+        <span class="col-xs-2">&nbsp;</span>
     </div>
     </nav>
 
-    <section class="omit-margin container loan-summary">
+    <div></div>
+
+    <section class="omit-margin loan-summary">
+        <div class="rate text-center">
+            <div class="value">{{ loan.rate }}%</div>
+            <div class="name">预期年化</div>
+        </div>
+        <div class="footer">
+            <div class="inner">
+                <span class="percent">投资进度 {{ loan.invest_percent_int }}%</span>
+                <span class="balance text-right">剩余金额 {{ loan.balance | number }}元</span>
+            </div>
+        </div>
+    </section>
+
+    <form class="form-horizontal form-invest"
+          name="form"
+          autocapitalize="none"
+          autocomplete="off"
+          autocorrect="off"
+          ng-submit="self.submit($event)"
+    >
+        <section>
+            <div class="container hd">
+                <span class="pull-left">请输入投资金额</span>
+                <span class="pull-right">账户余额: {{ self.user.fund.availableAmount | number: 2 }}元</span>
+            </div>
+
+            <div class="container bd invest-input">
+                <div class="earning" ng-class="{ invisible: !form.amount.$valid }">
+                    预期收益<span class="u-color-main">{{ earning | number: 2 }}</span>元
+                </div>
+
+                <div class="form-control-wrap">
+                    <param class="icon icon-minus"
+                           ng-click="store.amount = self.amount_polishing(store.amount - loan.raw.loanRequest.investRule.stepAmount); self.fetch_analyse(store.amount)"
+                    >
+
+                    <input name="amount"
+                           id="amount"
+                           ng-model="store.amount"
+                           ng-change="form.amount.$valid && self.fetch_analyse(store.amount)"
+                           type="number"
+                           class="form-control"
+                           placeholder="{{ loan.raw.loanRequest.investRule.minAmount | number }}元起投，{{ loan.raw.loanRequest.investRule.stepAmount | number }}元递增"
+                           required
+                    >
+
+                    <param class="icon icon-plus"
+                           ng-click="store.amount = self.amount_polishing(store.amount + loan.raw.loanRequest.investRule.stepAmount); self.fetch_analyse(store.amount)"
+                    >
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container hd">
+                实际支付金额：<span class="u-color-main" ng-show="form.amount.$valid">{{ store.amount | number: 2 }}元</span>
+            </div>
+
+            <div class="container bd">
+                <div class="coupon-wrap" ng-class="{ rsaquo: coupon_list.length }">
+                    <select name="placementId" class="form-control"
+                            id="coupon"
+                            ng-model="store.coupon"
+                            ng-options="
+                                coupon.display
+                                for coupon in coupon_list
+                                track by coupon.id
+                            "
+                            ng-click="self.pick_up_coupon($event, store.amount)"
+                            ng-if="coupon_list.length"
+                    >
+                        <option value="">{{ coupon_list.length }}个红包可用</option>
+                    </select>
+
+                    <div class="hint" ng-if="!coupon_list.length">暂无红包可用</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <button type="submit" class="btn btn-theme btn-lg btn-block"
+                    ng-disabled="form.$invalid || self.submit_sending"
+            >下一步</button>
+        </section>
+    </form>
+
+
+
+
+
+
+
+
+
+
+    <section class="omit-margin container loan-summary" x-gyro-comment>
         <div class="rate-duration">
             <div class="rate">
                 <div class="value">
@@ -58,6 +155,7 @@
           autocomplete="off"
           autocorrect="off"
           ng-submit="self.submit($event)"
+          x-gyro-comment
     >
         <div class="form-group">
             <label class="col-xs-3">账户余额:</label>
@@ -148,6 +246,40 @@
     </form>
 
 </div>
+
+
+
+
+
+
+<div id="loan-invest" x-gyro-comment>
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <span class="col-xs-3">&nbsp;</span>
+        <span class="col-xs-6 title">投资成功</span>
+        <span class="col-xs-3">&nbsp;</span>
+    </div>
+    </nav>
+
+    <div class="invest-result">
+        <div class="container state">
+            <img width="126" ng-src="assets/image/success-icon.png">
+            <p class="desc">投资成功啦！</p>
+            <div class="detail">
+                <p>您已成功投资 {{ store.amount | number: 2 }}元</p>
+                <p>预计到期可赚 {{ earning | number: 2 }}元</p>
+            </div>
+        </div>
+
+        <div class="container action">
+            <a class="btn btn-lg btn-block btn-theme" href="list">继续投资</a>
+            <a class="btn btn-lg btn-block btn-plain" href="dashboard/invest">查看投资详情</a>
+        </div>
+    </div>
+
+</div>
+
 
 
 

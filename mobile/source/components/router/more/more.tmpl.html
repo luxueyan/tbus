@@ -1,0 +1,71 @@
+
+<div id="more">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <span class="col-xs-12 title">更多</span>
+    </div>
+    </nav>
+
+    <section class="container text-center masthead">
+        <div class="row password-list" ng-if="self.user.has_logged_in">
+            <div class="col-xs-6 item">
+                <a href="dashboard/payment/password?back=more">
+                    <div class="icon">
+                        <img width="34" ng-src="assets/image/icon-password-payment.png">
+                    </div>
+                    <div class="title">交易密码</div>
+                </a>
+            </div>
+            <div class="col-xs-6 item">
+                <a href="password/change?back=more">
+                    <div class="icon">
+                        <img width="34" ng-src="assets/image/icon-password-login.png">
+                    </div>
+                    <div class="title">登录密码</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="hint-login" ng-if="!self.user.has_logged_in">
+            <p class="hint">您还没有登录哦～</p>
+            <a class="btn btn-lg btn-theme" href="login?back=more">一键登录/注册</a>
+        </div>
+    </section>
+
+    <section class="links">
+        <ul class="list-unstyled u-off-margin-bottom link-list">
+            <li>
+                <a href="tel:4001231234">
+                    <div class="inner">
+                        <span class="title">客服</span>
+                        <span>400-123-1234</span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="feedback">
+                    <div class="inner">
+                        <span class="title">反馈</span>
+                        <param class="glyphicon glyphicon-menu-right">
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="about">
+                    <div class="inner">
+                        <span class="title">关于</span>
+                        <param class="glyphicon glyphicon-menu-right">
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </section>
+
+    <section class="container action" ng-if="self.user.has_logged_in">
+        <button class="btn btn-block btn-lg btn-theme"
+                ng-click="self.logout()"
+        >退出登录</button>
+    </section>
+
+</div>

@@ -18,6 +18,8 @@ app = express()
 try
     require('./router').call app, '
 
+        /logout
+
         /api/web/login
         /api/web/register/submit
 

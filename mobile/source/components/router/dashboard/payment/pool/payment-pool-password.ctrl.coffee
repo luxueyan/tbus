@@ -8,10 +8,13 @@ do (_, angular) ->
 
                 @$window.scrollTo 0, 0
 
+                @back_path = @$routeParams.back or 'dashboard'
                 @next_path = @$routeParams.next or 'dashboard'
 
                 @captcha = {timer: null, count: 55, count_default: 55, has_sent: false, buffering: false}
                 @submit_sending = false
+
+                @$scope.type = @$routeParams.type
 
 
             send_mobile_captcha: ->

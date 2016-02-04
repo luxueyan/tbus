@@ -1,15 +1,50 @@
 
 <div id="dashboard-bank-card" class="">
 
-    <nav class="omit-margin container page-nav">
+    <nav class="container page-nav">
     <div class="row">
-        <a class="col-xs-3 back" href="dashboard"><span class="glyphicon glyphicon-menu-left"></span></a>
-        <span class="col-xs-6 title">我的银行卡</span>
-        <span class="col-xs-3">&nbsp;</a>
+        <a class="col-xs-3 back" href="dashboard"><param class="glyphicon glyphicon-menu-left"></a>
+        <span class="col-xs-6 title">银行卡</span>
+        <span class="col-xs-3">&nbsp;</span>
     </div>
     </nav>
 
-    <div class="page-content container" ng-if="self.user.has_bank_card">
+    <section class="banks">
+        <ul class="list-unstyled u-off-margin-bottom bank-list">
+            <li>
+                <div class="media media-bank">
+                    <div class="media-left">
+                        <img width="30" ng-src="assets/image/bank-icons/{{ bank_account.bank_code | lowercase }}.png">
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            {{ bank_account.bank }} ｜
+                            {{ bank_account.account | string_replace: '^\\d+(\\d{4})$' : '****$1' }}
+                        </h4>
+                        <p class="desc">充值限额: <br>首笔 / 单笔 / 日限额</p>
+                        <span class="default-card">默认卡</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <div class="container action">
+            <a class="btn btn-lg btn-block btn-theme" href="dashboard/payment/bind-card">添加银行卡</a>
+            <a class="btn btn-lg btn-block btn-delete" href="" x-gyro-comment>删除该卡</a>
+            <a class="btn btn-lg btn-block btn-theme" href="" x-gyro-comment>设为默认卡</a>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <div class="page-content container" ng-if="self.user.has_bank_card" x-gyro-comment>
     <section>
 
         <div class="clip clearfix">
@@ -31,7 +66,7 @@
         </p>
     </section>
 
-    <section class="" ng-if="clicked">
+    <section class="" ng-if="clicked" x-gyro-comment>
         <div ng-if="!self.user.has_payment_password">
             请先设置 <a href="dashboard/payment/password" class="btn btn-link u-vb">交易密码</a>
         </div>
@@ -56,13 +91,13 @@
 
 
 
-    <div class="page-content" ng-if="!self.user.has_bank_card">
+    <div class="page-content" ng-if="!self.user.has_bank_card" x-gyro-comment>
         <a href="dashboard/payment/bind-card?next=dashboard/bank-card" class="bind-card">
             <param class="glyphicon glyphicon-plus"> 添加银行卡
         </a>
     </div>
 
-    <section class="container notice">
+    <section class="container notice" x-gyro-comment>
         <h2 class="title">温馨提示：</h2>
         <ol class="list">
             <li><p>为保障您的资金安全，绑卡前请先进行实名认证。

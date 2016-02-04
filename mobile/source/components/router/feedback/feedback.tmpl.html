@@ -1,0 +1,35 @@
+
+<div id="feedback">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" href="more">
+            <param class="glyphicon glyphicon-menu-left">
+        </a>
+        <span class="col-xs-6 title">反馈</span>
+        <span class="col-xs-3">&nbsp;</span>
+    </div>
+    </nav>
+
+    <section class="page-content">
+        <form class="form" name="form" ng-submit="" novalidate>
+            <div class="form-group">
+                <textarea name="feedback"
+                          class="form-control"
+                          placeholder="请输入您的反馈"
+                          ng-model="feedback"
+                          required
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <div class="container">
+                    <button type="submit" class="btn btn-theme btn-block btn-lg"
+                            ng-disabled="form.$invalid"
+                    >确认提交</button>
+                </div>
+            </div>
+        </form>
+    </section>
+
+</div>

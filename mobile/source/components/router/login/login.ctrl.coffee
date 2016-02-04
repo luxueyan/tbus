@@ -6,14 +6,20 @@ do (_, angular) ->
         _.ai '            @api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @mg_alert, @$q, @$http', class
             constructor: (@api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @mg_alert, @$q, @$http) ->
 
-                @next_path = @$routeParams.next
+                {back, next, mobile, bind_social_weixin} = @$routeParams
+
+                @back_path = back
+                @next_path = next
                 @page_path = @$location.path()
 
                 @submit_sending = false
                 @flashing_error_message = false
 
-                @bind_weixin = !!@$routeParams.bind_social_weixin and
+                @bind_weixin = !!bind_social_weixin and
                                /MicroMessenger/.test @$window.navigator.userAgent
+
+                @$scope.store = {mobile}
+                @step = 'one'
 
 
             error_message_flash: ->
@@ -30,16 +36,33 @@ do (_, angular) ->
                 @$location.path new_path
 
 
-            login: ({username, password} = {}) ->
+            login: ({mobile, password} = {}) ->
 
-                unless username and password
-                    return do @error_message_flash
+                # unless username and password
+                #     return do @error_message_flash
 
                 @submit_sending = true
                 @flashing_error_message = false
 
+                if @step is 'one'
 
-                (@api.login(username, password)
+                    (@api.check_mobile(mobile)
+
+                        .then @api.process_response
+
+                        .then (data) =>
+                            @$location
+                                .path 'register'
+                                .search mobile: mobile
+
+                        .catch (data) =>
+                            @step = 'two'
+                            @submit_sending = false
+                    )
+
+                    return
+
+                (@api.login(mobile, password)
 
                     .then (data) =>
                         return @$q.reject(data) unless data?.success is true
