@@ -181,19 +181,6 @@ do (_, angular) ->
 
 
 
-        .factory 'cookie2root', _.ai '$document, baseURI', ($document, baseURI) ->
-
-            (name, value, base = baseURI) ->
-
-                value = encodeURIComponent base + value
-
-                # at least in AngularJS v1.3.15, the $cookieStore service
-                # does not has ability to set `path`, therefor it has to be
-                # written in bare hand as below. (v1.4.0-beta.6 has it covered tho)
-                $document[0].cookie = "#{ name }=#{ value }; path=/"
-
-
-
         .factory 'checkChinaID', ->
 
             mask = '10X98765432'.split ''
