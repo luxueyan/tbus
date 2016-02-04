@@ -21,11 +21,6 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                         templateUrl: 'components/router/list/list.tmpl.html'
                     }
 
-                    .when '/more', {
-                        controller: 'MoreCtrl as self'
-                        templateUrl: 'components/router/more/more.tmpl.html'
-                    }
-
                     .when '/login', {
                         controller: 'LoginCtrl as self'
                         templateUrl: 'components/router/login/login.tmpl.html'
@@ -613,6 +608,11 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
 
                             _fund: _.ai 'update_user_funds', (update_user_funds) ->
                                 return update_user_funds()
+                    }
+
+                    .when '/more', {
+                        controller: 'MoreCtrl as self'
+                        templateUrl: 'components/router/more/more.tmpl.html'
                     }
 
                     .otherwise redirectTo: '/'
