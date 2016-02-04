@@ -615,6 +615,11 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                         templateUrl: 'components/router/more/more.tmpl.html'
                     }
 
+                    .when '/about', {
+                        controller: 'AboutCtrl as self'
+                        templateUrl: 'components/router/about/about.tmpl.html'
+                    }
+
                     .otherwise redirectTo: '/'
 
 
