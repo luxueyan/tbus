@@ -6,12 +6,12 @@
         <a class="col-xs-3 back"
            ng-if="self.step === 'one'"
            ng-href="{{ self.back_path || './' }}"
-        ><span class="glyphicon glyphicon-menu-left"></span></a>
+        ><param class="glyphicon glyphicon-menu-left"></a>
 
         <a class="col-xs-3 back" href=""
            ng-if="self.step === 'two'"
            ng-click="self.step = 'one'"
-        ><span class="glyphicon glyphicon-menu-left"></span></a>
+        ><param class="glyphicon glyphicon-menu-left"></a>
 
         <span class="col-xs-6 title">
             <span ng-if="self.bind_weixin">绑定微信</span>
