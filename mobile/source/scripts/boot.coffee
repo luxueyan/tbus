@@ -620,6 +620,11 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                         templateUrl: 'components/router/about/about.tmpl.html'
                     }
 
+                    .when '/feedback', {
+                        controller: 'FeedbackCtrl as self'
+                        templateUrl: 'components/router/feedback/feedback.tmpl.html'
+                    }
+
                     .otherwise redirectTo: '/'
 
 
