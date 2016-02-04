@@ -288,7 +288,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         .then (user) ->
                                             return user if type in _.split 'set change reset'
 
-                                            type = if user.has_payment_password then 'change' else 'set'
+                                            type = if user.has_payment_password then 'reset' else 'set'
 
                                             $location
                                                 .replace()
@@ -608,6 +608,21 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
 
                             _fund: _.ai 'update_user_funds', (update_user_funds) ->
                                 return update_user_funds()
+                    }
+
+                    .when '/more', {
+                        controller: 'MoreCtrl as self'
+                        templateUrl: 'components/router/more/more.tmpl.html'
+                    }
+
+                    .when '/about', {
+                        controller: 'AboutCtrl as self'
+                        templateUrl: 'components/router/about/about.tmpl.html'
+                    }
+
+                    .when '/feedback', {
+                        controller: 'FeedbackCtrl as self'
+                        templateUrl: 'components/router/feedback/feedback.tmpl.html'
                     }
 
                     .otherwise redirectTo: '/'
