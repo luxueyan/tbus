@@ -48,18 +48,16 @@ do (_, angular) ->
 
                     (@api.check_mobile(mobile)
 
-                        .then (data) =>
-                            return @$q.reject(data) if data.success is true
-                            return data
+                        .then @api.process_response
 
                         .then (data) =>
-                            @step = 'two'
-                            @submit_sending = false
-
-                        .catch (data) =>
                             @$location
                                 .path 'register'
                                 .search mobile: mobile
+
+                        .catch (data) =>
+                            @step = 'two'
+                            @submit_sending = false
                     )
 
                     return
