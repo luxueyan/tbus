@@ -154,12 +154,15 @@ do (_, angular) ->
                 size: 'lg'
                 animation: true
                 backdrop: 'static'
+                templateUrl: 'components/templates/ngt-payment-state.tmpl.html'
+
+                windowClass: "
+                    center
+                    modal-payment-state
+                    modal-payment-state-page-#{ options.page }
+                "
 
                 controller: _.ai '$scope',
                     (             $scope) ->
                         angular.extend $scope, options
-
-                windowClass: "center modal-payment-state modal-payment-state-page-#{ options.page }"
-
-                templateUrl: 'components/templates/ngt-payment-state.tmpl.html'
             }
