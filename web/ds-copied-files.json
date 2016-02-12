@@ -1,0 +1,272 @@
+{
+    "ccc/ie8fix/js/dist/console-html5-es5shim-excanvas.js": {
+        "copiedFrom": "node_modules/@ccc/ie8fix/js/dist/console-html5-es5shim-excanvas.js",
+        "fromVersion": "2.0.0",
+        "revHash": "5a3d5680e0"
+    },
+    "ccc/ie8fix/js/dist/html5-es5shim-excanvas.js": {
+        "copiedFrom": "node_modules/@ccc/ie8fix/js/dist/html5-es5shim-excanvas.js",
+        "fromVersion": "2.0.0",
+        "revHash": "c751d18622"
+    },
+    "ccc/ie8fix/readme.md": {
+        "copiedFrom": "node_modules/@ccc/ie8fix/readme.md",
+        "fromVersion": "2.0.0",
+        "revHash": "bf31980177"
+    },
+    "ccc/inspect/css/inspect.css": {
+        "copiedFrom": "node_modules/@ccc/inspect/css/inspect.css",
+        "fromVersion": "2.1.1",
+        "revHash": "6315a65b61"
+    },
+    "ccc/inspect/js/main/inspect.js": {
+        "copiedFrom": "node_modules/@ccc/inspect/js/main/inspect.js",
+        "fromVersion": "2.1.1",
+        "revHash": "76b1de9475"
+    },
+    "ccc/inspect/middleware.js": {
+        "copiedFrom": "node_modules/@ccc/inspect/middleware.js",
+        "fromVersion": "2.1.1",
+        "revHash": "8a5b907467"
+    },
+    "ccc/inspect/partials/inspect.html": {
+        "copiedFrom": "node_modules/@ccc/inspect/partials/inspect.html",
+        "fromVersion": "2.1.1",
+        "revHash": "231559c0d1"
+    },
+    "ccc/inspect/readme.md": {
+        "copiedFrom": "node_modules/@ccc/inspect/readme.md",
+        "fromVersion": "2.1.1",
+        "revHash": "898cedf998"
+    },
+    "ccc/inspect/routers/hide.js": {
+        "copiedFrom": "node_modules/@ccc/inspect/routers/hide.js",
+        "fromVersion": "2.1.1",
+        "revHash": "3660039829"
+    },
+    "ccc/login/css/login.css": {
+        "copiedFrom": "node_modules/@ccc/login/css/login.css",
+        "fromVersion": "2.8.2",
+        "revHash": "0625d030dd"
+    },
+    "ccc/login/index.js": {
+        "copiedFrom": "node_modules/@ccc/login/index.js",
+        "fromVersion": "2.8.2",
+        "revHash": "e4d8e3d5bb"
+    },
+    "ccc/login/middlewares.js": {
+        "copiedFrom": "node_modules/@ccc/login/middlewares.js",
+        "fromVersion": "2.8.2",
+        "revHash": "f02d076334"
+    },
+    "ccc/login/router.js": {
+        "copiedFrom": "node_modules/@ccc/login/router.js",
+        "fromVersion": "2.8.2",
+        "revHash": "89823c1ab1"
+    },
+    "ccc/login/routers/api.js": {
+        "copiedFrom": "node_modules/@ccc/login/routers/api.js",
+        "fromVersion": "2.8.2",
+        "revHash": "815ad0b33b"
+    },
+    "ccc/login/routers/page.js": {
+        "copiedFrom": "node_modules/@ccc/login/routers/page.js",
+        "fromVersion": "2.8.2",
+        "revHash": "a2b652eaed"
+    },
+    "ccc/login/views/index.html": {
+        "copiedFrom": "node_modules/@ccc/login/views/index.html",
+        "fromVersion": "2.8.2",
+        "revHash": "459844414e"
+    },
+    "ccc/login/views/login/index.html": {
+        "copiedFrom": "node_modules/@ccc/login/views/login/index.html",
+        "fromVersion": "2.8.2",
+        "revHash": "459844414e"
+    },
+    "ccc/payment/changelog.md": {
+        "copiedFrom": "node_modules/@ccc/payment/changelog.md",
+        "fromVersion": "1.7.0",
+        "revHash": "9d58ab4529"
+    },
+    "ccc/payment/css/payment.css": {
+        "copiedFrom": "node_modules/@ccc/payment/css/payment.css",
+        "fromVersion": "1.7.0",
+        "revHash": "0c594cea73"
+    },
+    "ccc/payment/img/loading.gif": {
+        "copiedFrom": "node_modules/@ccc/payment/img/loading.gif",
+        "fromVersion": "1.7.0",
+        "revHash": "2ac3878fb1"
+    },
+    "ccc/payment/router.js": {
+        "copiedFrom": "node_modules/@ccc/payment/router.js",
+        "fromVersion": "1.7.0",
+        "revHash": "5e72758541"
+    },
+    "ccc/payment/views/payment/post.html": {
+        "copiedFrom": "node_modules/@ccc/payment/views/payment/post.html",
+        "fromVersion": "1.7.0",
+        "revHash": "4f9ac5f24f"
+    },
+    "ccc/payment/views/payment/return.html": {
+        "copiedFrom": "node_modules/@ccc/payment/views/payment/return.html",
+        "fromVersion": "1.7.0",
+        "revHash": "121163bbf9"
+    },
+    "ccc/register/css/register.css": {
+        "copiedFrom": "node_modules/@ccc/register/css/register.css",
+        "fromVersion": "2.11.0",
+        "revHash": "cbc5ad90b2"
+    },
+    "ccc/register/index.js": {
+        "copiedFrom": "node_modules/@ccc/register/index.js",
+        "fromVersion": "2.11.0",
+        "revHash": "85b78d9733"
+    },
+    "ccc/register/js/lib/components.js": {
+        "copiedFrom": "node_modules/@ccc/register/js/lib/components.js",
+        "fromVersion": "2.11.0",
+        "revHash": "184eb4bc24"
+    },
+    "ccc/register/js/lib/ractive.js": {
+        "copiedFrom": "node_modules/@ccc/register/js/lib/ractive.js",
+        "fromVersion": "2.11.0",
+        "revHash": "b3943d7b53"
+    },
+    "ccc/register/js/lib/reactive.js": {
+        "copiedFrom": "node_modules/@ccc/register/js/lib/reactive.js",
+        "fromVersion": "2.11.0",
+        "revHash": "bf361be24c"
+    },
+    "ccc/register/js/lib/services.js": {
+        "copiedFrom": "node_modules/@ccc/register/js/lib/services.js",
+        "fromVersion": "2.11.0",
+        "revHash": "d9cf9b412e"
+    },
+    "ccc/register/js/lib/validation.js": {
+        "copiedFrom": "node_modules/@ccc/register/js/lib/validation.js",
+        "fromVersion": "2.11.0",
+        "revHash": "0387446d61"
+    },
+    "ccc/register/js/main/register-example1.js": {
+        "copiedFrom": "node_modules/@ccc/register/js/main/register-example1.js",
+        "fromVersion": "2.11.0",
+        "revHash": "e8c4f9305b"
+    },
+    "ccc/register/js/main/register-example2.js": {
+        "copiedFrom": "node_modules/@ccc/register/js/main/register-example2.js",
+        "fromVersion": "2.11.0",
+        "revHash": "309f391487"
+    },
+    "ccc/register/js/main/register-example3.js": {
+        "copiedFrom": "node_modules/@ccc/register/js/main/register-example3.js",
+        "fromVersion": "2.11.0",
+        "revHash": "bba736b06e"
+    },
+    "ccc/register/middlewares.js": {
+        "copiedFrom": "node_modules/@ccc/register/middlewares.js",
+        "fromVersion": "2.11.0",
+        "revHash": "9952bfb0b5"
+    },
+    "ccc/register/partials/steps-example1.html": {
+        "copiedFrom": "node_modules/@ccc/register/partials/steps-example1.html",
+        "fromVersion": "2.11.0",
+        "revHash": "912b84b0ca"
+    },
+    "ccc/register/partials/steps-example2.html": {
+        "copiedFrom": "node_modules/@ccc/register/partials/steps-example2.html",
+        "fromVersion": "2.11.0",
+        "revHash": "cbf5b0e0d8"
+    },
+    "ccc/register/partials/steps-example3.html": {
+        "copiedFrom": "node_modules/@ccc/register/partials/steps-example3.html",
+        "fromVersion": "2.11.0",
+        "revHash": "b5c494ddb2"
+    },
+    "ccc/register/readme.md": {
+        "copiedFrom": "node_modules/@ccc/register/readme.md",
+        "fromVersion": "2.11.0",
+        "revHash": "d96507f0bb"
+    },
+    "ccc/register/router.js": {
+        "copiedFrom": "node_modules/@ccc/register/router.js",
+        "fromVersion": "2.11.0",
+        "revHash": "337df6c77b"
+    },
+    "ccc/register/routers/api.js": {
+        "copiedFrom": "node_modules/@ccc/register/routers/api.js",
+        "fromVersion": "2.11.0",
+        "revHash": "94d1398c20"
+    },
+    "ccc/register/routers/page.js": {
+        "copiedFrom": "node_modules/@ccc/register/routers/page.js",
+        "fromVersion": "2.11.0",
+        "revHash": "1d125f1dd7"
+    },
+    "ccc/register/views/register/example1.html": {
+        "copiedFrom": "node_modules/@ccc/register/views/register/example1.html",
+        "fromVersion": "2.11.0",
+        "revHash": "c21e0dc482"
+    },
+    "ccc/register/views/register/example2.html": {
+        "copiedFrom": "node_modules/@ccc/register/views/register/example2.html",
+        "fromVersion": "2.11.0",
+        "revHash": "580ae2cb7c"
+    },
+    "ccc/register/views/register/example3.html": {
+        "copiedFrom": "node_modules/@ccc/register/views/register/example3.html",
+        "fromVersion": "2.11.0",
+        "revHash": "f1de5d4d1f"
+    },
+    "ccc/template-watch/js/dist/getRactiveTemplate.js": {
+        "copiedFrom": "node_modules/@ccc/template-watch/js/dist/getRactiveTemplate.js",
+        "fromVersion": "2.0.2",
+        "revHash": "0f8606f292"
+    },
+    "ccc/template-watch/readme.md": {
+        "copiedFrom": "node_modules/@ccc/template-watch/readme.md",
+        "fromVersion": "2.0.2",
+        "revHash": "fe444da94e"
+    },
+    "ccc/validation/index.js": {
+        "copiedFrom": "node_modules/@ccc/validation/index.js",
+        "fromVersion": "1.0.6",
+        "revHash": "00a4553854"
+    },
+    "ccc/validation/js/lib/errmsgs.js": {
+        "copiedFrom": "node_modules/@ccc/validation/js/lib/errmsgs.js",
+        "fromVersion": "1.0.6",
+        "revHash": "604c22b2ab"
+    },
+    "ccc/validation/js/lib/validator.js": {
+        "copiedFrom": "node_modules/@ccc/validation/js/lib/validator.js",
+        "fromVersion": "1.0.6",
+        "revHash": "c989e942a4"
+    },
+    "ccc/wx/middlewares.js": {
+        "copiedFrom": "node_modules/@ccc/wx/middlewares.js",
+        "fromVersion": "1.2.3",
+        "revHash": "e74ec15d58"
+    },
+    "ccc/wx/router.js": {
+        "copiedFrom": "node_modules/@ccc/wx/router.js",
+        "fromVersion": "1.2.3",
+        "revHash": "ee3068ff07"
+    },
+    "ccc/wx/routers/api.js": {
+        "copiedFrom": "node_modules/@ccc/wx/routers/api.js",
+        "fromVersion": "1.2.3",
+        "revHash": "bf87cd28d3"
+    },
+    "ccc/wx/routers/page.js": {
+        "copiedFrom": "node_modules/@ccc/wx/routers/page.js",
+        "fromVersion": "1.2.3",
+        "revHash": "fbf78c77d6"
+    },
+    "ccc/wx/wxrequest.js": {
+        "copiedFrom": "node_modules/@ccc/wx/wxrequest.js",
+        "fromVersion": "1.2.3",
+        "revHash": "7611f6c6ec"
+    }
+}

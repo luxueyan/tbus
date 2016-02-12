@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="/ccc/global/css/base.css" media="all">
+<link rel="stylesheet" href="/ccc/login/css/login.css" media="all">
+<div class="login__wrapper">
+    <div class="container">
+        <div class="p-g">
+            <div class="p-u-1-2 login__banner">
+                <img src="http://p2p-site.b0.upaiyun.com/c427d7f1-1a12-4999-9753-f4d67936a2ba" alt="banner">
+            </div>
+            <div class="p-u-1-2">
+                <div class="section_header">
+                    <h2 class="section_header__h2">登录东吴在线</h2>
+                    <div class="section_header__right">
+                        <span class="pull-right">还没有帐号？<a href="/register">立即注册</a></span>
+                    </div>
+                </div>
+                <form method="POST" class="login__form">
+                    {{#if hasBackUrl}}
+                    <div class="alert alert-warning" style="padding: 8px 15px">需要登录后才能继续访问您正在访问的页面。</div>
+                    {{/if}}
+                    {{#if errMsg}}
+                    <div class="alert alert-danger" style="padding: 8px 15px">{{errMsg}}</div>
+                    {{/if}}
+                    <dl class="login__form__dl">
+                        <dt class="login__form__dt">
+                            <label for="loginName">用户名或手机号</label>
+                        </dt>
+                        <dd class="login__form__dd">
+                            <input class="login__input" type="text" id="loginName" name="loginName"><br>
+                        </dd>
+                        <dt class="login__form__dt">
+                            <label for="password">密码</label>
+                        </dt>
+                        <dd class="login__form__dd">
+                            <input class="login__input" type="password" id="password" name="password"><br>
+                        </dd>
+                    </dl>
+                    <div class="clearfix"></div>
+                    <input class="login__button" type="submit" value="提交">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

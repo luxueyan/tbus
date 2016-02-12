@@ -1,0 +1,36 @@
+{{#if currentEnv}}
+    <div class="ccc-inspect__info">
+        <dl>
+            <dt class="ccc-inspect__info__dt">本地 OAuth</dt>
+            <dd class="ccc-inspect__info__dd">
+                {{#if !config.urlBackend}}
+                    请稍等...
+                {{else}}
+                    {{config.startOAuthServer ? '是' : '否'}}
+                {{/if}}
+            </dd>
+            <dt class="ccc-inspect__info__dt">后端服务器</dt>
+            <dd class="ccc-inspect__info__dd">
+                {{#if !config.urlBackend}}
+                    请稍等...
+                {{else}}
+                    {{config.startOAuthServer ? config.proxy.market : config.urlBackend}}
+                {{/if}}
+            </dd>
+            <dt class="ccc-inspect__info__dt">后端状态</dt>
+            <dd class="ccc-inspect__info__dd">
+            {{backendStatus}}
+            </dd>
+        </dl>
+        <div class="clearfix"></div>
+        <div class="ccc-inspect__hint">
+            （此信息仅在开发测试环境显示）<br>
+            <div class="ccc-inspect__hint__links">
+                <a href="/__/inspect/ajax/config" target="_blank">具体配置</a>
+                <a href="/__/inspect/templates" target="_blank">静态页面列表</a>
+                <!--<a href="javascript:;" on-click="close" target="_blank">[ 隐藏 ]</a>-->
+            </div>
+        </div>
+    </div>
+    <div class="ccc-inspect__icon ccc-inspect__icon--{{currentEnv}}" on-mouseover="refresh" on-click="refresh">{{currentEnv}}</div>
+{{/if}}

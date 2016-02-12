@@ -1,0 +1,52 @@
+.login__wrapper {
+    background-color: #f0f0f0;
+    padding: 40px 0;
+}
+.login__wrapper > .container {
+    padding: 30px 50px;
+    min-width: 500px;
+    background-color: #FFF;
+}
+.login__banner {
+    text-align: center;
+    padding-top: 50px;
+    height: 470px;
+}
+.login__form {
+    padding: 30px 80px;
+}
+.login__form__dl {
+    margin-bottom: 20px;
+}
+.login__form__dt {
+    margin-top: 20px;
+}
+.login__input {
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    border-color: #eee;
+    width: 100%;
+}
+.login__button {
+    display: block;
+    width: 100%;
+    background-color: #0767b4;
+    border-style: solid;
+    border-color: #0767b4;
+    border-width: 5px;
+    font-weight: bold;
+    color: #fff;
+    padding-bottom: 2px;
+}
+.login__button {
+    margin-top: 20px;
+}
+.login__input:focus,
+.login__button:hover,
+.login__button:focus {
+    outline: 0;
+}
+.login__button:hover,
+.login__button:focus {
+    background-color: #045e9f
+}

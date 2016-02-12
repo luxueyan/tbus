@@ -1,0 +1,49 @@
+.ccc-inspect {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+}
+.ccc-inspect:hover .ccc-inspect__info {
+    display: block;
+}
+.ccc-inspect__info {
+    display: none;
+    background-color: #fbfbfb;
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 13px;
+}
+.ccc-inspect__hint {
+    text-align: center;
+}
+.ccc-inspect__info__dt,
+.ccc-inspect__info__dd {
+    float: left;
+}
+.ccc-inspect__info__dt {
+    clear: left;
+    width: 90px;
+}
+.ccc-inspect__info__dd {
+    float: left;
+    min-width: 160px;
+}
+.ccc-inspect__icon {
+    cursor: pointer;
+    position:absolute;
+    bottom: -10px;
+    left: -15px;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    color: #fff;
+    line-height: 30px;
+    text-align: center;
+    font-size: 14px;
+}
+.ccc-inspect__icon--dev {
+    background-color: red;
+}
+.ccc-inspect__icon--uat {
+    background-color: yellowgreen;
+}

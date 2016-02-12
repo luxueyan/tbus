@@ -1,0 +1,49 @@
+.payment_hint {
+    margin: 80px auto;
+    text-align: center;
+}
+.payment_hint__title {
+   font-size: 28px;
+   color: rgb(147, 146, 146)
+}
+.payment_hint__text {
+    color: rgb(224, 75, 24);
+    margin: 0;
+}
+.text-success {
+  color:rgb(35, 146, 65);
+}
+.text-danger {
+  color: rgb(147, 146, 146)
+}
+.payment_hint__closing {
+    color: #999;
+    margin: 0;
+    padding-top: 15px;
+}
+.payment_hint__button_wrapper {
+    padding: 10px 0;
+}
+.payment_hint__loading {
+    padding: 50px 0;
+}
+.payment_hint__loading__img {
+    width: 62px;
+    height: 62px;
+}
+.btn {
+    padding: 10px 0;
+    margin-top: 10px;
+    display:inline-block;
+    color: rgb(224, 75, 24);
+    background: none;
+    border: 1px solid rgb(224, 75, 24);
+    width: 145px;
+    border-radius: 3px;
+}
+.btn:hover {
+    color:white;
+    background:rgb(224, 75, 24);
+    border:none;
+}
+
