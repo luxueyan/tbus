@@ -1,0 +1,73 @@
+<!doctype html>
+{{{PAYMENT_RETURN_ORD_ID}}}{{#HIDE}}<!-- 汇付重要，如果使用 layout，这行一定要复制到 layout 模板最前并保留 -->{{/HIDE}}
+
+<meta charset="UTF-8">
+{{#if layoutHidden}}<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">{{/if}}
+<link rel="stylesheet" href="/ccc/global/css/base.css">
+<link rel="stylesheet" href="/ccc/payment/css/payment.css">
+
+<div class="payment_hint">
+    <p class="payment_hint__title">
+    {{#if data.success}}
+    <i class="fa fa-check-circle text-success"></i> 成功
+    {{else}}
+    <i class="fa fa-check-circle text-danger"></i> 失败
+    {{/if}}
+    </p>
+
+    {{#if errMsg }}
+    <p class="payment_hint__text">{{errMsg}}</p>
+    {{/if}}
+    <p class="payment_hint__closing">本页将在<em id="countText">5</em>秒后自动关闭</p>
+    <div class="payment_hint__button_wrapper">
+        <a class="btn btn-primary" href="javascript: _close();">立即关闭</a>
+    </div>
+</div>
+<script>
+    window.onload = function() {
+        // 获取终端的相关信息
+        var Terminal = {
+            // 辨别移动终端类型
+            platform : function(){
+                var u = navigator.userAgent;
+                return {
+                    // android终端或者uc浏览器
+                    android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+                    // 是否为iPhone或者QQHD浏览器
+                    iPhone: u.indexOf('iPhone') > -1 ,
+                    // 是否iPad
+                    iPad: u.indexOf('iPad') > -1,
+                    // 是否mac
+                    Mac: u.indexOf('Macintosh') > -1
+                };
+            }(),
+            // 辨别移动终端的语言：zh-cn、en-us、ko-kr、ja-jp...
+            language : (navigator.browserLanguage || navigator.language).toLowerCase()
+        }
+        if(Terminal.platform.android || Terminal.platform.iPhone){ 
+            // 如果来自手机端，修改body的宽度
+            document.body.style.minWidth="160px"
+            document.body.style.width="100%";
+         }
+
+    };
+        
+    var _close = function(){
+        window.open('', '_self', '');
+        if(typeof android == 'undefined'){
+            window.close();
+        }else{
+            android.success();
+        }
+    };
+
+    var count = 5;
+    document.getElementById("countText").innerHTML = count;
+    var timer = setInterval(function() {
+        count = count - 1;
+        document.getElementById("countText").innerHTML = count;
+        if (count == 0) {
+            _close();
+        }
+    }, 1000);
+</script>

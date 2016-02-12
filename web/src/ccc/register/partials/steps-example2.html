@@ -1,0 +1,82 @@
+<div id="register-wrapper" class="on-step-{{onStep}}">
+{{{passwordStrength}}}
+<Step>
+<RInput field="loginName">
+<div class="rinput">
+    <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">用户名</label>
+    <input id="{{rinputId}}" value="{{value}}">
+    {{#loading}}loading...{{/loading}}
+    {{#errMsg}}{{errMsg}}{{/errMsg}}
+</div>
+</RInput>
+<RInput field="email">
+<div class="rinput">
+    <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">邮箱</label>
+    <input id="{{rinputId}}" value="{{value}}">
+    {{#loading}}loading...{{/loading}}
+    {{#errMsg}}{{errMsg}}{{/errMsg}}
+</div>
+</RInput>
+<RInput field="password" valueStableDuration=200>
+<div class="rinput">
+    <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">密码</label>
+    <input id="{{rinputId}}" value="{{value}}">
+    {{#loading}}loading...{{/loading}}
+    {{#errMsg}}{{errMsg}}{{/errMsg}}
+    {{{strength}}}
+</div>
+</RInput>
+<RInput field="repassword" valueStableDuration=200>
+<div class="rinput">
+    <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">重复密码</label>
+    <input id="{{rinputId}}" value="{{value}}">
+    {{#loading}}loading...{{/loading}}
+    {{#errMsg}}{{errMsg}}{{/errMsg}}
+    {{{strength}}}
+</div>
+</RInput>
+<RInput field="agreement" valueStableDuration=100>
+<div class="rinput">
+    <input type="checkbox" id="{{rinputId}}" checked="{{value}}">
+    <label for="{{rinputId}}">同意注册协议</label>
+    {{#loading}}loading...{{/loading}}
+    {{#errMsg}}{{errMsg}}{{/errMsg}}
+</div>
+</RInput>
+{{#if loading}}
+<input type="submit" value="请稍等" disabled />
+{{else}}
+<input type="submit" value="下一步" />
+{{/if}}
+</Step>
+<Step>
+<RInput field="mobile">
+<div class="rinput">
+    <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">手机号</label>
+    <input id="{{rinputId}}" value="{{value}}">
+    {{#loading}}loading...{{/loading}}
+    {{#errMsg}}{{errMsg}}{{/errMsg}}
+</div>
+</RInput>
+<RInput field="smsCaptcha">
+<div class="rinput">
+    <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">短信验证码</label>
+    <input id="{{rinputId}}" value="{{value}}">
+    rm:{{smsCaptchaReady}}
+    <button on-click='sendSmsCaptcha' {{#if !smsCaptchaReady || smsCaptchaCountDown}}disabled{{/if}}>
+        {{#if smsCaptchaCountDown}}
+            {{smsCaptchaCountDown}}秒后重新发送
+        {{else}}
+            发送验证码
+        {{/if}}
+    </button>
+    {{#loading}}loading...{{/loading}}
+    {{#errMsg}}{{errMsg}}{{/errMsg}}
+</div>
+</RInput>
+<input type="submit" value="下一步" />
+</Step>
+<Step>
+完成
+</Step>
+</div>

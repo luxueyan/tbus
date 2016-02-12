@@ -1,0 +1,23 @@
+<!doctype html>
+
+<link rel="stylesheet" href="/ccc/payment/css/payment.css">
+
+<div class="payment_hint">
+    <p class="payment_hint__title">正在转跳到第三方支付平台</p>
+    <div class="payment_hint__loading"><img class="payment_hint__loading__img" src="/ccc/payment/img/loading.gif"></div>
+    <form action="{{postUrl}}" method="POST">
+        {{#data:key}}
+        <input type="hidden" name="{{{key}}}" value="{{{.}}}">
+        {{/data}}
+    </form>
+</div>
+<script>
+    function submit() {
+        var form = document.getElementsByTagName('form')[0];
+        if (form.getAttribute('action')) {
+            form.submit();
+        }
+    }
+    submit();
+</script>
+
