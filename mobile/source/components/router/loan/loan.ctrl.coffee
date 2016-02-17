@@ -104,6 +104,9 @@ do (_, angular, moment, Math, Date) ->
 
         result = _.pick item, _.split 'id title status amount method'
 
+        if item.status in _.split 'SCHEDULED OPENED FINISHED'
+            result.estimated_value_date = new Date +moment().add(3, 'd')
+
         return _.merge result, {
 
             raw: item

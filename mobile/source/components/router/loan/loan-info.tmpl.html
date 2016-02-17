@@ -58,10 +58,14 @@
                 <div class="heading">
                     <h3 class="title">计划收益</h3>
                 </div>
+
                 <h5 class="container">
-                    <span class="pull-left">以明日满标为例</span>
+                    <span class="pull-left" ng-if="loan.estimated_value_date">
+                        以 {{ loan.estimated_value_date | date: "yyyy-MM-dd" }} 计息为例
+                    </span>
                     <span class="pull-right">单位:元</span>
                 </h5>
+
                 <table class="table u-off-margin-bottom">
                     <thead>
                         <tr>
@@ -72,69 +76,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class=""></td>
-                            <td class="text-right"></td>
-                            <td class="text-right"></td>
-                            <td class="text-right"></td>
+                        <tr ng-repeat="item in repayments">
+                            <td>{{ item.due_date | date: "yy-MM-dd" }}</td>
+                            <td class="text-right">{{ item.amount_interest | number: 2 }}</td>
+                            <td class="text-right">{{ item.amount_principal | number: 2 }}</td>
+                            <td class="text-right">{{ item.amount_outstanding | number: 2 }}</td>
                         </tr>
                     </tbody>
                 </table>
+
+                <div ng-hide="loading_repayments">
+                    <div class="container" ng-if="!repayments.length">
+                        <h4 class="alert alert-info text-center">暂无数据</h4>
+                    </div>
+                </div>
+
+                <p class="text-center loading" ng-show="loading_repayments">
+                    <img src="assets/image/spinner.gif">
+                </p>
             </section>
         </div>
 
         <div ng-switch-when="faq">
             <section class="loan-panel">
-                <div class="content">
-                    <h5>Q1 平台如何保障我的资产安全？</h5>
-                    <p>作为平台上有关融资项目的见证机构，珠海华润银行为融资人提供资信见证服务（包括但不限于各类基本资料见证、财务见证、银行账户信息见证等），并向投资人全部或部分披露上述见证信息。</p>
-                    <h5>Q2 平台如何保障我的资产安全？</h5>
-                    <p>作为平台上有关融资项目的见证机构，珠海华润银行为融资人提供资信见证服务（包括但不限于各类基本资料见证、财务见证、银行账户信息见证等），并向投资人全部或部分披露上述见证信息。</p>
-                </div>
+                <div class="content"
+                     ng-bind-html="loan.raw.loanRequest.description | sanitize"
+                ></div>
             </section>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-    <nav class="omit-margin container page-nav" x-gyro-comment>
-    <div class="row">
-        <span class="col-xs-3 back" x-go-back>
-            <param class="glyphicon glyphicon-menu-left">
-        </span>
-        <span class="col-xs-6 title">项目信息</span>
-        <span class="col-xs-3">&nbsp;</span>
-    </div>
-    </nav>
-
-    <section class="info-list" x-gyro-comment>
-        <div class="item">
-            <h4 class="title hidden">项目信息</h4>
-            <div class="content"
-                 ng-bind-html="loan.raw.loanRequest.description | sanitize"
-            ></div>
-        </div>
-
-        <div class="item" x-gyro-comment>
-            <h4 class="title">风控信息</h4>
-            <div class="content"
-                 ng-bind-html="loan.raw.corporationName | sanitize"
-            ></div>
-        </div>
-
-        <div class="item" x-gyro-comment>
-            <h4 class="title">安全保障</h4>
-            <div class="content"
-                 ng-bind-html="loan.raw.loanRequest.riskInfo | sanitize"
-            ></div>
-        </div>
-    </section>
 
 </div>
