@@ -694,17 +694,17 @@ a {
             }
         }
 
-        &-xszx {
+        &-new {
             .heading .title {
                 color: #EA6555;
 
                 &:before {
-                    background-color: #EA6555;
+                    background-color: #E25353;
                 }
             }
         }
 
-        &-rmtj {
+        &-hot {
             .heading .title {
                 color: #FF6200;
 
@@ -849,206 +849,6 @@ a {
         .loading {
             padding: 10px;
             background-color: #FFF;
-        }
-    }
-
-    .nav-page {
-        padding-top: 14px;
-        padding-bottom: 14px;
-        background-color: #FFF;
-
-        &-list {
-            .flex-display(flex-start; space-between);
-
-            > li {
-                .flex(1);
-
-                a {
-                    font-size: 24px/2 + 2;
-                    color: #777;
-                }
-
-                .icon {
-                    display: block;
-                    margin: 0 auto 5px;
-                    background: #0190DF url("@{path-image}/nav-icons.png") no-repeat;
-                    background-size: 288px/2 72px/2;
-                    width: 72px/2;
-                    height: 72px/2;
-                    border-radius: 50%;
-                    overflow: hidden;
-
-                    &-user {
-                        background-position: 0 0;
-                    }
-
-                    &-usd {
-                        background-position: -72px/2 0;
-                    }
-
-                    &-gift {
-                        background-position: -144px/2 0;
-                    }
-
-                    &-volume-up {
-                        background-position: -216px/2 0;
-                    }
-                }
-            }
-        }
-    }
-
-    > .loan {
-        background-color: #FFF;
-    }
-
-    .list-loan-row {
-        .flex-display();
-
-        margin-left: 10px;
-        margin-right: 10px;
-        border-top: 1px solid #EFEFEF;
-        padding: 15px 0;
-        -webkit-box-shadow: 0 -1px #F6F6F6;
-                box-shadow: 0 -1px #F6F6F6;
-
-        > .item {
-            .flex(1);
-
-            + .item {
-                margin-left: 20px;
-                border-left: 1px solid #CFCFCF;
-                padding-left: 20px;
-            }
-
-            a {
-                color: inherit;
-            }
-
-            .subject {
-                .media-heading {
-                    margin: 0;
-                    font-size: 24px/2 + 2;
-                }
-            }
-
-            .rate-duration {
-                .flex-display(flex-end; space-between);
-
-                -webkit-box-align: end;
-                margin-top: 10px;
-                margin-bottom: 15px;
-
-                .rate {
-                    .flex(1);
-
-                    font-size: 46px/2 + 2;
-                    color: #FF7200;
-                    line-height: 1;
-
-                    small {
-                        font-size: 30px/2 + 2;
-                    }
-                }
-
-                .duration {
-                    .flex(none);
-                }
-            }
-
-            .status {
-                text-align: center;
-
-                .btn {
-                    &-invest {
-                        .button-variant(#FFF; #0190DF; #0190DF);
-                    }
-
-                    &-disabled {
-                        .button-variant(#FFF; #BEBEBE; #BEBEBE);
-                    }
-                }
-            }
-        }
-    }
-
-    .list-loan {
-        background-color: #FFF;
-
-        > .item {
-            margin-left: 10px;
-            margin-right: 10px;
-
-            a {
-                color: inherit;
-            }
-
-            .subject {
-                border-top: 1px solid #EFEFEF;
-                padding: 10px 0;
-                -webkit-box-shadow: 0 -1px #F6F6F6;
-                        box-shadow: 0 -1px #F6F6F6;
-
-                .media-heading {
-                    margin: 0;
-                    font-size: 24px/2 + 2;
-                }
-            }
-
-            .detail {
-                border-top: 1px solid #F5F5F5;
-                padding-top: 10px;
-                padding-bottom: 20px;
-            }
-
-            .title {
-                margin: 0 0 15px;
-                padding-left: 10px;
-                font-size: 28px/2 + 2;
-                color: #7A7A7A;
-            }
-
-            .info-list {
-                .flex-display(center; space-between);
-
-                > .item {
-                    text-align: center;
-
-                    .flex(1);
-
-                    .value {
-                        margin-bottom: 4px;
-                        font-size: 30px/2 + 2;
-                    }
-
-                    &.rate {
-                        .value {
-                            font-size: 46px/2 + 2;
-                            color: #FF7200;
-                            line-height: 1;
-
-                            small {
-                                font-size: 30px/2 + 2;
-                            }
-                        }
-                    }
-
-                    &.duration {
-                    }
-
-                    &.status {
-                        .btn {
-                            &-invest {
-                                .button-variant(#0090E0; #FFF; #0190DF);
-                            }
-
-                            &-disabled {
-                                .button-variant(#FFF; #BEBEBE; #BEBEBE);
-                            }
-                        }
-                    }
-                }
-            }
         }
     }
 }

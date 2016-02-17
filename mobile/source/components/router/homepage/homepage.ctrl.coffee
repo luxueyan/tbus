@@ -3,43 +3,59 @@ do (_, angular) ->
 
     angular.module('controller').controller 'HomepageCtrl',
 
-        _.ai '            @api, @user, @$scope, @$rootScope, @$window, map_loan_summary, @$location', class
-            constructor: (@api, @user, @$scope, @$rootScope, @$window, map_loan_summary, @$location) ->
+        _.ai '            @api, @$scope, @$rootScope, @$window, @map_loan_summary', class
+            constructor: (@api, @$scope, @$rootScope, @$window, @map_loan_summary) ->
 
                 @$window.scrollTo 0, 0
 
                 @$rootScope.state = 'landing'
 
                 angular.extend @$scope, {
-                    list: {}
                     page_path: './'
                     carousel_height: do (width = @$window.document.body.clientWidth) ->
                         # width * 300 / 640 # aspect ratio of banner image
                 }
 
-                # mock data (TODO: use real data instead )
-                _.split('XSZX RMTJ').forEach (product) =>
-                    @$scope["loading_#{ product }"] = true
+                [
+                    {
+                        product: 'NEW'
+                        pageSize: 1
+                    }
 
-                    @api.get_loan_list_by_config {}, false
-                        .then ({results}) =>
+                    {
+                        product: 'HOT'
+                        pageSize: 3
+                    }
 
-                            @$scope.list[product] =
-                                _(results)
-                                    .compact()
-                                    .map map_loan_summary
-                                    .value()
+                ].forEach (query_set) =>
 
-                        .finally =>
-                            @$scope["loading_#{ product }"] = false
+                    @query(query_set, query_set.product)
 
 
-            num: (amount) ->
-                amount = amount | 0
-                is_myriad = amount.toString().length > 3
+            query: (query_set, key_suffix) ->
 
-                return {
-                    amount: amount
-                    myriad: if is_myriad then (amount / 10000) | 0 else null
-                }
+                if key_suffix
+                    key_suffix = key_suffix.toLowerCase()
+                    loading = "loading_#{ key_suffix }"
+                    list = "list_#{ key_suffix }"
+
+                else
+                    loading = 'loading'
+                    list = 'list'
+
+                @$scope[loading] = true
+
+                (@api.get_loan_list_by_config(query_set, false)
+
+                    .then ({results}) =>
+
+                        @$scope[list] =
+                            _(results)
+                                .compact()
+                                .map @map_loan_summary
+                                .value()
+
+                    .finally =>
+                        @$scope[loading] = false
+                )
 

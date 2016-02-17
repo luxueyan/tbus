@@ -196,7 +196,7 @@ do (_, angular, moment, Array) ->
             get_loan_list_by_config: (query_set = {}, cache = true) ->
 
                 _.defaults query_set, {
-                    status: 'SCHEDULED'
+                    status: ''
                     minDuration: 0
                     maxDuration: 100
                     minRate: 0
