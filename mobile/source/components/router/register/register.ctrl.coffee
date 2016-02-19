@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'RegisterCtrl',
 
-        _.ai '            @api, @$scope, @$interval, @$location, @$routeParams, @$window, @$cookies, @$q, @$uibModal, @mg_alert, @baseURI', class
-            constructor: (@api, @$scope, @$interval, @$location, @$routeParams, @$window, @$cookies, @$q, @$uibModal, @mg_alert, @baseURI) ->
+        _.ai '            @api, @$scope, @$rootScope, @$interval, @$location, @$routeParams, @$window, @$q, @$uibModal, @mg_alert, @popup_payment_state', class
+            constructor: (@api, @$scope, @$rootScope, @$interval, @$location, @$routeParams, @$window, @$q, @$uibModal, @mg_alert, @popup_payment_state) ->
 
                 {mobile} = @$routeParams
                 @$scope.back_path = "login?mobile=#{ mobile }" if mobile
@@ -21,15 +21,14 @@ do (_, angular) ->
                 @$scope.has_referral = !!@$scope.store.referral
                 @submit_sending = false
 
+
             get_verification_code: ({mobile, captcha}) ->
 
                 @mobile_verification_code_has_sent = true
 
                 (@api.check_mobile(mobile)
 
-                    .then (data) =>
-                        return @$q.reject(data) unless data.success is true
-                        return data
+                    .then @api.process_response
 
                     .catch (data) =>
                         @$q.reject error: [message: 'MOBILE_EXISTS']
@@ -37,9 +36,7 @@ do (_, angular) ->
 
                     .then => @api.send_verification_code(mobile, captcha, @captcha?.token)
 
-                    .then (data) =>
-                        return @$q.reject(data) unless data.success is true
-                        return data
+                    .then @api.process_response
 
                     .then (data) =>
 
@@ -98,16 +95,29 @@ do (_, angular) ->
 
                 (@api.register(password, mobile, mobile_captcha, optional)
 
-                    .then (data) =>
-                        unless data.success is true
-                            @$q.reject data.error
+                    .then @api.process_response
+
+                    .then => @api.login(mobile, password)
+
+                    .then @api.process_response
 
                     .then (data) =>
-                        @$window.alert @$scope.msg.SUCCEED
-                        @$location.path 'dashboard'
+                        @$scope.is_register_successful = true
+
+                        @$rootScope.$on '$locationChangeStart', (event, new_path) =>
+                            event.preventDefault()
+                            @$window.location.href = new_path
+
+                        @api.fetch_current_user()
+                            .then (user) =>
+                                @popup_payment_state {
+                                    user
+                                    page: 'register'
+                                    next_path: @next_path || 'dashboard'
+                                }
 
                     .catch (data) =>
-                        key = _.get data, '[0].message'
+                        key = _.get data, 'error[0].message'
                         @$window.alert @$scope.msg[key] or key
                         @submit_sending = false
                 )
