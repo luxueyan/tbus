@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'LoginCtrl',
 
-        _.ai '            @api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @mg_alert, @$q, @$http', class
-            constructor: (@api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @mg_alert, @$q, @$http) ->
+        _.ai '            @api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @mg_alert, @$q, @popup_payment_state', class
+            constructor: (@api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @mg_alert, @$q, @popup_payment_state) ->
 
                 {back, next, mobile, bind_social_weixin} = @$routeParams
 
@@ -64,9 +64,7 @@ do (_, angular) ->
 
                 (@api.login(mobile, password)
 
-                    .then (data) =>
-                        return @$q.reject(data) unless data?.success is true
-                        return data
+                    .then @api.process_response
 
                     .then (data, {bind_social_weixin} = @$routeParams) =>
                         if @bind_weixin
@@ -75,19 +73,34 @@ do (_, angular) ->
                         return data
 
                     .then (data) =>
-                        @api.fetch_current_user().then =>
-                            unless @next_path
-                                @$location
-                                    .path '/'
-                                    .search t: _.now()
-                            else
-                                @$location
-                                    .path @next_path
-                                    .search 'next', null
+                        @$scope.is_login_successful = true
 
-                            @$scope.$on '$locationChangeStart', (event, new_path) =>
-                                event.preventDefault()
-                                @$window.location.href = new_path
+                        @$rootScope.$on '$locationChangeStart', (event, new_path) =>
+                            event.preventDefault()
+                            @$window.location.href = new_path
+
+                        @api.fetch_current_user()
+
+                            .then (user) =>
+                                return user if user.has_bank_card and user.has_payment_password
+                                return @$q.reject(user)
+
+                            .then =>
+                                unless @next_path
+                                    @$location
+                                        .path 'dashboard'
+                                        .search t: _.now()
+                                else
+                                    @$location
+                                        .path @next_path
+                                        .search 'next', null
+
+                            .catch (user) =>
+                                @popup_payment_state {
+                                    user
+                                    page: 'login'
+                                    next_path: @next_path || 'dashboard'
+                                }
 
                     .catch (data) =>
                         result = _.get data, 'error_description.result'
