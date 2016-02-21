@@ -127,7 +127,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                 return update_user_funds()
                     }
 
-                    .when '/dashboard/bank-card', {
+                    .when '/dashboard/bank-card/:amount?', {
                         controller: 'BankCardCtrl as self'
                         templateUrl: 'components/router/dashboard/bank-card.tmpl.html'
                         resolve:
