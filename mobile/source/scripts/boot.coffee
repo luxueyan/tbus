@@ -340,7 +340,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                 return update_user_funds()
                     }
 
-                    .when '/dashboard/withdraw', {
+                    .when '/dashboard/withdraw/:amount?/:bank?', {
                         controller: 'WithdrawCtrl as self'
                         templateUrl: 'components/router/dashboard/payment/pool/payment-pool-withdraw.tmpl.html'
                         resolve:
@@ -352,46 +352,6 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                             .path '/login'
                                             .search next: 'dashboard/withdraw'
                                         return $q.reject()
-
-                            _payment_account: _.ai 'api, $location, $route, $q',
-                                (                   api, $location, $route, $q) ->
-                                    api.fetch_current_user()
-                                        .then (user) ->
-                                            return user if user.has_payment_account   and
-                                                           user.has_payment_password  and
-                                                           user.has_bank_card
-
-                                            return $q.reject(user)
-
-                                        .catch (user) ->
-                                            return unless user
-
-                                            switch
-                                                when user.has_payment_account isnt true
-                                                    $location
-                                                        .replace()
-                                                        .path 'dashboard/payment/register'
-                                                        .search
-                                                            back: 'dashboard'
-                                                            next: 'dashboard/withdraw'
-
-                                                when user.has_payment_password isnt true
-                                                    $location
-                                                        .replace()
-                                                        .path 'dashboard/payment/password'
-                                                        .search
-                                                            back: 'dashboard'
-                                                            next: 'dashboard/withdraw'
-
-                                                when user.has_bank_card isnt true
-                                                    $location
-                                                        .replace()
-                                                        .path 'dashboard/payment/bind-card'
-                                                        .search
-                                                            back: 'dashboard'
-                                                            next: 'dashboard/withdraw'
-
-                                            return $q.reject()
 
                             _fund: _.ai 'update_user_funds', (update_user_funds) ->
                                 return update_user_funds()
