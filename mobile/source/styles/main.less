@@ -273,6 +273,26 @@ a {
             }
         }
     }
+
+    &-full-page {
+        .modal-dialog {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            margin: 0;
+            min-height: 100%;
+            background-color: #F4F4F6;
+        }
+
+        .modal-content {
+            border: none;
+            border-radius: none;
+            background-color: transparent;
+            -webkit-box-shadow: none;
+                    box-shadow: none;
+        }
+    }
 }
 
 .list-group {
@@ -3423,6 +3443,18 @@ a {
         #register .form .form-group.mobile-captcha;
     }
 
+    .form-group-bank {
+        .glyphicon-menu-right {
+            .transform(translateY(-50%));
+
+            position: absolute;
+            top: 50%;
+            right: 17px;
+            color: #CBCCD0;
+            pointer-events: none;
+        }
+    }
+
     .mobile {
         font-size: 68px/2;
         margin: 50px/2 auto;
@@ -3444,6 +3476,47 @@ a {
     .notice {
         #dashboard-recharge .notice;
     }
+}
+
+/*=============================================================================
+                                       [Router] [Dashboard] Payment Select Bank
+----*/
+
+#dashboard-payment-select-bank {
+
+    .banks {
+        .bank-list {
+            border-top: 1px solid #DEDFE1;
+            border-bottom: 1px solid #DEDFE1;
+
+            > li {
+                padding: 11px 16px;
+                background-color: #FFF;
+
+                + li {
+                    border-top: 1px solid #EAEBED;
+                }
+
+                .media-bank {
+                    .media-left {
+                        padding-right: 13px;
+                    }
+
+                    .media-heading {
+                        margin-bottom: 0;
+                        font-size: 16px;
+                        line-height: 1.4;
+                    }
+
+                    .desc {
+                        margin-bottom: 0;
+                        color: #9699A0;
+                    }
+                }
+            }
+        }
+    }
+
 }
 
 /*=============================================================================

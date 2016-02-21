@@ -1,5 +1,5 @@
 
-<div id="dashboard-payment-bind-card" class="">
+<div id="dashboard-payment-bind-card">
 
     <nav class="container page-nav">
     <div class="row">
@@ -118,16 +118,26 @@
                     >
                 </div>
 
-                <div class="form-group merge">
+                <div class="form-group merge form-group-bank">
                     <label for="bank-name">银行</label>
                     <select name="bankName" class="form-control input-sm"
                             id="bank-name"
                             ng-model="store.bankName"
                             ng-change="self.on_change_bank_name()"
                             ng-options="name for (code, name) in banks"
+                            x-gyro-comment
                     >
                         <option value="">请选择开户银行</option>
                     </select>
+                    <input id="bank-name" class="form-control input-target input-lg" type="text"
+                           name="bankName"
+                           ng-model="store.bankName"
+                           ng-click="self.select_bank(store)"
+                           placeholder="请选择开户银行"
+                           required
+                           readonly
+                    >
+                    <param class="glyphicon glyphicon-menu-right">
                 </div>
 
                 <div class="form-group merge" ng-show="self.need_location()" x-gyro-comment>
@@ -240,5 +250,55 @@
     </div>
 
 </div>
+
+
+
+
+<script type="text/ng-template" id="ngt-select-bank.tmpl">
+    <div id="dashboard-payment-select-bank">
+
+        <nav class="container page-nav">
+        <div class="row">
+            <a class="col-xs-3 back" href="#" ng-click="$close()">
+                <param class="glyphicon glyphicon-menu-left">
+            </a>
+            <span class="col-xs-6 title">银行卡选择</span>
+            <span class="col-xs-3">&nbsp;</span>
+        </div>
+        </nav>
+
+        <section class="banks">
+            <ul class="list-unstyled u-off-margin-bottom bank-list">
+                <li ng-click="select('建设银行'); $close()">
+                    <div class="media media-bank">
+                        <div class="media-left media-middle">
+                            <img width="37" ng-src="assets/image/bank-icons/ccb.png">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                建设银行
+                            </h4>
+                            <p class="desc">首笔 / 单笔 / 日限额</p>
+                        </div>
+                    </div>
+                </li>
+                <li ng-click="select('工商银行'); $close()">
+                    <div class="media media-bank">
+                        <div class="media-left media-middle">
+                            <img width="37" ng-src="assets/image/bank-icons/icbc.png">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                工商银行
+                            </h4>
+                            <p class="desc">首笔 / 单笔 / 日限额</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+    </div>
+</script>
 
 

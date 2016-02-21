@@ -3,13 +3,12 @@ do (_, angular) ->
 
     angular.module('controller').controller 'PaymentPoolBindCardCtrl',
 
-        _.ai '            banks, @user, @api, @$scope, @$window, @$q, @mg_alert, @$location, @$timeout, @$interval, @$routeParams, @$uibModal', class
-            constructor: (banks, @user, @api, @$scope, @$window, @$q, @mg_alert, @$location, @$timeout, @$interval, @$routeParams, @$uibModal) ->
+        _.ai '            @banks, @user, @api, @$scope, @$window, @$q, @mg_alert, @$location, @$timeout, @$interval, @$routeParams, @$uibModal', class
+            constructor: (@banks, @user, @api, @$scope, @$window, @$q, @mg_alert, @$location, @$timeout, @$interval, @$routeParams, @$uibModal) ->
 
                 @$window.scrollTo 0, 0
 
                 angular.extend @$scope, {
-                    banks
                     province: null
                     city: null
                 }
@@ -126,6 +125,28 @@ do (_, angular) ->
                             @error.on = false
                         , @error.timeout
                 )
+
+
+            select_bank: (store) ->
+
+                self = @
+
+                @$uibModal.open {
+                    size: 'lg'
+                    backdrop: 'static'
+                    windowClass: 'modal-full-page'
+                    animation: false
+                    templateUrl: 'ngt-select-bank.tmpl'
+
+                    controller: _.ai '$scope',
+                        (             $scope) ->
+                            angular.extend $scope, {
+                                banks: self.banks
+                                select: (bank) ->
+                                    store.bankName = bank
+                            }
+                }
+
 
 
 
