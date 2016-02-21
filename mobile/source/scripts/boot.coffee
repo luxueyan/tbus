@@ -323,7 +323,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                 return update_user_funds()
                     }
 
-                    .when '/dashboard/recharge', {
+                    .when '/dashboard/recharge/:amount?/:bank?', {
                         controller: 'RechargeCtrl as self'
                         templateUrl: 'components/router/dashboard/payment/pool/payment-pool-recharge.tmpl.html'
                         resolve:
@@ -335,34 +335,6 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                             .path '/login'
                                             .search next: 'dashboard/recharge'
                                         do $q.reject
-
-                            _payment_account: _.ai 'api, $location, $route, $q',
-                                (                   api, $location, $route, $q) ->
-                                    api.fetch_current_user()
-                                        .then (user) ->
-                                            return user if user.has_payment_account and user.has_bank_card
-                                            return $q.reject(user)
-                                        .catch (user) ->
-                                            return unless user
-
-                                            switch
-                                                when user.has_payment_account isnt true
-                                                    $location
-                                                        .replace()
-                                                        .path 'dashboard/payment/register'
-                                                        .search
-                                                            back: 'dashboard'
-                                                            next: 'dashboard/recharge'
-
-                                                when user.has_bank_card isnt true
-                                                    $location
-                                                        .replace()
-                                                        .path 'dashboard/payment/bind-card'
-                                                        .search
-                                                            back: 'dashboard'
-                                                            next: 'dashboard/recharge'
-
-                                            return $q.reject()
 
                             _fund: _.ai 'update_user_funds', (update_user_funds) ->
                                 return update_user_funds()
