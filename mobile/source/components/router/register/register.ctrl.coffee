@@ -113,6 +113,7 @@ do (_, angular) ->
                                 @popup_payment_state {
                                     user
                                     page: 'register'
+                                    page_path: 'register'
                                     next_path: @next_path || 'dashboard'
                                 }
 
@@ -160,7 +161,7 @@ do (_, angular) ->
 
         (options = {}) ->
 
-            $uibModal.open {
+            prompt = $uibModal.open {
                 size: 'lg'
                 animation: true
                 backdrop: 'static'
@@ -176,3 +177,9 @@ do (_, angular) ->
                     (             $scope) ->
                         angular.extend $scope, options
             }
+
+            once = @$scope.$on '$locationChangeStart', ->
+                prompt?.dismiss()
+                do once
+
+            return prompt.result

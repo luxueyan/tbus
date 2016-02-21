@@ -99,8 +99,11 @@ do (_, angular) ->
                                 @popup_payment_state {
                                     user
                                     page: 'login'
+                                    page_path: 'login'
                                     next_path: @next_path || 'dashboard'
                                 }
+
+                        return
 
                     .catch (data) =>
                         result = _.get data, 'error_description.result'
