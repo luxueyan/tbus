@@ -141,6 +141,20 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         do $q.reject
                     }
 
+                    .when '/dashboard/bank-card/edit/:bank', {
+                        controller: 'BankCardEditCtrl as self'
+                        templateUrl: 'components/router/dashboard/bank-card-edit.tmpl.html'
+                        resolve:
+                            user: _.ai 'api, $location, $q, $route',
+                                (       api, $location, $q, $route) ->
+                                    api.fetch_current_user().catch ->
+                                        $location
+                                            .replace()
+                                            .path '/login'
+                                            .search next: "dashboard/bank-card/edit/#{ $route.current.params.bank }"
+                                        do $q.reject
+                    }
+
                     .when '/dashboard/total-assets', {
                         controller: 'TotalAssetsCtrl as self'
                         templateUrl: 'components/router/dashboard/total-assets.tmpl.html'
