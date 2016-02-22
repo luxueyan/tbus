@@ -3,10 +3,14 @@ do (_, angular) ->
 
     angular.module('controller').controller 'BankCardCtrl',
 
-        _.ai '            @user, @api, @$scope, @$window, @$q, @$location, @$timeout, @$routeParams', class
-            constructor: (@user, @api, @$scope, @$window, @$q, @$location, @$timeout, @$routeParams) ->
+        _.ai '            @user, @api, @$scope, @$window, @$q, @$location, @$routeParams', class
+            constructor: (@user, @api, @$scope, @$window, @$q, @$location, @$routeParams) ->
 
                 @$window.scrollTo 0, 0
+
+                @back_path = @$routeParams.back
+
+                @$scope.picking = 'amount' of @$routeParams
 
                 @$scope.bank_account = _.clone @user.bank_account
 
@@ -16,26 +20,15 @@ do (_, angular) ->
                     @$scope.bank_account.bank = data[@$scope.bank_account.bank]
 
 
-            unbind: (account, password) ->
+            select: (bank) ->
 
-                (@api.payment_pool_unbind_card(account, password)
+                @$location
+                    .path "#{ @back_path }/#{ bank }"
+                    .search back: null
 
-                    .then (data) =>
-                        return @$q.reject(data) unless data.success is true
-                        return data
 
-                    .then (response) =>
-                        @$window.alert response.data
+            edit: (bank) ->
 
-                    .catch (response) =>
-                        @$window.alert _.get response, 'error[0].message', 'something happened...'
-
-                    .finally =>
-                        @$location
-                            .path 'dashboard'
-                            .search t: _.now()
-
-                        @$scope.$on '$locationChangeStart', (event, new_path) =>
-                            event.preventDefault()
-                            @$window.location.href = new_path
-                )
+                @$location
+                    .path "dashboard/bank-card/edit/#{ bank }"
+                    .search back: null

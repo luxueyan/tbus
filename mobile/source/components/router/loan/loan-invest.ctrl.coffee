@@ -3,8 +3,8 @@ do (_, angular, Math) ->
 
     angular.module('controller').controller 'LoanInvestCtrl',
 
-        _.ai '            @api, @user, @loan, @coupon, @$scope, @$q, @$location, @$window, map_loan_summary, @$uibModal, @mg_alert, @$routeParams', class
-            constructor: (@api, @user, @loan, @coupon, @$scope, @$q, @$location, @$window, map_loan_summary, @$uibModal, @mg_alert, @$routeParams) ->
+        _.ai '            @api, @user, @loan, @coupon, @$scope, @$q, @$location, @$window, map_loan_summary, @$uibModal, @mg_alert, @$routeParams, @popup_payment_state', class
+            constructor: (@api, @user, @loan, @coupon, @$scope, @$q, @$location, @$window, map_loan_summary, @$uibModal, @mg_alert, @$routeParams, @popup_payment_state) ->
 
                 @$window.scrollTo 0, 0
 
@@ -58,6 +58,14 @@ do (_, angular, Math) ->
 
                     if +amount
                         @$scope.store.amount = +amount
+
+                if !@user.has_bank_card or !@user.has_payment_password
+                    @popup_payment_state {
+                        user: @user
+                        page: 'invest'
+                        page_path: @page_path
+                        back_path: "loan/#{ @loan.id }"
+                    }
 
 
             amount_polishing: (amount) ->

@@ -55,7 +55,9 @@
 
                 <div class="form-group merge">
                     <div class="container">
-                        <div class="media media-bank">
+                        <div class="media media-bank"
+                             ng-click="self.pick_up_bank($event, amount)"
+                        >
                             <div class="media-left">
                                 <img width="30" ng-src="assets/image/bank-icons/{{ bank_account.bank_code | lowercase }}.png">
                             </div>
@@ -98,7 +100,7 @@
                         ng-disabled="form.$invalid || self.submit_sending"
                 >确认充值</button>
             </p>
-    </form>
+        </form>
     </section>
 
     <section class="container notice" x-gyro-comment>

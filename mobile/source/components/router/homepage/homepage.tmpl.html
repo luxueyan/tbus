@@ -46,7 +46,7 @@
                 </a>
             </li>
             <li class="u-off-margin-bottom">
-                <a href="list/SBLC">
+                <a href="list/SBTZ">
                     <div class="media media-sbtz">
                         <div class="media-left">
                             <img width="38" class="media-object" ng-src="assets/image/loan-icons/sbtz.png">
@@ -62,13 +62,13 @@
         </ul>
     </section>
 
-    <section class="loan-panel loan-panel-xszx">
+    <section class="loan-panel loan-panel-new">
         <div class="heading container">
             <h3 class="title">新手专享</h3>
             <span class="desc">现金红包＋超高收益</span>
         </div>
         <ul class="list-unstyled u-off-margin-bottom loan-list text-center">
-            <li ng-repeat="item in ::list.XSZX | limitTo: 1 track by $index">
+            <li ng-repeat="item in ::list_new track by $index">
                 <a ng-href="loan/{{ ::item.id }}?back={{ ::page_path }}"
                    x-loan-summary
                    data-loan="item"
@@ -76,18 +76,18 @@
                 ></a>
             </li>
         </ul>
-        <p class="text-center loading" ng-show="loading_XSZX">
+        <p class="text-center loading" ng-show="loading_new">
             <img src="assets/image/spinner.gif">
         </p>
     </section>
 
-    <section class="loan-panel loan-panel-rmtj">
+    <section class="loan-panel loan-panel-hot">
         <div class="heading container">
             <h3 class="title">热门推荐</h3>
             <span class="desc">1元起投 随时提取</span>
         </div>
         <ul class="list-unstyled u-off-margin-bottom loan-list">
-            <li ng-repeat="item in ::list.RMTJ | limitTo: 3 track by $index">
+            <li ng-repeat="item in ::list_hot track by $index">
                 <a ng-href="loan/{{ ::item.id }}?back={{ ::page_path }}"
                    x-loan-summary
                    data-loan="item"
@@ -95,208 +95,9 @@
                 ></a>
             </li>
         </ul>
-        <p class="text-center loading" ng-show="loading_RMTJ">
+        <p class="text-center loading" ng-show="loading_hot">
             <img src="assets/image/spinner.gif">
         </p>
-    </section>
-
-
-
-
-
-
-
-
-
-
-    <nav class="nav-page container text-center" x-gyro-comment>
-        <ul class="list-unstyled u-off-margin-bottom nav-page-list">
-            <li><a href="dashboard"><param class="icon icon-user">我的账户</a></li>
-            <li><a href="list"><param class="icon icon-usd">投资理财</a></li>
-            <li><a href="static/activity" target="_self"><param class="icon icon-gift">精彩活动</a></li>
-            <li><a href="announcement"><param class="icon icon-volume-up">公告中心</a></li>
-        </ul>
-    </nav>
-
-    <section class="loan" x-gyro-comment>
-        <ul class="list-unstyled u-off-margin-bottom list-loan-row">
-            <li class="item">
-                <a href="list/XSZX">
-                    <div class="media subject">
-                        <div class="media-left">
-                            <img class="media-object" width="30"
-                                 ng-src="assets/image/loan-icons/xszx.png"
-                            >
-                        </div>
-
-                        <div class="media-body media-middle">
-                            <h4 class="media-heading">新手专享</h4>
-                        </div>
-                    </div>
-                </a>
-
-                <div ng-repeat="item in list.XSZX">
-                    <a ng-href="loan/{{ item.id }}?back={{ page_path }}">
-                        <div class="rate-duration">
-                            <div class="rate">
-                                <small>{{ item.basic_rate }}%+</small>{{ item.deduction_rate }}%
-                            </div>
-
-                            <div class="duration">
-                                <span ng-if="item.raw.duration.days">
-                                    {{ item.total_days }}天
-                                </span>
-                                <span ng-if="!item.raw.duration.days">
-                                    {{ item.total_months }}个月
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="status" ng-switch="item.status">
-                            <span ng-switch-when="OPENED"
-                                  class="btn btn-sm btn-invest"
-                            >立即投资</span>
-                            <span ng-switch-when="SCHEDULED"
-                                  class="btn btn-sm btn-disabled"
-                            >即将开始</span>
-                            <span ng-switch-when="FINISHED"
-                                  class="btn btn-sm btn-disabled"
-                            >已满标</span>
-                            <span ng-switch-when="SETTLED"
-                                  class="btn btn-sm btn-disabled"
-                            >还款中</span>
-                            <span ng-switch-when="CLEARED"
-                                  class="btn btn-sm btn-disabled"
-                            >还款结束</span>
-                        </div>
-                    </a>
-                </div>
-            </li>
-
-            <li class="item">
-                <a href="list/HDZX">
-                    <div class="media subject">
-                        <div class="media-left">
-                            <img class="media-object" width="30"
-                                 ng-src="assets/image/loan-icons/hdzx.png"
-                            >
-                        </div>
-
-                        <div class="media-body media-middle">
-                            <h4 class="media-heading">活动专享</h4>
-                        </div>
-                    </div>
-                </a>
-
-                <div ng-repeat="item in list.HDZX">
-                    <a ng-href="loan/{{ item.id }}?back={{ page_path }}">
-                        <div class="rate-duration">
-                            <div class="rate">
-                                <small>{{ item.basic_rate }}%+</small>{{ item.deduction_rate }}%
-                            </div>
-
-                            <div class="duration">
-                                <span ng-if="item.raw.duration.days">
-                                    {{ item.total_days }}天
-                                </span>
-                                <span ng-if="!item.raw.duration.days">
-                                    {{ item.total_months }}个月
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="status" ng-switch="item.status">
-                            <span ng-switch-when="OPENED"
-                                  class="btn btn-sm btn-invest"
-                            >立即投资</span>
-                            <span ng-switch-when="SCHEDULED"
-                                  class="btn btn-sm btn-disabled"
-                            >即将开始</span>
-                            <span ng-switch-when="FINISHED"
-                                  class="btn btn-sm btn-disabled"
-                            >已满标</span>
-                            <span ng-switch-when="SETTLED"
-                                  class="btn btn-sm btn-disabled"
-                            >还款中</span>
-                            <span ng-switch-when="CLEARED"
-                                  class="btn btn-sm btn-disabled"
-                            >还款结束</span>
-                        </div>
-                    </a>
-                </div>
-            </li>
-        </ul>
-
-        <ul class="list-unstyled u-off-margin-bottom list-loan">
-            <li class="item">
-                <a href="list/XNB">
-                    <div class="media subject">
-                        <div class="media-left">
-                            <img class="media-object" width="30"
-                                 ng-src="assets/image/loan-icons/xnb.png"
-                            >
-                        </div>
-
-                        <div class="media-body media-middle">
-                            <h4 class="media-heading">新能宝</h4>
-                        </div>
-                    </div>
-                </a>
-
-                <div ng-repeat="item in list.XNB">
-                    <a ng-href="loan/{{ item.id }}?back={{ page_path }}"
-                       x-loan-summary
-                       data-loan="item"
-                    ></a>
-                </div>
-            </li>
-
-            <li class="item">
-                <a href="list/FB">
-                    <div class="media subject">
-                        <div class="media-left">
-                            <img class="media-object" width="30"
-                                 ng-src="assets/image/loan-icons/fb.png"
-                            >
-                        </div>
-
-                        <div class="media-body media-middle">
-                            <h4 class="media-heading">房宝</h4>
-                        </div>
-                    </div>
-                </a>
-
-                <div ng-repeat="item in list.FB">
-                    <a ng-href="loan/{{ item.id }}?back={{ page_path }}"
-                       x-loan-summary
-                       data-loan="item"
-                    ></a>
-                </div>
-            </li>
-
-            <li class="item">
-                <a href="list/XJB">
-                    <div class="media subject">
-                        <div class="media-left">
-                            <img class="media-object" width="30"
-                                 ng-src="assets/image/loan-icons/xjb.png"
-                            >
-                        </div>
-
-                        <div class="media-body media-middle">
-                            <h4 class="media-heading">薪金宝</h4>
-                        </div>
-                    </div>
-                </a>
-
-                <div ng-repeat="item in list.XJB">
-                    <a ng-href="loan/{{ item.id }}?back={{ page_path }}"
-                       x-loan-summary
-                       data-loan="item"
-                    ></a>
-                </div>
-            </li>
-        </ul>
     </section>
 
 </div>

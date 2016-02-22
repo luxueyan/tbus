@@ -15,7 +15,8 @@
 
     <section class="omit-margin loan-summary">
         <div class="rate text-center">
-            <div class="value">{{ loan.rate }}%</div>
+            <div class="value" ng-if="!loan.deduction_rate">{{ loan.rate }}%</div>
+            <div class="value" ng-if="loan.deduction_rate">{{ loan.basic_rate }}%+{{ loan.deduction_rate }}%</div>
             <div class="name">预期年化</div>
         </div>
         <div class="footer">
@@ -118,7 +119,7 @@
             <ul class="list-unstyled info-list" ng-if="investors.length">
                 <li ng-repeat="item in investors | limitTo: 3">
                     <span class="name">{{ item.submitTime | date: 'yy-MM-dd HH:mm' }}</span>
-                    <span class="value">用户{{ item.name }}投资{{ item.amount }}元</span>
+                    <span class="value">用户{{ item.mobile | string_replace: '^\\d+(\\d{4})$' : '****$1' }}投资{{ item.amount }}元</span>
                 </li>
             </ul>
 
@@ -159,136 +160,6 @@
         <div class="btn btn-block btn-default btn-lg disabled"
              ng-switch-when="CLEARED"
         >已结息</div>
-    </section>
-
-
-
-
-
-
-
-
-
-
-    <section class="omit-margin container loan-summary" x-gyro-comment>
-        <div class="rate-duration">
-            <div class="rate">
-                <div class="value">
-                    <small>{{ loan.basic_rate }}%+</small>{{ loan.deduction_rate }}%
-                </div>
-                <div class="name">年化收益率</div>
-            </div>
-
-            <div class="duration">
-                <div class="value">
-                    <span ng-if="loan.raw.duration.days">
-                        {{ loan.total_days }}<small>天</small>
-                    </span>
-                    <span ng-if="!loan.raw.duration.days">
-                        {{ loan.total_months }}<small>个月</small>
-                    </span>
-                </div>
-                <div class="name">投资期限</div>
-            </div>
-        </div>
-
-        <div class="progress-wrap clearfix">
-            <span class="num pull-right">{{ loan.invest_percent_int }}%</span>
-            <uib-progressbar value="loan.invest_percent_int"></uib-progressbar>
-        </div>
-
-        <div class="balance">
-            <span class="name">可投金额：</span>
-            <span class="value">
-                {{ loan.balance_myriad || loan.balance }}<!--
-                --><span ng-if="loan.balance_myriad">万</span><!--
-                --><span ng-if="!loan.balance_myriad">元</span>
-            </span>
-        </div>
-
-        <div class="time-close" ng-if="loan.status === 'OPENED'">
-            <span class="name">剩余时间：</span>
-            <span class="value">
-                <timer interval="1000"
-                       end-time="loan.time_close"
-                >
-                    <span class="num">{{ days }}</span> 天
-                    <span class="num">{{ hhours }}</span> 小时
-                    <span class="num">{{ mminutes }}</span> 分
-                    <span class="num">{{ sseconds }}</span> 秒
-                </timer>
-            </span>
-        </div>
-    </section>
-
-    <section class="container loan-detail" x-gyro-comment>
-        <div class="item">
-            <span class="name">还款方式</span>
-            <span class="value" ng-switch="loan.method">
-                <span ng-switch-when="MonthlyInterest">按月付息到期还本</span>
-                <span ng-switch-when="EqualInstallment">按月等额本息</span>
-                <span ng-switch-when="EqualPrincipal">按月等额本金</span>
-                <span ng-switch-when="BulletRepayment">一次性还本付息</span>
-                <span ng-switch-when="EqualInterest">月平息</span>
-                <span ng-switch-when="YearlyInterest">按年付息到期还本</span>
-            </span>
-        </div>
-        <div class="item">
-            <span class="name">起投金额</span>
-            <span class="value">{{ loan.raw.loanRequest.investRule.minAmount }}元</span>
-        </div>
-        <div class="item">
-            <span class="name">投资限额</span>
-            <span class="value"
-                  ng-init="invest_rule_max_amount = loan.raw.loanRequest.investRule.maxAmount"
-            >
-                <span ng-if="invest_rule_max_amount >= 10000">
-                    {{ invest_rule_max_amount / 10000 }}万
-                </span>
-                <span ng-if="invest_rule_max_amount < 10000">
-                    {{ invest_rule_max_amount }}元
-                </span>
-            </span>
-        </div>
-        <div class="item">
-            <span class="name">计息方式</span>
-            <span class="value">放款后第二天计息</span>
-        </div>
-    </section>
-
-    <section class="omit-margin loan-info" x-gyro-comment>
-        <uib-tabset class="invest-tab flex inline list" justified="true">
-            <uib-tab heading="项目信息">
-                <div class="content"
-                     ng-bind-html="loan.raw.loanRequest.description | sanitize"
-                ></div>
-            </uib-tab>
-
-            <uib-tab heading="保障机构">
-                <div class="content"
-                     ng-bind-html="loan.raw.loanRequest.riskInfo | sanitize"
-                ></div>
-            </uib-tab>
-
-            <uib-tab heading="参投记录 ( {{ investors.length }} )">
-                <div class="content">
-                    <div class="c-list-panel investors-list">
-                        <div class="item" ng-repeat="item in investors">
-                            <div class="clearfix">
-                                <div class="name pull-left">{{ item.name }}</div>
-                                购买
-                                <div class="amount pull-right">{{ item.amount | number }} 元</div>
-                            </div>
-                            <div class="date">{{ item.submitTime | date: "yyyy-MM-dd HH:mm:ss" }}</div>
-                        </div>
-
-                        <div ng-if="!investors.length">
-                            <h4 class="alert alert-info text-center">暂无记录</h4>
-                        </div>
-                    </div>
-                </div>
-            </uib-tab>
-        </uib-tabset>
     </section>
 
 </div>
