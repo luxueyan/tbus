@@ -196,7 +196,7 @@ do (_, angular, moment, Array) ->
             get_loan_list_by_config: (query_set = {}, cache = true) ->
 
                 _.defaults query_set, {
-                    status: 'SCHEDULED'
+                    status: ''
                     minDuration: 0
                     maxDuration: 100
                     minRate: 0
@@ -404,20 +404,29 @@ do (_, angular, moment, Array) ->
             payment_pool_register: (name, idNumber) ->
 
                 @$http
-                    .post '/api/v2/guozhengtong/authenticateUser/MYSELF',
+                    .post '/api/v2/hundsun/register/MYSELF',
                         _.compact {name, idNumber}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
 
 
-            payment_pool_withdraw: (amount, paymentPassword) ->
+            payment_pool_recharge: (cardNo, amount, paymentPassword) ->
 
                 @$http
-                    .post '/api/v2/lianlianpay/withdraw/MYSELF', {amount, paymentPassword}
+                    .post '/api/v2/hundsun/recharge/MYSELF', {cardNo, amount, paymentPassword}
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
+            payment_pool_withdraw: (cardNo, amount, paymentPassword) ->
+
+                @$http
+                    .post '/api/v2/hundsun/withdraw/MYSELF', {cardNo, amount, paymentPassword}
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             payment_pool_check_password: (password) ->
@@ -461,23 +470,42 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_DATA
 
 
-            payment_pool_bind_card: (bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha) ->
+            payment_pool_check_card: (cardNo, bankCode, cardPhone) ->
 
                 @$http
-                    .post '/api/v2/lianlianpay/bindCard/MYSELF',
-                        _.compact {bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha, source: 'H5'}
+                    .post '/api/v2/hundsun/checkCard/MYSELF',
+                        _.compact {cardNo, bankCode, cardPhone, source: 'H5'}
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
+            payment_pool_bind_card: (cardNo, bankCode, cardPhone, smsCaptcha) ->
+
+                @$http
+                    .post '/api/v2/hundsun/bindCard/MYSELF',
+                        _.compact {cardNo, bankCode, cardPhone, smsCaptcha, source: 'H5'}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
 
 
-            payment_pool_unbind_card: (cardNo, paymentPassword) ->
+            payment_pool_unbind_card: (cardNo) ->
 
                 @$http
-                    .post '/api/v2/lianlianpay/deleteCard/MYSELF', {cardNo, paymentPassword, source: 'H5'}
+                    .post '/api/v2/hundsun/cancelCard/MYSELF', {cardNo, source: 'H5'}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
+
+
+            payment_pool_set_default_card: (cardNo) ->
+
+                @$http
+                    .post '/api/v2/hundsun/setDefaultAccount/MYSELF', {cardNo, source: 'H5'}
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             payment_pool_tender: (loanId, paymentPassword, amount, placementId = '') ->
@@ -492,7 +520,7 @@ do (_, angular, moment, Array) ->
 
             get_available_bank_list: ->
 
-                @$http.get '/api/v2/lianlianpay/banks', cache: true
+                @$http.get '/api/v2/hundsun/banks', cache: true
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA

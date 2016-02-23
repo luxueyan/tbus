@@ -8,7 +8,8 @@
            ng-href="{{ self.back_path || './' }}"
         ><param class="glyphicon glyphicon-menu-left"></a>
 
-        <a class="col-xs-3 back" href=""
+        <a class="col-xs-3 back"
+           ng-href="{{ is_login_successful && (self.back_path || './') }}"
            ng-if="self.step === 'two'"
            ng-click="self.step = 'one'"
         ><param class="glyphicon glyphicon-menu-left"></a>
@@ -17,7 +18,9 @@
             <span ng-if="self.bind_weixin">绑定微信</span>
             <span ng-if="!self.bind_weixin">
                 <span ng-show="self.step === 'one'">手机号</span>
-                <span ng-show="self.step === 'two'">输入密码</span>
+                <span ng-show="self.step === 'two'">
+                    {{ is_login_successful ? '登录成功' : '输入密码' }}
+                </span>
             </span>
         </span>
         <span class="col-xs-3">&nbsp;</span>

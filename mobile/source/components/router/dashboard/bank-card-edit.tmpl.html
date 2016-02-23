@@ -1,0 +1,47 @@
+
+<div id="dashboard-bank-card-edit">
+
+    <nav class="container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" href="dashboard/bank-card">
+            <param class="glyphicon glyphicon-menu-left">
+        </a>
+        <span class="col-xs-6 title">银行卡编辑</span>
+        <span class="col-xs-3">&nbsp;</span>
+    </div>
+    </nav>
+
+    <section class="banks">
+        <ul class="list-unstyled u-off-margin-bottom bank-list">
+            <li>
+                <div class="media media-bank">
+                    <div class="media-left">
+                        <img width="30" ng-src="assets/image/bank-icons/{{ bank_account.account.bank | lowercase }}.png">
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            {{ bank_account.account.bankName }} ｜
+                            {{ bank_account.account.account | string_replace: '^\\d+(\\d{4})$' : '****$1' }}
+                        </h4>
+                        <p class="desc">充值限额: <br>单笔{{ bank_account.account.singleQuota }}  / 日限额{{ bank_account.account.dailyQuota }} </p>
+                        <span class="default-card"
+                              ng-if="bank_account.defaultAccount"
+                        >默认卡</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <div class="container action">
+            <button class="btn btn-lg btn-block btn-delete"
+                    ng-click="self.unbind(bank_account.account.account)"
+            >删除该卡</button>
+
+            <button class="btn btn-lg btn-block btn-theme"
+                    ng-if="!bank_account.defaultAccount"
+                    ng-click="self.set_default(bank_account.account.account)"
+            >设为默认卡</button>
+        </div>
+    </section>
+
+</div>

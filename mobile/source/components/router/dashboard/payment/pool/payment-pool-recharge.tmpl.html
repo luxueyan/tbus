@@ -1,5 +1,5 @@
 
-<div id="dashboard-recharge" class="">
+<div id="dashboard-recharge">
 
     <nav class="container page-nav">
     <div class="row">
@@ -10,7 +10,12 @@
     </nav>
 
     <div>
-        <param ng-model="msg.success" ng-init="msg.success = '充值成功'">
+        <param ng-model="msg" ng-init="msg = {
+            INCORRECT_PASSWORD: '交易密码不正确',
+
+            SUCCEED: '充值成功',
+            UNKNOWN: '充值失败',
+        }">
     </div>
 
     <section class="text-center balance" x-gyro-comment>
@@ -21,10 +26,7 @@
     <section class="form-wrapper">
         <form class="form-horizontal form-flatten"
               name="form"
-              action="/lianlianpay/deposit"
-              method="post"
-              target="_self"
-              ng-submit="self.submit(amount)"
+              ng-submit="self.submit(store)"
               autocapitalize="none"
               autocomplete="off"
               autocorrect="off"
@@ -53,18 +55,20 @@
                     >
                 </div>
 
-                <div class="form-group merge">
+                <div class="form-group merge" ng-if="bank_account">
                     <div class="container">
-                        <div class="media media-bank">
+                        <div class="media media-bank"
+                             ng-click="self.pick_up_bank($event, store.amount)"
+                        >
                             <div class="media-left">
-                                <img width="30" ng-src="assets/image/bank-icons/{{ bank_account.bank_code | lowercase }}.png">
+                                <img width="30" ng-src="assets/image/bank-icons/{{ bank_account.account.bank | lowercase }}.png">
                             </div>
                             <div class="media-body media-middle">
                                 <h4 class="media-heading">
-                                    {{ bank_account.bank }} ｜
-                                    {{ bank_account.account | string_replace: '^\\d+(\\d{4})$' : '****$1' }}
+                                    {{ bank_account.account.bankName }} ｜
+                                    {{ bank_account.account.account | string_replace: '^\\d+(\\d{4})$' : '****$1' }}
                                 </h4>
-                                <p class="desc">首笔 / 单笔 / 日限额</p>
+                                <p class="desc">单笔{{ bank_account.account.singleQuota }}  / 日限额{{ bank_account.account.dailyQuota }}</p>
                             </div>
                             <div class="media-right media-middle">
                                 <param class="glyphicon glyphicon-menu-right">
@@ -79,26 +83,37 @@
                            type="number"
                            id="amount"
                            name="amount"
-                           ng-model="amount"
+                           ng-model="store.amount"
                            max="1000000"
                            minlength="1"
                            placeholder="输入充值金额"
                            required
                     >
                 </div>
+
+                <div class="form-group merge">
+                    <label for="password">交易密码</label>
+                    <input name="password"
+                           id="password"
+                           ng-model="store.password"
+                           type="password"
+                           class="form-control input-target input-lg"
+                           placeholder="请输入交易密码"
+                           required
+                    >
+                </div>
             </div>
 
-            <input type="hidden" name="isWAP" value="true">
-            <input type="hidden" name="retUrl" value="{{ return_url }}">
+            <input type="hidden" name="isWAP" value="true" x-gyro-comment>
+            <input type="hidden" name="retUrl" value="{{ return_url }}" x-gyro-comment>
 
             <p class="container">
                 <button class="btn btn-theme btn-block btn-lg"
                         type="submit"
-                        ng-if="self.user.has_payment_account"
                         ng-disabled="form.$invalid || self.submit_sending"
                 >确认充值</button>
             </p>
-    </form>
+        </form>
     </section>
 
     <section class="container notice" x-gyro-comment>

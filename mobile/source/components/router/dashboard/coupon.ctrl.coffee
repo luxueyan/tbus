@@ -40,7 +40,7 @@ do (_, angular) ->
 
                         return [
                             {} = type: 'placed', data: filter _.split 'PLACED'
-                            {} = type: 'used', data: filter _.split 'USED'
+                            # {} = type: 'used', data: filter _.split 'USED'
                             {} = type: 'redeemed', data: filter _.split 'REDEEMED'
                             {} = type: 'expired', data: filter _.split 'EXPIRED'
                         ]

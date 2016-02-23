@@ -6,7 +6,7 @@
         <a class="col-xs-3 back" ng-href="{{ back_path || 'login' }}">
             <param class="glyphicon glyphicon-menu-left">
         </a>
-        <span class="col-xs-6 title">设置密码</span>
+        <span class="col-xs-6 title">{{ is_register_successful ? '注册成功' : '设置密码' }}</span>
         <a class="col-xs-3 text-right actions text-muted hidden" href="login">登录</a>
     </div>
     </nav>
@@ -16,9 +16,11 @@
           MOBILE_EXISTS: '手机号已被占用',
           MOBILE_USED: '手机号已被占用',
           CAPTCHA_INVALID: '手机验证码不匹配',
+          SMS_LOGIN_ERROR: '手机验证码不匹配',
           MOBILE_CAPTCHA_INVALID: '手机验证码不匹配',
           MOBILE_CAPTCHA_ALREADY_SENT: '验证码已发送',
           MOBILE_SMS_CAPTCHA_ALREADY_SEND: '验证码已发送',
+          SEND_SMS_CAPTCHA_FAILED: '验证码发送失败',
           LOGINNAME_EXISTS: '用户名已被占用',
           INVALID_CAPTCHA: '图形验证码不匹配',
           IMG_CAPTCHA_NULL: '请输入图形验证码',
@@ -246,7 +248,7 @@
         <div class="container agreement" x-gyro-comment>
             <label>
                 <input type="checkbox" ng-init="agreement = true" ng-model="agreement" required>
-                我阅读并同意 <a href="#" ng-click="self.agreement('新毅金融用户注册协议')">《新毅金服务注册服务协议》</a>
+                我阅读并同意 <a href="#" ng-click="self.agreement('用户注册协议')">《注册服务协议》</a>
             </label>
         </div>
 

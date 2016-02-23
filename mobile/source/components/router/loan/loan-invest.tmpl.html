@@ -1,5 +1,5 @@
 
-<div id="loan-invest">
+<div id="loan-invest" ng-if="!show_invest_result">
 
     <nav class="omit-margin container page-nav">
     <div class="row">
@@ -90,10 +90,33 @@
             </div>
         </section>
 
+        <section class="form-flatten">
+            <div class="inputs container">
+                <div class="form-group merge">
+                    <label for="password">交易密码</label>
+                    <input name="password"
+                           id="password"
+                           ng-model="store.password"
+                           type="password"
+                           class="form-control input-target input-lg"
+                           placeholder="请输入交易密码"
+                           required
+                    >
+                </div>
+            </div>
+        </section>
+
+        <div class="container agreement">
+            <label>
+                <input type="checkbox" ng-init="agreement = true" ng-model="agreement" required>
+                阅读并同意<a href="#" ng-click="self.agreement('投资协议')">《投资协议》</a>
+            </label>
+        </div>
+
         <section class="container">
             <button type="submit" class="btn btn-theme btn-lg btn-block"
                     ng-disabled="form.$invalid || self.submit_sending"
-            >下一步</button>
+            >确认投资</button>
         </section>
     </form>
 
@@ -252,7 +275,7 @@
 
 
 
-<div id="loan-invest" x-gyro-comment>
+<div id="loan-invest" ng-if="show_invest_result">
 
     <nav class="omit-margin container page-nav">
     <div class="row">

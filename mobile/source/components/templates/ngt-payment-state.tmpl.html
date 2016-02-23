@@ -10,21 +10,21 @@
     </div>
     <div class="modal-header" ng-switch-when="bind-card">
         <img class="icon" width="44" ng-src="assets/image/user-icon.png">
-        <h4>欢迎回来</h4>
+        <h4>欢迎回来，{{ user.info.name || user.info.mobile }}</h4>
     </div>
 </div>
 
 <div class="modal-body">
-    <h5>为顺利投资<br>还需进行以下认证</h5>
-    <h5 x-gyro-comment>您已经在我们平台上进行过注册认证<br>为了能顺利投资还需设置交易密码</h5>
+    <h5 ng-if="!user.has_bank_card">为顺利投资<br>还需进行以下认证</h5>
+    <h5 ng-if="user.has_bank_card && !user.has_payment_password">您已经在我们平台上进行过注册认证<br>为了能顺利投资还需设置交易密码</h5>
 
     <ul class="list-unstyled state-list">
-        <li>
+        <li ng-class="{ gray: user.has_bank_card }">
             <div class="state">
                 <param class="icon icon-bank-card">银行卡绑定
             </div>
         </li>
-        <li>
+        <li ng-class="{ gray: user.has_payment_password }">
             <div class="state">
                 <param class="icon icon-payment-password">交易密码
             </div>
@@ -33,6 +33,16 @@
 </div>
 
 <div class="modal-footer">
-    <a class="btn btn-theme btn-block btn-lg btn-action" href="">立即认证</a>
-    <a class="btn btn-link btn-block" href="" ng-click="$close()">以后再说</a>
+    <a class="btn btn-theme btn-block btn-lg btn-action"
+       ng-href="dashboard/payment/bind-card?back={{ page_path }}"
+       ng-if="!user.has_bank_card"
+    >立即认证</a>
+    <a class="btn btn-theme btn-block btn-lg btn-action"
+       ng-href="dashboard/payment/password?back={{ page_path }}"
+       ng-if="user.has_bank_card && !user.has_payment_password"
+    >去设置</a>
+    <a class="btn btn-link btn-block"
+       ng-if="back_path || next_path"
+       ng-href="{{ back_path || next_path }}"
+    >以后再说</a>
 </div>

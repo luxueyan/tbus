@@ -3,8 +3,8 @@ do (_, angular, moment, Math, Date) ->
 
     angular.module('controller').controller 'LoanCtrl',
 
-        _.ai '            @user, @loan, @api, @$scope, @$window, map_loan_summary, @$routeParams, @$timeout, @$uibModal', class
-            constructor: (@user, @loan, @api, @$scope, @$window, map_loan_summary, @$routeParams, @$timeout, @$uibModal) ->
+        _.ai '            @loan, @api, @$scope, @$window, map_loan_summary, @$routeParams, @$timeout', class
+            constructor: (@loan, @api, @$scope, @$window, map_loan_summary, @$routeParams, @$timeout) ->
 
                 @$window.scrollTo 0, 0
 
@@ -17,26 +17,7 @@ do (_, angular, moment, Math, Date) ->
                 (@api.get_loan_investors(@loan.id)
 
                     .then (data) =>
-
-                        @$scope.investors = data.map (item) ->
-
-                            item.userLoginName = item.userLoginName.trim()
-
-                            prefix = new RegExp decodeURI '^%E6%89%8B%E6%9C%BA%E7%94%A8%E6%88%B7'
-                            name = item.userLoginName.replace prefix, ''
-
-                            prefix = /^[a-zA-Z]{4}_/
-                            name = name.replace prefix, ''
-
-                            if name isnt item.userLoginName
-                                item.name = name.replace /(\d{3})(\d+)(\d{4})$/, '$1****$3'
-                            else
-                                [empty, head, tail] = name.split /^(..)/
-
-                                item.name = head + tail.replace /./g, '*'
-                                item.name = "#{ head[0] }*" if name.length < 3
-
-                            return item
+                        @$scope.investors = data
 
                     .finally =>
                         @$scope.loading_investors = false
@@ -56,31 +37,6 @@ do (_, angular, moment, Math, Date) ->
 
                     @$window.location.reload()
 
-
-            agreement: (segment) ->
-
-                prompt = @$uibModal.open {
-                    size: 'lg'
-                    backdrop: 'static'
-                    windowClass: 'center ngt-invest-agreement'
-                    animation: true
-                    templateUrl: 'ngt-invest-agreement.tmpl'
-
-                    resolve: {
-                        content: _.ai '$http', ($http) ->
-                            $http
-                                .get "/api/v2/cms/category/DECLARATION/name/#{ segment }", {cache: true}
-                                .then (response) -> _.get response.data, '[0].content'
-                    }
-
-                    controller: _.ai '$scope, content',
-                        (             $scope, content) ->
-                            angular.extend $scope, {content}
-                }
-
-                once = @$scope.$on '$locationChangeStart', ->
-                    prompt?.dismiss()
-                    do once
 
 
 
@@ -147,6 +103,9 @@ do (_, angular, moment, Math, Date) ->
             loanRequest.investRule.minAmount = Math.max stepAmount, minAmount
 
         result = _.pick item, _.split 'id title status amount method'
+
+        if item.status in _.split 'SCHEDULED OPENED FINISHED'
+            result.estimated_value_date = new Date +moment().add(3, 'd')
 
         return _.merge result, {
 

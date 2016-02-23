@@ -28,35 +28,11 @@
             <tbody>
                 <tr ng-repeat="item in investors">
                     <td class="date">{{ item.submitTime | date: 'yy-MM-dd HH:mm' }}</td>
-                    <td class="name">{{ item.name }}</td>
+                    <td class="mobile">{{ item.mobile | string_replace: '^(\\d{3})(\\d{4})(\\d{4})$' : '$1****$3' }}</td>
                     <td class="amount text-right">{{ item.amount | number: 2 }}</td>
                 </tr>
             </tbody>
         </table>
-    </section>
-
-
-
-
-
-
-
-
-
-
-    <section class="c-list-panel investors-list" x-gyro-comment>
-        <div class="item" ng-repeat="item in investors">
-            <div class="clearfix">
-                <div class="name pull-left">{{ item.name }}</div>
-                购买
-                <div class="amount pull-right">{{ item.amount | number }} 元</div>
-            </div>
-            <div class="date">{{ item.submitTime | date: 'yyyy-MM-dd HH:mm:ss' }}</div>
-        </div>
-
-        <div ng-if="!investors.length" class="container">
-            <h4 class="alert alert-info text-center">暂无记录</h4>
-        </div>
     </section>
 
 </div>

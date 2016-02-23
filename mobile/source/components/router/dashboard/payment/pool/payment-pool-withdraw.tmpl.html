@@ -1,5 +1,5 @@
 
-<div id="dashboard-withdraw" class="">
+<div id="dashboard-withdraw">
 
     <nav class="container page-nav">
     <div class="row">
@@ -26,7 +26,7 @@
     <section class="form-wrapper">
         <form class="form-horizontal form-flatten"
               name="form"
-              ng-submit="self.submit(amount, password)"
+              ng-submit="self.submit(store)"
               autocapitalize="none"
               autocomplete="off"
               autocorrect="off"
@@ -43,16 +43,18 @@
                     >
                 </div>
 
-                <div class="form-group merge">
+                <div class="form-group merge" ng-if="bank_account">
                     <div class="container">
-                        <div class="media media-bank">
+                        <div class="media media-bank"
+                             ng-click="self.pick_up_bank($event, store.amount)"
+                        >
                             <div class="media-left">
-                                <img width="30" ng-src="assets/image/bank-icons/{{ bank_account.bank_code | lowercase }}.png">
+                                <img width="30" ng-src="assets/image/bank-icons/{{ bank_account.account.bank | lowercase }}.png">
                             </div>
                             <div class="media-body media-middle">
                                 <h4 class="media-heading">
-                                    {{ bank_account.bank }} ｜
-                                    {{ bank_account.account | string_replace: '^\\d+(\\d{4})$' : '****$1' }}
+                                    {{ bank_account.account.bankName }} ｜
+                                    {{ bank_account.account.account | string_replace: '^\\d+(\\d{4})$' : '****$1' }}
                                 </h4>
                             </div>
                             <div class="media-right media-middle">
@@ -66,7 +68,7 @@
                     <label for="withdraw">提现金额</label>
                     <input name="withdraw"
                            id="withdraw"
-                           ng-model="amount"
+                           ng-model="store.amount"
                            type="number"
                            class="form-control input-target input-lg"
                            min="3"
@@ -79,11 +81,11 @@
                     >
                 </div>
 
-                <div class="form-group merge" x-gyro-comment>
+                <div class="form-group merge">
                     <label for="password">交易密码</label>
                     <input name="password"
                            id="password"
-                           ng-model="password"
+                           ng-model="store.password"
                            type="password"
                            class="form-control input-target input-lg"
                            placeholder="请输入交易密码"
@@ -94,15 +96,14 @@
 
             <div class="container hint">
                 <p class="fee">提现费用3元/笔,由支付通道收取</p>
-                <p class="amount" ng-class="{ invisible: !form.withdraw.$valid }">实际到账: <span class="u-color-main">{{ amount - 3 }}元</span></p>
+                <p class="amount" ng-class="{ invisible: !form.withdraw.$valid }">实际到账: <span class="u-color-main">{{ store.amount - 3 }}元</span></p>
             </div>
 
             <p class="container"
-               ng-init="invalid = available_amount <= 0.01 || amount > available_amount"
+               ng-init="invalid = available_amount <= 0.01 || store.amount > available_amount"
             >
                 <button class="btn btn-theme btn-block btn-lg"
                         type="submit"
-                        ng-if="self.user.has_payment_account && self.user.has_bank_card"
                         ng-disabled="form.$invalid || invalid || self.submit_sending"
                 >
                     <span ng-if="!invalid">确认提现</span>

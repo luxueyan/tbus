@@ -3,8 +3,8 @@ do (_, angular, Math) ->
 
     angular.module('controller').controller 'LoanInvestCtrl',
 
-        _.ai '            @api, @user, @loan, @coupon, @$scope, @$q, @$location, @$window, map_loan_summary, @$uibModal, @mg_alert, @$routeParams', class
-            constructor: (@api, @user, @loan, @coupon, @$scope, @$q, @$location, @$window, map_loan_summary, @$uibModal, @mg_alert, @$routeParams) ->
+        _.ai '            @api, @user, @loan, @coupon, @$scope, @$q, @$location, @$window, map_loan_summary, @$uibModal, @mg_alert, @$routeParams, @popup_payment_state', class
+            constructor: (@api, @user, @loan, @coupon, @$scope, @$q, @$location, @$window, map_loan_summary, @$uibModal, @mg_alert, @$routeParams, @popup_payment_state) ->
 
                 @$window.scrollTo 0, 0
 
@@ -58,6 +58,14 @@ do (_, angular, Math) ->
 
                     if +amount
                         @$scope.store.amount = +amount
+
+                if !@user.has_bank_card or !@user.has_payment_password
+                    @popup_payment_state {
+                        user: @user
+                        page: 'invest'
+                        page_path: @page_path
+                        back_path: "loan/#{ @loan.id }"
+                    }
 
 
             amount_polishing: (amount) ->
@@ -151,25 +159,27 @@ do (_, angular, Math) ->
                 (@api.payment_pool_tender(loan.id, password, amount, coupon?.id)
 
                     .then @api.process_response
-                    .then @api.TAKE_RESPONSE_DATA
+                    # .then @api.TAKE_RESPONSE_DATA
 
-                    .then ({userShare, tenderResult}) =>
-                        return true unless userShare?.id
+                    # .then ({userShare, tenderResult}) =>
+                    #     return true unless userShare?.id
 
-                        @prompt_coupon_sharing(userShare.id).catch =>
-                            @$q.resolve false
+                    #     @prompt_coupon_sharing(userShare.id).catch =>
+                    #         @$q.resolve false
 
-                    .then (alert_success) =>
+                    .then =>
 
-                        if alert_success
-                            @mg_alert '投标成功'
-                                .result.finally =>
-                                    @$location.path "/loan/#{ @loan.id }"
+                        # @mg_alert '投标成功'
+                        #     .result.finally =>
+                        #         @$location.path "/loan/#{ @loan.id }"
 
-                        @$location.path "/loan/#{ @loan.id }"
+                        # @$location.path "/loan/#{ @loan.id }"
 
-                        @$scope.$on '$locationChangeSuccess', =>
-                            @$window.location.reload()
+                        @$scope.show_invest_result = true
+
+                        @$scope.$on '$locationChangeStart', (event, new_path) =>
+                            event.preventDefault()
+                            @$window.location = new_path
 
                     .catch (data) =>
                         message = _.get data, 'error[0].message', '系统繁忙，请稍后重试！'
