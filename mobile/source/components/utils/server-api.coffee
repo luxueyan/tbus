@@ -481,13 +481,22 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_DATA
 
 
-            payment_pool_unbind_card: (cardNo, paymentPassword) ->
+            payment_pool_unbind_card: (cardNo) ->
 
                 @$http
-                    .post '/api/v2/lianlianpay/deleteCard/MYSELF', {cardNo, paymentPassword, source: 'H5'}
+                    .post '/api/v2/hundsun/cancelCard/MYSELF', {cardNo, source: 'H5'}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
+
+
+            payment_pool_set_default_card: (cardNo) ->
+
+                @$http
+                    .post '/api/v2/hundsun/setDefaultAccount/MYSELF', {cardNo, source: 'H5'}
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             payment_pool_tender: (loanId, paymentPassword, amount, placementId = '') ->
