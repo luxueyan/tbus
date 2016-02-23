@@ -404,7 +404,7 @@ do (_, angular, moment, Array) ->
             payment_pool_register: (name, idNumber) ->
 
                 @$http
-                    .post '/api/v2/guozhengtong/authenticateUser/MYSELF',
+                    .post '/api/v2/hundsun/register/MYSELF',
                         _.compact {name, idNumber}
 
                     .then TAKE_RESPONSE_DATA
@@ -461,11 +461,21 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_DATA
 
 
-            payment_pool_bind_card: (bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha) ->
+            payment_pool_check_card: (cardNo, bankCode, cardPhone) ->
 
                 @$http
-                    .post '/api/v2/lianlianpay/bindCard/MYSELF',
-                        _.compact {bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha, source: 'H5'}
+                    .post '/api/v2/hundsun/checkCard/MYSELF',
+                        _.compact {cardNo, bankCode, cardPhone, source: 'H5'}
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
+            payment_pool_bind_card: (cardNo, bankCode, cardPhone, smsCaptcha) ->
+
+                @$http
+                    .post '/api/v2/hundsun/bindCard/MYSELF',
+                        _.compact {cardNo, bankCode, cardPhone, smsCaptcha, source: 'H5'}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
@@ -492,7 +502,7 @@ do (_, angular, moment, Array) ->
 
             get_available_bank_list: ->
 
-                @$http.get '/api/v2/lianlianpay/banks', cache: true
+                @$http.get '/api/v2/hundsun/banks', cache: true
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
