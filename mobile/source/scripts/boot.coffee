@@ -337,7 +337,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                 return update_user_funds()
                     }
 
-                    .when '/dashboard/recharge/:amount?/:bank?', {
+                    .when '/dashboard/recharge/:amount?/:bank_id?', {
                         controller: 'RechargeCtrl as self'
                         templateUrl: 'components/router/dashboard/payment/pool/payment-pool-recharge.tmpl.html'
                         resolve:

@@ -411,13 +411,14 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
-            payment_pool_withdraw: (amount, paymentPassword) ->
+            payment_pool_recharge: (cardNo, amount, paymentPassword) ->
 
                 @$http
-                    .post '/api/v2/lianlianpay/withdraw/MYSELF', {amount, paymentPassword}
+                    .post '/api/v2/hundsun/recharge/MYSELF', {cardNo, amount, paymentPassword}
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
 
 
             payment_pool_check_password: (password) ->
