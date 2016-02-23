@@ -354,7 +354,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                 return update_user_funds()
                     }
 
-                    .when '/dashboard/withdraw/:amount?/:bank?', {
+                    .when '/dashboard/withdraw/:amount?/:bank_id?', {
                         controller: 'WithdrawCtrl as self'
                         templateUrl: 'components/router/dashboard/payment/pool/payment-pool-withdraw.tmpl.html'
                         resolve:
