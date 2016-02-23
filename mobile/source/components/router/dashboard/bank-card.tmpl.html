@@ -13,18 +13,22 @@
 
     <section class="banks">
         <ul class="list-unstyled u-off-margin-bottom bank-list">
-            <li ng-click="picking && self.select(bank_account.account) || self.edit(bank_account.account)">
+            <li ng-repeat="item in bank_account_list"
+                ng-click="picking && self.select(item.id) || self.edit(item.id)"
+            >
                 <div class="media media-bank">
                     <div class="media-left">
-                        <img width="30" ng-src="assets/image/bank-icons/{{ bank_account.bank_code | lowercase }}.png">
+                        <img width="30" ng-src="assets/image/bank-icons/{{ item.account.bank | lowercase }}.png">
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">
-                            {{ bank_account.bank }} ｜
-                            {{ bank_account.account | string_replace: '^\\d+(\\d{4})$' : '****$1' }}
+                            {{ item.account.bankName }} ｜
+                            {{ item.account.account | string_replace: '^\\d+(\\d{4})$' : '****$1' }}
                         </h4>
-                        <p class="desc">充值限额: <br>首笔 / 单笔 / 日限额</p>
-                        <span class="default-card">默认卡</span>
+                        <p class="desc">充值限额: <br>单笔{{ item.account.singleQuota }}  / 日限额{{ item.account.dailyQuota }} </p>
+                        <span class="default-card"
+                              ng-if="item.defaultAccount"
+                        >默认卡</span>
                     </div>
                 </div>
             </li>

@@ -141,7 +141,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         do $q.reject
                     }
 
-                    .when '/dashboard/bank-card/edit/:bank', {
+                    .when '/dashboard/bank-card/edit/:id', {
                         controller: 'BankCardEditCtrl as self'
                         templateUrl: 'components/router/dashboard/bank-card-edit.tmpl.html'
                         resolve:
@@ -151,7 +151,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         $location
                                             .replace()
                                             .path '/login'
-                                            .search next: "dashboard/bank-card/edit/#{ $route.current.params.bank }"
+                                            .search next: "dashboard/bank-card/edit/#{ $route.current.params.id }"
                                         do $q.reject
                     }
 
@@ -337,7 +337,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                 return update_user_funds()
                     }
 
-                    .when '/dashboard/recharge/:amount?/:bank?', {
+                    .when '/dashboard/recharge/:amount?/:bank_id?', {
                         controller: 'RechargeCtrl as self'
                         templateUrl: 'components/router/dashboard/payment/pool/payment-pool-recharge.tmpl.html'
                         resolve:
@@ -354,7 +354,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                 return update_user_funds()
                     }
 
-                    .when '/dashboard/withdraw/:amount?/:bank?', {
+                    .when '/dashboard/withdraw/:amount?/:bank_id?', {
                         controller: 'WithdrawCtrl as self'
                         templateUrl: 'components/router/dashboard/payment/pool/payment-pool-withdraw.tmpl.html'
                         resolve:

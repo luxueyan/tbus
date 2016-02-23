@@ -1852,6 +1852,14 @@ a {
         #loan .loan-summary;
     }
 
+    .form-flatten {
+        #login .form-flatten;
+
+        .inputs {
+            margin-bottom: 0;
+        }
+    }
+
     .form-invest {
 
         section {
@@ -1966,6 +1974,17 @@ a {
             .hint {
                 padding: 7px 0;
                 color: #9699A0;
+            }
+        }
+
+        .agreement {
+            label {
+                font-weight: normal;
+                color: #757A82;
+            }
+
+            a {
+                color: #64A7F5;
             }
         }
 
@@ -3427,9 +3446,11 @@ a {
         select.form-control {
             .flex(1);
 
-            margin: 10px;
+            margin: 0;
             padding: 0;
-            font-size: 13px;
+            padding-left: 4px;
+            height: 52px;
+            font-size: 14px;
             color: #333;
             border: none;
             box-shadow: none;

@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'PaymentPoolBindCardCtrl',
 
-        _.ai '            @banks, @user, @api, @$scope, @$window, @$q, @mg_alert, @$location, @$timeout, @$interval, @$routeParams, @$uibModal', class
-            constructor: (@banks, @user, @api, @$scope, @$window, @$q, @mg_alert, @$location, @$timeout, @$interval, @$routeParams, @$uibModal) ->
+        _.ai '            @banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @mg_alert, @$location, @$timeout, @$interval, @$routeParams, @$uibModal, @popup_payment_state', class
+            constructor: (@banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @mg_alert, @$location, @$timeout, @$interval, @$routeParams, @$uibModal, @popup_payment_state) ->
 
                 @$window.scrollTo 0, 0
 
@@ -21,24 +21,55 @@ do (_, angular) ->
                 @error = {timer: null, timeout: 4000, message: '', on: false}
                 @captcha = {timer: null, count: 60, count_default: 60, has_sent: false, buffering: false}
 
-                @api.get_province_list().then (data) =>
-                    @$scope.province = data
+                # @api.get_province_list().then (data) =>
+                #     @$scope.province = data
 
 
-            send_mobile_captcha: ->
+            send_mobile_captcha: ({id_number, user_name, cardNo, bank, cardPhone}) ->
 
-                do @api.payment_pool_bind_card_sent_captcha
+                # do @api.payment_pool_bind_card_sent_captcha
 
-                @captcha.timer = @$interval =>
-                    @captcha.count -= 1
+                (@$q.resolve(!!@user.has_payment_account)
 
-                    if @captcha.count < 1
-                        @$interval.cancel @captcha.timer
-                        @captcha.count = @captcha.count_default
-                        @captcha.buffering = false
-                , 1000
+                    .then (has_payment_account) =>
+                        return if has_payment_account
 
-                @captcha.has_sent = @captcha.buffering = true
+                        (@api.payment_pool_register(user_name, id_number)
+
+                            .then @api.process_response
+
+                            .then (data) =>
+                                @user.info.name = user_name
+                                @user.info.idNumber = id_number
+                                @user.has_payment_account = true
+                        )
+
+                    .then => @api.payment_pool_check_card(cardNo, bank.bankCode, cardPhone)
+
+                    .then @api.process_response
+
+                    .then =>
+                        @captcha.timer = @$interval =>
+                            @captcha.count -= 1
+
+                            if @captcha.count < 1
+                                @$interval.cancel @captcha.timer
+                                @captcha.count = @captcha.count_default
+                                @captcha.buffering = false
+                        , 1000
+
+                        @captcha.has_sent = @captcha.buffering = true
+
+                    .catch (data) =>
+                        @$timeout.cancel @error.timer
+
+                        @error.on = true
+                        @error.message = _.get data, 'error[0].message', '系统繁忙，请稍后重试！'
+
+                        @error.timer = @$timeout =>
+                            @error.on = false
+                        , @error.timeout
+                )
 
 
             fetch_city: (province) ->
@@ -72,7 +103,7 @@ do (_, angular) ->
                     _.set @$scope.store, key, ''
 
 
-            bind_card: ({bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha}) ->
+            bind_card: ({id_number, user_name, cardNo, bank, cardPhone, smsCaptcha}) ->
 
                 @submit_sending = true
 
@@ -92,27 +123,40 @@ do (_, angular) ->
 
                     .then (location_needed) ->
 
+                        return check_input({id_number}) unless !!id_number
+                        return check_input({user_name}) unless !!user_name
                         return check_input({cardNo}) unless !!cardNo
-                        return check_input({bankName}) unless !!bankName
-                        return check_input({city, province, branchName}) if location_needed
+                        return check_input({bank}) unless !!bank
+                        return check_input({cardPhone}) unless !!cardPhone
+                        # return check_input({city, province, branchName}) if location_needed
                         return check_input({smsCaptcha}) unless !!smsCaptcha
 
-                    .then => @api.payment_pool_bind_card(bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha)
+                    .then => @api.payment_pool_bind_card(cardNo, bank.bankCode, cardPhone, smsCaptcha)
+
+                    .then @api.process_response
 
                     .then (data) =>
-                        return @$q.reject(data) unless data.success is true
-                        return data
+                        @$window.alert @$scope.msg.SUCCEED
 
-                    .then (data) =>
+                        @$rootScope.$on '$locationChangeStart', (event, new_path) =>
+                            event.preventDefault()
+                            @$window.location.href = new_path
+
+                        @user.has_bank_card = true
+
+                        unless @user.has_payment_password
+                            @popup_payment_state {
+                                user: @user
+                                page: 'bind-card'
+                                page_path: 'dashboard/payment/bind-card'
+                            }
+                            return
+
                         @mg_alert _.get data, 'data', 'wow...'
                             .result.finally =>
                                 @$location
                                     .path @next_path
                                     .search t: _.now()
-
-                        @$scope.$on '$locationChangeStart', (event, new_path) =>
-                            event.preventDefault()
-                            @$window.location.href = new_path
 
                     .catch (data) =>
                         @submit_sending = false
@@ -127,7 +171,9 @@ do (_, angular) ->
                 )
 
 
-            select_bank: (store) ->
+            select_bank: (event, store) ->
+
+                do event.preventDefault
 
                 self = @
 
@@ -143,7 +189,7 @@ do (_, angular) ->
                             angular.extend $scope, {
                                 banks: self.banks
                                 select: (bank) ->
-                                    store.bankName = bank
+                                    store.bank = bank
                             }
                 }
 

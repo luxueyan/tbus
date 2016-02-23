@@ -11,7 +11,7 @@ do (_, angular) ->
                 @back_path = @$routeParams.back or 'dashboard'
                 @next_path = @$routeParams.next or 'dashboard'
 
-                @captcha = {timer: null, count: 55, count_default: 55, has_sent: false, buffering: false}
+                @captcha = {timer: null, count: 60, count_default: 60, has_sent: false, buffering: false}
                 @submit_sending = false
 
                 @$scope.type = @$routeParams.type
@@ -39,9 +39,7 @@ do (_, angular) ->
 
                 (@api.payment_pool_set_password(password, mobile_captcha)
 
-                    .then (data) =>
-                        return @$q.reject(data) unless data.success is true
-                        return data
+                    .then @api.process_response
 
                     .then (data) =>
                         @user.has_payment_password = true

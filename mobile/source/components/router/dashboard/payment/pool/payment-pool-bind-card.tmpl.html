@@ -22,12 +22,17 @@
         ]">
 
         <param ng-model="msg" ng-init="msg = {
-            bankName:   '请选择开户银行',
+            id_number: '请输入身份证号码',
+            user_name: '请输入身份证上的姓名',
+            cardPhone: '请输入银行预留手机号',
+            bank:      '请选择开户银行',
             branchName: '请选择支行名称',
             cardNo:     '请输入卡号',
             city:       '请选择市区',
             province:   '请选择省份',
             smsCaptcha: '请输入短信验证码',
+
+            SUCCEED: '银行卡绑定成功',
         }">
     </div>
 
@@ -54,8 +59,8 @@
                     <div class="form-control-wrap">
                         <input id="id-number" class="form-control input-target input-lg" type="text"
                                name="id_number"
-                               ng-model="id_number"
-                               ng-init="id_number = self.user.info.idNumber"
+                               ng-model="store.id_number"
+                               ng-init="store.id_number = self.user.info.idNumber"
                                ng-readonly="self.user.info.idNumber"
                                minlength="18"
                                maxlength="18"
@@ -82,8 +87,8 @@
                                autocapitalize="none"
                                autocomplete="off"
                                autocorrect="off"
-                               ng-model="user_name"
-                               ng-init="user_name = self.user.info.name"
+                               ng-model="store.user_name"
+                               ng-init="store.user_name = self.user.info.name"
                                ng-readonly="self.user.info.name"
                                minlength="2"
                                maxlength="15"
@@ -108,11 +113,6 @@
                     <input id="card-no" class="form-control input-target input-lg" type="tel"
                            name="card-no"
                            ng-model="store.cardNo"
-                           ng-model-options="{
-                               updateOn: 'blur default',
-                               debounce: {blur: 0, default: 300},
-                           }"
-                           ng-change="self.fetch_branch(city[store.city], store.cardNo)"
                            placeholder="输入本人借记卡号"
                            required
                     >
@@ -120,22 +120,26 @@
 
                 <div class="form-group merge form-group-bank">
                     <label for="bank-name">银行</label>
-                    <select name="bankName" class="form-control input-sm"
+                    <select name="bankName" class="form-control input-lg"
                             id="bank-name"
-                            ng-model="store.bankName"
-                            ng-change="self.on_change_bank_name()"
-                            ng-options="name for (code, name) in banks"
-                            x-gyro-comment
+                            ng-model="store.bank"
+                            ng-click="self.select_bank($event, store)"
+                            ng-options="
+                                bank.bankName
+                                for bank in self.banks
+                                track by bank.bankCode
+                            "
+                            required
                     >
                         <option value="">请选择开户银行</option>
                     </select>
                     <input id="bank-name" class="form-control input-target input-lg" type="text"
                            name="bankName"
-                           ng-model="store.bankName"
-                           ng-click="self.select_bank(store)"
+                           ng-model="store.bankCode"
                            placeholder="请选择开户银行"
                            required
                            readonly
+                           x-gyro-comment
                     >
                     <param class="glyphicon glyphicon-menu-right">
                 </div>
@@ -177,7 +181,8 @@
                     <input id="card-phone" class="form-control input-target input-lg" type="tel"
                            name="card-phone"
                            ng-model="store.cardPhone"
-                           ng-init="store.cardPhone = self.user.info.mobile"
+                           ng-pattern="/^1\d{10}$/"
+                           maxlength="11"
                            placeholder="请输入银行预留手机号"
                            required
                     >
@@ -204,8 +209,15 @@
                     >
 
                     <button class="btn btn-sm btn-action btn-plain" type="button"
-                            ng-click="self.send_mobile_captcha()"
-                            ng-disabled="self.captcha.buffering"
+                            ng-click="self.send_mobile_captcha(store)"
+                            ng-disabled="
+                                   !store.id_number
+                                || !store.user_name
+                                || !store.cardNo
+                                || !store.bank
+                                || !store.cardPhone
+                                || self.captcha.buffering
+                            "
                     >
                         <span class="text">获取验证码</span>
                         <span class="count" ng-show="self.captcha.buffering">
@@ -223,7 +235,7 @@
             <div class="container">
                 <div class="form-group container">
                     <button type="submit" class="btn btn-theme btn-block btn-lg"
-                            ng-disabled="self.submit_sending"
+                            ng-disabled="form.$invalid || self.submit_sending"
                     >下一步</button>
                     <a class="btn btn-link btn-block" ng-href="{{ self.back_path || 'dashboard' }}">以后再说</a>
                 </div>
@@ -269,29 +281,16 @@
 
         <section class="banks">
             <ul class="list-unstyled u-off-margin-bottom bank-list">
-                <li ng-click="select('建设银行'); $close()">
+                <li ng-repeat="item in banks"
+                    ng-click="select(item); $close()"
+                >
                     <div class="media media-bank">
                         <div class="media-left media-middle">
-                            <img width="37" ng-src="assets/image/bank-icons/ccb.png">
+                            <img width="37" ng-src="assets/image/bank-icons/{{ item.bankCode | lowercase }}.png">
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading">
-                                建设银行
-                            </h4>
-                            <p class="desc">首笔 / 单笔 / 日限额</p>
-                        </div>
-                    </div>
-                </li>
-                <li ng-click="select('工商银行'); $close()">
-                    <div class="media media-bank">
-                        <div class="media-left media-middle">
-                            <img width="37" ng-src="assets/image/bank-icons/icbc.png">
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">
-                                工商银行
-                            </h4>
-                            <p class="desc">首笔 / 单笔 / 日限额</p>
+                            <h4 class="media-heading">{{ item.bankName }}</h4>
+                            <p class="desc">单笔{{ item.singleQuota }} / 日限额{{ item.dailyQuota }}</p>
                         </div>
                     </div>
                 </li>

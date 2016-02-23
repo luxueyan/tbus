@@ -3,32 +3,28 @@ do (_, angular) ->
 
     angular.module('controller').controller 'BankCardCtrl',
 
-        _.ai '            @user, @api, @$scope, @$window, @$q, @$location, @$routeParams', class
-            constructor: (@user, @api, @$scope, @$window, @$q, @$location, @$routeParams) ->
+        _.ai '            @user, @$scope, @$window, @$location, @$routeParams', class
+            constructor: (@user, @$scope, @$window, @$location, @$routeParams) ->
 
                 @$window.scrollTo 0, 0
 
                 @back_path = @$routeParams.back
 
-                @$scope.picking = 'amount' of @$routeParams
-
-                @$scope.bank_account = _.clone @user.bank_account
-
-                return unless @$scope.bank_account
-                @api.get_available_bank_list().then (data) =>
-                    @$scope.bank_account.bank_code = @$scope.bank_account.bank
-                    @$scope.bank_account.bank = data[@$scope.bank_account.bank]
+                angular.extend @$scope, {
+                    picking: 'amount' of @$routeParams
+                    bank_account_list: _.clone @user.bank_account_list
+                }
 
 
-            select: (bank) ->
+            select: (id) ->
 
                 @$location
-                    .path "#{ @back_path }/#{ bank }"
+                    .path "#{ @back_path }/#{ id }"
                     .search back: null
 
 
-            edit: (bank) ->
+            edit: (id) ->
 
                 @$location
-                    .path "dashboard/bank-card/edit/#{ bank }"
+                    .path "dashboard/bank-card/edit/#{ id }"
                     .search back: null
