@@ -61,6 +61,8 @@ do (_, angular, moment, Array) ->
 
                         api_list.push @$http.get '/api/v2/user/MYSELF/inviteCode'
 
+                        api_list.push @$http.get '/api/v2/hundsun/banks', cache: true
+
                         return @$q.all api_list
 
                     .then (response) =>
@@ -71,6 +73,7 @@ do (_, angular, moment, Array) ->
                             @user.authenticates
                             @user.has_payment_password
                             invite_code
+                            banks
 
                         ] = _.pluck response, 'data'
 
@@ -82,6 +85,10 @@ do (_, angular, moment, Array) ->
                             investingInterestAmount
                             investFrozenAmount
                         '
+
+                        do (list = _(@user.fund_accounts or [])) ->
+                            list.each (item) ->
+                                _.extend item.account, _.find banks, (bank) -> bank.bankCode is item.account.bank
 
                         deferred.resolve @user.ready true
 
