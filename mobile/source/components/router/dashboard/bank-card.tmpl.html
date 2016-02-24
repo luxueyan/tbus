@@ -25,7 +25,11 @@
                             {{ item.account.bankName }} ｜
                             {{ item.account.account | string_replace: '^\\d+(\\d{4})$' : '****$1' }}
                         </h4>
-                        <p class="desc">充值限额: <br>单笔{{ item.account.singleQuota }}  / 日限额{{ item.account.dailyQuota }} </p>
+                        <p class="desc">
+                            充值限额: <br>
+                            单笔{{ item.account.singleQuota == -1 ? '无限额' : item.account.singleQuota }} /
+                            日限额{{ item.account.dailyQuota == -1 ? '无限额' : item.account.dailyQuota }}
+                        </p>
                         <span class="default-card"
                               ng-if="item.defaultAccount"
                         >默认卡</span>
