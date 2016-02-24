@@ -68,7 +68,10 @@
                                     {{ bank_account.account.bankName }} ｜
                                     {{ bank_account.account.account | string_replace: '^\\d+(\\d{4})$' : '****$1' }}
                                 </h4>
-                                <p class="desc">单笔{{ bank_account.account.singleQuota }}  / 日限额{{ bank_account.account.dailyQuota }}</p>
+                                <p class="desc">
+                                    单笔{{ bank_account.account.singleQuota == -1 ? '无限额' : bank_account.account.singleQuota }} /
+                                    日限额{{ bank_account.account.dailyQuota == -1 ? '无限额' : bank_account.account.dailyQuota }}
+                                </p>
                             </div>
                             <div class="media-right media-middle">
                                 <param class="glyphicon glyphicon-menu-right">
