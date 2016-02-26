@@ -17,7 +17,7 @@
     <section class="omit-margin dashboard-summary text-center">
         <div class="subject">
             <div class="name">
-                {{ self.user.info.name || self.user.info.mobile }}您好，您的账户总资产 (元)
+                {{ self.user.info.name || self.user.info.mobile + '，'}}您好，您的账户总资产 (元)
                 <param class="glyphicon glyphicon-question-sign">
             </div>
             <div class="value">{{ fund.total | number: 2 }}</div>
