@@ -14,7 +14,10 @@ do (_, angular) ->
                 @captcha = {timer: null, count: 60, count_default: 60, has_sent: false, buffering: false}
                 @submit_sending = false
 
-                @$scope.type = @$routeParams.type
+                angular.extend @$scope, {
+                    type: @$routeParams.type
+                    store: {}
+                }
 
 
             send_mobile_captcha: ->
@@ -33,7 +36,7 @@ do (_, angular) ->
                 @captcha.has_sent = @captcha.buffering = true
 
 
-            set_password: (password, mobile_captcha) ->
+            set_password: ({password, mobile_captcha}) ->
 
                 @submit_sending = true
 
