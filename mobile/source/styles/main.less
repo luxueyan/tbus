@@ -1259,16 +1259,19 @@ a {
         }
 
         .form-group.merge {
-            .flex-display();
-
-            > .form-control,
-            > .form-control-wrap {
-                .flex(1);
-            }
-
-            position: relative;
             margin-bottom: 0;
-            background-color: #FFF;
+
+            .form-group-inner {
+                .flex-display();
+
+                > .form-control,
+                > .form-control-wrap {
+                    .flex(1);
+                }
+
+                position: relative;
+                background-color: #FFF;
+            }
 
             label {
                 margin: 0 15px;
@@ -1288,32 +1291,31 @@ a {
         .inputs {
             overflow: hidden;
             margin-bottom: 32px;
-            border-top: 1px solid #DEDFE1;
-            border-bottom: 1px solid #DEDFE1;
 
             + .inputs {
                 margin-top: -24px;
             }
 
             .form-group {
-                &:not(:first-child) {
-                    position: relative;
+                .form-group-inner {
+                    border-top: 1px solid #EAEBED;
+                    border-bottom: 1px solid #EAEBED;
+                }
 
-                    &:after {
-                        position: absolute;
-                        display: block;
-                        top: 0;
-                        right: 0;
-                        left: 0;
-                        height: 1px;
-                        background-color: #EAEBED;
+                &:first-child {
+                    .form-group-inner {
+                        border-top: 1px solid #DEDFE1;
                     }
                 }
 
-                &.ng-hide + .form-group {
-                    &:after {
-                        display: none;
+                &:last-child {
+                    .form-group-inner {
+                        border-bottom: 1px solid #DEDFE1;
                     }
+                }
+
+                + .form-group {
+                    margin-top: -1px;
                 }
 
                 .help-block {
