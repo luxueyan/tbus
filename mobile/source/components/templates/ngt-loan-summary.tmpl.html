@@ -4,17 +4,18 @@
         <div class="row">
             <div class="col-xs-6 info rate">
                 <div class="value">
-                    <span class="num">{{ ::loan.rate }}</span><span class="unit">%</span>
+                    <span class="num">{{ loan.rate }}</span><span class="unit">%</span>
                 </div>
                 <div class="name">预期年化</div>
             </div>
+
             <div class="col-xs-6 info duration">
                 <div class="value">
-                    <span ng-if="::loan.raw.duration.days">
-                        <span class="num">{{ ::loan.total_days }}</span><span class="unit">天</span>
+                    <span ng-if="loan.raw.duration.days">
+                        <span class="num">{{ loan.total_days }}</span><span class="unit">天</span>
                     </span>
-                    <span ng-if="::!loan.raw.duration.days">
-                        <span class="num">{{ ::loan.total_months }}</span><span class="unit">个月</span>
+                    <span ng-if="!loan.raw.duration.days">
+                        <span class="num">{{ loan.total_months }}</span><span class="unit">个月</span>
                     </span>
                 </div>
                 <div class="name">项目周期</div>
@@ -24,7 +25,7 @@
 
     <div class="desc">多重保障确保资金安全</div>
 
-    <div ng-switch="::loan.status">
+    <div ng-switch="loan.status">
         <span ng-switch-when="SCHEDULED"
               class="btn btn-block btn-default disabled"
         >即将开始</span>
@@ -42,7 +43,7 @@
         >已结息</span>
     </div>
 
-    <h5 class="u-off-margin-bottom" ng-if="::loan.status === 'SCHEDULED'">
+    <h5 class="u-off-margin-bottom" ng-if="loan.status === 'SCHEDULED'">
         距离开标时间:
         <timer interval="1000"
                end-time="loan.time_open"
@@ -55,34 +56,36 @@
 
 
 <div class="has-chart" ng-if="layout === 'has-chart'">
-    <h4 class="title">{{ ::loan.title }}</h4>
+    <h4 class="title">{{ loan.title }}</h4>
     <div class="container text-center">
         <div class="row">
             <div class="col-xs-4 info rate">
                 <div class="value">
-                    <span class="num">{{ ::loan.rate }}</span><span class="unit">%</span>
+                    <span class="num">{{ loan.rate }}</span><span class="unit">%</span>
                 </div>
                 <div class="name">预期年化</div>
             </div>
+
             <div class="col-xs-4 info duration">
                 <div class="value">
-                    <span ng-if="::loan.raw.duration.days">
-                        <span class="num">{{ ::loan.total_days }}</span><span class="unit">天</span>
+                    <span ng-if="loan.raw.duration.days">
+                        <span class="num">{{ loan.total_days }}</span><span class="unit">天</span>
                     </span>
-                    <span ng-if="::!loan.raw.duration.days">
-                        <span class="num">{{ ::loan.total_months }}</span><span class="unit">个月</span>
+                    <span ng-if="!loan.raw.duration.days">
+                        <span class="num">{{ loan.total_months }}</span><span class="unit">个月</span>
                     </span>
                 </div>
                 <div class="name">项目周期</div>
             </div>
+
             <div class="col-xs-4 info percent">
                 <span class="chart"
                       x-easypiechart
-                      percent="::loan.invest_percent_int"
-                      options="::loan.chart_options"
+                      percent="loan.invest_percent_int"
+                      options="loan.chart_options"
                 ></span>
 
-                <span class="status" ng-switch="::loan.status">
+                <span class="status" ng-switch="loan.status">
                     <span ng-switch-when="SCHEDULED">即将开始</span>
                     <span ng-switch-when="OPENED">进行中</span>
                     <span ng-switch-when="FINISHED">满标</span>

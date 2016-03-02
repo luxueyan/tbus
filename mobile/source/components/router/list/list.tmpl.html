@@ -3,12 +3,17 @@
 
     <nav class="omit-margin container page-nav">
     <div class="row">
-        <span class="col-xs-12 text-center btn-group-wrap">
+        <a class="col-xs-2 back" ng-href="{{ back_path || 'list' }}"
+           ng-if="filter_type"
+        ><param class="glyphicon glyphicon-menu-left"></a>
+        <span class="col-xs-2" ng-if="!filter_type">&nbsp;</span>
+        <span class="col-xs-8 text-center btn-group-wrap">
             <div class="btn-group">
                 <a href="list" class="btn btn-tab selected">理财</a>
-                <a href="list" class="btn btn-tab">基金</a>
+                <a href="" class="btn btn-tab">基金</a>
             </div>
         </span>
+        <span class="col-xs-2">&nbsp;</span>
     </div>
     </nav>
 
@@ -145,15 +150,17 @@
                     </span>
                 </div>
             </a>
+
             <ul class="list-unstyled u-off-margin-bottom loan-list">
-                <li ng-repeat="item in ::list_lhb track by $index">
-                    <a ng-href="loan/{{ ::item.id }}?back={{ ::page_path }}"
+                <li ng-repeat="item in list_lhb">
+                    <a ng-href="loan/{{ item.id }}?back={{ page_path }}"
                        x-loan-summary
                        data-loan="item"
                        data-layout="'has-chart'"
                     ></a>
                 </li>
             </ul>
+
             <p class="text-center loading" ng-show="loading_lhb">
                 <img src="assets/image/spinner.gif">
             </p>
@@ -169,15 +176,17 @@
                     </span>
                 </div>
             </a>
+
             <ul class="list-unstyled u-off-margin-bottom loan-list">
-                <li ng-repeat="item in ::list_dcb track by $index">
-                    <a ng-href="loan/{{ ::item.id }}?back={{ ::page_path }}"
+                <li ng-repeat="item in list_dcb">
+                    <a ng-href="loan/{{ item.id }}?back={{ page_path }}"
                        x-loan-summary
                        data-loan="item"
                        data-layout="'has-chart'"
                     ></a>
                 </li>
             </ul>
+
             <p class="text-center loading" ng-show="loading_dcb">
                 <img src="assets/image/spinner.gif">
             </p>
@@ -193,15 +202,17 @@
                     </span>
                 </div>
             </a>
+
             <ul class="list-unstyled u-off-margin-bottom loan-list">
-                <li ng-repeat="item in ::list_sbtz track by $index">
-                    <a ng-href="loan/{{ ::item.id }}?back={{ ::page_path }}"
+                <li ng-repeat="item in list_sbtz">
+                    <a ng-href="loan/{{ item.id }}?back={{ page_path }}"
                        x-loan-summary
                        data-loan="item"
                        data-layout="'has-chart'"
                     ></a>
                 </li>
             </ul>
+
             <p class="text-center loading" ng-show="loading_sbtz">
                 <img src="assets/image/spinner.gif">
             </p>
