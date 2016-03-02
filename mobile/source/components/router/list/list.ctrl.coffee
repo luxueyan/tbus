@@ -13,6 +13,7 @@ do (_, angular) ->
                 filter_type = @$routeParams.type
 
                 angular.extend @$scope, {
+                    back_path: @$routeParams.back
                     filter_type
                     page_path: @$location.path()[1..]
                 }

@@ -18,7 +18,7 @@
     <section class="loan-type">
         <ul class="list-unstyled u-off-margin-bottom loan-type-list">
             <li class="u-off-margin-top">
-                <a href="list/DCB">
+                <a ng-href="list/DCB?back={{ page_path }}">
                     <div class="media media-dcb">
                         <div class="media-left">
                             <img width="38" class="media-object" ng-src="assets/image/loan-icons/dcb.png">
@@ -31,8 +31,9 @@
                     </div>
                 </a>
             </li>
+
             <li>
-                <a href="list/LHB">
+                <a ng-href="list/LHB?back={{ page_path }}">
                     <div class="media media-lhb">
                         <div class="media-left">
                             <img width="36" class="media-object" ng-src="assets/image/loan-icons/lhb.png">
@@ -45,8 +46,9 @@
                     </div>
                 </a>
             </li>
+
             <li class="u-off-margin-bottom">
-                <a href="list/SBTZ">
+                <a ng-href="list/SBTZ?back={{ page_path }}">
                     <div class="media media-sbtz">
                         <div class="media-left">
                             <img width="38" class="media-object" ng-src="assets/image/loan-icons/sbtz.png">
@@ -67,15 +69,17 @@
             <h3 class="title">新手专享</h3>
             <span class="desc">现金红包＋超高收益</span>
         </div>
+
         <ul class="list-unstyled u-off-margin-bottom loan-list text-center">
-            <li ng-repeat="item in ::list_new track by $index">
-                <a ng-href="loan/{{ ::item.id }}?back={{ ::page_path }}"
+            <li ng-repeat="item in list_new">
+                <a ng-href="loan/{{ item.id }}?back={{ page_path }}"
                    x-loan-summary
                    data-loan="item"
                    data-layout="'without-chart'"
                 ></a>
             </li>
         </ul>
+
         <p class="text-center loading" ng-show="loading_new">
             <img src="assets/image/spinner.gif">
         </p>
@@ -86,15 +90,17 @@
             <h3 class="title">热门推荐</h3>
             <span class="desc">1元起投 随时提取</span>
         </div>
+
         <ul class="list-unstyled u-off-margin-bottom loan-list">
-            <li ng-repeat="item in ::list_hot track by $index">
-                <a ng-href="loan/{{ ::item.id }}?back={{ ::page_path }}"
+            <li ng-repeat="item in list_hot">
+                <a ng-href="loan/{{ item.id }}?back={{ page_path }}"
                    x-loan-summary
                    data-loan="item"
                    data-layout="'has-chart'"
                 ></a>
             </li>
         </ul>
+
         <p class="text-center loading" ng-show="loading_hot">
             <img src="assets/image/spinner.gif">
         </p>
