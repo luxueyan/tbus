@@ -18,7 +18,7 @@
     <section class="loan-type">
         <ul class="list-unstyled u-off-margin-bottom loan-type-list">
             <li class="u-off-margin-top">
-                <a href="list/DCB">
+                <a ng-href="list/DCB?back={{ page_path }}">
                     <div class="media media-dcb">
                         <div class="media-left">
                             <img width="38" class="media-object" ng-src="assets/image/loan-icons/dcb.png">
@@ -31,8 +31,9 @@
                     </div>
                 </a>
             </li>
+
             <li>
-                <a href="list/LHB">
+                <a ng-href="list/LHB?back={{ page_path }}">
                     <div class="media media-lhb">
                         <div class="media-left">
                             <img width="36" class="media-object" ng-src="assets/image/loan-icons/lhb.png">
@@ -45,8 +46,9 @@
                     </div>
                 </a>
             </li>
+
             <li class="u-off-margin-bottom">
-                <a href="list/SBTZ">
+                <a ng-href="list/SBTZ?back={{ page_path }}">
                     <div class="media media-sbtz">
                         <div class="media-left">
                             <img width="38" class="media-object" ng-src="assets/image/loan-icons/sbtz.png">
