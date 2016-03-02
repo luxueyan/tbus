@@ -150,15 +150,17 @@
                     </span>
                 </div>
             </a>
+
             <ul class="list-unstyled u-off-margin-bottom loan-list">
-                <li ng-repeat="item in ::list_lhb track by $index">
-                    <a ng-href="loan/{{ ::item.id }}?back={{ ::page_path }}"
+                <li ng-repeat="item in list_lhb">
+                    <a ng-href="loan/{{ item.id }}?back={{ page_path }}"
                        x-loan-summary
                        data-loan="item"
                        data-layout="'has-chart'"
                     ></a>
                 </li>
             </ul>
+
             <p class="text-center loading" ng-show="loading_lhb">
                 <img src="assets/image/spinner.gif">
             </p>
@@ -174,15 +176,17 @@
                     </span>
                 </div>
             </a>
+
             <ul class="list-unstyled u-off-margin-bottom loan-list">
-                <li ng-repeat="item in ::list_dcb track by $index">
-                    <a ng-href="loan/{{ ::item.id }}?back={{ ::page_path }}"
+                <li ng-repeat="item in list_dcb">
+                    <a ng-href="loan/{{ item.id }}?back={{ page_path }}"
                        x-loan-summary
                        data-loan="item"
                        data-layout="'has-chart'"
                     ></a>
                 </li>
             </ul>
+
             <p class="text-center loading" ng-show="loading_dcb">
                 <img src="assets/image/spinner.gif">
             </p>
@@ -198,15 +202,17 @@
                     </span>
                 </div>
             </a>
+
             <ul class="list-unstyled u-off-margin-bottom loan-list">
-                <li ng-repeat="item in ::list_sbtz track by $index">
-                    <a ng-href="loan/{{ ::item.id }}?back={{ ::page_path }}"
+                <li ng-repeat="item in list_sbtz">
+                    <a ng-href="loan/{{ item.id }}?back={{ page_path }}"
                        x-loan-summary
                        data-loan="item"
                        data-layout="'has-chart'"
                     ></a>
                 </li>
             </ul>
+
             <p class="text-center loading" ng-show="loading_sbtz">
                 <img src="assets/image/spinner.gif">
             </p>
