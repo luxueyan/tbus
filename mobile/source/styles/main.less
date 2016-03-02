@@ -997,6 +997,8 @@ a {
             }
 
             &-menu {
+                position: fixed;
+                top: 80px;
                 margin: 0;
                 border: 0;
                 padding: 0;
@@ -1043,17 +1045,17 @@ a {
                     .glyphicon {
                         .transform(rotate(180deg));
                     }
-                }
 
-                &:before {
-                    content: "";
-                    position: fixed;
-                    z-index: 12;
-                    top: 80px;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    background-color: rgba(0, 0, 0, 0.21)
+                    &:before {
+                        content: "";
+                        position: fixed;
+                        z-index: 12;
+                        top: 80px;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        background-color: rgba(0, 0, 0, 0.21)
+                    }
                 }
             }
         }
