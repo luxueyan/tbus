@@ -18,7 +18,10 @@
         <div class="subject">
             <div class="name">
                 {{ self.user.info.name || self.user.info.mobile + '，'}}您好，您的账户总资产 (元)
-                <param class="glyphicon glyphicon-question-sign">
+                <param class="glyphicon glyphicon-question-sign"
+                       uib-tooltip="Hello!"
+                       tooltip-trigger="outsideClick"
+                >
             </div>
             <div class="value">{{ fund.total | number: 2 }}</div>
         </div>
