@@ -11,6 +11,15 @@
     </div>
     </nav>
 
+    <div>
+        <param ng-model="msg" ng-init="msg = {
+            SUCCEED_UNBIND: '删除该卡成功',
+            UNKNOWN_UNBIND: '删除该卡失败',
+            SUCCEED_SET_DEFAULT: '设为默认卡成功',
+            UNKNOWN_SET_DEFAULT: '设为默认卡失败',
+        }">
+    </div>
+
     <section class="banks">
         <ul class="list-unstyled u-off-margin-bottom bank-list">
             <li>
@@ -39,11 +48,13 @@
         <div class="container action">
             <button class="btn btn-lg btn-block btn-delete"
                     ng-click="self.unbind(bank_account.account.account)"
+                    ng-disabled="self.submit_sending"
             >删除该卡</button>
 
             <button class="btn btn-lg btn-block btn-theme"
                     ng-if="!bank_account.defaultAccount"
                     ng-click="self.set_default(bank_account.account.account)"
+                    ng-disabled="self.submit_sending"
             >设为默认卡</button>
         </div>
     </section>
