@@ -76,7 +76,7 @@ do (angular) ->
 
                     .catch (data) =>
                         @submit_sending = false
-                        key = _.get data, 'error[0].message'
+                        key = _.get data, 'error[0].message', 'UNKNOWN'
                         @$window.alert @$scope.msg[key] or key
                 )
 
