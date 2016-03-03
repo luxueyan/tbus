@@ -88,7 +88,8 @@ do (_, angular, moment, Array) ->
 
                         do (list = _(@user.fund_accounts or [])) ->
                             list.each (item) ->
-                                _.extend item.account, _.find banks, (bank) -> bank.bankCode is item.account.bank
+                                    _.extend item.account, _.find banks, (bank) -> bank.bankCode is item.account.bank
+                                .value()
 
                         deferred.resolve @user.ready true
 
