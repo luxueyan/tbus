@@ -997,6 +997,8 @@ a {
             }
 
             &-menu {
+                position: fixed;
+                top: 80px;
                 margin: 0;
                 border: 0;
                 padding: 0;
@@ -1043,17 +1045,17 @@ a {
                     .glyphicon {
                         .transform(rotate(180deg));
                     }
-                }
 
-                &:before {
-                    content: "";
-                    position: fixed;
-                    z-index: 12;
-                    top: 80px;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    background-color: rgba(0, 0, 0, 0.21)
+                    &:before {
+                        content: "";
+                        position: fixed;
+                        z-index: 12;
+                        top: 80px;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        background-color: rgba(0, 0, 0, 0.21)
+                    }
                 }
             }
         }
@@ -2148,7 +2150,6 @@ a {
         background: url("@{path-image}/graph-lg.jpg") no-repeat 0 0;
         background-size: cover;
         height: 360px/2;
-        overflow: hidden;
 
         .subject {
             .name {
@@ -2287,6 +2288,7 @@ a {
             &-heading {
                 font-size: 16px;
                 color: #333;
+                line-height: 1.2;
             }
 
             .desc {
