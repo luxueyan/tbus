@@ -8,21 +8,26 @@ do (_, angular) ->
 
                 @$window.scrollTo 0, 0
 
+                @submit_sending = false
+
                 @$scope.bank_account = do (list = _.clone @user.bank_account_list) =>
                     _.find list, (item) => item.id is @$routeParams.id
 
 
             unbind: (account) ->
 
+                @submit_sending = true
+
                 (@api.payment_pool_unbind_card(account)
 
                     .then @api.process_response
 
-                    .then (response) =>
-                        @$window.alert response.data
+                    .then (data) =>
+                        @$window.alert @$scope.msg.UNBIND_SUCCEED
 
-                    .catch (response) =>
-                        @$window.alert _.get response, 'error[0].message', 'something happened...'
+                    .catch (data) =>
+                        key = _.get data, 'error[0].message', 'UNBIND_FAILURE'
+                        @$window.alert @$scope.msg[key] or key
 
                     .finally =>
                         @$location
@@ -37,15 +42,18 @@ do (_, angular) ->
 
             set_default: (account) ->
 
+                @submit_sending = true
+
                 (@api.payment_pool_set_default_card(account)
 
                     .then @api.process_response
 
-                    .then (response) =>
-                        @$window.alert response.data
+                    .then (data) =>
+                        @$window.alert @$scope.msg.SET_DEFAULT_SUCCEED
 
-                    .catch (response) =>
-                        @$window.alert _.get response, 'error[0].message', 'something happened...'
+                    .catch (data) =>
+                        key = _.get data, 'error[0].message', 'SET_DEFAULT_FAILURE'
+                        @$window.alert @$scope.msg[key] or key
 
                     .finally =>
                         @$location
