@@ -6,6 +6,8 @@ module.exports = function (router, auth) {
     router.post('/api/v2/user/:userId/setPaymentPassword', auth.owner());
     router.post('/api/v2/user/:userId/updatePaymentPassword', auth.owner());
     router.post('/api/v2/user/:userId/resetPaymentPassword', auth.owner());
+    router.get('/api/v2/user/:userId/investDynamic/:investId', auth.owner());
+    router.get('/api/v2/reward/getReferUserCountAndReward/:userId', auth.owner());
 
     router.get('/api/v2/hundsun/banks', auth.pass());
     router.post('/api/v2/hundsun/register/:userId', auth.owner());
