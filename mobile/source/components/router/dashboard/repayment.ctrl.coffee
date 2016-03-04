@@ -16,8 +16,21 @@ do (_, angular) ->
 
                         list = _.get(response, 'data.results')
 
-                        _.each list, (item)->
-                            item.due_date = new Date(_.get(item, 'repayment.repayment.dueDate'))
+                        (_.each list, (item)->
+                            repayment = item.repayment.repayment
+
+                            do ({dueDate, amountInterest, amountPrincipal} = repayment) ->
+
+                                item.due_date = new Date(dueDate)
+
+                                item.type = switch
+                                    when amountInterest > 0 and amountPrincipal > 0
+                                        'both'
+                                    when amountInterest > 0
+                                        'interest'
+                                    when amountPrincipal > 0
+                                        'principal'
+                        )
 
                         sum = (list, key) -> _.sum list, (item) -> item.repayment.repayment[key]
 

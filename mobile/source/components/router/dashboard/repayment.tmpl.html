@@ -34,7 +34,7 @@
         </div>
     </section>
 
-    <section class="omit-margin repayment-detail" ng-hide="loading">
+    <section class="omit-margin repayment-detail" ng-if="list.length">
         <ul class="list list-unstyled u-off-margin-bottom">
             <li ng-repeat="item in list">
                 <div class="subject">
@@ -42,7 +42,9 @@
                     <h5 class="title">{{ item.loanTitle }}</h5>
                 </div>
                 <div class="info">
-                    <span class="name">回款本息(元)</span>
+                    <span class="name">
+                        回款{{ { both: '本息', interest: '利息', principal: '本金' }[item.type] }}(元)
+                    </span>
                     <span class="value">{{ item.amount | number: 2 }}</span>
                 </div>
             </li>
