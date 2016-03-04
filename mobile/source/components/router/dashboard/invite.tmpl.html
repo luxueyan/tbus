@@ -17,23 +17,33 @@
         }">
     </div>
 
-    <div class="banner" x-carousel-banner data-delay-in-seconds="4"></div>
+    <section class="omit-margin banner">
+        <img class="img-responsive" ng-src="{{ banner.src }}">
+
+        <p class="text-center loading" ng-show="loading_banner">
+            <img src="assets/image/spinner.gif">
+        </p>
+    </section>
 
     <section class="omit-margin">
-        <ul class="list-unstyled u-off-margin-bottom info-list">
+        <ul class="list-unstyled u-off-margin-bottom info-list" ng-hide="loading_have_invited">
             <li>
                 <div class="info">
                     <span class="name">已邀请好友</span>
-                    <span class="value">人</span>
+                    <span class="value">{{ have_invited.count }}人</span>
                 </div>
             </li>
             <li>
                 <div class="info">
                     <span class="name">已获得奖励</span>
-                    <span class="value">元</span>
+                    <span class="value">{{ have_invited.rewardTotal }}元</span>
                 </div>
             </li>
         </ul>
+
+        <p class="text-center loading" ng-show="loading_have_invited">
+            <img src="assets/image/spinner.gif">
+        </p>
     </section>
 
     <section class="panel" ng-init="show_tip = false">
