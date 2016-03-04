@@ -181,6 +181,7 @@ do (_, angular) ->
                     size: 'lg'
                     backdrop: 'static'
                     windowClass: 'modal-full-page'
+                    openedClass: 'modal-full-page-wrap'
                     animation: false
                     templateUrl: 'ngt-select-bank.tmpl'
 

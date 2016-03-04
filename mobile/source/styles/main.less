@@ -275,14 +275,21 @@ a {
     }
 
     &-full-page {
+        position: static;
+
         .modal-dialog {
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 0;
+            position: static;
             margin: 0;
-            min-height: 100%;
-            background-color: #F4F4F6;
+        }
+
+        &.in {
+            .modal-dialog {
+                .transform(none);
+            }
+        }
+
+        &-wrap {
+            overflow: auto;
         }
 
         .modal-content {
@@ -293,6 +300,7 @@ a {
                     box-shadow: none;
         }
 
+        + .modal-backdrop,
         ~ [ng-view] {
             display: none;
         }
