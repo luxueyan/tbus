@@ -23,10 +23,10 @@ do (_, angular) ->
                     .then @api.process_response
 
                     .then (data) =>
-                        @$window.alert @$scope.msg.SUCCEED_UNBIND
+                        @$window.alert @$scope.msg.UNBIND_SUCCEED
 
                     .catch (data) =>
-                        key = _.get data, 'error[0].message', 'UNKNOWN_UNBIND'
+                        key = _.get data, 'error[0].message', 'UNBIND_FAILURE'
                         @$window.alert @$scope.msg[key] or key
 
                     .finally =>
@@ -49,10 +49,10 @@ do (_, angular) ->
                     .then @api.process_response
 
                     .then (data) =>
-                        @$window.alert @$scope.msg.SUCCEED_SET_DEFAULT
+                        @$window.alert @$scope.msg.SET_DEFAULT_SUCCEED
 
                     .catch (data) =>
-                        key = _.get data, 'error[0].message', 'UNKNOWN_SET_DEFAULT'
+                        key = _.get data, 'error[0].message', 'SET_DEFAULT_FAILURE'
                         @$window.alert @$scope.msg[key] or key
 
                     .finally =>
