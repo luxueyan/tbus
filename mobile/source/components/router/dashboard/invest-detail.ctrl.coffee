@@ -39,3 +39,31 @@ do (_, angular) ->
                 if item.status in _.split 'SETTLED CLEARED OVERDUE BREACH'
                     @api.get_invest_contract(item.id).then (url) =>
                         @$scope.contract_url = url
+
+                EXTEND_API @api
+
+                @$scope.loading_dynamic = true
+
+                (@api.get_user_invest_dynamic(item.id)
+
+                    .then ({results}) =>
+                        @$scope.dynamic_list = results
+
+                    .finally =>
+                        @$scope.loading_dynamic = false
+                )
+
+
+
+
+
+
+    EXTEND_API = (api) ->
+
+        api.__proto__.get_user_invest_dynamic = (id) ->
+
+            @$http
+                .get "/api/v2/user/MYSELF/investDynamic/#{ id }"
+
+                .then @TAKE_RESPONSE_DATA
+                .catch @TAKE_RESPONSE_ERROR

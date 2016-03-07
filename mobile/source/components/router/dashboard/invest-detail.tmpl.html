@@ -2,7 +2,9 @@
 <div id="dashboard-invest-detail">
     <nav class="omit-margin container page-nav">
     <div class="row">
-        <a class="col-xs-2 back" href="dashboard/invest"><param class="glyphicon glyphicon-menu-left"></a>
+        <a class="col-xs-2 back" href="dashboard/invest">
+            <param class="glyphicon glyphicon-menu-left">
+        </a>
         <span class="col-xs-8 title">{{ item.title }}</span>
         <span class="col-xs-2">&nbsp;</span>
     </div>
@@ -36,35 +38,21 @@
         </div>
         <div class="dynamic-detail">
             <ul class="list list-unstyled u-off-margin-bottom">
-                <li>
+                <li ng-repeat="dynamic_item in dynamic_list">
                     <div class="subject">
-                        <span class="date"></span>
+                        <span class="date">{{ dynamic_item.timeRecorded | date: 'yyyy-MM-dd' }}</span>
                     </div>
                     <div class="info">
-                        <span class="name">投资冻结</span>
-                        <span class="value">元</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="subject">
-                        <span class="date"></span>
-                    </div>
-                    <div class="info">
-                        <span class="name">投资放款</span>
-                        <span class="value">元</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="subject">
-                        <span class="date"></span>
-                    </div>
-                    <div class="info">
-                        <span class="name">回款本息</span>
-                        <span class="value">元</span>
+                        <span class="name">{{ dynamic_item.type | fund_type_cn }}</span>
+                        <span class="value">{{ dynamic_item.amount | number: 2 }}元</span>
                     </div>
                 </li>
             </ul>
         </div>
+
+        <p class="text-center loading" ng-show="loading_dynamic">
+            <img src="assets/image/spinner.gif">
+        </p>
     </section>
 
     <section class="repayment-panel plan" ng-if="item.is_show_repayment">

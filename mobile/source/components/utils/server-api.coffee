@@ -54,12 +54,11 @@ do (_, angular, moment, Array) ->
                             fundaccounts
                             authenticates
                             paymentPasswordHasSet
+                            inviteCode
                         '
 
                         api_list = api_list.map (path) =>
                             @$http.get "/api/v2/user/#{ @user.info.id }/#{ path }"
-
-                        api_list.push @$http.get '/api/v2/user/MYSELF/inviteCode'
 
                         api_list.push @$http.get '/api/v2/hundsun/banks', cache: true
 
