@@ -399,6 +399,20 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                     return deferred.promise
                     }
 
+                    .when '/dashboard/feedback', {
+                        controller: 'FeedbackCtrl as self'
+                        templateUrl: 'components/router/dashboard/feedback.tmpl.html'
+                        resolve:
+                            user: _.ai 'api, $location, $route, $q',
+                                (       api, $location, $route, $q) ->
+                                    api.fetch_current_user().catch ->
+                                        $location
+                                            .replace()
+                                            .path '/login'
+                                            .search next: 'dashboard/feedback'
+                                        return $q.reject()
+                    }
+
                     .when '/dashboard/invite-registered', {
                         controller: 'InviteRegisteredCtrl as self'
                         templateUrl: 'components/router/dashboard/invite-registered.tmpl.html'
@@ -491,11 +505,6 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                     .when '/about', {
                         controller: 'AboutCtrl as self'
                         templateUrl: 'components/router/about/about.tmpl.html'
-                    }
-
-                    .when '/feedback', {
-                        controller: 'FeedbackCtrl as self'
-                        templateUrl: 'components/router/feedback/feedback.tmpl.html'
                     }
 
                     .otherwise redirectTo: '/'

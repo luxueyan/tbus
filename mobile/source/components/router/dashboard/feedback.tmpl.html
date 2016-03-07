@@ -1,5 +1,5 @@
 
-<div id="feedback">
+<div id="dashboard-feedback">
 
     <nav class="omit-margin container page-nav">
     <div class="row">
@@ -11,13 +11,20 @@
     </div>
     </nav>
 
+    <div>
+        <param ng-model="msg" ng-init="msg = {
+            SUCCESS: '提交成功',
+            FAILURE: '提交失败',
+        }">
+    </div>
+
     <section class="page-content">
-        <form class="form" name="form" ng-submit="" novalidate>
+        <form class="form" name="form" ng-submit="self.submit(store)" novalidate>
             <div class="form-group">
                 <textarea name="feedback"
                           class="form-control"
                           placeholder="请输入您的反馈"
-                          ng-model="feedback"
+                          ng-model="store.feedback"
                           required
                 ></textarea>
             </div>
@@ -25,7 +32,7 @@
             <div class="form-group">
                 <div class="container">
                     <button type="submit" class="btn btn-theme btn-block btn-lg"
-                            ng-disabled="form.$invalid"
+                            ng-disabled="form.$invalid || self.submit_sending"
                     >确认提交</button>
                 </div>
             </div>

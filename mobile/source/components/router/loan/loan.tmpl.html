@@ -16,7 +16,7 @@
     <section class="omit-margin loan-summary">
         <div class="rate text-center">
             <div class="value" ng-if="!loan.deduction_rate">{{ loan.rate }}%</div>
-            <div class="value" ng-if="loan.deduction_rate">{{ loan.basic_rate }}%+{{ loan.deduction_rate }}%</div>
+            <div class="value" ng-if="loan.deduction_rate">{{ loan.basic_rate | number: 1 }}+{{ loan.deduction_rate | number: 1 }}%</div>
             <div class="name">预期年化</div>
         </div>
         <div class="footer">
