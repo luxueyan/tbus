@@ -696,24 +696,6 @@ do (_, angular, moment, Array) ->
 
 
 
-    angular.module('factory').factory 'update_user_funds',
-
-        _.ai 'user, api, $http, $q',
-            ( user, api, $http, $q) -> ->
-
-                $http.get '/api/v2/user/MYSELF/userfund'
-
-                    .then api.TAKE_RESPONSE_DATA
-                    .then (data) ->
-                        _.assign user.fund, data
-
-
-
-
-
-
-
-
 
     angular.module('service').config _.ai '$httpProvider', ($httpProvider) ->
 
