@@ -53,7 +53,6 @@ do (_, angular, moment, Array) ->
                             userfund
                             fundaccounts
                             authenticates
-                            paymentPasswordHasSet
                             inviteCode
                         '
 
@@ -70,7 +69,6 @@ do (_, angular, moment, Array) ->
                             @user.fund
                             @user.fund_accounts
                             @user.authenticates
-                            @user.has_payment_password
                             invite_code
                             banks
 
