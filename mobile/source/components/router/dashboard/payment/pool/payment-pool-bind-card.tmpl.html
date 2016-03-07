@@ -310,8 +310,27 @@
                         <div class="media-body">
                             <h4 class="media-heading">{{ item.bankName }}</h4>
                             <p class="desc">
-                                单笔{{ item.singleQuota == -1 ? '无限额' : item.singleQuota }} /
-                                日限额{{ item.dailyQuota == -1 ? '无限额' : item.dailyQuota }}
+                                单笔
+                                    {{
+                                        item.singleQuota == -1
+                                        ? '无限额'
+                                        : (
+                                            item.singleQuota >= 10000
+                                            ? item.singleQuota / 10000 + '万'
+                                            : item.singleQuota
+                                          )
+                                    }}
+                                /
+                                日限额
+                                    {{
+                                        item.dailyQuota == -1
+                                        ? '无限额'
+                                        : (
+                                            item.dailyQuota >= 10000
+                                            ? item.dailyQuota / 10000 + '万'
+                                            : item.dailyQuota
+                                          )
+                                    }}
                             </p>
                         </div>
                     </div>

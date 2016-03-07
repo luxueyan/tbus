@@ -34,8 +34,27 @@
                         </h4>
                         <p class="desc">
                             充值限额: <br>
-                            单笔{{ bank_account.account.singleQuota == -1 ? '无限额' : bank_account.account.singleQuota }} /
-                            日限额{{ bank_account.account.dailyQuota == -1 ? '无限额' : bank_account.account.dailyQuota }}
+                            单笔
+                                {{
+                                    bank_account.account.singleQuota == -1
+                                    ? '无限额'
+                                    : (
+                                        bank_account.account.singleQuota >= 10000
+                                        ? bank_account.account.singleQuota / 10000 + '万'
+                                        : bank_account.account.singleQuota
+                                      )
+                                }}
+                            /
+                            日限额
+                                {{
+                                    bank_account.account.dailyQuota == -1
+                                    ? '无限额'
+                                    : (
+                                        bank_account.account.dailyQuota >= 10000
+                                        ? bank_account.account.dailyQuota / 10000 + '万'
+                                        : bank_account.account.dailyQuota
+                                      )
+                                }}
                         </p>
                         <span class="default-card"
                               ng-if="bank_account.defaultAccount"
