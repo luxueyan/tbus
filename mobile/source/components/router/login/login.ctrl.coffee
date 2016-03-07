@@ -10,7 +10,6 @@ do (_, angular) ->
 
                 @back_path = back
                 @next_path = next
-                @page_path = @$location.path()
 
                 @submit_sending = false
                 @flashing_error_message = false
@@ -18,7 +17,11 @@ do (_, angular) ->
                 @bind_weixin = !!bind_social_weixin and
                                /MicroMessenger/.test @$window.navigator.userAgent
 
-                @$scope.store = {mobile}
+                angular.extend @$scope, {
+                    store: {mobile}
+                    page_path: @$location.path()[1..]
+                }
+
                 @step = 'one'
 
 
@@ -53,7 +56,7 @@ do (_, angular) ->
                         .then (data) =>
                             @$location
                                 .path 'register'
-                                .search mobile: mobile
+                                .search 'mobile', mobile
 
                         .catch (data) =>
                             @step = 'two'

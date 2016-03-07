@@ -7,12 +7,20 @@ do (_, angular) ->
             constructor: (@api, @$scope, @$rootScope, @$interval, @$location, @$routeParams, @$window, @$q, @$uibModal, @mg_alert, @popup_payment_state) ->
 
                 {mobile} = @$routeParams
-                @$scope.back_path = "login?mobile=#{ mobile }" if mobile
+                referral = do ({ref, rel, refm, reftf, referral} = @$routeParams) ->
+                    _.first _.compact [ref, rel, refm, reftf, referral]
+
+                if mobile?
+                    back_path = "login?mobile=#{ mobile }"
+                    back_path += "&referral=#{ referral }" if referral
+                    angular.extend @$scope, {back_path}
+                else
+                    @$location.path 'login'
+                    return
 
                 @$scope.store = {
                     mobile
-                    referral: do ({ref, rel, refm, reftf, referral} = @$routeParams) ->
-                        _.first _.compact [ref, rel, refm, reftf, referral]
+                    referral
                 }
 
                 @cell_buffering = false
@@ -117,6 +125,8 @@ do (_, angular) ->
                                     next_path: @next_path || 'dashboard'
                                 }
 
+                        return
+
                     .catch (data) =>
                         key = _.get data, 'error[0].message'
                         @$window.alert @$scope.msg[key] or key
@@ -178,8 +188,9 @@ do (_, angular) ->
                         angular.extend $scope, options
             }
 
-            once = @$scope.$on '$locationChangeStart', ->
-                prompt?.dismiss()
-                do once
+            if options.page isnt 'register' and options.page isnt 'login'
+                once = @$scope.$on '$locationChangeStart', ->
+                    prompt?.dismiss()
+                    do once
 
             return prompt.result
