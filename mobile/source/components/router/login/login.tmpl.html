@@ -93,6 +93,7 @@
                                    id="password"
                                    name="password"
                                    ng-model="store.password"
+                                   ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,}$/"
                                    minlength="8"
                                    placeholder="至少8位数字字母组合"
                                    required
