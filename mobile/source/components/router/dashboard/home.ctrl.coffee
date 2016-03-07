@@ -47,6 +47,9 @@ do (_, angular) ->
                                 _.sum list, 'amount'
                 )
 
+                @$scope.default_bank_account = do (list = @user.bank_account_list) ->
+                        _.find list, (item) -> item.defaultAccount is true
+
                 # prefetch following API calls for getting out from cache directly later on
 
                 @api.get_user_funds()
