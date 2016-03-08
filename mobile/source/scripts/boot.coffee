@@ -122,9 +122,6 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                             .path '/login'
                                             .search next: 'dashboard'
                                         return $q.reject()
-
-                            _fund: _.ai 'update_user_funds', (update_user_funds) ->
-                                return update_user_funds()
                     }
 
                     .when '/dashboard/bank-card/:amount?', {
@@ -167,9 +164,6 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                             .path '/login'
                                             .search next: 'dashboard/total-assets'
                                         return $q.reject()
-
-                            _fund: _.ai 'update_user_funds', (update_user_funds) ->
-                                return update_user_funds()
                     }
 
                     .when '/dashboard/coupon/:amount?/:months?/:loan_id?/:input?', {
@@ -332,9 +326,6 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                             .path '/login'
                                             .search next: 'dashboard/funds'
                                         return $q.reject()
-
-                            _fund: _.ai 'update_user_funds', (update_user_funds) ->
-                                return update_user_funds()
                     }
 
                     .when '/dashboard/recharge/:amount?/:bank_id?', {
@@ -349,9 +340,6 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                             .path '/login'
                                             .search next: 'dashboard/recharge'
                                         do $q.reject
-
-                            _fund: _.ai 'update_user_funds', (update_user_funds) ->
-                                return update_user_funds()
                     }
 
                     .when '/dashboard/withdraw/:amount?/:bank_id?', {
@@ -366,9 +354,6 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                             .path '/login'
                                             .search next: 'dashboard/withdraw'
                                         return $q.reject()
-
-                            _fund: _.ai 'update_user_funds', (update_user_funds) ->
-                                return update_user_funds()
                     }
 
                     .when '/dashboard/invite', {
@@ -492,9 +477,6 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                             loan_id = data.id
 
                                             return api.fetch_coupon_list amount, months, loan_id
-
-                            _fund: _.ai 'update_user_funds', (update_user_funds) ->
-                                return update_user_funds()
                     }
 
                     .when '/more', {

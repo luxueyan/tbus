@@ -3,12 +3,15 @@ do (_, angular) ->
 
     angular.module('controller').controller 'PasswordForgotCtrl',
 
-        _.ai '            @api, @$scope, @$location, @$window, @$interval, @mg_alert, @$q', class
-            constructor: (@api, @$scope, @$location, @$window, @$interval, @mg_alert, @$q) ->
+        _.ai '            @api, @$scope, @$location, @$window, @$interval, @$routeParams, @mg_alert, @$q', class
+            constructor: (@api, @$scope, @$location, @$window, @$interval, @$routeParams, @mg_alert, @$q) ->
 
                 @captcha = {timer: null, count: 60, count_default: 60, has_sent: false, buffering: false}
 
-                @$scope.store = {}
+                angular.extend @$scope, {
+                    back_path: @$routeParams.back
+                    store: {}
+                }
 
 
             fetch_new_captcha: ->

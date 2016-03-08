@@ -27,6 +27,11 @@ do (_, angular, Math) ->
                                 return {
                                     id: item.id
                                     minimum: info.minimumInvest
+                                    type: info.type
+                                    value: do ->
+                                        value = info.parValue
+                                        value /= 100 if info.type is 'INTEREST'
+                                        return value
 
                                     display: do ->
                                         INTEREST = 'INTEREST'
@@ -58,6 +63,7 @@ do (_, angular, Math) ->
 
                     if +amount
                         @$scope.store.amount = +amount
+                        @fetch_analyse(+amount)
 
                 if !@user.has_bank_card or !@user.has_payment_password
                     @popup_payment_state {
@@ -95,6 +101,12 @@ do (_, angular, Math) ->
 
                 @api.fetch_invest_analyse(data).success (response) =>
                     @$scope.earning = +response.data?.interest
+
+                coupon = @$scope.store?.coupon
+                if coupon and coupon.type is 'CASH'
+                    @$scope.actual_payment_amount = Math.max 0, amount - coupon.value
+                else
+                    @$scope.actual_payment_amount = amount
 
 
             pick_up_coupon: (event, input_amount = 0) ->

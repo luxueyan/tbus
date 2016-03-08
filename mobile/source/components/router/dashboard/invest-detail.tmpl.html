@@ -26,7 +26,9 @@
         </div>
         <div class="footer">
             <div class="inner" ng-if="item.is_show_repayment">
-                <span class="next-repay-days">距下次回款: <span class="num"></span>天</span>
+                <span class="next-repayment-days" ng-if="next_repayment_days">
+                    距下次回款: <span class="num">{{ next_repayment_days }}</span>天
+                </span>
                 <span class="text-right">待回本息: {{ item.amount_unrepay | number: 2 }}元</span>
             </div>
         </div>
@@ -61,7 +63,9 @@
         </div>
         <div class="plan-detail">
             <h5 class="container">
-                <span class="pull-left">距下次回款还有<span class="u-color-main"></span>天</span>
+                <span class="pull-left" ng-if="next_repayment_days">
+                    距下次回款还有<span class="u-color-main">{{ next_repayment_days }}</span>天
+                </span>
                 <span class="pull-right">单位:元</span>
             </h5>
             <table class="table u-off-margin-bottom">

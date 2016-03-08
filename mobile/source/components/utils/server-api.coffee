@@ -53,7 +53,6 @@ do (_, angular, moment, Array) ->
                             userfund
                             fundaccounts
                             authenticates
-                            paymentPasswordHasSet
                             inviteCode
                         '
 
@@ -70,7 +69,6 @@ do (_, angular, moment, Array) ->
                             @user.fund
                             @user.fund_accounts
                             @user.authenticates
-                            @user.has_payment_password
                             invite_code
                             banks
 
@@ -690,24 +688,6 @@ do (_, angular, moment, Array) ->
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
 
-
-
-
-
-
-
-
-
-    angular.module('factory').factory 'update_user_funds',
-
-        _.ai 'user, api, $http, $q',
-            ( user, api, $http, $q) -> ->
-
-                $http.get '/api/v2/user/MYSELF/userfund'
-
-                    .then api.TAKE_RESPONSE_DATA
-                    .then (data) ->
-                        _.assign user.fund, data
 
 
 
