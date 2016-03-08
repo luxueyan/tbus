@@ -1,5 +1,5 @@
 
-do (_, angular) ->
+do (_, angular, moment) ->
 
     angular.module('controller').controller 'InvestDetailCtrl',
 
@@ -35,6 +35,15 @@ do (_, angular) ->
                             amount_outstanding: repayment.amountOutstanding
                             status: item.status
                         }
+
+                    @$scope.next_repayment_days = do (list = item.repayments) ->
+
+                        next_repayment = _.find list, (item) -> item.status is 'UNDUE'
+                        return unless next_repayment
+
+                        next_repayment_date = _.get next_repayment, 'repayment.dueDate'
+                        today_date = moment().format('YYYY-MM-DD')
+                        return moment(next_repayment_date).diff(moment(today_date), 'days')
 
                 if item.status in _.split 'SETTLED CLEARED OVERDUE BREACH'
                     @api.get_invest_contract(item.id).then (url) =>

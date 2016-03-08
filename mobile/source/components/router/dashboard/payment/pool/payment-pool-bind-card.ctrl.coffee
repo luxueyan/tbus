@@ -11,6 +11,7 @@ do (_, angular) ->
                 angular.extend @$scope, {
                     province: null
                     city: null
+                    store: {}
                 }
 
                 @back_path = @$routeParams.back
@@ -200,3 +201,18 @@ do (_, angular) ->
 
 
 
+
+
+    angular.module('directive').directive 'idNumber',
+
+        _.ai 'checkChinaID', (checkChinaID) ->
+
+            restrict: 'A'
+            require: 'ngModel'
+
+            link: (scope, element, attr, ngModel) ->
+
+                ngModel.$parsers.push (value) ->
+                    ('' + value).trim().toUpperCase()
+
+                ngModel.$validators.id_number = checkChinaID

@@ -6,8 +6,11 @@ do (_, angular) ->
         _.ai '            @user, @api, @$scope, @$location, @$window, @$interval, @mg_alert, @$q', class
             constructor: (@user, @api, @$scope, @$location, @$window, @$interval, @mg_alert, @$q) ->
 
-                @$scope.store = {
-                    mobile: @user.info.mobile
+                angular.extend @$scope, {
+                    store: {
+                        mobile: @user.info.mobile
+                    }
+                    page_path: @$location.path()[1..]
                 }
 
 

@@ -69,8 +69,27 @@
                                     {{ bank_account.account.account | string_replace: '^\\d+(\\d{4})$' : '****$1' }}
                                 </h4>
                                 <p class="desc">
-                                    单笔{{ bank_account.account.singleQuota == -1 ? '无限额' : bank_account.account.singleQuota }} /
-                                    日限额{{ bank_account.account.dailyQuota == -1 ? '无限额' : bank_account.account.dailyQuota }}
+                                    单笔
+                                        {{
+                                            bank_account.account.singleQuota == -1
+                                            ? '无限额'
+                                            : (
+                                                bank_account.account.singleQuota >= 10000
+                                                ? bank_account.account.singleQuota / 10000 + '万'
+                                                : bank_account.account.singleQuota
+                                              )
+                                        }}
+                                    /
+                                    日限额
+                                        {{
+                                            bank_account.account.dailyQuota == -1
+                                            ? '无限额'
+                                            : (
+                                                bank_account.account.dailyQuota >= 10000
+                                                ? bank_account.account.dailyQuota / 10000 + '万'
+                                                : bank_account.account.dailyQuota
+                                              )
+                                        }}
                                 </p>
                             </div>
                             <div class="media-right media-middle">
