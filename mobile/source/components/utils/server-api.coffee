@@ -1,5 +1,5 @@
 
-do (_, angular, moment, Array) ->
+do (_, angular, moment, Array, Date) ->
 
     WWW_FORM_HEADER = 'Content-Type': 'application/x-www-form-urlencoded'
 
@@ -11,8 +11,8 @@ do (_, angular, moment, Array) ->
 
     angular.module('service').service 'api',
 
-        _.ai '            @user, @$http, @$resource, @$q, @param, @$sce', class
-            constructor: (@user, @$http, @$resource, @$q, @param, @$sce) ->
+        _.ai '            @user, @$http, @$resource, @$q, @param, @$sce, @$timeout', class
+            constructor: (@user, @$http, @$resource, @$q, @param, @$sce, @$timeout) ->
 
                 @access_token = 'cookie'
                 @user_fetching_promise = null
@@ -47,6 +47,11 @@ do (_, angular, moment, Array) ->
 
                     .then (response, {api_list} = {}) =>
                         @user.info = response.data
+
+                        @$timeout =>
+                            @user_fetching_promise = null
+                            @user.has_logged_in = false
+                        , 30 * 60 * 1000 + @user.info.lastLoginDate - Date.now()
 
                         api_list = _.split '
                             statistics/invest
