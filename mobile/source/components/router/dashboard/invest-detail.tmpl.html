@@ -45,7 +45,15 @@
                         <span class="date">{{ dynamic_item.timeRecorded | date: 'yyyy-MM-dd' }}</span>
                     </div>
                     <div class="info">
-                        <span class="name">{{ dynamic_item.type | fund_type_cn }}</span>
+                        <span class="name">
+                            {{ dynamic_item.type | fund_type_cn }}
+                            <span ng-switch="dynamic_item.operation">
+                                <span ng-switch-when="IN">资金转入</span>
+                                <span ng-switch-when="OUT">资金转出</span>
+                                <span ng-switch-when="FREEZE">资金冻结</span>
+                                <span ng-switch-when="RELEASE">资金解冻</span>
+                            </span>
+                        </span>
                         <span class="value">{{ dynamic_item.amount | number: 2 }}元</span>
                     </div>
                 </li>
