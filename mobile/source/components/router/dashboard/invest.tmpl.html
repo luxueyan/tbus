@@ -11,7 +11,7 @@
     <section class="invest-list">
         <uib-tabset class="invest-tab inline list" justified="true">
             <uib-tab ng-repeat="tab in tabs"
-                 heading="{{ { raising: '投资冻结', repaying: '回款中', done: '已结束'}[tab.type] }}"
+                 heading="{{ { raising: '投资中', repaying: '回款中', done: '已结束'}[tab.type] }}"
             >
                 <ul class="list list-unstyled u-off-margin-bottom">
                     <li class="item"

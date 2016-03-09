@@ -112,7 +112,7 @@ do (_, angular) ->
                         result = _.get data, 'error_description.result'
 
                         if result in _.split 'TOO_MANY_ATTEMPT USER_DISABLED'
-                            @mg_alert @$scope.msg.DISABLED
+                            @mg_alert @$scope.msg[result]
                         else
                             do @error_message_flash
 
