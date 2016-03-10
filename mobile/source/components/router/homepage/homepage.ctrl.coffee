@@ -29,13 +29,13 @@ do (_, angular) ->
 
                 ].forEach (query_set) =>
 
-                    @query(query_set, query_set.product)
+                    @query(query_set, {key_suffix: query_set.product})
 
 
-            query: (query_set, key_suffix) ->
+            query: (query_set, options = {}) ->
 
-                if key_suffix
-                    key_suffix = key_suffix.toLowerCase()
+                if options.key_suffix
+                    key_suffix = options.key_suffix.toLowerCase()
                     loading = "loading_#{ key_suffix }"
                     list = "list_#{ key_suffix }"
 
@@ -43,17 +43,21 @@ do (_, angular) ->
                     loading = 'loading'
                     list = 'list'
 
+                if options.is_next_page
+                    query_set.currentPage++
+                else
+                    query_set.currentPage = 1
+                    @$scope[list] = []
+
                 @$scope[loading] = true
 
                 (@api.get_loan_list_by_config(query_set, false)
 
-                    .then ({results}) =>
+                    .then ({results, totalSize}) =>
 
-                        @$scope[list] =
-                            _(results)
-                                .compact()
-                                .map @map_loan_summary
-                                .value()
+                        Array::push.apply(@$scope[list], results.map(@map_loan_summary))
+
+                        angular.extend @$scope[list], {totalSize}
 
                     .finally =>
                         @$scope[loading] = false
