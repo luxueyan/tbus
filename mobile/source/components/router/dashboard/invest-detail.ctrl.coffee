@@ -11,6 +11,8 @@ do (_, angular, moment) ->
                 item = do (list = @$rootScope.invest_list) =>
                     _.find list, (item) => @$routeParams.id is item.id
 
+                return @$location.path 'dashboard/invest' unless item
+
                 angular.extend @$scope, {
                     item
                     page_path: @$location.path()[1..]

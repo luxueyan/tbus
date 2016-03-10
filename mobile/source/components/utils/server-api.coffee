@@ -125,7 +125,7 @@ do (_, angular, moment, Array, Date) ->
                 _.defaults query_set, {
                     status: 'UNDUE'
                     from: convert_to_day moment().add 1, 'd'
-                    to: convert_to_day moment().add 1, 'M'
+                    to: convert_to_day moment().add 6, 'M'
                 }
 
                 @$http

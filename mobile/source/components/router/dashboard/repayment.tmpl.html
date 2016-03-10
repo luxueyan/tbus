@@ -16,7 +16,7 @@
     <section class="omit-margin repayment-summary text-center" ng-hide="loading">
         <div class="subject">
             <div class="name">
-                未来一个月，预期回款(元)
+                未来六个月，预期回款(元)
             </div>
             <div class="value">{{ amount | number: 2 }}</div>
         </div>
@@ -54,6 +54,11 @@
     <p class="text-center loading" ng-show="loading">
         <img src="assets/image/spinner.gif">
     </p>
+
+    <div class="container" ng-if="!list.length" ng-hide="loading">
+        <h4 class="alert alert-info text-center">暂无数据</h4>
+    </div>
+
 
 
 
