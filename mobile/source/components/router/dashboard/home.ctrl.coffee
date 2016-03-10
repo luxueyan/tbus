@@ -34,10 +34,9 @@ do (_, angular) ->
                         @$scope.available_coupon_length = available_coupon_list.length
                 )
 
-                (@api
-                    .get_user_investments()
-                    .then (data) =>
-                        @$scope.investments_length = data.length
+                (@api.get_user_investments()
+                    .then ({totalSize}) =>
+                        @$scope.investments_length = totalSize
                 )
 
                 (@api.get_user_repayments()

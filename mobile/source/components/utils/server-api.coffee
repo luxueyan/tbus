@@ -102,19 +102,28 @@ do (_, angular, moment, Array, Date) ->
                 return @user_fetching_promise
 
 
-            get_user_investments: (size = 99, cache = true) ->
+            get_user_investments: (query_set = {}, cache = true) ->
 
-                query_set = {
-                    status: _.split 'SETTLED OVERDUE BREACH FINISHED PROPOSED FROZEN CLEARED'
+                _.defaults query_set, {
+                    status: _.split 'FINISHED PROPOSED FROZEN SETTLED OVERDUE BREACH CLEARED'
+                    page: 1
+                    pageSize: 10
                 }
 
+                new_path = ->
+                    ARRAY_JOIN.call [
+                        '/api/v2/user/MYSELF/invest/list'
+                        '/', query_set.page - 1
+                        '/', query_set.pageSize
+                    ]
+
                 @$http
-                    .get "/api/v2/user/MYSELF/invest/list/0/#{ size }",
-                        params: query_set
+                    .get new_path(),
+                        params: _.omit query_set, ['page', 'pageSize']
                         cache: cache
 
-                    .then (response) ->
-                        response.data?.results or []
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             get_user_repayments: (query_set = {}, cache = false) ->

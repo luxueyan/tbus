@@ -288,10 +288,13 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                         controller: 'InvestCtrl as self'
                         templateUrl: 'components/router/dashboard/invest.tmpl.html'
                         resolve:
-                            data: _.ai 'api, $location, $q',
+                            user: _.ai 'api, $location, $q',
                                 (       api, $location, $q) ->
-                                    api.get_user_investments().catch ->
-                                        $location.path '/dashboard'
+                                    api.fetch_current_user().catch ->
+                                        $location
+                                            .replace()
+                                            .path '/login'
+                                            .search next: 'dashboard/invest'
                                         return $q.reject()
                     }
 
