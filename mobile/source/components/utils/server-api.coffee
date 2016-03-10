@@ -213,8 +213,8 @@ do (_, angular, moment, Array, Date) ->
                     maxRate: 100
                     minAmount: 1
                     maxAmount: 100000000
-                    pageSize: 20
                     currentPage: 1
+                    pageSize: 10
                 }
 
                 @$http

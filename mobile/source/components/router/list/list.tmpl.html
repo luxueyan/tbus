@@ -117,25 +117,32 @@
                 </div>
             </div>
 
-            <div ng-hide="loading">
-                <ul class="list-unstyled u-off-margin-bottom loan-list">
-                    <li ng-repeat="item in list">
-                        <a ng-href="loan/{{ item.id }}?back={{ ::page_path }}"
-                           x-loan-summary
-                           data-loan="item"
-                           data-layout="'has-chart'"
-                        ></a>
-                    </li>
-                </ul>
-
-                <div ng-if="!list.length" class="container">
-                    <h4 class="alert alert-info text-center">暂无数据</h4>
-                </div>
-            </div>
+            <ul class="list-unstyled u-off-margin-bottom loan-list"
+                ui-scrollpoint
+                ui-scrollpoint-edge="bottom"
+                ui-scrollpoint-action="self.infinite_scroll"
+                ui-scrollpoint-enabled="{{
+                       !loading
+                    && list.length >= query_set.pageSize
+                    && list.length < list.totalSize
+                }}"
+            >
+                <li ng-repeat="item in list track by $index">
+                    <a ng-href="loan/{{ item.id }}?back={{ page_path }}"
+                       x-loan-summary
+                       data-loan="item"
+                       data-layout="'has-chart'"
+                    ></a>
+                </li>
+            </ul>
 
             <p class="text-center loading" ng-show="loading">
                 <img src="assets/image/spinner.gif">
             </p>
+
+            <div class="container" ng-if="!list.length" ng-hide="loading">
+                <h4 class="alert alert-info text-center">暂无数据</h4>
+            </div>
         </section>
     </div>
 
