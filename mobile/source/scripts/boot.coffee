@@ -298,6 +298,15 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                     .when '/dashboard/invest/:id', {
                         controller: 'InvestDetailCtrl as self'
                         templateUrl: 'components/router/dashboard/invest-detail.tmpl.html'
+                        resolve:
+                            user: _.ai 'api, $location, $route, $q',
+                                (       api, $location, $route, $q) ->
+                                    api.fetch_current_user().catch ->
+                                        $location
+                                            .replace()
+                                            .path '/login'
+                                            .search next: "dashboard/invest/#{ $route.current.params.id }"
+                                        return $q.reject()
                     }
 
                     .when '/dashboard/repayment', {
