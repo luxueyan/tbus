@@ -3,7 +3,7 @@
 
     <nav class="omit-margin container page-nav">
     <div class="row">
-        <a class="col-xs-3 back" ng-href="{{ self.$routeParams.back || 'dashboard' }}">
+        <a class="col-xs-3 back" ng-href="{{ back_path || 'dashboard' }}">
             <param class="glyphicon glyphicon-menu-left">
         </a>
         <span class="col-xs-6 title">资金记录</span>
@@ -67,10 +67,17 @@
     <section class="funds-list">
         <ul class="list list-group no-label list-group-flat u-off-margin-bottom"
             ng-if="list.length"
-            ng-hide="loading"
+            ui-scrollpoint
+            ui-scrollpoint-edge="bottom"
+            ui-scrollpoint-action="self.infinite_scroll"
+            ui-scrollpoint-enabled="{{
+                   !loading
+                && list.length >= query_set.pageSize
+                && list.length < list.totalSize
+            }}"
         >
             <li class="item list-group-item"
-                ng-repeat="item in list"
+                ng-repeat="item in list track by $index"
             >
                 <div class="clearfix info">
                     <span ng-if class="operation" ng-switch="item.operation">
@@ -117,13 +124,13 @@
             </li>
         </ul>
 
-        <div class="container" ng-if="!list.length" ng-hide="loading">
-            <h4 class="alert alert-info text-center">暂无数据</h4>
-        </div>
-
         <p class="text-center loading" ng-show="loading">
             <img src="assets/image/spinner.gif">
         </p>
+
+        <div class="container" ng-if="!list.length" ng-hide="loading">
+            <h4 class="alert alert-info text-center">暂无数据</h4>
+        </div>
     </section>
 
 </div>
