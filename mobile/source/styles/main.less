@@ -2593,6 +2593,14 @@ a {
 ----*/
 
 #dashboard-coupon {
+    .btn-group {
+        #dashboard-invest .btn-group;
+
+        &-wrap + *:before {
+            height: 48px;
+        }
+    }
+
     .coupon-tab > .nav-tabs {
         #dashboard-invest .invest-list .inline > .nav-tabs.nav-justified;
 
@@ -2767,6 +2775,11 @@ a {
                 }
             }
         }
+    }
+
+    .loading {
+        padding: 10px;
+        background-color: #FFF;
     }
 
     .coupon-list-backup {

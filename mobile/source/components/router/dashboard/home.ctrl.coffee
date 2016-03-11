@@ -18,20 +18,10 @@ do (_, angular) ->
                     outstanding_interest: @user.fund.outstandingInterest
                 }
 
-                (@api
-                    .fetch_user_coupons()
-
-                    .then (data) =>
-
-                        all_coupon_list = _.clone data
-
-                        available_coupon_list =
-                            _(all_coupon_list)
-                                .filter (item) ->
-                                    item.status in _.split 'INITIATED PLACED'
-                                .value()
-
-                        @$scope.available_coupon_length = available_coupon_list.length
+                (@api.get_user_coupons()
+                    .then @api.TAKE_RESPONSE_DATA
+                    .then ({totalSize}) =>
+                        @$scope.available_coupon_length = totalSize
                 )
 
                 (@api.get_user_investments()

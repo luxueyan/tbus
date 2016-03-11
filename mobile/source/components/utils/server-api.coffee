@@ -171,6 +171,23 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
+            get_user_coupons: (query_set = {}, cache = false) ->
+
+                _.defaults query_set, {
+                    status: 'PLACED'
+                    pageNo: 1
+                    pageSize: 10
+                }
+
+                @$http
+                    .get '/api/v2/coupon/MYSELF/coupons/byStatus',
+                        params: query_set
+                        cache: cache
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
             get_carousel_banners: ->
 
                 @$http

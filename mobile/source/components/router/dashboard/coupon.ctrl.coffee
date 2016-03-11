@@ -3,10 +3,57 @@ do (_, angular) ->
 
     angular.module('controller').controller 'CouponCtrl',
 
-        _.ai '            @data, @api, @$q, @$scope, @$window, @mg_alert, @$routeParams, @$location', class
-            constructor: (@data, @api, @$q, @$scope, @$window, @mg_alert, @$routeParams, @$location) ->
+        _.ai '            @api, @$q, @$scope, @$window, @mg_alert, @$routeParams, @$location', class
+            constructor: (@api, @$q, @$scope, @$window, @mg_alert, @$routeParams, @$location) ->
 
                 @$window.scrollTo 0, 0
+
+                @$scope.picking = 'amount' of @$routeParams
+                @back_path = @$routeParams.back
+
+                {amount, months, loan_id, input} = @$routeParams
+
+                if !!amount and !!months and !!loan_id
+                    input = +input
+                    @$scope.loading = true
+
+                    (@api.fetch_coupon_list(amount, months, loan_id)
+
+                        .then @api.TAKE_RESPONSE_DATA
+
+                        .then (data) =>
+
+                            @$scope.list =
+                                _(data)
+                                    .filter disabled: false
+                                    .pluck 'placement'
+
+                                    .each (coupon) ->
+                                        if input > 0 and input < coupon.couponPackage.minimumInvest
+                                            coupon.status = 'DISABLED'
+
+                                    .value()
+
+                        .finally =>
+                            @$scope.loading = false
+                    )
+
+                else
+                    current_tab = @$routeParams.tab or 'placed'
+
+                    query_set = {
+                        status: current_tab.toUpperCase()
+                    }
+
+                    angular.extend @$scope, {
+                        current_tab
+                        query_set
+                    }
+
+                    @query(query_set)
+
+
+                return
 
                 input = +@$routeParams.input
 
@@ -79,6 +126,40 @@ do (_, angular) ->
                 @add_more(list)
 
                 @$scope.data = list
+
+
+            query: (query_set, options = {}) ->
+
+                if options.is_next_page
+                    query_set.pageNo++
+                else
+                    query_set.pageNo = 1
+                    @$scope.list = []
+
+                @$scope.loading = true
+
+                (@api.get_user_coupons(query_set, false)
+
+                    .then @api.TAKE_RESPONSE_DATA
+
+                    .then ({results, totalSize}) =>
+
+                        Array::push.apply(@$scope.list, results)
+
+                        angular.extend @$scope.list, {totalSize}
+
+                    .finally =>
+                        @$scope.loading = false
+                )
+
+
+            infinite_scroll: (distance) =>
+
+                return if distance >= 0
+
+                @$scope.$evalAsync =>
+                    @query(@$scope.query_set, {is_next_page: true})
+                        .then => @$scope.$broadcast('scrollpointShouldReset')
 
 
             select: (id) ->
