@@ -126,7 +126,7 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
-            get_user_repayments: (query_set = {}, cache = false) ->
+            get_user_repayments: (query_set = {}, cache = true) ->
 
                 convert_to_day = (date) ->
                     moment(date.format 'YYYY-MM-DD').unix() * 1000
@@ -135,14 +135,39 @@ do (_, angular, moment, Array, Date) ->
                     status: 'UNDUE'
                     from: convert_to_day moment().add 1, 'd'
                     to: convert_to_day moment().add 6, 'M'
+                    page: 1
+                    pageSize: 20
                 }
 
+                new_path = ->
+                    ARRAY_JOIN.call [
+                        '/api/v2/user/MYSELF/investRepayments'
+                        '/', query_set.page
+                        '/', query_set.pageSize
+                    ]
+
                 @$http
-                    .get '/api/v2/user/MYSELF/investRepayments/1/99',
-                        params: query_set
+                    .get new_path(),
+                        params: _.omit query_set, ['page', 'pageSize']
                         cache: cache
 
                     .then TAKE_RESPONSE_DATA
+
+                    .then (response) =>
+
+                        totalSize = _.get response, 'data.totalSize'
+
+                        return response if query_set.pageSize >= totalSize
+
+                        query_set.pageSize = totalSize
+
+                        @$http
+                            .get new_path(),
+                                params: _.omit query_set, ['page', 'pageSize']
+                                cache: cache
+
+                            .then TAKE_RESPONSE_DATA
+
                     .catch TAKE_RESPONSE_ERROR
 
 
