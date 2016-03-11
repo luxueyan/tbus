@@ -29,7 +29,7 @@ do (_, angular) ->
                                     .pluck 'placement'
 
                                     .each (coupon) ->
-                                        if input > 0 and input < coupon.couponPackage.minimumInvest
+                                        if 0 < input < coupon.couponPackage.minimumInvest
                                             coupon.status = 'DISABLED'
 
                                     .value()
