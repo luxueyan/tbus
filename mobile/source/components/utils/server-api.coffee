@@ -480,11 +480,11 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_DATA
 
 
-            payment_pool_check_card: (cardNo, bankCode, cardPhone) ->
+            payment_pool_check_card: (idNumber, name, cardNo, bankCode, cardPhone) ->
 
                 @$http
                     .post '/api/v2/hundsun/checkCard/MYSELF',
-                        _.compact {cardNo, bankCode, cardPhone, source: 'H5'}
+                        _.compact {idNumber, name, cardNo, bankCode, cardPhone, source: 'H5'}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
