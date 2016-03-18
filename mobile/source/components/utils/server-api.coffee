@@ -314,7 +314,7 @@ do (_, angular, moment, Array, Date) ->
             redeem_coupon: (placementId) ->
 
                 @$http
-                    .post '/api/v2/coupon/MYSELF/redeemCoupon', {placementId}
+                    .post '/api/v2/coupon/MYSELF/redeemCouponIgnoreApproval', {placementId}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
