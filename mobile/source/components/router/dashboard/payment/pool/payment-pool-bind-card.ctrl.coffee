@@ -160,7 +160,11 @@ do (_, angular) ->
                                 page: 'bind-card'
                                 page_path: 'dashboard/payment/bind-card'
                             }
-                            return
+
+                        else
+                            @$location.path 'dashboard/bank-card'
+
+                        return
 
                         @mg_alert _.get data, 'data', 'wow...'
                             .result.finally =>
