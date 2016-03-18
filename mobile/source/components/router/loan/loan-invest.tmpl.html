@@ -70,7 +70,10 @@
             </div>
 
             <div class="container bd">
-                <div class="coupon-wrap" ng-class="{ rsaquo: coupon_list.length }">
+                <div class="coupon-wrap"
+                     ng-class="{ rsaquo: coupon_list.length }"
+                     ng-click="coupon_list.length && self.pick_up_coupon($event, store.amount)"
+                >
                     <select name="placementId" class="form-control"
                             id="coupon"
                             ng-model="store.coupon"
@@ -79,7 +82,6 @@
                                 for coupon in coupon_list
                                 track by coupon.id
                             "
-                            ng-click="self.pick_up_coupon($event, store.amount)"
                             ng-if="coupon_list.length"
                     >
                         <option value="">{{ coupon_list.length }}个红包可用</option>
