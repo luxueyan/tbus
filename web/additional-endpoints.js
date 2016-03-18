@@ -18,4 +18,6 @@ module.exports = function (router, auth) {
     router.post('/api/v2/hundsun/recharge/:userId', auth.owner());
     router.post('/api/v2/hundsun/withdraw/:userId', auth.owner());
 
+    router.post('/api/v2/coupon/:userId/redeemCouponIgnoreApproval', auth.owner());
+
 };

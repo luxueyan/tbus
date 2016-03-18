@@ -32,8 +32,10 @@
             province:   '请选择省份',
             smsCaptcha: '请输入短信验证码',
 
+            REGISTER_FAILED: '实名认证失败',
             CHECK_CARD_FAILED: '验卡失败',
             BIND_CARD_FAILED: '绑卡失败',
+            UNKNOWN: '系统繁忙，请稍后重试！',
 
             SUCCEED: '银行卡绑定成功',
         }">
@@ -154,12 +156,11 @@
                 </div>
 
                 <div class="form-group merge form-group-bank">
-                    <div class="form-group-inner">
+                    <div class="form-group-inner" ng-click="self.select_bank($event, store)">
                         <label for="bank-name">银行</label>
                         <select name="bankName" class="form-control input-lg"
                                 id="bank-name"
                                 ng-model="store.bank"
-                                ng-click="self.select_bank($event, store)"
                                 ng-options="
                                     bank.bankName
                                     for bank in self.banks

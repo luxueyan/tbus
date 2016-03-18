@@ -62,6 +62,10 @@ do (_, angular) ->
                         @captcha.has_sent = @captcha.buffering = true
 
                     .catch (data) =>
+                        key = _.get data, 'error[0].message', 'UNKNOWN'
+                        @$window.alert @$scope.msg[key] or key
+                        return
+
                         @$timeout.cancel @error.timer
 
                         @error.on = true
@@ -161,6 +165,10 @@ do (_, angular) ->
 
                     .catch (data) =>
                         @submit_sending = false
+                        key = _.get data, 'error[0].message', 'UNKNOWN'
+                        @$window.alert @$scope.msg[key] or key
+                        return
+
                         @$timeout.cancel @error.timer
 
                         @error.on = true

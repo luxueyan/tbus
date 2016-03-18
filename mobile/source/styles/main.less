@@ -1972,6 +1972,16 @@ a {
             &.rsaquo {
                 position: relative;
 
+                &[ng-click]:before {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    z-index: 11;
+                }
+
                 &:after {
                     .transform(translateY(-50%));
 
@@ -3508,6 +3518,18 @@ a {
             right: 17px;
             color: #CBCCD0;
             pointer-events: none;
+        }
+
+        .form-group-inner {
+            &[ng-click]:before {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                z-index: 11;
+            }
         }
     }
 
