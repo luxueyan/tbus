@@ -107,7 +107,7 @@
                                id="amount"
                                name="amount"
                                ng-model="store.amount"
-                               max="1000000"
+                               max="{{ bank_account.account.singleQuota == -1 ? '' : bank_account.account.singleQuota }}"
                                minlength="1"
                                placeholder="输入充值金额"
                                required

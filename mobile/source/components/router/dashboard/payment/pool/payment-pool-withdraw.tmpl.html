@@ -13,8 +13,8 @@
         <param ng-model="msg" ng-init="msg = {
             INCORRECT_PASSWORD: '交易密码不正确',
 
-            SUCCEED: '提现申请已经提交，请等待审核',
-            UNKNOWN: '提现失败',
+            SUCCEED: '提现成功',
+            FAILED: '提现失败',
         }">
     </div>
 
@@ -99,8 +99,8 @@
             </div>
 
             <div class="container hint">
-                <p class="fee">提现费用3元/笔,由支付通道收取</p>
-                <p class="amount" ng-class="{ invisible: !form.withdraw.$valid }">实际到账: <span class="u-color-main">{{ store.amount - 3 }}元</span></p>
+                <p class="fee">提现费用X元/笔,由支付通道收取</p>
+                <p class="amount invisible" ng-class="{ _invisible: !form.withdraw.$valid }">实际到账: <span class="u-color-main">{{ store.amount - 3 }}元</span></p>
             </div>
 
             <p class="container"

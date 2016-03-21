@@ -32,5 +32,6 @@ do (angular) ->
 
         angulartics
         angulartics.baidu
+        ui.mask
 
     '.split ' '
