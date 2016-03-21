@@ -189,6 +189,10 @@ do (_, angular) ->
                 )
 
 
+            does_not_exist: (value) ->
+                _.every @user.bank_account_list, (item) -> item.account.account isnt value
+
+
             select_bank: (event, store) ->
 
                 do event.preventDefault

@@ -134,7 +134,7 @@
                             <h4 class="media-heading">银行卡</h4>
                             <p class="desc" ng-if="default_bank_account">
                                 {{ default_bank_account.account.bankName }}
-                                {{ default_bank_account.account.account | string_replace: '^\\d+(\\d{4})$' : '$1' }}
+                                {{ default_bank_account.account.account | string_replace: '^\\d+(\\d{4})$' : '****$1' }}
                             </p>
                         </div>
                     </div>
