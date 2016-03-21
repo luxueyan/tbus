@@ -127,7 +127,7 @@
 
                             <input id="user-name" class="form-control input-target input-lg" type="text"
                                    name="user_name"
-                                   value="{{ store.user_name | string_replace: '^([\u4E00-\u9FBF]+)([\u4E00-\u9FBF])$' : '**$2' }}"
+                                   value="{{ store.user_name | string_mask | string_replace: '^(.)(.+)$' : '*$2' }}"
                                    readonly
                                    ng-if="!is_user_name_init_editable"
                             >
@@ -145,15 +145,27 @@
 
             <div class="inputs container">
 
-                <div class="form-group merge">
+                <div class="form-group merge"
+                     ng-class="{'has-error': form.card_no.$invalid && form.card_no.$dirty}"
+                >
                     <div class="form-group-inner">
-                        <label for="card-no">银行卡</label>
-                        <input id="card-no" class="form-control input-target input-lg" type="tel"
-                               name="card-no"
+                        <label for="card_no">银行卡</label>
+                        <input id="card_no" class="form-control input-target input-lg" type="tel"
+                               name="card_no"
                                ng-model="store.cardNo"
-                               placeholder="输入本人借记卡号"
+                               ui-mask="9999 9999 9999 9999 ?9?9?9"
+                               ui-mask-placeholder
+                               ui-mask-placeholder-char="space"
+                               ui-validate="{ already_exists: 'self.does_not_exist($modelValue)' }"
+                               placeholder="请输入16至19位的本人借记卡号"
                                required
                         >
+                    </div>
+
+                    <div class="help-block"
+                         ng-show="form.card_no.$invalid && form.card_no.$dirty && form.card_no.$error.already_exists"
+                    >
+                        <span>该银行卡已绑定</span>
                     </div>
                 </div>
 
@@ -272,8 +284,10 @@
                 </div>
             </div>
 
-            <p class="container hint hint-captcha" ng-show="self.captcha.buffering">
-                已将验证码发送至手机<span class="u-color-main">{{ self.user.info.mobile | string_replace: '^(\\d{3})(\\d{4})(\\d{4})$' : '$1-$2-$3' }}</span>
+            <p class="container hint hint-captcha"
+               ng-if="store.cardPhone && self.captcha.buffering"
+            >
+                已将验证码发送至手机<span class="u-color-main">{{ store.cardPhone | string_replace: '^(\\d{3})(\\d{4})(\\d{4})$' : '$1-$2-$3' }}</span>
             </p>
 
             <div class="container">
