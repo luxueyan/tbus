@@ -55,7 +55,6 @@ do (_, angular) ->
                     key_suffix = options.key_suffix.toLowerCase()
                     loading = "loading_#{ key_suffix }"
                     list = "list_#{ key_suffix }"
-
                 else
                     loading = 'loading'
                     list = 'list'
