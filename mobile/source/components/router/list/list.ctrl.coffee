@@ -60,7 +60,7 @@ do (_, angular) ->
                     loading = 'loading'
                     list = 'list'
 
-                if options.is_next_page
+                if options.on_next_page
                     query_set.currentPage++
                 else
                     query_set.currentPage = 1
@@ -72,7 +72,7 @@ do (_, angular) ->
 
                     .then ({results, totalSize}) =>
 
-                        Array::push.apply(@$scope[list], results.map(@map_loan_summary))
+                        @$scope[list] = @$scope[list].concat results.map(@map_loan_summary)
 
                         angular.extend @$scope[list], {totalSize}
 
@@ -86,6 +86,6 @@ do (_, angular) ->
                 return if distance >= 0
 
                 @$scope.$evalAsync =>
-                    @query(@$scope.query_set, {is_next_page: true})
+                    @query(@$scope.query_set, {on_next_page: true})
                         .then => @$scope.$broadcast('scrollpointShouldReset')
 

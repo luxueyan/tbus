@@ -20,7 +20,7 @@ do (_, angular, moment) ->
 
             query: (query_set, options = {}) ->
 
-                if options.is_next_page
+                if options.on_next_page
                     query_set.page++
                 else
                     query_set.page = 1
@@ -32,7 +32,7 @@ do (_, angular, moment) ->
 
                     .then ({results, totalSize}) =>
 
-                        Array::push.apply(@$scope.list, results.map(@map_funds_summary))
+                        @$scope.list = @$scope.list.concat results.map(@map_funds_summary)
 
                         angular.extend @$scope.list, {totalSize}
 
@@ -46,7 +46,7 @@ do (_, angular, moment) ->
                 return if distance >= 0
 
                 @$scope.$evalAsync =>
-                    @query(@$scope.query_set, {is_next_page: true})
+                    @query(@$scope.query_set, {on_next_page: true})
                         .then => @$scope.$broadcast('scrollpointShouldReset')
 
 

@@ -11,9 +11,9 @@ do (_, angular) ->
                 current_tab = @$routeParams.tab or 'raising'
 
                 type_status_map = {
-                    'raising' : _.split 'FINISHED PROPOSED FROZEN'
-                    'repaying': _.split 'SETTLED OVERDUE BREACH'
-                    'done'    : _.split 'CLEARED'
+                    raising : _.split 'FINISHED PROPOSED FROZEN'
+                    repaying: _.split 'SETTLED OVERDUE BREACH'
+                    done    : _.split 'CLEARED'
                 }
 
                 query_set = {
@@ -108,7 +108,7 @@ do (_, angular) ->
 
             query: (query_set, options = {}) ->
 
-                if options.is_next_page
+                if options.on_next_page
                     query_set.page++
                 else
                     query_set.page = 1
@@ -120,7 +120,7 @@ do (_, angular) ->
 
                     .then ({results, totalSize}) =>
 
-                        Array::push.apply(@$scope.list, results.map(@map_invest_summary))
+                        @$scope.list = @$scope.list.concat results.map(@map_invest_summary)
 
                         angular.extend @$scope.list, {totalSize}
 
@@ -136,7 +136,7 @@ do (_, angular) ->
                 return if distance >= 0
 
                 @$scope.$evalAsync =>
-                    @query(@$scope.query_set, {is_next_page: true})
+                    @query(@$scope.query_set, {on_next_page: true})
                         .then => @$scope.$broadcast('scrollpointShouldReset')
 
 
