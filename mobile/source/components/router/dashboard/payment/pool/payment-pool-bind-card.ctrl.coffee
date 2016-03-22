@@ -33,7 +33,6 @@ do (_, angular) ->
                 (@$q.resolve(!!@user.has_payment_account)
 
                     .then (has_payment_account) =>
-                        return
                         return if has_payment_account
 
                         (@api.payment_pool_register(user_name, id_number)
@@ -51,10 +50,6 @@ do (_, angular) ->
                     .then @api.process_response
 
                     .then =>
-                        @user.info.name = user_name
-                        @user.info.idNumber = id_number
-                        @user.has_payment_account = true
-
                         @captcha.timer = @$interval =>
                             @captcha.count -= 1
 
