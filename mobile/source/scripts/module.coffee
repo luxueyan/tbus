@@ -25,6 +25,7 @@ do (angular) ->
 
         ui.validate
         ui.bootstrap
+        ui.scrollpoint
 
         timer
         easypiechart

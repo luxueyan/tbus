@@ -170,21 +170,6 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                         controller: 'CouponCtrl as self'
                         templateUrl: 'components/router/dashboard/coupon.tmpl.html'
                         resolve:
-                            data: _.ai 'api, $location, $q, $route',
-                                (       api, $location, $q, $route) ->
-                                    {amount, months, loan_id} = $route.current.params
-
-                                    if !!amount and !!months and !!loan_id
-                                        api.fetch_coupon_list(amount, months, loan_id)
-                                            .then api.TAKE_RESPONSE_DATA
-                                            .then (list) ->
-                                                _(list)
-                                                    .filter disabled: false
-                                                    .pluck 'placement'
-                                                    .value()
-                                    else
-                                        api.fetch_user_coupons()
-
                             user: _.ai 'api, $location, $q',
                                 (       api, $location, $q) ->
                                     api.fetch_current_user().catch ->
@@ -288,10 +273,13 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                         controller: 'InvestCtrl as self'
                         templateUrl: 'components/router/dashboard/invest.tmpl.html'
                         resolve:
-                            data: _.ai 'api, $location, $q',
+                            user: _.ai 'api, $location, $q',
                                 (       api, $location, $q) ->
-                                    api.get_user_investments().catch ->
-                                        $location.path '/dashboard'
+                                    api.fetch_current_user().catch ->
+                                        $location
+                                            .replace()
+                                            .path '/login'
+                                            .search next: 'dashboard/invest'
                                         return $q.reject()
                     }
 
