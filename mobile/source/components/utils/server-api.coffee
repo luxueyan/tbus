@@ -102,22 +102,31 @@ do (_, angular, moment, Array, Date) ->
                 return @user_fetching_promise
 
 
-            get_user_investments: (size = 99, cache = true) ->
+            get_user_investments: (query_set = {}, cache = true) ->
 
-                query_set = {
-                    status: _.split 'SETTLED OVERDUE BREACH FINISHED PROPOSED FROZEN CLEARED'
+                _.defaults query_set, {
+                    status: _.split 'FINISHED PROPOSED FROZEN SETTLED OVERDUE BREACH CLEARED'
+                    page: 1
+                    pageSize: 10
                 }
 
+                new_path = ->
+                    ARRAY_JOIN.call [
+                        '/api/v2/user/MYSELF/invest/list'
+                        '/', query_set.page - 1
+                        '/', query_set.pageSize
+                    ]
+
                 @$http
-                    .get "/api/v2/user/MYSELF/invest/list/0/#{ size }",
-                        params: query_set
+                    .get new_path(),
+                        params: _.omit query_set, ['page', 'pageSize']
                         cache: cache
 
-                    .then (response) ->
-                        response.data?.results or []
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
-            get_user_repayments: (query_set = {}, cache = false) ->
+            get_user_repayments: (query_set = {}, cache = true) ->
 
                 convert_to_day = (date) ->
                     moment(date.format 'YYYY-MM-DD').unix() * 1000
@@ -126,14 +135,39 @@ do (_, angular, moment, Array, Date) ->
                     status: 'UNDUE'
                     from: convert_to_day moment().add 1, 'd'
                     to: convert_to_day moment().add 6, 'M'
+                    page: 1
+                    pageSize: 20
                 }
 
+                new_path = ->
+                    ARRAY_JOIN.call [
+                        '/api/v2/user/MYSELF/investRepayments'
+                        '/', query_set.page
+                        '/', query_set.pageSize
+                    ]
+
                 @$http
-                    .get '/api/v2/user/MYSELF/investRepayments/1/99',
-                        params: query_set
+                    .get new_path(),
+                        params: _.omit query_set, ['page', 'pageSize']
                         cache: cache
 
                     .then TAKE_RESPONSE_DATA
+
+                    .then (response) =>
+
+                        totalSize = _.get response, 'data.totalSize'
+
+                        return response if query_set.pageSize >= totalSize
+
+                        query_set.pageSize = totalSize
+
+                        @$http
+                            .get new_path(),
+                                params: _.omit query_set, ['page', 'pageSize']
+                                cache: cache
+
+                            .then TAKE_RESPONSE_DATA
+
                     .catch TAKE_RESPONSE_ERROR
 
 
@@ -150,12 +184,29 @@ do (_, angular, moment, Array, Date) ->
                     startDate: convert_to_day moment().subtract 10, 'y'
                     endDate: convert_to_day moment().add 1, 'd'
                     page: 1
-                    pageSize: 99
+                    pageSize: 10
                 }
 
                 @$http
                     .get '/api/v2/user/MYSELF/funds/query',
                         params: _.compact query_set
+                        cache: cache
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
+            get_user_coupons: (query_set = {}, cache = false) ->
+
+                _.defaults query_set, {
+                    status: 'PLACED'
+                    pageNo: 1
+                    pageSize: 10
+                }
+
+                @$http
+                    .get '/api/v2/coupon/MYSELF/coupons/byStatus',
+                        params: query_set
                         cache: cache
 
                     .then TAKE_RESPONSE_DATA
@@ -213,8 +264,8 @@ do (_, angular, moment, Array, Date) ->
                     maxRate: 100
                     minAmount: 1
                     maxAmount: 100000000
-                    pageSize: 20
                     currentPage: 1
+                    pageSize: 10
                 }
 
                 @$http

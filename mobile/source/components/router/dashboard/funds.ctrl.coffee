@@ -11,25 +11,43 @@ do (_, angular, moment) ->
                 query_set = {}
 
                 angular.extend @$scope, {
+                    back_path: @$routeParams.back
                     query_set
                 }
 
                 @query(query_set)
 
 
-            query: (query_set) ->
+            query: (query_set, options = {}) ->
+
+                if options.on_next_page
+                    query_set.page++
+                else
+                    query_set.page = 1
+                    @$scope.list = []
 
                 @$scope.loading = true
 
                 (@api.get_user_funds(query_set, false)
 
-                    .then ({results}) =>
+                    .then ({results, totalSize}) =>
 
-                        @$scope.list = results.map @map_funds_summary
+                        @$scope.list = @$scope.list.concat results.map(@map_funds_summary)
+
+                        angular.extend @$scope.list, {totalSize}
 
                     .finally =>
                         @$scope.loading = false
                 )
+
+
+            infinite_scroll: (distance) =>
+
+                return if distance >= 0
+
+                @$scope.$evalAsync =>
+                    @query(@$scope.query_set, {on_next_page: true})
+                        .then => @$scope.$broadcast('scrollpointShouldReset')
 
 
             convert_start_date: (num, unit) ->

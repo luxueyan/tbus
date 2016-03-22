@@ -2296,6 +2296,10 @@ a {
             + .list-row {
                 border-top: 1px solid #F0F0F0;
             }
+
+            &:last-child > .item {
+                min-height: 76px;
+            }
         }
 
         .media {
@@ -2593,6 +2597,14 @@ a {
 ----*/
 
 #dashboard-coupon {
+    .btn-group {
+        #dashboard-invest .btn-group;
+
+        &-wrap + *:before {
+            height: 48px;
+        }
+    }
+
     .coupon-tab > .nav-tabs {
         #dashboard-invest .invest-list .inline > .nav-tabs.nav-justified;
 
@@ -2737,7 +2749,7 @@ a {
 
                 &-rebate {
                     .media-left {
-                        background-color: #CCC;
+                        #gradient .vertical(#8565E6; #9679DE);
                     }
                 }
             }
@@ -2767,6 +2779,11 @@ a {
                 }
             }
         }
+    }
+
+    .loading {
+        padding: 10px;
+        background-color: #FFF;
     }
 
     .coupon-list-backup {
@@ -2929,6 +2946,14 @@ a {
 ----*/
 
 #dashboard-invest {
+    .btn-group {
+        #loan-info .btn-group;
+
+        .btn-tab {
+            min-width: 94px;
+        }
+    }
+
     .invest-list {
         .inline > .nav-tabs.nav-justified {
             position: fixed;
@@ -2989,7 +3014,7 @@ a {
             }
         }
 
-        .item {
+        .list > li {
             margin: 8px 0;
             border-top: 1px solid #DEDFE1;
             border-bottom: 1px solid #DEDFE1;
@@ -3076,6 +3101,11 @@ a {
                 }
             }
         }
+    }
+
+    .loading {
+        padding: 10px;
+        background-color: #FFF;
     }
 }
 
@@ -3772,7 +3802,7 @@ a {
     }
 
     > .repayment-loan {
-        #dashboard-invest .invest-list .item;
+        //#dashboard-invest .invest-list .item;
 
         .body {
             margin-bottom: 0;
