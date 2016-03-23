@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'DashboardCtrl',
 
-        _.ai '            @api, @user, @$scope, @$rootScope, @$window, @$location', class
-            constructor: (@api, @user, @$scope, @$rootScope, @$window, @$location) ->
+        _.ai '            @api, @user, @$scope, @$rootScope, @$window', class
+            constructor: (@api, @user, @$scope, @$rootScope, @$window) ->
 
                 @$window.scrollTo 0, 0
 
@@ -13,7 +13,6 @@ do (_, angular) ->
                 @$scope.fund = {
                     available: @user.fund.availableAmount
                     total: @user.fund.availableAmount + @user.fund.dueInAmount + @user.fund.frozenAmount
-                    daily: @user.statistics.yesterdayIncome
                     total_interest: @user.statistics.investInterestAmount
                     outstanding_interest: @user.fund.outstandingInterest
                 }
@@ -39,19 +38,3 @@ do (_, angular) ->
                 @$scope.default_bank_account = do (list = @user.bank_account_list) ->
                         _.find list, (item) -> item.defaultAccount is true
 
-                # prefetch following API calls for getting out from cache directly later on
-
-                # @api.get_user_funds()
-
-
-            logout: ->
-
-                @api.logout().then =>
-
-                    @$location
-                        .path '/'
-                        .search t: _.now()
-
-                    @$scope.$on '$locationChangeStart', (event, new_path) =>
-                        event.preventDefault()
-                        @$window.location.href = new_path
