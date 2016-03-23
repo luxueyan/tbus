@@ -2558,18 +2558,6 @@ a {
         }
     }
 
-    .coupon-tab > .nav-tabs {
-        #dashboard-invest .invest-list .inline > .nav-tabs.nav-justified;
-
-        & + *:before {
-            height: 46px;
-        }
-
-        > li a {
-            // min-width: 70px;
-        }
-    }
-
     .coupon-list {
         > .item {
             position: relative;
@@ -2737,103 +2725,6 @@ a {
     .loading {
         padding: 10px;
         background-color: #FFF;
-    }
-
-    .coupon-list-backup {
-        > .item {
-            margin-bottom: 10px;
-            border-top: 1px solid #D9D9D9;
-            border-bottom: 1px solid #D9D9D9;
-            padding: 15px 12px;
-            background-color: #FFF;
-            font-size: 24px/2 + 1;
-            color: #4A4A4A;
-
-            .media {
-                &-left {
-                    padding-right: 23px;
-                }
-
-                &-body {
-                    padding-top: 5px;
-                    position: relative;
-                }
-
-                &-object {
-                    display: inline-block;
-                    vertical-align: middle;
-                    background: url("@{path-image}/coupon-icons.png") no-repeat;
-                    background-size: cover;
-                    background-position: 0 0;
-                    width: 124px/2;
-                    height: 156px/2;
-                    overflow: hidden;
-                }
-            }
-
-            .status {
-                height: 22px;
-                line-height: 22px;
-                color: #FF4D4D;
-            }
-
-            .value {
-                height: 55px;
-                line-height: 55px;
-                color: #FFF;
-
-                .num {
-                    font-size: 34px/2 + 1;
-                }
-            }
-
-            .type {
-                display: inline-block;
-                vertical-align: middle;
-                margin-bottom: 6px;
-                border: 1px solid #FF4D4D;
-                padding-left: 4px;
-                padding-right: 4px;
-                color: #FF4D4D;
-            }
-
-            .expire {
-                margin-bottom: 10px;
-            }
-
-            .desc {
-                color: #999;
-            }
-
-            .redeem {
-                position: absolute;
-                top: 0;
-                right: 0;
-            }
-
-            &-status-redeemed,
-            &-status-expired,
-            &-status-cancelled {
-                background-color: #E5E5E5;
-
-                .media-object {
-                    background-position: 0 -156px/2;
-                }
-
-                .status {
-                    color: #999;
-                }
-
-                .type {
-                    border: 1px solid #999;
-                    color: #999;
-                }
-
-                .expire {
-                    color: #999;
-                }
-            }
-        }
     }
 }
 

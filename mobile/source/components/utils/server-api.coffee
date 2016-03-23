@@ -362,15 +362,6 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
-            redeem_coupon: (placementId) ->
-
-                @$http
-                    .post '/api/v2/coupon/MYSELF/redeemCouponIgnoreApproval', {placementId}
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
-
-
             fetch_user_notifications: ->
 
                 @$http
