@@ -171,31 +171,6 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
-            get_user_funds: (query_set = {}, cache = false) ->
-
-                convert_to_day = (date) ->
-                    moment(date.format 'YYYY-MM-DD').unix() * 1000
-
-                _.defaults query_set, {
-                    # type: _.split 'INVEST WITHDRAW DEPOSIT INVEST_REPAY FEE_WITHDRAW TRANSFER'
-                    # allStatus: false
-                    # allOperation: true
-                    type: ''
-                    startDate: convert_to_day moment().subtract 10, 'y'
-                    endDate: convert_to_day moment().add 1, 'd'
-                    page: 1
-                    pageSize: 10
-                }
-
-                @$http
-                    .get '/api/v2/user/MYSELF/funds/query',
-                        params: _.compact query_set
-                        cache: cache
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_ERROR
-
-
             get_user_coupons: (query_set = {}, cache = false) ->
 
                 _.defaults query_set, {
