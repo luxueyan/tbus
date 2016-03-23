@@ -40,6 +40,8 @@ do (angular) ->
                         back_path: 'dashboard'
                     }
 
+                EXTEND_API @api
+
 
             pick_up_bank: (event, amount = 0) ->
 
@@ -76,7 +78,31 @@ do (angular) ->
 
                     .catch (data) =>
                         @submit_sending = false
+
                         key = _.get data, 'error[0].message', 'UNKNOWN'
-                        @$window.alert @$scope.msg[key] or key
+                        msg = @$scope.msg[key] or key
+
+                        if key in _.split 'DEPOSIT_FAILED'
+                            detail = _.get data, 'error[0].value', ''
+                            msg += if detail then "，#{ detail }" else ''
+
+                        @$window.alert msg
                 )
 
+
+
+
+
+
+
+
+    EXTEND_API = (api) ->
+
+        api.__proto__.payment_pool_recharge = (cardNo, amount, paymentPassword) ->
+
+            @$http
+                .post '/api/v2/hundsun/recharge/MYSELF',
+                    {cardNo, amount, paymentPassword}
+
+                .then @TAKE_RESPONSE_DATA
+                .catch @TAKE_RESPONSE_ERROR
