@@ -474,7 +474,7 @@ do (_, angular, moment, Array, Date) ->
 
                 @$http
                     .post '/api/web/register/submit',
-                        _.merge optional, {password, mobile, mobile_captcha, source: 'H5'}
+                        _.merge optional, {password, mobile, mobile_captcha, source: 'MOBILE'}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
