@@ -11,6 +11,7 @@ if (process.env.NODE_ENV !== 'development') {
 console.log('config:', JSON.stringify(require('config'), null, '    '));
 logger.replaceDebug();
 var fs = require('fs');
+var userAgent = require('useragent');
 
 var ds = require('dysonshell');
 var {app, server} = require('dysonshell/instance');
