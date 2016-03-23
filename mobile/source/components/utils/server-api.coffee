@@ -462,16 +462,6 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_DATA
 
 
-            payment_pool_register: (name, idNumber) ->
-
-                @$http
-                    .post '/api/v2/hundsun/register/MYSELF',
-                        _.compact {name, idNumber}
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_ERROR
-
-
             payment_pool_recharge: (cardNo, amount, paymentPassword) ->
 
                 @$http
@@ -522,35 +512,6 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
-            payment_pool_bind_card_sent_captcha:  ->
-
-                @$http
-                    .post '/api/v2/smsCaptcha/MYSELF', {smsType: 'CREDITMARKET_CAPTCHA'}
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
-
-
-            payment_pool_check_card: (idNumber, name, cardNo, bankCode, cardPhone) ->
-
-                @$http
-                    .post '/api/v2/hundsun/checkCard/MYSELF',
-                        _.compact {idNumber, name, cardNo, bankCode, cardPhone, source: 'H5'}
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_ERROR
-
-
-            payment_pool_bind_card: (cardNo, bankCode, cardPhone, smsCaptcha) ->
-
-                @$http
-                    .post '/api/v2/hundsun/bindCard/MYSELF',
-                        _.compact {cardNo, bankCode, cardPhone, smsCaptcha, source: 'H5'}
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
-
-
             payment_pool_unbind_card: (cardNo) ->
 
                 @$http
@@ -585,32 +546,6 @@ do (_, angular, moment, Array, Date) ->
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
-
-
-            get_province_list: ->
-
-                @$http.get '/api/v2/lianlianpay/provinceCodes', cache: true
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
-
-
-            get_city_list_by_province: (province) ->
-
-                @$http.get '/api/v2/lianlianpay/provinceCityCodes/' + province, cache: true
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
-
-
-            get_bank_branch_name: (cityCode, cardNo) ->
-
-                path = [cityCode, '%E9%93%B6%E8%A1%8C', cardNo].join '/'
-
-                @$http.get "/api/v2/lianlianpay/bankBranches/#{ path }", cache: true
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_ERROR
 
 
             register: (password, mobile, mobile_captcha, optional = {}) ->
