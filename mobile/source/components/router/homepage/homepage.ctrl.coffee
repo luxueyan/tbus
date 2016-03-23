@@ -51,7 +51,7 @@ do (_, angular) ->
 
                 @$scope[loading] = true
 
-                (@api.get_loan_list_by_config(query_set, false)
+                (@api.get_loan_list_by_config(query_set, true)
 
                     .then ({results, totalSize}) =>
 

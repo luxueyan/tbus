@@ -10,6 +10,7 @@ module.exports = function (router, auth) {
     router.get('/api/v2/reward/getReferUserCountAndReward/:userId', auth.owner());
 
     router.get('/api/v2/hundsun/banks', auth.pass());
+    router.get('/api/v2/hundsun/checkCard/sendSmsCaptcha/:mobile', auth.user());
     router.post('/api/v2/hundsun/register/:userId', auth.owner());
     router.post('/api/v2/hundsun/checkCard/:userId', auth.owner());
     router.post('/api/v2/hundsun/bindCard/:userId', auth.owner());

@@ -23,9 +23,10 @@ do (angular) ->
         ngAnimate
         ngTouch
 
-        ui.validate
         ui.bootstrap
+        ui.validate
         ui.scrollpoint
+        ui.mask
 
         timer
         easypiechart
@@ -33,6 +34,5 @@ do (angular) ->
 
         angulartics
         angulartics.baidu
-        ui.mask
 
     '.split ' '

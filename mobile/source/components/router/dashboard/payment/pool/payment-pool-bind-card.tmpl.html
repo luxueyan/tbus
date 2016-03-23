@@ -10,45 +10,16 @@
     </nav>
 
     <div>
-        <param ng-model="direct_paid_banks" ng-init="direct_paid_banks = [
-            '工商银行',
-            '农业银行',
-            '中国银行',
-            '招商银行',
-            '光大银行',
-            '浦发银行',
-            '中国邮政储蓄银行',
-            '建设银行',
-        ]">
-
         <param ng-model="msg" ng-init="msg = {
-            id_number: '请输入身份证号码',
-            user_name: '请输入身份证上的姓名',
-            cardPhone: '请输入银行预留手机号',
-            bank:      '请选择开户银行',
-            branchName: '请选择支行名称',
-            cardNo:     '请输入卡号',
-            city:       '请选择市区',
-            province:   '请选择省份',
-            smsCaptcha: '请输入短信验证码',
-
-            REGISTER_FAILED: '开户失败',
             SEND_CAPTCHA_FAILED: '验证码发送失败',
             SMSCAPTCHA_IS_NOT_CORRECT: '手机验证码不匹配',
+            REGISTER_FAILED: '开户失败',
             CHECK_CARD_FAILED: '验卡失败',
             BIND_CARD_FAILED: '绑卡失败',
             UNKNOWN: '系统繁忙，请稍后重试！',
 
             SUCCEED: '银行卡绑定成功',
         }">
-    </div>
-
-    <div class="alert alert-info u-off-border-radius" x-gyro-comment>
-        <param class="glyphicon glyphicon-exclamation-sign">
-        重要提示：此银行卡的开户名必须为
-        <strong>{{ self.user.info.name }}</strong>
-        的借记卡，否则提现会失败。每个用户只允许绑定1张银行卡，今后仅能使用该银行卡进行快捷充值与提现；
-        绑定后如需更换，须联系客服经审核才能更换。请慎重选择！！
     </div>
 
     <div class="page-content">
@@ -184,48 +155,8 @@
                         >
                             <option value="">请选择开户银行</option>
                         </select>
-                        <input id="bank-name" class="form-control input-target input-lg" type="text"
-                               name="bankName"
-                               ng-model="store.bankCode"
-                               placeholder="请选择开户银行"
-                               required
-                               readonly
-                               x-gyro-comment
-                        >
                         <param class="glyphicon glyphicon-menu-right">
                     </div>
-                </div>
-
-                <div class="form-group merge" ng-show="self.need_location()" x-gyro-comment>
-                    <label>选择省市</label>
-
-                    <select name="province" class="form-control input-sm"
-                            id="province"
-                            ng-model="store.province"
-                            ng-change="self.fetch_city(store.province); self.fetch_branch(city[store.city], store.cardNo)"
-                            ng-options="name as name for (name, code) in province"
-                    >
-                        <option value="">...选择省</option>
-                    </select>
-
-                    <select name="city" class="form-control input-sm"
-                            id="city"
-                            ng-model="store.city"
-                            ng-change="self.fetch_branch(city[store.city], store.cardNo)"
-                            ng-options="name as name for (name, code) in city"
-                    >
-                        <option value="">...选择市</option>
-                    </select>
-                </div>
-
-                <div class="form-group merge" ng-show="self.need_location()" x-gyro-comment>
-                    <label for="branch-name">开户支行</label>
-                    <input id="branch-name" class="form-control input-target input-lg" type="tel"
-                           name="branch-name"
-                           ng-model="store.branchName"
-                           placeholder="开户行（如：招商银行肥西路支行）"
-                           required
-                    >
                 </div>
 
                 <div class="form-group merge">
@@ -264,7 +195,7 @@
                         >
 
                         <button class="btn btn-sm btn-action btn-plain" type="button"
-                                ng-click="self.send_mobile_captcha(store)"
+                                ng-click="self.send_mobile_captcha(store.cardPhone)"
                                 ng-disabled="
                                        !store.id_number
                                     || !store.user_name
@@ -297,29 +228,13 @@
                     >下一步</button>
                     <a class="btn btn-link btn-block" ng-href="{{ self.back_path || 'dashboard' }}">以后再说</a>
                 </div>
-
-                <div class="form-group container">
-                    <p class="flash-message alert alert-warning text-center"
-                       ng-class="{ on: self.error.on }"
-                    >
-                        {{ self.error.message }}&nbsp;
-                    </p>
-                </div>
             </div>
         </form>
 
-        <section class="container notice" x-gyro-comment>
-            <h2 class="title">温馨提示：</h2>
-            <ol class="list">
-                <li><p>为保障您的资金安全，绑卡前请先进行实名认证。
-                <li><p>您所绑定的银行卡须是借记卡，718bank理财严禁利用信用卡套现。
-                <li><p>718bank理财目前只支持绑定一张银行卡，认证支付充值、提现采用同卡进出原则，即提现银行卡需与充值银行卡一致。
-                <li><p>已绑定的银行卡如需更换，请联系客服：<a href="tel:4008189696">400-818-9696</a>。
-            </ol>
-        </section>
     </div>
 
 </div>
+
 
 
 
@@ -381,5 +296,3 @@
 
     </div>
 </script>
-
-
