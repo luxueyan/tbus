@@ -460,16 +460,6 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
-            payment_pool_tender: (loanId, paymentPassword, amount, placementId = '') ->
-
-                @$http
-                    .post '/api/v2/invest/tender/MYSELF',
-                        _.compact {loanId, paymentPassword, amount, placementId}
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
-
-
             get_available_bank_list: ->
 
                 @$http.get '/api/v2/hundsun/banks', cache: true

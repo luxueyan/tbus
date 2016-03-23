@@ -1836,37 +1836,6 @@ a {
     }
 }
 
-.ngt-share-coupon {
-
-    text-align: center;
-
-    .close-btn {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        color: @color-gray;
-        font-size: 20px;
-    }
-
-    .modal-body {
-        h2 {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        h3 {
-            font-size: 15px;
-            color: @color-gray;
-        }
-    }
-
-    .modal-footer .btn {
-        background-color: @color-theme-main;
-        color: #FFF;
-        border: none;
-    }
-}
-
 #loan-invest {
     section:not(.omit-margin) {
         margin-top: 16px;
@@ -1972,7 +1941,7 @@ a {
             &.rsaquo {
                 position: relative;
 
-                &[ng-click]:before {
+                &:before {
                     content: "";
                     position: absolute;
                     left: 0;
@@ -2069,76 +2038,6 @@ a {
                         margin-top: 16px;
                     }
                 }
-            }
-        }
-    }
-
-    .form-invest-backup {
-        margin-top: 10px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        background-color: #FFF;
-
-        .form-group {
-            label {
-                margin-top: 5px;
-                padding-right: 0;
-                font-weight: normal;
-            }
-
-            .omit-padding {
-                padding: 0;
-            }
-
-            .available-amount {
-                margin-top: 5px;
-            }
-
-            .earning {
-                margin-top: 5px;
-                padding-left: 3px;
-                color: #C0C0C0;
-            }
-
-            &.rule {
-                margin-top: -5px;
-                margin-bottom: 10px;
-                color: #C0C0C0;
-            }
-
-            .num {
-                color: #FE8008;
-            }
-
-            .coupon-tip {
-                margin-top: 5px;
-                color: #C0C0C0;
-            }
-        }
-
-        .agreement {
-            padding: 5px;
-
-            label {
-                font-weight: normal;
-            }
-        }
-
-        .btn {
-            &-polish {
-                .button-variant(#FE8008; #FFF; #FE8008);
-            }
-
-            &-recharge {
-                .button-variant(#0090E0; #FFF; #0190DF);
-            }
-
-            &-invest {
-                .button-variant(#FFF; #FE8008; #FE8008);
-            }
-
-            + .btn {
-                margin-left: 5px;
             }
         }
     }

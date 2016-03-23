@@ -3,8 +3,8 @@ do (_, angular, Math) ->
 
     angular.module('controller').controller 'LoanInvestCtrl',
 
-        _.ai '            @api, @user, @loan, @coupon, @$scope, @$q, @$location, @$window, map_loan_summary, @$uibModal, @mg_alert, @$routeParams, @popup_payment_state', class
-            constructor: (@api, @user, @loan, @coupon, @$scope, @$q, @$location, @$window, map_loan_summary, @$uibModal, @mg_alert, @$routeParams, @popup_payment_state) ->
+        _.ai '            @api, @user, @loan, @coupon, @$scope, @$location, @$window, map_loan_summary, @$uibModal, @$routeParams, @popup_payment_state', class
+            constructor: (@api, @user, @loan, @coupon, @$scope, @$location, @$window, map_loan_summary, @$uibModal, @$routeParams, @popup_payment_state) ->
 
                 @$window.scrollTo 0, 0
 
@@ -72,6 +72,8 @@ do (_, angular, Math) ->
                         page_path: @page_path
                         back_path: "loan/#{ @loan.id }"
                     }
+
+                EXTEND_API @api
 
 
             amount_polishing: (amount) ->
@@ -145,19 +147,19 @@ do (_, angular, Math) ->
 
                 (if amount > loan_available
                     good_to_go = false
-                    @mg_alert "当前剩余可投#{ loan_available }元"
+                    @$window.alert "当前剩余可投#{ loan_available }元"
 
                 else if loan_available >= loan_minimum and (amount < loan_minimum or (amount - loan_minimum) % loan_step isnt 0)
                     good_to_go = false
-                    @mg_alert "#{ loan_minimum }元起投，#{ loan_step }元递增"
+                    @$window.alert "#{ loan_minimum }元起投，#{ loan_step }元递增"
 
                 else if loan_available < loan_minimum and amount isnt loan_available
                     good_to_go = false
-                    @mg_alert "投资金额必须为标的剩余金额#{ loan_available }元"
+                    @$window.alert "投资金额必须为标的剩余金额#{ loan_available }元"
 
                 else if amount > loan_maximum and loan_maximum != 0
                     good_to_go = false
-                    @mg_alert "单笔最多可投 #{ loan_maximum }元"
+                    @$window.alert "单笔最多可投 #{ loan_maximum }元"
 
                 else if user_available <= 0 or amount > user_available
                     good_to_go = false
@@ -165,7 +167,7 @@ do (_, angular, Math) ->
 
                 else if coupon_minimum and amount < coupon_minimum
                     good_to_go = false
-                    @mg_alert "该优惠券需要投资额大于 #{ coupon_minimum } 方可使用"
+                    @$window.alert "该优惠券需要投资额大于 #{ coupon_minimum } 方可使用"
                 )
 
                 return unless good_to_go
@@ -175,22 +177,8 @@ do (_, angular, Math) ->
                 (@api.payment_pool_tender(loan.id, password, amount, coupon?.id)
 
                     .then @api.process_response
-                    # .then @api.TAKE_RESPONSE_DATA
-
-                    # .then ({userShare, tenderResult}) =>
-                    #     return true unless userShare?.id
-
-                    #     @prompt_coupon_sharing(userShare.id).catch =>
-                    #         @$q.resolve false
 
                     .then =>
-
-                        # @mg_alert '投标成功'
-                        #     .result.finally =>
-                        #         @$location.path "/loan/#{ @loan.id }"
-
-                        # @$location.path "/loan/#{ @loan.id }"
-
                         @$scope.show_invest_result = true
 
                         @$scope.$on '$locationChangeStart', (event, new_path) =>
@@ -199,32 +187,11 @@ do (_, angular, Math) ->
 
                     .catch (data) =>
                         message = _.get data, 'error[0].message', '系统繁忙，请稍后重试！'
-                        @mg_alert message
+                        @$window.alert message
 
                     .finally =>
                         @submit_sending = false
                 )
-
-
-            prompt_coupon_sharing: (id) ->
-
-                prompt = @$uibModal.open {
-                    size: 'sm'
-                    keyboard: false
-                    backdrop: 'static'
-                    windowClass: 'center ngt-share-coupon'
-                    animation: true
-                    templateUrl: 'components/templates/ngt-share-coupon.tmpl.html'
-
-                    controller: _.ai '$scope', ($scope) =>
-                        angular.extend $scope, {id}
-                }
-
-                once = @$scope.$on '$locationChangeStart', ->
-                    prompt?.dismiss()
-                    do once
-
-                return prompt.result
 
 
             prompt_short_of_balance: ->
@@ -274,6 +241,23 @@ do (_, angular, Math) ->
                             angular.extend $scope, {content}
                 }
 
+
+
+
+
+
+
+
+    EXTEND_API = (api) ->
+
+        api.__proto__.payment_pool_tender = (loanId, paymentPassword, amount, placementId = '') ->
+
+            @$http
+                .post '/api/v2/invest/tender/MYSELF',
+                    _.compact {loanId, paymentPassword, amount, placementId}
+
+                .then @TAKE_RESPONSE_DATA
+                .catch @TAKE_RESPONSE_ERROR
 
 
 
