@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'PasswordForgotCtrl',
 
-        _.ai '            @api, @$scope, @$location, @$window, @$interval, @$routeParams, @mg_alert, @$q', class
-            constructor: (@api, @$scope, @$location, @$window, @$interval, @$routeParams, @mg_alert, @$q) ->
+        _.ai '            @api, @$scope, @$location, @$window, @$interval, @$routeParams, @$q', class
+            constructor: (@api, @$scope, @$location, @$window, @$interval, @$routeParams, @$q) ->
 
                 @captcha = {timer: null, count: 60, count_default: 60, has_sent: false, buffering: false}
 
@@ -53,7 +53,7 @@ do (_, angular) ->
                     .catch (data) =>
                         error = _.get data, 'error[0].message', 'UNKNOWN'
                         error = _.result @$scope.msg, error
-                        @mg_alert error
+                        @$window.alert error
                 )
 
 
@@ -68,9 +68,8 @@ do (_, angular) ->
                         return data
 
                     .then (data) =>
-                        @mg_alert @$scope.msg.SUCCEED
-                            .result.finally =>
-                                @$location.path '/login'
+                        @$window.alert @$scope.msg.SUCCEED
+                        @$location.path '/login'
 
                         @$scope.$on '$locationChangeSuccess', =>
                             @$window.location.reload()
@@ -78,7 +77,7 @@ do (_, angular) ->
                     .catch (data) =>
                         error = _.get data, 'error[0].message', 'UNKNOWN'
                         error = _.result @$scope.msg, error
-                        @mg_alert error
+                        @$window.alert error
 
                     .finally =>
                         @new_password_sending = false

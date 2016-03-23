@@ -1,9 +1,11 @@
 
-<div id="dashboard-recharge">
+<div id="dashboard-payment-recharge">
 
     <nav class="container page-nav">
     <div class="row">
-        <a class="col-xs-3 back" ng-href="{{ self.back_path || self.next_path || 'dashboard' }}"><param class="glyphicon glyphicon-menu-left"></a>
+        <a class="col-xs-3 back"
+           ng-href="{{ self.back_path || self.next_path || 'dashboard' }}"
+        ><param class="glyphicon glyphicon-menu-left"></a>
         <span class="col-xs-6 title">充值</span>
         <span class="col-xs-3">&nbsp;</span>
     </div>
@@ -12,16 +14,12 @@
     <div>
         <param ng-model="msg" ng-init="msg = {
             INCORRECT_PASSWORD: '交易密码不正确',
+            DEPOSIT_FAILED: '充值失败',
+            UNKNOWN: '系统繁忙，请稍后重试！',
 
             SUCCEED: '充值成功',
-            UNKNOWN: '充值失败',
         }">
     </div>
-
-    <section class="text-center balance" x-gyro-comment>
-        <div class="title">账户余额</div>
-        <div class="num">{{ available_amount | number: 2 }}</div>
-    </section>
 
     <section class="form-wrapper">
         <form class="form-horizontal form-flatten"
@@ -33,28 +31,6 @@
               novalidate
         >
             <div class="inputs container">
-                <div class="multi-line-container-item" x-gyro-comment>
-                    <div class="form-group">
-                        <label class="col-xs-4 control-label title">充值卡号</label>
-                        <div class="col-xs-8 row">
-                            <input class="form-control input-sm"
-                                   type="text"
-                                   value="{{ bank_account.account | string_mask }}"
-                                   ng-disabled="true"
-                            >
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group merge" x-gyro-comment>
-                    <label>{{ bank_account.bank }}</label>
-                    <input class="form-control input-target input-lg blank"
-                           type="text"
-                           value="{{ bank_account.mask }}"
-                           disabled
-                    >
-                </div>
-
                 <div class="form-group merge" ng-if="bank_account">
                     <div class="form-group-inner container">
                         <div class="media media-bank"
@@ -130,9 +106,6 @@
                 </div>
             </div>
 
-            <input type="hidden" name="isWAP" value="true" x-gyro-comment>
-            <input type="hidden" name="retUrl" value="{{ return_url }}" x-gyro-comment>
-
             <p class="container">
                 <button class="btn btn-theme btn-block btn-lg"
                         type="submit"
@@ -140,18 +113,6 @@
                 >确认充值</button>
             </p>
         </form>
-    </section>
-
-    <section class="container notice" x-gyro-comment>
-        <h2 class="title">温馨提示：</h2>
-
-        <ol class="list">
-            <li><p>718bank理财暂不收取您的充值费用（第三方收取的费用由718bank理财垫付）
-            <li><p>为保障您的资金安全，认证支付充值、提现采用同卡进出原则，即提现银行卡需与充值银行卡一致。718bank理财不支持信用卡进行充值，请用储蓄卡进行相关操作。
-            <li><p>充值前请确认您的银行卡限额，718bank理财对您的充值额度没有限制，限额是由具体开户行决定，如有疑问详询银行客服。
-            <li><p>禁止洗钱、信用卡套现、虚假交易等行为，一经发现并确认，将终止该账户的使用。
-            <li><p>充值金额依据第三方支付公司处理时间为准，请及时查看您的账户余额。如充值成功后未能及时到账，请联系客服：<a href="tel:4008189696">400-818-9696</a>。
-        </ol>
     </section>
 
 </div>

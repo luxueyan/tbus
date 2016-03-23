@@ -1677,31 +1677,6 @@ a {
     .loan-panel {
         #loan .loan-panel;
     }
-
-    .investors-list {
-        border: 0;
-
-        > .item {
-            padding-left: 10px;
-            padding-right: 25px;
-            font-size: 28px/2 + 2;
-            color: #4A4A4A;
-
-            .mobile {
-                padding-right: 5px;
-                min-width: 120px;
-            }
-
-            .amount {
-            }
-
-            .date {
-                margin-top: 5px;
-                font-size: 24px/2 + 2;
-                color: #999;
-            }
-        }
-    }
 }
 
 /*=============================================================================
@@ -1836,37 +1811,6 @@ a {
     }
 }
 
-.ngt-share-coupon {
-
-    text-align: center;
-
-    .close-btn {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        color: @color-gray;
-        font-size: 20px;
-    }
-
-    .modal-body {
-        h2 {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        h3 {
-            font-size: 15px;
-            color: @color-gray;
-        }
-    }
-
-    .modal-footer .btn {
-        background-color: @color-theme-main;
-        color: #FFF;
-        border: none;
-    }
-}
-
 #loan-invest {
     section:not(.omit-margin) {
         margin-top: 16px;
@@ -1972,7 +1916,7 @@ a {
             &.rsaquo {
                 position: relative;
 
-                &[ng-click]:before {
+                &:before {
                     content: "";
                     position: absolute;
                     left: 0;
@@ -2069,76 +2013,6 @@ a {
                         margin-top: 16px;
                     }
                 }
-            }
-        }
-    }
-
-    .form-invest-backup {
-        margin-top: 10px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        background-color: #FFF;
-
-        .form-group {
-            label {
-                margin-top: 5px;
-                padding-right: 0;
-                font-weight: normal;
-            }
-
-            .omit-padding {
-                padding: 0;
-            }
-
-            .available-amount {
-                margin-top: 5px;
-            }
-
-            .earning {
-                margin-top: 5px;
-                padding-left: 3px;
-                color: #C0C0C0;
-            }
-
-            &.rule {
-                margin-top: -5px;
-                margin-bottom: 10px;
-                color: #C0C0C0;
-            }
-
-            .num {
-                color: #FE8008;
-            }
-
-            .coupon-tip {
-                margin-top: 5px;
-                color: #C0C0C0;
-            }
-        }
-
-        .agreement {
-            padding: 5px;
-
-            label {
-                font-weight: normal;
-            }
-        }
-
-        .btn {
-            &-polish {
-                .button-variant(#FE8008; #FFF; #FE8008);
-            }
-
-            &-recharge {
-                .button-variant(#0090E0; #FFF; #0190DF);
-            }
-
-            &-invest {
-                .button-variant(#FFF; #FE8008; #FE8008);
-            }
-
-            + .btn {
-                margin-left: 5px;
             }
         }
     }
@@ -2319,89 +2193,6 @@ a {
             }
         }
     }
-
-    .c-list-panel {
-        > .item {
-            img {
-                margin-right: 7px;
-
-                &.user-icon {
-                    margin-left: 2px;
-                    margin-right: 8px;
-                }
-
-                &.coupon-icon {
-                    margin-left: 2px;
-                }
-            }
-
-            .name {
-                display: inline-block;
-                vertical-align: -2px;
-                margin-right: 2px;
-                min-width: 5em;
-                font-size: 28px/2 + 2;
-                color: #777;
-            }
-
-            .value {
-                vertical-align: middle;
-                font-size: 24px/2 + 2;
-                color: #999;
-
-                .num {
-                    color: #FF7200;
-                }
-            }
-
-            .glyphicon {
-                color: #999;
-            }
-
-            .btn {
-                margin-top: -4px;
-                padding-left: 20px;
-                padding-right: 20px;
-                border-radius: 999px;
-                font-size: 24px/2 + 2;
-                line-height: 1;
-            }
-
-            &.password {
-                .icon {
-                    color: #2D94CF;
-                    padding-right: 9px;
-                    vertical-align: text-bottom;
-                }
-            }
-        }
-
-        > a {
-            display: block;
-            color: #777;
-        }
-    }
-
-    .info-list {
-    }
-
-    .links {
-    }
-
-    section.action {
-        margin-top: 15px;
-        margin-bottom: 25px;
-    }
-
-    .btn {
-        &-withdraw {
-            .button-variant(@color-theme-emphasize ; #FFF; @color-theme-emphasize);
-        }
-
-        &-recharge {
-            .button-variant(@color-theme-main ; #FFF; @color-theme-main);
-        }
-    }
 }
 
 /*=============================================================================
@@ -2533,53 +2324,6 @@ a {
         }
     }
 
-    .page-content section {
-        margin-top: 16px;
-        margin-bottom: 20px;
-    }
-
-    .u-vb {
-        vertical-align: baseline;
-    }
-
-    .clip {
-        background-color: #FFF;
-        margin-bottom: 16px;
-        padding: 20px;
-        border-radius: 6px;
-        font-size: 16px;
-        border: 1px solid @color-gray-light;
-
-        .icon {
-            margin-right: 20px;
-        }
-    }
-
-    .password-form {
-        .flex-display();
-
-        input {
-            .flex(1);
-
-            margin-right: 20px;
-        }
-    }
-
-    .bind-card {
-        display: block;
-        margin: 16px;
-        border: 2px dashed;
-        color: @color-gray;
-        line-height: 1;
-        text-align: center;
-        padding-top: 30px;
-        padding-bottom: 30px;
-        font-size: 20px;
-    }
-
-    .notice {
-        #dashboard-recharge .notice;
-    }
 }
 
 /*=============================================================================
@@ -2602,18 +2346,6 @@ a {
 
         &-wrap + *:before {
             height: 48px;
-        }
-    }
-
-    .coupon-tab > .nav-tabs {
-        #dashboard-invest .invest-list .inline > .nav-tabs.nav-justified;
-
-        & + *:before {
-            height: 46px;
-        }
-
-        > li a {
-            // min-width: 70px;
         }
     }
 
@@ -2785,103 +2517,6 @@ a {
         padding: 10px;
         background-color: #FFF;
     }
-
-    .coupon-list-backup {
-        > .item {
-            margin-bottom: 10px;
-            border-top: 1px solid #D9D9D9;
-            border-bottom: 1px solid #D9D9D9;
-            padding: 15px 12px;
-            background-color: #FFF;
-            font-size: 24px/2 + 1;
-            color: #4A4A4A;
-
-            .media {
-                &-left {
-                    padding-right: 23px;
-                }
-
-                &-body {
-                    padding-top: 5px;
-                    position: relative;
-                }
-
-                &-object {
-                    display: inline-block;
-                    vertical-align: middle;
-                    background: url("@{path-image}/coupon-icons.png") no-repeat;
-                    background-size: cover;
-                    background-position: 0 0;
-                    width: 124px/2;
-                    height: 156px/2;
-                    overflow: hidden;
-                }
-            }
-
-            .status {
-                height: 22px;
-                line-height: 22px;
-                color: #FF4D4D;
-            }
-
-            .value {
-                height: 55px;
-                line-height: 55px;
-                color: #FFF;
-
-                .num {
-                    font-size: 34px/2 + 1;
-                }
-            }
-
-            .type {
-                display: inline-block;
-                vertical-align: middle;
-                margin-bottom: 6px;
-                border: 1px solid #FF4D4D;
-                padding-left: 4px;
-                padding-right: 4px;
-                color: #FF4D4D;
-            }
-
-            .expire {
-                margin-bottom: 10px;
-            }
-
-            .desc {
-                color: #999;
-            }
-
-            .redeem {
-                position: absolute;
-                top: 0;
-                right: 0;
-            }
-
-            &-status-redeemed,
-            &-status-expired,
-            &-status-cancelled {
-                background-color: #E5E5E5;
-
-                .media-object {
-                    background-position: 0 -156px/2;
-                }
-
-                .status {
-                    color: #999;
-                }
-
-                .type {
-                    border: 1px solid #999;
-                    color: #999;
-                }
-
-                .expire {
-                    color: #999;
-                }
-            }
-        }
-    }
 }
 
 /*=============================================================================
@@ -2955,65 +2590,6 @@ a {
     }
 
     .invest-list {
-        .inline > .nav-tabs.nav-justified {
-            position: fixed;
-            z-index: 11;
-            top: 44px;
-            left: 0;
-            right: 0;
-            display: block;
-            border-bottom: 0;
-            padding: 8px 0;
-            text-align: center;
-            box-shadow: inset 0 -1px #DEDFE1;
-
-            & + *:before {
-                display: block;
-                content: "";
-                height: 54px;
-            }
-
-            > li {
-                display: inline-block;
-                vertical-align: middle;
-                margin: 0;
-                border: 1px solid @color-theme-main;
-                padding: 0;
-                background-color: #FFF;
-
-                & + li {
-                    margin-left: -1px;
-                }
-
-                &:first-child {
-                    border-top-left-radius: 4px;
-                    border-bottom-left-radius: 4px;
-                }
-
-                &:last-child {
-                    border-top-right-radius: 4px;
-                    border-bottom-right-radius: 4px;
-                }
-
-                a {
-                    border-left: 0 !important;
-                    min-width: 94px;
-                    line-height: 28px;
-                    color: @color-theme-main;
-                }
-
-                &.active {
-                    border-bottom: 1px solid @color-theme-main !important;
-                    background-color: @color-theme-main;
-
-                    a {
-                        color: #FFF;
-                        background-color: transparent;
-                    }
-                }
-            }
-        }
-
         .list > li {
             margin: 8px 0;
             border-top: 1px solid #DEDFE1;
@@ -3237,59 +2813,6 @@ a {
             }
         }
     }
-
-    > .info-list {
-        margin: 0 12px/2 20px/2;
-        border: 0;
-        padding: 0;
-        -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .175);
-                box-shadow: 0 1px 4px rgba(0, 0, 0, .175);
-
-        > .item {
-            margin-left: 18px/2;
-            margin-right: 18px/2;
-            padding: 18px/2 0;
-            font-size: 24px/2 + 2;
-        }
-
-        .title {
-        }
-
-        .info {
-            padding-top: 15px;
-            padding-bottom: 15px;
-            line-height: 40px/2;
-
-            .info-row {
-                margin-bottom: 3px;
-
-                .flex-display(center; space-between);
-
-                .name {
-                    position: relative;
-                    width: 5em;
-
-                    .flex(none);
-
-                    &:after {
-                        position: absolute;
-                        right: 0.6em;
-                        content: ":";
-                    }
-
-                    &.word-5 {
-                        width: 6em;
-                    }
-                }
-
-                .value {
-                    .flex(1);
-
-                    word-break: break-word;
-                }
-            }
-        }
-    }
 }
 
 /*=============================================================================
@@ -3344,9 +2867,6 @@ a {
         }
     }
 
-    .notice {
-        #dashboard-recharge .notice;
-    }
 }
 
 /*=============================================================================
@@ -3477,7 +2997,7 @@ a {
         }
 
         .form-group-inner {
-            &[ng-click]:before {
+            &:before {
                 content: "";
                 position: absolute;
                 left: 0;
@@ -3533,10 +3053,10 @@ a {
 }
 
 /*=============================================================================
-                                                  [Router] [Dashboard] Recharge
+                                          [Router] [Dashboard] Payment Recharge
 ----*/
 
-#dashboard-recharge {
+#dashboard-payment-recharge {
 
     .media-bank {
         margin-top: 15px;
@@ -3558,23 +3078,6 @@ a {
         }
     }
 
-    > .balance {
-        #gradient .vertical(#3C9ED5; #78CEFF);
-
-        padding-top: 15px;
-        padding-bottom: 7px;
-        text-align: center;
-        color: #FFF;
-
-        .title {
-            font-size: 24px/2 + 2;
-        }
-
-        .num {
-            font-size: 60px/2 + 2;
-        }
-    }
-
     > .form-wrapper {
         .form-flatten {
             #login > .form-flatten;
@@ -3585,30 +3088,15 @@ a {
         }
     }
 
-    > .notice {
-        color: @color-gray;
-
-        .title {
-            font-size: 20px;
-        }
-
-        .list {
-            padding-left: 20px;
-        }
-    }
 }
 
 /*=============================================================================
-                                                  [Router] [Dashboard] Withdraw
+                                          [Router] [Dashboard] Payment Withdraw
 ----*/
 
-#dashboard-withdraw {
+#dashboard-payment-withdraw {
 
-    #dashboard-recharge;
-
-    .form-wrapper label {
-        // min-width: 7em !important;
-    }
+    #dashboard-payment-recharge;
 
     .hint {
         margin-top: -20px;
@@ -3704,121 +3192,6 @@ a {
     .loading {
         padding: 10px;
         background-color: #FFF;
-    }
-
-    > .repayment-loan {
-        //#dashboard-invest .invest-list .item;
-
-        .body {
-            margin-bottom: 0;
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-
-        .foot {
-            display: none;
-        }
-    }
-
-    > .repayments {
-        padding: 0 40px/2;
-        background-color: #FFF;
-        font-size: 26px/2 + 2;
-
-        .table > thead > tr > th {
-            border-bottom: 1px solid #F5F5F5;
-            padding-left: 0;
-            padding-right: 0;
-            font-weight: normal;
-            color: #9A9A9A;
-        }
-
-        .table > tbody > tr > td {
-            border: 0;
-            border-bottom: 1px solid #F5F5F5;
-            padding-left: 0;
-            padding-right: 0;
-
-            &.type-amount {
-                .type > span {
-                    margin-right: 5px;
-                    border-width: 1px;
-                    border-style: solid;
-                    border-radius: 2px;
-                    padding: 2px 3px;
-                    font-size: 20px/2 + 2;
-                }
-
-                .amount {
-                    font-size: 30px/2 + 2;
-                    vertical-align: middle;
-                }
-
-                &.green {
-                    color: #05A64D;
-
-                    .type > span {
-                        border-color: #05A64D;
-                    }
-                }
-
-                &.blue {
-                    color: #1497F3;
-
-                    .type > span {
-                        border-color: #1497F3;
-                    }
-                }
-
-                &.red {
-                    color: #F63C43;
-
-                    .type > span {
-                        border-color: #F63C43;
-                    }
-                }
-            }
-
-            &.date {
-                color: #777;
-            }
-        }
-    }
-
-    .repayment-list {
-        #dashboard-funds > .funds-list;
-    }
-
-    .repayment-list > .list > .item {
-
-        .gary {
-            -webkit-filter: grayscale(1) contrast(0.5);
-                    filter: grayscale(1) contrast(0.5);
-        }
-
-        .repayment-type {
-            padding: 4px 6px;
-            margin-right: 6px;
-            border-radius: 6px;
-            font-size: 18px;
-            display: inline-block;
-            color: #FFF;
-
-            &.red {
-                background-color: @color-theme-main;
-            }
-            &.green {
-                background-color: #7EC741;
-            }
-            &.orange {
-                background-color: #FF4800;
-            }
-        }
-
-        .date {
-            font-size: 14px;
-            top: 2px;
-        }
     }
 }
 

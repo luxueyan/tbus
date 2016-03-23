@@ -1,9 +1,11 @@
 
-<div id="dashboard-withdraw">
+<div id="dashboard-payment-withdraw">
 
     <nav class="container page-nav">
     <div class="row">
-        <a class="col-xs-3 back" href="dashboard"><param class="glyphicon glyphicon-menu-left"></a>
+        <a class="col-xs-3 back" href="dashboard">
+            <param class="glyphicon glyphicon-menu-left">
+        </a>
         <span class="col-xs-6 title">提现</span>
         <span class="col-xs-3">&nbsp;</span>
     </div>
@@ -12,16 +14,12 @@
     <div>
         <param ng-model="msg" ng-init="msg = {
             INCORRECT_PASSWORD: '交易密码不正确',
+            WITHDRAW_FAILED: '提现失败',
+            UNKNOWN: '系统繁忙，请稍后重试！',
 
             SUCCEED: '提现成功',
-            FAILED: '提现失败',
         }">
     </div>
-
-    <section class="text-center balance" x-gyro-comment>
-        <div class="title">可提现余额</div>
-        <div class="num">{{ available_amount | number: 2 }}</div>
-    </section>
 
     <section class="form-wrapper">
         <form class="form-horizontal form-flatten"
@@ -33,15 +31,6 @@
               novalidate
         >
             <div class="inputs container">
-
-                <div class="form-group merge" x-gyro-comment>
-                    <label>{{ bank_account.bank }}</label>
-                    <input class="form-control input-target input-lg blank"
-                           type="text"
-                           value="{{ bank_account.mask }}"
-                           disabled
-                    >
-                </div>
 
                 <div class="form-group merge" ng-if="bank_account">
                     <div class="form-group-inner container">
@@ -115,17 +104,6 @@
                 </button>
             </p>
         </form>
-    </section>
-
-    <section class="container notice" x-gyro-comment>
-        <h2 class="title">温馨提示：</h2>
-
-        <ol class="list">
-            <li><p>试运营期间，充值提现手续费平台承担，由第三方支付平台连连支付收取；每日提现限制3次以内(含3次)。718bank理财试运营结束后相关手续费另行公告。
-            <li><p>提现到账时间：提现申请提交成功后，资金预计在1-2个工作日（双休日或法定节假日顺延）到账，请您注意查收。
-            <li><p>根据《反洗钱法》规定，718bank理财禁止洗钱、信用卡套现、虚假交易等行为。
-            <li><p>提现过程遇到问题，请联系客服：<a href="tel:4008189696">400-818-9696</a>。
-        </ol>
     </section>
 
 </div>

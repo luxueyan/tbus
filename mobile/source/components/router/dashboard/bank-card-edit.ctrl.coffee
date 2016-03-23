@@ -13,6 +13,8 @@ do (_, angular) ->
                 @$scope.bank_account = do (list = _.clone @user.bank_account_list) =>
                     _.find list, (item) => item.id is @$routeParams.id
 
+                EXTEND_API @api
+
 
             unbind: (account) ->
 
@@ -23,16 +25,20 @@ do (_, angular) ->
                     .then @api.process_response
 
                     .then (data) =>
-                        @$window.alert @$scope.msg.UNBIND_SUCCEED
+                        @$window.alert @$scope.msg.CANCEL_CARD_SUCCEED
 
                     .catch (data) =>
-                        key = _.get data, 'error[0].message', 'UNBIND_FAILURE'
-                        @$window.alert @$scope.msg[key] or key
+                        key = _.get data, 'error[0].message', 'UNKNOWN'
+                        msg = @$scope.msg[key] or key
+
+                        if key in _.split 'CANCEL_CARD_FAILED'
+                            detail = _.get data, 'error[0].value', ''
+                            msg += if detail then "，#{ detail }" else ''
+
+                        @$window.alert msg
 
                     .finally =>
-                        @$location
-                            .path 'dashboard/bank-card'
-                            .search t: _.now()
+                        @$location.path 'dashboard/bank-card'
 
                         @$scope.$on '$locationChangeStart', (event, new_path) =>
                             event.preventDefault()
@@ -49,18 +55,42 @@ do (_, angular) ->
                     .then @api.process_response
 
                     .then (data) =>
-                        @$window.alert @$scope.msg.SET_DEFAULT_SUCCEED
+                        @$window.alert @$scope.msg.SET_DEFAULT_ACCOUNT_SUCCEED
 
                     .catch (data) =>
-                        key = _.get data, 'error[0].message', 'SET_DEFAULT_FAILURE'
+                        key = _.get data, 'error[0].message', 'UNKNOWN'
                         @$window.alert @$scope.msg[key] or key
 
                     .finally =>
-                        @$location
-                            .path 'dashboard/bank-card'
-                            .search t: _.now()
+                        @$location.path 'dashboard/bank-card'
 
                         @$scope.$on '$locationChangeStart', (event, new_path) =>
                             event.preventDefault()
                             @$window.location.href = new_path
                 )
+
+
+
+
+
+
+
+
+    EXTEND_API = (api) ->
+
+        api.__proto__.payment_pool_unbind_card = (cardNo) ->
+
+            @$http
+                .post '/api/v2/hundsun/cancelCard/MYSELF', {cardNo}
+
+                .then @TAKE_RESPONSE_DATA
+                .catch @TAKE_RESPONSE_ERROR
+
+
+        api.__proto__.payment_pool_set_default_card = (cardNo) ->
+
+            @$http
+                .post '/api/v2/hundsun/setDefaultAccount/MYSELF', {cardNo}
+
+                .then @TAKE_RESPONSE_DATA
+                .catch @TAKE_RESPONSE_ERROR
