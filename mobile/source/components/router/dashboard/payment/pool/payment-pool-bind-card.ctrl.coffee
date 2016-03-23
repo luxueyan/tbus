@@ -3,14 +3,12 @@ do (_, angular) ->
 
     angular.module('controller').controller 'PaymentPoolBindCardCtrl',
 
-        _.ai '            @banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @mg_alert, @$location, @$timeout, @$interval, @$routeParams, @$uibModal, @popup_payment_state', class
-            constructor: (@banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @mg_alert, @$location, @$timeout, @$interval, @$routeParams, @$uibModal, @popup_payment_state) ->
+        _.ai '            @banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @$location, @$interval, @$routeParams, @$uibModal, @popup_payment_state', class
+            constructor: (@banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @$location, @$interval, @$routeParams, @$uibModal, @popup_payment_state) ->
 
                 @$window.scrollTo 0, 0
 
                 angular.extend @$scope, {
-                    province: null
-                    city: null
                     store: {}
                 }
 
@@ -19,35 +17,14 @@ do (_, angular) ->
 
                 @submit_sending = false
 
-                @error = {timer: null, timeout: 4000, message: '', on: false}
                 @captcha = {timer: null, count: 60, count_default: 60, has_sent: false, buffering: false}
 
-                # @api.get_province_list().then (data) =>
-                #     @$scope.province = data
+                EXTEND_API @api
 
 
-            send_mobile_captcha: ({id_number, user_name, cardNo, bank, cardPhone}) ->
+            send_mobile_captcha: (mobile) ->
 
-                # do @api.payment_pool_bind_card_sent_captcha
-
-                (@$q.resolve(!!@user.has_payment_account)
-
-                    .then (has_payment_account) =>
-                        return if has_payment_account
-
-                        (@api.payment_pool_register(user_name, id_number)
-
-                            .then @api.process_response
-
-                            .then (data) =>
-                                @user.info.name = user_name
-                                @user.info.idNumber = id_number
-                                @user.has_payment_account = true
-                        )
-
-                    .then => @api.payment_pool_check_card(id_number, user_name, cardNo, bank.bankCode, cardPhone)
-
-                    .then @api.process_response
+                (@api.payment_pool_bind_card_sent_captcha(mobile)
 
                     .then =>
                         @captcha.timer = @$interval =>
@@ -64,77 +41,31 @@ do (_, angular) ->
                     .catch (data) =>
                         key = _.get data, 'error[0].message', 'UNKNOWN'
                         @$window.alert @$scope.msg[key] or key
-                        return
-
-                        @$timeout.cancel @error.timer
-
-                        @error.on = true
-                        @error.message = _.get data, 'error[0].message', '系统繁忙，请稍后重试！'
-
-                        @error.timer = @$timeout =>
-                            @error.on = false
-                        , @error.timeout
                 )
-
-
-            fetch_city: (province) ->
-
-                @api.get_city_list_by_province(province).then (data) =>
-                    @$scope.city = data
-
-
-            fetch_branch: (cityCode, cardNo) ->
-
-                return # remove this in case branch list should being fetched from remote API
-
-                unless !!cityCode and !!cardNo
-                    @$scope.branchs = []
-                    return
-
-                @api.get_bank_branch_name(cityCode, cardNo).then (data) =>
-                    @$scope.branchs = data
-
-
-            need_location: ->
-
-                @$scope.store.bankName and @$scope.store.bankName not in @$scope.direct_paid_banks
-
-
-            on_change_bank_name: ->
-
-                return if @need_location()
-
-                _.split('province city branchName').forEach (key) =>
-                    _.set @$scope.store, key, ''
 
 
             bind_card: ({id_number, user_name, cardNo, bank, cardPhone, smsCaptcha}) ->
 
                 @submit_sending = true
 
-                check_input = (data) =>
-                    error_msg = ''
+                (@$q.resolve(!!@user.has_payment_account)
 
-                    _.each data, (value, key) =>
-                        return if !!value
+                    .then (has_payment_account) =>
+                        return if has_payment_account
 
-                        error_msg = @$scope.msg[key]
-                        return false
+                        (@api.payment_pool_register(id_number, user_name)
 
-                    return @$q.reject {error: [message: error_msg]} if error_msg
-                    return true
+                            .then @api.process_response
 
-                (@$q.resolve(@need_location())
+                            .then (data) =>
+                                @user.info.name = user_name
+                                @user.info.idNumber = id_number
+                                @user.has_payment_account = true
+                        )
 
-                    .then (location_needed) ->
+                    .then => @api.payment_pool_check_card(id_number, user_name, cardNo, bank.bankCode, cardPhone)
 
-                        return check_input({id_number}) unless !!id_number
-                        return check_input({user_name}) unless !!user_name
-                        return check_input({cardNo}) unless !!cardNo
-                        return check_input({bank}) unless !!bank
-                        return check_input({cardPhone}) unless !!cardPhone
-                        # return check_input({city, province, branchName}) if location_needed
-                        return check_input({smsCaptcha}) unless !!smsCaptcha
+                    .then @api.process_response
 
                     .then => @api.payment_pool_bind_card(cardNo, bank.bankCode, cardPhone, smsCaptcha)
 
@@ -155,32 +86,16 @@ do (_, angular) ->
                                 page: 'bind-card'
                                 page_path: 'dashboard/payment/bind-card'
                             }
+                            return
 
                         else
                             @$location.path 'dashboard/bank-card'
 
-                        return
-
-                        @mg_alert _.get data, 'data', 'wow...'
-                            .result.finally =>
-                                @$location
-                                    .path @next_path
-                                    .search t: _.now()
 
                     .catch (data) =>
                         @submit_sending = false
                         key = _.get data, 'error[0].message', 'UNKNOWN'
                         @$window.alert @$scope.msg[key] or key
-                        return
-
-                        @$timeout.cancel @error.timer
-
-                        @error.on = true
-                        @error.message = _.get data, 'error[0].message', '系统繁忙，请稍后重试！'
-
-                        @error.timer = @$timeout =>
-                            @error.on = false
-                        , @error.timeout
                 )
 
 
@@ -211,6 +126,52 @@ do (_, angular) ->
                             }
                 }
 
+
+
+
+
+
+
+
+    EXTEND_API = (api) ->
+
+        api.__proto__.payment_pool_bind_card_sent_captcha = (mobile) ->
+
+            @$http
+                .get "/api/v2/hundsun/checkCard/sendSmsCaptcha/#{ mobile }"
+
+                .then @TAKE_RESPONSE_DATA
+                .catch @TAKE_RESPONSE_ERROR
+
+
+        api.__proto__.payment_pool_register = (idNumber, name) ->
+
+            @$http
+                .post '/api/v2/hundsun/register/MYSELF',
+                    {idNumber, name}
+
+                .then @TAKE_RESPONSE_DATA
+                .catch @TAKE_RESPONSE_ERROR
+
+
+        api.__proto__.payment_pool_check_card = (idNumber, name, cardNo, bankCode, cardPhone) ->
+
+            @$http
+                .post '/api/v2/hundsun/checkCard/MYSELF',
+                    {idNumber, name, cardNo, bankCode, cardPhone}
+
+                .then @TAKE_RESPONSE_DATA
+                .catch @TAKE_RESPONSE_ERROR
+
+
+        api.__proto__.payment_pool_bind_card = (cardNo, bankCode, cardPhone, smsCaptcha) ->
+
+            @$http
+                .post '/api/v2/hundsun/bindCard/MYSELF',
+                    {cardNo, bankCode, cardPhone, smsCaptcha}
+
+                .then @TAKE_RESPONSE_DATA
+                .catch @TAKE_RESPONSE_ERROR
 
 
 
