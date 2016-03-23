@@ -171,31 +171,6 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
-            get_user_funds: (query_set = {}, cache = false) ->
-
-                convert_to_day = (date) ->
-                    moment(date.format 'YYYY-MM-DD').unix() * 1000
-
-                _.defaults query_set, {
-                    # type: _.split 'INVEST WITHDRAW DEPOSIT INVEST_REPAY FEE_WITHDRAW TRANSFER'
-                    # allStatus: false
-                    # allOperation: true
-                    type: ''
-                    startDate: convert_to_day moment().subtract 10, 'y'
-                    endDate: convert_to_day moment().add 1, 'd'
-                    page: 1
-                    pageSize: 10
-                }
-
-                @$http
-                    .get '/api/v2/user/MYSELF/funds/query',
-                        params: _.compact query_set
-                        cache: cache
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_ERROR
-
-
             get_user_coupons: (query_set = {}, cache = false) ->
 
                 _.defaults query_set, {
@@ -362,15 +337,6 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
-            redeem_coupon: (placementId) ->
-
-                @$http
-                    .post '/api/v2/coupon/MYSELF/redeemCouponIgnoreApproval', {placementId}
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
-
-
             fetch_user_notifications: ->
 
                 @$http
@@ -462,24 +428,6 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_DATA
 
 
-            payment_pool_recharge: (cardNo, amount, paymentPassword) ->
-
-                @$http
-                    .post '/api/v2/hundsun/recharge/MYSELF', {cardNo, amount, paymentPassword}
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_ERROR
-
-
-            payment_pool_withdraw: (cardNo, amount, paymentPassword) ->
-
-                @$http
-                    .post '/api/v2/hundsun/withdraw/MYSELF', {cardNo, amount, paymentPassword}
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_ERROR
-
-
             payment_pool_check_password: (password) ->
 
                 return @$q.reject() unless password
@@ -512,34 +460,6 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
-            payment_pool_unbind_card: (cardNo) ->
-
-                @$http
-                    .post '/api/v2/hundsun/cancelCard/MYSELF', {cardNo, source: 'H5'}
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
-
-
-            payment_pool_set_default_card: (cardNo) ->
-
-                @$http
-                    .post '/api/v2/hundsun/setDefaultAccount/MYSELF', {cardNo, source: 'H5'}
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_ERROR
-
-
-            payment_pool_tender: (loanId, paymentPassword, amount, placementId = '') ->
-
-                @$http
-                    .post '/api/v2/invest/tender/MYSELF',
-                        _.compact {loanId, paymentPassword, amount, placementId}
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
-
-
             get_available_bank_list: ->
 
                 @$http.get '/api/v2/hundsun/banks', cache: true
@@ -554,7 +474,7 @@ do (_, angular, moment, Array, Date) ->
 
                 @$http
                     .post '/api/web/register/submit',
-                        _.merge optional, {password, mobile, mobile_captcha, source: 'H5'}
+                        _.merge optional, {password, mobile, mobile_captcha, source: 'MOBILE'}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA

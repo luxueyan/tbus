@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'LoginCtrl',
 
-        _.ai '            @api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @mg_alert, @$q, @popup_payment_state', class
-            constructor: (@api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @mg_alert, @$q, @popup_payment_state) ->
+        _.ai '            @api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @$q, @popup_payment_state', class
+            constructor: (@api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @$q, @popup_payment_state) ->
 
                 {back, next, mobile, bind_social_weixin} = @$routeParams
 
@@ -112,7 +112,7 @@ do (_, angular) ->
                         result = _.get data, 'error_description.result'
 
                         if result in _.split 'TOO_MANY_ATTEMPT USER_DISABLED'
-                            @mg_alert @$scope.msg[result]
+                            @$window.alert @$scope.msg[result]
                         else
                             do @error_message_flash
 

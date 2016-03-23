@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'RegisterCtrl',
 
-        _.ai '            @api, @$scope, @$rootScope, @$interval, @$location, @$routeParams, @$window, @$q, @$uibModal, @mg_alert, @popup_payment_state', class
-            constructor: (@api, @$scope, @$rootScope, @$interval, @$location, @$routeParams, @$window, @$q, @$uibModal, @mg_alert, @popup_payment_state) ->
+        _.ai '            @api, @$scope, @$rootScope, @$interval, @$location, @$routeParams, @$window, @$q, @$uibModal, @popup_payment_state', class
+            constructor: (@api, @$scope, @$rootScope, @$interval, @$location, @$routeParams, @$window, @$q, @$uibModal, @popup_payment_state) ->
 
                 {mobile} = @$routeParams
                 referral = do ({ref, rel, refm, reftf, referral} = @$routeParams) ->
@@ -64,7 +64,7 @@ do (_, angular) ->
 
                         key = _.get data, 'error[0].message'
 
-                        @mg_alert @$scope.msg[key] or @$scope.msg.UNKNOWN
+                        @$window.alert @$scope.msg[key] or @$scope.msg.UNKNOWN
 
                         do @fetch_new_captcha if key in _.split '
                             INVALID_CAPTCHA

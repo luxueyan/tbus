@@ -94,8 +94,15 @@ do (_, angular) ->
 
                     .catch (data) =>
                         @submit_sending = false
+
                         key = _.get data, 'error[0].message', 'UNKNOWN'
-                        @$window.alert @$scope.msg[key] or key
+                        msg = @$scope.msg[key] or key
+
+                        if key in _.split 'REGISTER_FAILED CHECK_CARD_FAILED BIND_CARD_FAILED'
+                            detail = _.get data, 'error[0].value', ''
+                            msg += if detail then "，#{ detail }" else ''
+
+                        @$window.alert msg
                 )
 
 

@@ -15,6 +15,8 @@ do (_, angular, moment) ->
                     query_set
                 }
 
+                EXTEND_API @api
+
                 @query(query_set)
 
 
@@ -55,6 +57,34 @@ do (_, angular, moment) ->
                 date = moment().subtract(num, unit)
 
                 return moment(date.format 'YYYY-MM-DD').unix() * 1000
+
+
+
+
+
+
+    EXTEND_API = (api) ->
+
+        api.__proto__.get_user_funds = (query_set = {}, cache = false) ->
+
+            convert_to_day = (date) ->
+                moment(date.format 'YYYY-MM-DD').unix() * 1000
+
+            _.defaults query_set, {
+                type: ''
+                startDate: convert_to_day moment().subtract 10, 'y'
+                endDate: convert_to_day moment().add 1, 'd'
+                page: 1
+                pageSize: 10
+            }
+
+            @$http
+                .get '/api/v2/user/MYSELF/funds/query',
+                    params: _.compact query_set
+                    cache: cache
+
+                .then @TAKE_RESPONSE_DATA
+                .catch @TAKE_RESPONSE_ERROR
 
 
 

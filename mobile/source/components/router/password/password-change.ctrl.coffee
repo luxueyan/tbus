@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'PasswordChangeCtrl',
 
-        _.ai '            @user, @api, @$scope, @$location, @$window, @$interval, @mg_alert, @$q', class
-            constructor: (@user, @api, @$scope, @$location, @$window, @$interval, @mg_alert, @$q) ->
+        _.ai '            @user, @api, @$scope, @$location, @$window, @$interval, @$q', class
+            constructor: (@user, @api, @$scope, @$location, @$window, @$interval, @$q) ->
 
                 angular.extend @$scope, {
                     store: {
@@ -25,8 +25,7 @@ do (_, angular) ->
                         return data
 
                     .then (data) =>
-                        @mg_alert @$scope.msg.SUCCEED
-                            .result
+                        @$window.alert @$scope.msg.SUCCEED
 
                     .then => @api.login(mobile, password)
 
@@ -35,7 +34,7 @@ do (_, angular) ->
 
                     .catch (data) =>
                         error = _.get data, 'error[0].message'
-                        @mg_alert error
+                        @$window.alert error
 
                     .finally =>
                         @new_password_sending = false
