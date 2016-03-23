@@ -46,6 +46,31 @@ if (config.startOAuthServer) {
 
 require('@ccc/inspect/middleware')(app);
 
+// mobile page (H5) redirection
+_.each([
+    {path: '/'},
+    {path: '/login'},
+    {path: '/register'},
+    {path: '/invest', new_path: '/list'},
+    {path: '/account', new_path: '/dashboard'},
+
+], function (item) {
+    var prefix = '/h5',
+        path = item.path,
+        new_path = item.new_path,
+        LLUN = null;
+
+    app.get(path, function (req, res, next) {
+        var ua = userAgent.parse(req.headers['user-agent']);
+
+        if ((ua.source || '').match(/MicroMessenger|Android|webOS|iPhone|iPod|BlackBerry/)) {
+            return res.redirect(prefix + (new_path || req.url));
+        }
+
+        next();
+    });
+});
+
 app.use(require('@ccc/login/middlewares').setBackUrl); // 全局模板变量添加 loginHrefWithUrl 为登录后返回当前页的登录页面链接
 app.use('/__', ds.loader('hide'));
 app.use(ds.loader('page'));
