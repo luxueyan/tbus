@@ -54,40 +54,4 @@
         </div>
     </section>
 
-
-
-
-
-
-
-
-
-
-    <section class="invest-list" x-gyro-comment>
-        <uib-tabset class="invest-tab inline list" justified="true">
-            <uib-tab ng-repeat="tab in tabs"
-                 heading="{{ { raising: '投资中', repaying: '回款中', done: '已结束'}[tab.type] }}"
-            >
-                <ul class="list list-unstyled u-off-margin-bottom">
-                    <li class="item"
-                        ng-repeat="item in tab.data"
-                    >
-                        <a ng-href="dashboard/invest/{{ item.id }}"
-                           x-invest-summary
-                           data-item="item"
-                           data-type="tab.type"
-                        ></a>
-                    </li>
-                </ul>
-
-                <div ng-if="!tab.data.length" class="container">
-                    <h4 class="alert alert-info text-center">暂无数据</h4>
-                </div>
-            </uib-tab>
-        </uib-tabset>
-    </section>
-
-    <section class="action" x-gyro-comment>
-        <a class="btn btn-block btn-lg btn-theme" href="list">继续投资</a>
-    </section>
 </div>
