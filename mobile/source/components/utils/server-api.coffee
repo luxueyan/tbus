@@ -613,42 +613,6 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
-            payment_ump_register: (userName, idCode) ->
-
-                @$http
-                    .post '/api/v2/upayment/register/MYSELF', {userName, idCode}
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
-
-
-            payment_ump_non_password_bind_card: (cardId) ->
-
-                @$http
-                    .post '/api/v2/upayment/bindCardNoPwd/MYSELF', {cardId}
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
-
-
-            payment_ump_non_password_recharge: (amount) ->
-
-                @$http
-                    .post '/api/v2/upayment/netSaveNoPwd/MYSELF', {amount}
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
-
-
-            payment_ump_non_password_withdraw: (withdraw) ->
-
-                @$http
-                    .post '/api/v2/upayment/withdrawNoPwd/MYSELF', {withdraw}
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
-
-
             register: (password, mobile, mobile_captcha, optional = {}) ->
 
                 optional = _.compact optional
