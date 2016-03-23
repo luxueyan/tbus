@@ -462,15 +462,6 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_DATA
 
 
-            payment_pool_withdraw: (cardNo, amount, paymentPassword) ->
-
-                @$http
-                    .post '/api/v2/hundsun/withdraw/MYSELF', {cardNo, amount, paymentPassword}
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_ERROR
-
-
             payment_pool_check_password: (password) ->
 
                 return @$q.reject() unless password
