@@ -366,23 +366,6 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
-            send_to_non_pasword_tender: (id, amount, coupon) ->
-
-                path = ARRAY_JOIN.call [
-                    '/api/v2'
-                    '/upayment'
-                    '/tenderNoPwd/user/MYSELF'
-                    '/loan/', id
-                    '/amount/', amount
-                ]
-
-                @$http
-                    .post path, _.compact {placementId: coupon or ''}
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
-
-
             login: (loginName, password) ->
 
                 @$http
@@ -393,8 +376,6 @@ do (_, angular, moment, Array, Date) ->
 
 
             logout: ->
-
-                @add_activity('USER_LOGOUT')
 
                 @$http.post '/logout', {}, {
                     headers: 'X-Requested-With': 'XMLHttpRequest'
@@ -553,15 +534,6 @@ do (_, angular, moment, Array, Date) ->
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
 
-
-            add_activity: (type, description) ->
-
-                @$http
-                    .post '/api/v2/user/MYSELF/add/activity',
-                        _.compact {type, description, source: 'H5'}
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_ERROR
 
 
 
