@@ -877,7 +877,17 @@ a {
 
             .btn-tab {
                 &:not(.selected) {
-                    .button-variant(@color-theme-main; #FFF; @color-theme-main);
+                    border-color: @color-theme-main;
+                    background-color: #FFF;
+                    color: @color-theme-main;
+
+                    &:hover,
+                    &:focus,
+                    &:active {
+                        border-color: transparent;
+                        background-color: @color-theme-main;
+                        color: #FFF;
+                    }
                 }
 
                 &.selected {
@@ -2103,8 +2113,21 @@ a {
                     }
 
                     &-plain {
-                        .button-variant(@color-theme-main; #FFF; @color-theme-main);
                         .button-size(7px; 9px; 12px; 1; 2px);
+
+                        border-color: @color-theme-main;
+                        background-color: #FFF;
+                        color: @color-theme-main;
+
+                        &:hover,
+                        &:focus,
+                        &:active {
+                            .button-size(6px; 9px; 14px; 1; 2px);
+
+                            border-color: transparent;
+                            background-color: @color-theme-main;
+                            color: #FFF;
+                        }
                     }
 
                     & + .btn {
