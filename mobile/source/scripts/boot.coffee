@@ -70,46 +70,6 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         do $q.reject
                     }
 
-                    .when '/activity', {
-                        controller: 'ActivityCtrl as self'
-                        templateUrl: 'components/router/activity/activity.tmpl.html'
-                    }
-
-                    .when '/announcement', {
-                        controller: 'AnnouncementCtrl as self'
-                        templateUrl: 'components/router/announcement/announcement.tmpl.html'
-                        resolve:
-                            data: _.ai 'api, $location, $q',
-                                (       api, $location, $q) ->
-                                    api.get_announcement().catch ->
-                                        $location.path '/'
-                                        return $q.reject()
-                    }
-
-                    .when '/help', {
-                        controller: 'HelpCtrl as self'
-                        templateUrl: 'components/router/help/help.tmpl.html'
-                    }
-
-                    .when '/share-coupon/:id', {
-                        controller: 'ShareCouponCtrl as self'
-                        templateUrl: 'components/router/share-coupon/share-coupon.tmpl.html'
-                        resolve:
-                            wx: _.ai 'api, $location, $route, $q, $window',
-                                (     api, $location, $route, $q, $window) ->
-                                    deferred = do $q.defer
-
-                                    is_wechat = /MicroMessenger/.test $window.navigator.userAgent
-
-                                    if is_wechat
-                                        $script '//res.wx.qq.com/open/js/jweixin-1.0.0.js', ->
-                                            deferred.resolve $window.wx or {}
-                                    else
-                                        deferred.resolve {}
-
-                                    return deferred.promise
-                    }
-
                     .when '/dashboard', {
                         controller: 'DashboardCtrl as self'
                         templateUrl: 'components/router/dashboard/home.tmpl.html'
@@ -152,20 +112,6 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         do $q.reject
                     }
 
-                    .when '/dashboard/total-assets', {
-                        controller: 'TotalAssetsCtrl as self'
-                        templateUrl: 'components/router/dashboard/total-assets.tmpl.html'
-                        resolve:
-                            user: _.ai 'api, $location, $q',
-                                (       api, $location, $q) ->
-                                    api.fetch_current_user().catch ->
-                                        $location
-                                            .replace()
-                                            .path '/login'
-                                            .search next: 'dashboard/total-assets'
-                                        return $q.reject()
-                    }
-
                     .when '/dashboard/coupon/:amount?/:months?/:loan_id?/:input?', {
                         controller: 'CouponCtrl as self'
                         templateUrl: 'components/router/dashboard/coupon.tmpl.html'
@@ -177,48 +123,6 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                             .replace()
                                             .path '/login'
                                             .search next: 'dashboard/coupon'
-                                        return $q.reject()
-                    }
-
-                    .when '/dashboard/notification', {
-                        controller: 'NotificationCtrl as self'
-                        templateUrl: 'components/router/dashboard/notification.tmpl.html'
-                        resolve:
-                            data: _.ai 'api, $location, $q',
-                                (       api, $location, $q) ->
-                                    api.fetch_user_notifications().catch ->
-                                        $location
-                                            .replace()
-                                            .path 'login'
-                                            .search next: 'dashboard/notification'
-                                        return $q.reject()
-                    }
-
-                    .when '/dashboard/payment/register', {
-                        controller: 'PaymentPoolRegisterCtrl as self'
-                        templateUrl: 'components/router/dashboard/payment/pool/payment-pool-register.tmpl.html'
-                        resolve:
-                            user: _.ai 'api, $location, $q',
-                                (       api, $location, $q) ->
-                                    api.fetch_current_user().catch ->
-                                        $location
-                                            .replace()
-                                            .path '/login'
-                                            .search next: 'dashboard/payment/register'
-                                        return $q.reject()
-                    }
-
-                    .when '/dashboard/payment/agreement', {
-                        controller: 'PaymentUmpAgreementCtrl as self'
-                        templateUrl: 'components/router/dashboard/payment/ump/payment-ump-agreement.tmpl.html'
-                        resolve:
-                            user: _.ai 'api, $location, $q',
-                                (       api, $location, $q) ->
-                                    api.fetch_current_user().catch ->
-                                        $location
-                                            .replace()
-                                            .path '/login'
-                                            .search next: 'dashboard/payment/agreement'
                                         return $q.reject()
                     }
 
@@ -393,16 +297,6 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                             .path '/login'
                                             .search next: 'dashboard/feedback'
                                         return $q.reject()
-                    }
-
-                    .when '/dashboard/invite-registered', {
-                        controller: 'InviteRegisteredCtrl as self'
-                        templateUrl: 'components/router/dashboard/invite-registered.tmpl.html'
-                    }
-
-                    .when '/dashboard/return-results', {
-                        controller: 'ReturnResultsCtrl as self'
-                        templateUrl: 'components/router/dashboard/return-results.tmpl.html'
                     }
 
                     .when '/loan/:id', {
