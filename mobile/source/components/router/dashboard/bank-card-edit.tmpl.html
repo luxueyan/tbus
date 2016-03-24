@@ -13,7 +13,7 @@
 
     <div>
         <param ng-model="msg" ng-init="msg = {
-            CANCEL_CARD_SUCCEED: '删除该卡成功',
+            CANCEL_CARD_SUCCEED: '该卡被删除',
             CANCEL_CARD_FAILED: '删除该卡失败',
             SET_DEFAULT_ACCOUNT_SUCCEED: '设为默认卡成功',
             SET_DEFAULT_ACCOUNT_FAILED: '设为默认卡失败',
@@ -80,3 +80,21 @@
     </section>
 
 </div>
+
+
+
+
+
+
+
+
+<script type="text/ng-template" id="ngt-unbind-card-confirm.tmpl">
+    <div class="modal-body text-center">
+        确定删除该卡？
+    </div>
+
+    <div class="modal-buttons">
+        <div class="modal-button" ng-click="$close()">删除</div>
+        <div class="modal-button" ng-click="$dismiss()">取消</div>
+    </div>
+</script>

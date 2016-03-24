@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'BankCardEditCtrl',
 
-        _.ai '            @user, @api, @$scope, @$window, @$location, @$routeParams', class
-            constructor: (@user, @api, @$scope, @$window, @$location, @$routeParams) ->
+        _.ai '            @user, @api, @$scope, @$window, @$location, @$routeParams, @$uibModal', class
+            constructor: (@user, @api, @$scope, @$window, @$location, @$routeParams, @$uibModal) ->
 
                 @$window.scrollTo 0, 0
 
@@ -20,29 +20,37 @@ do (_, angular) ->
 
                 @submit_sending = true
 
-                (@api.payment_pool_unbind_card(account)
+                (@unbind_card_confirm()
 
-                    .then @api.process_response
+                    .then =>
+                        (@api.payment_pool_unbind_card(account)
 
-                    .then (data) =>
-                        @$window.alert @$scope.msg.CANCEL_CARD_SUCCEED
+                            .then @api.process_response
 
-                    .catch (data) =>
-                        key = _.get data, 'error[0].message', 'UNKNOWN'
-                        msg = @$scope.msg[key] or key
+                            .then (data) =>
+                                @$window.alert @$scope.msg.CANCEL_CARD_SUCCEED
 
-                        if key in _.split 'CANCEL_CARD_FAILED'
-                            detail = _.get data, 'error[0].value', ''
-                            msg += if detail then "，#{ detail }" else ''
+                            .catch (data) =>
+                                key = _.get data, 'error[0].message', 'UNKNOWN'
+                                msg = @$scope.msg[key] or key
 
-                        @$window.alert msg
+                                if key in _.split 'CANCEL_CARD_FAILED'
+                                    detail = _.get data, 'error[0].value', ''
+                                    msg += if detail then "，#{ detail }" else ''
 
-                    .finally =>
-                        @$location.path 'dashboard/bank-card'
+                                @$window.alert msg
 
-                        @$scope.$on '$locationChangeStart', (event, new_path) =>
-                            event.preventDefault()
-                            @$window.location.href = new_path
+                            .finally =>
+                                @$location.path 'dashboard/bank-card'
+
+                                @$scope.$on '$locationChangeStart', (event, new_path) =>
+                                    event.preventDefault()
+                                    @$window.location.href = new_path
+                        )
+                        return
+
+                    .catch =>
+                        @submit_sending = false
                 )
 
 
@@ -68,6 +76,28 @@ do (_, angular) ->
                             event.preventDefault()
                             @$window.location.href = new_path
                 )
+
+
+            unbind_card_confirm: ->
+
+                prompt = @$uibModal.open {
+                    size: 'sm'
+                    keyboard: false
+                    backdrop: 'static'
+                    windowClass: 'center modal-confirm'
+                    animation: true
+                    templateUrl: 'ngt-unbind-card-confirm.tmpl'
+
+                    controller: _.ai '$scope',
+                        (             $scope) ->
+                            angular.extend $scope, {}
+                }
+
+                once = @$scope.$on '$locationChangeStart', ->
+                    prompt?.dismiss()
+                    do once
+
+                return prompt.result
 
 
 
