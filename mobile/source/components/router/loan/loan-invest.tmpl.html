@@ -45,6 +45,7 @@
                 <div class="form-control-wrap">
                     <param class="icon icon-minus"
                            ng-click="store.amount = self.amount_polishing(store.amount - loan.raw.loanRequest.investRule.stepAmount); self.fetch_analyse(store.amount)"
+                           ontouchstart
                     >
 
                     <input name="amount"
@@ -59,6 +60,7 @@
 
                     <param class="icon icon-plus"
                            ng-click="store.amount = self.amount_polishing(store.amount + loan.raw.loanRequest.investRule.stepAmount); self.fetch_analyse(store.amount)"
+                           ontouchstart
                     >
                 </div>
             </div>
