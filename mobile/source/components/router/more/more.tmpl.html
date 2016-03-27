@@ -10,7 +10,7 @@
     <section class="container text-center masthead">
         <div class="row password-list" ng-if="self.user.has_logged_in">
             <div class="col-xs-6 item">
-                <a href="dashboard/payment/password?back=more">
+                <a href="dashboard/payment/password">
                     <div class="icon">
                         <img width="44" ng-src="assets/image/icon-password-payment.png">
                     </div>
@@ -18,7 +18,7 @@
                 </a>
             </div>
             <div class="col-xs-6 item">
-                <a href="password/change?back=more">
+                <a href="password/change">
                     <div class="icon">
                         <img width="44" ng-src="assets/image/icon-password-login.png">
                     </div>
@@ -29,7 +29,7 @@
 
         <div class="hint-login" ng-if="!self.user.has_logged_in">
             <p class="hint">您还没有登录哦～</p>
-            <a class="btn btn-lg btn-theme" href="login?back=more">一键登录/注册</a>
+            <a class="btn btn-lg btn-theme" href="login">一键登录/注册</a>
         </div>
     </section>
 

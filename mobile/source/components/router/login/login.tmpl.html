@@ -3,17 +3,9 @@
 
     <nav class="container page-nav">
     <div class="row">
-        <a class="col-xs-3 back"
-           ng-if="self.step === 'one'"
-           ng-href="{{ self.back_path || './' }}"
-        ><param class="glyphicon glyphicon-menu-left"></a>
-
-        <a class="col-xs-3 back"
-           ng-href="{{ is_login_successful && (self.back_path || './') }}"
-           ng-if="self.step === 'two'"
-           ng-click="!is_login_successful && (self.step = 'one')"
-        ><param class="glyphicon glyphicon-menu-left"></a>
-
+        <a class="col-xs-3 back" x-go-back>
+            <param class="glyphicon glyphicon-menu-left">
+        </a>
         <span class="col-xs-6 title">
             <span ng-if="self.bind_weixin">绑定微信</span>
             <span ng-if="!self.bind_weixin">
@@ -127,7 +119,7 @@
                     </div>
 
                     <p class="links text-center">
-                        <a ng-href="password/forgot?back={{ page_path }}">忘记密码？</a>
+                        <a ng-href="password/forgot">忘记密码？</a>
                     </p>
                 </div>
             </section>

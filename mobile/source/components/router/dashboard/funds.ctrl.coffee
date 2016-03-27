@@ -11,7 +11,6 @@ do (_, angular, moment) ->
                 query_set = {}
 
                 angular.extend @$scope, {
-                    back_path: @$routeParams.back
                     query_set
                 }
 

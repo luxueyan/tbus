@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'InvestCtrl',
 
-        _.ai '            @api, @$scope, @$rootScope, @$window, @$routeParams, @map_invest_summary', class
-            constructor: (@api, @$scope, @$rootScope, @$window, @$routeParams, @map_invest_summary) ->
+        _.ai '            @api, @$scope, @$rootScope, @$window, @$location, @$routeParams, @map_invest_summary', class
+            constructor: (@api, @$scope, @$rootScope, @$window, @$location, @$routeParams, @map_invest_summary) ->
 
                 @$window.scrollTo 0, 0
 
@@ -26,6 +26,14 @@ do (_, angular) ->
                 }
 
                 @query(query_set)
+
+
+            goto_tab: (new_tab) ->
+
+                @$location
+                    .replace()
+                    .path @$location.path()
+                    .search tab: new_tab
 
 
             query: (query_set, options = {}) ->

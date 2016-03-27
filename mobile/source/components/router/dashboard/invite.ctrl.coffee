@@ -3,14 +3,10 @@ do (_, angular, Math) ->
 
     angular.module('controller').controller 'InviteCtrl',
 
-        _.ai '            wx, @user, @api, @$location, @$scope, @$cookies, @$window, @baseURI, @$routeParams', class
-            constructor: (wx, @user, @api, @$location, @$scope, @$cookies, @$window, @baseURI, @$routeParams) ->
+        _.ai '            wx, @user, @api, @$location, @$scope, @$window, @baseURI, @$routeParams', class
+            constructor: (wx, @user, @api, @$location, @$scope, @$window, @baseURI, @$routeParams) ->
 
                 @$window.scrollTo 0, 0
-
-                @back_path = @$routeParams.back or @$cookies.get 'invite_back_path'
-                @back_path = @$window.decodeURIComponent @back_path
-                @$cookies.remove 'invite_back_path'
 
                 Object.defineProperties @$scope,
                     share_link: {

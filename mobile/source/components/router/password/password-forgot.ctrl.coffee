@@ -9,7 +9,6 @@ do (_, angular) ->
                 @captcha = {timer: null, count: 60, count_default: 60, has_sent: false, buffering: false}
 
                 angular.extend @$scope, {
-                    back_path: @$routeParams.back
                     store: {}
                 }
 

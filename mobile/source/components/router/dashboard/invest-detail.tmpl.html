@@ -3,7 +3,7 @@
 
     <nav class="omit-margin container page-nav">
     <div class="row">
-        <a class="col-xs-2 back" href="dashboard/invest">
+        <a class="col-xs-2 back" x-go-back>
             <param class="glyphicon glyphicon-menu-left">
         </a>
         <span class="col-xs-8 title">{{ item.title }}</span>
@@ -115,7 +115,7 @@
             <span class="desc">查看</span>
         </a>
         <a class="list-group-item rsaquo"
-           ng-href="loan/{{ item.loan_id }}?back={{ page_path }}"
+           ng-href="loan/{{ item.loan_id }}"
         >
             <img width="14" ng-src="assets/image/detail-icon.png">
             项目详情

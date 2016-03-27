@@ -12,7 +12,6 @@ do (_, angular) ->
                     store: {}
                 }
 
-                @back_path = @$routeParams.back
                 @next_path = @$routeParams.next or 'dashboard'
 
                 @submit_sending = false
@@ -76,7 +75,7 @@ do (_, angular) ->
 
                         @$rootScope.$on '$locationChangeStart', (event, new_path) =>
                             event.preventDefault()
-                            @$window.location.href = new_path
+                            @$window.location.replace new_path
 
                         @user.has_bank_card = true
 
@@ -84,7 +83,6 @@ do (_, angular) ->
                             @popup_payment_state {
                                 user: @user
                                 page: 'bind-card'
-                                page_path: 'dashboard/payment/bind-card'
                             }
                             return
 

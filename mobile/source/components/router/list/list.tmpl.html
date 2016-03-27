@@ -3,9 +3,9 @@
 
     <nav class="omit-margin container page-nav">
     <div class="row">
-        <a class="col-xs-2 back" ng-href="{{ back_path || 'list' }}"
-           ng-if="filter_type"
-        ><param class="glyphicon glyphicon-menu-left"></a>
+        <a class="col-xs-2 back" x-go-back ng-if="filter_type">
+            <param class="glyphicon glyphicon-menu-left">
+        </a>
         <span class="col-xs-2" ng-if="!filter_type">&nbsp;</span>
         <span class="col-xs-8 text-center btn-group-wrap">
             <div class="btn-group">
@@ -148,7 +148,7 @@
                 }}"
             >
                 <li ng-repeat="item in list track by $index">
-                    <a ng-href="loan/{{ item.id }}?back={{ page_path }}"
+                    <a ng-href="loan/{{ item.id }}"
                        x-loan-summary
                        data-loan="item"
                        data-layout="'has-chart'"
@@ -180,7 +180,7 @@
 
             <ul class="list-unstyled u-off-margin-bottom loan-list">
                 <li ng-repeat="item in list_lhb">
-                    <a ng-href="loan/{{ item.id }}?back={{ page_path }}"
+                    <a ng-href="loan/{{ item.id }}"
                        x-loan-summary
                        data-loan="item"
                        data-layout="'has-chart'"
@@ -206,7 +206,7 @@
 
             <ul class="list-unstyled u-off-margin-bottom loan-list">
                 <li ng-repeat="item in list_dcb">
-                    <a ng-href="loan/{{ item.id }}?back={{ page_path }}"
+                    <a ng-href="loan/{{ item.id }}"
                        x-loan-summary
                        data-loan="item"
                        data-layout="'has-chart'"
@@ -232,7 +232,7 @@
 
             <ul class="list-unstyled u-off-margin-bottom loan-list">
                 <li ng-repeat="item in list_sbtz">
-                    <a ng-href="loan/{{ item.id }}?back={{ page_path }}"
+                    <a ng-href="loan/{{ item.id }}"
                        x-loan-summary
                        data-loan="item"
                        data-layout="'has-chart'"

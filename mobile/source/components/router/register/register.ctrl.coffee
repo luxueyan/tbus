@@ -6,16 +6,18 @@ do (_, angular) ->
         _.ai '            @api, @$scope, @$rootScope, @$interval, @$location, @$routeParams, @$window, @$q, @$uibModal, @popup_payment_state', class
             constructor: (@api, @$scope, @$rootScope, @$interval, @$location, @$routeParams, @$window, @$q, @$uibModal, @popup_payment_state) ->
 
-                {mobile} = @$routeParams
+                {mobile, next} = @$routeParams
+
+                @next_path = next
+
                 referral = do ({ref, rel, refm, reftf, referral} = @$routeParams) ->
                     _.first _.compact [ref, rel, refm, reftf, referral]
 
-                if mobile?
-                    back_path = "login?mobile=#{ mobile }"
-                    back_path += "&referral=#{ referral }" if referral
-                    angular.extend @$scope, {back_path}
-                else
-                    @$location.path 'login'
+                unless mobile
+                    @$location
+                        .replace()
+                        .path 'login'
+                        .search if referral then {referral} else {}
                     return
 
                 @$scope.store = {
@@ -116,7 +118,6 @@ do (_, angular) ->
                                 @popup_payment_state {
                                     user
                                     page: 'register'
-                                    page_path: 'register'
                                     next_path: @next_path || 'dashboard'
                                 }
 

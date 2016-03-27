@@ -61,8 +61,6 @@ do (_, angular, Math) ->
                     @popup_payment_state {
                         user: @user
                         page: 'invest'
-                        page_path: @page_path
-                        back_path: "loan/#{ @loan.id }"
                     }
 
                 EXTEND_API @api
@@ -158,7 +156,7 @@ do (_, angular, Math) ->
 
                         @$scope.$on '$locationChangeStart', (event, new_path) =>
                             event.preventDefault()
-                            @$window.location = new_path
+                            @$window.location.replace new_path
 
                     .catch (data) =>
                         message = _.get data, 'error[0].message', '系统繁忙，请稍后重试！'

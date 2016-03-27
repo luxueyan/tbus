@@ -3,7 +3,7 @@
 
     <nav class="omit-margin container page-nav">
     <div class="row">
-        <a class="col-xs-3 back" ng-href="{{ self.back_path || 'dashboard' }}">
+        <a class="col-xs-3 back" x-go-back>
             <param class="glyphicon glyphicon-menu-left">
         </a>
         <span class="col-xs-6 title">红包</span>
@@ -18,19 +18,19 @@
         }">
     </div>
 
-    <div class="text-center btn-group-wrap" ng-if="!picking">
+    <div class="text-center btn-group-wrap">
         <div class="btn-group">
             <a class="btn btn-tab"
-               href="dashboard/coupon?tab=placed"
                ng-class="{ selected: current_tab === 'placed' }"
+               ng-click="self.goto_tab('placed')"
             >未使用</a>
             <a class="btn btn-tab"
-               href="dashboard/coupon?tab=redeemed"
                ng-class="{ selected: current_tab === 'redeemed' }"
+               ng-click="self.goto_tab('redeemed')"
             >已使用</a>
             <a class="btn btn-tab"
-               href="dashboard/coupon?tab=expired"
                ng-class="{ selected: current_tab === 'expired' }"
+               ng-click="self.goto_tab('expired')"
             >已过期</a>
         </div>
     </div>

@@ -3,7 +3,7 @@
 
     <nav class="container page-nav">
     <div class="row">
-        <a class="col-xs-3 back" ng-href="{{ back_path || 'login' }}">
+        <a class="col-xs-3 back" x-go-back>
             <param class="glyphicon glyphicon-menu-left">
         </a>
         <span class="col-xs-6 title">{{ is_register_successful ? '注册成功' : '设置密码' }}</span>

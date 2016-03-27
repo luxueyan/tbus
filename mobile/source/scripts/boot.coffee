@@ -30,7 +30,10 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                     api.fetch_current_user()
 
                                         .then ->
-                                            $location.path '/'
+                                            $location
+                                                .replace()
+                                                .path '/dashboard'
+                                                .search {}
                                             return $q.reject()
 
                                         .catch $q.resolve
@@ -45,7 +48,10 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                     api.fetch_current_user()
 
                                         .then ->
-                                            $location.path '/'
+                                            $location
+                                                .replace()
+                                                .path '/dashboard'
+                                                .search {}
                                             return $q.reject()
 
                                         .catch $q.resolve
@@ -148,7 +154,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                         resolve:
                             user: _.ai 'api, $location, $q, $route',
                                 (       api, $location, $q, $route) ->
-                                    {type, back, next} = $route.current.params
+                                    {type, next} = $route.current.params
 
                                     api.fetch_current_user()
                                         .then (user) ->
@@ -159,7 +165,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                             $location
                                                 .replace()
                                                 .path "/dashboard/payment/password/#{ type }"
-                                                .search {back, next}
+                                                .search {next}
 
                                             return $q.reject(user)
 

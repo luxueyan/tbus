@@ -53,7 +53,7 @@ do (_, angular) ->
 
                         @$scope.$on '$locationChangeStart', (event, new_path) =>
                             event.preventDefault()
-                            @$window.location = new_path
+                            @$window.location.replace new_path
 
                     .catch (data) =>
                         @submit_sending = false
