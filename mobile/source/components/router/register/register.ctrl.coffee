@@ -23,16 +23,13 @@ do (_, angular) ->
                     referral
                 }
 
-                @cell_buffering = false
-                @cell_buffering_count = 59.59
+                @captcha = {timer: null, count: 60, count_default: 60, has_sent: false, buffering: false}
 
                 @$scope.has_referral = !!@$scope.store.referral
                 @submit_sending = false
 
 
             get_verification_code: ({mobile, captcha}) ->
-
-                @mobile_verification_code_has_sent = true
 
                 (@api.check_mobile(mobile)
 
@@ -48,17 +45,17 @@ do (_, angular) ->
 
                     .then (data) =>
 
-                        timer = @$interval =>
-                            @cell_buffering_count -= 1
+                        @captcha.timer = @$interval =>
+                            @captcha.count -= 1
 
-                            if @cell_buffering_count < 1
-                                @$interval.cancel timer
-                                @cell_buffering_count += 100 * (@cell_buffering_count % 1)
-                                @cell_buffering = false
-                                @fetch_new_captcha(false) if @captcha?.token
+                            if @captcha.count < 1
+                                @$interval.cancel @captcha.timer
+                                @captcha.count = @captcha.count_default
+                                @captcha.buffering = false
+                                # @fetch_new_captcha(false) if @captcha?.token
                         , 1000
 
-                        @cell_buffering = true
+                        @captcha.has_sent = @captcha.buffering = true
 
                     .catch (data) =>
 
@@ -66,13 +63,11 @@ do (_, angular) ->
 
                         @$window.alert @$scope.msg[key] or @$scope.msg.UNKNOWN
 
-                        do @fetch_new_captcha if key in _.split '
-                            INVALID_CAPTCHA
-                            IMG_CAPTCHA_NULL
-                            IMG_CAPTCHA_REQUIRED
-                        '
-
-                        @mobile_verification_code_has_sent = false
+                        # do @fetch_new_captcha if key in _.split '
+                        #     INVALID_CAPTCHA
+                        #     IMG_CAPTCHA_NULL
+                        #     IMG_CAPTCHA_REQUIRED
+                        # '
                 )
 
 

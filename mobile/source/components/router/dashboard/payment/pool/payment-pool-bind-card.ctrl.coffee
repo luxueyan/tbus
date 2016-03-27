@@ -114,24 +114,28 @@ do (_, angular) ->
 
                 do event.preventDefault
 
-                self = @
-
-                @$uibModal.open {
+                prompt = @$uibModal.open {
                     size: 'lg'
                     backdrop: 'static'
                     windowClass: 'modal-full-page'
                     openedClass: 'modal-full-page-wrap'
                     animation: false
-                    templateUrl: 'ngt-select-bank.tmpl'
+                    templateUrl: 'ngt-dashboard-payment-bind-card-select-bank.tmpl'
 
                     controller: _.ai '$scope',
-                        (             $scope) ->
+                        (             $scope) =>
                             angular.extend $scope, {
-                                banks: self.banks
+                                banks: @banks
                                 select: (bank) ->
                                     store.bank = bank
                             }
                 }
+
+                once = @$scope.$on '$locationChangeStart', ->
+                    prompt?.dismiss()
+                    do once
+
+                return prompt.result
 
 
 

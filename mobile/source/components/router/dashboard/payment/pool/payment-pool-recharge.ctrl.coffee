@@ -1,58 +1,37 @@
 
-do (angular) ->
+do (_, angular) ->
 
     angular.module('controller').controller 'RechargeCtrl',
 
-        _.ai '            @user, @api, @$location, @$scope, @$window, @$routeParams, @$q, @popup_payment_state', class
-            constructor: (@user, @api, @$location, @$scope, @$window, @$routeParams, @$q, @popup_payment_state) ->
+        _.ai '            @user, @api, @$location, @$scope, @$window, @$routeParams, @$q, @$uibModal, @popup_payment_state', class
+            constructor: (@user, @api, @$location, @$scope, @$window, @$routeParams, @$q, @$uibModal, @popup_payment_state) ->
 
                 @$window.scrollTo 0, 0
 
-                @back_path = @$routeParams.back
                 @next_path = @$routeParams.next
                 @submit_sending = false
 
-                # if +@$routeParams.amount > 0
-                #     @$scope.amount = @$routeParams.amount // 100 * 100 + 100
+                @bank_account_list = _.clone @user.bank_account_list
 
-                @$scope.store = {}
+                bank_account = _.find @bank_account_list, (item) -> item.defaultAccount is true
 
-                (do ({amount, bank_id} = @$routeParams) =>
-
-                    @$scope.bank_account = do (list = _.clone @user.bank_account_list) ->
-                        if bank_id
-                            return _.find list, (item) -> item.id is bank_id
-                        else
-                            return _.find list, (item) -> item.defaultAccount is true
-
-                    if @$scope.bank_account
-                        @$scope.store.account = _.get @$scope.bank_account, 'account.account'
-
-                    if +amount
-                        @$scope.store.amount = +amount
-                )
+                angular.extend @$scope, {
+                    bank_account
+                    store: {bank_account}
+                }
 
                 if !@user.has_bank_card or !@user.has_payment_password
                     @popup_payment_state {
                         user: @user
                         page: 'recharge'
-                        page_path: 'dashboard/recharge'
-                        back_path: 'dashboard'
                     }
 
                 EXTEND_API @api
 
 
-            pick_up_bank: (event, amount = 0) ->
+            submit: ({bank_account, amount, password}) ->
 
-                do event.preventDefault
-
-                @$location
-                    .path "dashboard/bank-card/#{ amount }"
-                    .search back: "dashboard/recharge/#{ amount }"
-
-
-            submit: ({account, amount, password}) ->
+                account = _.get bank_account, 'account.account'
 
                 @submit_sending = true
 
@@ -88,6 +67,36 @@ do (angular) ->
 
                         @$window.alert msg
                 )
+
+
+            select_bank: (event, store) ->
+
+                do event.preventDefault
+
+                prompt = @$uibModal.open {
+                    size: 'lg'
+                    backdrop: 'static'
+                    windowClass: 'modal-full-page'
+                    openedClass: 'modal-full-page-wrap'
+                    animation: false
+                    templateUrl: 'ngt-dashboard-payment-recharge-select-bank.tmpl'
+
+                    controller: _.ai '$scope',
+                        (             $scope) =>
+                            angular.extend $scope, {
+                                bank_account_list: @bank_account_list
+
+                                select: (bank_account) =>
+                                    store.bank_account = bank_account
+                                    @$scope.bank_account = bank_account
+                            }
+                }
+
+                once = @$scope.$on '$locationChangeStart', ->
+                    prompt?.dismiss()
+                    do once
+
+                return prompt.result
 
 
 

@@ -32,10 +32,10 @@
         >
             <div class="inputs container">
 
-                <div class="form-group merge" ng-if="bank_account">
+                <div class="form-group merge" ng-if="store.bank_account">
                     <div class="form-group-inner container">
                         <div class="media media-bank"
-                             ng-click="self.pick_up_bank($event, store.amount)"
+                             ng-click="self.select_bank($event, store)"
                         >
                             <div class="media-left">
                                 <img width="30" ng-src="assets/image/bank-icons/{{ bank_account.account.bankCode | lowercase }}.png">
@@ -107,3 +107,70 @@
     </section>
 
 </div>
+
+
+
+
+
+<script type="text/ng-template" id="ngt-dashboard-payment-withdraw-select-bank.tmpl">
+    <div id="dashboard-payment-withdraw-select-bank">
+
+        <nav class="container page-nav">
+        <div class="row">
+            <a class="col-xs-3 back" ng-click="$close()">
+                <param class="glyphicon glyphicon-menu-left">
+            </a>
+            <span class="col-xs-6 title">选择银行卡</span>
+            <span class="col-xs-3">&nbsp;</span>
+        </div>
+        </nav>
+
+        <section class="banks">
+            <ul class="list-unstyled u-off-margin-bottom bank-list">
+                <li ng-repeat="item in bank_account_list"
+                    ng-click="select(item); $close()"
+                >
+                    <div class="media media-bank">
+                        <div class="media-left">
+                            <img width="30" ng-src="assets/image/bank-icons/{{ item.account.bankCode | lowercase }}.png">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                {{ item.account.bankName }} ｜
+                                {{ item.account.account | string_replace: '^\\d+(\\d{4})$' : '****$1' }}
+                            </h4>
+                            <p class="desc">
+                                充值限额: <br>
+                                单笔
+                                    {{
+                                        item.account.singleQuota == -1
+                                        ? '无限额'
+                                        : (
+                                            item.account.singleQuota >= 10000
+                                            ? item.account.singleQuota / 10000 + '万'
+                                            : item.account.singleQuota
+                                          )
+                                    }}
+                                /
+                                日限额
+                                    {{
+                                        item.account.dailyQuota == -1
+                                        ? '无限额'
+                                        : (
+                                            item.account.dailyQuota >= 10000
+                                            ? item.account.dailyQuota / 10000 + '万'
+                                            : item.account.dailyQuota
+                                          )
+                                    }}
+                            </p>
+                            <span class="default-card"
+                                  ng-if="item.defaultAccount"
+                            >默认卡</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+    </div>
+</script>

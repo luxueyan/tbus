@@ -3,13 +3,12 @@ do (_, angular, Math) ->
 
     angular.module('controller').controller 'LoanInvestCtrl',
 
-        _.ai '            @api, @user, @loan, @coupon, @$scope, @$location, @$window, map_loan_summary, @$uibModal, @$routeParams, @popup_payment_state', class
-            constructor: (@api, @user, @loan, @coupon, @$scope, @$location, @$window, map_loan_summary, @$uibModal, @$routeParams, @popup_payment_state) ->
+        _.ai '            @api, @user, @loan, @coupon, @$scope, @$location, @$window, map_loan_summary, @$uibModal, @popup_payment_state', class
+            constructor: (@api, @user, @loan, @coupon, @$scope, @$location, @$window, map_loan_summary, @$uibModal, @popup_payment_state) ->
 
                 @$window.scrollTo 0, 0
 
                 @page_path = @$location.path()[1..]
-                @page_path_origin = ARRAY_JOIN_SLASH.call ['loan', @loan.id, 'invest']
 
                 angular.extend @$scope, {
                     store: {}
@@ -26,6 +25,8 @@ do (_, angular, Math) ->
 
                                 return {
                                     id: item.id
+                                    couponPackage: info
+                                    status: item.status
                                     minimum: info.minimumInvest
                                     type: info.type
                                     value: do ->
@@ -55,15 +56,6 @@ do (_, angular, Math) ->
                     coupon_minimum: (item) =>
                         @$scope.store.amount >= item.minimum
                 }
-
-                do ({amount, coupon} = @$routeParams) =>
-
-                    if coupon
-                        @$scope.store.coupon = _.find @$scope.coupon_list, id: coupon
-
-                    if +amount
-                        @$scope.store.amount = +amount
-                        @fetch_analyse(+amount)
 
                 if !@user.has_bank_card or !@user.has_payment_password
                     @popup_payment_state {
@@ -109,23 +101,6 @@ do (_, angular, Math) ->
                     @$scope.actual_payment_amount = Math.max 0, amount - coupon.value
                 else
                     @$scope.actual_payment_amount = amount
-
-
-            pick_up_coupon: (event, input_amount = 0) ->
-
-                do event.preventDefault
-
-                new_path = ARRAY_JOIN_SLASH.call [
-                    'dashboard/coupon'
-                    @$scope.loan.balance
-                    @$scope.loan.raw.duration.totalMonths
-                    @$scope.loan.id
-                    input_amount
-                ]
-
-                @$location
-                    .path new_path
-                    .search back: ARRAY_JOIN_SLASH.call [@page_path_origin, input_amount]
 
 
             submit: (event) ->
@@ -222,7 +197,7 @@ do (_, angular, Math) ->
 
                 api_path = '/api/v2/cms/category/DECLARATION/name/' + name
 
-                @$uibModal.open {
+                prompt = @$uibModal.open {
                     size: 'lg'
                     backdrop: 'static'
                     windowClass: 'center ngt-invest-agreement'
@@ -241,6 +216,39 @@ do (_, angular, Math) ->
                             angular.extend $scope, {content}
                 }
 
+                once = @$scope.$on '$locationChangeStart', ->
+                    prompt?.dismiss()
+                    do once
+
+                return prompt.result
+
+
+            select_coupon: (event, store) ->
+
+                do event.preventDefault
+
+                prompt = @$uibModal.open {
+                    size: 'lg'
+                    backdrop: 'static'
+                    windowClass: 'modal-full-page'
+                    openedClass: 'modal-full-page-wrap'
+                    animation: false
+                    templateUrl: 'ngt-loan-invest-select-coupon.tmpl'
+
+                    controller: _.ai '$scope',
+                        (             $scope) =>
+                            angular.extend $scope, {
+                                coupon_list: @$scope.coupon_list
+                                select: (coupon) ->
+                                    store.coupon = coupon
+                            }
+                }
+
+                once = @$scope.$on '$locationChangeStart', ->
+                    prompt?.dismiss()
+                    do once
+
+                return prompt.result
 
 
 
@@ -258,12 +266,3 @@ do (_, angular, Math) ->
 
                 .then @TAKE_RESPONSE_DATA
                 .catch @TAKE_RESPONSE_ERROR
-
-
-
-
-
-
-
-
-    ARRAY_JOIN_SLASH = _.partialRight Array::join, '/'

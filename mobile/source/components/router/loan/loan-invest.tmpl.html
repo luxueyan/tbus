@@ -74,7 +74,7 @@
             <div class="container bd">
                 <div class="coupon-wrap"
                      ng-class="{ rsaquo: coupon_list.length }"
-                     ng-click="coupon_list.length && self.pick_up_coupon($event, store.amount)"
+                     ng-click="coupon_list.length && self.select_coupon($event, store)"
                 >
                     <select name="placementId" class="form-control"
                             id="coupon"
@@ -202,5 +202,79 @@
                 </button>
             </div>
         </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="ngt-loan-invest-select-coupon.tmpl">
+    <div id="loan-invest-select-coupon">
+
+        <nav class="omit-margin container page-nav">
+        <div class="row">
+            <a class="col-xs-3 back" ng-click="$close()">
+                <param class="glyphicon glyphicon-menu-left">
+            </a>
+            <span class="col-xs-6 title">红包</span>
+            <span class="col-xs-3">&nbsp;</span>
+        </div>
+        </nav>
+
+        <div></div>
+
+        <section class="coupons">
+            <ul class="list-unstyled u-off-margin-bottom coupon-list">
+                <li class="item"
+                    ng-repeat="item in coupon_list"
+                    ng-click="item.status != 'DISABLED' && select(item); $close()"
+                    ng-class="[
+                        'item-status-' + (item.status | lowercase),
+                        'item-type-' + (item.couponPackage.type | lowercase)
+                    ]"
+                >
+                    <div class="media">
+                        <div class="media-left media-middle text-center">
+                            <div class="value" ng-switch="item.couponPackage.type">
+                                <span ng-switch-when="INTEREST">
+                                    <span class="num">{{ item.couponPackage.parValue / 100 }}</span>
+                                    <span class="unit">%</span>
+                                </span>
+                                <span ng-switch-default>
+                                    <span ng-if="item.couponPackage.parValue >= 10000">
+                                        <span class="num">{{ item.couponPackage.parValue / 10000 | number }}</span>
+                                        <span class="unit">万</span>
+                                    </span>
+                                    <span ng-if="item.couponPackage.parValue < 10000">
+                                        <span class="num">{{ item.couponPackage.parValue | number }}</span>
+                                        <span class="unit">元</span>
+                                    </span>
+                                </span>
+                            </div>
+
+                            <div class="type" ng-switch="item.couponPackage.type">
+                                <span ng-switch-when="CASH">现金券</span>
+                                <span ng-switch-when="INTEREST">加息券</span>
+                                <span ng-switch-when="PRINCIPAL">增值券</span>
+                                <span ng-switch-when="REBATE">返现券</span>
+                            </div>
+                        </div>
+
+                        <div class="media-body">
+                            <div class="desc">{{ item.couponPackage.description || '暂无描述' }}</div>
+
+                            <div class="desc">
+                                投资满{{ item.couponPackage.minimumInvest | number }}元，{{ item.couponPackage.minimumDuration }}个月可使用
+                            </div>
+
+                            <div class="expire">
+                                <span ng-if="item.couponPackage.timeExpire">
+                                    有效期至 {{ item.couponPackage.timeExpire | date: "yyyy-MM-dd" }}
+                                </span>
+                                <span ng-if="!item.couponPackage.timeExpire">永不过期</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
     </div>
 </script>

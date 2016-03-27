@@ -84,7 +84,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         return $q.reject()
                     }
 
-                    .when '/dashboard/bank-card/:amount?', {
+                    .when '/dashboard/bank-card', {
                         controller: 'BankCardCtrl as self'
                         templateUrl: 'components/router/dashboard/bank-card.tmpl.html'
                         resolve:
@@ -112,7 +112,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         do $q.reject
                     }
 
-                    .when '/dashboard/coupon/:amount?/:months?/:loan_id?/:input?', {
+                    .when '/dashboard/coupon', {
                         controller: 'CouponCtrl as self'
                         templateUrl: 'components/router/dashboard/coupon.tmpl.html'
                         resolve:
@@ -229,7 +229,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         return $q.reject()
                     }
 
-                    .when '/dashboard/recharge/:amount?/:bank_id?', {
+                    .when '/dashboard/recharge', {
                         controller: 'RechargeCtrl as self'
                         templateUrl: 'components/router/dashboard/payment/pool/payment-pool-recharge.tmpl.html'
                         resolve:
@@ -243,7 +243,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         do $q.reject
                     }
 
-                    .when '/dashboard/withdraw/:amount?/:bank_id?', {
+                    .when '/dashboard/withdraw', {
                         controller: 'WithdrawCtrl as self'
                         templateUrl: 'components/router/dashboard/payment/pool/payment-pool-withdraw.tmpl.html'
                         resolve:
@@ -343,7 +343,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         do $q.reject
                     }
 
-                    .when '/loan/:id/invest/:amount?/:coupon?', {
+                    .when '/loan/:id/invest', {
                         controller: 'LoanInvestCtrl as self'
                         templateUrl: 'components/router/loan/loan-invest.tmpl.html'
                         resolve:
