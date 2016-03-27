@@ -3,7 +3,7 @@
 
     <nav class="container page-nav">
     <div class="row">
-        <a class="col-xs-3 back" href="dashboard/bank-card">
+        <a class="col-xs-3 back" x-go-back>
             <param class="glyphicon glyphicon-menu-left">
         </a>
         <span class="col-xs-6 title">银行卡编辑</span>
@@ -21,7 +21,7 @@
         }">
     </div>
 
-    <section class="banks">
+    <section class="banks" ng-if="bank_account">
         <ul class="list-unstyled u-off-margin-bottom bank-list">
             <li>
                 <div class="media media-bank">

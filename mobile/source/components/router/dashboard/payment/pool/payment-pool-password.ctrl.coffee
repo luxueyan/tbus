@@ -8,7 +8,6 @@ do (_, angular) ->
 
                 @$window.scrollTo 0, 0
 
-                @back_path = @$routeParams.back or 'dashboard'
                 @next_path = @$routeParams.next or 'dashboard'
 
                 @captcha = {timer: null, count: 60, count_default: 60, has_sent: false, buffering: false}

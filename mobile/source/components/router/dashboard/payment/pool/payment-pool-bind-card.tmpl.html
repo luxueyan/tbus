@@ -3,9 +3,9 @@
 
     <nav class="container page-nav">
     <div class="row">
-        <a class="col-xs-3 back"
-           ng-href="{{ self.back_path || 'dashboard/bank-card' }}"
-        ><param class="glyphicon glyphicon-menu-left"></a>
+        <a class="col-xs-3 back" x-go-back>
+            <param class="glyphicon glyphicon-menu-left">
+        </a>
         <span class="col-xs-6 title">银行卡绑定</span>
         <span class="col-xs-3">&nbsp;</span>
     </div>
@@ -228,7 +228,7 @@
                     <button type="submit" class="btn btn-theme btn-block btn-lg"
                             ng-disabled="form.$invalid || self.submit_sending"
                     >下一步</button>
-                    <a class="btn btn-link btn-block" ng-href="{{ self.back_path || 'dashboard' }}">以后再说</a>
+                    <a class="btn btn-link btn-block" x-go-back>以后再说</a>
                 </div>
             </div>
         </form>
@@ -241,12 +241,12 @@
 
 
 
-<script type="text/ng-template" id="ngt-select-bank.tmpl">
-    <div id="dashboard-payment-select-bank">
+<script type="text/ng-template" id="ngt-dashboard-payment-bind-card-select-bank.tmpl">
+    <div id="dashboard-payment-bind-card-select-bank">
 
         <nav class="container page-nav">
         <div class="row">
-            <a class="col-xs-3 back" href="#" ng-click="$close()">
+            <a class="col-xs-3 back" ng-click="$close()">
                 <param class="glyphicon glyphicon-menu-left">
             </a>
             <span class="col-xs-6 title">银行卡选择</span>

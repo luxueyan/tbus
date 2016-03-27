@@ -11,7 +11,7 @@ do (_, angular, moment) ->
                 item = do (list = @$rootScope.invest_list) =>
                     _.find list, (item) => @$routeParams.id is item.id
 
-                return @$location.path 'dashboard/invest' unless item
+                return @$window.history.back() unless item
 
                 angular.extend @$scope, {
                     item

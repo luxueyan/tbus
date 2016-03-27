@@ -2,7 +2,9 @@
 <div id="dashboard-invest">
     <nav class="omit-margin container page-nav">
     <div class="row">
-        <a class="col-xs-3 back" href="dashboard"><param class="glyphicon glyphicon-menu-left"></a>
+        <a class="col-xs-3 back" x-go-back>
+            <param class="glyphicon glyphicon-menu-left">
+        </a>
         <span class="col-xs-6 title">我的投资</span>
         <span class="col-xs-3">&nbsp;</span>
     </div>
@@ -11,16 +13,16 @@
     <div class="text-center btn-group-wrap">
         <div class="btn-group">
             <a class="btn btn-tab"
-               href="dashboard/invest?tab=raising"
                ng-class="{ selected: current_tab === 'raising' }"
+               ng-click="self.goto_tab('raising')"
             >投资中</a>
             <a class="btn btn-tab"
-               href="dashboard/invest?tab=repaying"
                ng-class="{ selected: current_tab === 'repaying' }"
+               ng-click="self.goto_tab('repaying')"
             >回款中</a>
             <a class="btn btn-tab"
-               href="dashboard/invest?tab=done"
                ng-class="{ selected: current_tab === 'done' }"
+               ng-click="self.goto_tab('done')"
             >已结束</a>
         </div>
     </div>
