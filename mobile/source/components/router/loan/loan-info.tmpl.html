@@ -3,7 +3,7 @@
 
     <nav class="omit-margin container page-nav">
     <div class="row">
-        <a class="col-xs-2 back" ng-href="loan/{{ loan.id }}">
+        <a class="col-xs-2 back" x-go-back>
             <param class="glyphicon glyphicon-menu-left">
         </a>
         <span class="col-xs-8 title">{{ loan.title }}</span>
@@ -14,16 +14,16 @@
     <div class="text-center btn-group-wrap">
         <div class="btn-group">
             <a class="btn btn-tab"
-               ng-href="loan/{{ loan.id }}/info?tab=security"
                ng-class="{ selected: current_tab === 'security' }"
+               ng-click="self.goto_tab('security')"
             >安全保障</a>
             <a class="btn btn-tab"
-               ng-href="loan/{{ loan.id }}/info?tab=profit"
                ng-class="{ selected: current_tab === 'profit' }"
+               ng-click="self.goto_tab('profit')"
             >收益方式</a>
             <a class="btn btn-tab"
-               ng-href="loan/{{ loan.id }}/info?tab=faq"
                ng-class="{ selected: current_tab === 'faq' }"
+               ng-click="self.goto_tab('faq')"
             >常见问题</a>
         </div>
     </div>

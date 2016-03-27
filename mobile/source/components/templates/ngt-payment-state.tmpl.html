@@ -34,15 +34,19 @@
 
 <div class="modal-footer">
     <a class="btn btn-theme btn-block btn-lg btn-action"
-       ng-href="dashboard/payment/bind-card?back={{ page_path }}"
+       ng-href="dashboard/payment/bind-card"
        ng-if="!user.has_bank_card"
     >立即认证</a>
     <a class="btn btn-theme btn-block btn-lg btn-action"
-       ng-href="dashboard/payment/password?back={{ page_path }}"
+       ng-href="dashboard/payment/password"
        ng-if="user.has_bank_card && !user.has_payment_password"
     >去设置</a>
     <a class="btn btn-link btn-block"
-       ng-if="back_path || next_path"
-       ng-href="{{ back_path || next_path }}"
+       ng-href="{{ next_path }}"
+       ng-if="next_path"
+    >以后再说</a>
+    <a class="btn btn-link btn-block"
+       x-go-back
+       ng-if="!next_path"
     >以后再说</a>
 </div>

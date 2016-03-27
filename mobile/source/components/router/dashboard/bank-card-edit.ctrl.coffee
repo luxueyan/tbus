@@ -10,8 +10,14 @@ do (_, angular) ->
 
                 @submit_sending = false
 
-                @$scope.bank_account = do (list = _.clone @user.bank_account_list) =>
+                bank_account = do (list = _.clone @user.bank_account_list) =>
                     _.find list, (item) => item.id is @$routeParams.id
+
+                return @$window.history.back() unless bank_account
+
+                angular.extend @$scope, {
+                    bank_account
+                }
 
                 EXTEND_API @api
 
@@ -45,7 +51,7 @@ do (_, angular) ->
 
                                 @$scope.$on '$locationChangeStart', (event, new_path) =>
                                     event.preventDefault()
-                                    @$window.location.href = new_path
+                                    @$window.location.replace new_path
                         )
                         return
 
@@ -74,7 +80,7 @@ do (_, angular) ->
 
                         @$scope.$on '$locationChangeStart', (event, new_path) =>
                             event.preventDefault()
-                            @$window.location.href = new_path
+                            @$window.location.replace new_path
                 )
 
 

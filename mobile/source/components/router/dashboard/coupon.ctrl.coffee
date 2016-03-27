@@ -8,52 +8,28 @@ do (_, angular) ->
 
                 @$window.scrollTo 0, 0
 
-                @$scope.picking = 'amount' of @$routeParams
-                @back_path = @$routeParams.back
+                current_tab = @$routeParams.tab or 'placed'
 
-                {amount, months, loan_id, input} = @$routeParams
+                query_set = {
+                    status: current_tab.toUpperCase()
+                }
 
-                (if !!amount and !!months and !!loan_id
-                    input = +input
-                    @$scope.loading = true
+                angular.extend @$scope, {
+                    current_tab
+                    query_set
+                }
 
-                    (@api.fetch_coupon_list(amount, months, loan_id)
-
-                        .then @api.TAKE_RESPONSE_DATA
-
-                        .then (data) =>
-
-                            @$scope.list =
-                                _(data)
-                                    .filter disabled: false
-                                    .pluck 'placement'
-
-                                    .each (coupon) ->
-                                        if 0 < input < coupon.couponPackage.minimumInvest
-                                            coupon.status = 'DISABLED'
-
-                                    .value()
-
-                        .finally =>
-                            @$scope.loading = false
-                    )
-
-                else
-                    current_tab = @$routeParams.tab or 'placed'
-
-                    query_set = {
-                        status: current_tab.toUpperCase()
-                    }
-
-                    angular.extend @$scope, {
-                        current_tab
-                        query_set
-                    }
-
-                    @query(query_set)
-                )
+                @query(query_set)
 
                 EXTEND_API @api
+
+
+            goto_tab: (new_tab) ->
+
+                @$location
+                    .replace()
+                    .path @$location.path()
+                    .search tab: new_tab
 
 
             query: (query_set, options = {}) ->
@@ -88,13 +64,6 @@ do (_, angular) ->
                 @$scope.$evalAsync =>
                     @query(@$scope.query_set, {on_next_page: true})
                         .then => @$scope.$broadcast('scrollpointShouldReset')
-
-
-            select: (id) ->
-
-                @$location
-                    .path @back_path + '/' + id
-                    .search back: null
 
 
             redeem: (id) ->

@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'LoanInfoCtrl',
 
-        _.ai '            @loan, @api, @$scope, @$window, map_loan_summary, @$routeParams', class
-            constructor: (@loan, @api, @$scope, @$window, map_loan_summary, @$routeParams) ->
+        _.ai '            @loan, @api, @$scope, @$window, @$location, map_loan_summary, @$routeParams', class
+            constructor: (@loan, @api, @$scope, @$window, @$location, map_loan_summary, @$routeParams) ->
 
                 @$window.scrollTo 0, 0
 
@@ -43,6 +43,15 @@ do (_, angular) ->
                         .finally =>
                             @$scope.loading_repayments = false
                     )
+
+
+            goto_tab: (new_tab) ->
+
+                @$location
+                    .replace()
+                    .path @$location.path()
+                    .search tab: new_tab
+
 
 
 

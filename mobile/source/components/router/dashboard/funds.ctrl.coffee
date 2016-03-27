@@ -11,7 +11,6 @@ do (_, angular, moment) ->
                 query_set = {}
 
                 angular.extend @$scope, {
-                    back_path: @$routeParams.back
                     query_set
                 }
 
@@ -72,6 +71,8 @@ do (_, angular, moment) ->
 
             _.defaults query_set, {
                 type: ''
+                status: 'SUCCESSFUL'
+                operation: _.split 'IN OUT FREEZE'
                 startDate: convert_to_day moment().subtract 10, 'y'
                 endDate: convert_to_day moment().add 1, 'd'
                 page: 1

@@ -6,10 +6,10 @@ do (_, angular) ->
         _.ai '            @api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @$q, @popup_payment_state', class
             constructor: (@api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @$q, @popup_payment_state) ->
 
-                {back, next, mobile, bind_social_weixin} = @$routeParams
+                {next, mobile, bind_social_weixin} = @$routeParams
 
-                @back_path = back
                 @next_path = next
+                @step = if mobile then 'two' else 'one'
 
                 @submit_sending = false
                 @flashing_error_message = false
@@ -22,8 +22,6 @@ do (_, angular) ->
                     page_path: @$location.path()[1..]
                 }
 
-                @step = 'one'
-
 
             error_message_flash: ->
                 @flashing_error_message = true
@@ -34,15 +32,7 @@ do (_, angular) ->
                 ), 2000
 
 
-            goto: (new_path) ->
-
-                @$location.path new_path
-
-
             login: ({mobile, password} = {}) ->
-
-                # unless username and password
-                #     return do @error_message_flash
 
                 @submit_sending = true
                 @flashing_error_message = false
@@ -54,13 +44,18 @@ do (_, angular) ->
                         .then @api.process_response
 
                         .then (data) =>
+                            {next, referral} = @$routeParams
+
                             @$location
                                 .path 'register'
-                                .search 'mobile', mobile
+                                .search _.compact {mobile, next, referral}
 
                         .catch (data) =>
-                            @step = 'two'
-                            @submit_sending = false
+                            {next} = @$routeParams
+
+                            @$location
+                                .path 'login'
+                                .search _.compact {mobile, next}
                     )
 
                     return
@@ -102,7 +97,6 @@ do (_, angular) ->
                                 @popup_payment_state {
                                     user
                                     page: 'login'
-                                    page_path: 'login'
                                     next_path: @next_path || 'dashboard'
                                 }
 

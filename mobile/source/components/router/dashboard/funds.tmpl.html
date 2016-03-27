@@ -3,7 +3,7 @@
 
     <nav class="omit-margin container page-nav">
     <div class="row">
-        <a class="col-xs-3 back" ng-href="{{ back_path || 'dashboard' }}">
+        <a class="col-xs-3 back" x-go-back>
             <param class="glyphicon glyphicon-menu-left">
         </a>
         <span class="col-xs-6 title">资金记录</span>
@@ -15,8 +15,16 @@
         <div class="row">
             <div class="col-xs-6 dropdown" x-uib-dropdown is-open="open_dropdown_type">
                 <div x-uib-dropdown-toggle>
-                    类型<param class="glyphicon glyphicon-menu-down">
+                    <span ng-show="query_set.type === ''">全部类型</span>
+                    <span ng-show="query_set.type === 'INVEST'">投标</span>
+                    <span ng-show="query_set.type === 'WITHDRAW'">提现</span>
+                    <span ng-show="query_set.type === 'DEPOSIT'">充值</span>
+                    <span ng-show="query_set.type === 'INVEST_REPAY'">回款</span>
+                    <span ng-show="query_set.type === 'FEE_WITHDRAW'">提现手续费</span>
+                    <span ng-show="query_set.type === 'TRANSFER'">平台奖励</span>
+                    <param class="glyphicon glyphicon-menu-down">
                 </div>
+
                 <ul x-uib-dropdown-menu ng-click="self.query(query_set); open_dropdown_type = false">
                     <li ng-class="{ active: query_set.type === '' }"
                         ng-click="query_set.type = ''"
@@ -44,8 +52,13 @@
 
             <div class="col-xs-6" x-uib-dropdown is-open="open_dropdown_date">
                 <div x-uib-dropdown-toggle>
-                    时间<param class="glyphicon glyphicon-menu-down">
+                    <span ng-show="query_set.startDate === self.convert_start_date(10, 'y')">所有时间</span>
+                    <span ng-show="query_set.startDate === self.convert_start_date(1, 'w')">最近7天</span>
+                    <span ng-show="query_set.startDate === self.convert_start_date(1, 'M')">最近一个月</span>
+                    <span ng-show="query_set.startDate === self.convert_start_date(3, 'M')">最近三个月</span>
+                    <param class="glyphicon glyphicon-menu-down">
                 </div>
+
                 <ul x-uib-dropdown-menu ng-click="self.query(query_set); open_dropdown_date = false">
                     <li ng-class="{ active: query_set.startDate === self.convert_start_date(10, 'y') }"
                         ng-click="query_set.startDate = self.convert_start_date(10, 'y');"
