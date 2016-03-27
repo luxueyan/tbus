@@ -22,8 +22,15 @@
             <div class="row">
                 <div class="col-xs-4" x-uib-dropdown is-open="open_dropdown_rate">
                     <div x-uib-dropdown-toggle>
-                        利率<param class="glyphicon glyphicon-menu-down">
+                        <span ng-show="query_set.minRate === 0 && query_set.maxRate === 100">全部利率</span>
+                        <span ng-show="query_set.minRate === 0 && query_set.maxRate === 5">5%以下</span>
+                        <span ng-show="query_set.minRate === 5 && query_set.maxRate === 6">5%~6%</span>
+                        <span ng-show="query_set.minRate === 6 && query_set.maxRate === 7">6%~7%</span>
+                        <span ng-show="query_set.minRate === 7 && query_set.maxRate === 8">7%~8%</span>
+                        <span ng-show="query_set.minRate === 8 && query_set.maxRate === 100">8%以上</span>
+                        <param class="glyphicon glyphicon-menu-down">
                     </div>
+
                     <ul x-uib-dropdown-menu ng-click="self.query(query_set); open_dropdown_rate = false">
                         <li ng-class="{ active: query_set.minRate === 0 && query_set.maxRate === 100 }"
                             ng-click="query_set.minRate = 0; query_set.maxRate = 100"
@@ -48,8 +55,15 @@
 
                 <div class="col-xs-4" x-uib-dropdown is-open="open_dropdown_duration">
                     <div x-uib-dropdown-toggle>
-                        期限<param class="glyphicon glyphicon-menu-down">
+                        <span ng-show="query_set.minDuration === 0 && query_set.maxDuration === 100">全部期限</span>
+                        <span ng-show="query_set.minDuration === 0 && query_set.maxDuration === 1">1个月内</span>
+                        <span ng-show="query_set.minDuration === 1 && query_set.maxDuration === 3">1~3个月</span>
+                        <span ng-show="query_set.minDuration === 3 && query_set.maxDuration === 6">3~6个月</span>
+                        <span ng-show="query_set.minDuration === 6 && query_set.maxDuration === 12">6~12个月</span>
+                        <span ng-show="query_set.minDuration === 12 && query_set.maxDuration === 100">1年以上</span>
+                        <param class="glyphicon glyphicon-menu-down">
                     </div>
+
                     <ul x-uib-dropdown-menu ng-click="self.query(query_set); open_dropdown_duration = false">
                         <li ng-class="{ active: query_set.minDuration === 0 && query_set.maxDuration === 100 }"
                             ng-click="query_set.minDuration = 0; query_set.maxDuration = 100"
@@ -74,8 +88,14 @@
 
                 <div class="col-xs-4 dropdown" x-uib-dropdown is-open="open_dropdown_status">
                     <div x-uib-dropdown-toggle>
-                        状态<param class="glyphicon glyphicon-menu-down">
+                        <span ng-show="query_set.status === ''">全部状态</span>
+                        <span ng-show="query_set.status === 'OPENED'">进行中</span>
+                        <span ng-show="query_set.status === 'SCHEDULED'">即将开始</span>
+                        <span ng-show="query_set.status === 'FINISHED'">已满额</span>
+                        <span ng-show="query_set.status === 'SETTLED'">计息中</span>
+                        <param class="glyphicon glyphicon-menu-down">
                     </div>
+
                     <ul x-uib-dropdown-menu ng-click="self.query(query_set); open_dropdown_status = false">
                         <li ng-class="{ active: query_set.status === '' }"
                             ng-click="query_set.status = ''"
