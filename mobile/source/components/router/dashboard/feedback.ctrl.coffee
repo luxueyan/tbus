@@ -26,7 +26,7 @@ do (_, angular) ->
 
                     .then (data) =>
                         @$window.alert @$scope.msg.SUCCESS
-                        @$location.path 'dashboard'
+                        @$window.history.back()
 
                     .catch (data) =>
                         @$window.alert @$scope.msg.FAILURE

@@ -47,11 +47,10 @@ do (_, angular) ->
                                 @$window.alert msg
 
                             .finally =>
-                                @$location.path 'dashboard/bank-card'
+                                @$scope.$on '$locationChangeSuccess', =>
+                                    @$window.location.reload()
 
-                                @$scope.$on '$locationChangeStart', (event, new_path) =>
-                                    event.preventDefault()
-                                    @$window.location.replace new_path
+                                @$window.history.back()
                         )
                         return
 
@@ -76,11 +75,10 @@ do (_, angular) ->
                         @$window.alert @$scope.msg[key] or key
 
                     .finally =>
-                        @$location.path 'dashboard/bank-card'
+                        @$scope.$on '$locationChangeSuccess', =>
+                            @$window.location.reload()
 
-                        @$scope.$on '$locationChangeStart', (event, new_path) =>
-                            event.preventDefault()
-                            @$window.location.replace new_path
+                        @$window.history.back()
                 )
 
 
