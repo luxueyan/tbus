@@ -49,11 +49,11 @@ do (_, angular) ->
 
                     .then (data) =>
                         @$window.alert @$scope.msg.SUCCEED
-                        @$location.path @next_path or 'dashboard'
 
-                        @$scope.$on '$locationChangeStart', (event, new_path) =>
-                            event.preventDefault()
-                            @$window.location.replace new_path
+                        @$scope.$on '$locationChangeSuccess', =>
+                            @$window.location.reload()
+
+                        @$window.history.back()
 
                     .catch (data) =>
                         @submit_sending = false

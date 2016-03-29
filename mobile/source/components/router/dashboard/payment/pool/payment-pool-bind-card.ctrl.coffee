@@ -73,9 +73,8 @@ do (_, angular) ->
                     .then (data) =>
                         @$window.alert @$scope.msg.SUCCEED
 
-                        @$rootScope.$on '$locationChangeStart', (event, new_path) =>
-                            event.preventDefault()
-                            @$window.location.replace new_path
+                        @$rootScope.$on '$locationChangeSuccess', =>
+                            @$window.location.reload()
 
                         @user.has_bank_card = true
 
@@ -87,7 +86,7 @@ do (_, angular) ->
                             return
 
                         else
-                            @$location.path 'dashboard/bank-card'
+                            @$window.history.back()
 
 
                     .catch (data) =>

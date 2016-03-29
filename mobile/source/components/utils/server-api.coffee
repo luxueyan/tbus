@@ -81,17 +81,8 @@ do (_, angular, moment, Array, Date) ->
 
                         @user.info.invite_code = invite_code.data
 
-                        _.extend @user.fund, _.pick @user.statistics, _.split '
-                            investInterestAmount
-                            investingPrincipalAmount
-                            investingInterestAmount
-                            investFrozenAmount
-                        '
-
-                        do (list = _(@user.fund_accounts or [])) ->
-                            list.each (item) ->
-                                    _.extend item.account, _.find banks, (bank) -> bank.bankCode is item.account.bank
-                                .value()
+                        _.each @user.fund_accounts, (item) ->
+                            _.extend item.account, _.find banks, (bank) -> bank.bankCode is item.account.bank
 
                         deferred.resolve @user.ready true
 
