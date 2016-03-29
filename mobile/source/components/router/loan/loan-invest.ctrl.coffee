@@ -154,9 +154,8 @@ do (_, angular, Math) ->
                     .then =>
                         @$scope.show_invest_result = true
 
-                        @$scope.$on '$locationChangeStart', (event, new_path) =>
-                            event.preventDefault()
-                            @$window.location.replace new_path
+                        @$scope.$on '$locationChangeSuccess', =>
+                            @$window.location.reload()
 
                     .catch (data) =>
                         message = _.get data, 'error[0].message', '系统繁忙，请稍后重试！'
