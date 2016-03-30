@@ -526,6 +526,53 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
+            get_user_available_withdraw_amount: (cache = false) ->
+
+                convert_to_day = (date) ->
+                    moment(date.format 'YYYY-MM-DD').unix() * 1000
+
+                query_set = {
+                    type: 'DEPOSIT'
+                    status: 'SUCCESSFUL'
+                    operation: 'IN'
+                    startDate: convert_to_day moment()
+                    endDate: convert_to_day moment().add 1, 'd'
+                    page: 1
+                    pageSize: 10
+                }
+
+                @$http
+                    .get '/api/v2/user/MYSELF/funds/query',
+                        params: query_set
+                        cache: cache
+
+                    .then TAKE_RESPONSE_DATA
+
+                    .then (response) =>
+
+                        totalSize = _.get response, 'totalSize'
+
+                        return response if query_set.pageSize >= totalSize
+
+                        query_set.pageSize = totalSize
+
+                        @$http
+                            .get '/api/v2/user/MYSELF/funds/query',
+                                params: query_set
+                                cache: cache
+
+                            .then TAKE_RESPONSE_DATA
+
+                    .then ({results}) =>
+
+                        recharge_amount_today = _.sum results, (item) -> item.amount
+
+                        return @user.fund.availableAmount - recharge_amount_today
+
+                    .catch TAKE_RESPONSE_ERROR
+
+
+
 
 
 

@@ -53,7 +53,9 @@
                     </div>
                 </div>
 
-                <div class="form-group merge">
+                <div class="form-group merge"
+                     ng-class="{'has-error': form.withdraw.$invalid && form.withdraw.$dirty}"
+                >
                     <div class="form-group-inner">
                         <label for="withdraw">提现金额</label>
                         <input name="withdraw"
@@ -62,13 +64,19 @@
                                type="number"
                                class="form-control input-target input-lg"
                                min="3"
-                               max="{{ available_amount }}"
-                               placeholder="可提现金额：{{ available_amount | number: 2 }}元"
+                               max="{{ available_withdraw_amount }}"
+                               placeholder="可提现金额：{{ available_withdraw_amount | number: 2 }}元"
                                autocapitalize="none"
                                autocomplete="off"
                                autocorrect="off"
                                required
                         >
+                    </div>
+
+                    <div class="help-block"
+                         ng-show="form.withdraw.$invalid && form.withdraw.$dirty && form.withdraw.$error.max"
+                    >
+                        <span ng-show="form.withdraw.$error.max">可提现金额不足</span>
                     </div>
                 </div>
 
@@ -88,20 +96,15 @@
             </div>
 
             <div class="container hint">
-                <p class="fee">提现费用X元/笔,由支付通道收取</p>
+                <p class="fee">提示：提现费用X元/笔，由支付通道收取<br>当日充值的金额当日不能提现</p>
                 <p class="amount invisible" ng-class="{ _invisible: !form.withdraw.$valid }">实际到账: <span class="u-color-main">{{ store.amount - 3 }}元</span></p>
             </div>
 
-            <p class="container"
-               ng-init="invalid = available_amount <= 0.01 || store.amount > available_amount"
-            >
+            <p class="container">
                 <button class="btn btn-theme btn-block btn-lg"
                         type="submit"
-                        ng-disabled="form.$invalid || invalid || self.submit_sending"
-                >
-                    <span ng-if="!invalid">确认提现</span>
-                    <span ng-if="invalid">余额不足</span>
-                </button>
+                        ng-disabled="form.$invalid || self.submit_sending"
+                >确认提现</button>
             </p>
         </form>
     </section>
