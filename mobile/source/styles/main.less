@@ -8,10 +8,10 @@
 ----*/
 
 @color-gray-dark-double: #333;
-@color-gray-dark: #666666;
-@color-gray: #999CA5;
-@color-gray-light: #BBBBBB;
-@color-gray-light-double: #EBEBEB;
+@color-gray-dark: #62666F;
+@color-gray: #9699A0;
+@color-gray-light: #DEDFE1;
+@color-gray-light-double: #F0F0F0;
 
 @color-theme-primary: #0194FF;
 @color-theme-success: #20A121;
@@ -19,9 +19,9 @@
 @color-theme-danger: #EE6754;
 @color-theme-info: #31B0D5;
 
-@color-theme-emphasize: #F06F2E;
+@color-theme-emphasize: #E18A13;
 @color-theme-main: #EF9C2C;
-@color-theme-link: #0574E6;
+@color-theme-link: #64A7F5;
 
 
 @path-image: '../assets/image';
@@ -88,14 +88,14 @@ a {
             .alert-title {
                 display: block;
                 font-size: 16px;
-                color: #333;
+                color: @color-gray-dark-double;
             }
         }
     }
 
     &-confirm {
         font-size: 16px;
-        color: #333;
+        color: @color-gray-dark-double;
 
         .modal-buttons {
             .flex-display(stretch; space-between);
@@ -200,7 +200,7 @@ a {
 
             h5 {
                 line-height: 1.5;
-                color: #62666F;
+                color: @color-gray-dark;
             }
 
             .state-list {
@@ -209,7 +209,7 @@ a {
                 > li {
                     display: inline-block;
                     vertical-align: middle;
-                    color: #9699A0;
+                    color: @color-gray;
 
                     .icon {
                         display: block;
@@ -268,7 +268,7 @@ a {
 
             .btn-link {
                 margin-top: 8px;
-                color: #64A7F5;
+                color: @color-theme-link;
                 text-decoration: none;
             }
         }
@@ -537,10 +537,10 @@ a {
     line-height: 1;
     font-size: 12px;
     text-align: center;
-    box-shadow: inset 0 1px #DEDFE1;
+    box-shadow: inset 0 1px @color-gray-light;
 
     li {
-        color: #62666F;
+        color: @color-gray-dark;
 
         &.active {
             color: @color-theme-main;
@@ -632,7 +632,7 @@ a {
                 .media {
                     position: relative;
                     margin-right: 2px;
-                    border: 1px solid #DEDFE1;
+                    border: 1px solid @color-gray-light;
                     padding: 20px;
                     background-color: #FFF;
 
@@ -642,12 +642,12 @@ a {
 
                     &-heading {
                         font-size: 16px;
-                        color: #333;
+                        color: @color-gray-dark-double;
                     }
 
                     .desc {
                         font-size: 12px;
-                        color: #9699A0;
+                        color: @color-gray;
                     }
 
                     .bg-icon {
@@ -665,7 +665,7 @@ a {
                     }
 
                     &-sbtz {
-                        border-left-color: #64A7F5;
+                        border-left-color: @color-theme-link;
                     }
                 }
             }
@@ -701,7 +701,7 @@ a {
 
             .desc {
                 font-size: 14px;
-                color: #9699A0;
+                color: @color-gray;
             }
         }
 
@@ -726,15 +726,15 @@ a {
         }
 
         .loan-list {
-            border-top: 1px solid #DEDFE1;
-            border-bottom: 1px solid #DEDFE1;
+            border-top: 1px solid @color-gray-light;
+            border-bottom: 1px solid @color-gray-light;
             background-color: #FFF;
 
             > li {
-                color: #9699A0;
+                color: @color-gray;
 
                 + li {
-                    border-top: 1px solid #F0F0F0;
+                    border-top: 1px solid @color-gray-light-double;
                 }
 
                 a {
@@ -772,7 +772,7 @@ a {
                             top: 20px;
                             bottom: 2px;
                             width: 1px;
-                            background-color: #9699A0;
+                            background-color: @color-gray;
                         }
                     }
 
@@ -791,10 +791,10 @@ a {
                 .has-chart {
                     .title {
                         margin: 0 16px;
-                        border-bottom: 1px solid #F0F0F0;
+                        border-bottom: 1px solid @color-gray-light-double;
                         padding: 12px 0;
                         font-size: 14px;
-                        color: #333;
+                        color: @color-gray-dark-double;
                     }
 
                     .info {
@@ -819,7 +819,7 @@ a {
                                 bottom: -5px;
                                 font-size: 20px;
                                 line-height: 45px;
-                                color: #62666F;
+                                color: @color-gray-dark;
                             }
                         }
 
@@ -851,7 +851,7 @@ a {
                                 top: 20%;
                                 bottom: 20%;
                                 width: 1px;
-                                background-color: #9699A0;
+                                background-color: @color-gray;
                             }
                         }
                     }
@@ -926,10 +926,10 @@ a {
 
         &-lhb {
             .heading .title {
-                color: #64A7F5;
+                color: @color-theme-link;
 
                 &:before {
-                    background-color: #64A7F5;
+                    background-color: @color-theme-link;
                 }
             }
         }
@@ -964,7 +964,7 @@ a {
         padding-top: 8px;
         padding-bottom: 8px;
         background-color: #FFF;
-        box-shadow: inset 0 -1px #DEDFE1;
+        box-shadow: inset 0 -1px @color-gray-light;
 
         & + *:before {
             display: block;
@@ -1002,7 +1002,7 @@ a {
 
                 > li {
                     + li {
-                        border-top: 1px solid #F0F0F0;
+                        border-top: 1px solid @color-gray-light-double;
                     }
 
                     padding-top: 12px;
@@ -1119,7 +1119,7 @@ a {
                     }
 
                     &:disabled {
-                        .button-variant(#FFF; #9699A0; #9699A0);
+                        .button-variant(#FFF; @color-gray; @color-gray);
                     }
                 }
 
@@ -1252,7 +1252,7 @@ a {
             border-radius: 0;
             border: none;
             font-size: 14px;
-            color: #333;
+            color: @color-gray-dark-double;
         }
 
         .form-group.merge {
@@ -1301,13 +1301,13 @@ a {
 
                 &:first-child {
                     .form-group-inner {
-                        border-top: 1px solid #DEDFE1;
+                        border-top: 1px solid @color-gray-light;
                     }
                 }
 
                 &:last-child {
                     .form-group-inner {
-                        border-bottom: 1px solid #DEDFE1;
+                        border-bottom: 1px solid @color-gray-light;
                     }
                 }
 
@@ -1333,13 +1333,13 @@ a {
 
         .btn-link {
             margin-top: 8px;
-            color: #64A7F5;
+            color: @color-theme-link;
             text-decoration: none;
         }
 
         .hint {
             font-size: 12px;
-            color: #9699A0;
+            color: @color-gray;
 
             &.hint-mobile {
                 margin-top: -10px;
@@ -1383,7 +1383,7 @@ a {
         // .flex-display(center; space-between);
 
         margin-top: 20px;
-        color: #64A7F5;
+        color: @color-theme-link;
 
         a {
             &, &:hover, &:visited {
@@ -1427,7 +1427,7 @@ a {
         margin-bottom: 20px;
 
         a {
-            color: #64A7F5;
+            color: @color-theme-link;
         }
     }
 }
@@ -1447,7 +1447,7 @@ a {
     .loan-summary {
         position: relative;
         padding-top: 14px;
-        background: url("@{path-image}/graph.png") no-repeat 0 0;
+        background: #F3BF77 url("@{path-image}/graph.png") no-repeat 0 0;
         background-size: cover;
         height: 296px/2;
         overflow: hidden;
@@ -1481,8 +1481,8 @@ a {
     }
 
     .loan-info {
-        border-top: 1px solid #DEDFE1;
-        border-bottom: 1px solid #DEDFE1;
+        border-top: 1px solid @color-gray-light;
+        border-bottom: 1px solid @color-gray-light;
         padding-top: 15px;
         padding-bottom: 15px;
         background-color: #FFF;
@@ -1490,7 +1490,7 @@ a {
         .link-list {
             > li {
                 text-align: center;
-                color: #62666F;
+                color: @color-gray-dark;
 
                 + li {
                     border-left: 1px solid #EAEBED;
@@ -1519,8 +1519,8 @@ a {
     }
 
     .loan-panel {
-        border-top: 1px solid #DEDFE1;
-        border-bottom: 1px solid #DEDFE1;
+        border-top: 1px solid @color-gray-light;
+        border-bottom: 1px solid @color-gray-light;
         padding-bottom: 20px;
         background-color: #FFF;
 
@@ -1565,7 +1565,7 @@ a {
                     .flex(1);
 
                     text-align: right;
-                    color: #62666F;
+                    color: @color-gray-dark;
                 }
             }
         }
@@ -1614,7 +1614,7 @@ a {
 
                 > td {
                     border-top: 0;
-                    color: #62666F;
+                    color: @color-gray-dark;
                     text-align: center;
 
                     &.text-right {
@@ -1629,7 +1629,7 @@ a {
         }
 
         .btn-more {
-            .button-variant(#9699A0; #DEDFE1; #DEDFE1);
+            .button-variant(@color-gray; @color-gray-light; @color-gray-light);
             .button-size(8px; 12px; 14px; 1; 999px);
 
             min-width: 208px;
@@ -1688,7 +1688,7 @@ a {
             right: 0;
             padding: 9px 0;
             background-color: #FFF;
-            box-shadow: inset 0 -1px #DEDFE1;
+            box-shadow: inset 0 -1px @color-gray-light;
 
             &:before {
                 height: auto;
@@ -1828,8 +1828,8 @@ a {
             }
 
             > .bd {
-                border-top: 1px solid #DEDFE1;
-                border-bottom: 1px solid #DEDFE1;
+                border-top: 1px solid @color-gray-light;
+                border-bottom: 1px solid @color-gray-light;
                 background-color: #FFF;
             }
         }
@@ -1941,7 +1941,7 @@ a {
                 border: none;
                 padding-left: 0;
                 padding-right: 0;
-                color: #333;
+                color: @color-gray-dark-double;
                 font-size: 16px;
                 -webkit-appearance: none;
                 -webkit-box-shadow: none;
@@ -1950,7 +1950,7 @@ a {
 
             .hint {
                 padding: 7px 0;
-                color: #9699A0;
+                color: @color-gray;
             }
         }
 
@@ -1961,7 +1961,7 @@ a {
             }
 
             a {
-                color: #64A7F5;
+                color: @color-theme-link;
             }
         }
 
@@ -1972,7 +1972,7 @@ a {
 
     .invest-result {
         .state {
-            border-bottom: 1px solid #DEDFE1;
+            border-bottom: 1px solid @color-gray-light;
             background-color: #FFF;
             text-align: center;
 
@@ -2047,7 +2047,7 @@ a {
     .dashboard-summary {
         position: relative;
         padding-top: 14px;
-        background: url("@{path-image}/graph-lg.jpg") no-repeat 0 0;
+        background: #F3BF77 url("@{path-image}/graph-lg.jpg") no-repeat 0 0;
         background-size: cover;
         height: 360px/2;
 
@@ -2114,8 +2114,8 @@ a {
     }
 
     .dashboard-info {
-        border-top: 1px solid #DEDFE1;
-        border-bottom: 1px solid #DEDFE1;
+        border-top: 1px solid @color-gray-light;
+        border-bottom: 1px solid @color-gray-light;
         padding: 9px 16px;
         background-color: #FFF;
 
@@ -2126,7 +2126,7 @@ a {
                 .flex(1);
 
                 .name {
-                    color: #62666F;
+                    color: @color-gray-dark;
                 }
 
                 .value {
@@ -2169,8 +2169,8 @@ a {
     }
 
     .dashboard-list {
-        border-top: 1px solid #DEDFE1;
-        border-bottom: 1px solid #DEDFE1;
+        border-top: 1px solid @color-gray-light;
+        border-bottom: 1px solid @color-gray-light;
         background-color: #FFF;
 
         a {
@@ -2187,12 +2187,12 @@ a {
                 height: 72px;
 
                 + .item {
-                    border-left: 1px solid #F0F0F0;
+                    border-left: 1px solid @color-gray-light-double;
                 }
             }
 
             + .list-row {
-                border-top: 1px solid #F0F0F0;
+                border-top: 1px solid @color-gray-light-double;
             }
 
             &:last-child > .item {
@@ -2207,13 +2207,13 @@ a {
 
             &-heading {
                 font-size: 16px;
-                color: #333;
+                color: @color-gray-dark-double;
                 line-height: 1.2;
             }
 
             .desc {
                 font-size: 12px;
-                color: #9699A0;
+                color: @color-gray;
             }
         }
     }
@@ -2230,8 +2230,8 @@ a {
             > li {
                 margin-top: 8px;
                 margin-bottom: 8px;
-                border-top: 1px solid #DEDFE1;
-                border-bottom: 1px solid #DEDFE1;
+                border-top: 1px solid @color-gray-light;
+                border-bottom: 1px solid @color-gray-light;
                 padding: 13px 16px;
                 background-color: #FFF;
 
@@ -2252,7 +2252,7 @@ a {
                     .desc {
                         margin-top: 15px;
                         margin-bottom: 0;
-                        color: #9699A0;
+                        color: @color-gray;
                     }
 
                     .default-card {
@@ -2392,10 +2392,10 @@ a {
 
             .expire {
                 margin-top: 10px;
-                border-top: 1px solid #DEDFE1;
+                border-top: 1px solid @color-gray-light;
                 padding-top: 8px;
                 font-size: 12px;
-                color: #9699A0;
+                color: @color-gray;
             }
 
             .redeem {
@@ -2465,13 +2465,13 @@ a {
                     }
 
                     .desc {
-                        color: #9699A0;
+                        color: @color-gray;
                     }
                 }
 
                 &-disabled {
                     .desc {
-                        color: #9699A0;
+                        color: @color-gray;
                     }
                 }
             }
@@ -2500,8 +2500,8 @@ a {
     .invest-list {
         .list > li {
             margin: 8px 0;
-            border-top: 1px solid #DEDFE1;
-            border-bottom: 1px solid #DEDFE1;
+            border-top: 1px solid @color-gray-light;
+            border-bottom: 1px solid @color-gray-light;
             background-color: #FFF;
 
             a {
@@ -2513,7 +2513,7 @@ a {
             .head {
                 .flex-display(center; space-between);
 
-                border-bottom: 1px solid #F0F0F0;
+                border-bottom: 1px solid @color-gray-light-double;
                 padding: 15px 18px;
 
                 .title {
@@ -2521,7 +2521,7 @@ a {
 
                     margin: 0;
                     font-size: 14px;
-                    color: #333;
+                    color: @color-gray-dark-double;
                     word-break: break-all;
                 }
 
@@ -2529,7 +2529,7 @@ a {
                     margin-left: 10px;
                     font-size: 12px;
                     line-height: 1;
-                    color: #9699A0;
+                    color: @color-gray;
                 }
             }
 
@@ -2540,7 +2540,7 @@ a {
 
                 .name {
                     font-size: 12px;
-                    color: #9699A0;
+                    color: @color-gray;
                 }
 
                 .rate {
@@ -2556,7 +2556,7 @@ a {
                         bottom: 2px;
                         right: 0;
                         width: 1px;
-                        background-color: #F0F0F0;
+                        background-color: @color-gray-light-double;
                     }
 
                     .value {
@@ -2650,14 +2650,14 @@ a {
 
             .list li {
                 .subject .date {
-                    color: #9699A0;
+                    color: @color-gray;
                 }
 
                 .info {
                     font-size: 16px;
 
                     .value {
-                        color: #333;
+                        color: @color-gray-dark-double;
                     }
                 }
             }
@@ -2685,7 +2685,7 @@ a {
                 }
 
                 .gray {
-                    color: #9699A0;
+                    color: @color-gray;
                 }
             }
         }
@@ -2697,7 +2697,7 @@ a {
         a {
             padding-left: 45px;
             font-size: 16px;
-            color: #333;
+            color: @color-gray-dark-double;
 
             img, .desc {
                 .transform(translateY(-50%));
@@ -2713,7 +2713,7 @@ a {
             .desc {
                 right: 37px;
                 font-size: 12px;
-                color: #9699A0;
+                color: @color-gray;
             }
 
             &:after {
@@ -2763,7 +2763,7 @@ a {
             padding-left: 4px;
             height: 52px;
             font-size: 14px;
-            color: #333;
+            color: @color-gray-dark-double;
             border: none;
             box-shadow: none;
             -webkit-box-shadow: none !important;
@@ -2809,8 +2809,8 @@ a {
 
     .banks {
         .bank-list {
-            border-top: 1px solid #DEDFE1;
-            border-bottom: 1px solid #DEDFE1;
+            border-top: 1px solid @color-gray-light;
+            border-bottom: 1px solid @color-gray-light;
 
             > li {
                 padding: 11px 16px;
@@ -2833,7 +2833,7 @@ a {
 
                     .desc {
                         margin-bottom: 0;
-                        color: #9699A0;
+                        color: @color-gray;
                     }
                 }
             }
@@ -2860,7 +2860,7 @@ a {
         .desc {
             margin-top: 5px;
             margin-bottom: 0;
-            color: #9699A0;
+            color: @color-gray;
         }
 
         .glyphicon-menu-right {
@@ -2904,13 +2904,13 @@ a {
         .fee {
             margin-bottom: 5px;
             font-size: 14px;
-            color: #9699A0;
+            color: @color-gray;
         }
 
         .amount {
             text-align: right;
             font-size: 16px;
-            color: #62666F;
+            color: @color-gray-dark;
         }
     }
 
@@ -2937,7 +2937,7 @@ a {
 
     .repayment-detail {
         margin-bottom: 8px;
-        border-bottom: 1px solid #DEDFE1;
+        border-bottom: 1px solid @color-gray-light;
         padding-top: 15px;
         padding-left: 20px;
         background-color: #FFF;
@@ -2953,7 +2953,7 @@ a {
                 top: 5px;
                 bottom: 0;
                 width: 2px;
-                background-color: #DEDFE1;
+                background-color: @color-gray-light;
             }
 
             > li {
@@ -3037,8 +3037,8 @@ a {
     > .funds-list {
         > .list {
             margin: 0;
-            border-top: 1px solid #DEDFE1;
-            border-bottom: 1px solid #DEDFE1;
+            border-top: 1px solid @color-gray-light;
+            border-bottom: 1px solid @color-gray-light;
             padding: 0;
             background-color: #FFF;
         }
@@ -3047,7 +3047,7 @@ a {
             border: 0;
             padding: 16px;
             font-size: 14px;
-            color: #333;
+            color: @color-gray-dark-double;
 
             + .item {
                 border-top: 1px solid #EAEBED;
@@ -3084,7 +3084,7 @@ a {
             }
 
             .date {
-                color: #9699A0;
+                color: @color-gray;
             }
 
             .amount {
@@ -3097,7 +3097,7 @@ a {
                     color: #5AA3E8;
                 }
                 &.gray {
-                    color: #9699A0;
+                    color: @color-gray;
                 }
             }
 
@@ -3123,8 +3123,8 @@ a {
     }
 
     .info-list {
-        border-top: 1px solid #DEDFE1;
-        border-bottom: 1px solid #DEDFE1;
+        border-top: 1px solid @color-gray-light;
+        border-bottom: 1px solid @color-gray-light;
 
         > li {
             padding: 14px 16px;
@@ -3146,15 +3146,15 @@ a {
 
                     text-align: right;
                     font-size: 12px;
-                    color: #9699A0;
+                    color: @color-gray;
                 }
             }
         }
     }
 
     .panel {
-        border-top: 1px solid #DEDFE1;
-        border-bottom: 1px solid #DEDFE1;
+        border-top: 1px solid @color-gray-light;
+        border-bottom: 1px solid @color-gray-light;
         background-color: #FFF;
         text-align: center;
         padding: 20px;
@@ -3207,7 +3207,7 @@ a {
 
             .desc {
                 font-size: 18px;
-                color: #9699A0;
+                color: @color-gray;
 
                 p {
                     margin-bottom: 0;
@@ -3239,7 +3239,7 @@ a {
         .form {
             textarea {
                 border: 0;
-                border-bottom: 1px solid #DEDFE1;
+                border-bottom: 1px solid @color-gray-light;
                 border-radius: 0;
                 padding: 12px 15px;
                 height: 165px;
@@ -3281,7 +3281,7 @@ a {
                         top: 5px;
                         bottom: 10px;
                         width: 1px;
-                        background-color: #9699A0;
+                        background-color: @color-gray;
                     }
                 }
 
@@ -3319,8 +3319,8 @@ a {
 
     .links {
         .link-list {
-            border-top: 1px solid #DEDFE1;
-            border-bottom: 1px solid #DEDFE1;
+            border-top: 1px solid @color-gray-light;
+            border-bottom: 1px solid @color-gray-light;
 
             > li {
                 background-color: #FFF;
@@ -3332,7 +3332,7 @@ a {
                 a {
                     display: block;
                     padding: 15px;
-                    color: #9699A0;
+                    color: @color-gray;
 
                     .inner {
                         .flex-display(center; space-between);
@@ -3341,7 +3341,7 @@ a {
                             .flex(1);
 
                             font-size: 16px;
-                            color: #333;
+                            color: @color-gray-dark-double;
                         }
                     }
                 }
@@ -3369,7 +3369,7 @@ a {
     }
 
     .detail {
-        color: #62666F;
+        color: @color-gray-dark;
 
         .content {
             margin-bottom: 40px;
@@ -3388,7 +3388,7 @@ a {
                 .flex(1);
 
                 text-align: right;
-                color: #9699A0;
+                color: @color-gray;
             }
         }
     }
