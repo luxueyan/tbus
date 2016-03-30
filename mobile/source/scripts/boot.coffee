@@ -5,8 +5,8 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
 
     angular.module APP_NAME, modules
 
-        .config _.ai '$routeProvider, $locationProvider',
-            (         $routeProvider, $locationProvider) ->
+        .config _.ai '$routeProvider, $locationProvider, $touchProvider',
+            (         $routeProvider, $locationProvider, $touchProvider) ->
 
                 $routeProvider
 
@@ -415,6 +415,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                     .html5Mode true
                     .hashPrefix '!'
 
+                $touchProvider.ngClickOverrideEnabled true
 
 
 
