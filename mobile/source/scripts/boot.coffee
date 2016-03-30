@@ -5,8 +5,8 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
 
     angular.module APP_NAME, modules
 
-        .config _.ai '$routeProvider, $locationProvider',
-            (         $routeProvider, $locationProvider) ->
+        .config _.ai '$routeProvider, $locationProvider, $touchProvider',
+            (         $routeProvider, $locationProvider, $touchProvider) ->
 
                 $routeProvider
 
@@ -261,6 +261,17 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                             .path '/login'
                                             .search next: 'dashboard/withdraw'
                                         return $q.reject()
+
+                            available_withdraw_amount: _.ai 'api, $location, $q',
+                                (                            api, $location, $q) ->
+                                    api.fetch_current_user()
+                                        .then -> api.get_user_available_withdraw_amount()
+                                        .catch ->
+                                            $location
+                                                .replace()
+                                                .path '/login'
+                                                .search next: 'dashboard/withdraw'
+                                            return $q.reject()
                     }
 
                     .when '/dashboard/invite', {
@@ -415,6 +426,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                     .html5Mode true
                     .hashPrefix '!'
 
+                $touchProvider.ngClickOverrideEnabled true
 
 
 

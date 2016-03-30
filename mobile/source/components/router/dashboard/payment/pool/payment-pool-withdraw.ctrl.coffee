@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'WithdrawCtrl',
 
-        _.ai '            @user, @api, @$location, @$scope, @$window, @$q, @$uibModal, @popup_payment_state', class
-            constructor: (@user, @api, @$location, @$scope, @$window, @$q, @$uibModal, @popup_payment_state) ->
+        _.ai '            @user, @api, @$location, @$scope, @$window, @$q, @$uibModal, @popup_payment_state, @available_withdraw_amount', class
+            constructor: (@user, @api, @$location, @$scope, @$window, @$q, @$uibModal, @popup_payment_state, @available_withdraw_amount) ->
 
                 @$window.scrollTo 0, 0
 
@@ -17,7 +17,7 @@ do (_, angular) ->
                 angular.extend @$scope, {
                     bank_account
                     store: {bank_account}
-                    available_amount: @user.fund.availableAmount
+                    available_withdraw_amount: @available_withdraw_amount
                 }
 
                 if !@user.has_bank_card or !@user.has_payment_password
