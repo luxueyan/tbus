@@ -86,20 +86,20 @@ do (_, angular, moment, Math, Date) ->
         balance = 0 if item.status not in _.split 'OPENED SCHEDULED'
         balance_myriad = (balance / 10000) | 0 && (balance / 10000)
 
-        (finished_date = do (item, {days, time_settled, due_date} = {}) ->
-            days = item.duration.totalDays
-            time_settled = item.timeSettled
+        # (finished_date = do (item, {days, time_settled, due_date} = {}) ->
+        #     days = item.duration.totalDays
+        #     time_settled = item.timeSettled
 
-            unless time_settled
-                # 借款成立日
-                due_date = item.timeout * 60 * 60 * 1000 + item.timeOpen
-                time_settled = due_date + 1 * 24 * 60 * 60 * 1000
+        #     unless time_settled
+        #         # 借款成立日
+        #         due_date = item.timeout * 60 * 60 * 1000 + item.timeOpen
+        #         time_settled = due_date + 1 * 24 * 60 * 60 * 1000
 
-            return new Date +moment(time_settled).add(days, 'd')
-        )
+        #     return new Date +moment(time_settled).add(days, 'd')
+        # )
 
-        do ({stepAmount, minAmount} = loanRequest.investRule) ->
-            loanRequest.investRule.minAmount = Math.max stepAmount, minAmount
+        # do ({stepAmount, minAmount} = loanRequest.investRule) ->
+        #     loanRequest.investRule.minAmount = Math.max stepAmount, minAmount
 
         result = _.pick item, _.split 'id title status amount method'
 
@@ -114,7 +114,7 @@ do (_, angular, moment, Math, Date) ->
             basic_rate
             deduction_rate
             invest_percent_int
-            finished_date
+            # finished_date
 
             time_open: item.timeOpen
             time_close: item.timeLeft + Date.now()
