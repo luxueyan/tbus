@@ -103,8 +103,20 @@ do (_, angular, moment, Math, Date) ->
 
         result = _.pick item, _.split 'id title status amount method'
 
-        if item.status in _.split 'SCHEDULED OPENED FINISHED'
-            result.estimated_value_date = new Date +moment().add(3, 'd')
+        (if item.status in _.split 'SCHEDULED OPENED FINISHED'
+            result.estimated_settled_date = do ->
+                if item.timeOpen
+                    return new Date( +moment(item.timeOpen).add(Math.ceil(item.timeout / 24) + 1, 'd') )
+                else
+                    return new Date( +moment().add(3, 'd') )
+        )
+
+        (finished_date = do ->
+            if item.timeFinished
+                return new Date( item.timeFinished )
+            else
+                return new Date( +moment(item.timeOpen).add(Math.ceil(item.timeout / 24), 'd') )
+        )
 
         return _.merge result, {
 
@@ -114,7 +126,7 @@ do (_, angular, moment, Math, Date) ->
             basic_rate
             deduction_rate
             invest_percent_int
-            # finished_date
+            finished_date
 
             time_open: item.timeOpen
             time_close: item.timeLeft + Date.now()

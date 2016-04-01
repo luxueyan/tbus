@@ -375,8 +375,8 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                                 .search next: "loan/#{ $route.current.params.id }/invest"
                                             return $q.reject()
 
-                            coupon: _.ai 'api, $location, $route, $q',
-                                (         api, $location, $route, $q) ->
+                            coupon: _.ai 'api, $route, $q',
+                                (         api, $route, $q) ->
                                     api.fetch_current_user()
                                         .then -> api.get_loan_detail($route.current.params.id, true)
                                         .then (data) ->
@@ -386,8 +386,8 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
 
                                             return api.fetch_coupon_list amount, months, loan_id
 
-                            _newbie: _.ai 'api, $location, $route, $q, $window',
-                                (          api, $location, $route, $q, $window) ->
+                            _newbie: _.ai 'api, $route, $q, $window',
+                                (          api, $route, $q, $window) ->
                                     is_newbie = false
 
                                     (api.fetch_current_user()
@@ -401,9 +401,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
 
                                                 $window.alert '此为新注册用户专享产品，您不符合活动要求，请选择其他产品！'
 
-                                                $location
-                                                    .replace()
-                                                    .path "loan/#{ $route.current.params.id }"
+                                                $window.history.back()
 
                                                 return $q.reject()
                                     )
