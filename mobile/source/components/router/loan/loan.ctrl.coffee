@@ -111,6 +111,12 @@ do (_, angular, moment, Math, Date) ->
                     return new Date( +moment().add(3, 'd') )
         )
 
+        (finished_date = do ->
+            if item.timeFinished
+                return new Date( item.timeFinished )
+            else
+                return new Date( +moment(item.timeOpen).add(Math.ceil(item.timeout / 24), 'd') )
+        )
 
         return _.merge result, {
 
@@ -120,7 +126,7 @@ do (_, angular, moment, Math, Date) ->
             basic_rate
             deduction_rate
             invest_percent_int
-            # finished_date
+            finished_date
 
             time_open: item.timeOpen
             time_close: item.timeLeft + Date.now()
