@@ -11,8 +11,8 @@ do (_, angular, moment, Array, Date) ->
 
     angular.module('service').service 'api',
 
-        _.ai '            @user, @$http, @$resource, @$q, @param, @$sce, @$timeout', class
-            constructor: (@user, @$http, @$resource, @$q, @param, @$sce, @$timeout) ->
+        _.ai '            @user, @$http, @$q, @param, @$timeout', class
+            constructor: (@user, @$http, @$q, @param, @$timeout) ->
 
                 @access_token = 'cookie'
                 @user_fetching_promise = null
@@ -187,30 +187,6 @@ do (_, angular, moment, Array, Date) ->
                     .then TAKE_RESPONSE_DATA
 
 
-            get_announcement: ->
-
-                encode_name_value = '%E5%B9%B3%E5%8F%B0%E5%85%AC%E5%91%8A'
-
-                (@$http
-                    .get "/api/v2/cms/category/PUBLICATION/name/#{ encode_name_value }", cache: true
-
-                        .then (response) =>
-
-                            channel_id = _.get response, 'data[0].channelId'
-
-                            return $q.reject() unless channel_id
-
-                            @$http
-                                .get "/api/v2/cms/channel/#{ channel_id }",
-                                    params: {page: 1, pagesize: 20}
-                                    cache: true
-
-                        .then (response) =>
-
-                            return response.data?.results
-                )
-
-
             get_loan_list: ->
 
                 @$http
@@ -271,50 +247,9 @@ do (_, angular, moment, Array, Date) ->
                 return deferred.promise
 
 
-            fetch_user_points: ->
-
-                @$http
-                    .get '/api/v2/points/user/MYSELF/getTotalPoints', cache: true
                     .then TAKE_RESPONSE_DATA
 
 
-            fetch_user_coupons: (type = 'ALL', cache = true) ->
-
-                @coupon_cache ?= {}
-
-                deferred = do @$q.defer
-
-                ALL_TYPE = _.split 'CASH INTEREST PRINCIPAL REBATE'
-
-                api_type_list = if type in ALL_TYPE then [type] else ALL_TYPE
-
-                if cache and _.has @coupon_cache, type
-                    deferred.resolve _.get @coupon_cache, type
-                    return deferred.promise
-
-                (@$q
-                    .all api_type_list.map (type) =>
-
-                        @$http
-                            .post '/api/v2/coupon/MYSELF/coupons', {type, page: 1, size: 40}
-
-                    .then (response) =>
-
-                        coupon_group_array_by_type = _.pluck response, 'data.data.results'
-
-                        coupon_list =
-                            _(coupon_group_array_by_type)
-                                .flatten()
-                                .compact()
-                                .value()
-
-                        _.set @coupon_cache, type, coupon_list if cache
-
-                        deferred.resolve coupon_list
-
-                    .catch ->
-                        do deferred.reject
-                )
 
                 return deferred.promise
 
@@ -323,26 +258,6 @@ do (_, angular, moment, Array, Date) ->
 
                 @$http
                     .post '/api/v2/coupon/MYSELF/listCoupon', {months, amount, loanId}
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_ERROR
-
-
-            fetch_user_notifications: ->
-
-                @$http
-                    .get '/api/v2/message/user/MYSELF/notifications',
-                        params: {page: 1, pageSize: 99}
-                        cache: false
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_ERROR
-
-
-            mark_as_read_notification: (id) ->
-
-                @$http
-                    .get "/api/v2/message/markAsRead/#{ id }"
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
