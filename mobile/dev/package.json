@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "dependencies": {
     "body-parser": "^1.14.1",
+    "cloc": "^2.0.0",
     "coffee-script": "1.10.0",
     "cookie-parser": "^1.4.0",
     "express": "^4.13.3",
@@ -19,6 +20,7 @@
     "init": "npm run preinit && npm run cp-config",
     "preinit": "npm i -s -reg https://registry.npm.taobao.org",
     "cp-config": "node -e \"require('ncp').ncp('.router.coffee.sample', 'router.coffee', {clobber: false}, function(){})\"",
+    "count": "cloc ../ --exclude-dir=node_modules,libs,dist",
     "start": "coffee app.coffee"
   },
   "private": true

@@ -11,8 +11,8 @@ do (_, angular, moment, Array, Date) ->
 
     angular.module('service').service 'api',
 
-        _.ai '            @user, @$http, @$resource, @$q, @param, @$sce, @$timeout', class
-            constructor: (@user, @$http, @$resource, @$q, @param, @$sce, @$timeout) ->
+        _.ai '            @user, @$http, @$q, @param, @$timeout', class
+            constructor: (@user, @$http, @$q, @param, @$timeout) ->
 
                 @access_token = 'cookie'
                 @user_fetching_promise = null
@@ -185,30 +185,7 @@ do (_, angular, moment, Array, Date) ->
                     .get '/api/v2/cms/mobileBanners', cache: true
 
                     .then TAKE_RESPONSE_DATA
-
-
-            get_announcement: ->
-
-                encode_name_value = '%E5%B9%B3%E5%8F%B0%E5%85%AC%E5%91%8A'
-
-                (@$http
-                    .get "/api/v2/cms/category/PUBLICATION/name/#{ encode_name_value }", cache: true
-
-                        .then (response) =>
-
-                            channel_id = _.get response, 'data[0].channelId'
-
-                            return $q.reject() unless channel_id
-
-                            @$http
-                                .get "/api/v2/cms/channel/#{ channel_id }",
-                                    params: {page: 1, pagesize: 20}
-                                    cache: true
-
-                        .then (response) =>
-
-                            return response.data?.results
-                )
+                    .catch TAKE_RESPONSE_ERROR
 
 
             get_loan_list: ->
@@ -217,7 +194,7 @@ do (_, angular, moment, Array, Date) ->
                     .get('/api/v2/loans/summary', cache: false)
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             get_loan_list_by_config: (query_set = {}, cache = true) ->
@@ -245,8 +222,11 @@ do (_, angular, moment, Array, Date) ->
 
             get_loan_detail: (id, cache = false) ->
 
-                @$http.get('/api/v2/loan/' + id, {cache})
-                      .then TAKE_RESPONSE_DATA
+                @$http
+                    .get "/api/v2/loan/#{ id }", {cache}
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             get_repayment_detail: (id, cache = false) ->
@@ -264,6 +244,9 @@ do (_, angular, moment, Array, Date) ->
                 @$http
                     .post '/api/v2/loan/request/analyse', store
 
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
 
             get_invest_contract: (id, deferred = @$q.defer()) ->
 
@@ -271,78 +254,10 @@ do (_, angular, moment, Array, Date) ->
                 return deferred.promise
 
 
-            fetch_user_points: ->
-
-                @$http
-                    .get '/api/v2/points/user/MYSELF/getTotalPoints', cache: true
-                    .then TAKE_RESPONSE_DATA
-
-
-            fetch_user_coupons: (type = 'ALL', cache = true) ->
-
-                @coupon_cache ?= {}
-
-                deferred = do @$q.defer
-
-                ALL_TYPE = _.split 'CASH INTEREST PRINCIPAL REBATE'
-
-                api_type_list = if type in ALL_TYPE then [type] else ALL_TYPE
-
-                if cache and _.has @coupon_cache, type
-                    deferred.resolve _.get @coupon_cache, type
-                    return deferred.promise
-
-                (@$q
-                    .all api_type_list.map (type) =>
-
-                        @$http
-                            .post '/api/v2/coupon/MYSELF/coupons', {type, page: 1, size: 40}
-
-                    .then (response) =>
-
-                        coupon_group_array_by_type = _.pluck response, 'data.data.results'
-
-                        coupon_list =
-                            _(coupon_group_array_by_type)
-                                .flatten()
-                                .compact()
-                                .value()
-
-                        _.set @coupon_cache, type, coupon_list if cache
-
-                        deferred.resolve coupon_list
-
-                    .catch ->
-                        do deferred.reject
-                )
-
-                return deferred.promise
-
-
             fetch_coupon_list: (amount, months, loanId) ->
 
                 @$http
                     .post '/api/v2/coupon/MYSELF/listCoupon', {months, amount, loanId}
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_ERROR
-
-
-            fetch_user_notifications: ->
-
-                @$http
-                    .get '/api/v2/message/user/MYSELF/notifications',
-                        params: {page: 1, pageSize: 99}
-                        cache: false
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_ERROR
-
-
-            mark_as_read_notification: (id) ->
-
-                @$http
-                    .get "/api/v2/message/markAsRead/#{ id }"
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
@@ -360,10 +275,10 @@ do (_, angular, moment, Array, Date) ->
             login: (loginName, password) ->
 
                 @$http
-                    .post '/api/web/login', {loginName, password, source: 'mobile', channel: 'H5'}
+                    .post '/api/web/login', {loginName, password, source: 'mobile'}
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             logout: ->
@@ -379,7 +294,7 @@ do (_, angular, moment, Array, Date) ->
                     .post '/api/v2/register/check_mobile', {mobile}
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             check_invite_code: (inviteCode) ->
@@ -388,7 +303,7 @@ do (_, angular, moment, Array, Date) ->
                     .post '/api/v2/users/check/inviteCode', {inviteCode}
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             bind_social: (socialType, socialId) ->
@@ -397,7 +312,7 @@ do (_, angular, moment, Array, Date) ->
                     .post '/api/v2/user/MYSELF/bind_social', {socialType, socialId}
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             payment_pool_check_password: (password) ->
@@ -409,26 +324,6 @@ do (_, angular, moment, Array, Date) ->
                         params: {password}
 
                     .then (response) -> success: response.data is true
-                    .catch TAKE_RESPONSE_DATA
-
-
-            payment_pool_set_password_send_captcha: ->
-
-                @$http
-                    .post '/api/v2/smsCaptcha/MYSELF',
-                        {smsType: 'CONFIRM_CREDITMARKET_RESET_PAYMENTPASSWORD'}
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_ERROR
-
-
-            payment_pool_set_password: (password, smsCaptcha) ->
-
-                @$http
-                    .post '/api/v2/user/MYSELF/resetPaymentPassword',
-                        {password, smsCaptcha, source: 'H5'}
-
-                    .then (response) -> success: response.data is true
                     .catch TAKE_RESPONSE_ERROR
 
 
@@ -437,7 +332,7 @@ do (_, angular, moment, Array, Date) ->
                 @$http.get '/api/v2/hundsun/banks', cache: true
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             register: (password, mobile, mobile_captcha, optional = {}) ->
@@ -449,7 +344,7 @@ do (_, angular, moment, Array, Date) ->
                         _.merge optional, {password, mobile, mobile_captcha, source: 'MOBILE'}
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             mobile_encrypt: (mobile) ->
@@ -458,7 +353,7 @@ do (_, angular, moment, Array, Date) ->
                     .post '/api/v2/users/mobile/encrypt', {mobile}
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             fetch_register_captcha: ->
@@ -466,7 +361,7 @@ do (_, angular, moment, Array, Date) ->
                 @$http
                     .get '/api/v2/captcha?timestamp=' + _.now()
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             fetch_password_captcha: ->
@@ -474,7 +369,7 @@ do (_, angular, moment, Array, Date) ->
                 @$http
                     .get '/api/v2/register/captcha?timestamp=' + _.now()
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             reset_password: (mobile, captcha, newPassword) ->
@@ -484,14 +379,14 @@ do (_, angular, moment, Array, Date) ->
                         _.compact {mobile, captcha, newPassword}
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             change_password: (mobile, currentPassword, newPassword) ->
 
                 @$http
                     .post '/api/v2/user/MYSELF/change_password',
-                        _.compact {mobile, currentPassword, newPassword, source: 'H5'}
+                        _.compact {mobile, currentPassword, newPassword}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
@@ -514,7 +409,7 @@ do (_, angular, moment, Array, Date) ->
                         params: {mobile}
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             exchange_wechat_signature: (data) ->
