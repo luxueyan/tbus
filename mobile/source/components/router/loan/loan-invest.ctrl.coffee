@@ -91,7 +91,7 @@ do (_, angular, Math) ->
                     paymentMethod: loan.method
                 }
 
-                @api.fetch_invest_analyse(data).success (response) =>
+                @api.fetch_invest_analyse(data).then (response) =>
                     @$scope.earning = +response.data?.interest
 
                 coupon = @$scope.store?.coupon

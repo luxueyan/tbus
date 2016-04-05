@@ -185,6 +185,7 @@ do (_, angular, moment, Array, Date) ->
                     .get '/api/v2/cms/mobileBanners', cache: true
 
                     .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             get_loan_list: ->
@@ -193,7 +194,7 @@ do (_, angular, moment, Array, Date) ->
                     .get('/api/v2/loans/summary', cache: false)
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             get_loan_list_by_config: (query_set = {}, cache = true) ->
@@ -221,8 +222,11 @@ do (_, angular, moment, Array, Date) ->
 
             get_loan_detail: (id, cache = false) ->
 
-                @$http.get('/api/v2/loan/' + id, {cache})
-                      .then TAKE_RESPONSE_DATA
+                @$http
+                    .get "/api/v2/loan/#{ id }", {cache}
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             get_repayment_detail: (id, cache = false) ->
@@ -240,17 +244,13 @@ do (_, angular, moment, Array, Date) ->
                 @$http
                     .post '/api/v2/loan/request/analyse', store
 
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
 
             get_invest_contract: (id, deferred = @$q.defer()) ->
 
                 deferred.resolve "/api/v2/user/MYSELF/invest/#{ id }/contract"
-                return deferred.promise
-
-
-                    .then TAKE_RESPONSE_DATA
-
-
-
                 return deferred.promise
 
 
@@ -275,10 +275,10 @@ do (_, angular, moment, Array, Date) ->
             login: (loginName, password) ->
 
                 @$http
-                    .post '/api/web/login', {loginName, password, source: 'mobile', channel: 'H5'}
+                    .post '/api/web/login', {loginName, password, source: 'mobile'}
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             logout: ->
@@ -294,7 +294,7 @@ do (_, angular, moment, Array, Date) ->
                     .post '/api/v2/register/check_mobile', {mobile}
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             check_invite_code: (inviteCode) ->
@@ -303,7 +303,7 @@ do (_, angular, moment, Array, Date) ->
                     .post '/api/v2/users/check/inviteCode', {inviteCode}
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             bind_social: (socialType, socialId) ->
@@ -312,7 +312,7 @@ do (_, angular, moment, Array, Date) ->
                     .post '/api/v2/user/MYSELF/bind_social', {socialType, socialId}
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             payment_pool_check_password: (password) ->
@@ -324,7 +324,6 @@ do (_, angular, moment, Array, Date) ->
                         params: {password}
 
                     .then (response) -> success: response.data is true
-                    .catch TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
 
 
@@ -333,7 +332,7 @@ do (_, angular, moment, Array, Date) ->
                 @$http.get '/api/v2/hundsun/banks', cache: true
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             register: (password, mobile, mobile_captcha, optional = {}) ->
@@ -345,7 +344,7 @@ do (_, angular, moment, Array, Date) ->
                         _.merge optional, {password, mobile, mobile_captcha, source: 'MOBILE'}
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             mobile_encrypt: (mobile) ->
@@ -354,7 +353,7 @@ do (_, angular, moment, Array, Date) ->
                     .post '/api/v2/users/mobile/encrypt', {mobile}
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             fetch_register_captcha: ->
@@ -362,7 +361,7 @@ do (_, angular, moment, Array, Date) ->
                 @$http
                     .get '/api/v2/captcha?timestamp=' + _.now()
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             fetch_password_captcha: ->
@@ -370,7 +369,7 @@ do (_, angular, moment, Array, Date) ->
                 @$http
                     .get '/api/v2/register/captcha?timestamp=' + _.now()
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             reset_password: (mobile, captcha, newPassword) ->
@@ -380,14 +379,14 @@ do (_, angular, moment, Array, Date) ->
                         _.compact {mobile, captcha, newPassword}
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             change_password: (mobile, currentPassword, newPassword) ->
 
                 @$http
                     .post '/api/v2/user/MYSELF/change_password',
-                        _.compact {mobile, currentPassword, newPassword, source: 'H5'}
+                        _.compact {mobile, currentPassword, newPassword}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
@@ -410,7 +409,7 @@ do (_, angular, moment, Array, Date) ->
                         params: {mobile}
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             exchange_wechat_signature: (data) ->
