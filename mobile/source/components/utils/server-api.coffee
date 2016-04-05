@@ -325,25 +325,6 @@ do (_, angular, moment, Array, Date) ->
 
                     .then (response) -> success: response.data is true
                     .catch TAKE_RESPONSE_DATA
-
-
-            payment_pool_set_password_send_captcha: ->
-
-                @$http
-                    .post '/api/v2/smsCaptcha/MYSELF',
-                        {smsType: 'CONFIRM_CREDITMARKET_RESET_PAYMENTPASSWORD'}
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_ERROR
-
-
-            payment_pool_set_password: (password, smsCaptcha) ->
-
-                @$http
-                    .post '/api/v2/user/MYSELF/resetPaymentPassword',
-                        {password, smsCaptcha, source: 'H5'}
-
-                    .then (response) -> success: response.data is true
                     .catch TAKE_RESPONSE_ERROR
 
 
