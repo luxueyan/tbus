@@ -11,6 +11,12 @@
     </div>
     </nav>
 
+    <div>
+        <param ng-model="msg" ng-init="msg = {
+            ACCESS_DENIED: '登录超时',
+        }">
+    </div>
+
     <div class="container text-center funds-filter">
         <div class="row">
             <div class="col-xs-6 dropdown" x-uib-dropdown is-open="open_dropdown_type">

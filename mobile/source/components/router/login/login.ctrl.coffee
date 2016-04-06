@@ -91,7 +91,7 @@ do (_, angular) ->
                                 else
                                     @$location
                                         .path @next_path
-                                        .search 'next', null
+                                        .search {}
 
                             .catch (user) =>
                                 @popup_payment_state {

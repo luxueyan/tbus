@@ -60,6 +60,11 @@ do (_, angular, moment) ->
                     .then ({results}) =>
                         @$scope.dynamic_list = results
 
+                    .catch (data) =>
+                        if _.get(data, 'error') is 'access_denied'
+                            @$window.alert @$scope.msg.ACCESS_DENIED
+                            @$window.location.reload()
+
                     .finally =>
                         @$scope.loading_dynamic = false
                 )

@@ -40,6 +40,8 @@ do (_, angular) ->
                     .then @api.process_response
 
                     .catch (data) =>
+                        return data if _.get(data, 'error') is 'access_denied'
+
                         @$q.reject error: [message: 'INCORRECT_PASSWORD']
 
 
@@ -56,6 +58,11 @@ do (_, angular) ->
                         @$window.history.back()
 
                     .catch (data) =>
+                        if _.get(data, 'error') is 'access_denied'
+                            @$window.alert @$scope.msg.ACCESS_DENIED
+                            @$window.location.reload()
+                            return
+
                         @submit_sending = false
 
                         key = _.get data, 'error[0].message', 'UNKNOWN'

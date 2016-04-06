@@ -41,6 +41,10 @@ do (_, angular) ->
                         @captcha.has_sent = @captcha.buffering = true
 
                     .catch (data) =>
+                        if _.get(data, 'error') is 'access_denied'
+                            @$window.alert @$scope.msg.ACCESS_DENIED
+                            @$window.location.reload()
+                            return
 
                         key = _.get data, 'error[0].message'
 
@@ -58,10 +62,15 @@ do (_, angular) ->
 
                     .then (data) =>
                         @user.has_payment_password = true
-                        @$window.alert @$scope.msg.SUCCESS
+                        @$window.alert @$scope.msg.SUCCEED
                         @$location.path @next_path
 
                     .catch (data) =>
+                        if _.get(data, 'error') is 'access_denied'
+                            @$window.alert @$scope.msg.ACCESS_DENIED
+                            @$window.location.reload()
+                            return
+
                         @submit_sending = false
                         @$window.alert _.get data, 'error[0].message',  @$scope.msg.FAILURE
                 )

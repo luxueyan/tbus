@@ -52,6 +52,11 @@ do (_, angular) ->
 
                         angular.extend @$scope.list, {totalSize}
 
+                    .catch (data) =>
+                        if _.get(data, 'error') is 'access_denied'
+                            @$window.alert @$scope.msg.ACCESS_DENIED
+                            @$window.location.reload()
+
                     .finally =>
                         @$scope.loading = false
                 )
@@ -77,6 +82,10 @@ do (_, angular) ->
                         @$window.alert @$scope.msg.SUCCEED
 
                     .catch (data) =>
+                        if _.get(data, 'error') is 'access_denied'
+                            @$window.alert @$scope.msg.ACCESS_DENIED
+                            return
+
                         @$window.alert @$scope.msg.FAILED
 
                     .finally =>
