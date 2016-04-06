@@ -158,6 +158,11 @@ do (_, angular, Math) ->
                             @$window.location.reload()
 
                     .catch (data) =>
+                        if _.get(data, 'error') is 'access_denied'
+                            @$window.alert @$scope.msg.ACCESS_DENIED
+                            @$window.location.reload()
+                            return
+
                         message = _.get data, 'error[0].message', '系统繁忙，请稍后重试！'
                         @$window.alert message
 

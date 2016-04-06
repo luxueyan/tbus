@@ -37,6 +37,11 @@ do (_, angular, moment) ->
 
                         angular.extend @$scope.list, {totalSize}
 
+                    .catch (data) =>
+                        if _.get(data, 'error') is 'access_denied'
+                            @$window.alert @$scope.msg.ACCESS_DENIED
+                            @$window.location.reload()
+
                     .finally =>
                         @$scope.loading = false
                 )

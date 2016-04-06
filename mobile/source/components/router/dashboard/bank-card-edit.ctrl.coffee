@@ -37,6 +37,10 @@ do (_, angular) ->
                                 @$window.alert @$scope.msg.CANCEL_CARD_SUCCEED
 
                             .catch (data) =>
+                                if _.get(data, 'error') is 'access_denied'
+                                    @$window.alert @$scope.msg.ACCESS_DENIED
+                                    return
+
                                 key = _.get data, 'error[0].message', 'UNKNOWN'
                                 msg = @$scope.msg[key] or key
 
@@ -71,6 +75,10 @@ do (_, angular) ->
                         @$window.alert @$scope.msg.SET_DEFAULT_ACCOUNT_SUCCEED
 
                     .catch (data) =>
+                        if _.get(data, 'error') is 'access_denied'
+                            @$window.alert @$scope.msg.ACCESS_DENIED
+                            return
+
                         key = _.get data, 'error[0].message', 'UNKNOWN'
                         @$window.alert @$scope.msg[key] or key
 

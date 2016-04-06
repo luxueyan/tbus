@@ -56,6 +56,11 @@ do (_, angular) ->
 
                         @$rootScope.invest_list = @$scope.list
 
+                    .catch (data) =>
+                        if _.get(data, 'error') is 'access_denied'
+                            @$window.alert @$scope.msg.ACCESS_DENIED
+                            @$window.location.reload()
+
                     .finally =>
                         @$scope.loading = false
                 )

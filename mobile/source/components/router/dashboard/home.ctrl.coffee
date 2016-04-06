@@ -21,6 +21,11 @@ do (_, angular) ->
                     .then @api.TAKE_RESPONSE_DATA
                     .then ({totalSize}) =>
                         @$scope.available_coupon_length = totalSize
+
+                    .catch (data) =>
+                        if _.get(data, 'error') is 'access_denied'
+                            @$window.alert @$scope.msg.ACCESS_DENIED
+                            @$window.location.reload()
                 )
 
                 (@api.get_user_investments()

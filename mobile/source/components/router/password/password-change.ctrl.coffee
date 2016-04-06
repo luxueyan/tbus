@@ -20,9 +20,7 @@ do (_, angular) ->
 
                 (@api.change_password(mobile, password_old, password)
 
-                    .then (data) =>
-                        return @$q.reject data unless data.success is true
-                        return data
+                    .then @api.process_response
 
                     .then (data) =>
                         @$window.alert @$scope.msg.SUCCEED
@@ -33,6 +31,11 @@ do (_, angular) ->
                         @$location.path 'dashboard'
 
                     .catch (data) =>
+                        if _.get(data, 'error') is 'access_denied'
+                            @$window.alert @$scope.msg.ACCESS_DENIED
+                            @$window.location.reload()
+                            return
+
                         error = _.get data, 'error[0].message'
                         @$window.alert error
 

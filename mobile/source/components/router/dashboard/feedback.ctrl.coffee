@@ -25,11 +25,16 @@ do (_, angular) ->
                     .then @api.process_response
 
                     .then (data) =>
-                        @$window.alert @$scope.msg.SUCCESS
+                        @$window.alert @$scope.msg.SUCCEED
                         @$window.history.back()
 
                     .catch (data) =>
-                        @$window.alert @$scope.msg.FAILURE
+                        if _.get(data, 'error') is 'access_denied'
+                            @$window.alert @$scope.msg.ACCESS_DENIED
+                            @$window.location.reload()
+                            return
+
+                        @$window.alert @$scope.msg.FAILED
                         @submit_sending = false
                 )
 
