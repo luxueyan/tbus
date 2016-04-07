@@ -462,7 +462,7 @@ do (_, angular, moment, Array, Date) ->
 
                         recharge_amount_today = _.sum results, (item) -> item.amount
 
-                        return @user.fund.availableAmount - recharge_amount_today
+                        return Math.max 0, (@user.fund.availableAmount - recharge_amount_today)
 
                     .catch TAKE_RESPONSE_ERROR
 
