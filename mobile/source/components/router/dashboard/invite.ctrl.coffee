@@ -26,17 +26,6 @@ do (_, angular, Math) ->
 
                 EXTEND_API @api
 
-                @$scope.loading_banner = true
-
-                (@api.get_invite_banner()
-
-                    .then (data) =>
-                        @$scope.banner = src: _.get data, '[0].content'
-
-                    .finally =>
-                        @$scope.loading_banner = false
-                )
-
                 @$scope.loading_have_invited = true
 
                 (@api.get_refer_count_and_reward()
@@ -109,15 +98,6 @@ do (_, angular, Math) ->
 
 
     EXTEND_API = (api) ->
-
-        api.__proto__.get_invite_banner = (cache = true) ->
-
-            @$http
-                .get '/api/v2/cms/category/IMAGE/name/%E9%82%80%E8%AF%B7%E5%A5%BD%E5%8F%8B', {cache}
-
-                .then @TAKE_RESPONSE_DATA
-                .catch @TAKE_RESPONSE_ERROR
-
 
         api.__proto__.get_refer_count_and_reward = (cache = false) ->
 
