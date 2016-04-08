@@ -2,7 +2,7 @@
 module.exports = function (router, auth) {
 
     router.get('/api/v2/user/:userId/paymentPasswordHasSet', auth.owner());
-    router.get('/api/v2/user/:userId/validatePaymentPassword', auth.owner());
+    router.post('/api/v2/user/:userId/validatePaymentPassword', auth.owner());
     router.post('/api/v2/user/:userId/setPaymentPassword', auth.owner());
     router.post('/api/v2/user/:userId/updatePaymentPassword', auth.owner());
     router.post('/api/v2/user/:userId/resetPaymentPassword', auth.owner());
