@@ -320,8 +320,7 @@ do (_, angular, moment, Array, Date) ->
                 return @$q.reject() unless password
 
                 @$http
-                    .get '/api/v2/user/MYSELF/validatePaymentPassword',
-                        params: {password}
+                    .post '/api/v2/user/MYSELF/validatePaymentPassword', {password}
 
                     .then (response) -> success: response.data is true
                     .catch TAKE_RESPONSE_ERROR
