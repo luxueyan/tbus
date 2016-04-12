@@ -51,11 +51,11 @@ do (_, angular) ->
                                 .search _.compact {mobile, next, referral}
 
                         .catch (data) =>
-                            {next} = @$routeParams
+                            {next, bind_social_weixin} = @$routeParams
 
                             @$location
                                 .path 'login'
-                                .search _.compact {mobile, next}
+                                .search _.compact {mobile, next, bind_social_weixin}
                     )
 
                     return
