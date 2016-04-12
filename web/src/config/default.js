@@ -4,7 +4,7 @@ var path = require('path');
 
 module.exports = xtend(require('./oauth2'), {
 
-    appName: '津报金控',
+    appName: '华瑞金科',
 
     dsAppRoot: path.resolve(__dirname, '..', '..'),
     dsComponentPrefix: 'ccc',
@@ -15,7 +15,7 @@ module.exports = xtend(require('./oauth2'), {
     dsMediaQueryRemoveWidth: '1200px',
 
     port: 4000,
-    domain: 'jbjk.uats.cc',
+    domain: 'hrjk.uats.cc',
 
     urlBackend: "http://127.0.0.1:8000/",
     oauth2client: {
