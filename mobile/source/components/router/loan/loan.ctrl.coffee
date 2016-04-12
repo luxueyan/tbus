@@ -23,14 +23,14 @@ do (_, angular, moment, Math, Date) ->
                 )
 
 
-                time_open_left = @loan.timeOpen - Date.now()
+                time_open_left = @loan.timeOpen - @loan.serverDate
 
                 if time_open_left > 0
 
                     @$timeout =>
                         if @$routeParams.id is @loan.id
                             @$window.location.reload()
-                    , time_open_left + 500, false
+                    , time_open_left, false
 
                 else if @loan.status is 'SCHEDULED'
 
@@ -129,7 +129,7 @@ do (_, angular, moment, Math, Date) ->
             finished_date
 
             time_open: item.timeOpen
-            time_close: item.timeLeft + Date.now()
+            time_close: item.timeLeft + item.serverDate
 
             corporate_name: item.corporationShortName
             product_key: loanRequest.productKey
