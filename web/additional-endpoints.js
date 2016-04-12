@@ -22,4 +22,3 @@ module.exports = function (router, auth) {
     router.post('/api/v2/coupon/:userId/redeemCouponIgnoreApproval', auth.owner());
 
 };
-
