@@ -1,3 +1,3 @@
 module.exports = {
-    urlBackend: "http://jbjk.uats.cc",
+    urlBackend: "http://hrjk.uats.cc",
 }
