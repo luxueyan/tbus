@@ -73,9 +73,8 @@ do (_, angular) ->
                     .then (data) =>
                         @$scope.is_login_successful = true
 
-                        @$rootScope.$on '$locationChangeStart', (event, new_path) =>
-                            event.preventDefault()
-                            @$window.location.href = new_path
+                        @$rootScope.$on '$locationChangeSuccess', =>
+                            @$window.location.reload()
 
                         @api.fetch_current_user()
 
