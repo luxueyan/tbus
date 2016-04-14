@@ -19,7 +19,7 @@ do (_, angular, Math) ->
                         _(@coupon.data)
                             .filter (item) -> item.disabled is false
                             .pluck 'placement'
-                            #.filter (item) -> item.couponPackage.type isnt 'CASH'
+                            .filter (item) -> item.couponPackage.type isnt 'CASH'
                             .map (item) ->
                                 info = item.couponPackage
 
