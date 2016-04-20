@@ -14,7 +14,7 @@ do (angular) ->
                 <uib-carousel interval="interval * 1000" no-wrap="noWrapSlides">
                     <uib-slide ng-repeat="slide in slides | orderBy: 'pubDate'" active="slide.active">
                         <a ng-href="{{ slide.url }}" target="_self">
-                            <img ng-src="assets/banner/{{ slide.content }}" style="margin:auto;">
+                            <img ng-src="{{ slide.content }}" style="margin:auto;">
 
                             <div class="carousel-caption" ng-if>
                                 <p>{{ slide.title }}</p>
