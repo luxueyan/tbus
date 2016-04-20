@@ -71,13 +71,15 @@ do (_, angular, Math) ->
                 loan = @$scope.loan
                 rule = loan.raw.loanRequest.investRule
 
-                [step, balance, maximum] = [rule.stepAmount, loan.balance, rule.maxAmount]
+                [step, balance, minimum, maximum] = [rule.stepAmount, loan.balance, rule.minAmount, rule.maxAmount]
 
-                amount = Math.max 0, amount
+                return balance if balance < minimum
+
+                amount = Math.max minimum, amount
                 amount = Math.min amount, balance
                 amount = Math.min amount, maximum
 
-                return amount // step * step
+                return minimum + (amount - minimum) // step * step
 
 
             fetch_analyse: (amount = 0, loan = @$scope.loan) ->
