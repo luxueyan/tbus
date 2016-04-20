@@ -51,6 +51,13 @@ do (_, angular) ->
                                 .search _.compact {mobile, next, referral}
 
                         .catch (data) =>
+                            key = _.get data, 'error[0].message'
+
+                            unless key in _.split 'MOBILE_EXISTS MOBILE_USED'
+                                @$window.alert @$scope.msg.UNKNOWN
+                                @submit_sending = false
+                                return
+
                             {next, bind_social_weixin} = @$routeParams
 
                             @$location
@@ -106,8 +113,10 @@ do (_, angular) ->
 
                         if result in _.split 'TOO_MANY_ATTEMPT USER_DISABLED'
                             @$window.alert @$scope.msg[result]
-                        else
+                        else if result is 'FAILED'
                             do @error_message_flash
+                        else
+                            @$window.alert @$scope.msg.UNKNOWN
 
                         @submit_sending = false
                 )

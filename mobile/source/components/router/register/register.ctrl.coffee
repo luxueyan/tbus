@@ -123,7 +123,7 @@ do (_, angular) ->
                         return
 
                     .catch (data) =>
-                        key = _.get data, 'error[0].message'
+                        key = _.get data, 'error[0].message', 'UNKNOWN'
                         @$window.alert @$scope.msg[key] or key
                         @submit_sending = false
                 )
