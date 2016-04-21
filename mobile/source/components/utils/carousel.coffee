@@ -12,7 +12,7 @@ do (angular) ->
 
             template: '''
                 <uib-carousel interval="interval * 1000" no-wrap="noWrapSlides">
-                    <uib-slide ng-repeat="slide in slides | orderBy: 'pubDate'" active="slide.active">
+                    <uib-slide ng-repeat="slide in slides | orderBy: ['-priority', 'pubDate']" active="slide.active">
                         <a ng-href="{{ slide.url }}" target="_self">
                             <img ng-src="{{ slide.content }}" style="margin:auto;">
 
