@@ -1,0 +1,23 @@
+.flip-container{
+    .flipper{
+        .front{
+            display: block;
+        }
+        
+        .back{
+            display: none;
+        }
+    }
+    
+    &:hover{
+        .flipper{
+            .front{
+                display: none;
+            }
+            
+            .back{
+                display: block;
+            }
+        }
+    }
+}

@@ -1,0 +1,244 @@
+body {
+    background: white;
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+body, button, input, select, textarea {
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+/*公共布局 头部样式*/
+.header {
+    width:100%;
+    height: 102px;
+}
+.header__top {
+    background:#f8f8f8;
+}
+.header__top__content {
+    width: 990px;
+    margin: auto;
+    height: 30px;
+    line-height: 30px;
+    color: #a9a9a9;
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 1px;
+    overflow: hidden;
+    zoom:1;
+}
+.header__top__content a {
+    text-decoration: none;
+    color: #a9a9a9;
+}
+.header__top__icon {
+    vertical-align: sub;
+    margin-left:25px;
+}
+.header__nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.header__nav li {
+    float: left;
+}
+.header__top__nav {
+    float:right;
+}
+.header__top__nav li {
+    margin-left:35px;
+    letter-spacing: 0;
+}
+.header__top__nav li a {
+    font-size:14px;
+    color: #545454;
+    font-weight: bold;
+}
+.header__main {
+    background: white;
+}
+.header__main__content {
+    width: 990px;
+    margin: auto;
+    height:72px;
+    line-height: 72px;
+}
+.header__logo {
+    margin-top: 18px;
+    float: left;
+}
+.header__main__nav {
+    float: right;
+}
+.header__main__nav li {
+    margin-right: 38px;
+    position: relative;
+}
+.header__main__user {
+    float:right;
+}
+.header__user--name {
+    font-weight: bold;
+    padding:0 5px 0 10px;
+}
+.header__login {
+    float:right;
+}
+.header_left {
+    float: left
+}
+.iconphone {
+  width: 15px;
+  margin-right: 5px;
+  background: url(/ccc/global/img/iconphone.png) no-repeat center 5px;
+}
+.header_right {
+    float: right;
+}
+.header_right a {
+    font-weight: normal;
+}
+.headItem {
+    display: block;
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    font-weight: 300;
+    font-size: 12px;
+}
+.headItemr {
+    display: block;
+    float: right;
+    height: 30px;
+    line-height: 30px;
+    font-weight: 300;
+    font-size: 12px;
+}
+.headPhone {
+    margin-right: 25px;
+    font-weight: 300;
+    font-size: 12px;
+    font-family: 'Arial';
+    line-height: 32px;
+}
+.headWeibo {
+    width: 22px;
+    background: url(/ccc/global/img/topBar/wx.png) no-repeat center;
+}
+.headWeixin {
+    width: 22px;
+    background: url(/ccc/global/img/topBar/wb.png) no-repeat center;
+    margin-right: 15px;
+}
+.hmessage, .logout {
+    width: 50px;
+    text-align: right;
+    font-size: 12px;
+}
+.hname {
+    text-align: right;
+    padding-left: 18px;
+    color: #333333;
+}
+.iconUser {
+    margin-left: 15px;
+    width: 28px;
+    background: url(/ccc/global/img/topBar/iconUser.png) no-repeat center;
+}
+/*公共布局 页尾样式*/
+.footer {
+    background: #ffffff;
+    height: 233px;
+}
+.footer__container {
+    width:990px;
+    margin:auto;
+}
+.footer__main {
+    overflow: hidden;
+    zoom:1;
+    padding-top: 40px;
+}
+.footer__main__contact {
+    float:left;
+    background: white;
+    width: 350px;
+}
+.footer__contact--phone {
+    font-size: 36px;
+    color: #333333;
+    text-indent: 50px;
+    margin-bottom: 20px;
+}
+.footer__contact--time {
+    font-size: 24px;
+    color: #333333;
+    text-align: left;
+    text-indent: 50px;
+}
+.footer__main__app {
+    float:left;
+    width: 288px;
+    border-right: 1px #e8e8e8 solid;
+    border-left: 1px #e8e8e8 solid;
+}
+.footer__app--ios, .footer__app--android {
+    width:90px;
+    float:left;
+    color: #333333;
+    font-size: 12px;
+    text-align: center;
+    margin-right: 10px;
+    margin-left: 50px;
+}
+.footer__main__info {
+    float:right;
+    color:#2C2A2B;
+    font-size: 12px;
+    width: 350px;
+    text-indent: 45px;
+}
+.footer__main__info p {
+    color:#6E6C6D;
+    margin-bottom: 7px;
+    line-height: 20px;
+}
+.footer__main__info p {
+  height: 30px;
+  line-height: 30px;
+  margin-bottom: 10px;
+}
+.footer__nav {
+    width:700px;
+    list-style: none;
+    margin:40px auto 28px;
+    text-align: center;
+}
+.footer__nav li {
+    float: left;
+    padding: 0 18px;
+    border-right: 2px solid #c7c7c7;
+    line-height: 14px;
+}
+.footer__nav li a{
+    font-size: 14px;
+    color:#333333;
+}
+.tabitem {
+    color: #333333;
+    font-weight: normal;
+}
+.tabitem-active {
+    color: #fb4646;
+}
+.tabitem:hover {
+    color: #fb4646 ;
+}
+.messageNum {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 6px;
+    background: url(/ccc/global/img/ty.png) no-repeat center;
+    width: 7px;
+    height: 7px;
+}

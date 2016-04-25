@@ -1,0 +1,139 @@
+<div id="register-wrapper" class="on-step-{{onStep}}">
+
+<Step>
+<div class="register-step-0">
+<RInput field="mobile">
+<div class="rinput">
+    <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">手机号码</label>
+    <input id="{{rinputId}}" value="{{value}}">
+    <span class="tip">
+        {{#loading}}loading...{{/loading}}
+        {{#errMsg}}{{errMsg}}{{/errMsg}}
+    </span>
+</div>
+</RInput>
+<!--
+<RInput field="email">
+<div class="rinput">
+    <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">用户名</label>
+    <input id="{{rinputId}}" value="{{value}}">
+    <span class="tip">
+        {{#loading}}loading...{{/loading}}
+        {{#errMsg}}{{errMsg}}{{/errMsg}}
+    </span>
+</div>
+</RInput>
+    <RInput field="email">
+<div class="rinput">
+    <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">邮箱</label>
+    <input id="{{rinputId}}" value="{{value}}">
+    <span class="tip">
+        {{#loading}}loading...{{/loading}}
+        {{#errMsg}}{{errMsg}}{{/errMsg}}
+    </span>
+</div>
+</RInput>
+-->
+<!--
+<RInput field="mobile">
+<div class="rinput">
+    <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">手机号</label>
+    <input id="{{rinputId}}" value="{{value}}">
+    <span class="tip">
+        {{#loading}}loading...{{/loading}}
+        {{#errMsg}}{{errMsg}}{{/errMsg}}
+    </span>
+</div>
+</RInput>
+-->
+<RInput field="password" valueStableDuration=200>
+<div class="rinput">
+    <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">登录密码</label>
+    <input id="{{rinputId}}" type="password" value="{{value}}">
+    <span class="tip">
+        {{#loading}}loading...{{/loading}}
+        {{#errMsg}}{{errMsg}}{{/errMsg}}
+    </span>
+</div>
+</RInput>
+<RInput field="repassword" valueStableDuration=200>
+<div class="rinput">
+    <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">重复密码</label>
+    <input id="{{rinputId}}" type="password" value="{{value}}">
+    <span class="tip">
+        {{#loading}}loading...{{/loading}}
+        {{#errMsg}}{{errMsg}}{{/errMsg}}
+    </span>
+</div>
+</RInput>
+<!--以下是验证码-->
+<RInput field="verificationCode" valueStableDuration=200>
+    <div class="yz">
+    <div class="rinput-1">
+        <label for="{{rinputId}}" class="pi-placeholder-1 {{#if value}}pi-placeholder__filled{{/if}}">验证码</label>
+        <input class="rinputYz" id="{{rinputId}}" type="verificationCode" value="{{value}}">
+        <span class="tip">
+            {{#loading}}loading...{{/loading}}
+            {{#errMsg}}{{errMsg}}{{/errMsg}}
+        </span>
+    </div>
+    <img src="{{captcha.img}}" on-click="changeCaptcha" alt="captcha" class="pull-right"
+                        width="150" height="40">
+    </div>
+</RInput>    
+<RInput field="agreement" valueStableDuration=100>
+<div class="rinput agreement-div">
+    <label class="agree-register-protocol">
+        <input type="checkbox" id="{{rinputId}}" checked="{{value}}" />
+        <span>我已阅读注册服务协议</span>
+<!--        <a href="/agreement/mobile/regist">《有色金融网站注册协议》</a>-->
+        {{#errMsg}}{{errMsg}}{{/errMsg}}
+    </label>
+    {{#if stepLoading}}
+    <input class="next-step" type="button" value="请稍等" disabled />
+    {{else}}
+    <input on-click='nextStep' class="next-step" type="button" value="下一步" />
+    {{/if}}
+    
+</div>
+</RInput>
+</div>
+</Step>
+<Step>
+<div class="register-step-1 " id="rS1">
+验证码短信已经发送到您的手机上，有效时间为<br>10分
+钟，请及时查收。 {{fields.mobile.data.value}}
+<RInput field="smsCaptcha">
+    <div class="stepTwo">
+        <div class="rinput message-confirm message-confirm1" >
+            <label for="{{rinputId}}"  class="pi-placeholder pi-placeholder2 {{#if value}}pi-placeholder__filled{{/if}}" >验证码</label>
+            <input class="input01" id="{{rinputId}}" value="{{value}}">
+        </div>
+        <button on-click='sendSmsCaptcha' {{#if !smsCaptchaReady || smsCaptchaCountDown}}disabled{{/if}}>
+                {{#if smsCaptchaCountDown}}
+                    {{smsCaptchaCountDown}}秒后重新发送
+                {{else}}
+                    发送验证码
+                {{/if}}
+            </button>
+            {{#loading}}loading...{{/loading}}
+            {{#errMsg}}{{errMsg}}{{/errMsg}}
+    </div>
+</RInput>
+<input  on-click='nextStep' class="next-step" type="button" value="下一步" />
+</div>
+</Step>
+<Step>
+<div class="register-step-2 "  id="rS1">
+    <div class="stepTwo">
+        <img src="/ccc/register/img/arrow01.png">
+        <div class="conResister">恭喜您完成注册</div>
+    </div>
+    <div class="succeed">
+        尊敬的用户，您已成功注册e贝宝，请<a href="/login">点击登录</a>！
+    </div>
+    <a href="/login"><input on-click='nextStep' class="next-step" type="button" value="立即登录" /></a>
+</div>
+</Step>
+</div>
+<script src="/ccc/register/js/main/register.js"></script>

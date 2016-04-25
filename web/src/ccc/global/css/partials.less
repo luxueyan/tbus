@@ -1,0 +1,580 @@
+/**
+ * @file partials components style
+ * @author huip(hui.peng@creditcloud.com)      
+ */
+
+/*
+   头部样式定义
+*/
+
+@import (reference) "variables.less";
+
+.navbar-top {
+    height: 40px;
+    width: 100%;
+    background: #f4f4f4;
+    border-bottom: 1px solid #e0e0e0;
+    .container {
+        width: 960px;
+        height: 40px;
+        position: relative;
+        .contact {
+            margin: 0 0 0 -25px;
+            > span {
+                line-height: 3em;
+                color: #6a6a6a;
+                margin: 0 0 0 25px;
+                a {
+                    text-decoration: none;
+                    color: #6a6a6a;
+                }
+            }
+            .glyphicon {
+                top: 2px;
+            }
+            .glyphicon-earphone {
+                font-size: 12px;
+            }
+            .phone-text {
+                font-size: 12px;
+            }
+            .phone-number {
+                vertical-align: -1px;
+            }
+            .navbar-login-info {
+                margin: 10px 0 0 0;
+                span {
+                    color: #bcbcbc;
+                    .login-name {
+                        color: #44d3cd;
+                    }
+                    a {
+                        color: #bcbcbc;
+                        text-decoration: none;
+                    }
+                }
+                > a {
+                    text-decoration: none;
+                }
+                .btn-small {
+                    padding: 0 6px;
+                }
+            }
+        }
+        .code {
+            position: absolute;
+            display: none;
+            top: 45px;
+            width:125px;
+            border: 1px solid #c2c2c2;
+            left: 0;
+            z-index: 1;
+            background: #ffffff;
+            
+            p{
+                text-align: center;
+                border-bottom: 1px solid #c2c2c2;
+                padding: 1px 0;
+                background: #F7F7F7;
+            }
+            .qr_img {
+                width: 125px;
+                text-align: center;
+                padding: 1px 0;
+                
+                img {
+                    width: 120px;
+                    height: 120px;
+                }
+            }
+            
+            
+        }
+    }
+}
+.navbar {
+    width: 100%;
+    height: @navbar-height;
+    background: @navbar-bgcolor;
+    text-align: center;
+    border-radius: 0;
+    background: #fff;
+    margin-bottom: 0;
+    
+    .navbar-header {
+        .navbar-brand {
+            //margin: -15px 0 0 -20px;
+
+        }
+    }
+    .container {
+        margin: 0 auto;
+        width: 960px;
+        .navbar-nav {
+            margin-right: -25px;
+            li > a {
+                background: @navbar-bgcolor;
+                height: @navbar-height - 2;
+                color: #000;
+                background: #fff;
+                font-size: 16px;
+            }
+            li > a:hover {
+                color: #004199
+            }
+            li > a:focus {
+                color: #004199
+            }
+        }
+    }
+}
+// fix html nav style or lte ie8
+.navbar-wrap {
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    .container {
+        margin: 0 auto;
+        width: 960px;
+        height: 100px;
+        .navbar-brand {
+            padding-top: 25px;
+        }
+        .navbar-nav li > a {
+            color: #000;
+            background: #fff;
+            font-size: 16px;
+            &:hover {
+                color: #004199;
+            }
+        }
+    }
+}
+/*
+  遮罩层基础样式
+*/
+
+.mask-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+}
+/*
+  底部样式
+*/
+
+.footer {
+    width: 100%;
+    .bottom-nav {
+        height: 42px;
+        background: #7c7c7c;
+        line-height: 3;
+        > ul {
+            width: @container-width;
+            margin: 0 auto;
+            padding-left: 100px;
+            li {
+                float: left;
+                width: 80px;
+                margin: 0 0 0 40px;
+                text-align: center;
+                a {
+                    color: #c6c6c6;
+                }
+            }
+        }
+    }
+    .bottom-contact {
+        .contact-content {
+            background: #f5f5f5;
+            .clear {
+                clear: left;
+            }
+            .column {
+                width: @container-width;
+                margin: 0 auto;
+                padding: 20px 0;
+                .col {
+                    float: left;
+                }
+                .col-left {
+                    padding-left: 30px;
+                    padding-right: 50px;
+                    padding-top: 20px;
+                    img{
+                        width: 250px;
+                        height: 70px;
+                    }
+                }
+                .col-mid {
+                    border-right: 1px solid #CBCDD1;
+                    margin: 20px 0 20px 0;
+                    padding: 10px;
+                    text-align: left;
+                    .service-time {
+                        font-size: 12px;
+                        margin-bottom: 8px;
+                    }
+                    .tel {
+                        font-size: 25px;
+                        color: #787878;
+                    }
+                }
+                .col-right {
+                    width: 400px;
+                    height: 110px;
+                    margin: 20px 0 10px 20px;
+                    position: relative;
+                    
+                    .logo {
+                        position: absolute;
+                        background: url(/ccc/global/img/main/footer/logo_corperation.png) no-repeat;
+                        background-position: 0 0;                        
+                    }
+                    .logo1 {                        
+                        
+                        width: 98px;
+                        height: 42px;                                                
+                    }
+                    a.logo1:hover {
+                        background-position: 0 -43px;                        
+                    }
+                    .logo2 {
+                        top: 10px;
+                        left: 20px;
+                        width: 99px;
+                        height: 36px;
+                        background-position: 0 -86px;                        
+                    }
+                    a.logo2:hover {
+                        background-position: 0 -352px;                        
+                    }
+                    .logo3 {                        
+                        top: -5px;
+                        left: 315px;
+                        width: 90px;
+                        height: 49px;
+                        background-position: 0 -173px;                        
+                    }
+                    a.logo3:hover {
+                        background-position: 0 -123px;                        
+                    }
+                    .logo4 {                        
+                        bottom: 4px;
+                        left: 18px;
+                        width: 128px;
+                        height: 34px;
+                        background-position: 0 -317px;                        
+                    }
+                    a.logo4:hover {
+                        background-position: 0 -282px;                        
+                    }
+                    .logo5 {                        
+                        bottom: 10px;
+                        left: 190px;
+                        width: 154px;
+                        height: 28px;
+                        background-position: 0 -253px;                         
+                    }
+                    a.logo5:hover {
+                        background-position: 0 -223px;                         
+                    }
+                }
+            }
+        }
+        .copyright {
+            width: 960px;
+            margin: 10px auto 20px auto;
+            padding: 0 30px;
+            width: @container-width;
+            text-align: center;
+            line-height: 40px;
+            height: 40px;
+            
+            a {
+                margin-right: 20px;
+            }
+            
+            .norton {
+                display:inline-block; 
+                vertical-align:middle;
+                margin-left: 20px;
+            }
+            .text {                
+                display:inline-block; 
+                height: 40px; 
+                vertical-align:middle;
+            }
+        }
+    }
+}
+
+/*
+ * 单个invest样式
+ *
+ * 与标状态相关的有
+ *  1.progressbar 的颜色
+ *  2.投标按钮的颜色
+ *
+ * 将opened,scheduled,finished,settled,cleared 加在.invest上
+ */
+.invest {
+    border: #E0E0E0 solid 1px;
+    padding: 8px;
+    margin-bottom: 8px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.invest-table{
+    .item{
+        margin-right: 8px;
+
+        img{
+            margin-right: 4px;
+        }
+    }
+
+    tr{
+        td{
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+    
+    
+    /**
+     * make 
+     *    .invest-*-2
+     *  has a left border 
+     */
+    .make-border(@i) when (@i <= 3){
+        .invest-@{i}-2 {
+            border-left: #F2F2F2 solid 1px;
+            padding-left: 20px;
+        }
+        .make-border(@i + 1);
+    }
+    .make-border(1);
+    
+    /**
+     * invest-row-column
+     */
+    .invest-1-1{
+        .text-id{
+            color: #55BA50;
+            margin-right: 5px;
+        }
+    }
+
+    .invest-1-2{
+        .rest-money{
+            color: #107DD8;
+        }
+    }
+
+    .invest-2-1{
+        .invest-title{
+            color: #000;
+            text-decoration: none;
+            font-size: 18px;
+            display: inline-block;
+            margin-top: 10px;
+            margin-bottom: 10px;
+
+            &:hover,&:focus,&:visited{
+                text-decoration: none;
+            }
+
+            &:hover{
+                color: #999;
+            }
+        }
+    }
+
+    .invest-2-2{
+        .progress{
+            width: 230px;
+            height: 7px;
+            float: left;
+            vertical-align: middle;
+
+            margin-top: 8px;
+            margin-bottom: 0px;
+            margin-right: 5px;
+
+            .progress-bar{
+                // 可以投资
+                .invest.opened &{
+                    background-color: #1F93F1;
+                }
+                
+                // 还款中
+                .invest.settled &{
+                    background-color: #56BB51;
+                }
+            }
+        }
+    }
+
+    .invest-3-1{
+        /**
+         * mixin
+         */
+        .special-text(@c){
+            font-size: 120%;
+            color: @c;
+            display: inline-block;
+            vertical-align: baseline;
+            margin-right: 3px;
+        }
+
+        // 利率
+        .lilv{
+            .special-text(#dd5a43);
+        }
+
+        // 期限
+        .duration{
+            .special-text(#0C6CC6);
+        }
+        
+        // 金额
+        .amount{
+            .special-text(#0C6CC6);
+        }
+    }
+
+    .invest-3-2{
+        .btn-invest{
+            color: #fff;
+            display: block;
+
+            // 可以投资
+            .invest.opened &{
+                background-color: #1F93F1;
+            }
+            
+            // 还款中
+            .invest.settled &{
+                background-color: #56BB51;
+            }
+        }
+    }
+}
+
+
+// 个人中心常用的tab
+.ccc-tab {
+    >ul.tabs {
+        // li > a
+        list-style: none;
+        padding-left: 0;
+        >li {
+            float: left;
+            margin: 0 5px;
+            a, a:hover, a:focus {
+                color: #000;
+                text-decoration: none;
+                display: inline-block;
+                margin: 10px 5px;
+                width: inherit;
+            }
+        }
+        .active {
+            border-bottom: 1px solid #000;
+            margin-bottom: -1px;
+        }
+    }
+}
+// panels
+.ccc-tab-panels {
+    .tab-panel {
+        display: none;
+    }
+    .active {
+        display: block;
+    }
+}
+.ccc-tab-panels .tab-panel .table .btn-blue-light,
+.ccc-myinvest-wrap .table .btn-blue-light,
+.ccc-tab-panels .tab-panel .table .btn-success {
+  background-color: #2A375F;
+  border-color: #2A375F;
+}
+
+/*
+.navbar-wrap {
+	border: 1px red solid;
+	background: green;
+	.navbar-header {
+		float: left;
+	}
+}
+.collapse.navbar-collapse {
+	border: 1px orange solid;
+	background: blue;
+	visibility: visible;
+	width: 400px;
+	//display: block;
+	
+	.nav.navbar-nav {
+		border: 1px #111 solid;
+		ul {
+			float: left;
+		}
+		ul li {
+			
+			float: left;
+		}
+	}
+}
+
+.carousel-wrapper {
+	//display: none;
+}
+*/
+
+/**
+ * 淘当铺logo
+ */
+.main-logo{
+    margin-top: -10px;
+    width: 250px;
+    height: 75px;
+}
+ li a {
+    color: #666;
+    text-decoration: none;
+    width: 75px;
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+}
+.u-nolist-ul li {
+    margin-right: 25px;
+}
+.u-nolist-ul li a:hover {
+    /*background: #ededed;*/
+    height: 75px;
+    border-bottom: 3px solid #b5a16b;
+    color: #232d4e;
+    text-decoration: none;
+}
+.ssfooter.u-nolist-ul li{
+     margin-right: 25px;
+     padding-right: 0;
+}
+.ssfooter.u-nolist-ul li a {
+    color: #C7C7C8;
+    text-decoration: none;
+    display: inherit;
+    font-weight: inherit;
+    &:hover {
+        color: #b5a16b;
+        border-bottom:none;
+        background: transparent;
+    };
+}

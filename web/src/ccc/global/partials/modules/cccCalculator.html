@@ -1,0 +1,83 @@
+<link rel="stylesheet" href="/ccc/global/css/modules/cccCalculator.css">
+<div class="cc-calculator-wp">
+    <div class="calculator-title">
+        <p class="calculator-title-left">收益计算器</p>
+        <div class="calculator-line">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4" style="width:33%;float:left;">
+            <form name="ccCalculatorForm" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="cc-cal-f2" class="col-sm-4 control-label">投资金额</label>
+                    <div class="col-sm-8" style="float:right;margin-top:-30px;">
+                        <input type="text" class="form-control" id="cc-cal-f2" name="amountValue" value="" placeholder="您的投资金额">
+                        <span>元</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cc-cal-f3" class="col-sm-4 control-label" placeholder="">投资期限</label>
+                    <div class="col-sm-8" style="float:right;margin-top:-30px;">
+                        <input type="text" class="form-control" id="cc-cal-f3" name="dueMonth" value="" placeholder="期望时间长度">
+                        <span>月</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cc-cal-f4" class="col-sm-4 control-label">年化利率</label>
+                    <div class="col-sm-8" style="float:right;margin-top:-30px;">
+                        <input type="text" class="form-control" id="cc-cal-f4" name="annualRate" value="" placeholder="年化利率">
+                        <span>%</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cc-cal-f5" class="col-sm-4 control-label">还款方式</label>
+                    <div class="col-sm-8" style="float:right;margin-top:-30px;">
+                        <select class="form-control" name="paymentMethod" id="cc-cal-f5">
+                            <option value="">loading...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <button type="submit" class="btn btn-orange btn-cal">计算收益</button>
+                        <button type="reset" class="reset">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-8" style="width:64%;float:left;">
+            <div class="cc-cal-results-box">
+                <div class="cc-res table table-bordered1 tdContent">
+                    <div class="ccc-f tdCell">收款日期</div>
+                    <div class="tdCell">收款金额</div>
+                    <div class="tdCell">收回本金</div>
+                    <div class="tdCell">收回利息</div>
+                    <div class="ccc-l tdCell">剩余本金</div>
+                </div>
+                <div class="cc-res cc-table-container">
+                    <div class="table_wrap">
+                        <div class="table table-bordered table-hover">
+                            <div id="cc-cal-list-wp">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cc-res table-bordered1 cc-talbe-total hide">
+                    <div id="cc-cal-total table-bordered1 tdContent">
+                        <div class="cc-total-tr clearfix cc-total-tr-b">
+                            <div class="ccc-f tdCell">总计</div>
+                            <div class="Tamount tdCell"></div>
+                            <div class="TamountPrincipal tdCell"></div>
+                            <div class="TamountInterest tdCell"></div>
+                            <div class="ccc-l TamountOutstanding tdCell"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cc-total">
+                <span>本息合计：<em class="Famount"></em></span>
+            </div>
+        </div>
+    </div>
+</div>

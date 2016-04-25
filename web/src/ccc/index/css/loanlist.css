@@ -1,0 +1,141 @@
+#loan-plan .loan{
+    width:1100px;
+    height: 190px;
+     margin-bottom: 36px;
+    margin-top: 26px;
+    background: #fdfcfb;
+}
+.yellow-bar{
+    background: #ff6c08;
+    width:12px;
+    float: left;
+    height:190px;
+}
+.loan-name{
+    color:#4e4e4e;
+    font-size: 18px;
+    margin-left: 30px;
+}
+.loan-title span{
+    color:#4e4e4e;
+    font-size: 14px;
+}
+.loan-title{
+    margin-top: 12px;
+    margin-bottom: 12px;
+    margin-left: 10px;
+    margin-right: 64px;
+    border-bottom: 1px solid #cfcfcf;
+}
+.loan-intro{
+    width:714px;
+    float: left;
+    border-right:1px solid #cfcfcf;
+   
+}
+.rate-box{
+    width:100px;
+    float: left;
+    height:50px;
+    margin-right: 40px;
+        font-size: 14px;
+    color:#4c4c4c;
+    line-height: 14px;
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+
+.loan-rate{
+    color:#ff6c08;
+    font-size: 30px;
+    line-height: 30px;
+}
+.loan-amount{
+    color:#003690;
+    font-size: 30px;
+    line-height: 30px;
+}
+.loan-rate i{
+    color:#4e4e4e;
+    font-size: 18px;
+    
+}
+.loan-rate span{
+    color:#4e4e4e;
+    font-size: 18px;
+    
+}
+.loan-amount span{
+    color:#4e4e4e;
+    font-size: 18px;
+    
+}
+.loan-money{
+    border-bottom: 1px solid #cfcfcf;
+       margin-left: 10px;
+    margin-right: 64px;
+    padding-left: 74px;
+    overflow: hidden;
+    
+}
+.progress-box{
+       margin-left: 10px;
+    margin-right: 64px;
+}
+#yellow-progress .progress-bar{
+    background: #3a6dfe;
+    background: linear-gradient(to right, #3a6dfe , #41ccb4);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#3a6dfe, endColorstr=#41ccb4)";
+    border-radius: 2px;
+}
+#yellow-progress{
+    border-radius: 10px;
+    margin-top: 14px;
+    width:560px;
+    height:8px;
+}
+#yellow-progress .progress-bar-word {
+    position: absolute;
+    margin-left: 568px;
+    color: #666666;
+    font-size: 14px;
+    margin-top: -6px;
+}
+.loanbtn{
+    width:214px;
+    height:40px;
+    background: #ff6c08;
+    text-align: center;
+    line-height: 40px;
+    color:#ffffff;
+    font-size: 18px;
+    border-radius: 4px;
+    margin-left: 72px;
+    margin-top: 60px;
+}
+.investbtn{
+        width:214px;
+    height:40px;
+   
+    text-align: center;
+    line-height: 40px;
+    color:#ffffff;
+    font-size: 18px;
+    border-radius: 4px;
+    margin-left: 72px;
+    margin-top: 60px;
+}
+.loan-rightnow{
+    float: left;
+}
+.clock{
+    margin-left: 72px;
+    margin-top: 16px;
+}
+.clock span{
+    margin-left: 6px;
+}
+.clock-time{
+    color:#ff6c08;
+    font-size: 18px;
+}

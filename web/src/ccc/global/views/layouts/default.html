@@ -3,12 +3,19 @@
 <meta name="renderer" content="webkit">
 <meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8,chrome=1">
 <link rel="stylesheet" href="/ccc/global/css/base.css">
+<link rel="stylesheet" href="/ccc/global/css/base1.css">
 <!--[if lt IE 8]><script src="http://wuyongzhiyong.b0.upaiyun.com/iedie/v1.1/script.min.js"></script><![endif]-->
 <!--[if lt IE 10]>
 <script src="/ccc/ie8fix/js/dist/console-html5-es5shim-excanvas.js"></script>
+<script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 <script src="/ccc/global-common.js" async></script>
+<link rel="stylesheet" href="/ccc/global/css/base.css" />
+<link rel="stylesheet" href="/ccc/global/css/base1.css" />
+<!--[if IE 8]><link rel="stylesheet" href="/ccc/global/css/ie8.css" /><![endif]-->
 <meta charset="utf-8" />
+<meta name="renderer" content="webkit" />
+<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
 <title>{{title}}</title>
 <script>
     {{{ state }}};
@@ -17,7 +24,291 @@
     if(process.env.NODE_ENV === 'development'){document.write('<script src="/ccc/template-watch/js/dist/getRactiveTemplate.js"></'+'script>');}
     if(process.env.NODE_ENV === 'development' || process.env.NODE_APP_INSTANCE === 'uat'){document.write('<script src="/ccc/inspect/js/main/inspect.js"></'+'script>');}
 </script>
+<script>
+    (function (match) {
+        if (match) {
+            document.cookie = match[1] + '; Max-Age=1800; Path=/';
+        }
+    }((document.cookie || '')
+        .match(/(?:^|;\s*)(ccat=[0-9a-f]{64})/)));
+
+</script>
+<script>
+var _hmt = _hmt || [];
+// (function() {
+//   var hm = document.createElement("script");
+//   hm.src = "//hm.baidu.com/hm.js?c2450bbb743e30cea0ef4d21fbce95d2";
+//   var s = document.getElementsByTagName("script")[0];
+//   s.parentNode.insertBefore(hm, s);
+// })();
+</script>
 <meta name="Keywords" content="{{keywords}}">
 <meta name="Description" content="{{description}}">
 
-{{>content}}
+	<!-- 导航开始 -->
+	<style type="text/css">
+    .header-sider{
+        width: 330px;
+        height: 30px;
+        overflow: hidden;
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .header-sider img{
+        position: absolute;
+        top: 0;
+    }
+    </style>
+    <script src="http://libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+
+<div class="s-header" id="s-header-height">
+
+    <div class="s-header-info" id="nav-color" style="background:#eee">
+        <div class="s-header-info-content u-pos-r-center">
+            <span class="nav-phone"><img src="/ccc/global/img/phone.png"/></span>
+            <span class="nav-customer" style="color:#999">客服电话：4001-718-718</span>
+			<div class="header-sider" style="margin-left:-45px;">
+					<img src="/ccc/global/img/lc-header-sider.png"alt="合作下载"><!--/ccc/global/img/app.png-->
+				</div>
+				<script type="text/javascript">
+					jQuery(function(){
+					   clone();
+						function gundong(){
+							var imgH1=parseInt(jQuery('.header-sider img').eq(0).css('top'));
+							if (imgH1>-180) {
+								jQuery('.header-sider img').animate({top: '-=30'},500);
+							}else if(imgH1==-180){
+									jQuery('.header-sider img').eq(0).remove();
+									clone();
+							}
+						}
+						function clone(){
+							jQuery('.header-sider img').clone().appendTo('.header-sider');
+							jQuery('.header-sider img').eq(1).css('top','180px');
+						}
+							var t1 = window.setInterval(gundong,1000);
+					})
+				</script>
+
+             <img style="display:none" class="float-img" src="/ccc/global/img/app.png" alt="扫码下载APP">
+<!--
+            <a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAxNDcwNF8zMjA0NDJfNDAwODcyNzY3Nl8yXw" style="margin-top:-6px;margin-right:24px;"><img src="/ccc/global/img/navQQ.png"  onmouseover="this.src='/ccc/global/img/blue-qq.png'" onmouseout="this.src='/ccc/global/img/navQQ.png'"/></a>
+            </span>
+            <span class="nav-aboutus">关注我们：            <a href="http://weibo.com/5623474415/profile?rightmod=1&wvr=6&mod=personinfo/" target="_blank"  class="nav-weibo" style="margin-top:-5px;"><img src="/ccc/global/img/navWeibo.png"  onmouseover="this.src='/ccc/global/img/yellow-weibo.png'" onmouseout="this.src='/ccc/global/img/navWeibo.png'"/></a></span>
+
+            <img class="weixin-icon" src="/ccc/global/img/navWeixin.png" onmouseover="this.src='/ccc/global/img/green-weixin.png'" onmouseout="this.src='/ccc/global/img/navWeixin.png'" />
+            <img class="erweima erweima-act2" src="/ccc/global/img/erweima.png"/>
+-->
+            {{#if user}}
+
+             <a href="/help/login" class="text account" style="color:#999;font-size:12px;margin-left:10px;text-decoration:none">帮助中心 </a>
+            {{#if user.loginName}}
+            <a href="/newAccount/message">
+                <div  style="color:#f58220;position:relative;bottom:4px;" class="text"><img src="/ccc/newAccount/img/message.png" alt="" style="margin:0;width:20px;"><span id='head-message-container' style="color:#009ada;font-size:12px;margin:0;position:relative;top:1px;margin-left:5px;"></span>
+				</div>
+            </a>
+            {{/if}}
+            <a href="/logout" class="text" style="color:#999;margin-right:5px;">退出&nbsp;&nbsp;|</a>
+			{{#if user.name}}
+            	<a href="/newAccount/home"><div id='head-ractive-container' style="color:#009ada;position:relative;bottom:1px;" class="text"></div></a>
+			{{else}}
+            	<a href="/newAccount/home"><div id='head-ractive-container' style="color:#f58220;position:relative;bottom:1px;" class="text"></div></a>
+			{{/if}}
+            {{else}}
+             <div class="nav-mobile" style="width:64px;">
+
+                <span>|</span> <a href="" id="mobileCustomer" class="text"><img src="/ccc/global/img/mobile.png" onmouseover="this.src='/ccc/global/img/mobile-nav.png'" onmouseout="this.src='/ccc/global/img/mobile.png'"/></a>
+
+            </div>
+            <div class="nav-fastregister">
+                <span>|</span><a href="/register" id="dingbuzhuce" class="text">注册</a>
+            </div>
+            <div class="nav-fastlogin">
+                <!--               <span>|</span>-->
+                <a href="/login" id="dingbudenglu" class="text">登录</a>
+            </div>
+
+
+            {{/if}}
+        </div>
+
+    </div>
+
+
+    <div class="s-header-menu" id="menu">
+        <div class="s-header-menu-content u-pos-r-center">
+            <a href="/" style="float: left;" alt="新毅" title="新毅">
+                <img class="s-icon" style="margin-width:300px;" src="/ccc/global/img/navLogo.png">
+            </a>
+
+            <ul class="u-nolist-ul">
+<!--                {{#if !user.enterprise}}-->
+<!--                   动态导航数据开始-->
+<!--
+                    <li class="u-nolist-ul-li"><a class="u-nolist-a" id="index" href="">首页</a></li>
+                    <li class="u-nolist-ul-li">
+                        <a class="u-nolist-a" id="production" href="">理财产品</a>
+                        <ul class="u-seclist-ul">
+                            <li><a href="">新手专享</a></li>
+                            <li><a href="">活动专享</a></li>
+                            <li><a href="">理财专区</a></li>
+                        </ul>
+                    </li>
+                    <li><a id="invest" href="">股权投资</a></li>
+                    <li class="u-nolist-ul-li">
+                        <a class="u-nolist-a" id="crowdfund" href="">回报众筹</a>
+                        <ul class="u-seclist-ul">
+                            <li><a href="">活动专享</a></li>
+                            <li><a href="">用户须知</a></li>
+                            <li><a href="">理财专区</a></li>
+                        </ul>
+                    </li>
+                    <li class="u-nolist-a" class="u-nolist-ul-li"><a class="u-nolist-a" id="information" href="/userKnow">用户须知</a></li>
+                    <li class="u-nolist-a" class="u-nolist-ul-li"><a class="u-nolist-a" id="myplace" href="">我的地盘</a></li>
+-->
+{{#each headerNavLinks}}
+    {{#if level === 1}}
+        <li class="u-nolist-ul-li">
+            <a class="u-nolist-a" href="{{redirectUrl}}">{{name}}</a>
+        {{#if childrenLink != []}}
+            <ul class="u-seclist-ul">
+               {{#each childrenLink}}
+                <li><a href="{{redirectUrl}}">{{name}}</a></li>
+                {{/each}}
+            </ul>
+       {{/if}}
+       </li>
+    {{/if}}
+{{/each}}
+<!--                   动态导航数据结束-->
+<!--
+                {{/if}}
+                <li>
+					{{#if user}}
+						{{#if user.name || user.enterprise}}
+						<a id="safety" href="/newAccount/home">我的账户</a>
+						{{else}}
+						<a id="safety" href="/newAccount/settings/authentication">我的账户</a>
+						{{/if}}
+					{{else}}
+						<a id="safety" href="/login">我的账户</a>
+					{{/if}}
+				</li>
+
+                <li><a id="help" href="/guide">新手引导</a></li>
+                <li style="margin-left:24px;"><a id="aboutus" href="/aboutus/aboutus" >关于我们</a></li>
+-->
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div id="main-container" style="padding-bottom:0">{{>content}}</div>
+
+<div id="mask-layer-wraper">
+</div>
+<div id="login-wraper">
+</div>
+<div id="register-wraper">
+
+</div>
+<div id="service-agreement-wraper">
+</div>
+<div id="quickInvest-agreement-wraper"></div>
+<div id="quickRepay-agreement-wraper"></div>
+<div id="regist-agreement-wraper">
+</div>
+
+<div class="s-footer" id="footer-color-box">
+    <div class="footerBox">
+    <div class="s-footer-nav" id="footer-color">
+        <div style="width:1100px;" class="s-footer-nav-content u-pos-r-center">
+            <dl class="footer-guide">
+                <dt><a href="/aboutus/introduction">关于我们</a></dt>
+                <dd><a href="/aboutus/introduction">平台介绍</a></dd>
+                <dd class="footer-guide-style"><a href="/aboutus/recruitment">保障机构</a></dd>
+                <dd><a href="/aboutus/partner">合作伙伴</a></dd>
+                <dd><a href="/aboutus/safety">安全保障</a></dd>
+                <dd><a href="/aboutus/contactus">联系我们</a></dd>
+            </dl>
+            <dl class="footer-guide">
+                <dt><a href="/help/login">帮助中心</a></dt>
+                <dd><a href="/userKnow">新手引导</a></dd>
+<!--                <dd class="footer-guide-style"><a href="">常见问题</a></dd>-->
+                <dd><a href="/help/explain">名词解释</a></dd>
+                <dd><a href="/help/product">产品介绍</a></dd>
+                <dd><a href="/help/login">注册/登录</a></dd>
+            </dl>
+             <dl class="footer-guide">
+                <dt><a href="/userKnow">用户须知</a></dt>
+                <dd><a href="/userKnow#prosource">项目来源</a></dd>
+                <dd class="footer-guide-style"><a href="/userKnow#measure">风控措施</a></dd>
+                <dd><a href="/userKnow#systemsafety">系统安全</a></dd>
+                <dd><a href="/userKnow#firmprotect">律所护航</a></dd>
+            </dl>
+              <!-- <dl class="footer-guide">
+                <dt><img src="/ccc/global/img/map.png"/><a href="">网站地图</a></dt>
+            </dl> -->
+
+             <div class="bottom-left">
+
+                <div class="bottom-rightApp" style="margin-right:34px;">
+                    <img src="/ccc/global/img/dingyue.png"/>
+                    <p class="text-p">订阅号</p>
+                </div>
+<!--
+                <div class="bottom-rightApp">
+                    <img src="/ccc/global/img/fuwu.png"/>
+                    <p class="text-p">微信服务号</p>
+                </div>
+-->
+            </div>
+            <div class="bottom-right">
+                <p class="bottom-right-service"><span style="color:#abb2ba;">投资交流群：515449675 &nbsp;&nbsp;客服电话：（工作时间：9：00-18：00）</span></p>
+                    <p class="bottom-right-mail"><span class="telNum">4001-718-718</span></p>
+                    <p class="bottom-right-copy"><span>版权所有&copy;2016&nbsp;&nbsp;新毅金融www.718bank.com&nbsp;&nbsp;京ICP备15059004号</span></p>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+<!--    旁边导航条-->
+<div class="side-bar-box">
+    <div class="side-bar">
+<!--         <a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAxNDcwNF8zMjA0NDJfNDAwODcyNzY3Nl8yXw"><img src="/ccc/global/img/service.png" /></a>-->
+        <a class="side-bar-mobile" href="javascript:;" ><img src="/ccc/global/img/mobile-sidebar.png" onmouseover="this.src='/ccc/global/img/mobile-sidebar-nav.png'" onmouseout="this.src='/ccc/global/img/mobile-sidebar.png'"/></a>
+        <a href="javascript:;" class="jiathis_button_weixin"><img src="/ccc/global/img/weixin.png" onmouseover="this.src='/ccc/global/img/weixin-nav.png'" onmouseout="this.src='/ccc/global/img/weixin.png'"/></a>
+         <a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODE5MDUyMV8zNjY4MDlfNDAwMTcxODcxOF8yXw"><img src="/ccc/global/img/qq.png" onmouseover="this.src='/ccc/global/img/qq-nav.png'" onmouseout="this.src='/ccc/global/img/qq.png'"/></a>
+        <a class="back-top"><img src="/ccc/global/img/backTotop.png" onmouseover="this.src='/ccc/global/img/backTotop-nav.png'" onmouseout="this.src='/ccc/global/img/backTotop.png'"/></a>
+    </div>
+    <div class="wap" style="display:none;">
+        <div class="wap-header">
+           <span class="wap-close">x</span>
+           <h3 class="topwap">下载718金融理财客户端</h3>
+        </div>
+        <div class="wxwap"><img src="/ccc/global/img/app_ewm.png" style="width:200px;height:200px" alt="718金融理财客户端"></div>
+        <p class="bottomwap">扫描二维码，下载718金融理财客户端</p>
+    </div>
+</div>
+<script>
+    //var _hmt = _hmt || [];
+    // (function () {
+    //     var hm = document.createElement("script");
+    //     hm.src = "//hm.baidu.com/hm.js?63b2565d3a9cd44e576abfe2fd84492e";
+    //     var s = document.getElementsByTagName("script")[0];
+    //     s.parentNode.insertBefore(hm, s);
+    // })();
+
+	//QQ
+//	function clickQq(){
+//		document.write('<script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAxNDcwNF8zMTg5OTVfNDAwODcyNzY3Nl8"></"+"script>');
+//		window.location.reload();
+//	}
+// (function(){document.getElementById('___szfw_logo___').oncontextmenu = function(){return false;}})();
+
+</script>
+
+<script src="/ccc/global/js/main/header.js" async defer></script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>

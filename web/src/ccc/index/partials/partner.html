@@ -1,0 +1,41 @@
+<!--<link rel="stylesheet" href="/assets/css/module.css" />
+<link rel="stylesheet" href="/assets/css/debtEnterprise.css" />-->
+<!-- 债务企业 -->
+<div class="module">
+    <div id="carousel-company" class="carousel slide" data-ride="carousel">
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <div class="row">
+                   {{#each cooperation}}
+                   <div class="icon-single">
+                       <a href="{{author}}" target=_blank><img class="company-pic" src="{{url}}" /></a>
+                   </div>
+                   {{/each}}
+                </div>
+            </div>
+            {{#if cooperationNext}}
+                <div class="item">
+                    <div class="row">
+                            {{#each cooperationNext}}
+                       <div class="icon-single">
+                           <a href="{{author}}"><img class="company-pic" src="{{url}}" /></a>
+                       </div>
+                       {{/each}}
+                    </div>
+                </div>
+            {{/if}}
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-company" role="button" data-slide="next">
+            <span class="glyphicon" aria-hidden="true"><img src="ccc/index/img/left.png" alt=""></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-company" role="button" data-slide="prev">
+            <span class="glyphicon" aria-hidden="true"><img src="ccc/index/img/right.png" alt=""></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="day-wrap">
+<div class="events-top">
+    <div class="day" title="{{day}}>号">{{ day }}</div>
+</div>
+
+{{#all}}
+<div class="events-bottom">
+    <span class="events all-type card">
+        <i class="fa fa-list-ol"></i>
+    </span>
+    <span class="events legal">
+        <i class="icon-legal"></i>
+    </span>
+</div>
+{{/all}}
+
+{{^all}}
+<div class="events-bottom">
+    <span 
+        class="events" 
+        data-original-title="{{ title }}">
+        <i class="fa {{ icon }}"></i>
+    </span>
+</div>
+{{/all}}
+</div>
