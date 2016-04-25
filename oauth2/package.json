@@ -1,0 +1,138 @@
+{
+  "_args": [
+    [
+      "@cc/oauth2@^1.15.2",
+      "/Users/missile/work/cc/project-hrjk/web"
+    ]
+  ],
+  "_cnpm_publish_time": 1453456366169,
+  "_from": "@cc/oauth2@>=1.15.2 <2.0.0",
+  "_id": "@cc/oauth2@1.17.1",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/@cc/oauth2",
+  "_nodeVersion": "4.2.4",
+  "_npmUser": {
+    "email": "undozen@creditcloud.com",
+    "name": "undozen"
+  },
+  "_npmVersion": "3.5.2",
+  "_phantomChildren": {},
+  "_publish_on_cnpm": true,
+  "_requested": {
+    "name": "@cc/oauth2",
+    "raw": "@cc/oauth2@^1.15.2",
+    "rawSpec": "^1.15.2",
+    "scope": "@cc",
+    "spec": ">=1.15.2 <2.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "http://npmcc.creditcloud.com/@cc/oauth2/download/@cc/oauth2-1.17.1.tgz",
+  "_shasum": "a73ef54ad588833f29a5d325586bae20cfbb47ba",
+  "_shrinkwrap": null,
+  "_spec": "@cc/oauth2@^1.15.2",
+  "_where": "/Users/missile/work/cc/project-hrjk/web",
+  "author": {
+    "email": "undozen@creditcloud.com",
+    "name": "undoZen"
+  },
+  "dependencies": {
+    "@cc/redis": "^1.1.0",
+    "api-pass": "^1.3.1",
+    "async": "^0.9.0",
+    "bignumber": "^1.1.0",
+    "bluebird": "^2.9.8",
+    "body-parser": "^1.5.2",
+    "bunyan-hub-logger": "^1.1.2",
+    "cache-manager": "^0.8.0",
+    "cc-body": "^1.0.2",
+    "co": "^4.6.0",
+    "concat-stream": "^1.4.7",
+    "conext": "^1.2.1",
+    "config": "^1.10.0",
+    "cookie-parser": "^1.3.2",
+    "debug": "^1.0.4",
+    "errs": "^0.3.2",
+    "errto": "^0.2.1",
+    "express": "^4.6.1",
+    "fn-arity": "0.0.1",
+    "fn-unary": "^1.0.0",
+    "lodash": "^2.4.1",
+    "mkdirp": "^0.5.0",
+    "multiuse": "^0.1.0",
+    "node-rsa": "^0.1.54",
+    "oauth2-auth": "^0.4.0",
+    "oauth2-errorhandlers": "^0.1.1",
+    "oauth2orize": "^1.0.1",
+    "passport": "^0.2.1",
+    "passport-http-bearer": "^1.0.1",
+    "passport-oauth": "^1.0.0",
+    "passport-oauth2-client-password": "^0.1.1",
+    "promisingagent": "^4.5.2",
+    "request": "^2.40.0",
+    "request-promise": "^0.3.3"
+  },
+  "description": "从 Psithurism 重写而来，推荐使用 iojs 和 pm2 最新版本。",
+  "devDependencies": {
+    "husky": "^0.6.1",
+    "istanbul": "^0.3.13",
+    "jscs": "^1.12.0",
+    "jsonlint": "^1.6.2",
+    "mocha": "^2.0.1",
+    "mocha-istanbul": "^0.2.0",
+    "nodemon": "~1.2.1",
+    "supertest": "^0.15.0",
+    "xunit-file": "0.0.5"
+  },
+  "dist": {
+    "key": "/@cc/oauth2/-/@cc/oauth2-1.17.1.tgz",
+    "shasum": "a73ef54ad588833f29a5d325586bae20cfbb47ba",
+    "size": 36055,
+    "tarball": "http://npmcc.creditcloud.com/@cc/oauth2/download/@cc/oauth2-1.17.1.tgz"
+  },
+  "gitHead": "b3c487c574333dab3d20788f3110904388e60c6a",
+  "keywords": [
+    "oauth",
+    "server"
+  ],
+  "license": "private",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "email": "donotreply@creditcloud.com",
+      "name": "creditcloud"
+    },
+    {
+      "email": "undozen@creditcloud.com",
+      "name": "undozen"
+    }
+  ],
+  "name": "@cc/oauth2",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@114.215.107.120:7999/~undozen/oauth-server.git"
+  },
+  "scripts": {
+    "jsonlint": "jsonlint package.json 1> /dev/null && for file in example/config/*.json; do jsonlint $file 1> /dev/null; if [ $? != 0 ]; then exit 1; fi; done",
+    "precommit": "npm test",
+    "prepush": "npm test",
+    "test": "npm run jsonlint && cd example; NODE_ENV=test mocha ../test/cases/*.js",
+    "test-ci": "npm run jsonlint && cd example; NODE_ENV=test mocha --reporter xunit-file ../test/cases/*.js",
+    "test-coverage": "rm -rf cobertura-coverage.xml html-report; istanbul instrument src/ -o lib-cov && cd example/; ISTANBUL_REPORTERS=html,text-summary,cobertura NODE_ENV=test-cov mocha -R mocha-istanbul ../test/cases/*.js; mv cobertura-coverage.xml html-report ..",
+    "test-w": "nodemon -w src/ -e js -x 'npm run-script test'",
+    "start": "NODE_ENV=production PORT=4100 pm2 start index.js -i 8 --name os",
+    "start-uat": "NODE_APP_INSTANCE=uat NODE_ENV=production PORT=4100 pm2 start index.js -i 4 --name os",
+    "reload": "pm2 reload os",
+    "stop": "pm2 stop os",
+    "delete": "pm2 stop os && pm2 delete os",
+    "build": "echo 'nothing to do here for oauth2' && exit 0",
+    "dev": "NODE_ENV=production PORT=4100 node index.js"
+  },
+  "version": "1.17.1"
+}

@@ -2,7 +2,7 @@
 var xtend = require('xtend');
 var path = require('path');
 
-module.exports = xtend(require('./oauth2'), {
+module.exports = {
 
     appName: '华瑞金科',
 
@@ -23,4 +23,4 @@ module.exports = xtend(require('./oauth2'), {
          secret: "client-secret-for-node-dev",
     },
 
-});
+};

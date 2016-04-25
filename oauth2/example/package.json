@@ -1,0 +1,15 @@
+{
+  "name": "oauth2-example",
+  "scripts": {
+    "start": "DEBUG=cc:os:* NODE_ENV=production PORT=4100 pm2 start server.js -i 0 --name os",
+    "reload": "pm2 reload os",
+    "stop": "pm2 stop os",
+    "delete": "pm2 stop os && pm2 delete os",
+    "build": "echo 'nothing to do here for oauth2' && exit 0",
+    "test": "echo 'no test yet' && exit 0"
+  },
+  "dependencies": {
+    "@cc/oauth2": "^1.0.2",
+    "config": "^1.12.0"
+  }
+}

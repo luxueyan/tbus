@@ -5,6 +5,9 @@
 .idea
 node_modules
 npm-debug.log
+*.log
+*.bak
+*.tar.gz
 
 oauth2/config/local.js
 web/config/local.js
