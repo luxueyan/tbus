@@ -1,0 +1,15 @@
+<div class="c-events-wrap">
+    <h3 class="events-tit"></h3>
+    <ul class="c-timeline">
+        {{#list}}
+        <li>
+            <div class="time-dot">
+                <span>{{ time }}</span>
+            </div>
+            <div class="events-content">
+                <p>{{ content }}</p>
+            </div>
+        </li>
+        {{/list}}
+    </ul>
+</div>

@@ -131,13 +131,13 @@
     },
     "ccc/register/js/lib/ractive.js": {
         "copiedFrom": "node_modules/@ccc/register/js/lib/ractive.js",
-        "fromVersion": "2.11.0",
-        "revHash": "b3943d7b53"
+        "fromVersion": "2.12.1",
+        "revHash": "b4abcb5c5c"
     },
     "ccc/register/js/lib/reactive.js": {
         "copiedFrom": "node_modules/@ccc/register/js/lib/reactive.js",
-        "fromVersion": "2.11.0",
-        "revHash": "bf361be24c"
+        "fromVersion": "2.12.1",
+        "revHash": "da54f7b090"
     },
     "ccc/register/js/lib/services.js": {
         "copiedFrom": "node_modules/@ccc/register/js/lib/services.js",
@@ -166,8 +166,8 @@
     },
     "ccc/register/middlewares.js": {
         "copiedFrom": "node_modules/@ccc/register/middlewares.js",
-        "fromVersion": "2.11.0",
-        "revHash": "9952bfb0b5"
+        "fromVersion": "2.12.1",
+        "revHash": "0084eeda71"
     },
     "ccc/register/partials/steps-example1.html": {
         "copiedFrom": "node_modules/@ccc/register/partials/steps-example1.html",

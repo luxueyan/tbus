@@ -67,7 +67,7 @@ exports.doRegister = conext(function *(req, res, next) {
     }
     var loginOpts = {
         body: {
-            username: req.body.loginName,
+            username: req.body.mobile,
             password: req.body.password,
             grant_type: 'password',
             client_id: config.oauth2client.id,

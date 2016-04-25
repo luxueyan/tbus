@@ -1,0 +1,102 @@
+@import "../variables.less";
+
+.after-header{
+    margin: 40px auto 12px;
+    width: @container-width;
+    padding: 0 15px;
+    
+    .project-list,.benefit-calculator{
+        line-height: 20px;
+        font-size: 20px;
+        padding-left: 30px;
+    }
+
+    .project-list{
+        color: #0288d1;
+        background: url(/ccc/global/img/icon_all.png) no-repeat 0 -614px;
+    }
+    
+    .benefit-calculator{
+        color: #878787;
+        background: url(/ccc/global/img/icon_all.png) no-repeat 0 -515px;
+        float: right;
+    }
+}
+
+.condition-wrapper{
+    margin: 0 auto;
+    width: 800px;
+
+    .condition{
+        .condition-li{
+            float: left;
+            width: 200px;
+            display: inline-block;
+            
+            .rule-text{
+                font-size: 18px;
+                text-align: center;
+            }
+
+            .condition-rule{
+                .condition-rule-li{
+                    a,a:hover{
+                        text-decoration: none;
+                        color: #838383;
+                        display: inline-block;
+                        padding: 5px 20px;
+                    }
+
+                    text-align: center;
+                }
+
+                .active{
+                    a {
+                        color: #12adff;
+                    }
+                }
+            }
+        }
+    }   
+}
+
+hr{
+    margin: 0;
+}
+
+
+.invests{
+    background: url(/ccc/global/img/invest_bg.png) repeat 0 -5px;
+}
+
+.invest-list-wrapper{
+    width: @container-width;
+    margin: 0 auto;
+
+    .invest-list{
+        margin-left: -45px;
+        
+        .invest-li{
+            float: left;
+            
+            .invest{
+                margin: 13px 0 19px 45px;
+            }
+        }
+    }
+}
+
+// 分页
+.invest-pager-wrapper{
+    .invest-pager{
+        text-align: center;
+        margin: 20px 0;
+
+        li{
+            display: inline;
+            color: #000;
+            padding: 5px 10px;
+            border: 1px #d0d0d0 solid;
+        }
+    }
+}

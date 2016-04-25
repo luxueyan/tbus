@@ -1,0 +1,185 @@
+/**
+ * ccc-tips
+ */
+
+.cc-tips-wp {
+    position: absolute;
+    z-index: 9999;
+    .cc-tips-in {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    .cc-tips-arrow {
+        position: absolute;
+        width: 15px;
+        height: 100%;
+        right: 0;
+		background: transparent url(/assets/img/arrow-right.png) no-repeat -0.5px center;
+    }
+    .cc-tips-container {
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        background: #f8f8f8;
+        border: 1px #ddd solid;
+        //box-shadow: 1px 1px 5px #ccc;
+        box-shadow: 0px 0px 5px 1px #ccc;
+        overflow-y: auto;
+    }
+}
+
+
+/**
+ * tips item
+ */
+.calendar-wrap li.events {
+    line-height: 0;
+}
+.calendar-wrap li.tender span,
+.calendar-wrap li.invest-repay span,
+.calendar-wrap li.withdraw span,
+.calendar-wrap li.all span,
+.calendar-wrap li.repayment span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    vertical-align: middle;
+    border-radius: 30px;
+    color: white;
+}
+.cal .calendar-wrap li span a:hover {
+    text-decoration: none;
+}
+.calendar-wrap li.tender span {
+    color: #f17420;
+}
+.calendar-wrap li.repayment span {} .calendar-wrap li.invest-repay span {
+    color: #f89406;
+}
+.calendar-wrap li.withdraw span {} .calendar-wrap li.all span {} .calendar-wrap li.all span.all-type {
+    background: #f17420;
+    margin-left: -12px;
+}
+.calendar-wrap ul.xk-calendar-date-column li.events {
+    line-height: 0;
+}
+.events-top {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    color: #999;
+}
+.events-top div.day {
+    text-align: left;
+    padding-left: 8px;
+    color: #222;
+}
+.calendar-wrap li.events.tender span.events,
+.calendar-wrap li.events.repayment span.events,
+.calendar-wrap li.events.invest-repay span.events,
+.calendar-wrap li.events.withdraw span.events,
+.calendar-wrap li.events.all span.events {
+    float: right;
+    margin: 5px 8px;
+}
+.calendar-wrap li.events.repayment span.events {
+    float: right;
+    margin: 5px 8px;
+}
+.events-bottom {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    border-top: 0px #ddd dotted;
+}
+.calendar-wrap li.events div.events-bottom span {
+    float: right;
+    margin: 5px 8px;
+    color: #f17420!important;
+}
+.calendar-wrap li.events.all div.events-bottom span {
+    float: right;
+    margin-top: 5px;
+}
+.calendar-wrap li.events.all div.events-bottom span.card {
+    margin-left: -8px;
+    margin-right: 8px;
+}
+.calendar-wrap li.events.all div.events-bottom span.legal {
+    margin-right: 0;
+    margin-left: 0;
+}
+.calendar-wrap li.events.all div.events-bottom div.num {
+    display: block;
+    float: left;
+    margin-left: 8px;
+    font-size: 11px;
+    color: #999;
+}
+// reset calendar
+.day-wrap {
+    height: 100%;
+    .events-top {
+        display: inline-block;
+        float: left;
+        width: 50%;
+        height: 100%;
+        line-height: 27px;
+        .day {
+            padding-left: 6px;
+        }
+    }
+    .events-bottom {
+        width: 50%;
+        height: 100%;
+        line-height: 84px;
+        float: left;
+        display: inline-block;
+        .events {
+            margin-top: 18px!important;
+            color: #f17420!important;
+        }
+    }
+}
+.c-events-wrap {
+    padding: 15px;
+    h3.events-tit {
+        font-size: 16px;
+        margin: 0;
+        padding-bottom: 5px;
+        border-bottom: 1px #ddd solid
+    }
+    ul.c-timeline {
+        padding: 0 0 5px;
+        margin: 8px 0;
+        li {
+            clear: both;
+            list-style: none;
+            margin: 0;
+            padding: 5px 0;
+            font-size: 14px;
+            p {
+                padding: 0;
+                margin: 0;
+            }
+            > div {
+                float: left;
+            }
+            .time-dot {
+                padding-right: 8px;
+                color: orange;
+            }
+            .events-content {}
+        }
+    }
+}
+.events.all-type {
+    background: transparent!important;
+    border-radius: 0!important;
+    color: #f17420!important;
+}
+.day-wrap .events-bottom {
+    line-height: 52px;
+}

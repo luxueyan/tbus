@@ -1,0 +1,96 @@
+<!--{{JSON.stringify(list)}}-->
+{{#list}}
+
+<div class="loanItemWrapper" {{#if status === 'SCHEDULED' }}{{/if}}>
+    <div class="loanPartOne">
+        <div class="loantitle">
+			{{#if titleLength>20}}
+			<p>{{title}}</p>
+			{{/if}}
+
+<!--
+			<a href="/loan/{{ id }}" class="invest-title" style="color:#4a4a4a;">
+				{{#if title.length>11}}
+				{{title.substr(0,10)}}...
+			</a>
+-->
+
+            <a href="/loan/{{ id }}" class="invest-title">
+				{{#if titleLength>20}}
+                {{title.substr(0,12)}}...
+				{{else}}
+				{{title}}
+				{{/if}}
+            </a>
+        </div>
+        <!--
+        <div class="loanPurpose">{{ purpose }}</div>
+        <div class="loanRepayMethod">{{ RepaymentMethod[method][0] }}</div>
+-->
+    </div>
+<!--
+    <div class="amount">{{ amount }}<span>{{ amountUnit }}</span>
+    </div>
+-->
+{{#if deductionRate>0}}
+    <div class="loanRate"><span style="font-size:18px;">{{basicRate}}</span><i>%</i><span style="font-size:25px;">+{{deductionRate}}</span><i>%</i>
+    </div>
+    {{else}}
+    <div class="loanRate"><span style="font-size:25px;">{{basicRate}}</span><i>%</i>
+    </div>
+    {{/if}}
+    <div class="duration">{{ fduration }}<span>{{ fdurunit }}</span>
+    </div>
+    <div class="backmoney">{{ methodFmt }}</div>
+    <div class="process">
+        <div class="rate-chart">
+            <div class="easy-pie-chart pie" data-percent="{{ investPercent }}" data-status='{{status}}' style="top:9px">
+                <span class="percentageNum">{{ investPercent }} </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="investBtn">
+        {{#if status === 'OPENED'}}
+        <a href="/loan/{{id}}" style="text-decoration:none">
+            <div class="investbtn">立即投资</div>
+        </a>
+        {{/if}}
+        {{#if status === 'SCHEDULED'}}
+        <a href="/loan/{{id}}" style="text-decoration:none">
+            <div class="investbtn-hover" >即将开始</div>
+        </a>
+        <div class="investbtn-time" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}"
+        data-serv="{{ serverDate }}" style="margin-top:5px;color: black;width: 180px;text-align: center;"></div>
+        {{/if}}
+        {{#if status === 'FINISHED'}}
+        <a href="/loan/{{id}}" style="text-decoration:none">
+            <div class="investbtn" style="background:lightgrey; color: #fff">已满标</div>
+        </a>
+        {{/if}}
+        {{#if status === 'FAILED'}}
+        <a href="/loan/{{id}}" style="text-decoration:none">
+            <div class="investbtn" style="background:lightgrey; color: #fff">流标</div>
+        </a>
+        {{/if}}
+        {{#if status === 'SETTLED'}}
+        <a href="/loan/{{id}}" style="text-decoration:none">
+            <div class="investbtn" style="background:lightgrey; color: #ffffff">已抢完</div>
+        </a>
+        {{/if}}
+        {{#if status === 'CLEARED'}}
+        <a href="/loan/{{id}}" style="text-decoration:none">
+            <div class="investbtn" style="background:lightgrey; color: #fff">还款结束</div>
+        </a>
+        {{/if}}
+    </div>
+</div>
+<script type="text/javascript">
+	$('.loantitle a').mouseenter(function(){
+		$(this).siblings().fadeIn(200);
+	}).mouseleave(function(){
+		$(this).siblings().fadeOut(100);
+	})
+
+</script>
+{{/list}}

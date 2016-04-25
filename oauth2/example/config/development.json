@@ -1,0 +1,15 @@
+{
+  "proxy": {
+    "worker": "http://spt.creditcloud.com/Worker",
+    "market": "http://127.0.0.1:8080/CreditMarket",
+    "manager": "http://127.0.0.1:8080/CreditManager"
+  },
+  "remoteConfigPrefix": false,
+  "clients": [
+  {
+    "name": "node",
+    "id": "client-id-for-node-dev",
+    "secret": "client-secret-for-node-dev"
+  }
+  ]
+}

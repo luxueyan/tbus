@@ -1,0 +1,125 @@
+@import "../variables.less";
+
+.carousel-wrapper {
+    > .left {
+        position: absolute;
+        left: 0;
+//        background-image: linear-gradient(45deg,rgba(0,0,0,0.01),rgba(0,0,0,0.3));
+        background-color: #f00;
+    }
+
+    > .right {
+        position: absolute;
+//        background-image: linear-gradient(90deg,rgba(0,0,0,0.01), rgba(0,0,0,0.3));
+        background-color: #00f;
+    }
+
+    .carousel {
+        width: @container-width;
+        margin: -20px auto 0;
+
+        .carousel-indicators {
+            li {
+                @size: 13px;
+                width: @size;
+                height: @size;
+            }
+
+            .active {
+                background-color: #0392fd;
+                margin: 1px;
+            }
+        }
+    }
+}
+
+.current-container {
+    width: @container-width;
+    margin: 0 auto;
+}
+
+// 最新公告
+.announce {
+    color: #a0a0a7;
+    padding: 20px;
+
+    .newest {
+        float: left;
+
+        .bg {
+            display: inline-block;
+            width: 17px;
+            height: 17px;
+            background-image: url(/ccc/global/img/icon_all.png);
+            background-position: 0 -368px;
+        }
+
+        .small {
+            display: inline-block;
+            font-size: 14px;
+            border-right: 2px solid #999;
+            padding-right: 15px;
+        }
+
+        .big {
+            display: inline-block;
+            margin-left: 15px;
+            font-size: 15px;
+        }
+    }
+
+    .more { float: right; }
+}
+
+.wyb {
+    width: 960px;
+    margin-left: -35px 20px 0 0;
+}
+
+.projects-wrapper {
+    background-image: url(/ccc/global/img/index/index_invest_bg.png);
+    background-repeat: repeat;
+    margin-bottom: 15px;
+
+    .project-header {
+        padding-top: 20px;
+
+        .left {
+            float: left;
+
+            .text-hot-project {
+                color: #000;
+                font-size: 16px;
+                border-right: 1px solid #999;
+                padding-right: 15px;
+            }
+
+            .text-ju-li {
+                color: #6f6f70;
+                padding: 0 15px;
+            }
+
+            .next-invest-time {
+                color: #000;
+
+                .num {
+                    font-size: 150%;
+                    color: #3fa1fc;
+                }
+            }
+        }
+
+        .right { 
+            float: right;
+        }
+    }
+
+    .invests-list-wrapper {
+        margin-left: -45px;
+
+        .invest-li {
+            float: left;
+            margin: 15px 0 0 45px;
+        }
+    }
+}

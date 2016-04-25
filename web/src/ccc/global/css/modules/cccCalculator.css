@@ -1,0 +1,153 @@
+/**
+ * cc-calculator
+ */
+.cc-calculator-wp {
+  padding: 0px 20px;
+}
+.cc-calculator-wp form .control-label {
+  padding-top: 11px;
+  width: 33%;
+  float: left;
+}
+.cc-calculator-wp form .col-sm-8 {
+  width: 66%;
+  float: left;
+}
+.cc-calculator-wp form input.form-control {
+  height: auto;
+  padding: 10px 12px;
+}
+.cc-calculator-wp form select {
+  height: 38px;
+}
+.cc-calculator-wp form button {
+  outline: none;
+}
+.cc-calculator-wp form button:focus {
+  color: #fff;
+}
+.cc-calculator-wp form .form-control.nc {
+  border-color: #c43;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px #FFFFFF, 0 0 8px #FF8879;
+  -moz-box-shadow: inset 0 1px 1px #FFFFFF, 0 0 8px #FF8879;
+  box-shadow: inset 0 1px 1px #FFFFFF, 0 0 8px #FF8879;
+}
+.cc-calculator-wp form .form-group {
+  position: relative;
+  margin-bottom: 29px;
+}
+.cc-calculator-wp form .form-group span {
+  position: absolute;
+/*  top: 12px;*/
+  right: 20px;
+  color: #bbb;
+}
+.cc-calculator-wp form .form-group input::-ms-clear {
+  display: none;
+}
+.cc-calculator-wp .btn.btn-cal {
+  width: 100%;
+  padding: 5px 0;
+  font-size: 16px;
+}
+.cc-calculator-wp .cc-cal-results-box {
+  height: 295px;
+  border: 1px #ddd solid;
+}
+.cc-calculator-wp .cc-cal-results-box table {
+  margin: 0;
+  border: none;
+}
+.cc-calculator-wp .cc-cal-results-box table tr.cc-total-tr {
+  background: #f5f5f5;
+}
+.cc-calculator-wp .cc-cal-results-box table tr.cc-total-tr:hover {
+  background: #f5f5f5;
+}
+.cc-calculator-wp .cc-cal-results-box table tr.cc-total-tr td {
+  border-bottom: 0;
+}
+.cc-calculator-wp .cc-cal-results-box table tr th {
+  border-bottom: 0;
+  padding: 6px 0;
+  text-indent: 10px;
+  width: 20%;
+  background: #f1f1f1;
+  font-weight: normal;
+}
+.cc-calculator-wp .cc-cal-results-box table tr td {
+  padding: 4px 0;
+  text-indent: 10px;
+  width: 20%;
+  color: #888;
+}
+.cc-calculator-wp .cc-cal-results-box .cc-table-container {
+  height: 232px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.cc-calculator-wp .cc-cal-results-box .cc-table-container .table_wrap {
+  position: relative;
+}
+.cc-calculator-wp .cc-cal-results-box .cc-table-container .table_wrap table {
+  margin-bottom: -1px;
+}
+.cc-calculator-wp .cc-cal-results-box .cc-table-container p {
+  padding: 15px;
+  color: #c43;
+}
+.cc-calculator-wp .cc-cal-results-box .ccc-f {
+  border-left: 0;
+}
+.cc-calculator-wp .cc-cal-results-box .ccc-l {
+  border-right: 0;
+}
+.cc-calculator-wp .cc-cal-results-box #cc-cal-total {
+  border-top: 0;
+}
+.cc-calculator-wp .cc-total {
+  height: 40px;
+  background: #eee;
+  border: 1px #ddd solid;
+  border-top: none;
+  line-height: 40px;
+  text-indent: 15px;
+}
+.cc-calculator-wp .cc-total span {
+  padding-right: 30px;
+}
+.cc-calculator-wp .cc-total em {
+  color: #c43;
+  font-style: normal;
+}
+.cc-calculator-wp .table-bordered1 {
+  height: 31px;
+  background: #f1f1f1;
+  margin-bottom: 0px;
+}
+.cc-calculator-wp .tdCell {
+  width: 100px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  float: left;
+  background: #f1f1f1;
+  border-right: 1px solid #ddd;
+}
+.cc-calculator-wp .tdContent {
+  border-bottom: 1px solid #ddd;
+}
+.cc-calculator-wp .cc-total-tr-b {
+  background: #f1f1f1;
+}
+.cc-calculator-wp .backgr-f {
+  background: #fff;
+}
+.cc-calculator-wp .table-bordered {
+  border: none;
+  margin-bottom: 0px;
+}
+.cc-calculator-wp .cc-cal-results-box {
+  height: 296px !important;
+}

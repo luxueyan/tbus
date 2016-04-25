@@ -1,0 +1,10 @@
+*~
+*.pid
+/node_modules
+/config/local.json
+/config/local.js
+/logs/
+xunit.xml
+html-report/
+lib-cov/
+cobertura-coverage.xml

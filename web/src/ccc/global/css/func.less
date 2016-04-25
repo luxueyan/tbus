@@ -1,0 +1,30 @@
+// .border-radius(4px);
+.border-radius (@radius: 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
+
+// .box-shadow(2px, 5px);
+.box-shadow (@x: 0, @y: 0, @blur: 1px, @color: #000) {
+  -webkit-box-shadow: @arguments;
+  -moz-box-shadow: @arguments;
+  box-shadow: @arguments;
+}
+
+// .animate-in(1s)
+.animate-in (@time: 0.5s) {
+  -webkit-transition-duration: @time;
+  -moz-transition-duration: @time;
+  -ms-transition-duration: @time;
+  -o-transition-duration: @time;
+  transition-duration: @time;
+}
+
+.animate-text (@time: 0.2s) {
+  -webkit-transition: opacity @time ease,color @time ease,background @time ease,box-shadow @time ease;
+  -moz-transition: opacity @time ease,color @time ease,background @time ease,box-shadow @time ease;
+  -o-transition: opacity @time ease,color @time ease,background @time ease,box-shadow @time ease;
+  transition: opacity @time ease,color @time ease,background @time ease,box-shadow @time ease;
+}

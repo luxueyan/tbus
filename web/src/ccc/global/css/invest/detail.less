@@ -1,0 +1,560 @@
+@import "../variables.less";
+
+.current-container {
+    width: @container-width;
+    margin: 0 auto;
+}
+
+.after-header {
+    margin-top: 45px;
+    border-bottom: 1px solid #999;
+    padding-bottom: 20px;
+
+    .invest-usage {
+        font-size: 1.5em;
+        color: #000;
+        float: left;
+    }
+
+    .risk-level {
+        font-size: 1em;
+        float: left;
+        color: #2693ce;
+        margin-top: 6px;
+        margin-left: 10px;
+
+        >.question-mark { color: #7ea9c9; }
+
+        .tooltip-container {
+            @bg: #f3f8fc;
+
+            .tooltip-arrow { border-right-color: @bg; }
+
+            .tooltip-inner {
+                background-color: @bg;
+                color: #568398;
+                max-width: 330px;
+            }
+        }
+    }
+}
+
+// 左边的显示信息
+.invest-data-wrapper {
+    width: 435px;
+    float: left;
+
+    .invest-datas {
+        margin-top: 55px;
+
+        .row-1 {
+            @space: 60px;
+            margin-left: -@space + 10px;
+
+            >li {
+                float: left;
+                margin-left: @space;
+
+                .num {
+                    // pre
+                    font-size: 150%;
+                }
+
+                .invest-data-text {
+                    // pre
+                    color: #989898;
+                }
+            }
+        }
+
+        .row-2 {
+            // 间距
+            @space: 50px;
+            margin-left: -@space + 10px;
+            margin-top: 30px;
+
+            >li {
+                float: left;
+                margin-left: @space;
+            }
+
+            .row-2-1 {
+                // pre
+                color: #000;
+                font-size: 16px;
+            }
+
+            .row-2-2 {
+                // pre
+                // asa
+                color: #979797;
+            }
+        }
+    }
+
+    .insurance-datas {
+        margin-top: 30px;
+        width: 100%;
+        @h: 40px;
+        height: @h;
+        background-color: #f4f4f4;
+        text-align: center;
+
+        .insurance-company {
+            // pre
+            color: #545454;
+            font-size: 15px;
+            line-height: @h;
+            vertical-align: middle;
+        }
+
+        .insurance-type {
+            // pre
+            color: #0387cf;
+            font-size: 20px;
+            line-height: @h;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+    }
+}
+
+// 右边的投标
+.do-invest-wrapper {
+    float: right;
+    width: 300px;
+    height: 260px;
+    margin: 20px 0 40px 0;
+    padding: 15px 20px;
+    background-image: url(/ccc/global/img/index/index_invest_bg.png);
+
+    // 已登录,但是没开第三方支付
+    .prompt-open-3rdpay {
+        h3 {
+            text-align: center;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        p {
+            margin-top: 15px;
+            margin-bottom: 60px;
+            color: #999;
+        }
+    }
+
+    // 未登录
+    .not-login-wrapper {
+        text-align: center;
+
+        .available-amount .big {
+            font-size: 30px;
+            color: #f5862c;
+            margin-right: 5px;
+        }
+
+        .left-time { margin: 5px 0 60px; }
+    }
+
+    .invest-header {
+        margin: 18px 0 15px;
+
+        .text-invest {
+            font-size: 20px;
+            color: #000;
+            float: left;
+        }
+
+        .available-amount {
+            float: right;
+            margin-top: 5px;
+
+            >span {
+                // pre
+                color: #f48229;
+            }
+        }
+
+        .invest-status {
+            float: right;
+            margin-top: 5px;
+            font-size: 16px;
+        }
+    }
+
+    .invest-not-available {
+        padding-left: 30px;
+        margin-top: 20px;
+        margin-bottom: 60px;
+    }
+
+    // 充值输入框
+    .invest-input-wrapper {
+        position: relative;
+
+        >.rmb-symbol {
+            position: absolute;
+            font-size: 20px;
+            left: 4px;
+            top: 4px;
+        }
+
+        >.invest-input {
+            // pre
+            padding-left: 25px;
+        }
+
+        margin-bottom: 10px;
+
+        .tooltip {
+            @bg: #fdf8e4;
+            @color: #c09956;
+            top: -28px;
+            left: 25px;
+            opacity: 1;
+            display: block;
+
+            .tooltip-arrow {
+                position: absolute;
+                border-width: 5px 5px 0;
+                border-top-color: @bg;
+                bottom: -5px;
+                left: 10%;
+            }
+
+            .tooltip-inner {
+                padding: 5px 10px;
+
+                .icon {
+                    // 感叹号图标
+                    color: #fe0002;
+                    margin-right: 5px;
+                }
+
+                background-color: @bg;
+                max-width: 200px;
+                color: @color;
+            }
+        }
+    }
+
+    // 充值输入框下的提示 & 充值
+    .para3 {
+        .rest-money {
+            // pre
+            float: left;
+        }
+
+        .charge {
+            float: right;
+
+            a, a:hover { color: orange; }
+        }
+    }
+
+    .invest-progress-wrapper {
+        margin-top: 5px;
+
+        .invest-progress {
+            width: 220px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+            box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+            margin-top: 5px;
+            float: left;
+
+            // height: 7px;
+            .invest-progress-bar {
+                background-color: #12adff;
+                border-radius: 5px;
+                height: 7px;
+            }
+        }
+
+        .invest-progress-percent {
+            margin-left: 13px;
+            float: left;
+            color: #0292fd;
+            font-size: 10px;
+        }
+
+        .time-left {
+            float: left;
+            color: #999;
+        }
+    }
+
+    .invest-button-wrapper {
+        margin: 20px auto 0;
+        text-align: center;
+
+        .invest-button {
+            width: 140px;
+            height: 35px;
+        }
+    }
+}
+
+// 投标信息
+.invest-info-wrapper {
+    >.current-container {
+        // pre
+        background-color: #f7f5f6;
+        padding-top: 25px;
+    }
+
+    .invest-info {
+        float: left;
+        border-right: 1px solid #dfdfdf;
+
+        // width:
+        .text-invest-info {
+            margin-left: 15px;
+            color: #000;
+            font-size: 20px;
+        }
+
+        .info {
+            margin: 20px 70px 0;
+            // 第一栏
+            @space: 15px;
+
+            .col-1, .col-2 {
+                float: left;
+
+                >li { margin-bottom: @space; }
+
+                .text {
+                    display: inline-block;
+                    width: 70px;
+                }
+            }
+
+            .col-2 {
+                margin-left: 30px;
+
+                .text { width: 85px; }
+            }
+        }
+    }
+
+    .insurance-info {
+        float: left;
+
+        .text-related-data {
+            margin-left: 15px;
+            color: #000;
+            font-size: 20px;
+        }
+
+        .insurance-wrapper {
+            @width: 300px;
+            width: @width;
+            margin-top: 20px;
+            margin-left: 70px;
+
+            .insurance {
+                height: 190px;
+                position: relative;
+
+                .preview {
+                    background-color: #abc;
+                    width: @width;
+                    height: 190px;
+                }
+
+                .insurance-intro {
+                    @introHeight: 30px;
+                    width: @width;
+                    height: @introHeight;
+                    position: absolute;
+                    bottom: 0;
+                    @c: 30;
+                    background-color: rgba(@c,@c,@c,0.5);
+                    text-align: center;
+                    line-height: @introHeight;
+                    color: #fff;
+                    visibility: hidden;
+                }
+
+                &:hover .insurance-intro {
+                    // pre
+                    visibility: visible;
+                }
+            }
+
+            .controler {
+                margin-top: 14px;
+
+                .left, .right {
+                    display: inline-block;
+                    float: left;
+                    height: 20px;
+                    width: 15px;
+                }
+
+                .left {
+                    background-image: url(/ccc/global/img/invest/detail/left-arrow.png);
+                    background-position: 0 1px;
+                }
+
+                .right { background-image: url(/ccc/global/img/invest/detail/right-arrow.png); }
+
+                .selectors-wrapper {
+                    // div
+                    float: left;
+                    height: 20px;
+                    width: 240px;
+                    margin: 0 5px;
+                    overflow: hidden;
+
+                    .selectors {
+                        // ul
+                        float: left;
+                        width: 9999px;
+
+                        .selector {
+                            // li > a > img
+                            float: left;
+                            height: 20px;
+                            width: 35px;
+                            margin-left: 5px;
+                            border-radius: 2px;
+                            background-color: #aaa;
+
+                            img {
+                                width: 35px;
+                                height: 20px;
+                                border-radius: 5px;
+                                vertical-align: baseline;
+                            }
+                        }
+                        
+                        .active{
+                            img{
+                                border: 1px solid #f00;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // 大图
+            .big-pic-wrapper {
+                //                display: none;
+                z-index: 10000;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+
+                .img-wrapper {
+                    margin: 100px auto 0;
+                    position: relative;
+                    max-width: 90%;
+                }
+
+                .close {
+                    height: 31px;
+                    width: 30px;
+                    position: absolute;
+                    top: -15px;
+                    right: -15px;
+                    background: url(/ccc/global/img/main/close.png);
+                }
+
+                .control {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    width: 15%;
+                    font-size: 20px;
+                    color: #fff;
+                    text-align: center;
+                    text-shadow: 0 1px 2px rgba(0,0,0,.6);
+                    filter: alpha(opacity=50);
+                    opacity: .5;
+
+                    &:hover {
+                        //pre
+                        opacity: 0.9;
+                    }
+
+                    span {
+                        position: absolute;
+                        top: 50%;
+                        margin-top: -15px;
+                        font-size: 150%;
+                    }
+                }
+
+                .prev-big {
+                    left: 0;
+                    background-image: linear-gradient(to right,rgba(0,0,0,.5) 0,rgba(0,0,0,.0001) 100%);
+                    background-repeat: repeat-x;
+                }
+
+                .next-big {
+                    right: 0;
+                    background-image: linear-gradient(to right,rgba(0,0,0,.0001) 0,rgba(0,0,0,.5) 100%);
+                    background-repeat: repeat-x;
+                }
+                
+                .status{
+                    position: absolute;
+                    bottom: 20px;
+                    left: 50%;
+                    
+                    @w: 150px;
+                    width: @w;
+                    margin-left: -@w/2;
+                    
+                    background-color: #000;
+                    color: #fff;
+                    border-radius: 5px;
+                    text-align: center;
+                    padding: 3px 20px;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
+
+.invest-detail-wrapper {
+    margin-top: 30px;
+
+    .nav-tabs {
+        li{
+            a{
+                border-radius: 0;
+                margin-right: 0;
+                color: #000;
+                margin-top: 8px;
+            }
+        }
+        
+        .active{
+            a,a:focus,a:hover{
+                color: #000;
+            }
+            
+            a{
+                font-size: 20px;
+                margin-top: 0;
+            }
+        }
+    }
+
+    .tab-panels {
+        .tab-panel {
+            display: none;
+        }
+
+        .active {
+            // pre
+            display: block;
+        }
+    }
+}

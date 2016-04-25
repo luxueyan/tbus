@@ -87,6 +87,15 @@ exports.RegisterRactive = Ractive.extend({
             });
             action('changeImgCaptcha').push();
         }
+
+        root.on('*.resetAll', function () {
+            'loginName email mobile password repassword imgCaptcha smsCaptcha'.split(' ').forEach(function (field) {
+                store('value', field).push('');
+                store('errCode', field).push(false);
+                store('errMsg', field).push(false);
+            });
+        });
+
         // 后面的事情交给 这个 action 的 listener 做
         action('inited').push(root);
     },

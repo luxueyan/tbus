@@ -25,13 +25,16 @@ app.locals.title = '华瑞金控';
 app.locals.keywords = '华瑞金控';
 app.locals.description = '华瑞金控';
 
+/*
 if (config.startOAuthServer) {
     config.urlBackend = 'http://127.0.0.1:' + port + '/';
 }
+*/
 ds.request(app, config.urlBackend);
 
 app.use('/api/web', ds.loader('api'));
 
+/*
 if (config.startOAuthServer) {
     console.log('plug oauth2 server');
     var oauth2 = require('@cc/oauth2');
@@ -44,6 +47,8 @@ if (config.startOAuthServer) {
 } else {
     ds.apiproxy(app, config.urlBackend);
 }
+*/
+ds.apiproxy(app, config.urlBackend);
 
 require('@ccc/inspect/middleware')(app);
 

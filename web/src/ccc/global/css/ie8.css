@@ -1,0 +1,5 @@
+#login-wraper .close,
+#register-wraper .close {
+  filter: alpha(opacity=90);
+}
+/*# sourceMappingURL=/ccc/global/css/ie8.css.map */

@@ -1,0 +1,56 @@
+{{!
+<div class="arrow-prev-wrap">
+    <div class="arrow arrow-prev"></div>
+</div>
+}}
+
+<div class="cc-calendar-container">
+    {{#month}}
+    <div class="xk-calendar {{#right_month}}right-calendar{{/right_month}}"
+         data-date="{{ date }}">
+        <div class="xk-calendar-tit" style="display: none;">
+            <table>
+                <tr>
+                    <td class="arrow-prev"><span></span></td>
+                    <td class="date-content">{{ date }}</td>
+                    <td class="arrow-next"><span></span></td>
+                </tr>
+            </table>
+        </div>
+        <ul class="xk-calendar-week">
+            {{#each week}}
+            <li class="{{#if first}}xk-bd-first weekend{{/if}} {{#if last}}weekend{{/if}}">
+                <div class="day-wrap"> {{ name }} </div>
+            </li>
+            {{/each}}
+        </ul>
+        <div class="xk-calendar-data-container">
+            {{#day_ul}}
+            <ul class="xk-calendar-date-column">
+                {{#day_li}}
+                <li class="
+                {{#first}} xk-bd-first{{/first}}
+                {{#selected}} selected{{/selected}}
+                {{#today}} current-day{{/today}}
+                {{#current}} current-month{{/current}}
+                {{#prev}} prev-month{{/prev}}
+                {{#next}} next-month{{/next}}"
+                    data-value="{{ date }}"
+                >
+                    <div class="day-wrap">
+                        <div class="day-w-in"><span>{{ day }}</span></div>
+                    </div>
+                </li>
+                {{/day_li}}
+            </ul>
+            {{/day_ul}}
+        </div>
+    </div>
+    {{/month}}
+</div>
+
+{{!
+<div class="arrow-next-wrap">
+    <div class="arrow arrow-next"></div>
+</div>
+}}
