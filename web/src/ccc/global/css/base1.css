@@ -6,10 +6,7 @@
 
  #nav-color a, #nav-color div, #nav-color img{
      padding: 0;
-     margin: 0;
-
      color: #999;
-/*	 margin-bottom: 8px;*/
  }
 
 #nav-color a:hover{
@@ -35,10 +32,10 @@
     color: #bcbcbc;
 }
 #nav-color .s-header-info-content .float-img{
-    position: absolute;
-    top: 30px;
-    left: 1020px;
-    z-index: 9999;
+    float: right;
+    width: 20px;
+    margin-left: 20px;
+    padding-top: 5px;
 }
 #nav-color .s-header-info-content .nav-help{
  float: right;
@@ -313,7 +310,7 @@
 }
 #menu .s-header-menu-content .u-nolist-ul{
 /*    line-height: 100px;*/
-    float: right;
+/*    float: right;*/
    margin-top: 22px;
 }
 .u-nolist-ul-li {
@@ -665,4 +662,14 @@ input[type=button]{
 .btn-confirm-cancel:hover{
     color:white;
     background: gray;
+}
+.app{
+    float: right;
+}
+.app img{
+    width: 20px;
+    margin-left: 20px;
+    padding-top: 5px;
+    margin-right: 5px;
+    margin-top: -4px;
 }

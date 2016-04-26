@@ -12,9 +12,15 @@ router.get('/', function (req, res, next) {
 
     res.expose(user, 'user');
     res.locals.carousel = req.uest(
-        '/api/v2/cms/carousel_detail')
+//        '/api/v2/cms/carousel_detail')
+        '/api/v2/cms/category/HOMEPAGE/name/banner')
         .end()
-        .get('body');
+        .get('body')
+        .then(function(data){
+            return data;
+//              console.log("....data");
+//              console.log(data);
+              });
     res.locals.regUser = req.uest(
         '/api/v2/users/getHomeDynamicData?userDynamicTypes=RIGISTER&userDynamicTypes=COUPON&userDynamicTypes=INVEST')
         .end()
@@ -40,6 +46,8 @@ router.get('/', function (req, res, next) {
         .end()
         .get('body')
         .then( function(data){
+        console.log("+++data");
+              console.log(data);
             data = (Array.isArray(data) ? data : []).sort(compare('pubDate'));
             return data;
         });

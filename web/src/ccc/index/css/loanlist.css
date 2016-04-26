@@ -91,12 +91,12 @@
 #yellow-progress{
     border-radius: 10px;
     margin-top: 14px;
-    width:560px;
     height:8px;
+    width: 180px;
 }
 #yellow-progress .progress-bar-word {
     position: absolute;
-    margin-left: 568px;
+    margin-left: 190px;
     color: #666666;
     font-size: 14px;
     margin-top: -6px;
@@ -105,18 +105,6 @@
     width:214px;
     height:40px;
     background: #ff6c08;
-    text-align: center;
-    line-height: 40px;
-    color:#ffffff;
-    font-size: 18px;
-    border-radius: 4px;
-    margin-left: 72px;
-    margin-top: 60px;
-}
-.investbtn{
-        width:214px;
-    height:40px;
-   
     text-align: center;
     line-height: 40px;
     color:#ffffff;

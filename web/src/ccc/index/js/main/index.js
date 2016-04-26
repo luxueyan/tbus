@@ -22,6 +22,18 @@ require('ccc/global/js/lib/jquery.easy-pie-chart.js')
 //     });
 
 
+$(function () {
+    
+    $('.investList ul li').hover(function (){
+        $(this).addClass('active').siblings().removeClass('active');
+        
+        var _this = $(this).parent().parent().parent().children('.listContent');
+        _this.find('.productList div').eq($(this).index()).addClass('active').siblings().removeClass('active');
+    });
+});
+
+
+
 function replaceStr(str){
 	return str.replace(/[^\x00-xff]/g,'xx').length;
 }
@@ -37,7 +49,7 @@ IndexService.getLoanSummary(function (list) {
              list[i].title = list[i].title.substr(0,60)+'...';
         }
         //		 console.log(list[i].titleLength);
-        if(list[i].loanRequest.productKey == 'XSZX'){
+        if(list[i].loanRequest.productKey == 'NEW'){
              listXSZX.push(list[i]);
          }else if(list[i].loanRequest.productKey == 'HDZX'){
              listHDZX.push(list[i]);
@@ -59,7 +71,7 @@ IndexService.getLoanSummary(function (list) {
         }
     }
     var investRactive = new Ractive({
-        el: ".XSZXproductList",
+        el: ".NEWproductList",
         template: require('ccc/global/partials/singleInvest1.html'),
         data: {
             list: listXSZX,
@@ -90,21 +102,21 @@ IndexService.getLoanSummary(function (list) {
 });
 
 //借款计划
-IndexService.getLoanSummary(function (list) {
-
-    var investRactive = new Ractive({
-        el: "#loan-plan",
-        template: require('ccc/global/partials/singleInvest.html'),
-        data: {
-            list: list,
-            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
-        }
-    });
-
-    initailEasyPieChart();
-    ininconut();
-
-});
+//IndexService.getLoanSummary(function (list) {
+//
+//    var investRactive = new Ractive({
+//        el: "#loan-plan",
+//        template: require('ccc/global/partials/singleInvest.html'),
+//        data: {
+//            list: list,
+//            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+//        }
+//    });
+//
+//    initailEasyPieChart();
+//    ininconut();
+//
+//});
 
 
 
