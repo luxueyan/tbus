@@ -43,8 +43,8 @@
     "dev": "gulp dev",
     "gulp": "gulp",
     "postinstall": "mkdir -p src/ccc/global/img/fonts && cp node_modules/bootstrap/fonts/* src/ccc/global/img/fonts/ && cp node_modules/font-awesome/fonts/* src/ccc/global/img/fonts/ && gulp init",
-    "start": "NODE_ENV=production PORT=8000 pm2 start index.js -i 8 --name ds",
-    "start-uat": "NODE_APP_INSTANCE=uat NODE_ENV=production PORT=8000 pm2 start index.js -i 4 --name ds",
+    "start": "NODE_ENV=production PORT=8000 pm2 start index.js -i 0 --name ds",
+    "start-uat": "NODE_APP_INSTANCE=uat NODE_ENV=production PORT=8000 pm2 start index.js -i 2 --name ds",
     "stop": "pm2 stop ds",
     "reload": "pm2 reload ds",
     "delete": "pm2 stop ds && pm2 delete ds"
