@@ -64,215 +64,6 @@
  * carousel 上的方块
  */
 
-.info-wrapper .info {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 10;
-	color: #fff;
-	height: 65px;
-	background-color: #000000;
-	background-color: rgba(0, 0, 0, 0.46);
-}
-
-.info-wrapper .info.floating {
-	position: fixed;
-	z-index: 16;
-}
-
-.info-wrapper .info .error {
-	height: 40px;
-	line-height: 40px;
-	color: red;
-	width: 220px;
-	margin: 0 auto;
-	background: #fff;
-	text-align: center;
-	border-radius: 3px;
-	color: #b1150a;
-	position: relative;
-	display: none;
-	transition: opacity 0.2s ease-in;
-	opacity: 0;
-}
-
-.info-wrapper .info .error.show {
-	display: block;
-}
-
-.info-wrapper .info .error:empty {
-	display: none;
-}
-
-.info-wrapper .info .formwrapper .row {
-	display: inline-block;
-	margin: 0;
-	position: relative;
-}
-
-.info-wrapper .info .formwrapper .row .iuser {
-	display: block;
-	width: 32px;
-	height: 32px;
-	position: absolute;
-	left: 0;
-	top: 0;
-	background: url(/img/quickicon.png) no-repeat center 9px;
-}
-
-.info-wrapper .info .formwrapper .row .ipass {
-	display: block;
-	width: 32px;
-	height: 32px;
-	position: absolute;
-	left: 0;
-	top: 0;
-	background: url(/img/quickicon.png) no-repeat center -30px;
-}
-
-.info-wrapper .info .formwrapper .row button {
-	height: 32px;
-	width: 70px;
-	top: 1px;
-	position: relative;
-	font-size: 16px;
-	background: #676d82;
-	text-align: center;
-	border: none;
-	border-radius: 5px;
-	color: #fff;
-}
-
-.info-wrapper .info .formwrapper .row button:focus {
-	outline: none;
-}
-
-.info-wrapper .info .formwrapper .row .reg a {
-	text-decoration: none;
-	color: #B98B2F;
-	margin-left: 10px;
-}
-
-.info-wrapper .info .formwrapper .row .forgetPass {
-	padding: 0 10px;
-}
-
-.info-wrapper .info .formwrapper .row .forgetPass a {
-	text-decoration: underline;
-	color: #ffffff;
-	color: rgba(255, 255, 255, 0.5);
-	font-size: 12px;
-	font-style: normal;
-}
-
-.info-wrapper .info .formwrapper .row .forgetPass a i {
-	font-style: normal;
-}
-
-.info-wrapper .info .formwrapper .row input {
-	border-radius: 4px;
-	width: 180px;
-	height: 32px;
-	background: #fff;
-	border: none;
-	font-size: 13px;
-	text-indent: 12px;
-	font-family: "微软雅黑";
-}
-
-.info-wrapper .info .formwrapper .row input:focus {
-	outline: none;
-}
-
-.info-wrapper .info .formwrapper .row .wechat {
-	position: relative;
-	display: block;
-	padding-left: 16px;
-	border-left: 1px solid;
-	border-left-color: #ffffff;
-	border-left-color: rgba(255, 255, 255, 0.5);
-}
-
-.info-wrapper .info .formwrapper .row .wechat .icon {
-	cursor: pointer;
-	display: inline-block;
-	width: 38px;
-	height: 38px;
-	background: url("/assets/img/wx.png") no-repeat center center;
-	vertical-align: middle;
-}
-
-.info-wrapper .info .formwrapper .row .wechat .icon:hover {
-	background: url("/assets/img/icon/wx-golden.png") no-repeat 1px 1px;
-}
-
-.info-wrapper .info .formwrapper .row .wechat .dropdown {
-	position: absolute;
-	top: 40px;
-	right: 0;
-	display: none;
-}
-
-.info-wrapper .info .formwrapper .row .wechat .icon:hover + .dropdown {
-	display: block;
-}
-
-.info-wrapper .info .formwrapper .row a .weiboIcon {
-	cursor: pointer;
-	display: inline-block;
-	width: 38px;
-	height: 38px;
-	background: url("/assets/img/wb.png") no-repeat center center;
-	vertical-align: middle;
-}
-
-.info-wrapper .info .formwrapper .row a .weiboIcon:hover {
-	background: url("/assets/img/icon/wb-golden.png") no-repeat 0px 0px;
-}
-
-.announce {
-	font-size: 14px;
-	color: #a0a0a7;
-	padding: 10px 0;
-	overflow: hidden;
-}
-
-.announce .newest {
-	float: left;
-	color: #222D4F;
-	font-weight: bold;
-}
-
-.announce .newest .bg {
-	display: inline-block;
-	width: 18px;
-	height: 18px;
-	margin: 1px 0;
-	background-image: url(/assets/img/icon_all.png);
-	background-position: 0 -370px;
-	vertical-align: middle;
-}
-
-.announce .newest .small {
-	display: inline-block;
-	vertical-align: middle;
-	line-height: 24px;
-	padding-right: 1em;
-}
-
-.announce .newest .big {
-	display: inline-block;
-	line-height: 24px;
-	vertical-align: middle;
-}
-
-.announce .more {
-	float: left;
-	color: #b5a16b;
-	line-height: 24px;
-	vertical-align: middle;
-}
 
 .product-wrapper {
 	border-top: 1px solid #e8e8e8;
@@ -695,17 +486,9 @@ a {
 /*loan*/
 
 .loanWrapper {
-	width: 1100px;
-	display: table;
-	height: 270px;
-/*	padding-left: 40px;*/
-    margin-bottom: 20px;
-	border-bottom: 1px #ccc solid;
-	background: #ffffff;
-	/*position: relative;*/
-}
-.loanWrapper:hover{
-	background-color: #FAFAFA;
+	width: 265px;
+	border-left: 1px #ebebeb solid;
+    float: left;
 }
 .trangle{
     width: 120px;
@@ -729,16 +512,9 @@ a {
 }
 
 .loanWrapper .contentwrapper{
-    width: 790px;
     padding-left: 30px;
-    /*position: absolute;*/
-		float: left;
-    /*left:210px;*/
-		/*height:270px;*/
 }
-.loanWrapper .contentwrapper:hover{
-    margin-left: 3px;
-}
+
 .loanWrapper table{
     margin-top: 20px;
     margin-bottom: 20px;
@@ -749,20 +525,16 @@ a {
     font-size: 14px;
 }
 .loanWrapper .event {
-/*	width: 223px;*/
 	color: #6e6e6e;
-    font-size: 18px;
     margin-top:40px;
     padding-bottom: 20px;
-	border-bottom: 1px solid #e4e4e4;
+    text-align: center;
 }
 
 .loanWrapper .event a {
-	font-size: 16px;
+	font-size: 20px;
 	text-decoration: none;
 	line-height: 18px;
-	color: #4a4a4a;
-	font-family: '微软雅黑';
 }
 
 .loanWrapper .year {
@@ -775,18 +547,35 @@ a {
 }
 
 .loanWrapper .rate {
-	color: #ff6c08;
-	/*  width: 200px;*/
-
-	font-size: 28px;
-	/*  text-align: center;*/
-	/*    line-height: 38px;*/
-
-	width: 112px;
+	color: #ff5451;
+	font-size: 24px;
+}
+.loanWrapper .percent{
+    color: #ff5451;
+	font-size: 18px;
+}
+.loanWrapper .rate_word{
+    font-size: 14px;
+    text-align: center;
+}
+.loanWrapper .investData{
+    margin-top: 30px;
 }
 
-.loanWrapper .rate i {
-	font-size: 14px;
+.loanWrapper .investTime{
+    float: left;
+}
+.loanWrapper .investNum{
+    float: right;
+        padding-right: 26px;
+}
+.loanWrapper .investData span{
+   color: #000;
+    font-size: 16px;
+}
+.loanWrapper .percentage{
+    clear: both;
+    padding-top: 8px;
 }
 
 .loanWrapper .duration {
@@ -834,10 +623,6 @@ a {
 	margin-right: 24px;
 }
 
-.loanWrapper .investbtn {
-	margin-left: 24px;
-	margin-top: 20px;
-}
 
 .loanWrapper .process {
 	width: 160px;
@@ -856,26 +641,16 @@ a {
 }
 
 .loanWrapper .opre .investbtn {
-	width: 102px;
-	height: 36px;
-	text-align: center;
-	line-height: 36px;
-	color: #fff;
-    background-color: #5B9DFF;
-	border: none;
-	font-size: 14px;
-	display: inline-block;
-}
-.loanWrapper .opre .investbtn-hover{
-        background-color: #fff;
-    border: 1px solid #f58220;
-    color:#f58220;
-}
-
-
-.loanWrapper .opre .investbtn:hover {
-	background-color: #2866C2;
-    color:#fff;
+	width: 132px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    color: #fff;
+    background-color: #ef9c2c;
+    font-size: 16px;
+    border-radius: 3px;
+    margin-left: 33px;
+    margin-top: 28px;
 }
 
 .easyPieChart {
@@ -910,31 +685,150 @@ a {
 	margin-left: -30px;
 	margin-top: 5px;
 }
-/*
-.strengthProtectBox p:hover{
-    color: #009ada;
+
+
+
+/*华瑞金科首页样式*/
+.content{
+    width: 1200px;
+    margin: auto;
 }
-*/
-.container{
-    width: 100%;
-    padding-bottom: 60px;
-    margin-top: 30px;
+
+.newList{
+    height: 330px;
+    background: url(/ccc/index/img/new_bg.png) no-repeat left center;
+    background-size: 145px;
+    margin-top: 42px;
+}
+.listHeader{
+    color: #fff;
+    width: 145px;
+    float: left;
+    position: relative;
+    height: 330px;
+}
+.title{
+    font-size: 26px;
+    padding-left: 20px;
+    padding-top: 32px;
+}
+.sub_title{
+    font-size: 12px;
+    padding-left: 20px;
+}
+.listHeader img{
+    width: 85px;
+    padding-top: 40px;
+    margin-left: 30px;
+}
+.listHeader a{
+    display: block;
+    position: absolute;
+    right: 10px;
+    bottom: 18px;
+}
+.listHeader a:hover{
+    color: #fff;
+}
+.listContent{
+    width: 798px;
+    float: left;
+    margin-top: 18px;
+    margin-left: -7px;
+    height: 304px;
     background: #fff;
 }
-.container h4{
+.newList .listContent,
+.newList .rightAd{
+    border-top: 2px solid #f39857;  
+}
+.rightAd{
+    float: right;
+    width: 235px;
+    margin-top: 18px;
+    height: 304px;
+    background: #fff;
+}
+.investList{
+    height: 330px;
+    background: url(/ccc/index/img/invest_bg.png) no-repeat left center;
+    background-size: 145px;
+    margin-top: 42px;
+    position: relative;
+}
+.investList ul{
+    position: absolute;
+    right: 7px;
+    top: 100px;
+}
+.investList ul li{
+    width: 105px;
+    height: 36px;
+    margin-top: 10px;
+    background-color: #F18E8E;
+    line-height: 36px;
+    text-align: center;
+    border: 1px solid #fff;
+    border-right: none;
+}
+.investList ul li.active{
+    color: #ff5a50;
+    background-color: #fff;
+}
+.investList ul li:hover{
+    cursor: pointer;
+}
+.investList .productList div{
+    display: none;
+}
+.investList .productList div.active{
+    display: block;
+}
+.investList .listContent{
+    border-top: 2px solid #ff5a50;  
+}
+.investAd{
+    background: url(/ccc/index/img/invest_ad.png) no-repeat center center;
+    height: 304px;
+    background-size: 235px;
+}
+.hotList{
+    height: 330px;
+    background: url(/ccc/index/img/hot_bg.png) no-repeat left center;
+    background-size: 145px;
+    margin-top: 42px;
+}
+.hotList .listContent{
+    border-top: 2px solid #fa6290;  
+}
+.hotAd{
+    background: url(/ccc/index/img/hot_ad.png) no-repeat center center;
+    height: 304px;
+    background-size: 235px;
+}
+/*合作伙伴*/
+.partnerList{ 
+    padding-bottom: 35px;
+    margin-top: 42px;
+    background: #eaeaea;
+}
+.partnerList .partner{
+    width: 1200px;
+    margin: auto;
+   
+}
+.partnerList h4{
     font-size: 16px;
-    font-family: "黑体";
     line-height: 50px;
+    border-bottom: 1px solid #d8d8d8;
 }
-.container .partner{
-    width: 1100px;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 20px;
-    padding-left: 15px;
-    padding-right: 15px;
-}
-.container .icon-single{
+.partnerList .icon-single{
     float: left;
-    padding: 10px 4px;
+    padding: 16px;
+}
+.partnerList .icon-single img{
+    width: 230px;
+}
+#carousel-company{
+    padding: 0 90px;
 }

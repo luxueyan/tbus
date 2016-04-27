@@ -22,6 +22,18 @@ require('ccc/global/js/lib/jquery.easy-pie-chart.js')
 //     });
 
 
+$(function () {
+    
+    $('.investList ul li').hover(function (){
+        $(this).addClass('active').siblings().removeClass('active');
+        
+        var _this = $(this).parent().parent().parent().children('.listContent');
+        _this.find('.productList div').eq($(this).index()).addClass('active').siblings().removeClass('active');
+    });
+});
+
+
+
 function replaceStr(str){
 	return str.replace(/[^\x00-xff]/g,'xx').length;
 }
@@ -37,7 +49,7 @@ IndexService.getLoanSummary(function (list) {
              list[i].title = list[i].title.substr(0,60)+'...';
         }
         //		 console.log(list[i].titleLength);
-        if(list[i].loanRequest.productKey == 'XSZX'){
+        if(list[i].loanRequest.productKey == 'NEW'){
              listXSZX.push(list[i]);
          }else if(list[i].loanRequest.productKey == 'HDZX'){
              listHDZX.push(list[i]);
@@ -59,7 +71,7 @@ IndexService.getLoanSummary(function (list) {
         }
     }
     var investRactive = new Ractive({
-        el: ".XSZXproductList",
+        el: ".NEWproductList",
         template: require('ccc/global/partials/singleInvest1.html'),
         data: {
             list: listXSZX,
@@ -90,21 +102,21 @@ IndexService.getLoanSummary(function (list) {
 });
 
 //借款计划
-IndexService.getLoanSummary(function (list) {
-
-    var investRactive = new Ractive({
-        el: "#loan-plan",
-        template: require('ccc/global/partials/singleInvest.html'),
-        data: {
-            list: list,
-            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
-        }
-    });
-
-    initailEasyPieChart();
-    ininconut();
-
-});
+//IndexService.getLoanSummary(function (list) {
+//
+//    var investRactive = new Ractive({
+//        el: "#loan-plan",
+//        template: require('ccc/global/partials/singleInvest.html'),
+//        data: {
+//            list: list,
+//            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+//        }
+//    });
+//
+//    initailEasyPieChart();
+//    ininconut();
+//
+//});
 
 
 
@@ -257,20 +269,37 @@ $(document).keyup(function (e) {
 request.get(encodeURI('/api/v2/cms/category/COOPERATION/name/合作伙伴'))
     .end()
     .then(function (res) {
-        var count = new Ractive({
+    console.log("111res")
+    console.log(res.body)
+        var partnerRactive = new Ractive({
             el: '.partner .icon-grounp',
             template: require('ccc/index/partials/partner.html'),
 //            template: '{{#each cooperation}} <div class="icon-single"><a href="{{author}}"><img class="company-pic" src="{{url}}" /></a></div>{{/each}}',
-//            data: {
-//                cooperation: res.body
-//            },
+            data: {
+                list: []
+            },
             onrender: function(){
-                if(res.body.length <= 12){
+                
+                if(res.body.length <= 4){
                     this.set('cooperation',res.body);
                 }else{
-                    this.set('cooperation',res.body.slice(0,12));
-                    this.set('cooperationNext',res.body.slice(12));
+                    var num = 4;
+                    var j = num;
+                    var length = res.body.length;
+                    var total = Math.ceil(length/j);
+                    this.set('cooperation',res.body.slice(0,num));
+                    
+                    for(var i=0;i<total-1;i++){
+
+                        this.set('cooperationNext',res.body.slice(j,j+num));
+                        j = j+num;
+
+                        var cooperationNext = this.get('cooperationNext');  
+                        this.push('list', cooperationNext);
+
+                    }     
                 }
+               
             }
         });
     });
