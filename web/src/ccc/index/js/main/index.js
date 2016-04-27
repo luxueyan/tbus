@@ -269,20 +269,37 @@ $(document).keyup(function (e) {
 request.get(encodeURI('/api/v2/cms/category/COOPERATION/name/合作伙伴'))
     .end()
     .then(function (res) {
-        var count = new Ractive({
+    console.log("111res")
+    console.log(res.body)
+        var partnerRactive = new Ractive({
             el: '.partner .icon-grounp',
             template: require('ccc/index/partials/partner.html'),
 //            template: '{{#each cooperation}} <div class="icon-single"><a href="{{author}}"><img class="company-pic" src="{{url}}" /></a></div>{{/each}}',
-//            data: {
-//                cooperation: res.body
-//            },
+            data: {
+                list: []
+            },
             onrender: function(){
-                if(res.body.length <= 12){
+                
+                if(res.body.length <= 4){
                     this.set('cooperation',res.body);
                 }else{
-                    this.set('cooperation',res.body.slice(0,12));
-                    this.set('cooperationNext',res.body.slice(12));
+                    var num = 4;
+                    var j = num;
+                    var length = res.body.length;
+                    var total = Math.ceil(length/j);
+                    this.set('cooperation',res.body.slice(0,num));
+                    
+                    for(var i=0;i<total-1;i++){
+
+                        this.set('cooperationNext',res.body.slice(j,j+num));
+                        j = j+num;
+
+                        var cooperationNext = this.get('cooperationNext');  
+                        this.push('list', cooperationNext);
+
+                    }     
                 }
+               
             }
         });
     });

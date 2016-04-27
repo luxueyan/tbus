@@ -211,8 +211,8 @@
 }
 .banner-account{
     width:300px;
-    height:360px;
-	padding-top: 80px;
+    height:320px;
+	padding-top: 35px;
     background: #fdf8e0;
 }
 .qr-code img{
@@ -231,76 +231,61 @@
     margin-right: 28px;
      margin-top: 14px;
 }
-.banner-account p{
-   margin-left: 32px;
-}
-.banner-account-1{
-    font-size: 18px;
-    color:#ff6c08;
-}
+
+
 .banner-account-2{
     font-size: 36px;
-    color:#1ccccb;
+    color:#ff5a4c;
      line-height: 36px;
 }
-.banner-account-3 span{
-    font-size: 20px;
-    color:#ff6c08;
-    line-height: 35px;
-}
+
 .banner-account1{
      margin-bottom: 26px;
-    font-size: 16px;
-    height: 36px;
+    font-size: 22px;
+    text-align: center;
+    font-weight: 600;
 }
 .banner-account2{
-     margin-bottom: 20px;
-    font-size: 16px;
-	font-weight: normal;
+    margin-bottom: 20px;
+    font-size: 20px;
+    padding-left: 41px;
 }
 .bannerLogin{
-    margin-left: 32px;
-    font-size: 16px;
-    line-height: 34px;
+    font-size: 14px;
     text-align: right;
-    margin-top: 6px;
+    margin-top: 28px;
     padding-right: 22px;
     
 }
 
 .bannerLogin .underline{
     text-decoration:underline;
+    color: #2d7dec;
 }
-.bannerLogin .underline:hover{
-    color: #f06f2e;
-}
-.banner-account4{
-    color:#ff7200;
-    font-size: 24px;
-}
-.banner-account .btn-index{
-    width:250px;
-    height:42px;
-    font-size: 18px;
-    color:#ffffff;
-    background:#ef9c2c;
-    border: none;
-    text-align: center;
-    line-height: 43px;
 
+.banner-account .btn-index{
+    width: 250px;
+    height: 42px;
+    font-size: 18px;
+    color: #ffffff;
+    background: #ef9c2c;
+    text-align: center;
+    line-height: 42px;
+    border-radius: 2px;
 }
 
 .free-register{
-    width:250px;
-    height:42px;
-     margin-top: 30px;
-    margin:0 auto;
+    width: 250px;
+    height: 42px;
+    margin: 0 auto;
+    border-top: 1px dashed #cbc8b8;
+    padding-top: 20px;
 }
 
 .banner-account－box{
     position: absolute;
     top:50%;
-	margin-top: -200px;
+	margin-top: -160px;
     left:50%;
     margin-left:251px;
 }

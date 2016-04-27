@@ -14,15 +14,17 @@
 }
 
 #nav-color{
-  background-color: #eeeeee;
+  border-bottom:2px solid #f3f3f3;
+    line-height: 30px;
 }
 #nav-color .text img {
     margin-right: 10px;
 }
 #nav-color .s-header-info-content{
+    width: 1200px;
     margin: auto;
-    width: 1100px;
     position: relative;
+    padding-right: 25px;
 }
 #nav-color .s-header-info-content .nav-customer{
     text-align: left;
@@ -33,9 +35,9 @@
 }
 #nav-color .s-header-info-content .float-img{
     float: right;
-    width: 20px;
-    margin-left: 20px;
-    padding-top: 5px;
+    width: 16px;
+    margin-left: 12px;
+    padding-top: 9px;
 }
 #nav-color .s-header-info-content .nav-help{
  float: right;
@@ -67,14 +69,6 @@
      color: #999;
 }
 
-#dingbuzhuce{
-    color: #777777;
-    font-size: 12px;
-}
-#dingbudenglu{
-    color: #777777;
-    font-size: 12px;
-}
 #nav-help{
     color: #777777;
     font-size: 12px;
@@ -83,9 +77,8 @@
     color:#777777;
 }
 #nav-color .nav-fastlogin{
-    width: 54px;
+    width: 46px;
     float: right;
-/*    margin-right: 22px;*/
 }
 #nav-color .nav-fastlogin img{
     margin:0;
@@ -93,10 +86,7 @@
     margin-top: 10px;
 }
 #nav-color .nav-fastregister{
-    width: 62px;
     float: right;
-/*      margin-right: 22px;*/
-    font-size:12px;
 }
 #nav-color .nav-fastregister img{
     margin:0;
@@ -115,12 +105,12 @@
 
 }
 #footer-color-box{
-   background:#6c6c6c;
+   background:#363b3f;
 
 }
 
 #footer-color-box .footerBox{
-    width: 1100px;
+    width: 1200px;
     margin: auto;
 }
 
@@ -154,100 +144,55 @@
 }
 .footer-guide{
     float: left;
-    margin-right:102px;
-/*    margin-top:12px;*/
-    margin-bottom: 90px;
+    width: 660px;
+    border-right: 1px dashed #4a4e52;
+    height: 168px;
+    margin: 24px auto;
 }
-.footer-guide dt{
-    font-family: "微软雅黑";
+.footer-guide .left-guide{
+    padding-top: 75px;
+
+}
+
+.footer-guide .left-copy{
+  color: #686c6f;
+    padding-top: 10px;
+}
+
+.footer-info{
+    float: left;
+    margin-left: 45px;
+}
+
+.footer-info .right-service{
+    padding-top: 45px;
+}
+.footer-info .right-service .service-title{
     font-size: 16px;
-    color:#e1e1e1;
-    line-height: 16px;
-    margin-bottom: 20px;
-
 }
-
-.footer-guide dt img{
-  margin-right: 10px;
-    margin-top: -8px;
-}
-
-.s-footer #footer-color{
-    height:190px;
-    width: 1100px;
-/*    margin-top: 25px;*/
-    border: none;
-    overflow: hidden;
-	background-color: #6c6c6c;
-
-}
-.bottom-left{
-    float:left;
-    margin-right:0px;
-/*    margin-right: 20px;*/
-}
-.bottom-right-service{
-    float: right;
+.footer-info .right-service .service-title span{
     font-size: 14px;
-    color:#4a4a4a;
-/*    line-height: 14px;*/
-/*    margin-top: 5px;*/
+    color: #686a6c;
 }
-
-.bottom-right-service img{
-    margin-right: 10px;
+.footer-info .service-phone{
+    font-size: 18px;
+    padding-top: 10px;
 }
-
-.bottom-right-tel{
-    font-size: 30px;
-    color:#ff6e00;
-    line-height: 30px;
+.right-report{
     margin-top: 30px;
 }
-.bottom-right-tel span{
-     font-size: 14px;
-    color:#666666;
-    margin-left: 14px;
+.right-report .report-phone{
+    float: left;
+    width: 140px;
+    border-right: 1px dashed #4a4e52;
 }
-.bottom-right-mail .telNum{
-    float: right;
-    color:#62b9ff;
-    font-size: 33px;
-    margin-top: 18px;
-    margin-left: 46px;
-/*    margin-bottom: 48px;*/
+.right-report .report-email{
+    float: left;
+    padding-left: 40px;
 }
-.bottom-right-copy{
-    float: right;
-    color:#bcbcbc;
+.right-report p{
+    color: #686a6c;
     font-size: 14px;
-    margin-top: 30px;
-/*    margin-left: 46px;*/
-}
-
-.bottom-right-aboutus{
-    margin-left: 46px;
-    color: #777;
-    font-size: 14px;
-}
-.bottom-right-aboutus img{
-    margin-right: 4px;
-
-}
-
-.bottom-right-online{
-
-    color:#bcbcbc;
-    font-size: 14px;
-    margin-left: 46px;
-	margin-top: 17px;
-}
-.bottom-right-online img{
-/*    margin-left: 8px;*/
-}
-.bottom-right-icon img{
-    margin-top: 22px;
-    margin-left: 24px;
 }
 .firend-link{
     background: #5d6163;
@@ -270,84 +215,21 @@
     font-size: 12px;
     margin-right:14px;
 }
-.bottom-footer{
-    width:1100px;
-    margin: auto;
-}
-.bottom-footer{
-    text-align: center;
-    height: 80px;
-}
 
-.bottom-footer .copyright{
-    font-size: 14px;
-    color: #bcbcbc;
-    line-height: 14px;
-    margin-top: 22px;
-    margin-bottom: 22px;
-    float: left;
-    margin-left: 20px;
-}
-
-.bottom-footer img{
-    margin-bottom: 30px;
-}
-.bottom-footer-box{
-    background-color: #6c6c6c;
-    overflow: hidden;
-    width: 100%;
-    border-top: 1px solid #ddd;
-}
-
-.bottom-footer-right img{
-    margin-right:24px;
-    margin-top: 32px;
-}
 
 #menu{
     font-size: 18px;
-    height: 100px
 }
-#menu .s-header-menu-content .u-nolist-ul{
-/*    line-height: 100px;*/
-/*    float: right;*/
-   margin-top: 22px;
-}
+
 .u-nolist-ul-li {
 /*    margin-left: 24px;*/
     cursor: pointer;
     position: relative;
 }
 .s-header-menu-content .u-nolist-ul li a{
-    padding: 0 24px;
-/*    height: 50px;*/
-    width: 120px;
-    display: inline-block;
-    line-height: 50px;
-    text-align: center;
+    padding: 0 8px;
+    height: 71px;
 }
-.s-header-menu-content .u-seclist-ul{
-    position: absolute;
-    top: 30px;
-    left: 0;
-    width: 120px;
-    z-index: 9999;
-}
-.s-header-menu-content .u-seclist-ul a{
-    background-color: #5b9dff;
-    color: #fff;
-}
-.s-header-menu-content .u-seclist-ul a:hover{
-    background-color: #3c7ddd;
-}
-.s-header-menu-content .u-seclist-ul{
-    color:#fff;
-    display: none;
-}
-#menu .s-header-menu-content{
-    width: 1100px;
-}
-
 
 #family{
     float: right;
@@ -397,15 +279,14 @@
     font-size: 18px;
     line-height: 84px;
 }
-#nav-color .s-header-menu-content .s-icon {
-    margin-top:0;
-}
+
 .s-header-menu-content .s-icon{
-     margin-top:22px;
+    width: 282px;
 }
 #s-header-height{
-    height:140px;
-/*    overflow: hidden;*/
+    height:102px;
+    font-size: 12px;
+    background: #fff;
 }
 
 .side-bar{
@@ -463,10 +344,7 @@
 .side-bar img{
     margin-bottom: 2px;
 }
-.icon-grounp{
-    width: 1070px;
-    height: 140px;
-}
+
 #carousel-company .carousel-control{
     width: 0;
 }
@@ -474,41 +352,25 @@
     background-image: none;
 }
 #carousel-company .carousel-control.left img{
-    margin-left: -70px;
-    position: absolute;
-    margin-top: 35px;
+    margin-top: 50px;
+    width: 16px;
+    margin-left: 24px;
 }
 #carousel-company .carousel-control.right{
     background-image: none;
 }
 #carousel-company .carousel-control.right img{
-    margin-left: 50px;
-    position: absolute;
-    margin-top: 35px;
+    margin-left: -70px;
+    margin-top: 50px;
+    width: 16px;
 }
 
 #menu .navactive{
-    color: #fff;
-    background: #5b9dff;
+    color: #ef9c2c;
     text-decoration: none;
+    border-bottom: 3px solid #ef9c2c;
 }
-.bottom-right{
-    /*float: right;*/
-    height:126px;
-/*    margin-right: 50px;*/
-    }
-.bottom-right .bottom-rightApp{
-    float: left;
-/*    margin-right: 24px;*/
-    color:#4a4a4a;
-    font-size: 14px;
-    line-height: 26px;
-    height:126px;
-}
-.bottom-right .bottom-rightApp img{
-     width:110px;
-    height:110px;
-}
+
 
 
 /*计算器*/
@@ -565,12 +427,7 @@
  }
 /*导航大家庭*/
 .s-header-info-content span {
-  display: inline-block;
-  margin: 3px 5px;
-  line-height: 23px;
-  width: 24px;
-  text-align: center;
-	color: #bcbcbc;
+  margin: 3px 10px;
 }
 /*nav*/
 #nav-color #head-ractive-container{
@@ -667,7 +524,7 @@ input[type=button]{
     float: right;
 }
 .app img{
-    width: 20px;
+    width: 12px;
     margin-left: 20px;
     padding-top: 5px;
     margin-right: 5px;

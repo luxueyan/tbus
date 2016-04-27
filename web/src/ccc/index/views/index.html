@@ -81,9 +81,6 @@
 
 <!-- 轮播组件 -->
 <div class="carousel-wrapper">
-    <!-- 在carousel上的 按钮 等 -->
-    <!-- server端渲染 ， 做不到 只在第二张图上显示 -->
-    <div class="current-container info-wrapper"></div>
 
     <div id="my-carousel" class="carousel slide" data-ride="carousel" data-interval="5000">
         <!-- Indicators -->
@@ -101,35 +98,36 @@
             {{#carousel}}
             <div class="item {{#if @index === 0}}active{{/if}}" style="background: {{this.bgc}}">
                 <a href="{{this.link}}" target="_blank">
-                    <div style="background-image:url({{this.content}}); background-repeat:no-repeat; background-position:center;height: 498px;">
+                    <div style="background-image:url({{this.content}}); background-repeat:no-repeat; background-position:center;background-size: 100% 350px;padding-top:350px;">
                     </div>
                 </a>
             </div>
             {{/carousel}}
         </div>
+        
+<!--
         <div class="carousel-control-box" style="display:none;">
             <a class="left carousel-control" href="#my-carousel" role="button" data-slide="next">
                 <span class="glyphicon" aria-hidden="true">
-<!--                    <img src="ccc/index/img/banner-left.png" alt="">-->
+                    <img src="ccc/index/img/banner-left.png" alt="">
                 </span>
                 <span class="sr-only">Previous</span>
             </a>
             <a class="right carousel-control" href="#my-carousel" role="button" data-slide="prev">
                 <span class="glyphicon" aria-hidden="true">
-<!--                    <img src="ccc/index/img/banner-right.png" alt="">-->
+                    <img src="ccc/index/img/banner-right.png" alt="">
                 </span>
                 <span class="sr-only">Next</span>
             </a>
         </div>
+-->
 
-
-        <div class="middle-box"></div>
         <div class="banner-account－box">
             <div class="banner-account">
                 <p class="banner-account1">自金网预期年化收益率</p>
-                <p class="banner-account-3">高达<span>9%</span></p>
-                
+                <p class="banner-account2">高达<span class="banner-account-2">9.00%</span></p>
                 <p class="banner-account2"><span class="banner-account-2">30</span>倍活期存款收益</p>
+                <p class="line"></p>
                 <div class="free-register">
                     {{#if user}}
                         {{#if user.name}}
@@ -213,142 +211,15 @@
             <div class="hotAd"></div>
         </div>
     </div>
-    <!--合作伙伴-->
-    <div class="partnerList">
-       <div class="partner">
-            <h4>合作伙伴</h4>
-            <div class="icon-grounp">
-            </div>
-        </div>
-    </div>
 </div>
-
-
-
-<div class="productBg">
-<!--
-    <div class="productBox">
-        <div class="productBoxTitle">
-            <p class="titleLeft">新手专区</p>
-            <img style="margin-left:248px;" src="/ccc/index/img/newuser.png" alt="">
-        </div>
-        <div class="XSZXproductList">
-
-        </div>
-    </div>
-    <div class="advertisement" style="text-align:center">
-       {{#each advertisement:num}}
-        <p><a href="/cms/p/{{this.id}}"><img src="{{url}}" ></a></p>
-        {{/each}}
-    </div>
-    <div class="productBox">
-        <div class="productBoxTitle">
-            <p class="titleLeft">活动专区</p>
-            <img style="margin-left:248px;" src="/ccc/index/img/present.png" alt="">
-        </div>
-        <div class="HDZXproductList">
-
-        </div>
-    </div>
-    <div class="productBox">
-        <div class="productBoxTitle">
-            <p class="titleLeft">理财专区</p>
-            <img style="margin-left:248px;" src="/ccc/index/img/property.png" alt="">
-            <p class="titleRight"><a href="/invest" style="text-decoration:none">查看更多 ></a>
-            </p>
-        </div>
-        <div class="LCZQproductList">
-
-        </div>
-    </div>
--->
-
-
-
-
-
+    
 <!--合作伙伴-->
-<div class="container">
+<div class="partnerList">
    <div class="partner">
         <h4>合作伙伴</h4>
-        <div class="icon-grounp">
-        </div>
+        <div class="icon-grounp"></div>
     </div>
 </div>
 
-
-</div>
-
-
 <script src="/ccc/index/js/main/index.js"></script>
-<script type="text/javascript">
-        try {
-            var isStoped = false,userisStoped = false;
-            var oScroll = document.getElementById("scrollWrap");
-            var useroScroll = document.getElementById("userscrollWrap");
-
-            oScroll.onmouseover = new Function('isStoped = true');
-            oScroll.onmouseout = new Function('isStoped = false');
-            useroScroll.onmouseover = new Function('userisStoped = true');
-            useroScroll.onmouseout = new Function('userisStoped = false');
-
-            var preTop = 0, userpreTop = 0;
-            var curTop = 0,usercurTop = 0;
-            var stopTime = 0,userstopTime = 0;
-            var oScrollMsg = document.getElementById("scrollMsg");
-            var useroScrollMsg = document.getElementById("userscrollMsg");
-            oScroll.appendChild(oScrollMsg.cloneNode(true));
-            useroScroll.appendChild(useroScrollMsg.cloneNode(true));
-
-            init_srolltext(oScroll,'scrollUp()');
-            init_srolltext(useroScroll,'userscrollUp()');
-        } catch (e) {}
-
-        function init_srolltext(obj,scroll) {
-            obj.scrollTop = 0;
-            setInterval(scroll, 15);
-        }
-
-        function scrollUp() {
-                if (isStoped)
-                    return;
-                curTop += 1;
-                if (curTop == 19) {
-                    stopTime += 1;
-                    curTop -= 1;
-                    if (stopTime == 180) {
-                        curTop = 0;
-                        stopTime = 0;
-                    }
-                } else {
-                    preTop = oScroll.scrollTop;
-                    oScroll.scrollTop += 1;
-                    if (preTop == oScroll.scrollTop) {
-                        oScroll.scrollTop = 0;
-                        oScroll.scrollTop += 1;
-                    }
-                }
-            }
-        function userscrollUp() {
-                if (userisStoped)
-                    return;
-                usercurTop += 1;
-                if (usercurTop == 19) {
-                    userstopTime += 1;
-                    usercurTop -= 1;
-                    if (userstopTime == 180) {
-                        usercurTop = 0;
-                        userstopTime = 0;
-                    }
-                } else {
-                    userpreTop = useroScroll.scrollTop;
-                    useroScroll.scrollTop += 1;
-                    if (userpreTop == useroScroll.scrollTop) {
-                        useroScroll.scrollTop = 0;
-                        useroScroll.scrollTop += 1;
-                    }
-                }
-            }
-
-</script>
 </dsBody>
