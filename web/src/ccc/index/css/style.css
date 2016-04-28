@@ -1,10 +1,12 @@
 /**
  * index 首页样式
  */
+/*
 
 #main-container * {
 	font-family: '微软雅黑';
 }
+*/
 
 .carousel-wrapper {
 	width: 100%;
@@ -545,7 +547,13 @@ a {
 	margin-top: 12px;
 	/*    margin-bottom: 12px;*/
 }
+.loanWrapper .pre-rate {
+    background-image: url(/ccc/index/img/rate.png);
+    background-repeat:no-repeat; 
+    background-position:center;
+    background-size: 100%;
 
+}
 .loanWrapper .rate {
 	color: #ff5451;
 	font-size: 24px;
@@ -778,10 +786,10 @@ a {
 .investList ul li:hover{
     cursor: pointer;
 }
-.investList .productList div{
+.investList .productList{
     display: none;
 }
-.investList .productList div.active{
+.investList .productList.active{
     display: block;
 }
 .investList .listContent{
@@ -801,11 +809,13 @@ a {
 .hotList .listContent{
     border-top: 2px solid #fa6290;  
 }
+/*
 .hotAd{
     background: url(/ccc/index/img/hot_ad.png) no-repeat center center;
     height: 304px;
     background-size: 235px;
 }
+*/
 /*合作伙伴*/
 .partnerList{ 
     padding-bottom: 35px;

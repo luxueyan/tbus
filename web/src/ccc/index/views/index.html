@@ -183,9 +183,13 @@
             <a href="">查看更多 》</a>
         </div>
         <div class="listContent">
-            <div class="productList">
-                <div class="DCBproductList active">1</div>
+            <div class="productList active">
+                <div class="DCBproductList">1</div>
+            </div>
+             <div class="productList">
                 <div class="LHBproductList">2</div>
+            </div>
+             <div class="productList">
                 <div class="SBTZproductList">3</div>
             </div>
         </div>
@@ -195,7 +199,9 @@
     </div>
     <!--广告位-->
     <div class="ad">
-        <img src="/ccc/index/img/ad.png" style="width:100%;margin-top:42px;">
+        {{#middleAd}}
+        
+        {{/middleAd}}
     </div>
     <!--热门推荐-->
     <div class="hotList">
@@ -208,7 +214,9 @@
             <div class="HOTproductList"></div>
         </div>
         <div class="rightAd">
-            <div class="hotAd"></div>
+            {{#hotAd}}
+            <img src="{{content}}" style="width:100%;">
+            {{/hotAd}}
         </div>
     </div>
 </div>

@@ -281,7 +281,9 @@
     border-top: 1px dashed #cbc8b8;
     padding-top: 20px;
 }
-
+.free-register a:hover{
+    text-decoration: none;
+}
 .banner-account－box{
     position: absolute;
     top:50%;

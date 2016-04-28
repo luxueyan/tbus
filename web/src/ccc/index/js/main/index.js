@@ -28,7 +28,7 @@ $(function () {
         $(this).addClass('active').siblings().removeClass('active');
         
         var _this = $(this).parent().parent().parent().children('.listContent');
-        _this.find('.productList div').eq($(this).index()).addClass('active').siblings().removeClass('active');
+        _this.find('.productList').eq($(this).index()).addClass('active').siblings().removeClass('active');
     });
 });
 
@@ -41,35 +41,35 @@ function replaceStr(str){
 
 IndexService.getLoanSummary(function (list) {
 
-    var listXSZX = [],listHDZX = [],listXJB = [],listXNB = [],listFB = [],listLCZQ = [];
+    var listXSZX = [],listDCB = [],listLHB = [],listSBTZ = [],listHOT = [];
     for(var i=0;i<list.length;i++){
         list[i].method = i18n.enums.RepaymentMethod[list[i].method][0];
         list[i].titleLength = replaceStr(list[i].title);
         if(list[i].titleLength > 60){
              list[i].title = list[i].title.substr(0,60)+'...';
         }
-        //		 console.log(list[i].titleLength);
+
         if(list[i].loanRequest.productKey == 'NEW'){
              listXSZX.push(list[i]);
-         }else if(list[i].loanRequest.productKey == 'HDZX'){
-             listHDZX.push(list[i]);
-         }else if(list[i].loanRequest.productKey == 'XJB'){
-             listXJB.push(list[i]);
-         }else if(list[i].loanRequest.productKey == 'XNB'){
-             listXNB.push(list[i]);
-         }else if(list[i].loanRequest.productKey == 'FB'){
-             listFB.push(list[i]);
+         }else if(list[i].loanRequest.productKey == 'DCB'){
+             listDCB.push(list[i]);
+         }else if(list[i].loanRequest.productKey == 'LHB'){
+             listLHB.push(list[i]);
+         }else if(list[i].loanRequest.productKey == 'SBTZ'){
+             listSBTZ.push(list[i]);
+         }else if(list[i].loanRequest.productKey == 'HOT'){
+             listHOT.push(list[i]);
          }
      }
 
-    listLCZQ = [listXJB[0],listXNB[0],listFB[0]];
-
-    for(var i=0; i<listLCZQ.length; i++){
-        if(listLCZQ[i] == undefined || listLCZQ[i] == ''){
-            listLCZQ.splice(i,1);
-            i-=1;
-        }
-    }
+//    listLHB = [listLHB[0],listXNB[0],listFB[0]];
+//
+//    for(var i=0; i<listLHB.length; i++){
+//        if(listLHB[i] == undefined || listLHB[i] == ''){
+//            listLHB.splice(i,1);
+//            i-=1;
+//        }
+//    }
     var investRactive = new Ractive({
         el: ".NEWproductList",
         template: require('ccc/global/partials/singleInvest1.html'),
@@ -80,19 +80,35 @@ IndexService.getLoanSummary(function (list) {
     });
 
     var investRactive = new Ractive({
-        el: ".HDZXproductList",
-        template: require('ccc/global/partials/singleInvest.html'),
+        el: ".DCBproductList",
+        template: require('ccc/global/partials/singleInvest1.html'),
         data: {
-            list: listHDZX,
+            list: listDCB,
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });
 
     var investRactive = new Ractive({
-        el: ".LCZQproductList",
-        template: require('ccc/global/partials/singleInvest.html'),
+        el: ".LHBproductList",
+        template: require('ccc/global/partials/singleInvest1.html'),
         data: {
-            list: listLCZQ,
+            list: listLHB,
+            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+        }
+    });    
+    var investRactive = new Ractive({
+        el: ".SBTZproductList",
+        template: require('ccc/global/partials/singleInvest1.html'),
+        data: {
+            list: listSBTZ,
+            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+        }
+    });    
+    var investRactive = new Ractive({
+        el: ".HOTproductList",
+        template: require('ccc/global/partials/singleInvest1.html'),
+        data: {
+            list: listHOT,
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });
@@ -274,7 +290,6 @@ request.get(encodeURI('/api/v2/cms/category/COOPERATION/name/合作伙伴'))
         var partnerRactive = new Ractive({
             el: '.partner .icon-grounp',
             template: require('ccc/index/partials/partner.html'),
-//            template: '{{#each cooperation}} <div class="icon-single"><a href="{{author}}"><img class="company-pic" src="{{url}}" /></a></div>{{/each}}',
             data: {
                 list: []
             },
@@ -374,7 +389,3 @@ function es6(){
     //o.log(typeof sym);
 }
 
-//require('ccc/index/js/main/ss.js')
-//
-//$(".loanWrapper").hover(function(){$(this).css("border-color","#A0C0EB");},function(){$(this).css("border-color","#d8d8d8")});
-//jQuery(".invests-list-wrapper-box").slide({titCell:"",mainCell:".invests-list-wrapper",autoPage:true,effect:"leftLoop",autoPlay:true,vis:4});
