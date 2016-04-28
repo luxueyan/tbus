@@ -114,11 +114,9 @@ action('inited').onValue(function (registerRactive) {
         });
         store('checkResult', field).plug(asyncCheck.flatMapLatest(Bacon.fromPromise));
 
-        var loading$ = store('loading', field);
-
         // 先设置依赖关系
-        loading$.plug(astore('check', field).map(true));
-        loading$.plug(store('checkResult', field).map(false));
+        store('loading', field).plug(astore('check', field).map(true));
+        store('loading', field).plug(store('checkResult', field).map(false));
 
         store('errCode', field).plug(action('startEditing', field).map(false));
         store('errCode', field).plug(store('checkResult', field)); // checkResult 的结果就是 errCode
@@ -126,32 +124,11 @@ action('inited').onValue(function (registerRactive) {
         store('errMsg', field).plug(store('errCode', field).map(errmsgs.getFromErrCode));
 
         // 最后 push 上默认值
-        loading$.push(false);
+        store('loading', field).push(false);
         store('errCode', field).push(false);
 
-        var inputLoading$ = store('inputLoading', field);
-        loading$.onValue((function() {
-            var lastEnd = 0;
-            function checkAndTrigger(start) {
-                return function () {
-                    var now = Date.now();
-                    if (lastEnd < start) {
-                        inputLoading$.push(true);
-                    }
-                };
-            }
-            return function (v) {
-                if (v) {
-                    setTimeout(checkAndTrigger(Date.now()), 200);
-                } else {
-                    lastEnd = Date.now();
-                    inputLoading$.push(false);
-                }
-            };
-        }()));
-
         store(field).plug(Bacon.combineTemplate({
-            loading: store('inputLoading', field),
+            loading: store('loading', field),
             value: store('value', field),
             errCode: store('errCode', field),
             errMsg: store('errMsg', field),
