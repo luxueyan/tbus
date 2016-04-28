@@ -3,9 +3,9 @@ var moment = require('moment');
 module.exports = function (router) {
 router.get('/', function (req, res, next) {
     var user = res.locals.user;
-    res.locals.title = '首页_718金融理财平台';
+    res.locals.title = '华瑞金科';
     res.locals.keywords = '理财、投资、财富、理财投资、个人理财、理财产品、理财平台、金融理财、个人投资、普惠金融';
-    res.locals.description = '718金融理财平台是新毅网络旗下，致力于为投资者提供专业、绿色、智能、透明、安全的理财服务，是新型的互联网理财服务交易平台。';
+    res.locals.description = '华瑞金科致力于为投资者提供专业、绿色、智能、透明、安全的理财服务，是新型的互联网理财服务交易平台。';
     if (user && user.idNumber) {
         delete user.idNumber;
     }
@@ -18,9 +18,7 @@ router.get('/', function (req, res, next) {
         .get('body')
         .then(function(data){
             return data;
-//              console.log("....data");
-//              console.log(data);
-              });
+        });
     res.locals.regUser = req.uest(
         '/api/v2/users/getHomeDynamicData?userDynamicTypes=RIGISTER&userDynamicTypes=COUPON&userDynamicTypes=INVEST')
         .end()
@@ -46,8 +44,6 @@ router.get('/', function (req, res, next) {
         .end()
         .get('body')
         .then( function(data){
-        console.log("+++data");
-              console.log(data);
             data = (Array.isArray(data) ? data : []).sort(compare('pubDate'));
             return data;
         });
@@ -83,20 +79,20 @@ router.get('/', function (req, res, next) {
             data = (Array.isArray(data) ? data : []).sort(compare('pubDate'));
             return data;
         });
-    res.locals.advertisement = req.uest(
-        '/api/v2/cms/category/OTHER/name/' + encodeURIComponent('广告'))
+    res.locals.hotAd = req.uest(
+        '/api/v2/cms/category/IMAGE/name/' + encodeURIComponent('热门广告位'))
         .end()
         .get('body')
         .then( function(data){
-            data = (Array.isArray(data) ? data : []).sort(compare('pubDate'));
+//            data = (Array.isArray(data) ? data : []).sort(compare('pubDate'));
             return data;
         });
-//     res.locals.friendsLinks = req.uest(
-//         '/api/v2/cms/category/LINK/name/' + encodeURIComponent('友情链接'))
-//         .end()
-//         .get('body').then( function(data) {
-//            return data;
-//        });
+     res.locals.middleAd = req.uest(
+         '/api/v2/cms/category/IMAGE/name/' + encodeURIComponent('页中广告位'))
+         .end()
+         .get('body').then( function(data) {
+            return data;
+        });
 //     res.locals.cooperation = req.uest(
 //         '/api/v2/cms/category/COOPERATION/name/' + encodeURIComponent('合作伙伴'))
 //         .end()

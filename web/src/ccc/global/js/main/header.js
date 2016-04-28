@@ -2,6 +2,22 @@
 
 var utils = require('ccc/global/js/lib/utils');
 
+$(".s-header-info .app").hover(
+    function () {
+        $(".app_img").fadeIn("fast");
+    }, 
+    function () {
+        $(".app_img").fadeOut("fast");
+    });
+
+$(".s-header-info .wx_img").hover(
+    function () {
+        $(".wx_gzh").fadeIn("fast");
+    }, 
+    function () {
+        $(".wx_gzh").fadeOut("fast");
+    });
+
 //导航状态
 var path = window.location.pathname;
 
