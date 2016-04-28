@@ -1,45 +1,418 @@
-.rinput {
-    position: relative;
-    padding: 25px 0 0;
-    margin-bottom: 5px;
+
+
+#to-step2 {
+	display: inline-block;
 }
-.rinput input {
-    padding: 2px 5px;
-    border: 0 none;
-    border-bottom: 1px #ccc solid;
-    transition: border-bottom .4s;
+
+
+.zmcf_logreg_box .left {
+	float: left;
 }
-.rinput input:focus {
-    outline: 0 none;
-    border-bottom: 1px #666 solid;
-    box-shadow: inset 0 -2px 3px -3px #888;
+
+.zmcf_logreg_list {
+	width: 357px;
 }
+
+.zmcf_logreg_list li {
+	position: relative;
+	margin-bottom: 17px;
+}
+
+.zmcf_logreg_list .title,
+.zmcf_logreg_box .more_log .title {
+	display: inline-block;
+	width: 86px;
+	font-size: 16px;
+	text-align: right;
+	padding-right: 15px;
+	color: #707070;
+}
+
+.zmcf_logreg_box .more_log .title em {
+	font-style: normal;
+	color: #f17420;
+	padding-right: 5px;
+}
+
+.zmcf_logreg_list .logreg_input {
+	width: 266px;
+	padding: 8px 9px;
+	border: 1px solid #d1e0e9;
+	font-family: inherit;
+	font-size: 13px;
+	height: 37px;
+}
+
+.zmcf_hint {
+	position: absolute;
+	left: 89px;
+	bottom: -20px;
+	color: #005387;
+	font-size: 13px;
+}
+
+.zmcf_hint_error {
+	color: #CF0410;
+}
+
+.zmcf_logreg_list .zmcf_forget {
+	display: inline-block;
+	margin-left: 23px;
+	color: #0066ff;
+}
+
+.zmcf_logreg_list .zmcf_yzm {
+	position: absolute;
+	right: 29px;
+	top: 0;
+}
+
+.zmcf_logreg_list .zmcf_yzm a {
+	font-size: 13px;
+	color: #999;
+	text-align: center;
+}
+
+.zmcf_logreg_list .logreg_btn {
+	margin-left: 135px;
+	width: 234px;
+	height: 48px;
+	background: #d4bb76 url(/ccc/login/img/btn_bg47.png) repeat-x 0 1px;
+	border: none;
+	cursor: pointer;
+	font-size: 16px;
+	font-family: inherit;
+	color: #fff;
+	letter-spacing: 5px;
+	text-align: center;
+	border-radius: 5px;
+	font-weight: bold;
+}
+
+.zmcf_logreg_list .logreg_btn:hover {
+	background-color: #ead446;
+}
+
+.zmcf_logreg_box .go_reg {
+	padding: 30px 0 0 145px;
+}
+
+.zmcf_logreg_box .go_reg a {
+	color: #005387;
+}
+
+.zmcf_logreg_box .more_log {
+	margin-top: 35px;
+}
+
+.zmcf_logreg_box .more_log {
+	line-height: 38px;
+}
+
+.zmcf_logreg_box .more_log .more_link {
+	display: inline-block;
+	margin-left: 24px;
+	color: #005387;
+}
+
+.zmcf_logreg_box .more_log .common_icon {
+	width: 39px;
+	height: 38px;
+	vertical-align: -14px;
+}
+
+.zmcf_logreg_box .more_log .qq_log {
+	background-position: 0 -20px;
+}
+
+.zmcf_logreg_box .more_log .wechat_log {
+	background-position: -40px -20px;
+}
+
+.zmcf_logreg_box .right {
+	float: left;
+}
+/*注册*/
+
+.zmcf_logreg_box .right_reg {
+	float: left;
+	margin-left: -50px;
+	z-index: 10;
+}
+
+.zmcf_logreg_list .protocol {
+	padding-left: 135px;
+	margin-bottom: 30px;
+}
+
+.zmcf_logreg_list .protocol a {
+	color: #005387;
+}
+
+.zmcf_logreg_list .go_log {
+	padding-left: 30px;
+	color: #005387;
+}
+
+.zmcf_logreg_list .go_log a {
+	color: #0066ff;
+}
+
+.zmcf_sms_captcha {
+	position: absolute;
+	right: auto;
+	top: 0;
+	left: 265px;
+	width: 126px;
+}
+
+.space {
+	display: inline-block;
+}
+/*
+.register-body {
+    border: 1px solid #dfdfdf;
+    overflow: hidden;
+}
+*/
+
+.register-wp .btn-post {
+	border-radius: 3px;
+}
+
+.zmcf_logreg_list .smsCaptcha {
+	width: 105px;
+}
+
+.zmcf_logreg_list input {
+	border-radius: 3px;
+}
+
+.zmcf_logreg_list .btn-default {
+	padding: 7px 12px;
+	background-color: #DEDEDE;
+	width: 100%;
+}
+
+.reg-step {
+	width: 759px;
+	height: 83px;
+	background-color: transparent;
+	background-image: url(/img/reg.png);
+	background-repeat: no-repeat;
+	background-position: center top;
+	margin: 0 auto;
+}
+
+.reg-step .step-2 {
+	background-position: center -83px;
+}
+
+.reg-step .step-3 {
+	background-position: center -166px;
+}
+
+.top-errors {
+	width: 350px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	background-color: #f2dede;
+	border-color: #ebccd1;
+	color: #a94442;
+	display: none;
+}
+
+.orange {
+	color: #f17420!important;
+}
+
+.step {
+	overflow: hidden;
+}
+
+.step2,
+.step3 {
+	display: none;
+	padding-top: 40px;
+}
+
+.step2,
+.step3 h2,
+h3 {
+	color: #555;
+}
+
+.step2,
+.step3 h2 {
+	padding-bottom: 20px;
+}
+
+.step2,
+.step3 h3 {
+	font-weight: normal;
+	font-size: 14px;
+}
+
+.step2,
+.step3 p {
+	width: 530px;
+	margin: 30px auto;
+	background: #C4DFEC;
+	border-radius: 5px;
+	padding: 20px;
+	color: #6B6B6B;
+}
+
+.step2,
+.step3 .btn-open {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	width: 150px;
+}
+
+.danger-font {
+	width: 310px;
+	border: 3px solid red;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 30px;
+	padding: 5px 0;
+	font-size: 20px;
+}
+/*
+.register-body {
+    background: #fff;
+}
+*/
+/*
+.register-process-graph {
+    width: 870px;
+    height: 90px;
+    background-color: transparent;
+    background-image: url(/ccc/register/img/tep01.png);
+    background-repeat: no-repeat;
+    background-position: center top;
+    margin: 34px auto;
+}
+*/
+
+.register-center {
+	width: 870px;
+	height: 238px;
+	margin: 34px auto;
+}
+
+.blue-emphasize {
+	color: #24b2e7;
+}
+/*
+.register-right img {
+    width: 432px;
+}
+*/
+
+.next-step-div {
+	width: 760px;
+	margin: 34px auto;
+	margin-top: 0px;
+	padding-left: 35px;
+}
+
+.agreement-label {
+	width: 272px;
+	height: 48px;
+	display: inline-block;
+	margin-left: 10px;
+}
+
+.register-body-center {
+	margin: auto;
+	width: 1100px;
+}
+
 .pi-placeholder {
-    position: absolute;
-    transition-duration: .2s;
-    transition-property: top,font-size,color;
-    color: #999;
-    cursor: text;
-    top: 27px;
-    left: 8px;
-    font-size: 16px;
+	width: 110px;
+	color: #707070;
+	font-size: 16px;
+	text-align: right;
 }
-.pi-placeholder__filled {
-    position: absolute;
-    top: 4px;
-    left: 4px;
+
+.rinput {
+	position: relative;
+    margin-bottom: 20px;
+}
+.rinput .mdi{
+     position: absolute;
+    border-right: 1px solid #ccc;
+    height: 40px;
+    width: 38px;
+}
+
+#password-pic {
+    padding-left: 30px;
+    color: #d2252c;
     font-size: 12px;
-    color: #333;
+    background-image: url(/ccc/register/img/gou-bg.png);
+    background-repeat: no-repeat;
+    background-position: left center;
 }
-#register-wrapper > form {
-    display: none;
+
+.rinput input[type=checkbox] {
+	width: 22px;
+	height: 14px;
 }
-#register-wrapper.on-step-0 > #register-step-0 {
+
+.agree-register-protocol {
+	height: 34px;
+	position: relative;
+	font-size: 14px;
+	line-height: 20px;
+	color: #999999;
+	width: 280px;
+	text-align: center;
+}
+
+
+.register-step-0,
+.register-step-1,
+.register-step-2 {
+	display: none;
+}
+
+.agreement-div label a {
+	color: #999999;
+}
+
+.on-step-0 .register-step-0,
+.on-step-1 .register-step-1,
+.on-step-2 .register-step-2 {
+	display: block;
+}
+
+
+
+/*华瑞金科*/
+.register-body{
+    margin-top: 80px;
+}
+.register-body .register-body-img img{
     display: block;
+    margin: auto;
+    padding-top: 30px;
 }
-#register-wrapper.on-step-1 > #register-step-1 {
-    display: block;
+
+#register-wrapper{
+    margin-left: 100px;
 }
-#register-wrapper.on-step-2 > #register-step-2 {
-    display: block;
+
+.agreement-div .next-step {
+	padding-left: 28px;
+    background-color: #ef9c2c;
+    color: #fff;
+    letter-spacing: 30px;
+    font-size: 16px;
+    border: none;
+}
+.regist-success{
+    background: url()
 }

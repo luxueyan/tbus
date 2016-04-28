@@ -1,0 +1,406 @@
+.reg-navinfo{
+    width: 1000px;
+    height: 45px;
+    line-height: 45px;
+    margin: 0 auto;
+}
+.container {
+    width: 1100px;
+    margin: 40px auto;
+    background: #fff;
+    padding-bottom: 100px;
+}
+.register-process-graph {
+    width: 1000px;
+    margin: auto;
+}
+
+.register-process-graph .Path {
+    overflow: hidden;
+}
+
+.register-process-graph .Path li {
+    float: left;
+}
+
+.register-process-graph .Path li,
+.register-process-graph .Path li a {
+    color: #4e90cc;
+    font-size: 13px;
+    line-height: 16px;
+    line-height: 50px;
+}
+
+.register-process-graph .transition {
+    overflow: hidden;
+}
+
+.register-process-graph .transition .firstep {
+    float: left;
+    width: 86px;
+    text-align: center;
+    margin-left: 74px;
+    color: #34acdd;
+    padding-top: 105px;
+    font-size: 13px;
+    background-image: url(/ccc/register/img/tep01.png);
+    background-repeat: no-repeat;
+    background-position: left top;
+    line-height: 13px;
+}
+
+.register-process-graph .transition .link {
+    float: left;
+    float: left;
+    background-color: #f5f5f5;
+    width: 680px;
+    height: 12px;
+    margin-top: 37px;
+}
+
+.register-process-graph .transition .sectep {
+    float: left;
+    width: 86px;
+    text-align: center;
+    color: #898989;
+    padding-top: 105px;
+    font-size: 13px;
+    background-image: url(/ccc/register/img/tep2.png);
+    background-repeat: no-repeat;
+    background-position: left top;
+    line-height: 13px;
+}
+
+.register-process-graph .division {
+    height: 2px;
+    width: 1000px;
+    background-color: #f5f5f5;
+    margin-top: 36px;
+}
+
+.container .register-body .register-body-center #register-container {
+    height: auto;
+    width: 100%;
+    background: #fff;
+}
+
+#register-wrapper .account {
+    color: #9fa0a0;
+    font-size: 13px;
+    line-height: 13px;
+    margin-left: 75px;
+    margin-bottom: 58px;
+    margin-top: 40px;
+}
+
+#register-wrapper .account a {
+    color: #34acdd;
+    font-size: 13px;
+    line-height: 13px;
+}
+
+.rinput label {
+    color: #3c3c3c;
+    float: left;
+    height: 40px;
+    font-weight: normal;
+}
+
+.rinput label em {
+    color: #e81727;
+    line-height: 44px;
+}
+.rinput input{
+    height: 40px;
+    padding-left: 50px;
+    width: 320px;
+    font-size: 1.0em;
+    border: 1px solid #ccc;
+    background-repeat: no-repeat;
+    background-size: 15px;
+    background-position: 10px center;
+}
+.rinput input.phone {
+    background-image: url(/ccc/register/img/mobile_icon.png);
+}
+.rinput input.message {
+    background-image: url(/ccc/register/img/code_icon.png);
+}
+.rinput input.password,
+.rinput input.repassword{
+    background-image: url(/ccc/register/img/psw_icon.png);
+}
+.picnum .register-test {
+    width: 146px;
+    float: left;
+    background-image: url(/ccc/register/img/code_icon.png);
+}
+
+.rinput .tip {
+    color: #d2252c;
+    font-size: 12px;
+    background-image: url(/ccc/register/img/gou-bg.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    line-height: 33px;
+    padding-left: 30px;
+    position: absolute;
+	left: 0;
+	top: 34px;
+}
+.rinput .tip-loading {
+    color: #9fa0a0;
+    font-size: 14px;
+    line-height: 44px;
+    padding-left: 30px;
+    float: left;
+    margin-left: 16px;
+        position: absolute;
+    left: 78px;
+    top: 34px;
+}
+
+.bring-in input {
+    width: 201px;
+}
+
+.bring-in button {
+    background-color: #fff;
+    width: 118px;
+    height: 40px;
+    color: #007ec5;
+    border: 1px solid #ccc;
+    border-left: none;
+    margin-left: -4px;
+}
+
+.bring-in label {
+    line-height: 45px;
+}
+
+.bring-in label em {
+    line-height: 34px;
+}
+
+.rinput .register {
+    width: 176px;
+    height: 44px;
+    border: none;
+    color: #fff;
+    background-color: #2ea7e0;
+    text-align: center;
+    padding-left: 0;
+    margin-left: 200px;
+    margin-top: 26px;
+    display: block;
+}
+
+.rinput .triangle {
+    background-color: #e5e7ea;
+    border: 1px solid #d8dbdf;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+}
+
+.agree-register-protocol p {
+    display: inline;
+}
+
+.agree-register-protocol p a {
+    color: #45b3e0;
+}
+
+.form-group {
+    overflow: hidden;
+    margin-left: 10px;
+}
+
+.form-group .clearfix {
+    float: left;
+}
+
+.form-group label {
+    color: #8d8c8c;
+    float: left;
+    width: 110px;
+    text-align: right;
+    line-height: 44px;
+}
+
+.form-group label em {
+    color: #e81727;
+}
+
+.form-group input {
+    width: 128px;
+    height: 44px;
+    border: 2px solid #d4d4d5;
+    padding-left: 4px;
+    float: left;
+    border-radius: 0;
+    margin-left: 12px;
+}
+
+.form-group .inputtest-pic {
+    float: left;
+}
+
+.form-group .inputtest-pic .pullright {
+    float: left;
+    width: 128px;
+    height: 44px;
+    border: 2px solid #d4d4d5;
+    margin-left: 21px;
+    background-image: url(/ccc/register/img/verify.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.form-group .inputtest-pic span {
+    float: left;
+    width: 26px;
+    height: 30px;
+    background-image: url(/ccc/register/img/update.png);
+    background-repeat: no-repeat;
+    background-position: left top;
+    margin-top: 7px;
+    margin-left: 6px;
+    cursor: pointer;
+}
+
+ .success {
+/*    width: 1100px;*/
+    margin: 0 auto;
+    text-align: center;
+    color: #73bf45;
+    font-size: 26px;
+    line-height: 150px;
+}
+.success img{
+    margin-right: 30px;
+}
+
+.btn01 {
+    color: #fff;
+    font-size: 17px;
+    text-align: center;
+    width: 126px;
+    height: 37px;
+    line-height: 37px;
+    background-color: #3ba9da;
+    border: none;
+    margin-left: 360px;
+    margin-bottom: 100px;
+}
+
+.btn01 a {
+    color: #fff;
+    font-size: 17px;
+    text-align: center;
+    line-height: 37px;
+}
+
+.btn02 {
+    color: #fff;
+    font-size: 17px;
+    text-align: center;
+    width: 126px;
+    height: 37px;
+    line-height: 37px;
+    background-color: #50b748;
+    border: none;
+    margin-left: 10px;
+}
+
+.btn02 a {
+    color: #fff;
+    font-size: 17px;
+    text-align: center;
+    line-height: 37px;
+}
+
+.picnum {
+    overflow: hidden;
+}
+
+.picnum label {
+    float: left;
+}
+
+.picnum span {
+    width: 80px;
+    height: 40px;
+    display: block;
+    float: left;
+}
+
+.picnum span img {
+    width: 90%;
+    margin-top: 10px;
+    margin-left: 2px;
+}
+
+.picnum #refresh-captcha {
+/*    background-image: url(/ccc/register/img/update.png); */
+    cursor: pointer;
+    color: #007ec5;
+    line-height: 40px;
+}
+/*新加*/
+
+.register-title {
+    line-height: 46px;
+    color: #4a4a4a;
+    font-size: 14px;
+}
+
+.register-title a {
+    color: #4a4a4a;
+    font-size: 14px;
+}
+
+
+.register-banner {
+    clear: both;
+}
+
+.register-banner p {
+    text-align: center;
+    color: #999999;
+}
+
+.register-banner a {
+    color: #ef9c2c;
+    font-size: 16px;
+}
+
+
+.change-pic {
+    font-size: 12px;
+    color: #3c3c3c;
+}
+
+#cannot-see {
+    width: 48px;
+    line-height: 40px;
+    color: #3c3c3c;
+    font-size: 12px;
+}
+
+
+
+.agreement-div .i-agree {
+    color: #999999;
+}
+
+.go-account{
+    background: #f68121;
+    width:280px;
+    height: 44px;
+    border: none;
+    border-radius: 5px;
+    color:#fff;
+    font-size: 24px;
+}
+

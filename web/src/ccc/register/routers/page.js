@@ -7,6 +7,8 @@ module.exports = function (router) {
         res.expose('/api/web/register/smsCaptcha', 'registerSmsCaptchaApi');
         res.expose('/api/web/register/voiceCaptcha', 'CC.registerVoiceCaptchaApi');
         res.expose('/api/web/register/submit', 'registerSubmit');
+        res.expose(req.query.refm, 'registerRel');
+		res.expose(req.query.UID, 'channelRel');
         next();
     }, middlewares.registerPage);
 };

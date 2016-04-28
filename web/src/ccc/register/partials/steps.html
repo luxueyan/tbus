@@ -1,0 +1,117 @@
+<div id="register-wrapper" class="on-step-{{onStep}}">
+    <Step>
+        <div class="register-step-0">
+            <div class="register-frame">
+                <RInput field="mobile">  
+                    <div class="rinput">
+                        <span class="mdi"></span>
+                        <input class="phone" name="phone" id="{{rinputId}}" value="{{value}}" placeholder="输入手机号">
+                        <span class="tip">{{#errMsg}}{{errMsg}}{{/if}}</span>
+                    </div>
+                </RInput>
+                <RInput field="imgCaptcha">
+                    <div class="rinput picnum">
+                        <span class="mdi"></span>
+                        <input class="register-test" id="{{rinputId}}" value="{{value}}" placeholder="验证码">
+                        <span on-click='changeImgCaptcha'>
+                            <img src="{{imgCaptchaBase64}}" alt="">
+                        </span>
+                        <span id="cannot-see">看不清?</span>
+                        <span on-click='changeImgCaptcha' id="refresh-captcha">换一张</span>
+                    </div>
+                    <div class="tip01" id="password-pic" style="margin-top: -19px;float:left">
+                        {{#errMsg}}{{errMsg}}{{/errMsg}}
+                    </div>
+                </RInput>
+                <RInput field="mobile_captcha">
+                    <div class="rinput bring-in">
+                        <span class="mdi"></span>
+                        <input id="{{rinputId}}" value="{{value}}" placeholder="输入短信验证码" class="message">
+                        {{#if !smsCaptchaReady}}
+                            <button on-click='sendSmsCaptcha' id="get-message">
+                                发送验证码
+                            </button>
+                        {{else}}
+                        <button on-click='sendSmsCaptcha' {{#if !smsCaptchaReady || smsCaptchaCountDown}}disabled{{/if}}>
+
+                            {{#if smsCaptchaCountDown}} {{smsCaptchaCountDown}}秒后重新发送 {{else}} 发送验证码 {{/if}}
+                        </button>
+                        {{/if}}
+                        <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
+                    </div>
+                </RInput>
+
+                <RInput field="password" valueStableDuration=200>
+                    <div class="rinput">
+                        <span class="mdi"></span>
+                        <input class="password" id="{{rinputId}}" type="password" value="{{value}}" placeholder="输入登录密码" maxlength="16">
+                        <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
+                    </div>
+                </RInput>
+                <RInput field="repassword" valueStableDuration=200>
+                    <div class="rinput">
+                        <span class="mdi"></span>
+                        <input class="repassword" id="{{rinputId}}" type="password" value="{{value}}" placeholder="确认登录密码" maxlength="16">
+                        <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
+                    </div>
+                </RInput>
+<!--
+               <RInput field="reftf">
+                    <div class="rinput">
+                        <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">推荐码:</label>
+                        <input id="{{rinputId}}" name="reftf" value="{{value}}" placeholder="请输入推荐码或手机号，可不填">
+                        <span class="tip-loading">{{#loading}}<img src='/ccc/global/img/loading.gif' style="width:20px;"/>{{/loading}}</span>
+                        <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
+                    </div>
+                </RInput>
+-->
+
+                <RInput field="agreement" valueStableDuration=100>
+                    <div class="rinput agreement-div">
+                        <label class="agree-register-protocol">
+                            <input type="checkbox" name="checkbox" id="{{rinputId}}" checked="{{value}}" />
+                             <span>我同意<span class="i-agree"><a href="/agreement/mobile/regist" target="_blank" class="ccc-agreement">《自金网用户注册协议》</a></span></span>
+                            <br>
+
+                            <span class="tip" style="left:0;top:24px;line-height:14px;"> {{#errMsg}}{{errMsg}}{{/errMsg}}</span>
+                        </label>
+                        {{#if stepLoading}}
+                        <input class="next-step" type="button" value="请稍等" disabled />
+                        {{else}}
+                        <input on-click='nextStep' class="next-step" type="button" value="注册" />
+                        {{/if}}
+                    </div>
+                </RInput>
+
+            </div>
+            <div class="register-banner">
+                <span>已有账号 <a href="/login"> -> 登录</a></span>
+            </div>
+        </div>
+    </Step>
+
+<!--
+    <div class="regist-success">
+        <div class="header">
+            <p class="title">注册成功</p>
+            <img src="/ccc/register/img/close.png"/>
+        </div>
+        <div class="content">
+            <div class="success-img"></div>
+            <div class="success-content">
+                <p>注册完成</p>
+                <p>绑定银行卡后就能进行投资了</p>
+                <div>
+                    <button>以后再说</button>
+                    <button>马上去绑卡</button>
+                </div>
+            </div>
+        </div>
+        
+        <p class="success"><img src="/ccc/register/img/right-icon.png"/>恭喜您，注册成功！<span class="go-to-account"></span></p>
+        <a href="/newAccount/settings/authentication"><button class="go-account">前往我的账户</button></a>
+    </div>
+-->
+
+</div>
+

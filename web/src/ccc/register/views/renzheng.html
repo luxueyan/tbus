@@ -1,0 +1,24 @@
+<link rel="stylesheet" href="/css/style.css">
+<div class="rzwrapper">
+    <div class="rzinner">
+    <div style="text-align: center; padding: 100px 0 200px">
+        {{message}}&nbsp;&nbsp;&nbsp;<span id="countdown">5</span>秒后返回首页...
+    </div>
+    <script type="text/javascript" charset="utf-8">
+        (function () {
+        var el = document.getElementById('countdown');
+        setTimeout(cd, 1000);
+        function cd() {
+            var s = parseInt(el.innerHTML, 10);
+            if (s > 1) {
+                el.innerHTML = ''+(s - 1);
+                setTimeout(cd, 1000);
+            } else {
+                el.innerHTML = '0';
+                location.href = '/';
+            }
+        }
+        }());
+    </script>
+    </div>
+</div>
