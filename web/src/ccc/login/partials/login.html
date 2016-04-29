@@ -1,0 +1,42 @@
+{{#if visible }}
+<div class="popup-login">
+    <div class="row login-form">
+        <h3>欢迎回来老朋友</h3>
+        <div class="close" on-click="close"></div>
+        <form role="form" class="form" on-enter="doLogin">
+            <div class="errors">
+                {{#if errors.visible }}
+                <div class="content">
+                    {{errors.msg}}
+                </div>
+                {{/if}}
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" value="{{loginName}}" placeholder="用户名">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" value="{{password}}" placeholder="密码">
+            </div>
+            <!--
+            <div class="form-group">
+                <input type="text" class="form-control captcha pull-left" value="" placeholder="验证码">
+                
+                <img src="{{captcha.image}}" on-click="changeCaptcha" alt="captcha" class="pull-right"
+                width="150" height="40">
+                <div class="clearfix"></div>
+            </div>
+            -->
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox">记住用户名
+                </label>
+                |没有帐号
+                <a href="#" on-click="register">立即注册</a>
+                <a href="/forgot">忘记密码</a>
+            </div>
+            <button type="submit" on-click="doLogin" on-enter="doLogin" class="btn do-login btn-success btn-large">立即登录</button>
+        </form>
+    </div>
+</div>
+
+{{/if}}

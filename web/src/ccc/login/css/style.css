@@ -1,0 +1,146 @@
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+.s-login-view .s-login-window {
+    margin-left: 80px;
+    margin-top: 60px;
+}
+
+.login-error {
+    text-align: left!important;
+    margin-left: -20px;
+    width: 360px;
+    height: 75px;
+    background-color: #fff6f6;
+    border: 1px solid #ff8585;
+    margin-bottom: 20px;
+    background-image: url(/ccc/login/img/mark.png);
+    background-repeat: no-repeat;
+    background-position: 30px center;
+    padding: 17px 30px 0 80px;
+}
+
+#loginForm .rememberPassword {
+    overflow: hidden;
+}
+
+#loginForm .rememberPassword .banner_right_bluetick .checkbox {
+    margin-top: 16px;
+    display: inline;
+}
+
+#loginForm .rememberPassword .banner_right_bluetick .remember {
+    margin-left: 3px;
+    font-size: 14px;
+    color: #999999;
+}
+
+#loginForm .banner_right_bluetick {
+    float: left;
+}
+
+.s-input-wrapper .lineUser {
+    margin-bottom: 20px;
+}
+
+
+/*华瑞金科*/
+
+.container {
+    width: 1100px;
+    margin: 40px auto;
+    background: #fff;
+    padding-bottom: 100px;
+}
+
+.register-body {
+    margin-top: 80px;
+}
+
+.register-body .register-body-img img {
+    display: block;
+    margin: auto;
+    padding-top: 30px;
+}
+
+.s-input-wrapper .lineUser .mdi {
+    position: absolute;
+    border-right: 1px solid #ccc;
+    height: 40px;
+    width: 38px;
+}
+
+.s-input-wrapper .lineUser .mdi-user {
+    background: url(/ccc/register/img/mobile_icon.png) no-repeat 10px center;
+    background-size: 15px;
+}
+
+.s-input-wrapper .lineUser .mdi-psw {
+    background: url(/ccc/register/img/psw_icon.png) no-repeat 10px center;
+    background-size: 15px;
+}
+
+.s-input-wrapper .lineUser .mdi-code {
+    background: url(/ccc/register/img/code_icon.png) no-repeat 10px center;
+    background-size: 15px;
+}
+
+.s-input-wrapper .lineUser input {
+    height: 40px;
+    padding-left: 50px;
+    width: 320px;
+    font-size: 1.0em;
+    border: 1px solid #ccc;
+}
+
+.s-input-wrapper .lineUser a {
+    color: #4a90e2;
+    text-decoration: underline;
+    padding-left: 15px;
+}
+
+.s-input-wrapper .lineUser .captcha {
+    height: 40px;
+    padding-left: 50px;
+    width: 150px;
+    font-size: 1.0em;
+    border: 1px solid #ccc;
+}
+
+.s-input-wrapper .lineUser span {
+    color: #4a90e2;
+    text-decoration: underline;
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+.s-input-wrapper .lineUser span img {
+    width: 24%;
+}
+
+.s-login-view .s-login-window button {
+    padding-left: 28px;
+    background-color: #ef9c2c;
+    color: #fff;
+    letter-spacing: 30px;
+    font-size: 16px;
+    border: none;
+    width: 320px;
+    height: 44px;
+}
+
+.register-banner {
+    clear: both;
+    margin-top: 40px;
+}
+
+.register-banner p {
+    text-align: center;
+    color: #999999;
+}
+
+.register-banner a {
+    color: #ef9c2c;
+    font-size: 16px;
+}
