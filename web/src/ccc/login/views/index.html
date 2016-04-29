@@ -1,43 +1,63 @@
-<link rel="stylesheet" href="/ccc/global/css/base.css" media="all">
-<link rel="stylesheet" href="/ccc/login/css/login.css" media="all">
-<div class="login__wrapper">
+<dsBody layout={{dsLayoutPath}}>
+    <link rel="stylesheet" href="/ccc/login/css/style.css">
+    <link rel=stylesheet href="/ccc/global/css/base1.css">
+
     <div class="container">
-        <div class="p-g">
-            <div class="p-u-1-2 login__banner">
-                <img src="http://p2p-site.b0.upaiyun.com/c427d7f1-1a12-4999-9753-f4d67936a2ba" alt="banner">
+        <div class="register-body">
+            <div class="register-body-img pull-left  col-md-6">
+                <img src="/ccc/register/img/poster.png">
             </div>
-            <div class="p-u-1-2">
-                <div class="section_header">
-                    <h2 class="section_header__h2">登录东吴在线</h2>
-                    <div class="section_header__right">
-                        <span class="pull-right">还没有帐号？<a href="/register">立即注册</a></span>
-                    </div>
+            <div class="s-login-view pull-left col-md-6">
+                <div class="s-login-window">
+                    <form id="loginForm" action="/login" method="POST">
+
+                        <div class="s-input-wrapper">
+                            <p class="loginlock"></p>
+                            <div class="lineUser">
+                                <span class="mdi mdi-user"></span>
+                                <input type="text" name="loginName" id="txtUserName" placeholder="请输入手机号" class="loginName" />
+<!--                                <span class="mobile login-error"></span>-->
+                            </div>
+                            <div class="lineUser">
+                                <span class="mdi mdi-psw"></span>
+                                <input type="password" name="password" placeholder="请输入密码" id="txtPassword" onpaste='return false;' />
+<!--                                <span class="password login-error"></span>-->
+                                <a href="/forgot">忘记密码？</a>
+                        
+                            </div>
+<!--
+                            <div class="lineUser">
+                                <span class="mdi mdi-code"></span>
+                                <input type="text" name="captcha" id="captcha" placeholder="请输入验证码" class="captcha" />
+                                <span on-click='changeImgCaptcha'>
+                                    <img src="{{captcha.img}}" alt="">
+                                </span>
+                                <span class="other" on-click='changeImgCaptcha'>换一个</span>
+                            </div>
+-->
+                            <input type="hidden" name="backUrl" value="{{backUrl}}">
+                        </div>
+<!--
+                        <div class="rememberPassword">
+                            <div class="banner_right_bluetick pull-left">
+                                <input type="checkbox" name="checkbox" id="chkRememberPwd" class="checkbox">
+                                <span class="remember">记住账号</span>
+                            </div>
+                        </div>
+-->
+                        <button type="submit" class="do-login cursor-pointer" id="login_button">登录</button>
+
+                        <div class="register-banner">
+                            <span>还不是会员？ <a href="/register"> -> 立即注册</a></span>
+                        </div>
+
+                    </form>
                 </div>
-                <form method="POST" class="login__form">
-                    {{#if hasBackUrl}}
-                    <div class="alert alert-warning" style="padding: 8px 15px">需要登录后才能继续访问您正在访问的页面。</div>
-                    {{/if}}
-                    {{#if errMsg}}
-                    <div class="alert alert-danger" style="padding: 8px 15px">{{errMsg}}</div>
-                    {{/if}}
-                    <dl class="login__form__dl">
-                        <dt class="login__form__dt">
-                            <label for="loginName">用户名或手机号</label>
-                        </dt>
-                        <dd class="login__form__dd">
-                            <input class="login__input" type="text" id="loginName" name="loginName"><br>
-                        </dd>
-                        <dt class="login__form__dt">
-                            <label for="password">密码</label>
-                        </dt>
-                        <dd class="login__form__dd">
-                            <input class="login__input" type="password" id="password" name="password"><br>
-                        </dd>
-                    </dl>
-                    <div class="clearfix"></div>
-                    <input class="login__button" type="submit" value="提交">
-                </form>
             </div>
         </div>
     </div>
-</div>
+
+    <div class="space space-50"></div>
+    <script src="/ccc/login/js/main/login.js"></script>
+
+</dsBody>
