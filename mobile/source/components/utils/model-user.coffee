@@ -53,7 +53,7 @@ do (_, angular) ->
                 @has_bank_card = !!@bank_account?.account
                 @has_bank_card_express = _.some @bank_account_list, 'expressAccount'
 
-                @is_newbie = @statistics.settledStatusInvestNumber + @statistics.openStatusInvestNumber < 1
+                @is_newbie = @fund.totalInvest < 1
 
                 @$rootScope.$broadcast 'user.logged_in', @
 
