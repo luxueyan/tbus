@@ -54,7 +54,7 @@ router.post("/api/v2/register", sn(function (req) {
 router.get("/api/v2/register/smsCaptcha", sn(function (req) {
     return req.url = "/api/v2/users/smsCaptcha?mobile=" + req.query['mobile'];
 }), auth.pass());
-router.post("/api/v2/register/smsCaptcha", sn(function (req) {
+router.get("/api/v2/register/smsCaptcha", sn(function (req) {
     return req.url = '/api/v2/users/smsCaptcha';
 }), auth.pass());
 router.get("/api/v2/register/voiceCaptcha", sn(function (req) {

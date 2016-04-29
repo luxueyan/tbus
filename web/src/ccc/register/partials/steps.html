@@ -23,7 +23,7 @@
                         {{#errMsg}}{{errMsg}}{{/errMsg}}
                     </div>
                 </RInput>
-                <RInput field="mobile_captcha">
+                <RInput field="smsCaptcha">
                     <div class="rinput bring-in">
                         <span class="mdi"></span>
                         <input id="{{rinputId}}" value="{{value}}" placeholder="输入短信验证码" class="message">
@@ -87,6 +87,11 @@
             <div class="register-banner">
                 <span>已有账号 <a href="/login"> -> 登录</a></span>
             </div>
+        </div>
+    </Step>
+    <Step>
+        <div class="register-step-1">
+            <span class="succ"> 恭喜，<span>{{email}}</span> 已经注册成功！</span><div class="space space-50"></div><button class="btn01"><a href="/">返回首页</a></button><button class="btn02"><a href="/account/invest">我的河山匯</a></button>
         </div>
     </Step>
 </div>
