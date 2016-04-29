@@ -55,7 +55,7 @@ router.get('/api/v2/users/smsCaptcha', conext(function *(req, res, next) {
     auth.pass()(req, res, next);
 }));
 router.get('/api/v2/users/smsVoiceCaptcha', auth.pass());
-router.post('/api/v2/users/smsCaptcha', auth.pass());
+router.get('/api/v2/users/smsCaptcha', auth.pass());
 router.post('/api/v2/users/voiceCaptcha', auth.pass());
 router.get('/api/v2/users/smsCaptcha/changePwd', auth.pass());
 router.post('/api/v2/users/check/id_number', auth.pass());
