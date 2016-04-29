@@ -20,5 +20,8 @@ module.exports = function (router, auth) {
     router.post('/api/v2/hundsun/withdraw/:userId', auth.owner());
 
     router.post('/api/v2/coupon/:userId/redeemCouponIgnoreApproval', auth.owner());
+    
+    //注册
+    router.get('/api/v2/users/smsCaptcha', auth.pass());
 
 };
