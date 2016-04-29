@@ -65,3 +65,21 @@ if (CC.registerRel) {
 if (CC.channelRel) {
     registerRactive.set('channel.data.value', CC.channelRel);
 }
+
+
+
+//弹出框
+$('.pop-box').css({
+    height:$(window).height(),
+    width:$(window).width()
+})
+
+$('.btm').click(function(){
+    $('.pop-box').fadeIn(1000);
+    $('.register-success').fadeIn(1000);
+})
+$('.close-img').click(function(){
+    $('.register-success').fadeOut(100);
+    $('.pop-box').fadeOut(1000);
+   
+})
