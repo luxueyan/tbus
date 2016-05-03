@@ -46,7 +46,7 @@ do (_, angular) ->
 
                 @$scope.loading = true
 
-                (@api.get_user_investments(query_set, true)
+                (@api.get_user_investments(query_set, false)
 
                     .then ({results, totalSize}) =>
 
