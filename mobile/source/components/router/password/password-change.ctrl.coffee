@@ -25,10 +25,15 @@ do (_, angular) ->
                     .then (data) =>
                         @$window.alert @$scope.msg.SUCCEED
 
-                    .then => @api.login(mobile, password)
+                    # .then => @api.login(mobile, password)
 
-                    .then =>
-                        @$location.path 'dashboard'
+                    # .then =>
+                    #     @$location.path 'dashboard'
+
+                        @api.user_fetching_promise = null
+                        @user.has_logged_in = false
+
+                        @$location.path '/login'
 
                     .catch (data) =>
                         if _.get(data, 'error') is 'access_denied'
