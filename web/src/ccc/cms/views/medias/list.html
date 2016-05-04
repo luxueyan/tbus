@@ -1,0 +1,42 @@
+<dsBody layout={{dsLayoutPath}}>
+<link rel="stylesheet" href="/ccc/cms/css/list.css">
+<div class="news-page">
+    <div class="list-container">
+        <h1 class="title">{{channelName}}</h1>
+        <div class="list-wrapper">
+            <div class="list-main">
+                {{#news}}
+                    <dl>
+                    <dd><a href="/cms/p/{{this.id}}">{{this.title}}</a>
+                    </dd>
+                    <dt>{{this.pubDate}}</dt> 
+                    <b class="arrow icon-angle-down toggleBtn"></b>
+                    <div class="content">{{{this.content}}}</div>
+                </dl>
+                {{/news}}
+                <div class="clear_left"></div>
+            </div>
+            <div class="page">
+                <ul>
+                    {{#if current > 1}}
+                        <li class="prev"><a href="/cms/news?page={{current - 1}}">上一页</a></li>
+                    {{/if}}
+                    {{#totalPage}}
+                            <li class="item {{#if current == @key + 1}} active-page {{/if}}">
+                                <a href="/cms/news?page={{@key + 1}}">
+                                    <span class="current">
+                                        {{@key + 1}}
+                                    </span>
+                                </a>
+                            </li>
+                    {{/totalPage}}
+                    {{#if current < totalPage.length }}
+                        <li class="next"><a href="/cms/news?page={{current + 1}}">下一页</li>
+                    {{/if}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/ccc/cms/js/main/list.js"></script>
+</dsBody>

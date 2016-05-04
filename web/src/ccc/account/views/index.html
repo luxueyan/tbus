@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="/ccc/global/css/modules/cccTips.css">
+<link rel="stylesheet" href="/ccc/account/css/common.css">
+<link rel="stylesheet" href="/ccc/account/css/index.css">
+<link rel="stylesheet" href="/ccc/global/css/modules/cccCalendar.css">
+<link rel="stylesheet" href="/ccc/global/css/modules/cccCalculator.css">
+
+
+<div class="account-wraper">
+    {{>topNav}}
+    <div class="space space-30"></div>
+    <div>
+        <div class="row ccc-container">
+            <div class="col-md-6">
+                <div class="tit-box has-line">
+                    <h4>信息统计</h4>
+                </div>
+                <div class="space space-5"></div>
+                <div class="ccc-chart-wrap">loading...</div>
+            </div>
+            <div class="col-md-6">
+                <div class="tit-box has-line">
+                    <h4>资金日历</h4>
+                    <div class="tit-toolbar calendar-ctrl">
+                        <span class="current-month-tit"></span>
+                        <div class="btn-group btn-group-xs">
+                            <button type="button" class="btn btn-default ccc-tips-top arrow"
+                            data-arrow="prev" title="上一月">
+                                <i class="fa fa-chevron-left"></i>
+                            </button>
+                            <button type="button" class="btn btn-default ccc-tips-top arrow"
+                            data-arrow="curr" title="当前月">
+								<i class="fa fa-home"></i>
+                            </button>
+                            <button type="button" class="btn btn-default ccc-tips-top arrow"
+                            data-arrow="next" title="下一月">
+                                <i class="fa fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="space space-5"></div>
+                <div class="account-calendar-wrap">loading...</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="space space-20"></div>
+    <div class="has-line">
+        <div class="row ccc-container">
+            <div class="col-md-12">
+                <div class="tit-box">
+                    <h4>我的投资</h4>
+                    <div class="tit-toolbar">
+                    	<a href="/account/invest">更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="space space-8"></div>
+    <div class="ccc-container row">
+        <div class="col-md-12 ccc-myinvest-wrap">loading...</div>
+    </div>
+</div>
+<div class="space space-30"></div>
+<script src="/ccc/account/js/main/index.js"></script>
+</dsBody>

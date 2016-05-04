@@ -1,0 +1,77 @@
+<table class="table table-hover has-padding">
+    <thead>
+        <tr>
+            <th class="col-md-2">投资时间</th>
+            <th class="col-md-2">项目名称</th>
+            <th class="col-md-1">年化利率</th>
+            <th class="col-md-1">期限</th>
+            <th class="col-md-1">投资金额</th>
+            <th class="col-md-1">已回款(元)</th>
+            <th class="col-md-1">待回款(元)</th>
+            <th class="col-md-1">状态</th>
+            <th class="col-md-2">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+        <tr>
+            <td>{{dateTime}}</td>
+            <td>
+                <a href="/loan/{{loanId}}">{{loanTitle}}</a>
+            </td>
+            <td>{{rate/100}}%</td>
+            <td>{{duration.totalDays}}天</td>
+            <td>{{Famount}}</td>
+            <td>{{Frepayed}}</td>
+            <td>{{Funrepay}}</td>
+            {{#if Fstatus == '已结算'}}
+            <td>已起息</td>
+            {{else}}
+            <td>{{Fstatus}}</td>
+            {{/if}}
+            <td class="align-center">
+                <button class="operation btn btn-smaller" data-invest="{{id}}" data-amount="{{amount}}" data-title="{{loanTitle}}">转让</button>
+                <!-- {{#if hasContract}} {{#HIDE}}
+                <button class="btn btn-smaller btn-blue-light" on-click="show-repayments" data-id="{{id}}" data-loanid="{{loanId}}">还款计划</button>
+                {{/HIDE}}
+                <a href="/account/invest/allContracts/{{id}}" class="btn btn-smaller btn-light" target="_blank">查看合同</a> {{else}} {{#if status === 'CANCELED'}}
+                <i class="fa fa-ban text-muted size-16 tips-top tooltip-error" title="已被取消"></i> {{else}} {{#if loan.timeSettled}}
+                <i class="fa fa-clock-o text-muted tips-top" title="已购买成功，合同将于{{moment(loan.timeSettled).add(1, 'day').format('YYYY-MM-DD')}}日生成"></i> {{else}}
+                <i class="fa fa-clock-o text-muted tips-top" title="已购买成功，合同将于结算后次日生成"></i> {{/if}} {{/if}} {{/if}} -->
+            </td>
+        </tr>
+        <tr class="repay-plan-wp" id="invest-{{id}}">
+<!--
+            <td colspan="6">
+                <p class="loading">loading...</p>
+            </td>
+-->
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<div style="width:100%;text-align:center">
+    <ul class="ccc-paging"></ul>
+</div>
+
+
+<div id="popup" style="display:none">
+    <div id="popup-close">X</div>
+    <h1>债权转让</h1>
+    <div class="formWrapper">
+        <p>转让金额<span class="form-data assignAmount"></span>
+        </p>
+        <p>转让期限<span class="form-data">24小时（如果到期无人购买，申请将自动撤销）</span>
+        </p>
+        <p>转让标题<span class="form-data" id="form-data-title"></span>
+        </p>
+        <p>转让折价率
+            <input type="text" name="creditDealRate" id="creditDealRate" style="margin-left:17px" />
+            <span style="display:block;margin: 10px 0 0 90px">(存贷汇支持溢价，折价率必须大于等于0.95，小于等于1.05)</span>
+            <span class="error" style="color:red;margin-left:80px;"></span>
+
+        </p>
+        <button id="btn-confirm">确认转让</button>
+    </div>
+</div>

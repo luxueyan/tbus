@@ -1,0 +1,49 @@
+.content{width: 1000px;margin: auto;}
+.content_main{}
+.content_classify{}
+.content_classify h1{font-size: 40px;color: #666;font-family: 'Arial';text-align: center;line-height: 40px;font-weight: normal;margin-bottom: 18px;}
+.content_classify h2{font-size:26px;color: #5b9dff;text-align: center;line-height: 26px;background-image: url(/ccc/userKnow/img/line_bg.png);
+    background-repeat: no-repeat;
+    background-position: center center;font-weight:normal;}
+.content_classify .what_bg{background-image: url(/ccc/userKnow/img/what_bg.png);
+    background-repeat: no-repeat;
+    background-position: center top;padding-left:420px;margin-top: 115px;height: 407px;}
+.content_classify .what_bg p{font-size: 20px;color: #666;width: 458px;text-indent: 2em;}
+.content_classify-financial{margin-top: 94px;}
+.content_classify-financial h2{background-image: url(/ccc/userKnow/img/line3_bg.png);}
+.content_classify .what_bg p span{color: #5b9dff;}
+.content_classify-process{margin-top: 116px;}
+.content_classify .process_bg{display: block;margin: auto;margin-top: 94px;}
+.content_classify-advantage h2{background-image: url(/ccc/userKnow/img/line4_bg.png);
+margin-bottom: 96px;
+}
+.content_classify .finacial_bg{display: block;margin: auto;margin-top: 94px;}
+.content_classify-advantage{margin-top: 94px;}
+.advantage .advantage-left{
+    float: left;
+    width: 500px;
+}
+.advantage .advantage-left .title{
+    font-size: 22px;
+    color: #333;
+     width: 500px;
+    margin-top: 50px;
+}
+.advantage .advantage-left .content{
+    font-size: 16px;
+    color: #909090;
+     width: 500px;
+}
+.advantage .advantage-right{
+    float: left;
+    margin-left: 190px;
+}
+.advantage{
+    height: 207px;
+}
+.advantage .advantage-right-other{
+    margin-left: 114px;
+}
+.advantage .advantage-left-other{
+    margin-left: 190px;
+}

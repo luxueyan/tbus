@@ -1,0 +1,93 @@
+<div class="space-30"></div>
+<div class="space-20"></div>
+{{#if !authenticated}}
+<div class="open-account-wrapper">
+
+    <div class="errorNotOpenedYet" style="text-align:center;color:#333333">
+        <span class="glyphicon glyphicon-exclamation-sign exclamation" style="color:#fb4646"></span> 重要提示：实名认证操作关系到您的切身利益，请保护好账号安全
+    </div>
+
+    <div class="account-form-wrapper">
+        <form action="#" class="form-horizontal" style="text-align:center;">
+            <div class="">
+                <div class="" style="height:40px">
+                    {{#if showErrorMessage}}
+                    <div class="error-message">
+                        {{ errorMessage }}
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="trueName">
+                <label for="trueName" class="text">真实姓名</label>
+                <input type="text" class="check-name" name="name" id="trueName" maxlength="15" value="{{ name }}" placeholder="填写真实姓名"/>
+            </div>
+
+            <div class="userIdNumber">
+                <label for="userIdNumber" class="text">身份证号</label>
+                 <input type="text" class="check-name" id="userIdNumber" name="idNumber" value="{{idNumber}}" placeholder="填写身份证号"/>
+            </div>
+            <div class="employeeNumber">
+                <label for="innerUserCode" class="text">员工编号</label>
+                 <input type="text" class="check-name" id="innerUserCode" name="innerUserCode" value="{{innerUserCode}}" placeholder="填写国美员工编号 （选填）"/>
+            </div>
+            <div class="account-submit">
+                <input type="button" value="立即认证" on-click="register-account-submit" class="btn info-submit" style="width:200px;height:40px;background:#fb4646;border-color:#fb4646;color:white;"  />
+            </div>
+            <div class="space-30 space"></div>
+            <div style=";padding: 10px 10px 10px 30px; margin: 0 auto;text-align:left;">
+                <p class="tips" style="color:#fb4646">为什么要进行身份验证？</p>
+                <p class="tips">
+                  1. 为保障您的账户信息安全，在变更账户中的重要信息时需要进行身份验证，感谢您的理解和支持。
+                </p>
+                <p class="tips">
+                  2. 验证身份遇到问题，请致电客服：4008-133-233。
+                </p>
+                <p class="tips" style="color:#fb4646">实名认证说明：</p>
+                <p class="tips">为了保障您的资金安全，同时为给您提供更好的支付和金融服务，您需要填写真实的身份信息。认证后只能绑定与实名为同一人的银行卡。绑定银行卡后，充值和提现只能由此卡来操作。</p>
+                <p class="tips" style="color:#fb4646">实名信息的文案说明</p>
+                <p class="tips">【真实姓名】：为确保您的账户安全，请填写您本人的实名认证信息</p>
+                <p class="tips">【银行卡号】：仅支持您本人名下的银行卡，输入卡号自动识别银行卡种</p>
+                <p class="tips">【手机号码】：请填写该卡在银行预留的手机号码，验证该银行卡是否真实属于您本人</p>
+            </div>
+        </form>
+    </div>
+</div>
+{{else}}
+<!-- 已绑定 -->
+<div class="account-opened-notice">
+    <div class="ftips">
+        <span class="glyphicon glyphicon-exclamation-sign exclamation" style="color:#fb4646"></span> 重要提示：实名认证操作关系到您的切身利益，请保护好账号安全
+    </div>
+</div>
+<div class="space-20"></div>
+<div class="account-opened-wrapper">
+
+    <div class="account-info-row">
+        <label for="" class="text">真实姓名：</label>
+        <span class="value">{{format.mask(authenticateInfo.name)}}</span>
+    </div>
+    <div class="account-info-row">
+        <label for="" class="text">身份证号：</label>
+        <span class="value">{{authenticateInfo.idNumber.substr(0,5)}}**********{{authenticateInfo.idNumber.substr(-3)}}</span>
+    </div>
+</div>
+<div class="space-30"></div>
+<div class="space-30 space"></div>
+<div style="padding: 10px 10px 10px 30px; margin: 0 auto;background:#f4fcff;">
+    <p class="tips" style="color:#fb4646">为什么要进行身份验证？</p>
+    <p class="tips">
+      1. 为保障您的账户信息安全，在变更账户中的重要信息时需要进行身份验证，感谢您的理解和支持。
+    </p>
+    <p class="tips">
+      2. 验证身份遇到问题，请致电客服：4008-133-233。
+    </p>
+    <p class="tips" style="color:#fb4646">实名认证说明：</p>
+    <p class="tips">为了保障您的资金安全，同时为给您提供更好的支付和金融服务，您需要填写真实的身份信息。认证后只能绑定与实名为同一人的银行卡。绑定银行卡后，充值和提现只能由此卡来操作。</p>
+    <p class="tips" style="color:#fb4646">实名信息的文案说明</p>
+    <p class="tips">【真实姓名】：为确保您的账户安全，请填写您本人的实名认证信息</p>
+    <p class="tips">【银行卡号】：仅支持您本人名下的银行卡，输入卡号自动识别银行卡种</p>
+    <p class="tips">【手机号码】：请填写该卡在银行预留的手机号码，验证该银行卡是否真实属于您本人</p>
+</div>
+<div style="height:10px;"></div>
+{{/if}}

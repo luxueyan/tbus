@@ -1,0 +1,168 @@
+{{#if !accountId}}
+<div class="row">
+	<div class="space space-30"></div>
+	<div class="col-md-12 align-center">
+		<p class="text-warning">您还没有开户，开户后才能签署快速投资和快速还款协议</p>
+		<div class="space space-40"></div>
+		<p>
+			<a href="/account/umpay" class="btn btn-orange">立即开通</a>
+		</p>
+	</div>
+</div>
+{{else}}
+<div class="nosecret-agreement-wrapper">
+    <!--签署协议-->
+    <div class="sign-agreement">
+        <form name="agreementForm" action="/upayment/bindAgreement" method="post" target="_blank">
+            <!--一个协议项-->
+            <!--
+            <div class="agreement-item {{#if agreement.debit}}tips-left{{/if}}"
+            {{#if agreement.debit}}title="已签订"{{/if}}>
+                {{#if agreement.debit}}
+				<input type="checkbox" class="pull-left agreement-check" id="agree-debit"
+				name="agreementList" value="ZKJP0700" checked disabled>
+				{{else}}
+				<input type="checkbox" class="pull-left agreement-check" id="agree-debit"
+				on-click="close-msg"
+				name="agreementList" value="ZKJP0700">
+				{{/if}}
+               
+                <div class="pull-left agreement-text">
+                    <label class="name" for="">银行卡代扣协议</label>
+                    <div class="intro">若您是借款人,签署协议后还款时平台自动从银行卡中完成代扣</div>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            -->
+            <div class="agreement-item {{#if agreement.repay}}tips-left{{/if}}"
+            {{#if agreement.repay}}title="已签订"{{/if}}>
+				{{#if agreement.repay}}
+				<input type="checkbox" class="pull-left agreement-check" id="agree-repay"
+				name="agreementList" value="ZHKB0H01" checked disabled>
+				{{else}}
+				<input type="checkbox" class="pull-left agreement-check" id="agree-repay"
+				on-click="close-msg"
+				name="agreementList" value="ZHKB0H01">
+				{{/if}}
+                
+                <div class="pull-left agreement-text" on-click="maskRepayAgreement">
+                    <label>同意并签署</label>
+                    <label class="name" for="repay-agree">【快速还款协议】</label>
+                    <div class="intro">如果您是借款人，请签署此协议</div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="agreement-item {{#if agreement.invest}}tips-left{{/if}}"
+            {{#if agreement.invest}}title="已签订"{{/if}}>
+				{{#if agreement.invest}}
+                <input type="checkbox" class="pull-left agreement-check" id="agree-invest"
+                name="agreementList" value="ZTBB0G00" checked disabled>
+				{{else}}
+				<input type="checkbox" class="pull-left agreement-check" id="agree-invest"
+				on-click="close-msg"
+				name="agreementList" value="ZTBB0G00">
+				{{/if}}
+                <div class="pull-left agreement-text" on-click="maskInvestAgreement">
+                    <label>同意并签署</label>
+                    <label class="name" for="">【快速投资协议】</label>
+                    <div class="intro">
+                        请签署此协议,否则无法投资
+
+                        <span class="glyphicon glyphicon-question-sign question-mark" data-toggle="tooltip"
+                        data-placement="right" data-title="您签订协议后，将开通快速投资功能，无需重复输入第三方支付平台（联动优势）支付密码，便可进行投资操作。该协议签订后，不会造成您的资金流失，您的资金一直存在联动优势资金托管账户中，不会被提出到其他人的银行卡。"></span>
+                        <!-- 设置样式 -->
+                        <div class="tooltip-container"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+			<div class="space space-40"></div>
+            <div class="row">
+            	<div class="col-md-12">
+            		<button type="submit" class="btn btn-success btn-submit" on-click="check">签订</button>
+            		<span class="form-helper">{{bindMsg}}</span>
+            	</div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<!-- 为了这个hr在container外,拆开 -->
+<hr />
+
+<div class="current-container">
+    <div class="nosecret-agreement-wrapper">
+        <div class="unsign-agreement">
+            <div class="header">
+                <div class="header-text">解除协议</div>
+                <div class="pull-right cursor-pointer" on-click="toggle('expand')">
+                    {{#if expand}}
+                        收起
+                        <span class="glyphicon glyphicon-chevron-up icon-fold-expand"></span>
+                    {{/if}}
+                    
+                    {{#if !expand}}
+                        展开
+                        <span class="glyphicon glyphicon-chevron-down icon-fold-expand"></span>
+                    {{/if}}
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            
+            <form name="unagreementForm" action="/upayment/unbindAgreement" target="_blank" method="post"
+               class="form-unsign-agreement" style="{{#if !expand}} visibility:hidden; {{/if}}">
+				<!--
+               {{#if agreement.debit}}
+                <div class="agreement-item">
+                    <input type="checkbox" class="pull-left agreement-check" id="agree-debit"
+					on-click="close-msg"
+					name="agreementList" value="ZKJP0700">
+                    <div class="name pull-left">银行卡代扣协议</div>
+                    <div class="clearfix"></div>
+                </div>
+				{{/if}}
+				-->
+
+				{{#if agreement.repay && loanCount < 1 }}
+                <div class="agreement-item">
+                    <input type="checkbox" class="pull-left agreement-check" id="agree-repay"
+					on-click="close-msg"
+					name="agreementList" value="ZHKB0H01">
+                    <div class="name pull-left">快速还款协议</div>
+                    <div class="clearfix"></div>
+                </div>
+				{{/if}}
+
+				{{#if agreement.invest}}
+                <div class="agreement-item">
+                    <input type="checkbox" class="pull-left agreement-check" id="agree-invest"
+					on-click="close-msg"
+					name="agreementList" value="ZTBB0G00">
+                    <div class="name pull-left">
+                        快速投资协议
+                        <!--
+                        <span class="glyphicon glyphicon-question-sign question-mark"></span>
+                        -->
+                        <div class="tooltip-container"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+				{{/if}}
+
+                <div class="space space-40"></div>
+				<div class="row">
+					<div class="col-md-12">
+						<button type="submit" class="btn btn-success btn-submit" on-click="check">解除</button>
+						<span class="form-helper">{{unbindMsg}}</span>
+					</div>
+				</div>
+            </form>
+        </div>
+    </div>
+
+</div>
+{{/if}}

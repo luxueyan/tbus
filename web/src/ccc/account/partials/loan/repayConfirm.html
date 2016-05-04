@@ -1,0 +1,28 @@
+<div class="ccc-repay-detail-wrap">
+    <p>还款提示</p>
+    
+	{{#if moneyEnough}}
+	<div class="space space-30"></div>
+    <div class="row repay-confirm">
+    	<div class="col-md-6 align-right">
+    		<button class="btn btn-small btn-success" on-click="repay">{{okBtn}}</button>
+    	</div>
+    	<div class="col-md-6">
+    		<button class="btn btn-small" on-click="close-detail">关闭</button>
+    	</div>
+    </div>
+	{{else}}
+	<div class="space space-10"></div>
+ 	<div class="repay-no-money">
+ 		<p>金额不足，当前可用余额：</p>
+ 		<h3>￥{{avaAmount}}</h3>
+		<p>
+			立即去<a href="/account/recharge" class="btn btn-minier btn-warning">充值</a>
+		</p>
+ 	</div>
+ 	<div class="space space-10"></div>
+ 	<h2 class="repay-detail-bar">
+		<button class="btn btn-smaller" on-click="close-detail">关闭</button>
+	</h2>
+	{{/if}}
+</div>

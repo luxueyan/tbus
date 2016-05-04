@@ -1,0 +1,28 @@
+{{#if loading}}
+	<div class="nodata">加载中...</div>
+{{else}}
+	{{#if list}}
+		{{#each list}}
+			<tr>
+		        <td><a href="/loan/{{ loanId }}" target="_blank">{{ loanTitle }}</a></td>
+		        <td>{{ amount }}</td>
+		        <td>{{ rate }}%</td>
+		        <td>{{ duration }}</td>
+		        <td>{{ repayMethod }}</td>
+		        <td>{{ statusName }}</td>
+		        <td>{{ submitTime }}</td>
+		        <td><button class="operation" data-invest="{{ id }}" data-amount="{{ amount }}" data-title="{{ loanTitle }}">转让</button></td>
+		    </tr>
+	    {{/each}}
+	{{else}}
+		<div class="nodata">暂无数据</div>
+	{{/if}}
+{{/if}}
+<div class="clear"></div>
+<div class="ccc-paging">
+	<div class="prev">上一页</div>
+	<div class="currentPagewra">第<span class="currentPage"></span>页</div>
+	<div class="totalPagewra">共<span class="totalPage"></span>页</div>
+	<div class="next">下一页</div>
+	<div class="clear"></div>
+</div>

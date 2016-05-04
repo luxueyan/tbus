@@ -1,0 +1,16 @@
+.register-content {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+}
+
+.agreement-container {
+    background-color: #fff;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.agreement-container .article-content h2 {
+    text-align: center;
+}

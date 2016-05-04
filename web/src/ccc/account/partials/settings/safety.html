@@ -1,0 +1,113 @@
+<div class="safety-wrapper">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    认证内容
+                </th>
+                <th>
+                    认证说明
+                </th>
+                <th>
+                    是否认证
+                </th>
+                <th>
+                    
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="align-left">
+                    <span class="glyphicon glyphicon-ok"></span> &nbsp;手机认证
+                </td>
+                <td>
+                    保证交易帐号安全，是您在718金融·理财的重要身份凭证之一，可以收取帐号资金变更通知。
+                </td>
+                <td>
+                    <span style="color: #005387;">{{mobile}}</span>
+                </td>
+                <td>
+                    
+                </td>
+            </tr>
+            <tr>
+               <td class="align-left">
+                    <span class="glyphicon glyphicon-ok"></span> &nbsp;登录密码
+               </td>
+                <td>
+                    您登录718金融·理财网站的重要内容之一
+                </td>
+                <td>
+                    <span style="color: #005387;">是</span>
+                </td>
+                <td>
+                    <a href="/account/settings" style="color: #005387;">修改密码</a>
+                </td>
+            </tr>
+            <tr>
+                {{#if paymentPasswordHasSet}}
+                <td class="align-left">
+                    <span class="glyphicon glyphicon-ok"></span> &nbsp;交易密码
+                </td>
+                {{else}}
+                <td class="align-left">
+                    <span class="glyphicon glyphicon-remove" style="color:red"></span> &nbsp;交易密码
+                </td>
+                {{/if}}
+                <td>
+                    保障您在718金融·理财网站账号安全的重要内容之一
+                </td>
+                
+                {{#if paymentPasswordHasSet}}
+                <td>
+                    <span style="color: #005387;">是</span>
+                </td>
+                <td>
+                    <a href="/account/paypwd" style="color: #005387;" class="goRz">修改密码</a>
+                </td>
+                {{else}}
+                <td>
+                    <span style="color: #005387;">否</span>
+                </td>
+                <td>
+                    <a href="/account/paypwd" style="color: #005387;" class="goRz">去开通</a>
+                </td>
+                {{/if}}
+            </tr>
+            <tr>
+                {{#if activatedEmail}}
+                <td class="align-left">
+                    <span class="glyphicon glyphicon-ok"></span> &nbsp;邮箱认证
+                </td>
+                {{else}}
+                <td class="align-left">
+                    <span class="glyphicon glyphicon-remove" style="color:red"></span> &nbsp;邮箱认证
+                </td>
+                {{/if}}
+                <td>
+                    保障您在718金融·理财网站账号安全的重要内容之一
+                </td>
+                
+                {{#if activatedEmail}}
+                <td>
+                    <span style="color: #005387;">是</span>
+                </td>
+                <td></td>
+                {{else}}
+                <td>
+                    <span style="color: #005387;">否</span>
+                </td>
+                <td>
+                    <a href="#" style="color: #005387;" class="goRz">去认证</a>
+                </td>
+                {{/if}}
+            </tr>
+        </tbody>
+    </table>
+    <div class="rzz">
+        <input type="text" name="email" class="rZemail" placeholder="请输入邮箱">
+        <div class="rzE_button">确定</div>
+        <div class="errors"></div>
+    </div>
+</div>

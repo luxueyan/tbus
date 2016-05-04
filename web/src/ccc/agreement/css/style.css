@@ -1,0 +1,15 @@
+//有色修改
+.agreement-container {
+  
+    overflow: hidden;
+}
+.agreement-container h3{
+     width:1004px;
+    margin: auto;
+    line-height: 60px;
+    margin-top: 20px;
+}
+.agreement-content{
+      width:1004px;
+    margin: auto;
+}

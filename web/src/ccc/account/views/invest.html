@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="/ccc/account/css/common.css">
+<link rel="stylesheet" href="/ccc/account/css/invest.css">
+<link rel="stylesheet" href="/ccc/global/css/modules/cccPaging.css">
+<dsBody layout={{dsLayoutPath}}>
+<div class="account-wraper">
+    {{>topNav}}
+    <div class="space space-10"></div>
+    <div>
+        <div class="space space-20"></div>
+        <div class="has-line">
+            <div class="row ccc-container">
+                <div class="col-md-12">
+                    <div class="header-text pull-left">持有中</div>
+                    <div class="ccc-tab pull-right" data-header-selector=".header-text">
+                        <ul class="tabs">
+                            <li class="active" data-type="HOLDING">
+								<a href="#">计息中</a>
+							</li>
+							<li data-type="INHAND">
+								<a href="#">冻结中</a>
+							</li>
+							<li data-type="CLEARED">
+								<a href="#">已结清</a>
+							</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="space space-20"></div>
+        <div class="ccc-container row">
+            <div class="col-md-12 ccc-invests-wrap">
+            	<div class="ccc-tab-panels">
+            		<div class="tab-panel panel-HOLDING active">
+            			<p class="loading">加载中...</p>
+            		</div>
+            		<div class="tab-panel panel-INHAND"></div>
+            		<div class="tab-panel panel-CLEARED"></div>
+            	</div>
+            </div>
+        </div>
+        <div class="space space-50">&nbsp;</div>
+    </div>
+</div>
+
+<div class="space space-50"></div>
+<script src="/ccc/account/js/main/invest.js"></script>
+</dsBody>

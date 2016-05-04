@@ -1,0 +1,57 @@
+.ccc-repay-detail-wrap {
+  padding: 20px;
+}
+.ccc-repay-detail-wrap > p {
+  padding-bottom: 5px;
+  border-bottom: 1px #ddd solid;
+  font-size: 15px;
+  color: #000;
+  margin-bottom: 10px;
+}
+.ccc-repay-detail-wrap table td {
+  color: #666;
+  padding: 2px 0;
+}
+.ccc-repay-detail-wrap table td:last-child {
+  color: #c43;
+}
+.ccc-repay-detail-wrap > h2 {
+  border-top: 1px #ddd solid;
+  margin-top: 10px;
+  text-align: right;
+}
+.ccc-repay-detail-wrap > h2 .btn {
+  height: 24px;
+  background: white;
+  border: 1px #ddd solid;
+  color: #666;
+}
+.ccc-repay-detail-wrap .repay-confirm .btn {
+  padding: 5px 18px;
+}
+.ccc-repay-detail-wrap .repay-no-money p {
+  border: none;
+  font-size: 13px;
+}
+.ccc-repay-detail-wrap .repay-no-money p a {
+  padding: 1px 6px;
+  margin-left: 5px;
+  vertical-align: inherit;
+}
+.ccc-repay-detail-wrap .repay-no-money h3 {
+  font-size: 16px;
+  color: #c43;
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+.ccc-tab-panels .tab-panel .table .btn-blue-light{
+    background:#009ada;color: #fff;border: 1px #009ada solid;
+}
+.ccc-tab-panels .tab-panel .table .btn-blue-light:hover{
+    background: #0287be;
+    color: #fff;
+}
+.ccc-tab-panels .tab-panel .table .btn-success {background:#009ada;border:1px #009ada solid;color:#fff;width:66px;line-height:20px;}
+.ccc-tab-panels .tab-panel .table .btn-success:hover{
+     background: #0287be;
+}

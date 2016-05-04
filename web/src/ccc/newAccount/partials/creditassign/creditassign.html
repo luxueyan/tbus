@@ -1,0 +1,33 @@
+{{#if loading}}
+	<div class="nodata">加载中...</div>
+{{else}}
+	{{#if list}}
+		{{#each list}}
+			<tr>
+		        <td><a href="/creditassignDetail/{{ id }}/{{loanId}}" target="_blank">{{ title }}</a></td>
+		        <td>{{ creditDealRate }}%</td>
+		        <td>￥{{ creditDealAmount }}</td>
+		        <td>{{ timeOut }}小时</td>
+		        <td>{{ bidNumber }}</td>
+		        <td>{{ timeOpen }}</td>
+		        <td>{{ timeFinished }}</td>
+		        <td>{{ status }}</td>
+		        <td>
+		        	{{#if cancancel}}
+		        		<button class="cancel" data-creditassign="{{ id }}" >取消</button>
+		        	{{/if}}
+		        </td>
+		    </tr>
+		{{/each}}
+	{{else}}
+		<div class="nodata">暂无数据</div>
+	{{/if}}
+{{/if}}
+<div class="clear"></div>
+<div class="ccc-paging">
+	<div class="prev">上一页</div>
+	<div class="currentPagewra">第<span class="currentPage"></span>页</div>
+	<div class="totalPagewra">共<span class="totalPage"></span>页</div>
+	<div class="next">下一页</div>
+	<div class="clear"></div>
+</div>

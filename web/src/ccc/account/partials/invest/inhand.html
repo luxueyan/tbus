@@ -1,0 +1,45 @@
+<table class="table table-hover has-padding">
+    <thead>
+        <tr>
+            <th class="p-tit">项目信息</th>
+            <th class="p-amount">利率</th>
+            <th class="p-rate">期限(月)</th>
+            <th class="p-duration">投资总额(元)</th>
+            <th>还款方式</th>
+            <th>状态</th>
+            <th class="w-100 align-center">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+        <tr>
+            <td>
+                <a class="loan-tit" href="/loan/{{loanId}}" target="_blank">{{loanTitle}}</a>
+            </td>
+            <td>{{Frate}}%</td>
+            <td>{{Fduration}}</td>
+    		<td>{{Famount}}</td>
+			<td>{{FrepayMethod}}</td>
+			<td>{{Fstatus}}</td>
+            <td class="align-center">
+                {{#if hasContract}}
+				<a href="/invest/allContracts/{{id}}" class="btn btn-smaller btn-light" target="_blank">查看合同</a>
+				{{else}}
+					{{#if status === 'CANCELED'}}
+					<i class="fa fa-ban text-muted size-16 tips-top tooltip-error" title="已被取消"></i>
+					{{else}}
+					<i class="fa fa-clock-o text-muted tips-top" title="审核通过后生成合同"></i>
+					{{/if}}
+				{{/if}}
+            </td>
+        </tr>
+        <tr class="repay-plan-wp" id="invest-{{id}}">
+            <td colspan="6">
+                <p class="loading">loading...</p>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<div class="ccc-paging"></div>

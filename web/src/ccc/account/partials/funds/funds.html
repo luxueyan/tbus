@@ -1,0 +1,170 @@
+<!--筛选器-->
+<div class="payload-filters">
+    <div class="dropdown input-group type-checker pull-left">
+        <ul class="dropdown-menu" role="listbox">
+            {{# {typeList: typeLists[tabIndex]} }} {{#each typeList}}
+            <li role="presentation">
+                <a role="menuitem" href="#" on-click="select-type">
+                        {{ text }}
+                    </a>
+            </li>
+            {{/each}} {{/}}
+        </ul>
+
+        <span class="form-control type-text" data-toggle="dropdown" data-type="{{ typeLists[tabIndex][selectedIndex].type }}">
+            {{ typeLists[tabIndex][selectedIndex].text }}
+        </span>
+
+        <span class="input-group-addon btn-drop" data-toggle="dropdown">
+            <span class="caret"></span>
+        </span>
+
+    </div>
+
+    <div class="input-group date-from-picker pull-left">
+        <span class="input-group-addon icon-calendar"></span>
+        <input class="form-control" value="{{ dateFrom }}" readonly />
+    </div>
+
+    <span class="spliter pull-left">-</span>
+
+    <div class="input-group date-to-picker pull-left">
+        <span class="input-group-addon icon-calendar"></span>
+        <input class="form-control" value="{{dateTo}}" readonly />
+    </div>
+
+    <div class="input-group pull-left">
+        <button class="btn btn-filter btn-orange btn-smaller" on-click="do-filter">筛选</button>
+        <button class="btn btn-export" style="display:none;">导出</button>
+    </div>
+
+    <div class="clearfix"></div>
+</div>
+
+<div class="tables">
+    {{#if !loading}}
+        <!-- 第一个tab -->
+        {{#if tabIndex === 0}}
+        <div class="payload-detail-wrapper">
+            <!--数据表-->
+            <table class="table table-striped">
+                <col width="210px" />
+                <col width="210px" />
+                <col width="80px" align="right" class="col-amount" />
+                <col width="100px" />
+                <col width="210px" />
+                <col width="*" />
+
+                <thead>
+                    <tr>
+                        <th>时间</th>
+                        <th>交易类型 | 单号</th>
+                        <th class="col-amount">资金(￥)</th>
+                        <th>操作</th>
+                        <th>状态</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {{#each list}}
+                    <tr>
+                        <td>{{ dateTime }}</td>
+                        <td>{{ transactionType }}
+                            <br />{{ orderId }}</td>
+
+                        <td class="col-amount {{ amountClass }}">
+                            {{ amount }}
+                        </td>
+                        <td>{{operationName}}</td>
+                        <!--transactionWith-->
+                        <td>{{ status }}</td>
+                        <!-- summary -->
+                        <td>{{ description }}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        {{/if}}
+
+        <!-- 第二个tab -->
+        {{#if tabIndex === 1}}
+        <div class="">
+            <!--数据表-->
+            <table class="table table-striped">
+                <col width="210px" />
+                <col width="240px" />
+                <col width="100px" align="right" class="col-amount" />
+                <col width="100px" />
+                <col width="200px" />
+                <col width="*" />
+
+                <thead>
+                    <tr>
+                        <th>时间</th>
+                        <th>编号</th>
+                        <th>金额(￥)</th>
+                        <th>操作</th>
+                        <th>状态</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {{#each list}}
+                    <tr>
+                        <td>{{ dateTime}}</td>
+                        <td>{{ orderNumber }}</td>
+                        <td>{{ amount }}</td>
+                        <td>{{operationName}}</td>
+                        <td>{{ status}}</td>
+                        <td>{{ description }}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        {{/if}}
+
+        <!--第三个tab-->
+        {{#if tabIndex === 2}}
+        <div class="">
+            <!--数据表-->
+            <table class="table table-striped">
+                <col width="210px" />
+                <col width="210px" />
+                <col width="100px" />
+                <col width="120px" />
+                <col width="190px" />
+                <col width="*" />
+
+                <thead>
+                    <tr>
+                        <th>时间</th>
+                        <th>编号</th>
+                        <th>提现金额(￥)</th>
+                        <th>操作</th>
+                        <th>状态</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {{#each list}}
+                    <tr>
+                        <td>{{ dateTime }}</td>
+                        <td>{{ orderNumber }}</td>
+                        <td>{{ amount }}</td>
+                        <td>{{operationName}}</td>
+                        <td>{{ status }}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        {{/if}}
+    {{else}}
+        <p class="loading">loading...</p>
+    {{/if}}
+    <div class="ccc-paging"></div>
+</div>

@@ -1,0 +1,83 @@
+<div class="space space-30"></div>
+<div class="paypwd-wp">
+    <div class="tabwra">
+    	<ul class="tab">
+    		{{#if !paymentPasswordHasSet}}
+    		<li class="active">初始交易密码</li>
+    		{{else}}
+    		{{#if step === '0'}}
+    		<li data-step="0" on-click="tab" class="active">修改交易密码</li>
+    		<li data-step="1" on-click="tab">重置交易密码</li>
+    		{{else}}
+    		<li data-step="0" on-click="tab">修改交易密码</li>
+    		<li data-step="1" on-click="tab" class="active">重置交易密码</li>
+    		{{/if}}
+    		{{/if}}
+    	</ul>
+    </div>
+    <div class="clearfix"></div>
+    <div class="space space-10"></div>
+    <div class="initialWra">
+    	<div class="account-opened-notice">
+		    <div class="tips">
+		        <span class="glyphicon glyphicon-exclamation-sign exclamation"></span> 重要提示：交易密码关系到您的投资、提现、解绑等操作，请妥善保管!
+		    </div>
+		</div>
+		<div class="formwra">
+			<div class="space space-30"></div>
+			{{#showErrorMessage}}
+			<div class="row">
+				<div class="error">{{errorMessage}}</div>
+			</div>
+			{{/showErrorMessage}}
+			{{#if !paymentPasswordHasSet}}
+			<div class="row">
+				<span class="tipss">请输入密码</span>
+				<input type="password" name="password" value="{{password}}" maxlength="16" class="payInp">
+			</div>
+			<div class="row">
+				<span class="tipss">请确认密码</span>
+				<input type="password" name="repassword" value="{{repassword}}" maxlength="16" class="payInp">
+			</div>
+    		<div class="space space-10"></div>
+			<div class="row">
+				<button class="btn confir" on-click="initialPassword">确定</button>
+			</div>
+			{{else}}
+				{{#if step === '0'}}
+				<div class="updateWra">
+					<div class="row">
+						<span class="tipss">请输入原密码</span>
+						<input type="password" name="oldPassword" value="{{oldPassword}}" maxlength="16" class="payInp" id="oldPassword">
+					</div>
+					<div class="row">
+						<span class="tipss">请输入新密码</span>
+						<input type="password" name="newPassword" value="{{newPassword}}" maxlength="16" class="payInp" id="newPassword">
+					</div>
+					<div class="row">
+						<span class="tipss">请确认新密码</span>
+						<input type="password" name="reNewPassword" value="{{reNewPassword}}" maxlength="16" class="payInp">
+					</div>
+		    		<div class="space space-10"></div>
+					<div class="row">
+						<button class="btn confir" on-click="updatePassword">确定</button>
+					</div>
+				</div>
+				{{else}}
+				<div class="">
+					<div class="resetWra">
+						<div class="row">
+							<span class="tipss">请输入重置密码</span>
+							<input type="password" name="password" value="{{password}}" maxlength="16" class="payInp">
+						</div>
+			    		<div class="space space-10"></div>
+						<div class="row">
+							<button class="btn confir" on-click="resetPassword">确定</button>
+						</div>
+					</div>
+				</div>
+				{{/if}}
+			{{/if}}
+		</div>
+    </div>
+</div>

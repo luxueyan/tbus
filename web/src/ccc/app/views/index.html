@@ -1,0 +1,79 @@
+<dsBody>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>718金融--APP下载</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="no-store, must-revalidate" />
+    <meta http-equiv="expires" content="0" />
+    <meta name="format-detection" content="telephone=no" searchtype="map">
+    <meta name="apple-mobile-web-app-capable" content="no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    
+    <link rel="stylesheet" type="text/css" href="/ccc/app/views/reset.css">
+    <link rel="stylesheet" type="text/css" href="/ccc/app/views/styles.css">
+    
+
+    <script type="text/javascript">
+        window.onload = function(){
+            var u = navigator.userAgent, app = navigator.appVersion;
+//            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //android终端或者uc浏览器
+            var isiOS = !!u.match(/Mac OS X/); //ios终端
+            if (isiOS){
+               goIOSDownload();
+            }
+            else{
+               goAndroidDownload();
+            }
+        }
+
+
+        function isWeiXin(){
+            var ua = window.navigator.userAgent.toLowerCase();
+            if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        function goIOSDownload(){
+            if (isWeiXin()){
+                document.location.href = "http://a.app.qq.com/o/simple.jsp?pkgname=com.creditcloud.xinyi";
+            }
+            else{
+                document.location.href = "https://itunes.apple.com/us/app/718li-cai-kan-bi-yin-xing/id1071995825?l=zh&ls=1&mt=8";
+            }
+        }
+
+        function goAndroidDownload(){
+            if (isWeiXin()){
+                document.location.href = "http://a.app.qq.com/o/simple.jsp?pkgname=com.creditcloud.xinyi";
+            }
+            else{
+                document.location.href = "http://www.718zc.com/ccc/app/zc.apk";
+            }
+        }
+    </script>
+</head>
+<body>
+
+<img src="/ccc/global/img/navLogo.png" alt="" class="login-logo">
+<div class="download-prompt">
+    请点击下载与手机系统相匹配的App
+</div>
+
+<a href="javascript:void(0)" onclick="goIOSDownload()" class="download-link download-link-ios">用户端ios版</a>
+<a href="javascript:void(0)" onclick="goAndroidDownload()" class="download-link download-link-android">用户端Android版</a>
+
+<footer class="download-footer">
+    <div class="download-copyright">&copy; 新毅网络www.718zc.com</div>
+</footer>
+    
+
+</body>
+</html>
+</dsBody>

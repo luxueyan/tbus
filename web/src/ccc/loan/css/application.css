@@ -1,0 +1,154 @@
+.main01 h1,
+.main01 h2,
+.main01 h3,
+.main01 ul,
+.main01 li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-weight: normal;
+}
+
+.black {
+    background-color: black;
+    position: fixed;
+    height: 100%;
+    z-index: 9999;
+    width: 100%;
+    left: 0;
+    top: 0;
+    opacity: 0.5;
+    display: none;
+}
+
+.main01 {
+    position: fixed;
+    left: 36%;
+    top: 14%;
+    z-index: 10000;
+    display: none;
+}
+
+.application_btn {
+    cursor: pointer
+}
+
+.main01 {
+    width: 423px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    margin: auto;
+    background-color: white;
+}
+
+.main01 .title .span01 {
+    font-size: 18px;
+    color: white;
+    line-height: 46px;
+    display: block;
+    float: left;
+    margin-left: 18px;
+    margin-right: 256px
+}
+
+.main01 .title .glyphicon-remove {
+    font-size: 14px;
+    color: white;
+    display: block;
+    line-height: 46px;
+    float: left
+}
+
+.main01 .title .current01 {
+    font-size: 20px;
+}
+
+.main01 .title .current02 {}
+
+.main01 .title {
+    background-color: #d8000f;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    height: 46px;
+    overflow: hidden;
+}
+
+.main01 .main01_box ul {
+    overflow: hidden;
+    width: 305px;
+    margin: auto;
+    margin-bottom: 12px;
+}
+
+.main01 .main01_box .ul01 {
+    margin-top: 38px;
+}
+
+.main01 .main01_box ul li {
+    float: left;
+    margin-right: 18px;
+    color: #666;
+    font-size: 14px;
+    line-height: 27px;
+    font-weight: normal;
+    text-align: right;
+}
+
+.main01 .main01_box ul .linkman {
+    padding-left: 14px;
+}
+
+.main01 .main01_box ul li select {
+    width: 180px;
+    height: 27px;
+    font-size: 20px;
+    line-height: 27px;
+    border: none;
+    border: 1px solid #e3e3e3;
+    background-color: white;
+    font-size: 12px;
+    color: #999;
+}
+
+.main01 .main01_box ul li select option {
+    height: 27px;
+    line-height: 27px;
+}
+
+.main01 .main01_box ul li input {
+    width: 180px;
+    height: 27px;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+}
+
+.main01 h3 {
+    width: 147px;
+    margin: auto;
+    background-color: #d8000f;
+    border-radius: 22px;
+    margin-bottom: 49px;
+}
+
+.main01 .loanbutton {
+    font-size: 18px;
+    width: 144px;
+    margin: auto;
+    border-radius: 30px;
+    background-color: #d8000f;
+    font-family: '微软雅黑';
+    line-height: 30px;
+    color: white;
+    text-align: center;
+    display: block;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.submitBtn {
+    width: 147px;
+    margin: auto;
+    background-color: #d8000f;
+    border-radius: 22px;
+    color:#fff;
+}

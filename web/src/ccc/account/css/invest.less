@@ -1,0 +1,43 @@
+.invest-container {
+    .header {
+        border-bottom: 1px solid #e8e8e8;
+        .header-text {
+            float: left;
+            font-size: 20px;
+            color: #000;
+        }
+    }
+    .ccc-tab {
+        float: right;
+    }
+}
+.ccc-invests-wrap {
+    table > tbody > tr > td {
+        padding: 15px 8px;
+    }
+    table a {
+        color: #00327c;
+        font-size: 14px;
+    }
+    table {
+        font-size: 12px;
+    }
+}
+// 还款计划
+// 前面一堆,增加权重
+.table > tbody > tr.payback-plan {
+    display: none;
+    >td {
+        padding: 0;
+        border-top: none;
+        >.table {
+            > thead {
+                background-color: #e7e7e7;
+            }
+        }
+    }
+    td,
+    th {
+        text-align: center;
+    }
+}

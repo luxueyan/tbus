@@ -1,0 +1,114 @@
+<div class="ccc-banks-wrap">
+    <div class="recharge-form-wrap">
+        <form role="form" name="rechargeForm" action="{{action}}" method="POST" target="_blank" on-submit="recharge_submit">
+            <div class="row">
+        		<div class="space space-20"></div>
+                {{#if msg.BANK_NULL || msg.AMOUNT_NULL || msg.AMOUNT_INVALID || msg.BANKCODE_NULL || msg.AMOUNT_NOTENOUGH || msg.BANKID_NULL}}
+                <p class="help-block text-danger" style="background:#fdf8e4;width:300px;text-align:left;font-size:12px;margin-left:80px;padding: 5px 10px;">
+                    <span class="glyphicon glyphicon-exclamation-sign icon" style="color:#fe0002;margin-right:5px;"></span>
+                    <span style="color:#c09956;font-size:12px">
+                    	  {{#msg.BANK_NULL}}请选择银行卡{{/msg.BANK_NULL}}
+                        {{#msg.AMOUNT_NULL}}请输入充值金额,且不能为0{{/msg.AMOUNT_NULL}}
+                        {{#msg.AMOUNT_INVALID}}输入的金额有误{{/msg.AMOUNT_INVALID}}
+                        {{#msg.BANKCODE_NULL}}请选择网上银行{{/msg.BANKCODE_NULL}}
+                        {{#msg.BANKID_NULL}}请选择网上银行{{/msg.BANKID_NULL}}
+                        {{#msg.AMOUNT_NOTENOUGH}}单笔充值至少100元{{/msg.AMOUNT_NOTENOUGH}}
+                    </span>
+                </p>
+                {{/if}}
+                <div class="space space-20"></div>
+                <div class="">
+                    <div class="rows">
+                        <span class="tipss">账户余额</span>
+                        <span class="ava">{{intNum}}.<span style="font-size:20px;font-family: 'Arial';">{{pointNum}}</span></span>
+                        <span class="tipss" style="color:#fb4646">元</span>
+                    </div>
+                    <div class="space-20"></div>
+                    <div class="rows">
+                        <span class="tipss">充值金额</span>
+                        <input type="text" name="amount" id="rechargeValue" on-blur="changeValue" placeholder="" value="{{amount}}" style="width:238px;line-height:44px;height:44px;border:1px #cccccc solid;border-radius:5px;background-color:#fff;color:#999999;text-indent:10px;" autocomplete="off">
+                    </div>
+                    <div class="col-md-12">
+
+                    </div>
+                </div>
+            </div>
+            <div class="space-50"></div>
+            <div class="row">
+                <div class="methodwr {{#if !netyinying && !isNormal}}methodwrActive{{/if}}" data-type="net" on-click="changeNet">
+                网银充值(连连)
+                </div>
+                <div class="methodwr {{#if netyinying && !isNormal}}methodwrActive{{/if}}" data-type="netyinying" on-click="changeNet">
+                网银充值(银盈通)
+                </div>
+                <div class="clearfix"></div>
+                <div class="space space-30"></div>
+                {{#if !netyinying}}
+                <div class="bankwrap">
+                    {{#banks:index}}
+                        {{#if index < showNum}}
+                        <span class="bankItem {{code}}" data-cc="{{code}}" data-code="{{bankCode}}" on-click="selectBank">
+                            <span class="check"></span>
+                        </span>
+                        {{/if}}
+                        {{#if index == showNum}}
+                        <span class="bankItem more" on-click="showAll"></span>
+                        {{/if}}
+                    {{/banks}}
+                </div>
+                <input type="hidden" name="isEnterpriseUser" value="{{isEnterpriseUser}}">
+                <input type="hidden" name="bankCode" value="{{bankCode}}">
+                {{else}}
+                    <div class="bankwrap">
+                        {{#yytBank}}
+                             <span class="bankItem {{code}}" data-cc="{{bankid}}" on-click="selectyytBank">
+                                <span class="check"></span>
+                             </span>
+                        {{/yytBank}}
+                    </div>
+                    <input type="hidden" name="ebcbankid" value="{{bankid}}">
+                    <input type="hidden" name="platform" value="01">
+                    <input type="hidden" name="cardtype" value="01">
+                    <input type="hidden" name="usertype" value="0">
+                {{/if}}
+            </div>
+            <div class="space-20"></div>
+            <div class="row">
+                <div class="methodwr {{#if isNormal}}methodwrActive{{/if}}" data-type="normal">
+                快捷充值
+                </div>
+                <div class="clearfix"></div>
+                <div class="space space-30"></div>
+                <div class="bankwrap">
+                    <span class="bankItem llzf">
+                        <span class="check"></span>
+                    </span>
+                </div>
+                <input type="hidden" name="isEnterpriseUser" value="{{isEnterpriseUser}}">
+                <input type="hidden" name="bankCode" value="{{bankCode}}">
+            </div>
+            <div class="space space-10"></div>
+            <div class="space space-30"></div>
+            <button type="submit" class="btn btn-warning btn-lg" style="width:250px;height:44px;border:1px #f58220 solid;background-color:#fb4646;position:relative;left:85px;font-size:16px;">确认充值</button>
+        </form>
+    </div>
+</div>
+<div class="space-40"></div>
+<div class="line"></div>
+<div class="space-10"></div>
+<div class="space-30 space"></div>
+<div class="row" style="background:#f4fcff;padding:15px;padding-top:0;">
+    <div class="col-md-12">
+        <div class="space space-20"></div>
+        <p style="color:#fb4646">温馨提示：</p>
+        <ul class="dec-li">
+            <li>1.	为保障资金安全，采用同卡进出规则，当前充值的钱只能提现到与充值相同的银行卡上。</li>
+            <li>2.	充值手续费由美易理财承担，您不必支付相关费用。</li>
+            <li>3.	请注意您的银行卡限额，以免在充值过程中造成不便。</li>
+            <li>4.	禁止洗钱、信用卡套现、虚假交易等行为，一经发现并确认，将终止该账户的使用。</li>
+            <li>5.	请确认您已阅读本网站的<a href="/agreement/net" style="color:#518ff4;font-size:12px;">《网络交易资金存管协议》</a>，同意相关条款。</li>
+            <li>6.	如遇问题，请致电客服：4008-133-233。</li>
+        </ul>
+    </div>
+</div>
+<div style="height:10px;"></div>

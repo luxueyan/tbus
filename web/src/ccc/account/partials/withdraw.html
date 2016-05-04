@@ -1,0 +1,55 @@
+<div class="amount-info-wp">
+    <span>可用余额(元)<em>{{availableAmount}}</em></span>
+</div>
+<div class="space space-30"></div>
+<div class="ccc-banks-wrap">
+    {{#if !isEnterpriseUser}}
+    <div class="bankcards-wrap">
+		{{#each bankcards}}
+		<div class="bankcard-box {{account.bank}}">
+			<div class="bank-img"
+			style="visibility:hidden;background-position: 10px -{{account.imgPos+3}}px"></div>
+			<div class="bankcard-no center">
+				<span>{{account.account.substr(0,4)}}-xxxx-xxxx-xxxx-{{account.account.substr(-4,4)}}</span>
+			</div>
+		</div>
+		{{/each}}
+        
+		{{loadMessage}}
+    </div>
+    <div class="space space-30"></div>
+    {{/if}}
+    {{#if paymentPasswordHasSet}}
+    <div class="recharge-form-wrap">
+        <h4>提现金额</h4>
+        <div class="space space-10"></div>
+        <div class="row">
+            <div class="col-md-4">
+                <form role="form" name="withdrawForm" action="{{active}}" method="POST" target="_blank" on-submit="withdrawForm">
+                    <div class="form-group has-error- has-feedback">
+                        <span class="form-control-feedback">
+                        	<i class="fa fa-rmb"></i>
+                        </span>
+                        <input type="text" name="amount" class="form-control input-lg" id="withdraw"
+                        style="width: 300px"
+                        on-keyup="changeValue" style="margin-bottom:10px;" value="{{amount}}" autocomplete="off" >
+                        <span class="sendCode">请输入交易密码</span>     
+                        <input type="password" name="paymentPassword" class="inputsMs" placeholder="" on-blur="checkPassword" autocomplete="off"  value="{{paymentPassword}}">
+                    </div>
+                    <div class="space space-30"></div>
+                    <button type="submit" class="btn btn-warning btn-lg post-btn {{#if disabled}}disabled{{/if}}">{{submitText}}</button>
+                </form>
+            </div>
+            <div class="col-md-7">
+            	<p class="help-block text-danger">
+					{{submitMessage}}
+            	</p>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="has-line">
+        提现需要先开通交易密码，否则无法进行提现 <a href="/account/paypwd"><span class="btn" style="background-color:#007ec5;margin-left:10px;color:#fff">现在去开通</span></a>
+    </div>
+    {{/if}}
+</div>

@@ -1,0 +1,119 @@
+.ccc-invite-wrap input:focus {
+  outline: none!important;
+}
+
+#main-container{
+	margin-top: 7px;
+}
+
+
+.ccc-invite-wrap .add-wrap {
+  width: 100%;
+  float: left;
+  clear: both;
+  margin-top: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border: 1px #eee solid;
+  border-left: 0;
+  border-right: 0;
+}
+.ccc-invite-wrap .add-wrap div.checkbox {
+  clear: both;
+  float: left;
+  width: 100%;
+  padding-bottom: 15px;
+}
+.ccc-invite-wrap .add-wrap p.msg {
+  font-size: 13px;
+}
+.ccc-invite-wrap .recod-wrap {
+  padding: 30px 0;
+  height: auto;
+  overflow: hidden;
+}
+.ccc-invite-wrap .recod-wrap > p {
+  font-size: 15px;
+  color: #777;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.ccc-invite-wrap .recod-wrap .btn-reco {
+  padding: 13px 40px;
+  font-size: 16px;
+}
+.ccc-invite-wrap .recod-wrap .form-control {
+  width: 385px;
+}
+.ccc-invite-wrap table > thead > tr > th {
+  padding-left: 10px;
+  text-align: center;
+}
+.ccc-invite-wrap table > tbody > tr > td {
+  padding: 15px 8px;
+  text-align: center;
+}
+.ccc-invite-wrap table a {
+  color: #00327c;
+  font-size: 14px;
+}
+.ccc-invite-wrap table {
+  font-size: 12px;
+}
+.ccc-invite-wrap table a {
+  color: #f17420;
+}
+.ccc-invite-modify-box .space-50 {
+  margin-top: 20px;
+}
+.ccc-invite-modify-box .invite-modify-box table {
+  width: 320px;
+  margin: 0 auto;
+}
+.ccc-invite-modify-box .invite-modify-box p {
+  padding-bottom: 15px;
+}
+.ccc-invite-modify-box .invite-modify-box input.form-modify {
+  width: 150px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 6px;
+}
+.ccc-invite-modify-box .btn {
+  width: 80px;
+}
+.invite-share {
+  padding-top: 50px;
+}
+.invite-tit {
+  margin-bottom: 30px;
+}
+.invite-tit span {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 28px;
+  border-radius: 100%;
+  background: #e8383d;
+  color: #fff;
+}
+.invite-tit p {
+  display: inline-block;
+  vertical-align: super;
+  padding-left: 15px;
+}
+.ccc-invite-wrap .record{
+    float: left;
+    margin-right:20px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.ccc-invite-wrap .reward{
+    float: left;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+/*# sourceMappingURL=/ccc/account/css/invite.css.map */
