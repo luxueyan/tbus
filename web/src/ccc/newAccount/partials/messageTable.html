@@ -1,0 +1,77 @@
+
+
+<!--
+ <p class="li-blue" data-type="READ" on-click="setMessage">
+ 	<a href="javascript:void(0)">标记为已读</a>
+ <p>
+-->
+
+<div class="tab-panel panel-HOLDING active">
+	{{#if list}}
+    <table  class="table table-striped">
+        <thead>
+            <tr class="thead" style="height:50px;">
+<!--
+                <th style="width:70px; text-align:center;">
+                    <input type="checkbox" id="all-checkbox" on-click="checkAll" />
+                </th>
+-->
+                <th style="padding-left:20px;">标题</th>
+                <th style="padding-left:20px;">内容</th>
+                <th style="padding-left:20px;">时间</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+			
+			{{#list}}
+            <tr class="list-row">
+<!--
+                <td style="width:70px; text-align:center;">
+                    <input type="checkbox" class="check-box" />
+                </td>
+-->
+				{{#if status == 'NEW'}}
+                <td style="padding-left:20px;color:#4a4a4a;">{{body.title}}</td>
+				{{else}}
+				<td style="padding-left:20px;">{{body.title}}</td>
+				{{/if}}
+				{{#if status == 'NEW'}}
+                <td class="ctr-box">
+                    <div style="padding-left:20px;color:#4a4a4a;" data-status="{{status}}" data-id="{{id}}" on-click="showContent" class="ctr">
+                        {{body.content}}
+                    </div>
+                </td>
+				{{else}}
+				<td  class="ctr-box">
+                    <div style="padding-left:20px;" data-status="{{status}}" data-id="{{id}}" class="ctr" on-click="showContent">
+                        {{body.content}}
+                    </div>
+                </td>
+				{{/if}}
+				{{#if status == 'NEW'}}
+                <td style="padding-left:20px;color:#4a4a4a;">{{sentTime}}</td>
+				{{else}}
+				<td style="padding-left:20px;">{{sentTime}}</td>
+				{{/if}}
+            </tr>
+			{{/list}}
+			
+        </tbody>
+    </table>
+	 {{else}}
+	<table  class="table table-striped">
+		<thead>
+			<tr class="thead">
+				<th style="padding-left:20px;">标题</th>
+                <th style="padding-left:20px;">内容</th>
+                <th style="padding-left:20px;">时间</th>
+			</tr>
+		</thead>
+	</table>
+		<div class="nomsg"></div>
+	{{/if}}
+<!--	{{JSON.stringify(list)}}-->
+</div>
+
+<div class="invest-pager-wrapper" id="invest-pager"></div>

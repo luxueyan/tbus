@@ -1,0 +1,48 @@
+<!--{{JSON.stringify(list)}}-->
+{{#list}}
+
+<div class="loanItemWrapper" {{#if status === 'SCHEDULED' }}{{/if}}>
+    <div class="loanPartOne">
+        <div class="loantitle">
+			{{#if titleLength>20}}
+			<p>{{title}}</p>
+			{{/if}}
+            <a href="/creditDetail/{{id}}/{{loanId}}" class="invest-title">
+				{{#if titleLength>20}}
+                {{title.substr(0,12)}}...
+				{{else}}
+				{{title}}
+				{{/if}}
+            </a>
+        </div>
+    </div>
+    <div class="loanRate">{{creditDealRate*100}}<em>%</em>
+    </div>
+    <div class="duration">{{creditAmount}}<em>元</em>
+    </div>
+    <div class="backmoney">{{timeOut}}<em>小时</em></div>
+<!--
+    <div class="process">
+        <div class="rate-chart">
+            <div class="easy-pie-chart pie" data-percent="{{ investPercent }}" data-status='{{status}}' style="top:9px">
+                <span class="percentageNum">{{ investPercent }} </span>
+            </div>
+        </div>
+    </div>
+-->
+
+    <div class="investBtn">
+
+        <a href="/creditDetail/{{id}}/{{loanId}}" style="text-decoration:none" class="investbtn">我要认购</a>
+
+    </div>
+</div>
+<script type="text/javascript">
+	$('.loantitle a').mouseenter(function(){
+		$(this).siblings().fadeIn(200);
+	}).mouseleave(function(){
+		$(this).siblings().fadeOut(100);
+	})
+
+</script>
+{{/list}}

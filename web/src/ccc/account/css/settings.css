@@ -1,0 +1,685 @@
+.form-group p{
+	font-family: "微软雅黑";
+}
+
+
+#main-container{
+	margin-top: 7px;
+}
+
+
+.current-container {
+  width: 960px;
+  margin: 0 auto;
+}
+.account-settings-wrapper .header {
+  padding-top: 20px;
+  border-bottom: 1px solid #e8e8e8;
+}
+.account-settings-wrapper .header .header-text {
+  float: left;
+  font-size: 20px;
+  color: #000;
+}
+.account-settings-wrapper .ccc-tab {
+  float: right;
+}
+.modify-password-wrapper {
+  margin: 60px auto 90px;
+  /*background-color: #fbfbfb;
+    width: 435px;
+    height: 430px;*/
+  background: #fbfbfb url(/ccc/global/img/account/pwd_bg.png) no-repeat;
+  width: 447px;
+  height: 410px;
+  overflow: hidden;
+  position: relative;
+}
+.modify-password-wrapper .modify-password {
+  width: 240px;
+  margin: 50px auto 0;
+}
+.modify-password-wrapper .modify-password .errorMessage {
+  position: absolute;
+  padding: 5px 10px 5px 20px;
+  border-radius: 5px;
+  top: 20px;
+  color: #d2252c;
+  background-color: #fcf8e3;
+	background-image: url(/ccc/register/img/gou-bg.png);
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+.modify-password-wrapper .modify-password .errorMessage .excalmation {
+  color: #ff0000;
+  margin-right: 5px;
+}
+.modify-password-wrapper .modify-password .text {
+  margin-bottom: 5px;
+}
+.modify-password-wrapper .modify-password .form-control {
+  margin-bottom: 5px;
+}
+.modify-password-wrapper .modify-password .input-group .form-control {
+  margin-bottom: 0;
+}
+.modify-password-wrapper .modify-password .input-group .btn-get-validate {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 80px;
+  text-align: center;
+}
+.modify-password-wrapper .modify-password .modify-button {
+  display: block;
+  width: 100%;
+  margin: 30px auto 0;
+  color: #fff;
+  background-color: #f58220;
+}
+
+.modify-password-wrapper .modify-password .modify-button:hover{
+	background-color: #df6502;
+}
+
+.open-account-wrapper {
+  margin: 30px 75px 0;
+}
+.open-account-wrapper .errorNotOpenedYet {
+  color: #000;
+  background-color: #fcf8e3;
+  padding: 10px;
+}
+.open-account-wrapper .errorNotOpenedYet .exclamation {
+  color: #f00;
+  margin-right: 5px;
+}
+.open-account-wrapper .intro-text-wrapper {
+  margin-top: 30px;
+}
+.open-account-wrapper .intro-text-wrapper p {
+  margin-bottom: 10px;
+}
+.open-account-wrapper .warn-text {
+  color: #f17420;
+}
+.open-account-wrapper .account-form-wrapper {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.open-account-wrapper .account-form-wrapper .text {
+  margin-top: 10px;
+  color: #e05b5b;
+}
+.open-account-wrapper .account-form-wrapper .btn-success {
+  background-color: #009ada;
+  border-color: transparent;
+  color: #fff;
+  width: 230px;
+}
+
+.open-account-wrapper .account-form-wrapper .btn-success:hover{
+	background-color: #015989;
+}
+
+.open-account-wrapper .account-form-wrapper .agreement-wrapper {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.open-account-wrapper .account-form-wrapper .agreement-wrapper input[type=checkbox] {
+  margin-right: 5px;
+}
+.open-account-wrapper .account-form-wrapper .agreement-wrapper a,
+.open-account-wrapper .account-form-wrapper .agreement-wrapper a:hover,
+.open-account-wrapper .account-form-wrapper .agreement-wrapper a:focus {
+  color: #3f88c8;
+}
+.open-account-wrapper .account-form-wrapper .error-message {
+  display: block;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #fcf8e3;
+  color: #d2252c;
+  font-size: 12px;
+	background-image: url(/ccc/register/img/gou-bg.png);
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 22px;
+}
+.open-account-wrapper .account-form-wrapper .error-message .exclamation {
+  color: #f00;
+  margin-right: 5px;
+}
+.open-account-success {
+  width: 100%;
+  margin: 60px 0 0 40px;
+}
+.open-account-success .para1 .header-text {
+  color: #ff5e24;
+  font-size: 26px;
+}
+.open-account-success .para2 {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+.open-account-success .para2 .quick-invest-check {
+  font-size: 120%;
+  margin-right: 5px;
+}
+.open-account-success .btn-continue-open {
+  display: block;
+  background-color: #b5a16b;
+  border-color: transparent;
+  color: #fff;
+  width: 230px;
+  margin: 30px 15px 2px 0;
+}
+.open-account-success .pass-notice {
+  margin-bottom: 10px;
+  height: 34px;
+  line-height: 34px;
+  color: #ff7903;
+}
+.account-opened-notice .tips {
+  color: #000;
+  background-color: #fcf8e3;
+  padding: 10px;
+  margin: 20px auto 50px auto;
+  width: 780px;
+}
+ #ractive-container .tips{
+     width: 780px;
+     margin: 0 auto;
+ }
+.account-opened-notice .tips .exclamation {
+  color: #f00;
+  margin-right: 5px;
+}
+.account-opened-notice .title {
+  width: 370px;
+  margin: 0 auto;
+}
+.account-opened-wrapper {
+  width: 400px;
+  margin: 30px auto 70px auto;
+}
+.account-opened-wrapper .account-info-row {
+  margin-bottom: 10px;
+}
+.account-opened-wrapper .account-info-row .text {
+  text-align: right;
+  width: 100px;
+  margin-right: 10px;
+}
+.account-opened-wrapper .account-info-row .value {
+  background-color: #e9e9e9;
+  color: #797979;
+  border-radius: 5px;
+  padding: 5px 10px;
+  width: 285px;
+  display: inline-block;
+}
+.account-opened-wrapper .reset-pwd-wrapper {
+  margin-top: 60px;
+  margin-left: 20px;
+}
+.account-opened-wrapper .reset-pwd-wrapper .btn-reset {
+  margin-left: 10px;
+  background-color: #74ba20;
+}
+.bind-card-wrapper {
+  margin-top: 30px;
+}
+.bind-card-wrapper .errorNoBindedYet {
+  background-color: #fcf8e3;
+  padding: 10px;
+}
+.bind-card-wrapper .errorNoBindedYet .exclamation {
+  color: #f00;
+  margin-right: 5px;
+}
+.bind-card-wrapper .form-title {
+  margin-top: 20px;
+}
+.bind-card-wrapper .banks-container {
+  border-bottom: 1px solid #e8e8e8;
+}
+.bind-card-wrapper .banks-container .banks-wrap {
+  display: inline-block;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+.bind-card-wrapper .banks-container .banks-wrap > li {
+  list-style: none;
+  font-size: 13px;
+  margin: 0 40px;
+  display: inline-block;
+  line-height: 20px;
+}
+.bind-card-wrapper .banks-container .banks-wrap > li .radio {
+  min-height: 20px;
+  padding-left: 20px;
+}
+.bind-card-wrapper .banks-container .banks-wrap > li .radio input[type=radio] {
+  display: inline-block;
+  opacity: 100;
+  position: static;
+  height: 36px;
+  line-height: 36px;
+  float: left;
+  margin-left: -20px;
+}
+.bind-card-wrapper .banks-container .banks-wrap > li .radio span {
+  border: 1px #ddd solid;
+  display: inline-block;
+  width: 130px;
+  height: 36px;
+  background-color: none;
+  background-image: url(/ccc/global/img/banks.png);
+  background-repeat: no-repeat;
+}
+.bind-card-wrapper .do-bind-card > .row {
+  margin-bottom: 10px;
+}
+.bind-card-wrapper .do-bind-card .row-2 .error-message {
+  height: 34px;
+  line-height: 34px;
+  color: #f00;
+}
+.bind-card-wrapper .do-bind-card .notice {
+  color: #ff7903;
+}
+.binded-card-wrapper {
+  width: 305px;
+  margin: 70px auto;
+}
+.binded-card-wrapper .bank-card {
+  border: 1px solid #bab9c9;
+  padding: 1px;
+  border-radius: 5px;
+}
+.binded-card-wrapper .bank-card .card-img {
+  border-bottom: 1px solid #e8e8e8;
+  width: 300px;
+  height: 120px;
+}
+.binded-card-wrapper .bank-card .card-num {
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+}
+.binded-card-wrapper .btn-change-card {
+  background-color: #009ada;
+  color: #fff;
+  display: block;
+  margin: 25px auto 0;
+    border: none;
+    margin-bottom: 30px;
+}
+
+.binded-card-wrapper .btn-change-card:hover{
+	background-color: #015989;
+}
+
+.nosecret-agreement-wrapper .form-helper {
+  padding-left: 20px;
+  color: #888;
+}
+.nosecret-agreement-wrapper .sign-agreement {
+  margin: 20px 0;
+}
+.nosecret-agreement-wrapper .sign-agreement .agreement-item {
+  margin-bottom: 20px;
+}
+.nosecret-agreement-wrapper .sign-agreement .agreement-item .agreement-check {
+  font-size: 200%;
+  margin-right: 10px;
+}
+.nosecret-agreement-wrapper .sign-agreement .agreement-item .agreement-text {
+  font-size: 16px;
+}
+.nosecret-agreement-wrapper .sign-agreement .agreement-item .agreement-text .name {
+  cursor: pointer;
+  color: #555f81;
+}
+.nosecret-agreement-wrapper .sign-agreement .agreement-item .agreement-text .intro {
+  font-size: 13px;
+  color: #333;
+}
+.nosecret-agreement-wrapper .sign-agreement .btn-submit {
+  margin-left: 20px;
+}
+.nosecret-agreement-wrapper .unsign-agreement .header {
+  border-bottom: 1px solid #e8e8e8;
+  padding-bottom: 5px;
+}
+.nosecret-agreement-wrapper .unsign-agreement .header .icon-fold-expand {
+  margin-top: 5px;
+}
+.nosecret-agreement-wrapper .unsign-agreement .form-unsign-agreement {
+  margin-top: 30px;
+}
+.nosecret-agreement-wrapper .unsign-agreement .agreement-item {
+  margin-bottom: 10px;
+}
+.nosecret-agreement-wrapper .unsign-agreement .agreement-item .agreement-check {
+  font-size: 200%;
+  margin-right: 10px;
+}
+.nosecret-agreement-wrapper .unsign-agreement .btn-submit {
+  margin-left: 20px;
+}
+.nosecret-agreement-wrapper .btn-submit {
+  color: #fff;
+  background-color: #b5a16b;
+  padding: 5px 20px;
+  width: 206px;
+  border: transparent;
+}
+.nosecret-agreement-wrapper .question-mark {
+  color: #7faac8;
+}
+.nosecret-agreement-wrapper .tooltip-container .tooltip-arrow {
+  border-right-color: #f2f8fb;
+  border: 10px 10px 10px 0;
+  margin-top: -10px;
+}
+.nosecret-agreement-wrapper .tooltip-container .tooltip-inner {
+  color: #467892;
+  background-color: #f2f8fb;
+  max-width: 330px;
+}
+.open-status {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+.open-account-step {
+  width: 1000px;
+  margin: 20px auto;
+  overflow: hidden;
+}
+.open-account-step li {
+  float: left;
+  margin: 0 0 0 50px;
+  font-size: 24px;
+  color: #d3d4d4;
+}
+.open-account-step li .step-number {
+  font-size: 40px;
+  font-family: Arial;
+}
+.open-account-step li img {
+  vertical-align: bottom;
+  margin: 15px 0 0 0;
+}
+.open-account-step li.active {
+  color: #333333;
+  border-bottom: 1px solid #232d4e;
+}
+ul.banks-wrap span.ICBC {
+  background-position: 0 -537px;
+}
+ul.banks-wrap span.ABC {
+  background-position: 0 4px;
+}
+ul.banks-wrap span.CMB {
+  background-position: 0 -320px;
+}
+ul.banks-wrap span.CCB {
+  background-position: 0 -141px;
+}
+ul.banks-wrap span.BCCB {
+  background-position: 0 -33px;
+}
+ul.banks-wrap span.BJRCB {
+  background-position: 0 -68px;
+}
+ul.banks-wrap span.BOC {
+  background-position: 0 -105px;
+}
+ul.banks-wrap span.BOCOM {
+  background-position: 0 -393px;
+}
+ul.banks-wrap span.CMBC {
+  background-position: 0 -357px;
+}
+ul.banks-wrap span.BOS {
+  background-position: 0 -682px;
+}
+ul.banks-wrap span.CBHB {
+  background-image: url(/ccc/global/img/banks-2.png) !important;
+  background-position: -284px -93px;
+}
+ul.banks-wrap span.CEB {
+  background-position: 0 -212px;
+}
+ul.banks-wrap span.CIB {
+  background-position: 0 -249px;
+}
+ul.banks-wrap span.CITIC {
+  background-position: 0 -284px;
+}
+ul.banks-wrap span.CZB {
+  background-image: url(/ccc/global/img/banks-2.png) !important;
+  background-position: -18px -91px;
+}
+ul.banks-wrap span.GDB {
+  background-position: 0 -463px;
+}
+ul.banks-wrap span.HKBEA {
+  background-image: url(/ccc/global/img/bank-hkbea.png) !important;
+  background-position: -10px 5px;
+}
+ul.banks-wrap span.HXB {
+  background-image: url(/ccc/global/img/banks-2.png) !important;
+  background-position: -430px -46px;
+}
+ul.banks-wrap span.HZCB {
+  background-position: 0 -501px;
+}
+ul.banks-wrap span.HJCB {
+  background-image: url(/ccc/global/img/banks-2.png) !important;
+  background-position: -700px -93px;
+}
+ul.banks-wrap span.PINGAN {
+  background-position: 0 -753px;
+}
+ul.banks-wrap span.PSBC {
+  background-position: 0 -606px;
+}
+ul.banks-wrap span.SDB {
+  background-position: 0 -644px;
+}
+ul.banks-wrap span.SPDB {
+  background-position: 0 -788px;
+}
+ul.banks-wrap span.SRCB {
+  background-position: 0 -718px;
+}
+ul.banks-wrap span.WZCB {
+  background-position: 0 -828px;
+}
+.paypwd-wp > p {
+  line-height: 24px;
+}
+.paypwd-wp .sub-tips {
+  padding-top: 15px;
+  color: #999;
+}
+
+.banks-container .form-group {
+  padding: 5px;
+	overflow: hidden;
+}
+
+.banks-container .form-group .tip {
+  width: 150px;
+  font-size: 12px;
+  text-align: right;
+  float: left;
+  height: 30px;
+  line-height: 30px;
+  padding-right: 15px;
+}
+
+.banks-container .form-group select {
+  width: 250px;
+  position:relative;
+  top:7px;
+  font-size: 16px;
+	float: left;
+}
+
+.banks-container .form-group input {
+  width: 250px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 5px;
+  text-indent: 10px;
+  font-size: 12px;
+	float: left;
+}
+/*安全认证*/
+.safety-wrapper .table tr th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 16px;
+  color: #005387;
+  text-align: center;
+}
+.safety-wrapper .table tr td {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 14px;
+  text-align:center;
+}
+.safety-wrapper .table tr td .glyphicon {
+  color: #9eca45;
+}
+.safety-wrapper .table tr .align-left {
+  text-align: left;
+}
+.rzz {
+  width: 350px;
+  position: relative;
+  margin: 0 auto;
+  display: none;
+  overflow: auto;
+  zoom:1;
+  margin-top:20px;
+}
+.rZemail {
+  width: 250px;
+  height: 37px;
+  text-indent: 10px;
+  float: left;
+  font-size: 14px;
+}
+.rzE_button {
+  width: 80px;
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+  color: #fff;
+  font-size: 14px;
+  background: #f58220;
+  float: right;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.rzE_button:hover{
+	background-color: #df6502;
+}
+
+.errors {
+  color: #d2252c;
+  font-size: 12px;
+  clear:both;
+  padding:10px;
+	padding-left: 20px;
+/*	background-image: url(/ccc/register/img/gou-bg.png);*/
+	background-position: left center;
+	background-repeat: no-repeat;
+}
+/*个人信息*/
+.userInfo {
+  width:400px;
+  margin:30px auto;
+  padding: 20px 50px;
+  border: 1px solid rgb(221, 221, 221);
+  box-shadow: 1px 2px 5px grey;
+}
+.userInfo .item {
+  overflow:auto;
+  zoom:1;
+  margin:10px 0;
+}
+.userInfo dl dt {
+  float:left;
+  width:100px;
+  text-align: right;
+}
+.userInfo dl dd {
+  margin-left:120px;
+}
+
+.tabwra .tab {
+  float: right;
+}
+.tabwra .tab li {
+  width: 80px;
+  font-size: 12px;
+  height: 30px;
+  line-height: 30px;
+  float: left;
+  text-align: center;
+  cursor: pointer;
+}
+.tabwra .tab li.active {
+  border-bottom: 1px solid #000;
+}
+.payInp {
+  width: 250px;
+  height: 35px;
+  line-height: 35px;
+  border-radius: 5px;
+  text-indent: 10px;
+  font-size: 12px;
+}
+.formwra {
+  width: 350px;
+  margin: 0 auto;
+}
+.formwra .row {
+  margin-bottom: 5px;
+}
+.row .tipss {
+  display: block;
+  height: 35px;
+  line-height: 35px;
+}
+.row .confir {
+  width: 249px;
+  color: #fff;
+  background: #009ada;
+}
+
+.row .confir:hover{
+	background-color: #015989;
+}
+
+.row .error {
+  width: 249px;
+  color: #d2252c;
+/*  text-align: center;*/
+	display: block;
+	float: left;
+	background-image: url(/ccc/register/img/gou-bg.png);
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 20px;
+}
+.error {
+    color:#f00;
+}
+/*# sourceMappingURL=/ccc/account/css/settings.css.map */

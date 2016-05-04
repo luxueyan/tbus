@@ -1,0 +1,657 @@
+.main h1,
+.main h2,
+.main h3,
+.main h4,
+.main h5,
+.main h6,
+.main dl,
+.main dd,
+.main dt,
+.main p,
+.main ul,
+.main li {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	font-size: 12px;
+}
+
+#main-container .navTitle{
+    color:#4a4a4a;
+    font-size: 14px;
+    width:1100px;
+    margin: 0px auto;
+    line-height: 48px;
+}
+#main-container .navTitle a{
+       color:#4a4a4a;
+    font-size: 14px;
+}
+.main a {
+	text-decoration: none;
+}
+
+.main * {
+	font-family: "微软雅黑";
+}
+
+.main img {
+	display: block;
+}
+
+body {
+	background-color: #f7f7f7;
+}
+
+#main-container {
+	background-color: #f7f7f7;
+}
+
+.main {
+	background-color: white;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid #dddddd;
+	width: 1100px;
+	margin-bottom: 37px;
+	height: 596px;
+}
+
+.step01,
+.step02,
+.step03,
+.step04 {
+	width: 900px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.main .step02 .verify-content {
+	width: 520px;
+	margin: auto;
+	margin-bottom: 50px;
+}
+
+.main .step02 .verify-content .box-phone{
+	overflow: hidden;
+}
+
+
+.main .step01 .verify-content {
+	width: 660px;
+	margin: auto;
+	margin-bottom: 50px;
+}
+
+.main .step01 .verify-content .u-form-panel{
+	overflow: hidden;
+	margin-left: 32px;
+	float: left;
+}
+
+.main .step01 .verify-content .u-form-panel-lg .s-form-row-lg{
+	overflow: hidden;
+}
+
+
+.main .step01 .verify-content label {
+	margin: 0;
+}
+
+.main .step02 .verify-content label {
+	margin: 0;
+}
+
+.main .step01 .verify-content input,
+.main .step02 .verify-content input {
+	border: none;
+	/*    padding-left: 10px;*/
+
+	height: 40px;
+	line-height: 41px;
+	color: #999;
+	font-size: 14px;
+	width: 250px;
+}
+
+.main .step01 .verify-content .s-form-row {
+	width: 280px;
+	border: 1px solid #c5c5c5;
+	border-radius: 3px;
+	padding-left: 10px;
+	border-radius: 4px;
+	float: left;
+}
+
+.main .step02 .verify-content .s-form-row {
+	width: 276px;
+	border: 1px solid #c5c5c5;
+	border-radius: 3px;
+	padding-left: 10px;
+	border-radius: 4px;
+	float: left;
+}
+
+.main .step01 .verify-content .s-form-row-lg .border .u-form-text-lg {
+	border: 1px solid #c5c5c5;
+	border-radius: 4px;
+	padding-left: 10px;
+	width: 140px;
+	line-height: 40px;
+	float: right;
+}
+
+.main .step01 .verify-content .s-form-row-lg .border {
+	overflow: hidden;
+	float: left;
+}
+
+
+.main .step01 .verify-content .s-form-row-sm,
+.main .step02 .verify-content .border {
+	border: 1px solid #c5c5c5;
+	border-radius: 3px;
+	width: 271px;
+}
+
+.main .step02 .verify-content .border input {
+	width: 100px;
+}
+
+.main .step02 .verify-content .s-form-row-lg {
+	overflow: hidden;
+	margin-bottom: 15px;
+}
+
+.main .step02 .verify-content .s-form-row-lg a {
+	display: block;
+	float: left;
+	color: #fff;
+	height: 45px;
+	min-width: 93px;
+	font-size: 12px;
+	background-color: #23b574;
+	text-align: center;
+	line-height: 45px;
+	border-radius: 3px;
+	margin-left: 10px;
+	padding: 0 13px;
+}
+
+.main .step02 .verify-content .border {
+	width: 150px;
+	float: left;
+}
+
+.main .step01 .verify-content img,
+.main .step02 .verify-content img {
+	display: inline;
+}
+
+.main .step01 .verify-content .box-verify {
+	overflow: hidden;
+	margin-bottom: 15px;
+}
+
+.main .step01 .verify-content .box-verify .u-form-panel {
+	float: left;
+}
+
+.main .step01 .verify-content .u-form-btn-red,
+.main .step02 .verify-content .u-form-btn-red {
+	width: 280px;
+	margin: auto;
+	text-align: center;
+	line-height: 37px;
+	height: 40px;
+	color: white;
+	background-color: #009ada;
+	border-radius: 4px;
+	display: block;
+	margin-left: 96px;
+	margin-top: 15px;
+/*    float: left;*/
+}
+
+
+.main .step02 .verify-content .u-form-btn-red{
+	width: 276px;
+	margin-left: 80px;
+}
+
+
+.main .step02 .verify-content .u-form-btn-red:hover{
+	background-color: #015989;
+    cursor: pointer;
+}
+
+.main .step01 .verify-content .u-form-btn-red:hover{
+	background-color: #015989;
+     cursor: pointer;
+}
+
+.main .step01 .verify-content .s-form-row-sm-s {
+	width: 130px;
+}
+
+.main .step01 .verify-content .s-form-row-sm-s input {
+	width: 67px;
+}
+
+.main .step01 .verify-content .box-verify .u-form-panel-sm {
+	float: left;
+}
+
+.main .nav_find {
+	overflow: hidden;
+	margin-top: 33px;
+	margin-bottom: 55px;
+}
+
+.nav_find li {
+	float: left;
+}
+
+.main .nav_find .number {
+	font-family: "Arial";
+	font-size: 18px;
+	font-weight: 100;
+	color: white;
+	background-color: #aaa;
+	border-radius: 50%;
+	padding-top: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 5px;
+	margin-right: 15px;
+	margin-left: 25px;
+}
+
+.main .nav_find .Method {
+	font-size: 14px;
+	color: #666;
+}
+
+.main .nav_find .current01 {
+	color: #d8000f;
+}
+
+.main .nav_find .current02 {
+	color: #d8000f;
+}
+
+.main .nav_find .current03 {
+	color: #d8000f;
+}
+
+.main .nav_find .current04 {
+	color: #d8000f;
+}
+
+.main .nav_find .current_span01 {
+	background-color: #d8000f;
+}
+
+.main .nav_find .current_span02 {
+	background-color: #d8000f;
+}
+
+.main .nav_find .current_span03 {
+	background-color: #d8000f;
+}
+
+.main .nav_find .current_span04 {
+	background-color: #d8000f;
+}
+
+.main .nav_find li {
+	border-bottom: 2px solid #d9d7d7;
+	padding-bottom: 13px;
+	width: 299px;
+}
+
+.main .nav_find .current_li01 {
+	border-bottom: 2px solid #d8000f;
+}
+
+.main .nav_find .current_li02 {
+	border-bottom: 2px solid #d8000f;
+}
+
+.main .nav_find .current_li03 {
+	border-bottom: 2px solid #d8000f;
+}
+
+.main .nav_find .current_li04 {
+	border-bottom: 2px solid #d8000f;
+}
+
+.main .box_way {
+	width: 170px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 160px;
+}
+
+.main .box_way .span01 input {
+	width: 13px;
+	height: 13px;
+}
+
+.main .box_way .span01 {
+	margin-right: 13px;
+}
+
+.main .box_way .span02 {
+	font-size: 14px;
+	color: #666;
+}
+
+.main .box_way h1 a {
+	display: block;
+	text-decoration: none;
+	width: 105px;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 16px;
+	color: #fff;
+	line-height: 37px;
+	text-align: center;
+	background-color: #d8000f;
+	margin-top: 24px;
+	border-radius: 17px;
+}
+
+.main .way02 {
+	width: 295px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.main .next {
+	overflow: hidden;
+	width: 350px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 150px;
+}
+
+.main .next h1,
+.main .next h2 {
+	float: left;
+}
+
+.main .next h1 a {
+	display: block;
+	text-decoration: none;
+	width: 105px;
+	font-size: 16px;
+	color: white;
+	line-height: 37px;
+	text-align: center;
+	background-color: #d8000f;
+	border-radius: 17px;
+}
+
+.main .next h1 {
+	margin-right: 15px;
+}
+
+.main .next h2 a {
+	display: block;
+	text-decoration: none;
+	width: 165px;
+	font-size: 16px;
+	color: white;
+	line-height: 37px;
+	text-align: center;
+	background-color: #8c8c8c;
+	border-radius: 17px;
+}
+
+.main .way03 {
+	width: 482px;
+	margin-left: 310px;
+	margin-top: 90px;
+}
+
+.main .way03 h1 {
+	font-size: 14px;
+	color: #666;
+	margin-bottom: 20px;
+}
+
+.main .Verification02 {
+	overflow: hidden;
+	margin-bottom: 18px;
+}
+
+.main .Verification02 li {
+	float: left;
+}
+
+.main .Verification02 .li01_Verification02 {
+	overflow: hidden;
+	border: 1px solid #c5c5c5;
+	width: 163px;
+	border-radius: 3px;
+	margin-right: 10px;
+}
+
+.main .Verification02 .li01_Verification02 img,
+.main .Verification02 .li01_Verification02 input {
+	float: left;
+}
+
+.main .Verification02 .li01_Verification02 input {
+	border: none;
+	color: #999;
+	font-size: 14px;
+	line-height: 43px;
+	padding-left: 10px;
+	width: 115px;
+}
+
+.main .li02_Verification02 {
+	line-height: 44px;
+	text-align: center;
+	color: white;
+	font-size: 14px;
+	border-radius: 3px;
+	background-color: #23b574;
+	margin-right: 16px;
+	width: 90px;
+}
+
+.main .li03_Verification02 {
+	font-size: 12px;
+	color: #999;
+	line-height: 44px;
+}
+
+.main .password_new {
+	width: 265px;
+	overflow: hidden;
+	border: 1px solid #c5c5c5;
+	border-radius: 3px;
+	margin-bottom: 18px;
+}
+
+.main .password_new input {
+	border: none;
+	line-height: 43px;
+	padding-left: 10px;
+	width: 220px;
+	font-size: 14px;
+	color: #999;
+}
+
+.main .password_new input,
+.main .password_new img {
+	float: left;
+}
+
+.main .next01 {
+	margin: 0px;
+	margin-top: 23px;
+	margin-bottom: 170px;
+}
+
+.main .way04 {
+	margin-left: 34%;
+	overflow: hidden;
+	margin-top: 130px;
+}
+
+.main .box_icon,
+.main .next02 {
+	float: left;
+}
+
+.main .box_icon {
+	margin-right: 30px;
+}
+
+.main .next02 h4 {
+	margin-left: 20px;
+}
+.main .step-login{
+    padding-left: 0;
+	display: block;
+	background: #007ec5;
+    width: 225px;
+    height: 46px;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    line-height: 46px;
+    margin-top: 120px;
+}
+.main .next02 h4 {
+	color: #666;
+	font-size: 18px;
+}
+
+.main .next02 {
+	margin-top: 5px;
+}
+
+.captcha-img {
+	border: 1px solid #c5c5c5;
+	width: 91px;
+	height: 44px;
+	border-radius: 3px;
+	margin: 0 3px;
+	padding: 5px;
+}
+
+.refresh {
+	border: 1px solid #c5c5c5;
+	border-radius: 3px;
+	margin: 0 3px;
+	padding: 12px 2px;
+	color: #c5c5c5;
+}
+
+.step-guide {
+	margin: 50px auto 100px auto;
+}
+
+.main .step01 .verify-content .u-form-panel .test-title {
+	float: left;
+	line-height: 41px;
+	font-size: 16px;
+	color: #3c3c3c;
+}
+
+.main .step01 .verify-content .s-form-row-lg .border .test-title {
+	float: left;
+	line-height: 41px;
+	font-size: 16px;
+	color: #3c3c3c;
+
+}
+
+.main .step01 .verify-content .u-form-panel-lg .s-form-row-lg #get-text a {
+	color: #007ec5;
+	font-size: 14px;
+	text-align: center;
+	display: block;
+}
+
+.main .step01 .verify-content .u-form-panel-lg .s-form-row-lg #get-text {
+	border: 1px solid #007ec5;
+	line-height: 38px;
+	float: left;
+	margin-left: 10px;
+	width: 130px;
+	border-radius: 4px;
+}
+
+.main .step02 .u-form-panel .step-password,
+.main .step02 .u-form-panel .step-password-confirm {
+	overflow: hidden;
+}
+
+.main .step02 .u-form-panel .step-password{
+	float: left;
+}
+
+.main .step02 .u-form-panel .step-password .test-title {
+	float: left;
+	line-height: 41px;
+	font-size: 16px;
+	color: #3c3c3c;
+	margin-left: 32px;
+}
+
+.main .step02 .u-form-panel .step-password .s-form-row {
+	float: right;
+}
+
+.main .step02 .u-form-panel .step-password-confirm .test-title {
+	float: left;
+	line-height: 41px;
+	font-size: 16px;
+	color: #3c3c3c;
+}
+
+.main .step02 .u-form-panel .step-password-confirm .s-form-row {
+	float: left;
+}
+
+
+
+.main .step01 .verify-content .box-phone{
+	overflow: hidden;
+	margin-bottom: 15px;
+	width: 665px;
+}
+
+.errors {
+	float: left;
+	margin-left: 10px;
+	height: 40px;
+	font-size: 15px;
+}
+
+.errors h1 {
+	font-size: 14px;
+	margin: 0px;
+	background-image: url(/ccc/register/img/gou-bg.png);
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 30px;
+	color: #9fa0a0;
+	line-height: 40px;
+	color: #d2252c;
+/*    margin-left: 54px;*/
+}
+
+
+.main .step02 .u-form-panel .box-password{
+	overflow: hidden;
+	width: 560px;
+	margin-bottom: 15px;
+}

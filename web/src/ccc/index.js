@@ -22,7 +22,9 @@ var port = Number(process.env.PORT || config.port) || 4000;
 import {app, server} from 'dysonshell/instance';
 
 app.locals.dsLayoutPath = 'ccc/global/views/layouts/default';
-
+app.locals.title = '华瑞金控';
+app.locals.keywords = '华瑞金控';
+app.locals.description = '华瑞金控';
 if (config.startOAuthServer) {
     config.urlBackend = 'http://127.0.0.1:' + port + '/';
 }
@@ -34,19 +36,19 @@ app.use(function(req,res,next){
 });
 app.use('/api/web', ds.loader('api'));
 
-if (config.startOAuthServer) {
-    console.log('plug oauth2 server');
-    var oauth2 = require('@cc/oauth2');
-    app.use(function (req, res, next) {
-        if ((req.url||'').match(/^\/api\//)) {
-            return oauth2(req, res);
-        }
-        next();
-    });
-} else {
-    ds.apiproxy(app, config.urlBackend);
-}
-
+// if (config.startOAuthServer) {
+//     console.log('plug oauth2 server');
+//     var oauth2 = require('@cc/oauth2');
+//     app.use(function (req, res, next) {
+//         if ((req.url||'').match(/^\/api\//)) {
+//             return oauth2(req, res);
+//         }
+//         next();
+//     });
+// } else {
+//     ds.apiproxy(app, config.urlBackend);
+// }
+ds.apiproxy(app, config.urlBackend);
 var proxy = require('simple-http-proxy');
 // 连连回调转发
 _.each({
@@ -82,55 +84,6 @@ _.each({
 
 require('@ccc/inspect/middleware')(app);
 app.use(async function (req, res, next) {
-    var headerLinks = await req.uest.get('/api/v2/navigation/listPlayPanes').end().get('body');
-    //除去display == false
-     for(var i=0;i<headerLinks.length;i++){
-        if(headerLinks[i].display == false ){
-            headerLinks.splice(i,1);
-            i-=1;
-        }
-    }
-    for(var i=0;i< headerLinks.length; i++){
-        headerLinks[i].childrenLink = [];
-        for(var j=0;j<headerLinks.length; j++){
-            if(headerLinks[i].id == headerLinks[j].parentId){
-                headerLinks[i].childrenLink.push(headerLinks[j]);
-            }
-        }
-    }
-    for(var i=0;i<headerLinks.length;i++){
-        if(headerLinks[i].parentId != ''){
-            headerLinks.splice(i,1);
-            i-=1;
-        }
-    }
-
-    for(var i=0; i<headerLinks.length; i++){
-        if(headerLinks[i].childrenLink != [] && headerLinks[i].childrenLink.length >= 1) {
-            headerLinks[i].childrenLink = _.sortBy(headerLinks[i].childrenLink, 'ordinal');
-        }
-    }
-    var resultLink = _.sortBy(headerLinks, 'ordinal');
-
-    if (req.cookies.ccat) {
-        var Md5keyData = await req.uest.get('/api/v2/getMd5keyData/MYSELF').end().get('body');
-        var quickLogin;
-        try {
-            quickLogin = '/'+Md5keyData.data.mobile+'/'+Md5keyData.data.currentTime+'/'+Md5keyData.data.md5key+'.ht'
-        } catch (e) {}
-            resultLink = _.map(resultLink, function (one){
-                if(one.redirectUrl === '/ctx1'){
-                    one.redirectUrl = 'http://www.718vc.com/quickLogin/1' + quickLogin;
-                }
-                if(one.redirectUrl === '/ctx2'){
-                    one.redirectUrl = 'http://www.718vc.com/quickLogin/2' + quickLogin;
-                }
-                return one;
-            })
-    }
-
-
-    res.locals.headerNavLinks = resultLink;
 
     res.expose(Date.now(), 'serverDate');
     // res.layout = 'ccc/global/views/layouts/default.html';
@@ -173,34 +126,13 @@ _.each([
     });
 });
 
-_.each([
-    '/act'
-], function(url){
-    app.get(url, function (req, res, next) {
-        if (res.locals.user && res.locals.user.id) {
-            res.redirect('/act/success');
-        }
-        next();
-    });
-});
 
-_.each([
-    '/act/success'
-], function(url){
-    app.get(url, function (req, res, next) {
-        if (!(res.locals.user && res.locals.user.id)) {
-            res.redirect('/act');
-        }
-        next();
-    });
-});
 
 // mobile page (H5) redirection
 _.each([
     {path: '/'},
     {path: '/login'},
     {path: '/register'},
-	{path: '/act'},
     {path: '/invest', new_path: '/list'},
     {path: '/account', new_path: '/dashboard'},
 

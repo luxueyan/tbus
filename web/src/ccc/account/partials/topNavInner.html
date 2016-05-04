@@ -1,0 +1,127 @@
+<!-- 导航开始 -->
+
+<div class="has-line line-e7e bg-fcf">
+    <div class="row ccc-container">
+        <div class="col-md-12">
+            <ul class="account-navbar" role="navigation">
+                {{#each tabs}}
+                <li class="{{#if tabIndex === @index }}active{{/if}}">
+                    <a href="{{ url }}">{{ text }}</a>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="has-line line-ddd">
+    <div class="row ccc-container">
+        <div class="col-md-12">
+            <div class="account-panel">
+                <div class="user-info pull-left">
+                    <div class="authentication">
+                        {{ greetingText }}:
+                        <span class="username">{{user.name || user.loginName}}</span>
+                        <ul class="info">
+                            {{! 手机}} {{#if checkMobile()}}
+                            <li data-title="已绑定手机" class="phone"></li>
+                            {{/if}}
+                            
+                            {{#if !checkMobile()}}
+                            <li data-title="未绑定手机" class="phone-gray"></li>
+                            {{/if}}
+
+                            {{! 邮箱}} 
+                            {{#if authenticates.emailAuthenticated}}
+                            <li data-title="已绑定邮箱" class="mail">
+                            	<a href="/account/safety"></a>
+                            </li>
+                            {{else}}
+                            <li data-title="未绑定邮箱" class="mail-gray">
+                            	<a href="/account/safety"></a>
+                            </li>
+                            {{/if}}
+                            
+                            {{! 银行卡}}
+                            {{#if checkCard()}}
+                            <li data-title="已绑定银行卡" class="card">
+                            	<a href="/account/bankcard"></a>
+                            </li>
+							{{else}}
+                            <li data-title="未绑定银行卡" class="card-gray">
+                            	<a href="/account/bankcard"></a>
+                            </li>
+                            {{/if}}
+                            
+                            {{! 第三方支付}}
+                            {{#if checkUmpay()}}
+                            <li data-title="已实名认证" class="umpay">
+                            	<a href="/account/umpay"></a>
+                            </li>
+							{{else}}
+							<li data-title="未实名认证" class="umpay-gray">
+                            	<a href="/account/umpay"></a>
+                            </li>
+                            {{/if}}
+                        </ul>
+
+                        <div class="info-tooltip-container"></div>
+
+                        <div class="safety">
+                            账户安全级别:
+                            <span class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuemax="100" style="width: {{ safetyProgress }}%;">
+                    </div>
+                </span>
+                            <span class="risk">{{ riskText }}</span>
+                        </div>
+                        
+                         <div class="safety ">
+                           积分：<span class="integration"></span> 等级：初级
+                           {{#each groupMedal}}
+                            <img src="{{this}}" alt="勋章" style="margin-right:5px;">
+                           {{/each}}
+                        </div>
+                        
+                        
+                        
+                    </div>
+                </div>
+                <div class="account-info pull-right">
+                    <div class="pull-right">
+                        <p class="sum">
+                            <span>
+                                可用余额(￥)
+                            </span> 
+                            <small class="currency">{{ user.availableAmount }}</small>
+                        </p>
+                        <p class="button">
+                            {{#if !isEnterprise}}
+                                {{#if authenticates.idauthenticated}}
+                                <a href="/account/recharge" class="btn btn-warning">充值</a>
+                                <a href="/account/withdraw" class="btn btn-default">提现</a>
+                                {{else}}
+                                <a href="/account/umpay" class="btn btn-warning">充值</a>
+                                <a href="/account/umpay" class="btn btn-default">提现</a>
+                                {{/if}}
+                            {{else}}
+                                <a href="/account/recharge" class="btn btn-warning">充值</a>
+                                <a href="/account/withdraw" class="btn btn-default">提现</a>
+                            {{/if}}
+                        </p>
+                        <!--
+                        <p>
+                            <span>
+                    可用优惠券(张)
+                </span> 
+                            <small class="coupon">{{ "0" }}</small>
+                        </p>
+                        -->
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 导航结束 -->

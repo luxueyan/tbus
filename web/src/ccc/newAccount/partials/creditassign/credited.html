@@ -1,0 +1,45 @@
+<table class="table table-hover has-padding">
+    <thead>
+        <tr>
+          <th class="tb-tit-td">标题</th>
+                            <th>转让利率</th>
+                            <th>转让金额(元)</th>
+                            <th>转让期限</th>
+                            <th>转让数量</th>
+                            <th>开始时间</th>
+                            <th>结束时间</th>
+                            <th>状态</th>
+<!--                            <th class="align-right action-th">操作</th>-->
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+        <tr>
+            <td>{{ title}}</td>
+            <td>{{ creditDealRate }}%</td>
+            <td>￥{{ creditDealAmount }}</td>
+            <td>{{ timeOut }}小时</td>
+            <td>{{ bidNumber }}</td>
+            <td>{{ timeOpen }}</td>
+            <td>{{ timeFinished }}</td>
+            <td>{{ status }}</td>
+<!--
+            <td class="align-center">
+              <i class="fa fa-clock-o text-muted tips-top" ></i>
+            </td>
+-->
+        </tr>
+<!--
+        <tr class="repay-plan-wp" id="invest-{{id}}">
+            <td colspan="6">
+                <p class="loading">loading...</p>
+            </td>
+        </tr>
+-->
+        {{/each}}
+    </tbody>
+</table>
+
+<div style="width:100%;text-align:center">
+    <ul class="ccc-paging"></ul>
+</div>

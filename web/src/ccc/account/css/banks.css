@@ -1,0 +1,103 @@
+.ccc-banks-wrap .banks-wrap-offset {
+  width: 110%;
+  margin-left: -15px;
+}
+.ccc-banks-wrap .bank {
+  cursor: pointer;
+  border: 1px solid #d5d5d5;
+  padding: 2px;
+  margin: 0 17.55px 10px 15px;
+  display: inline-block;
+}
+.ccc-banks-wrap .bank:hover {
+  border: 3px solid #9ebbed;
+  padding: 0;
+}
+.ccc-banks-wrap .bank.active {
+  border: 3px solid #477cdc;
+  padding: 0;
+}
+.ccc-banks-wrap .bank-box {
+  position: relative;
+}
+.ccc-banks-wrap .bank-img {
+  width: 154px;
+  height: 44px;
+  background: #ffffff url(/ccc/global/img/banks-recharge.png) no-repeat 10px -3px;
+}
+.ccc-banks-wrap .company-icon {
+  position: absolute;
+  right: -18px;
+  top: -3px;
+}
+.ccc-banks-wrap .has-feedback input.form-control {
+  padding-left: 30px;
+}
+.ccc-banks-wrap .has-feedback .form-control-feedback {
+  right: auto;
+  left: 0px;
+  height: 45px;
+  line-height: 45px;
+  font-size: 18px;
+  color: #CDCDCD;
+}
+.ccc-banks-wrap .help-block {
+  margin-top: 11px;
+}
+.ccc-banks-wrap .recharge-form-wrap .row .btn-warning {
+  background-color: #b5a16b;
+  border-color: transparent;
+  color: #fff;
+}
+.ABC {
+  background-image: url(/ccc/global/img/banks/ABC.png);
+}
+.BCCB {
+  background-image: url(/ccc/global/img/banks/BCCB.png);
+}
+.CCB {
+  background-image: url(/ccc/global/img/banks/CCB.png);
+}
+.CIB {
+  background-image: url(/ccc/global/img/banks/CIB.png);
+}
+.CMBC {
+  background-image: url(/ccc/global/img/banks/CMBC.png);
+}
+.CMB {
+  background-image: url(/ccc/global/img/banks/CMB.png);
+}
+.SPDB {
+  background-image: url(/ccc/global/img/banks/SPDB.png);
+}
+.ICBC {
+  background-image: url(/ccc/global/img/banks/ICBC.png);
+}
+.BOCOM {
+  background-image: url(/ccc/global/img/banks/BOCOM.png);
+}
+.CEB {
+  background-image: url(/ccc/global/img/banks/CEB.png);
+}
+.BOC {
+  background-image: url(/ccc/global/img/banks/BOC.png);
+}
+.SRCB {
+  background-image: url(/ccc/global/img/banks/SRCB.png);
+}
+.HXB {
+  background-image: url(/ccc/global/img/banks/HXB.png);
+}
+.HKBEA {
+  background-image: url(/ccc/global/img/banks/HKBEA.png);
+}
+.WZCB {
+  background-image: url(/ccc/global/img/banks/WZCB.png);
+}
+.PSBC {
+  background-image: url(/ccc/global/img/banks/PSBC.png);
+}
+.PINGAN {
+  background-image: url(/ccc/global/img/banks/pingan.png);
+}
+/*# sourceMappingURL=/ccc/account/css/banks.css.map */

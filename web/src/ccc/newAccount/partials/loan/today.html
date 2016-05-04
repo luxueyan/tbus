@@ -1,0 +1,45 @@
+<table class="table table-hover has-padding">
+    <thead class="has-bg">
+        <tr>
+            <th class="p-tit" style="text-indent:20px;">借款标题</th>
+            <th class="w-100">担保机构</th>
+            <th class="p-rate">期数</th>
+            <th class="w-100">待还本息(元)</th>
+            <th class="w-90">账户余额</th>
+            <th class="w-100">到期时间</th>
+            <th class="p-op">操作</th>
+        </tr>
+    </thead>
+    {{#if list}}
+    <tbody>
+        {{#each list}}
+        <tr>
+            <td style="text-indent:20px;">
+                <a class="loan-tit" href="/loan/{{loanId}}" target="_blank" style="color:#4a4a4a;text-decoration:none" rel="nofollow">{{title}}</a>
+            </td>
+            <td>{{corporationShortName}}</td>
+            <td style="color:#f58220">{{currentPeriod}}</td>
+            <td style="color:#f58220">{{Famount}}</td>
+            <td style="color:#f58220">{{FavaAmount}}</td>
+            <td>{{repayment.dueDate}}</td>
+            <td data-id="{{id}}" data-loan-id="{{loanId}}" 
+               data-loan-amount="{{amount}}"           
+               data-loan-repayment-amount="{{repayment.amount}}"
+               data-loan-type="{{loanType}}">
+                <button class="today-detail-btn btn btn-smaller btn-success btn-repay-detail"
+                on-click="repay-detail"
+                target="_blank" style="background:#009ada;border:1px #009ada solid;color:#fff;width:66px;line-height:20px;">查看明细</button>
+                <!--<button class="btn btn-smaller btn-blue-light btn-repay"
+                on-click="repay"
+                target="_blank">还款</button>-->
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+    {{/if}}
+</table>
+{{#if list}}
+<div class="ccc-paging"></div>
+{{else}}
+<div class="no-loan"></div>
+{{/if}}

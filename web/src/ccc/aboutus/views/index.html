@@ -1,0 +1,69 @@
+<dsBody layout={{dsLayoutPath}}>
+<link rel="stylesheet" href="/ccc/aboutus/css/help2.css">
+<div class="nav-shadow"></div>
+<div class="page-guide">
+
+    <p id="aboutus-title"><a href="/">首页</a> >关于我们>{{tab.text}}</p>
+    <div id="help-left" class="pull-left">
+
+        {{>list}}
+    </div>
+
+
+    <div id="help-right" class="pull-right">
+        <div class="invest-container">
+<!--{{#if contents.length===1}}-->
+{{#if tab.text!='平台公告' && tab.text!='到期公告' && tab.text!='新闻资讯' && tab.text!='今日头条'}}
+            <div id="help-right" class="pull-right">
+                <div class="invest-container">
+                    <div class="invest-wrapper">
+                        <div class="help-title">
+                            <h1>{{tab.text}}</h1>
+                            <div class="line"></div>
+                        </div>
+                        <div class="invest-wrapper">
+                            {{{contents[0].content}}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+
+                <div id="help-right" class="pull-right">
+                    <div class="invest-container">
+                        <div class="invest-wrapper">
+                            <div class="help-title">
+                                <h1>{{tab.text}}</h1>
+                                <div class="line"></div>
+                            </div>
+                            <div class="invest-wrapper">
+                                {{#each contents}}
+                                <div class="news-box">
+                                    <div class="news-brame">
+                                        <a href="/cms/p/{{this.id}}">
+                                        {{#if title.length > 45}}
+                                            {{title.substr(0,45)}}...
+                                        {{else}}
+                                            {{title}}
+                                        {{/if}}
+                                        </a>
+                                    </div>
+                                    <div class="news-pubdate">{{pubDate}}</div>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+
+                        {{/if}}
+                </div>
+            </div>
+
+
+
+    <div class="clear_left"></div>
+</div>
+
+
+<script src="/ccc/aboutus/js/main/common.js"></script>
+</dsBody>

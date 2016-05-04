@@ -1,0 +1,216 @@
+#banner-container {
+    width: 100%;
+    background: #ecf5ff url(/img/banner_bg.jpg) repeat-y;
+    display: none;
+}
+
+#main-container,
+.main-container {
+    background-color: #f5f5f5;
+}
+
+.banner-wrapper {
+    width: 960px;
+    height: 140px;
+    margin: 0 auto;
+}
+
+.banner-main {
+    margin-left: 43px;
+    padding-top: 35px;
+    font-family: '微软雅黑';
+}
+
+.banner-img {
+    width: 64px;
+    float: left;
+    margin-right: 20px;
+}
+
+.main-title {
+    color: #0d0d0d;
+    font-size: 24px;
+    line-height: 36px;
+    margin-top: 2px;
+}
+
+.sub-title {
+    color: #848484;
+    font-size: 16px;
+    line-height: 25px;
+}
+
+.page-guide {
+    width: 1170px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+    font-family: '微软雅黑';
+    overflow: hidden
+}
+
+#help-left {
+    //    float: left;
+    width: 220px;
+    height: 500px;
+    ul {
+        height: 490px;
+        width: 100%;
+        padding: 1px;
+    }
+    li {
+        height: 55px;
+        text-align: center;
+        line-height: 55px;
+        border-bottom: 1px solid #d4d4d4;
+        &:first-child {
+            border-top: 1px solid #d4d4d4;
+        }
+    }
+    li a {
+        color: #666;
+        font-size: 16px;
+        text-decoration: none;
+        display: inline-block;
+        width: 100%;
+        height: inherit;
+    }
+    .active {
+        //        color: #000;
+        background-color: #e8383d;
+        font-weight: 700;
+    }
+//    li:hover {
+//        background-color: #e8383d;
+//        font-weight: 700;
+//        a {
+//            color: #fff;
+//        }
+//    }
+    .active a {
+        color: #fff
+    }
+}
+
+#help-right {
+    width: 950px;
+    margin-top: 1px;
+    padding-left: 30px;
+    .help-title {
+        color: #000000;
+        font-size: 22px;
+        background: url(/img/line.png) left center repeat-x;
+        height: 100px;
+        line-height: 50px;
+        margin-top: 0px;
+        h2 {
+            display: inline;
+            padding: 10px 15px 10px 15px;
+            /* height: inherit; */
+            
+            border-bottom: 3px solid #e8383d;
+            margin-left: 30px;
+            font-size: 24px;
+            color: #e8383d;
+        }
+    }
+    .invest-container {
+        min-height: 500px;
+        border: 1px solid #d4d3d3;
+        background-color: #fff;
+    }
+    dl {
+        background: #fbfdff;
+        border-radius: 6px;
+        border: 1px solid #e9f3ff;
+        margin-bottom: 15px;
+    }
+    dd {
+        height: 40px;
+        line-height: 40px;
+        padding-left: 18px;
+        padding-right: 25px;
+        border-radius: 6px;
+        color: #444445;
+        font-size: 15px;
+        cursor: pointer;
+    }
+    dt {
+        padding-left: 18px;
+        padding-right: 25px;
+        padding-top: 15px;
+        padding-bottom: 25px;
+        line-height: 28px;
+        font-size: 14px;
+        color: #444445;
+        display: none;
+    }
+    dt a {
+        text-decoration: underline;
+        color: #444445;
+        font-size: 14px;
+    }
+    .curr {
+        background: #6f93b6;
+        color: #ffffff;
+    }
+}
+
+.clear_left {
+    clear: left;
+}
+.invest-wrapper {
+    padding: 0 30px 30px 30px;
+}
+
+.invest-wrapper p span{
+    line-height:30px;
+}
+
+.invest-wrapper h3{
+    font-weight: normal;
+    line-height: 30px;
+}
+
+
+.article-wp {
+    //    margin-bottom: 30px;
+    margin: 20px 30px 20px 30px;
+    border-bottom: 1px dashed #d4d4d4;
+    h2.ar-title {
+        font-size: 15px;
+        //        font-weight: normal;
+        display: inline-block;
+        padding: 13px 20px;
+        border-radius: 4px;
+        background: #fff;
+        cursor: pointer;
+        color: #5e5e5e;
+    }
+    span {
+        font-size: 12px;
+    }
+    .article-content {
+        border-radius: 4px;
+        background: #fff;
+        padding: 15px 20px;
+        border-radius: 0 0 4px 4px;
+        color: #5e5e5e;
+        display: none;
+    }
+    &.opened {
+        h2.ar-title {
+            //            border-bottom: 1px #eee solid;
+            //            border-radius: 4px 4px 0 0;
+            backface: #F9F9F9;
+        }
+        .article-content {
+            display: block;
+        }
+        span {
+            color: #e8383d;
+        }
+    }
+    &:last-child {
+        border-bottom: none;
+    }
+}

@@ -1,0 +1,46 @@
+<dsBody layout={{dsLayoutPath}}>
+
+<link rel="stylesheet" href="/ccc/newAccount/css/common.css">
+<link rel="stylesheet" type="text/css" href="/ccc/newAccount/css/message.css">
+<div class="account-wrapper">
+    <div class="space-40"></div>
+    <div class="account-container">
+        <div class="account-nav"></div>
+        <div class="account-content-wrapper">
+            <div class="message-box">
+
+                <ul class="message-nav" id="messageTab">
+                    <!--
+                    <li data-type="ALL">
+                        <a class="active" href="javascript:void(0)">全部消息</a>
+                    </li>
+-->
+                    <li data-type="NEW">
+                        <a class="active" href="javascript:void(0)">未读消息</a>
+                    </li>
+                    <li data-type="READ">
+                        <a  href="javascript:void(0)">已读消息</a>
+                    </li>
+
+                    <!--
+                    <li class="li-blue" data-type="READ" on-click="setMessage">
+                        <a href="javascript:void(0)">已读消息</a>
+                    </li>
+-->
+                </ul>
+
+                <div class="message-table">
+                    加载中...
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="space-40"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="space space-50">&nbsp;</div>
+
+<script src="/ccc/newAccount/js/main/common.js"></script>
+<script src="/ccc/newAccount/js/main/message.js"></script>
+</dsBody>

@@ -1,0 +1,150 @@
+<div class="space-30"></div>
+<div class="account-opened-notice" style="width:600px;margin: 0 auto">
+    <div class="ftips" style="text-align:left">
+        <span class="glyphicon glyphicon-exclamation-sign exclamation" style="color:#ff892a;"></span> 重要提示：{{#if authenticated}}此银行卡的开户名必须为“<span style="font-size:20px;color:#f58220">{{realName}}</span>”的借记卡，否则提现会失败。{{/if}} 每个用户只允许绑定1张银行卡，今后仅能使用该银行卡进行快捷充值与提现；绑定后如需更换，须联系客服经审核才能更换。请慎重选择！！
+    </div>
+</div>
+<div class="space-40"></div>
+{{#if !authenticated}}
+<!--{{#if flase}}-->
+<div class="row">
+	<div class="space space-30"></div>
+	<div class="col-md-12 align-center">
+		<p class="text-warning" style="color:#009ada">您还没有实名认证为，实名后才能绑定银行卡</p>
+		<div class="space space-40"></div>
+		<p>
+			<a href="/newAccount/settings/authentication" style="width: 230px;background-color:#009ada" class="btn btn-orange">立即认证</a>
+		</p>
+	</div>
+</div>
+{{else}}
+<!--要绑定银行卡-->
+{{#if status === 0}}
+<div class="bind-card-wrapper">
+    <form action="" method="POST" on-submit="bind-card-submit">
+        <div class="banks-container control-group" style="position:relative;left:50%;width:500px;margin-left:-185px;">
+            <div class="space space-30"></div>
+
+            <div class="row">
+                <div class="tipss" style="width:90px;text-align:right;margin-right: 20px;">开户银行：</div>
+                <select name="bankName" class="select" value="{{bankName}}">
+                    {{#each banks}}
+                        <option value="{{name}}">{{name}}</option>
+                    {{/each}}
+                </select>
+                <div class="clearfix"></div>
+            </div>
+            <div class="row">
+                <div class="tipss" style="width:90px;text-align:right;margin-right: 20px;">银行卡号：</div>
+                <input on-keyup="validateCardNo" on-blur="checkSame" type="text" name="cardNo" value="{{cardNo}}" class="payInp">
+                <span class="error">{{errorMessagea}}</span>
+                {{#if cardNoError}}
+                <span class="error">* 银行卡号只能由数字组成</span>
+                {{/if}}
+                <div class="clearfix"></div>
+            </div>
+            <div class="row">
+                <div class="tipss" style="width:90px;text-align:right;margin-right: 20px;">确认卡号：</div>
+                <input on-keyup="validateCardNo" on-blur="checkSame" type="text" name="recardNo" value="{{recardNo}}" class="payInp" onPaste='return false;'>
+                <span class="error">{{errorMessageb}}</span>
+                {{#if cardDiff}}
+                <span class="error">* 两次银行卡号不一致</span>
+                {{/if}}
+                <div class="clearfix"></div>
+            </div>
+            <div class="" style="display:none">
+                <div class="tipss" style="width:90px;text-align:right;margin-right: 20px;">预留手机号：</div>
+                <input on-keyup="validatePhoneNo" type="text" name="cardPhone" value="{{mobile}}" class="payInp">
+                {{#if phoneNoError}}
+                <span class="error">* 手机号码只能由数字组成</span>
+                {{/if}}
+                <div class="clearfix"></div>
+            </div>
+            <div class="row">
+                <div class="tipss" style="width:90px;text-align:right;margin-right: 20px;">开户省市：</div>
+                <select name="province" on-change="selectPro" style="width:90px;margin-right:16px;font-size:16px;" value="{{myProvince}}">
+                    {{#each province}}
+                        <option value="{{key}}">{{key}}</option>
+                    {{/each}}
+                </select>
+                <select name="city" style="width:90px;font-size:16px;" value="{{myCity}}">
+                    {{#each city}}
+                        <option value="{{val}}">{{key}}</option>
+                    {{/each}}
+                </select>
+                <div class="clearfix"></div>
+            </div>
+<!--
+            <div class="row">
+                <div class="tipss" style="width:90px;text-align:right;margin-right: 20px;">开户行：</div>
+                <input type="text" name="branchName" value="{{branchName}}" class="payInp" placeholder="如：招商银行肥西路支行">
+                <a href="http://jingyan.baidu.com/article/76a7e409b18839fc3b6e1527.html" target="_blank" style="text-decoration:none;margin-left:10px;color:#009ada"><span>查询支行?</span></a>
+                <div class="clearfix"></div>
+            </div>
+-->
+            <div class="row">
+                <div class="tipss" style="width:90px;text-align:right;margin-right: 20px;">短信验证码：</div>
+                <input type="text" name="smsCaptcha" class="payInp" style="width:90px;margin-right:16px;" on-blur="checkSmsCaptcha" value="{{smsCaptcha}}">
+                <span class="sendCode" on-click="sendCode">获取验证码</span>
+                {{#if SMS_NULL}}
+                <span class="error">* 验证码不能为空</span>
+                {{/if}}
+                <div class="clearfix"></div>
+            </div>
+            <div class="space-20"></div>
+            <div class="form-group">
+                <div class="row row-3">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-large btn-success" style="width:150px;background:#009ada;border-color:#009ada;position:relative;left:90px;">确认绑定</button>
+                    </div>
+                </div>
+                <div class="space space-10"></div>
+            </div>
+        </div>
+    </form>
+</div>
+{{/if}}
+
+<!--已绑-->
+{{#if status === 1}}
+<div class="binded-card-wrapper">
+    <!--一张银行卡-->
+    {{#each bankAccount}}
+        <div class="bank-card">
+            <div class="card-img {{account.bank}}">
+            </div>
+
+            <div class="card-num">
+                {{account.account.substr(0,4)}}************{{account.account.substr(-4,4)}}
+            </div>
+        </div>
+    {{/each}}
+    <form action="/lianlianpay/deleteCard" method="POST" target="_blank" on-submit="delete-card-submit" style="margin:30px 0;text-align:center">
+        <input type="hidden" name="cardNo" value="{{bankAccount[0].account.account}}">
+        {{#if ifDel}}
+        <div class="row">
+            <span class="tipss">交易密码</span>
+            <input type="password" name="paymentPassword" class="payInp" value="{{password}}">
+            <button type="submit" class="btn btn-sm btn-success btn-change-card" style="margin:0;width:100px;line-height:28px;">确定</button>
+        </div>
+        {{else}}
+            {{#if !isAuditing}}
+            <button type="button" class="btn btn-sm btn-success btn-change-card" on-click="doDel">更换银行卡</button>
+            {{else}}
+            <button type="button" class="btn btn-sm btn-success btn-change-card disabled" style="background:#999;border-color:#999">审核中</button>
+            {{/if}}
+        {{/if}}
+    </form>
+
+</div>
+{{/if}}
+{{/if}}
+<div class="space-20"></div>
+<div class="form-group descript" style="width:700px;height:200px;background-color:#f4fcff;padding:10px;margin: 0 auto">
+    <p style="color: #f58220;">温馨提示： </p>
+    <p>1、为保障您的资金安全，绑卡前请先进行实名认证。</p>
+    <p>2、您所绑定的银行卡须是借记卡，718金融严禁利用信用卡套现。</p>
+    <p>3、718金融目前只支持绑定一张银行卡，认证支付充值、提现采用同卡进出原则，即提现银行卡需与充值银行卡一致。</p>
+    <p>4、已绑定的银行卡如需更换，请联系客服：4001-718-718。</p>
+</div>
+<div class="img-wrapperbn"></div>

@@ -1,0 +1,46 @@
+{{#if list}}
+	{{#each list}}
+	<div class="couponWrapper">
+	    <div class="couponTitle">
+<!--	    	<span class="titleText">{{ typeKey }}</span>（过期时间：{{ timeExpire }}）-->
+	    	{{#if notUse}}
+	    		<span class="pull-right label label-light">{{ displayStatus }}</span>
+	    	{{/if}}
+	    	{{#if USED}}
+	    		<span class="pull-right label label-warning">{{ displayStatus }}</span>
+	    	{{/if}}
+	    	{{#if REDEEMED}}
+	    		<span class="pull-right label label-success">{{ displayStatus }}</span>
+	    	{{/if}}
+	    	{{#if EXPIRED}}
+	    		<span class="pull-right label label-pink">{{ displayStatus }}</span>
+	    	{{/if}}
+	    	{{#if CANCELLED}}
+	    		<span class="pull-right label label-light">{{ displayStatus }}</span>
+	    	{{/if}}
+	    </div>
+	    <div class="parValue">
+	    	{{#if interest}}
+	        	<span class="valueText"><span class="trueValue red bold">{{ displayValue }}</span></span>
+	    	{{else}}
+	        	<span class="valueText"><span class="trueValue red bold">￥{{ displayValue }}</span></span>
+	    	{{/if}}
+	        {{#if canuse}}
+	        	<span class="exchange" data-id="{{ id }}" onclick="redeemCoupon(this);">兑现奖卷</span>
+	        {{/if}}		
+	    </div>
+	    <div class="couponDescription">说明：{{ description }}</div>
+	</div>
+	{{/each}}
+{{else}}
+	<div>抱歉，您还没有奖券！</div>
+{{/if}}
+<div class="clear"></div>
+<div class="ccc-paging">
+	<div class="prev">上一页</div>
+	<div class="currentPagewra">第<span class="currentPage"></span>页</div>
+	<div class="totalPagewra">共<span class="totalPage"></span>页</div>
+	<div class="next">下一页</div>
+	<div class="clear"></div>
+</div>
+

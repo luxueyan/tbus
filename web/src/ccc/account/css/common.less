@@ -1,0 +1,244 @@
+.topnav-wraper {
+    height: 197px;
+    background: #f8f8f8;
+    //margin: -20px 0 0px 0;
+	margin: 0 0 0px 0;
+    padding: 0;
+    
+    .line-ddd {
+        padding-bottom: 15px;
+    }
+    
+    .account-navbar {
+        height: 60px;
+        margin: 0px auto 0px auto;
+        padding: 20px 0 0px 0;
+        li {
+            float: left;
+            margin: 0 40px 0 0;
+            padding-top: 12px;
+            padding-bottom: 8px;
+			border-bottom: 1px solid #FCFCFC;
+            a {
+                font-size: 15px;
+                color: #666;
+                font-weight: normal;
+                text-decoration: none;
+                &:hover {
+                    text-decoration: none;
+					color: #000;
+                }
+                &:visited {
+                    text-decoration: none;
+					color: #666;
+                }
+            }
+            &.active, &:hover {
+                border-bottom: 1px #000 solid;
+				a {
+					color: #000;
+				}
+            }
+        }
+    }
+    .account-panel {
+        margin: 0 auto;
+        padding: 36px 0 30px;
+        .user-info {
+            overflow: hidden;
+            width: 50%;
+            .gravator {
+                margin-right: 20px;
+				border-radius: 50%;
+                border: 2px solid #878787;
+				overflow: hidden;
+            }
+            .authentication {
+                .username {
+                    color: #ff7800;
+                }
+                .info {
+                    width: 120px;
+                    overflow: hidden;
+                    display: inline-block;
+                    vertical-align: -5px;
+                    li {
+                        height: 16px;
+                        width: 16px;
+                        background: url(/ccc/account/img/authentication_icon.png) 0 0 no-repeat;
+                        float: left;
+                        margin: 0 0 0 5px;
+                        cursor: pointer;
+						a {
+							display: inline-block;
+							width: 16px;
+							height: 16px;
+						}
+                    }
+                    li.phone {
+                        background-position: 0 0px;
+                    }
+                    li.mail {
+                        background-position: -20px 0px;
+                    }
+                    li.card {
+                        background-position: -40px 0px;
+                    }
+                    li.umpay {
+                        background-position: -61px 0px;
+                    }
+                    li.phone-gray {
+                        background-position: -84px 0px;
+                    }
+                    li.mail-gray {
+                        background-position: -104px 0px;
+                    }
+                    li.card-gray {
+                        background-position: -122px 0px;
+                    }
+                    li.umpay-gray {
+                        background-position: -144px 0px;
+                    }
+                }
+                .info-tooltip-container {
+                    .tooltip-arrow {
+                        border-top-color: #ddd;
+                    }
+                    .tooltip-inner {
+                        background-color: #ffffff;
+                        color: #878787;
+                        border-radius: 5px;
+                        border: 1px solid #ddd;
+                        padding: 5px 20px;
+                    }
+                }
+                .safety {
+                    //                    width: 55%;
+                    margin: 10px 0 0 0;
+                    .risk {
+                        margin: 0 0 0 10px;
+                    }
+                    .progress {
+                        display: inline-block;
+                        width: 130px;
+                        margin-bottom: 0;
+                        height: 12px;
+                        border-radius: 4px;
+                        .progress-bar {
+                            background: #b5a16b;
+                        }
+                    }
+                }
+            }
+        }
+        .account-info {
+            width: 45%;
+            line-height: 50px;
+            .currency {
+                color: #ff7800;
+				font-size: 30px;
+				vertical-align: middle;
+                font-family: 'Rounded Helvetica', Helvetica;
+            }
+            .sum {
+                display: inline-block;
+                margin-right: 15px;
+                vertical-align: middle;
+                
+                > span {
+                    font-size: 12px;
+                    color: #3b3b3b;
+                    vertical-align: middle;
+                }
+            }
+            .button {
+                display: inline-block;
+                // 垂直间距
+                @verticalSpace: 10px;
+                margin: -@verticalSpace 0 0 0;
+                p {
+                    margin: @verticalSpace 0 0 0;
+                }
+                .btn {
+                    padding: 3px 20px;
+                }
+                .btn-warning{
+                    background-color: #b5a16b;
+                    border-color: transparent; 
+                    color: #fff;
+                }
+            }
+            
+            .coupon {
+                color: #ff0700;
+            }
+        }
+    }
+}
+
+table {
+	thead {
+		th {
+			&.p-tit {
+				width: 30%;
+			}
+			&.p-amount {
+				width: 10%;
+			}
+			&.p-op {
+				width: 18%;
+                text-align: center;
+			}
+		}
+		&.has-bg {
+			th {
+				background-color: #DFDFDF;
+				color: #555;
+			}
+		}
+	}
+	tbody {
+		tr:last-child td {
+			border-bottom: 1px solid #ddd;
+		}
+	}
+}
+.loan-tit {
+	display: block;
+	clear: both;
+}
+
+.repay-plan-wp {
+	display: none;
+	& > td {
+		padding: 0!important;
+	}
+	.table {
+		thead {
+			th {
+				background: #eee;
+			}
+		}
+	}
+}
+.has-padding {
+	th{
+		padding-left: 5px!important;
+		padding-right: 5px!important;
+	}
+}
+table.table.repayments-table {
+	background-color: #FBFBFB;
+	thead th {
+		//text-align: center;
+	}
+	> tbody > tr > td {
+		padding: 8px;
+	}
+}
+
+// ccc-tab header-text
+.header-text {
+	font-size: 17px;
+	padding-top: 9px;
+}

@@ -1,0 +1,172 @@
+.message-box {
+	margin-left: 30px;
+	margin-top: 30px;
+	position: relative;
+}
+
+.message-box .message-nav {
+	overflow: hidden;
+	border-bottom: 1px solid #999;
+	margin-right: 30px;
+    line-height: 36px;
+    font-size: 18px;
+}
+
+.message-box .message-nav li {
+	float: left;
+	width: 100px;
+	text-align: center;
+	font-size: 20px;
+	color: #999;
+}
+
+.message-box .message-nav li a {
+	font-size: 18px;
+	color: #999;
+	cursor: pointer;
+	display: block;
+}
+
+.message-box .message-nav .active {
+	border-bottom: 2px solid #009ada;
+	color: #4a4a4a;
+}
+
+.message-box .message-table .li-blue {
+	margin: 0;
+	width: 100px;
+	text-align: center;
+	border-radius: 3px;
+	background-color: #009ada;
+	line-height: 30px;
+	margin-right: 20px;
+	position: absolute;
+	right: 20px;
+	top: 0;
+}
+
+.message-box .message-table .li-blue a {
+	color: white;
+	font-size: 14px;
+	text-decoration: none;
+	text-align: center;
+}
+
+.message-box .message-table .li-blue:hover {
+	background-color: #015989;
+}
+
+.message-box .message-table {
+	width: 868px;
+}
+
+
+
+.message-box .message-table table {
+	width: 868px;
+}
+
+.message-box .message-table table td {
+	height: auto;
+	vertical-align:baseline;
+	padding: 10px 0 10px 0;
+}
+
+.message-box .message-table table tr {
+	background-color: white;
+}
+.message-box .message-table table tr:hover{
+	background-color: #e7e7e7;
+}
+
+.message-box .message-table table .thead {
+	background-color: #f5f4f9;
+}
+
+.invest-pager {
+	overflow: hidden;
+	text-align: center;
+}
+
+
+.invest-pager li {
+/*	margin-left: 10px;*/
+    border: 1px #eeeeee solid;
+	padding: 5px 10px;
+	display: inline-block;
+        margin: 0 5px;
+    cursor: pointer;
+}
+.invest-pager .index-page:hover,.invest-pager li:hover,.invest-pager li a:hover{
+    color: #fff;
+    background: #0096de;
+}
+
+.invest-pager li a {
+	color: #4a4a4a;
+}
+
+.invest-pager .current-page {
+	background-color: #009ada;
+	border: none;
+	padding: 5px 5px 5px 5px;
+}
+
+.invest-pager .current-page-now a{
+	padding: 0 5px 0 5px;
+}
+
+.invest-pager .current-page a {
+	text-align: center;
+	color: white;
+	padding: 1px 6px 1px 6px;
+}
+
+.invest-pager .index-page {
+	margin: 0;
+     padding: 6px 10px;
+/*	padding: 5px 5px 5px 5px;*/
+}
+
+.invest-pager .index-page a {
+	color: #4a4a4a;
+    font-size: 14px;
+}
+
+.invest-pager .index-page:hover,
+.invest-pager .page-last:hover,
+.invest-pager .page-next:hover {
+/*	background-color: #eee;*/
+}
+
+#invest-pager {
+	margin-top: 20px;
+}
+
+.ctr {
+  line-height: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 500px;
+  cursor:pointer;
+}
+.activeContent {
+  height: auto !important;
+  overflow: auto;
+  text-overflow: clip;
+  white-space: normal;
+}
+
+.none-message{
+	margin-top: 140px;
+	text-align: center;
+	font-size: 18px;
+	color: #999;
+	font-weight: normal;
+	font-family: '';
+	background-image: url(/ccc/newAccount/img/icon-message.png);
+	background-repeat: no-repeat;
+	background-position: 526px center;
+
+}

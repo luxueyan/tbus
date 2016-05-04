@@ -1,0 +1,169 @@
+@import "../../../ccc/global/css/variables.less";
+
+
+.current-container {
+    width: @container-width;
+    margin: 0 auto;
+}
+
+.account-funds-wrapper {
+    .fund-header {
+        margin-top: 20px;
+        .header-text {
+            font-size: 20px;
+        }
+    }
+    .header-bottom {
+        border-top: 1px solid #e8e8e8;
+        margin: 0;
+        height: 0;
+    }
+    
+    .ccc-tab-panels{
+        margin-top: 20px;
+    }
+    
+     // 第一排的过滤器
+    .payload-filters{
+        margin-top: 20px;
+        @h: 25px;
+        .form-control{
+            height: @h;
+            padding-top: 2px;
+            padding-bottom: 2px;
+        }
+        .input-group-addon{
+            padding-top: 3px;
+            padding-bottom: 3px;
+        }
+
+        // 下拉
+        .type-checker{
+            float: left;
+            width: 250px;
+            margin-right: 10px;
+
+            .form-control{
+                border-top-left-radius: 4px;
+                border-bottom-left-radius: 4px;
+                padding-left: 10px;
+            }
+
+            .btn-drop{
+
+            }
+
+            ul.dropdown-menu{
+                right: 35px;
+                padding: 0;
+                margin: 0;
+                border-radius: 0;
+                border: none;
+
+                li{
+                    a{
+                        padding-left: 10px;
+                        padding-right: 0;
+                        font-size: 12px;
+
+                        &:hover,&:focus{
+                            color: #fff;
+                            background-color: #0097d0;
+                        }
+                    }
+                }
+            }
+        }
+
+        // 展开状态下的dropdown容器
+        .open {
+            .form-control{
+                border-bottom-left-radius: 0;
+            }
+
+            .dropdown-menu{
+            }
+        }
+
+        .date-from-picker,.date-to-picker{
+            width: 130px;
+            margin-right: 10px;
+
+            // 输入框
+            .form-control{
+                padding-left: 5px;
+                padding-right: 5px;
+                cursor: pointer;
+            }
+
+            // 图标
+            .icon-calendar{
+                cursor: pointer;
+                background: url(/ccc/account/img/funds/calendar.png) #f4f5f6 center no-repeat;
+            }
+        }
+
+        .spliter{
+            height: @h;
+            line-height: @h;
+            margin-right: 5px;
+        }
+
+        .btn{
+            height: @h;
+            padding: 0 10px;
+            margin-right: 10px;
+        }
+
+    }
+    
+    .tables{
+        margin-top: 20px;
+    }
+    
+    .table{
+        width: 100%;
+        font-size: 13px;
+        color: #000;
+        
+        thead{
+            tr{
+                background-color: #e1e1e1;
+                th{
+                    // override base.css 
+                    padding: 8px;
+                    color:#000;
+                }
+            }
+        }
+    }
+    
+    // 第一个tab,收支明细
+    .payload-detail-wrapper{
+        .table{
+            .col-amount{
+                text-align: right;
+            }
+
+            // 颜色
+            // 正值
+            .in{
+                color: #83bd12;
+            }
+            
+            // 负值
+            .out{
+                color: #f00;
+            }
+            
+            .freeze{
+                color: #00aeff;
+            }
+            
+            .release{
+                color: #f59a4a;
+            }
+            
+        }
+    }
+}

@@ -1,0 +1,86 @@
+.big-container {
+    background: url('/ccc/activity/img/bg_01.png')center top no-repeat, url('/ccc/activity/img/bg_02.png')center 412px no-repeat,url('/ccc/activity/img/bg_03.png')center 824px no-repeat,url('/ccc/activity/img/bg_04.png')center 1236px no-repeat,url('/ccc/activity/img/bg_05.png')center 1648px no-repeat,url('/ccc/activity/img/bg_06.png')center 2059px no-repeat,url('/ccc/activity/img/bg_07.png')center 2471px no-repeat,url('/ccc/activity/img/bg_08.png')center 2883px no-repeat;
+    width: auto;
+    margin: 0px auto;
+    height: 3170px;
+}
+#main-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    background-color: #fff;
+}
+.banner-title{
+           padding-top: 834px;
+    margin-left: 156px;
+}
+.middle{
+    width: 1000px;
+    margin: 0px auto;
+}
+.four{
+    margin-top: 92px;
+    margin-left: 354px;
+}
+.four-first{
+    display: block;
+    margin-top: 40px;
+}
+.process-pic{
+    margin-top: 34px;
+}
+.four-second{
+    margin-top: 95px;
+}
+.rule{
+       font-size: 22px;
+    color: #fff;
+    margin-top: 16px;
+}
+.four-third{
+    margin-top: 36px;
+}
+.make-money{
+    background-image:url('/ccc/activity/img/bg-make.png');
+    font-size: 25px;
+    color:#fff;
+    padding: 30px 40px;
+    margin-top: 44px;
+}
+.four-forth{
+    margin-top: 80px;
+}
+.book{
+    background-image:url('/ccc/activity/img/bg-make.png');
+    margin-top: 34px;
+    color: #fff;
+        height: 300px;
+}
+.book .book-title{
+    font-size: 25px;
+    text-align: center;
+     padding-top: 20px;
+}
+.book-red-box img{
+    float: left;
+}
+.book-red-box div{
+    float: left;
+    width: 302px;
+}
+.book-red-box div p{
+    font-size: 22px;
+        margin-top: 54px;
+
+}
+.book-red-box div h3{
+    font-size: 16px;
+    color: #fff;
+    margin-top: 24px;
+}
+.linhua-content{
+  font-size: 18px;
+}
+.linhua{
+  line-height: 110px;
+}

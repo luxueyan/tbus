@@ -1,0 +1,43 @@
+{{! /settings 下内容 }}
+<div class="modify-password-wrapper">
+    <div class="modify-password">
+        
+        {{#showErrorMessage}}
+        <div class="errorMessage">
+            {{ errorMessage }}
+        </div>
+        {{/}}
+
+        <form action="/account/change_password"
+            enctype="application/x-www-form-urlencoded"
+            method="post"
+            on-submit="submit-modify-password" >
+            <div class="text">原密码</div>
+            <input type="password" class="form-control" name="currentPassword" maxlength="16" value="{{ currentPassword }}" />
+            <div class="space space-10"></div>
+
+            <div class="text">新密码</div>
+            <input type="password" class="form-control" name="newPassword" maxlength="16" value="{{ newPassword }}" />
+            <div class="space space-10"></div>
+
+            <div class="text">确认新密码</div>
+            <input type="password" class="form-control" name="passwordConfirm" maxlength="16" value="{{ passwordConfirm }}" />
+            <div class="space space-10"></div>
+            
+            <div class="text">图片验证码</div>
+            <div class="input-group">
+                <input type="text" class="form-control" name="captcha" value="{{ captcha.captcha }}">
+            	<span class="input-group-addon btn btn-get-validate " 
+                   on-click="changeCaptcha">
+                   <img src="{{captcha.img}}" alt="" height="20" width="80">
+                </span>
+            </div>
+
+            <input type="submit"
+                class="btn modify-button" 
+                value="修改密码" />
+                
+            <input type="hidden" name="token" value="{{ user.id }}" />
+        </form>
+    </div>
+</div>

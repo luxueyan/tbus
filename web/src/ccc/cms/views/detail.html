@@ -1,0 +1,28 @@
+<dsBody layout={{dsLayoutPath}}>
+<link rel="stylesheet" href="/ccc/cms/css/list.css">
+<div style="background:#f6f8fc;padding-top:30px;">
+
+<div class="news-page" style="background:#fff;">
+    <div class="detail-container">
+        <h1 class="article-title">{{detail.title}}</h1>
+        <div class="detail-wrapper">
+            <div class="detail-main">
+                <div class="article-column">
+                   <span class="article-detail">发布时间：{{detail.timeRecorded}}</span>
+                   <span class="article-detail">来源：{{detail.media}}</span>
+                   <span class="article-detail">作者：{{detail.author}}</span>
+                   <!--<span class="pull-left return_list"><a href="/cms/news">动态列表</a></span>-->
+                   
+                   <div class="clear"></div>
+                </div>
+                <div class="article-content">
+					         {{{detail.content}}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="space space-50"></div>
+
+<div style="width:300px; word-break:break-all;margin-left:100px;"></div>
+</dsBody>

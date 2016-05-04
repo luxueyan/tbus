@@ -7,4 +7,4 @@ process.env.NODE_CONFIG_DIR = path.join(__dirname, 'config');
 var config = require('config');
 config.dsAppRoot = __dirname;
 
-require('./ccc/app.js');
+require('./ccc/index.js');

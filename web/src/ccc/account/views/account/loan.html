@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="/ccc/account/css/common.css">
+<link rel="stylesheet" href="/ccc/global/css/modules/cccTips.css">
+<link rel="stylesheet" href="/ccc/global/css/modules/cccPaging.css">
+<link rel="stylesheet" href="/ccc/account/css/loan.css">
+
+<div class="account-wraper">
+    {{>topNav}}
+
+    <div>
+        <div class="space space-20"></div>
+        <div class="has-line">
+            <div class="row ccc-container">
+                <div class="col-md-12">
+                    <div class="header-text pull-left">我的借款</div>
+                    <div class="ccc-tab pull-right" data-header-selector=".header-text">
+                        <ul class="tabs">
+                            <li class="active" data-type="loan"><a href="#">我的借款</a></li>
+                            <li data-type="today"><a href="#">今日到期</a></li>
+                            <li data-type="undue"><a href="#">尚未到期</a></li>
+                            <li data-type="repayed"><a href="#">已还清</a></li>
+                            <li data-type="overdue"><a href="#">逾期及违约</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="space space-20"></div>
+        <div class="ccc-container row">
+            <div class="col-md-12 ccc-loan-wrap">
+            	<div class="ccc-tab-panels">
+            		<div class="tab-panel panel-loan active">
+            			<p class="loading">加载中...</p>
+            		</div>
+            		<div class="tab-panel panel-today"></div>
+            		<div class="tab-panel panel-undue"></div>
+            		<div class="tab-panel panel-repayed"></div>
+            		<div class="tab-panel panel-overdue"></div>
+            	</div>
+            </div>
+        </div>
+        <div class="space space-50">&nbsp;</div>
+    </div>
+</div>
+
+<script src="/ccc/account/js/main/loan.js"></script>

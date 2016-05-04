@@ -1,0 +1,23 @@
+<div class="title">我们期待您的意见和建议</div>
+<div><span style="color:red;font-size:12px;">{{#errors.visible}}{{errors.msg}}{{/errors.visible}}</span></div>
+<textarea class="text" type="text" value="{{user.advice}}" placeholder="如果您在使用中有任何不满，请大声告诉我们吧！
+  我们将每天关注您的反馈，不断优化产品，为您提供更好的服务。"></textarea>
+<!--<div class="prompt">请留下您的联系方式,我们将在第一时间为您解决，谢谢。</div>
+<div class="mobile">
+    <p>手机号</p>
+    <input placeholder="请输入手机号" value="{{user.mobile}}" style="width:200px"/>
+</div>
+<div class="mobile" style="float:left">
+    <div>
+        <p>验证码</p>
+        <input type="text" placeholder="请输入验证码" value="{{captcha.text}}" style="width:85px;"/>
+    </div>
+    <div>
+        <img src="{{captcha.img}}" alt="" style="width:70px;margin-top:8px">
+        <span on-click='changeCaptcha' style="float:right;margin-top:8px">换一张</span>
+    </div>
+
+</div>-->
+<div class="submit">
+    <input class="btn "  type="button" value="提交" on-click='submit' />
+</div>
