@@ -36,19 +36,19 @@ app.use(function(req,res,next){
 });
 app.use('/api/web', ds.loader('api'));
 
-if (config.startOAuthServer) {
-    console.log('plug oauth2 server');
-    var oauth2 = require('@cc/oauth2');
-    app.use(function (req, res, next) {
-        if ((req.url||'').match(/^\/api\//)) {
-            return oauth2(req, res);
-        }
-        next();
-    });
-} else {
-    ds.apiproxy(app, config.urlBackend);
-}
-
+// if (config.startOAuthServer) {
+//     console.log('plug oauth2 server');
+//     var oauth2 = require('@cc/oauth2');
+//     app.use(function (req, res, next) {
+//         if ((req.url||'').match(/^\/api\//)) {
+//             return oauth2(req, res);
+//         }
+//         next();
+//     });
+// } else {
+//     ds.apiproxy(app, config.urlBackend);
+// }
+ds.apiproxy(app, config.urlBackend);
 var proxy = require('simple-http-proxy');
 // 连连回调转发
 _.each({
