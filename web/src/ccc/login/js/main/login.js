@@ -96,7 +96,7 @@ $('#loginForm').submit(function (e) {
                 location.href = document.referrer;
                 return;
             }
-            if (CC.user.enterprise) {
+            if (r.user.enterprise) {
                 location.pathname = "/newAccount/home";
             } else {
                 location.href = (r.redirect) ? r.redirect : '/';
