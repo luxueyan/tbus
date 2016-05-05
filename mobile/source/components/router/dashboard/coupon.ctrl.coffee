@@ -8,6 +8,8 @@ do (_, angular) ->
 
                 @$window.scrollTo 0, 0
 
+                @submit_sending = false
+
                 current_tab = @$routeParams.tab or 'placed'
 
                 query_set = {
@@ -72,6 +74,8 @@ do (_, angular) ->
 
 
             redeem: (id) ->
+
+                @submit_sending = true
 
                 (@api.redeem_coupon(id)
 
