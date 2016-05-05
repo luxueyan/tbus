@@ -18,6 +18,10 @@
   "dependencies": {
     "@cc/node-sh": "^3.3.7",
     "@cc/scripts": "^2.2.0",
+    "@ccc/login": "^2.3.3",
+    "@ccc/payment": "^1.1.11",
+    "@ccc/register": "^2.4.0",
+    "@ccc/validation": "^1.0.0",
     "husky": "^0.8.1"
   }
 }

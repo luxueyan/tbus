@@ -1,0 +1,35 @@
+<!doctype html>
+
+<link rel="stylesheet" href="/assets/css/base.css" />
+<link rel="stylesheet" href="/css/component.css">
+
+<div class="payment-wraper page-payment">
+    <div class="space space-30"></div>
+
+    <div class="ccc-container">
+        <div class="center posting-text">
+            <h2>正在转跳到第三方支付平台</h2>
+            <h4>请稍后</h4>
+            <p>
+                <img src="/assets/img/loading.gif">
+            </p>
+        </div>
+        <form action="{{postUrl}}" id="form" method="POST">
+			{{#data:key}}
+       			<input type="hidden" name="{{{key}}}" value="{{.}}">
+			{{/data}}
+        </form>
+        <div class="space space-30">&nbsp;</div>
+    </div>
+</div>
+
+<script src="/assets/js/lib.js"></script>
+<script src="/assets/js/main/header.js"></script>
+<script>
+    function submit() {
+        document.getElementById('form')
+            .submit();
+    }
+    submit();
+</script>
+

@@ -1,0 +1,65 @@
+<dsBody layout={{dsLayoutPath}}>
+  <link rel="stylesheet" href="/assets/css/base.css" />
+  <link rel="stylesheet" href="/css/component.css">
+
+  <div class="payment-wraper page-payment">
+      <div class="space space-30"></div>
+
+      <div class="ccc-container">
+          <div class="center posting-text">
+              <p class="icon-wp">
+                  {{#if data.success}}
+                      <i class="fa fa-check-circle text-success" style="padding:10px;"></i>
+                      {{#if customText}}
+                          {{customText}}
+                      {{else}}
+                          {{optype}}<span style="padding:0 0 20px 0">成功</span>
+                      {{/if}}
+                  {{else}}
+                      <i class="fa fa-times text-danger" style="padding:10px;"></i>
+                      {{#if customText}}
+                          {{customText}}
+                      {{else}}
+                          {{optype}}<span style="padding:0 0 20px 0">失败 &nbsp;&nbsp;&nbsp;&nbsp;原因：{{data.error[0].message}}</span>
+                      {{/if}}
+                  {{/if}}
+
+              </p>
+              <h5>本页将在<em id="countText">5</em>秒后自动关闭</h5>
+              <div class="space space-50"></div>
+              <div class="row">
+                  <a class="btn btn-primary" href="javascript: _close();">立即关闭</a>
+              </div>
+          </div>
+          <div class="space space-50">&nbsp;</div>
+      </div>
+  </div>
+
+  <script>
+      var _close = function () {
+          window.open('', '_self', '');
+          var sUserAgent = navigator.userAgent;
+          if (typeof android != 'undefined') {
+              android.success();
+          } else if (sUserAgent.indexOf('iPhone') != -1) {
+              window.location = 'ios/myiosFunction';
+          } else {
+              window.close();
+          }
+      };
+      var count = 5;
+      document.getElementById("countText")
+          .innerHTML = count;
+      var timer = setInterval(function () {
+          count = count - 1;
+          document.getElementById("countText")
+              .innerHTML = count;
+          if (count === 0) {
+              _close();
+              clearInterval(timer);
+              document.getElementById("countText")
+                  .innerHTML = 0;
+          }
+      }, 1000);
+  </script>
+</dsBody>

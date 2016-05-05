@@ -26,9 +26,9 @@ module.exports = function(router) {
             delete user.idNumber;
         }
 
-        res.locals.title = '新毅金融';
-        res.locals.keywords = '新毅金融';
-        res.locals.description = '新毅金融';
+        res.locals.title = '华瑞金控';
+        res.locals.keywords = '华瑞金控';
+        res.locals.description = '华瑞金控';
         res.expose(user, 'user');
         // 检测用户是否登录
         if (!user) {
@@ -150,14 +150,22 @@ module.exports = function(router) {
                 res.locals.user.paymentPasswordHasSet =
                     paymentPasswordHasSet;
                 res.render('newAccount/home', {
+<<<<<<< HEAD
                     title: '新毅金融',
+=======
+                    title: '华瑞金控',
+>>>>>>> 20ca47cd9a94957fb0a16d699ac13671036f34f6
                     isEnterprise: res.locals.user.enterprise
                 });
             });
     });
     router.get('/coupon', function(req, res) {
         res.render('newAccount/coupon', {
+<<<<<<< HEAD
             title: '新毅金融'
+=======
+            title: '华瑞金控'
+>>>>>>> 20ca47cd9a94957fb0a16d699ac13671036f34f6
         });
     });
     router.get('/autobid', async function(req, res) {
@@ -167,23 +175,39 @@ module.exports = function(router) {
         res.expose(user, 'user');
 
         res.render('newAccount/autobid', {
+<<<<<<< HEAD
             title: '新毅金融'
+=======
+            title: '华瑞金控'
+>>>>>>> 20ca47cd9a94957fb0a16d699ac13671036f34f6
         });
         return false;
     });
     router.get('/assign', function(req, res) {
         res.render('newAccount/assign', {
+<<<<<<< HEAD
             title: '新毅金融'
+=======
+            title: '华瑞金控'
+>>>>>>> 20ca47cd9a94957fb0a16d699ac13671036f34f6
         });
     });
     router.get('/invite', function(req, res) {
         res.render('newAccount/invite', {
+<<<<<<< HEAD
             title: '新毅金融'
+=======
+            title: '华瑞金控'
+>>>>>>> 20ca47cd9a94957fb0a16d699ac13671036f34f6
         });
     });
     router.get('/recharge', function(req, res) {
         res.render('newAccount/recharge', {
+<<<<<<< HEAD
             title: '新毅金融'
+=======
+            title: '华瑞金控'
+>>>>>>> 20ca47cd9a94957fb0a16d699ac13671036f34f6
         });
 
     });
@@ -199,25 +223,41 @@ module.exports = function(router) {
                 '/newAccount/settings/bankCards');
         }
         res.render('newAccount/withdraw', {
+<<<<<<< HEAD
             title: '新毅金融'
+=======
+            title: '华瑞金控'
+>>>>>>> 20ca47cd9a94957fb0a16d699ac13671036f34f6
         });
         return false;
     });
     router.get('/message', function(req, res) {
         res.render('newAccount/message', {
+<<<<<<< HEAD
             title: '新毅金融'
+=======
+            title: '华瑞金控'
+>>>>>>> 20ca47cd9a94957fb0a16d699ac13671036f34f6
         });
     });
 
     router.get('/invest/*', function(req, res) {
         res.render('newAccount/invest', {
+<<<<<<< HEAD
             title: '新毅金融'
+=======
+            title: '华瑞金控'
+>>>>>>> 20ca47cd9a94957fb0a16d699ac13671036f34f6
         });
     });
 
     router.get('/loanRequest/*', function(req, res) {
         res.render('newAccount/loan', {
+<<<<<<< HEAD
             title: '新毅金融'
+=======
+            title: '华瑞金控'
+>>>>>>> 20ca47cd9a94957fb0a16d699ac13671036f34f6
         });
     });
 
@@ -253,7 +293,11 @@ module.exports = function(router) {
                         fundaccountsMap;
                     res.render('newAccount/settings', {
                         tabName: tabName,
+<<<<<<< HEAD
                         title: '新毅金融'
+=======
+                        title: '华瑞金控'
+>>>>>>> 20ca47cd9a94957fb0a16d699ac13671036f34f6
                     });
                 });
         });
@@ -317,5 +361,8 @@ module.exports = function(router) {
                     .ConfirmResult);
             });
     });
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 20ca47cd9a94957fb0a16d699ac13671036f34f6
 }

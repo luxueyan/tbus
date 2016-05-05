@@ -389,28 +389,3 @@
         margin-top: -4px;
 }
 
-
-/*add by jude start*/
-
-.moneyInfor{font-size: 0; margin: 30px 0;}
-.couponMoney{display: inline-block; font-size: 13px;}
-.dib{display: inline-block; vertical-align: middle;}
-.huoqu,.zhuangtai{margin-right: 20px;}
-.chaxunBtn{width:80px;height: 35px;background-color: #5b9dff; color: #fff;text-align: center;border: 0;border-radius: 3px;}
-.chaxunBtn:hover{background-color: #2866c2;}
-select{width: 100px;height: 30px; background-color: #f8f8f8;color: ##abb2ba;line-height: 20px;text-indent: 8px; border: 1px solid #ccc; }
-.couponInforListTit li{display:inline-block; margin: 0 20px; }
-/*table{width: 870px;}*/
-tbody{background-color: #fff;}
-table thead tr th{width: 120px;}
-.searchInfor{margin: 30px 0;}
-
-.couponMoney{display: inline-block; font-size: 13px; color: #4a4a4a;}
-.couponMoney span{color: #F58220;}
-.couponTip{float: right; color: #949494;}
-.couponCanUse{margin-right: 30px;}
-.dn{display: none!important;}
-.db{display: block!important;}
-.dtr{display:table-row!important; }
-.checkInforBtn{color: #2866c2;cursor: pointer;}
-/*add by jude end*/

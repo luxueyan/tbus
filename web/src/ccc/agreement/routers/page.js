@@ -36,7 +36,7 @@ module.exports = function (router) {
         };
 
         var tabMap = {
-            regist: '新毅金融用户注册协议',
+            regist: '华瑞金控用户注册协议',
            protocolltb: '新抵宝用户投资服务协议',
            protocollxy: '薪金宝用户投资服务协议',
            protocol:'用户投资服务协议',

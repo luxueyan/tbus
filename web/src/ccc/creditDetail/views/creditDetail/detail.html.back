@@ -1,0 +1,94 @@
+<link rel="stylesheet" href="/css/style.css">
+<!-- 内容 -->
+	<div class="zmcf_project_wrap">
+		<div class="zmcf_proj_title">
+			<h2 class="name">{{loan.title}}</h2>
+			<span class="time">发布日期：{{loan.loanRequest.timeSubmit }}</span>
+			<a href="#" class="buybtn">我要购买</a>
+		</div>
+		<div class="zmcf_proj_con">
+			<div class="zmcf_proj_price clearfix">
+				<div class="price_tips">
+					<p class="tipname"><span class="t_block">剩余投资金额</span><span class="t_block">预期年化收益</span><span class="t_block">理财期限</span></p>
+
+					<p class="tipprice"><span class="t_block"><span class="redfont">{{loan.available}}</span>&nbsp;元</span><span class="t_block redfont">{{loan.rate}}&nbsp;%</span><span class="t_block"><span class="bluefont">{{loan.duration.totalDays}}</span>&nbsp;天</span>
+					</p>
+				</div>
+				<!-- 计算收益 -->
+				<div class="price_clac" id="zmcf_price_clac">
+					<p class="title">请填写购买金额：<a href="javascript:;" class="zmcf_clac_btn">计算收益</a></p>
+					<div class="expect_price">
+						<input type="text" class="expect_money" value="5000">
+						<div class="expect_handle">
+							<span class="common_icon add"></span>
+							<span class="common_icon minus"></span>
+						</div>
+					</div>
+				</div>
+				<!-- 计算收益 end-->
+			</div>
+			<!-- 进度条 -->
+			<div class="price_probar">
+					<div class="pro_left">
+						<ul class="start_box">
+							<li class="part_left"><span class="gray_font">中民i投&nbsp;评级&nbsp;风险</span><span class="common_icon icon_redstar"></span><span class="common_icon icon_redstar"></span><span class="common_icon icon_redstar"></span><span class="common_icon icon_redstar"></span><span class="common_icon icon_redstar"></span></li>
+							<li class="part_center"><span class="gray_font">流动性</span><span class="common_icon icon_bluestar"></span><span class="common_icon icon_bluestar"></span><span class="common_icon icon_bluestar"></span><span class="common_icon icon_bluestar"></span><span class="common_icon icon_bluestar"></span></li>
+						</ul>
+						<div class="probar_wrap"><span>项目进度</span><span class="probar_bg"><div class="proper" style="width: {{100 - loan.investPercent}}%;"></div></span><span class="bluefont">{{loan.investPercent}}%</span></div>
+					</div>
+					<div class="pro_right">
+						<a href="#" class="zmcf_yellowbtn">立即购买</a>
+					</div>
+				</div>
+			<!-- 进度条end -->
+		</div>
+		<!-- 分享 -->
+		<div class="zmcf_share_box">
+			<span class="share_btn more"></span>
+			<span class="share_btn qzone"></span>
+			<span class="share_btn weibo"></span>
+			<span class="share_btn qweibo"></span>
+			<span class="share_btn renren"></span>
+			<span class="share_btn wechat"></span>
+		</div>
+		<!-- 分享end -->
+		<!-- 内容 -->
+		<div class="zmcf_proj_detail">
+			<h3 class="title">产品详情</h3>
+			<div class="detail_cons clearfix">
+				<div class="detail_cons_left">
+					<h4 class="tit_name">产品说明</h4>
+					<p>计息期：{{loan.timeSettled }}-{{loan.borrowDueDate}}</p>
+					<p>本息到帐日：{{loan.borrowDueDate}}</p>
+					<p>期限：91天</p>
+					<p>本息分配方式：{{loan.method}}</p>
+<!--					<p>出让人：中民融家资产管理有限公司</p>-->
+<!--					<p>借款人：{{loan.loanRequest.}}</p>-->
+					<h4 class="tit_name mt50">相关方介绍</h4>
+					<p>一、中民融家资产管理有限公司</p>
+					<p>二、XXXXXXXXXXXXXXXXXXXXX</p>
+					<p>期限：{{loan.duration.totalDays}}天</p>
+					<a href="#" class="check_btn mt50">查看交易说明书</a>
+				</div>
+				<div class="detail_cons_right">
+					<h4 class="tit_name">交易记录</h4>
+					<p>为了保护用户隐私，只有购买过此产品的用户才能查看交易记录。</p>
+				</div>
+			</div>
+			<div class="bottom_bg"></div>
+		</div>
+		<!-- 内容 end-->
+	</div>
+	<!-- 内容end -->
+	<!-- 弹出框 -->
+	<div class="zmcf_dialog" id="zmcf_dialog">
+		<a href="javascript:;" class="common_icon close_btn" data-btn="close"></a>
+		<div class="dialog_content">
+			预期收益金额：3,060.00 元
+		</div>
+		<div class="bot_operate">
+			<div class="check_box"><span class="common_icon icon_check current"></span>禁止此页再显示对话框</div>
+			<a href="javascript:;" class="common_icon confirm_btn" data-btn="close">确定</a>
+		</div>
+	</div>
+	<script src="/js/main/investDetail.js"></script>

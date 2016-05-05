@@ -1,0 +1,10 @@
+<ul>
+<!--<li class="line01"></li>-->
+    {{#tabs}}
+    
+    <li class="{{#if tabIndex === @index }}active{{/if}}">
+        <a href="{{ url }}" target="_self">{{ text }}</a>    </li>
+    
+    {{/tabs}}
+    
+</ul>

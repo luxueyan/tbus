@@ -1,0 +1,80 @@
+<dsBody layout={{dsLayoutPath}}>
+<link rel="stylesheet" href="/ccc/userKnow/css/style.css">
+
+<div class="content">
+    <div class="content_main">
+        <div class="content_classify">
+            <h1>WHO</h1>
+            <h2>什么是华瑞金控</h2>
+            <div class="what_bg">
+<!--                {{JSON.stringify(contents)}}-->
+                <p>
+                    {{{contents[0].content}}}
+<!--                    <span>华瑞金控</span>是新毅控股旗下互联网金融战略平台，由安徽唯源金融信息服务有限公司运营。践行普惠金融，助力财富增值。 华瑞金控致力于为中小微企业及个人提供<span>专业、透明、安心、稳盈</span>的互联网金融服务。-->
+                </p>
+            </div>
+        </div>
+        <div class="content_classify content_classify-process">
+            <h1>PROCESS</h1>
+            <h2>投资理财流程</h2>
+            <img class="process_bg" src="/ccc/userKnow/img/process_bg.png">
+        </div>
+        <div class="content_classify content_classify-financial">
+            <h1>Financial process</h1>
+            <h2>轻松四步，赚钱就这么容易</h2>
+            <img class="finacial_bg" src="/ccc/userKnow/img/finacial_bg.png">
+        </div>
+        <div class="content_classify content_classify-advantage">
+            <h1>ADVANTAGE</h1>
+            <h2>平台优势</h2>
+            <div class="article-content">
+<!--               {{& contents}}-->
+                <div class="advantage">
+                    <div class="advantage-left">
+                        <h3 class="title"> {{{contents[1].title}}}</h3>
+                        <p class="content"> {{{contents[1].content}}}</p>
+                    </div>
+                    <img class="advantage-right" src="/ccc/userKnow/img/advantage-first.png"/>
+                </div>
+                <div class="advantage" name="systemsafety" id="systemsafety">
+                    <img class="advantage-right advantage-right-other" src="/ccc/userKnow/img/advantage-second.png"/>
+                    <div class="advantage-left advantage-left-other">
+                        <h3 class="title">{{{contents[2].title}}}</h3>
+                        <p class="content">{{{contents[2].content}}}</p>
+                    </div>
+                </div>
+                <div class="advantage">
+                    <div class="advantage-left">
+                        <h3 class="title"> {{{contents[3].title}}}</h3>
+                        <p class="content"> {{{contents[3].content}}}</p>
+                    </div>
+                    <img class="advantage-right" src="/ccc/userKnow/img/advantage-third.png"/>
+                </div>
+                <div class="advantage" name="firmprotect" id="firmprotect">
+                    <img class="advantage-right advantage-right-other" src="/ccc/userKnow/img/advantage-forth.png"/>
+                    <div class="advantage-left advantage-left-other">
+                        <h3 class="title">{{{contents[4].title}}}</h3>
+                        <p class="content">{{{contents[4].content}}}</p>
+                    </div>
+                </div>
+                <div class="advantage" name="measure" id="measure">
+                    <div class="advantage-left">
+                        <h3 class="title"> {{{contents[5].title}}}</h3>
+                        <p class="content"> {{{contents[5].content}}}</p>
+                    </div>
+                    <img class="advantage-right" src="/ccc/userKnow/img/advantage-fifth.png"/>
+                </div>
+                <div class="advantage" name="prosource" id="prosource">
+                    <img class="advantage-right advantage-right-other" src="/ccc/userKnow/img/advantage-sixth.png"/>
+                    <div class="advantage-left advantage-left-other">
+                        <h3 class="title">{{{contents[6].title}}}</h3>
+                        <p class="content">{{{contents[6].content}}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--<script src="/ccc/userKnow/js/main/common.js"></script>-->
+</dsBody>
