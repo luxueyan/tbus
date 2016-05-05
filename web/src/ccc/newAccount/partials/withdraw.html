@@ -1,0 +1,64 @@
+<div class="ccc-banks-wrap">
+    {{#if paymentPasswordHasSet}}
+    <div class="row">
+        <div class="methodwr" style="text-indent:14px;">填写提现金额</div>
+        <div class="space space-20"></div>
+        <div class="col-md-7">
+
+        </div>
+        <div class="space space-20"></div>
+        <div class="rows">
+            <div class="col-md-12">
+                <form role="form" name="withdrawForm" action="/yeepay/withdraw" method="POST" target="_blank" on-submit="withdrawForm">
+                    <div class="">
+                        <div class="rows">
+                            <span class="tipss">账户余额</span>
+                            <span class="ava">{{intNum}}.<span style="font-size:14px;">{{pointNum}}</span></span>
+                            <span class="tipss" style="color:#f58220">元</span>
+                 </div>
+                        <div class="space-20"></div>
+                        <div class="rows">
+                            <span class="tipss">提现金额</span>
+                            <input type="text" name="amount" id="withdraw" on-keyup="changeValue" style="width:238px;height:43px;border:1px #cccccc solid;border-radius:5px;background-color:#eeeeee;color:#999999;text-indent:10px;line-height:43px;" value="{{amount}}" autocomplete="off" placeholder="">
+                            <span class="tipss" style="position:relative;left:5px;top:15px;">元</span>
+                            <p class="help-block text-danger" style="color:red;text-indent:109px;display:inline">
+                {{submitMessage}}
+            </p>
+
+                        </div>
+                        <div class="space-20"></div>
+                        <div class="rows">
+                            <span class="tipss">交易密码</span>
+                            <input type="password" name="paymentPassword" class="inputsMs" placeholder="" on-blur="checkPassword" autocomplete="off"  value="{{paymentPassword}}" style="width:238px;height:43px;border:1px #cccccc solid;border-radius:5px;color:#999999;text-indent:10px;line-height:43px;">
+                            <span class="tipss" style="color:#009ada;font-size:14px;text-indent:5px;"><a href="/newAccount/settings/resetPassword" style="color:#009ada;text-decoration:none">忘记密码?</a></span>
+                        </div>
+                    </div>
+                    <div class="space space-30"></div>
+                    <button type="button" class="btn btn-warning btn-lg post-btn {{#if disabled}}disabled{{/if}}" style="width:250px;height:44px;border:1px #f58220 solid;background-color:#f58220;position:relative;left:85px;font-size:16px;" on-click="withDrawSubmit">{{submitText}}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="space-30"></div>
+    <div class="has-line" style="padding:30px 20px;">
+        提现需要先开通交易密码，否则无法进行提现 <a href="/newAccount/settings/password"><span class="btn" style="background-color:#009ada;margin-left:10px;color:#fff">现在去开通</span></a>
+    </div>
+    {{/if}}
+</div>
+
+<div class="space-30"></div>
+<div class="row ccc-container" style="width:850px;background:#f4fcff;padding:15px;padding-top:0">
+    <div class="col-md-12">
+        <div class="space space-20"></div>
+        <p style="color:#f58220">温馨提示：</p>
+        <ul class="dec-li">
+            <li>1、试运营期间提现手续费由718金融垫付。每日提现限制3次以内(含3次)。试运营2016年12月31日截止，试运营结束后提现手续费另行公告。</li>
+            <li>2、提现到账时间：提现申请提交成功后，
+            <span style="color: #5B9DFF">资金预计在1-2个工作日（双休日或法定节假日顺延）到账
+            </span>，请您注意查收。<li>
+            <li>3、根据《反洗钱法》规定，718金融禁止洗钱、信用卡套现、虚假交易等行为。</li>
+            <li>4、提现过程遇到问题，请联系客服：4001-718-718。</li>
+        </ul>
+    </div>
+</div>

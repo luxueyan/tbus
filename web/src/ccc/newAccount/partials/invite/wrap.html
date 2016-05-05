@@ -1,0 +1,76 @@
+<div class="recod-wrap row">
+    <div class="invite-code">
+        <div class="code-img">
+<!--            <img src="/ccc/newAccount/img/wx-invite.png" style="width:120px;height:120px; margin-bottom:5px;" id="er-img">-->
+            <div id = "inviteCodeImg"></div>
+            <p>请使用微信扫描</p>
+        </div>
+        <div class="invite-tit">
+            <h4 class="title" style="border:0">以下是您的专属邀请链接及二维码 <span class="hint">（受邀人必须使用手机号注册）</span></h4>
+        </div>
+        <form class="form-inline">
+            <p class="SHARE_URL hide">https://{{host}}/register?refm={{Fmobile}}</p>
+            <p class="SHARE_TEXT hide"> 百万新手红包大放送~！注册就送100元另有加息券补贴，年化收益可到18% 马上领取  https://{{host}}/register?refm={{Fmobile}}</p>
+            <div class="form-group">
+                <input type="text" class="form-control" id="invite-link" value="http://{{host}}/register?refm={{Fmobile}}" style="min-width:420px;margin-left:20px;border:none">
+            </div>
+            <button type="button" class="btn btn-default" id="btn-invite-copy" 
+                data-clipboard-text="http://{{host}}/register?refm={{Fmobile}}">
+              复制链接
+            </button>
+        </form>
+        <p class="tip"><span class="glyphicon glyphicon-exclamation-sign exclamation" style="color:#ff892a;margin-right:18px;"></span>如果不能自动复制，请使用Ctrl+C或鼠标右键复制。</p>
+        <div class="invite-share" style="float:left;"></div>
+        <div class="jiathis_style_32x32" style="float:left; margin-top:30px;"><a href="javascript:void(0);" class="jiathis_button_weixin"></a></div>
+    </div>
+</div>
+<div class="img-wrapper">
+    <img src="/ccc/newAccount/img/invite.png">
+</div>
+<div class="rule-info">
+    <span>规则说明：</span>
+    <ul>
+        <li>1、您邀请的好友注册成功并完成实名认证后，您将获得20元红包。邀请越多，红包越多。</li>
+        <li> 2、最终解释权归718金融·理财平台所有。</li>
+    </ul>
+</div>
+<h4 class="record"><a>邀请记录</a></h4>
+
+<!--<h4 class="reward" {{#if reward}}style="background:#007ec5;color:#fff;"{{/if}}>邀请奖励</h4>-->
+{{#record}}
+ <table class="table table-hover has-padding">
+    <tr style="background:#EEEEEE">
+        <th>被邀请用户</th>
+        <th>真实姓名</th>
+        <th>注册时间</th>
+        <!-- <th>我的奖励</th> -->
+    </tr>
+{{#list}}
+    <tr>
+        <td>{{FOmobile}}</td>
+        <td>{{#if user.name}}{{user.name}}{{else}}未认证{{/if}}</td>
+        <td>{{user.registerDate}}</td>
+        <!-- <td>{{rewardAmount}}</td> -->
+    </tr>
+ {{/list}}
+</table>
+{{/record}}
+
+<!--
+{{#reward}}
+ <table class="table table-hover has-padding">
+    <tr style="background:#e1e1e1;">
+        <th>用户名</th>
+        <th>奖励金额</th>
+        <th>状态</th>
+    </tr>
+{{#rewardlist}}
+    <tr>
+        <td>{{user.loginName}}</td>
+        <td>{{rewardAmount}}</td>
+        <td>{{rewarded}}</td>
+    </tr>
+ {{/rewardlist}}
+</table>
+{{/reward}}
+-->

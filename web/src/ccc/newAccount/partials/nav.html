@@ -1,0 +1,156 @@
+<div class="nav-recharge">
+	<div class="space-30"></div>
+	<a href="/newAccount/recharge" style="text-decoration:none" rel="nofollow" ><div class="nav-recharge-btn">充值</div></a>
+</div>
+<ul class="nav-wrapper">
+	<li class="nav-li">
+		{{#if home}}
+			<span class="icon-home-active"></span>
+		{{else}}
+			<span class="icon-home"></span>
+		{{/if}}
+		<span class="nav-text {{#if home}}nav-text-active{{/if}}"><a href="/newAccount/home">我的账户</a></span>
+	</li>
+	{{#if isEnterprise}}
+	<li class="nav-li">
+		{{#if loanRequest}}
+			<span class="icon-invest-active"></span>
+		{{else}}
+			<span class="icon-invest"></span>
+		{{/if}}
+		<span class="nav-text {{#if loanRequest}}nav-text-active{{/if}}"><a href="/newAccount/loanRequest/loan" rel="nofollow" >还款管理</a></span>
+		<span class='nav-toggle-btn {{showLoanToggleMenu?"nav-toggle-btn-up":"nav-toggle-btn-down"}}' data-toggle="showLoanToggleMenu" on-click="toggleMenu"></span>
+		<div class="clearfix"></div>
+		{{#if showLoanToggleMenu}}
+			<ul class="nav-toggle-menu">
+				<li class="{{#if loan}}active{{/if}}"><a href="/newAccount/loanRequest/loan">我的借款</a></li>
+				<li class="{{#if today}}active{{/if}}"><a href="/newAccount/loanRequest/today">今日到期</a></li>
+				<li class="{{#if undue}}active{{/if}}"><a href="/newAccount/loanRequest/undue">尚未到期</a></li>
+				<li class="{{#if repayed}}active{{/if}}"><a href="/newAccount/loanRequest/repayed">已还清</a></li>
+				<li class="{{#if overdue}}active{{/if}}"><a href="/newAccount/loanRequest/overdue">逾期及违约</a></li>
+			</ul>
+		{{/if}}
+	</li>
+	{{else}}
+		<li class="nav-li">
+		{{#if invest}}
+			<span class="icon-invest-active icon-my-invest-active"></span>
+		{{else}}
+			<span class="icon-invest icon-my-invest"></span>
+		{{/if}}
+		<span class="nav-text {{#if invest}}nav-text-active{{/if}}"><a href="/newAccount/invest/HOLDING">我的投资</a></span>
+		<span class='nav-toggle-btn {{showInvestToggleMenu?"nav-toggle-btn-up":"nav-toggle-btn-down"}}' data-toggle="showInvestToggleMenu" on-click="toggleMenu"></span>
+		<div class="clearfix"></div>
+		{{#if showInvestToggleMenu}}
+			<ul class="nav-toggle-menu">
+				<li class="{{#if HOLDING}}active{{/if}}"><a href="/newAccount/invest/HOLDING">计息中</a></li>
+				<li class="{{#if INHAND}}active{{/if}}"><a href="/newAccount/invest/INHAND">募集中</a></li>
+				<li class="{{#if CLEARED}}active{{/if}}"><a href="/newAccount/invest/CLEARED">已结清</a></li>
+			</ul>
+		{{/if}}
+	</li>
+        	<li class="nav-li">
+		{{#if loanRequest}}
+			<span class="icon-invest-active"></span>
+		{{else}}
+			<span class="icon-invest"></span>
+		{{/if}}
+		<span class="nav-text {{#if loanRequest}}nav-text-active{{/if}}"><a href="/newAccount/loanRequest/loan">还款管理</a></span>
+		<span class='nav-toggle-btn {{showLoanToggleMenu?"nav-toggle-btn-up":"nav-toggle-btn-down"}}' data-toggle="showLoanToggleMenu" on-click="toggleMenu"></span>
+		<div class="clearfix"></div>
+		{{#if showLoanToggleMenu}}
+			<ul class="nav-toggle-menu">
+				<li class="{{#if loan}}active{{/if}}"><a href="/newAccount/loanRequest/loan">我的借款</a></li>
+				<li class="{{#if today}}active{{/if}}"><a href="/newAccount/loanRequest/today">今日到期</a></li>
+				<li class="{{#if undue}}active{{/if}}"><a href="/newAccount/loanRequest/undue">尚未到期</a></li>
+				<li class="{{#if repayed}}active{{/if}}"><a href="/newAccount/loanRequest/repayed">已还清</a></li>
+				<li class="{{#if overdue}}active{{/if}}"><a href="/newAccount/loanRequest/overdue">逾期及违约</a></li>
+			</ul>
+		{{/if}}
+	</li>
+	{{/if}}
+	<li class="nav-li">
+		{{#if fund}}
+			<span class="icon-fund-active"></span>
+		{{else}}
+			<span class="icon-fund"></span>
+		{{/if}}
+		<span class="nav-text {{#if fund}}nav-text-active{{/if}}"><a href="{{#if !isEnterprise}}/newAccount/fund/loanDeal{{else}}/newAccount/fund/investDeal{{/if}}">交易记录</a></span>
+        <span class='nav-toggle-btn {{showFundToggleMenu?"nav-toggle-btn-up":"nav-toggle-btn-down"}}' data-toggle="showFundToggleMenu" on-click="toggleMenu"></span>
+		<div class="clearfix"></div>
+		{{#if showFundToggleMenu}}
+			<ul class="nav-toggle-menu">
+				{{#if !isEnterprise}}
+				    <li class="{{#if loanDeal}}active{{/if}}"><a href="/newAccount/fund/loanDeal">投资记录</a></li>
+				    <li class="{{#if investDeal}}active{{/if}}"><a href="/newAccount/fund/investDeal">借款记录</a></li>
+				{{else}}
+				    <li class="{{#if investDeal}}active{{/if}}"><a href="/newAccount/fund/investDeal">借款记录</a></li>
+				{{/if}}
+			</ul>
+		{{/if}}
+	</li>
+	<li class="nav-li">
+		{{#if settings}}
+			<span class="icon-account-active"></span>
+		{{else}}
+			<span class="icon-account"></span>
+		{{/if}}
+		<span class="nav-text {{#if settings}}nav-text-active{{/if}}"><a href="/newAccount/settings/userInfo">账户管理</a></span>
+		<span class='nav-toggle-btn {{showAccountToggleMenu?"nav-toggle-btn-up":"nav-toggle-btn-down"}}' data-toggle="showAccountToggleMenu" on-click="toggleMenu"></span>
+		<div class="clearfix"></div>
+		{{#if showAccountToggleMenu}}
+			<ul class="nav-toggle-menu">
+				<li class="{{#if userInfo}}active{{/if}}"><a href="/newAccount/settings/userInfo">个人信息</a></li>
+				{{#if !isEnterprise}}
+				<li class="{{#if authentication}}active{{/if}}"><a href="/newAccount/settings/authentication">实名认证</a></li>
+				<li class="{{#if bankCards}}active{{/if}}"><a href="/newAccount/settings/bankCards">银行卡管理</a></li>
+				{{/if}}
+				<li class="{{#if password}}active{{/if}}"><a href="/newAccount/settings/password">密码管理</a></li>
+			</ul>
+		{{/if}}
+	</li>
+	{{#if !isEnterprise}}
+
+	<li class="nav-li coupon-nav">
+		{{#if coupon}}
+			<span class="icon-coupon-active"></span>
+		{{else}}
+			<span class="icon-coupon"></span>
+		{{/if}}
+		<span class="nav-text {{#if coupon}}nav-text-active{{/if}}"><a href="/newAccount/coupon">我的红包</a></span>
+	</li>
+	<li class="nav-li">
+		{{#if invite}}
+			<span class="icon-friend-active"></span>
+		{{else}}
+			<span class="icon-friend"></span>
+		{{/if}}
+		<span class="nav-text {{#if invite}}nav-text-active{{/if}}"><a href="/newAccount/invite">好友邀请</a></span>
+	</li>
+	{{/if}}
+	<li class="nav-li">
+		{{#if message}}
+			<span class="icon-message-active"></span>
+		{{else}}
+			<span class="icon-message"></span>
+		{{/if}}
+		<span class="nav-text {{#if message}}nav-text-active{{/if}}"><a href="/newAccount/message">消息中心</a></span>
+	</li>
+    <!-- <li class="nav-li">
+		{{#if autobid}}
+			<span class="icon-message-active"></span>
+		{{else}}
+			<span class="icon-message"></span>
+		{{/if}}
+		<span class="nav-text {{#if autobid}}nav-text-active{{/if}}"><a href="/newAccount/autobid">自动投标</a></span>
+	</li> -->
+    <li class="nav-li">
+		{{#if assign}}
+			<span class="icon-message-active"></span>
+		{{else}}
+			<span class="icon-message"></span>
+		{{/if}}
+		<span class="nav-text {{#if assign}}nav-text-active{{/if}}"><a href="/newAccount/assign">债权转让</a></span>
+	</li>
+</ul>
+<div class="clearfix"></div>

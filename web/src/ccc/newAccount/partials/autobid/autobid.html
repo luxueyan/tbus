@@ -1,0 +1,77 @@
+{{#if !loanCount}}
+<div style="width: 500px;margin: 0 auto;float: none;" class="auto-bid-box">
+   	{{#if isActive}}
+					<input type="radio" class="radio" name="status" value="true" checked> <span class="info" style="margin-right:20px;">开启</span>
+					<input type="radio" class="radio" name="status" value="false"> <span class="info">关闭</span>
+				{{else}}
+					<input type="radio" class="radio" name="status" value="true"> <span class="info" style="margin-right:20px;">开启</span>
+					<input type="radio" class="radio" name="status" value="false" checked> <span class="info">关闭</span>
+				{{/if}}
+    <div id="autoBidAmount">
+        <p>单笔投资金额</p>
+        <input type="text" name="autoBidAmount" placeholder="请输入单笔投资金额" data-selector="autoBidAmount" on-keyup="checkValue" value="{{autoBidAmount}}">
+        <p>单位(元)</p>
+        <div class="clearfix"></div>
+			<div class="error"></div>
+    </div>
+    <div id="autoBidRemainAmount">
+        <p>保留可用余额</p>
+        <input type="text" name="autoBidRemainAmount" placeholder="请输入保留可用余额" data-selector="autoBidRemainAmount" on-keyup="checkValue" value="{{autoBidRemainAmount}}">
+        <p>单位(元)</p>
+        <div class="clearfix"></div>
+			<div class="error"></div>
+    </div>
+    <div class="scope-left" id="annualRateFrom">
+        <p>年化利率范围</p>
+       <input type="text" name="annualRateFrom" placeholder="最小利率" data-selector="annualRateFrom" on-keyup="checkValue" value="{{annualRateFrom}}"> <p>～</p>
+        <div class="clearfix"></div>
+			<div class="error"></div>
+         </div>
+
+         <div class="scope-right" id="annualRateTo">
+        <input type="text" name="annualRateTo"  placeholder="最大利率" style="margin-left:10px;margin-right:0" data-selector="annualRateTo" on-keyup="checkValue" value="{{annualRateTo}}">
+        <p>单位(%)</p>
+        <div class="clearfix"></div>
+			<div class="error"></div>
+             </div>
+
+    <div class="scope-left" id="durationFrom">
+        <p>借款期限范围</p>
+        <input type="text" name="durationFrom"  placeholder="最小期限" data-selector="durationFrom" on-keyup="checkValue" value="{{durationFrom}}">  <p>～</p>
+         <div class="clearfix"></div>
+			<div class="error"></div>
+          </div>
+
+        <div class="scope-right" id="durationTo">
+              <input type="text" name="durationTo"  placeholder="最大期限" style="margin-left:10px;margin-right:0" data-selector="durationTo" on-keyup="checkValue" value="{{durationTo}}">
+        <p>单位(月)</p>
+        <div class="clearfix"></div>
+			<div class="error"></div>
+        </div>
+    <div class="pattern" id="repaymentMethod">
+        <div>
+            <p>请选还款方式</p>
+        </div>
+        {{#each rp}}
+        <div>
+            <input type="checkbox" name="type" value="{{key}}" {{#if checked}}checked="checked"{{/if}}/>
+            <p>{{name}}</p>
+        </div>
+        {{/each}}
+        <div class="error methodError"></div>
+    </div>
+    <div>
+        <input type="button" class="btn blue-botton" value="保存设置" on-click="saveConfig" />
+    </div>
+<!--
+    <div>
+        <p>温馨提示:</p>
+        <p>1.单笔投资金额不应超过开启自动投资时设置的单笔投资上限，否则自动投资无效；</p>
+        <p>2.如果希望修改单笔投资上限，请点击关闭，并在开启自动投资时进行设置。</p>
+    </div>
+-->
+</div>
+
+{{else}}
+<div>新毅金融</div>
+{{/if}}

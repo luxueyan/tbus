@@ -1,0 +1,67 @@
+	{{#if list}}
+	{{#each list}}
+	{{#if type==='REBATE'}}
+			<tr>
+				<td class="couponId dn">{{id}}</td>
+				<td style="text-indent:20px;">{{displayName}}</td>
+				<td>{{ableAmount}}</td>
+				<td>{{actualAmount}}</td>
+				<td>{{status}}</td>
+				<td>{{timePlaced}}</td>
+				<td>{{timeExpire}}</td>
+				<td class="checkInforBtn">查看</td>
+			</tr>
+			<tr class="xiangxi dn">
+				<td colspan="7">
+					<table style="width: 890px;">
+						<thead>
+							<tr>
+								<th style="text-indent:20px;">使用时间</th>
+								<th>使用金额</th>
+								<th>类型</th>
+							</tr>
+						</thead>
+						<tbody id="{{id}}">
+							
+						</tbody>
+					</table>
+				</td>	
+			</tr>
+		
+	{{/if}}
+
+	{{#if type==='PRINCIPAL'}}
+		
+			<tr>
+				<td class="dn">{{id}}</td>
+				<td style="text-indent:20px;">{{displayName}}</td>
+				<td>{{parValue}}</td>
+				<td>{{status}}</td>
+				<td>{{timePlaced}}</td>
+				<td>{{timeExpire}}</td>
+				<td>最低投资{{minimumInvest}}元，起投期限{{minimumDuration}}个月</td>
+			</tr>
+	{{/if}}
+
+	{{#if type==='INTEREST'}}
+			<tr>
+				<td class="dn">{{id}}</td>
+				<td style="text-indent:20px;">{{displayName}}</td>
+				<td>{{displayValue}}</td>
+				<td>{{status}}</td>
+				<td>{{timePlaced}}</td>
+				<td>{{timeExpire}}</td>
+				<td>最低投资{{minimumInvest}}元，起投期限{{minimumDuration}}个月</td>
+			</tr>
+	{{/if}}
+
+	{{/each}}
+	{{else}}
+		<tr>
+			<td colspan="7"><div class="no-coupon"></div></td>
+		</tr>
+		
+	{{/if}}
+	<div class="clear"></div>
+
+

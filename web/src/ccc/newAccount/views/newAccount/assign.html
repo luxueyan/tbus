@@ -1,0 +1,53 @@
+<dsBody layout={{dsLayoutPath}}>
+<link rel="stylesheet" href="/ccc/global/css/modules/cccPaging.css">
+<link rel="stylesheet" href="/ccc/newAccount/css/common.css">
+<link rel="stylesheet" href="/ccc/global/css/modules/cccTips.css">
+<link rel="stylesheet" href="/ccc/newAccount/css/assign.css">
+
+
+<div class="account-wraper">
+    <div class="space-40"></div>
+    <div class="account-container">
+		<div class="account-nav"></div>
+    <div class="right-wraper">
+		<div class="space space-20"></div>
+		<div class="header-text">债权转让</div>
+
+
+        <ul class="ul-tab">
+            <Li>交易类型</Li>
+<!--            <Li class="active" data-statue="ALL">全部</Li>-->
+            <Li class="active" data-statue="SETTLED">可转让债权</Li>
+            <Li data-statue="OPEN">转让中债权</Li>
+            <Li data-statue="FINISHED">已转让债权</Li>
+        </ul>
+
+        <ul class="way-sort">
+            <li>排序方式</li>
+            <li class="li-bod ">
+                <input id="investTime" class="btn danger-button" type="button" value="投标时间">
+            </li>
+            <li class="li-bod ">
+                <input id="investAmount" class="btn" type="button" value="投资金额">
+            </li>
+        </ul>
+
+        <div class="space space-20"></div>
+		<div class="ccc-container row">
+            <div class="col-md-12 ccc-invests-wrap">
+            	<div class="ccc-tab-panels">
+            		<div class="tab-panel right-wrap active">
+            			<p class="loading">加载中...</p>
+            		</div>
+            	</div>
+            </div>
+        </div>
+		<div class="space space-50"></div>
+
+    </div>
+    </div>
+</div>
+
+<script src="/ccc/newAccount/js/main/common.js"></script>
+<script src="/ccc/newAccount/js/main/assign.js"></script>
+</dsBody>

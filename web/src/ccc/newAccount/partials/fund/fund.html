@@ -1,0 +1,121 @@
+
+<div class="fund-nav-view">
+    <ul class="sRate">
+        <p class="selectTitle">交易类型:</p>
+        {{#if urlname==='loanDeal'}}
+            <li class="selected s__is-selected personal" data-min-rate="0" data-max-rate="100" data-type="ALL">全部</li>
+            <li data-min-rate="0" data-max-rate="8" data-type="INVEST" class="personal">投标</li>
+            <li data-min-rate="8" data-max-rate="10" data-type="WITHDRAW" class="personal">提现</li>
+            <li data-min-rate="10" data-max-rate="12" data-type="DEPOSIT" class="personal">充值</li>
+            <li data-min-rate="12" data-max-rate="14" data-type="INVEST_REPAY" class="personal">回款</li>
+            <li data-min-rate="14" data-max-rate="100" class="get-cash" data-type="FEE_WITHDRAW" class="personal personal-big">提现手续费</li>
+            <li data-min-rate="14" data-max-rate="100" class="get-cash" data-type="TRANSFER" class="personal personal-big">平台奖励</li>
+            <li data-min-rate="14" data-max-rate="100" class="get-cash" data-type="OFFLINE_DEPOSIT" class="personal personal-big" style="margin-right:0px;">线下充值</li>
+        {{else}}
+            <div class="dropdown input-group type-checker pull-left">
+                <ul class="dropdown-menu" role="listbox">
+                {{# {typeList: typeLists[tabIndex]} }}
+                    {{#each typeList}}
+                    <li role="presentation">
+                        <a role="menuitem" href="#" on-click="select-type" data-type='{{type}}' rel="nofollow" >
+                            {{ text }}
+                        </a>
+                    </li>
+                    {{/each}}
+                    {{/}}
+                </ul>
+
+                <span class="form-control type-text" data-toggle="dropdown" data-type="{{ typeLists[tabIndex][selectedIndex].type }}">
+                {{ typeLists[tabIndex][selectedIndex].text }}
+                </span>
+                <span class="input-group-addon btn-drop" data-toggle="dropdown">
+                    <span class="caret"></span>
+                </span>
+		  </div>
+		{{/if}}
+
+	</ul>
+	<ul class="sDuration">
+		<p class="selectTitle">交易时间:</p>
+		<!-- <li class="selected s__is-selected" data-min-duration="0" data-max-duration="100">全部</li> -->
+		<li data-min-duration="0" data-max-duration="1">30天</li>
+		<li data-min-duration="1" data-max-duration="3">90天</li>
+		<div class="select-brame">
+			<div class="input-group date-from-picker pull-left">
+				<input class="form-control" value="{{dateFrom}}" readonly />
+				<span class="input-group-addon icon-calendar"></span>
+			</div>
+
+			<span class="spliter pull-left">-</span>
+
+			<div class="input-group date-to-picker pull-left">
+				<input class="form-control" value="{{dateTo}}" readonly />
+				<span class="input-group-addon icon-calendar"></span>
+			</div>
+
+			<div class="input-group pull-left">
+				<button class="btn btn-filter btn-blue btn-smaller" on-click="do-filter">筛选</button>
+				<button class="btn btn-export" style="display:none;">导出</button>
+			</div>
+		</div>
+	</ul>
+
+</div>
+
+{{#if !loading}}
+<div class="payload-detail-wrapper">
+	<table class="table table-striped">
+		<col width="128px" />
+		<col width="150px" />
+		<col width="208px" />
+		<col width="110px" align="right" class="col-amount" />
+		<col width="120px" />
+		<col width="90px" />
+		<col width="90px" />
+		<thead>
+			<tr>
+				<th>时间</th>
+				<th>交易类型</th>
+				<th>单号</th>
+				<th class="col-amount">收支金额</th>
+				<th>操作</th>
+				<th>状态</th>
+				<th>备注</th>
+			</tr>
+		</thead>
+
+		{{#if list}}
+		<tbody>
+			{{#each list}}
+			<tr>
+				<td>{{ dateTime }}</td>
+				<td>{{transactionType}}</td>
+				<td>{{ orderId }}</td>
+
+				<td class="col-amount {{ amountClass }}" style="color:#f58220;">
+					{{ amount }}
+				</td>
+				<td>{{operationName}}</td>
+				<td>{{ status }}</td>
+				<!-- summary -->
+				<td style="width:100px;">{{ description }} {{#if type=='INVEST'}} {{hint}} {{/if}}
+				</td>
+			</tr>
+			{{/each}}
+		</tbody>
+		{{/if}}
+	</table>
+</div>
+{{else}}
+
+<div class="ccc-container row">
+	<div class="col-md-12 funds-ractive-container current-container">
+		<p class="loading">loading...</p>
+	</div>
+</div>
+{{/if}} {{#if list}}
+<div class="ccc-paging"></div>
+<div class="clearfix"></div>
+{{else}}
+<div class="no-fund-data"></div>
+{{/if}}
