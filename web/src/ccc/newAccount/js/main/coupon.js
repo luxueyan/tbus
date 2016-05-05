@@ -17,6 +17,7 @@ var getCurrentType = function() {
 $('ul.ttabs li a').on('click', function() {
 	var type = $(this).parent().data('type');
 	init(type);
+
 });
 
 Date.prototype.Format = function (fmt) { //author: meizz
@@ -54,6 +55,7 @@ function init (type) {
 			},
 			bindTime:0,
 			status: {
+
 	            'INITIATED': '未使用',
 	            'PLACED': '未使用',
 	            'USED': '审核中',
@@ -81,6 +83,7 @@ function init (type) {
 					self.initClick();
 					self.bindTime ++;
 				}
+
 			},
 			getCouponData: function(callback) {
 				var self = this;
@@ -104,6 +107,7 @@ function init (type) {
 				self.set('list', o);
 				self.renderPager();
 			},
+
 			parseData: function(o) {
 	            for (var i = 0; i < o.length; i++) {
 	                o[i].displayName = o[i].couponPackage.displayName;
@@ -169,6 +173,7 @@ function init (type) {
 						}
 
 					}
+
 	                if (o[i].description === "") {
 	                    o[i].description = "暂无描述";
 	                }
@@ -199,6 +204,7 @@ function init (type) {
 				});
 			},
 			renderPager: function () {
+
                 var self = this;
                 var totalSize = self.get('total');
 

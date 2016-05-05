@@ -150,6 +150,7 @@ module.exports = function(router) {
                 res.locals.user.paymentPasswordHasSet =
                     paymentPasswordHasSet;
                 res.render('newAccount/home', {
+
                     title: '华瑞金控',
                     isEnterprise: res.locals.user.enterprise
                 });

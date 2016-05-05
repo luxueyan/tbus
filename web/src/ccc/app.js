@@ -51,7 +51,34 @@ if (config.startOAuthServer) {
 ds.apiproxy(app, config.urlBackend);
 
 require('@ccc/inspect/middleware')(app);
+app.use(async function (req, res, next) {
+   
+    res.expose(Date.now(), 'serverDate');
 
+    // global user
+    if (!req.cookies.ccat) {
+        res.expose({}, 'user');
+        return next();
+    }
+
+    var user = ((await req.uest.get('/api/v2/whoamiplz').end().get('body')) || {}).user;
+
+    res.expose(user || {}, 'user');
+    if (!user) {
+        return next();
+    }
+    res.locals.user = user;
+
+    user.logined = true;
+    if (user.email === 'notavailable@creditcloud.com') {
+        user.email = '';
+    }
+    if (!user.accountId) {
+        return next();
+    }
+    user.agreement = (await req.uest.get('/api/v2/user/MYSELF/agreement').end().get('body') || {});
+    next();
+});
 // mobile page (H5) redirection
 _.each([
     {path: '/'},
