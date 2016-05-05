@@ -1,0 +1,209 @@
+<!--{{JSON.stringify(loan)}}-->
+{{#if loan.status == "FINISHED"||loan.status == "SETTLED"||loan.status == "CLEARED"}}
+<div class="firstLine">
+    <div class="tip">投资金额 </div>
+</div>
+<p class="finished-money">可投金额&nbsp;&nbsp;&nbsp;<span style="color:#f0bf2e;font-size:14px;">0.00</span>
+    <span
+    style="font-size:14px;">元</span>
+</p>
+<p class="finished-money">剩余时间&nbsp;&nbsp;&nbsp;<span style="font-size:14px;">已完成</span></p>
+<p class="finished-money">可用余额&nbsp;&nbsp;&nbsp;<span style="font-size:14px;">{{#if user.availableAmount}}{{user.availableAmount}}{{else}}0{{/if}}元</span></p>
+<div class="col-sm-8" style="width:300px;padding:0;margin-left:24px;line-height:38px;text-align:right;border:1px solid #ccc;border-radius:3px;background-color:#eee;color: #abb2ba;">
+    <input type="text" class="form-control col-sm-8 form_input loanmoney" {{#if loan.status=="FINISHED"
+    ||loan.status=="SETTLED" || loan.status=="CLEARED" }} disabled{{/if}} placeholder="请输入投资金额"
+    style="width:274px;border: 0;border-radius: 0;box-shadow:none;text-align:left;height:38px;"
+    /><span>元&nbsp;&nbsp;</span>
+</div>
+<p class="finished-money">预期收益&nbsp;&nbsp;&nbsp;<span style="color:#ff7200;">0.00</span><span style="font-size:14px;">元</span></p>
+{{#if loan.status == "FINISHED"}}
+<button class="finished-btn">已满标</button>{{/if}}{{#if loan.status == "SETTLED"}}
+<button class="finished-btn">已抢完</button>{{/if}}{{#if loan.status == "CLEARED"}}
+<button class="finished-btn">还款结束</button>{{/if}}
+<!--<button class="finished-btn">还款结束</button>-->
+<!--<img src="/ccc/loan/img/full.png" class="finishBlock"> -->
+{{/if}} {{#if loan.status == "ARCHIVED" }}
+<div class="firstLine">
+    <div class="tip">{{loan.rule.min}}元起投 </div>
+    <div class="highAmount">最高投资限额：{{loan.rule.max}}元</div>
+
+</div>
+<img src="/ccc/loan/img/over.png" class="cleared"> {{/if}} {{#if loan.status == "SCHEDULED"
+}}
+<div class="status">
+    <div class="info">
+        <div class="leftMoney">
+            <h1 class="red"> 账户余额：¥<span class="left-money">
+				{{#if user.availableAmount}}
+				{{#if user.availableAmount.length>8}}
+					{{user.availableAmount.substr(0,5)}}...
+                {{else}}
+                    {{user.availableAmount}}
+				{{/if}}
+				{{else}}0{{/if}}
+                </span>
+			 </h1>
+            <a href="/newAccount/recharge" class="recharge">充值</a>
+        </div>
+        <div class="userBlock" id="userBlock">
+
+            <div class="input">
+                <div class="calculatorBox calculatorBox1">
+                    <div class="calculator">
+                        <!-- <span class="glyphicon glyphicon-minus" style="top:0;" on-click="reduce"></span> -->
+                        <input type="hidden" name="loanId" value="{{loan.id}}">
+                        <input placeholder="请输入投资金额" type="text" value="{{ inputNum }}">
+                        <!-- <span class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></span> -->
+                    </div>
+                    <!-- <span class="topAmount" on-click="maxNumber">最大可投金额</span> -->
+                </div>
+                <!--                <p class="totalInterest">预估总收益 {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}元</p>-->
+                <!--				<p class="rule-max">单笔最多可投：{{loan.rule.max}}元</p>-->
+                {{#if user}}
+
+                <input type="submit" class="finished-btn" value="即将开始" /> {{else}}
+                <a href="/login">
+                    <input type="submit" class="btn btn-warning invest-button" value="立即登录" />
+                </a>
+                {{/if}}
+            </div>
+            <div class="investbtn" data-id="{{ loan.id }}" data-status="{{ loan.status }}" data-open="{{ loan.timeOpen }}"
+            data-serv="{{serverDate}}" style="color: black;width: 155px;text-align: center;background:#fff;margin-left:-25px"></div>
+
+            <!--            <p class="left-time-start">距离开标时间还有xx小时xx分xx秒</p>-->
+        </div>
+    </div>
+</div>
+{{/if}} {{#if loan.status == "OPENED"}}
+<div class="status">
+    <div class="info">
+
+        <div class="userBlock" id="userBlock">
+            {{#if user}} {{! 已登录,但是没开第三方支付 }} {{#if !name}}
+            <div class="leftMoney-open">账户余额：¥&nbsp;<i class="red" >{{user.availableAmount}}</i>
+                <a href="/newAccount/recharge" class="recharge">
+                    <button>充值</button>
+                </a>
+            </div>
+            <div class="calculatorBox">
+                <div class="calculator">
+                    <!-- <span class="glyphicon glyphicon-minus" style="top:0;" on-click="reduce"></span> -->
+                    <input type="hidden" name="loanId" value="{{loan.id}}">
+                    <input placeholder="请输入投资金额" name="amount" type="text" value="{{ inputNum }}" on-blur="getCoupon"
+                    />
+                    <!-- <span class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></span> -->
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="prompt-open-3rdpay">
+                <p class="shiming">您的账户尚未实名认证，认证后可投资</p>
+            </div>
+            <div class="invest-button-wrapper">
+                <a class="btn btn-warning open-button loginBtn" href="/newAccount/settings/authentication">立即认证</a>
+            </div>
+            {{else}} {{! 已登录 }} {{! 未签订无密投资}}
+
+            <div class="leftMoney-open">账户余额：¥&nbsp;<i class="red" style="{{#if user.availableAmount>10000000}}font-size:16px;{{/if}}">{{user.availableAmount}}</i>
+                <a href="/newAccount/recharge" class="recharge">
+                    <button>充值</button>
+                </a>
+            </div>
+            <div class="input">
+                <form action="/lianlianpay/tender" name="investForm" method="POST" class="invest-form"
+                target="_blank" on-submit="invest-submit">
+                    <div class="calculatorBox">
+                        <div class="calculator">
+                            <!-- <span class="glyphicon glyphicon-minus" style="top:0;" on-click="reduce"></span> -->
+                            <input type="hidden" name="loanId" value="{{loan.id}}">
+                            <input style="width: 285px;" placeholder="请输入投资金额" name="amount" type="text" value="{{ inputNum }}"
+                            autocomplete="off"  on-input="rebate" on-keyup="tenNum"/><!-- getCoupon -->
+                            <!-- <span class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></span> -->
+                        </div>
+                        <!-- <span class="topAmount" on-click="maxNumber">最大可投金额</span> -->
+                        <div class="clearfix"></div>
+                        <!--                        <p class="p-max">单笔最多可投：{{loan.rule.max}}元</p>-->
+                        <p class="totalInterest totalNum" style="line-height: 35px;margin: 0;">预计收益<span>
+                        <!-- {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}} -->
+                        <!-- {{(loan.durationdays/365 * (inputNum || 0) *loan.rate/100).toFixed(2)}} -->
+                        {{(loan.durationdays/365 * (isNaN(inputNum)?0 : inputNum) *loan.rate/100).toFixed(2)}}
+                        </span>元</p>
+                        <div class="selectOption">
+                            <select name="placementId" id="couponSelection" on-change="rebate"> <!-- value="{{coupon}}" -->
+                                {{#if selectOption}}
+                                
+                                {{#each selectOption}} {{#if !hide}}
+                                 {{#if typeKey == "返现券"}}
+                                <option selected value="{{ id }}">{{ displayValue }}{{ typeKey }}</option>
+                                {{else}}
+                                <option value="{{ id }}">{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest}}</option>
+                                {{/if}}
+                                {{/if}}
+                                {{/each}}
+                                <option value="">不使用红包</option>
+                                {{else}}
+                                <option value="">暂无可用券</option>
+                                {{/if}}
+                            </select>
+                        </div>
+                        <p class="totalInterest totalInterestRebate" style="line-height:40px;margin-left:0px;display: none;">可用返现<span id="actualAmount">{{actualAmountNum}}</span>元,本次返现<span id="thisRebate"></span>元</p>
+                        <div class="password-box">
+                            <div class="password">
+                                <input class="trade-password" type="password" placeholder="请输入交易密码" name="paymentPassword"
+                                value="{{paymentPassword}}" autocomplete="off" />
+                            </div>
+                            <p><a href="/newAccount/settings/resetPassword" style="font-size:12px">忘记交易密码？</a></p>
+                        </div>
+                        <input style="display:none" type="password" placeholder="请输入交易密码" />
+                        <p class="agree-box" style="text-align:left;line-height: 30px;">
+                            <input type="checkbox" class="agree" checked id="agree" />
+                            <span>我同意
+                                            {{#if loan.productKey==="FB"}}
+                                        <a href="/agreement/mobile/protocolltb" target="_blank">《新抵宝用户投资服务协议》</a>
+                                           {{elseif loan.productKey==="XJB"}}
+                                         <a href="/agreement/mobile/protocollxy" target="_blank">《薪金宝用户投资服务协议》</a>
+                                         {{elseif loan.productKey==="XNB"}}
+                                         <a href="/agreement/mobile/protocolxnb" target="_blank">《新能宝用户投资服务协议》</a>
+                                         {{else}}
+                                         <a href="/agreement/mobile/protocol" target="_blank">《用户投资服务协议》</a>
+                                         {{/if}}
+                                    </span>
+                        </p>
+                        <p class="agree-error"></p>
+                        <input type="submit" class="btn btn-warning invest-button" value="确认投资" />
+
+                    </div>
+
+                    {{#if errors.visible}}
+                    <div class="tooltip">
+                        <div class="tooltip-arrow"></div>
+                        <div class="tooltip-inner">
+                            <span class="glyphicon glyphicon-exclamation-sign icon"></span>
+                            <span class="text">{{ errors.msg }}</span>
+                        </div>
+                    </div>
+                    {{/if}}
+                </form>
+            </div>
+
+            {{/if}} {{else}}
+
+            <p class="login-see">
+                您尚未登录，账户余额<a href="/login" style="color:#5b9dff;">登录</a>后可见
+            </p>
+            <div class="firstLine" style="padding:0px;">
+            </div>
+
+
+            <div class="calculatorBox">
+                <div class="calculator">
+                    <input placeholder="请输入投资金额" type="text" value="{{ inputNum }}">
+                </div>
+            </div>
+            <p class="totalInterest">最大可投<span>{{loan.rule.max}}</span>元，预计收益<span> {{(loan.durationdays/365 * (inputNum || 0) *loan.rate/100).toFixed(2)}}</span>元</p>
+            <a href="/login?url={{backUrl}}" class="loginBtn">
+                            立即登录
+                        </a> {{/if}}
+        </div>
+    </div>
+</div>
+{{/if}}
