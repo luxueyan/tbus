@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="/ccc/account/css/common.css">
+<link rel="stylesheet" href="/ccc/global/css/modules/cccTips.css">
+<link rel="stylesheet" href="/ccc/global/css/modules/cccPaging.css">
+<link rel="stylesheet" href="/ccc/account/css/coupon.css">
+
+<div class="account-wraper">
+    {{>topNav}}
+
+    <div class="indexwrapper">
+        <div class="lep"></div>
+        <div class="rip">
+            <div class="has-line hasLine">
+                <div class="row ccc-container">
+                    <div class="col-md-12">
+                        <div class="ccc-tab pull-left" data-header-selector=".header-text">
+                            <ul class="tabs">
+                                <li class="active" data-type="CASH"><a href="#">现金券</a></li>
+                                <li data-type="INTEREST"><a href="#">加息券</a></li>
+                                <li data-type="PRINCIPAL"><a href="#">增值券</a></li>
+                                <li data-type="REBATE"><a href="#">返现券</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="space space-20"></div>
+            <div class="ccc-container row">
+                <div class="col-md-12 ccc-loan-wrap">
+                	<div class="ccc-tab-panels">
+                		<div class="tab-panel panel-CASH active">
+                            <p class="loading">加载中...</p>
+                        </div>
+                		<div class="tab-panel panel-INTEREST"></div>
+                		<div class="tab-panel panel-PRINCIPAL"></div>
+                		<div class="tab-panel panel-REBATE"></div>
+                	</div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="space space-50">&nbsp;</div>
+    </div>
+</div>
+
+<script src="/ccc/account/js/main/coupon.js"></script>
+</dsBody>

@@ -1,0 +1,53 @@
+<table class="table table-hover has-padding">
+    <thead>
+        <tr>
+            <th class="p-tit">项目信息</th>
+            <th>投资金额(元)</th>
+            <th>已回款(元)</th>
+            <th>待回款(元)</th>
+            <th>状态</th>
+            <th class="p-op">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+        <tr>
+            <td>
+                <a class="loan-tit" href="/loan/{{loanId}}"
+                target="_blank">{{loanTitle}}</a>
+                <span>利率：{{rate/100}}% &nbsp; 期限：{{Fduration}}</span>
+            </td>
+            <td>{{Famount}}</td>
+            <td>{{Frepayed}}</td>
+            <td>{{Funrepay}}</td>
+            <td>{{Fstatus}}</td>
+            <td class="align-center">
+		   		<!--
+                <button class="btn btn-smaller btn-blue-light" on-click="getPlan" data-loaded="false"
+                data-id="{{id}}" data-loanid="{{loanId}}">还款计划</button>
+                <a href="/loan/allContracts/{{id}}" class="btn btn-smaller"
+                target="_blank">查看合同</a>
+                -->
+                
+                {{#if hasContract}}
+					<button class="btn btn-smaller btn-blue-light" on-click="getPlan"
+					data-id="{{id}}"
+					data-loanid="{{loanId}}">还款计划</button>
+					<a href="/account/invest/allContracts/{{id}}" class="btn btn-smaller btn-light" target="_blank">查看合同</a>
+				{{else}}
+					{{#if status === 'CANCELED'}}
+					<i class="fa fa-ban text-muted size-16 tips-top tooltip-error" title="已被取消"></i>
+					{{else}}
+					<i class="fa fa-clock-o text-muted tips-top" title="审核通过后生成还款计划和合同"></i>
+					{{/if}}
+				{{/if}}
+            </td>
+        </tr>
+        <tr class="repay-plan-wp" id="invest-{{id}}">
+            <td colspan="6">
+                <p class="loading">loading...</p>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

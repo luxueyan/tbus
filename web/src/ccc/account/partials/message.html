@@ -1,0 +1,28 @@
+<div class="tab-panel panel-HOLDING active">
+    <table class="table table-striped">
+        <!--   <caption>条纹表格布局</caption>-->
+        <thead>
+            <tr>
+                <th style="width:250px;">标题</th>
+                <th>内容</th>
+                <th>时间</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#list}}
+            <tr>
+                <td>{{body.title}}</td>
+                <td>
+                    <div data-status="{{status}}" data-id="{{id}}" on-click="showContent" class="ctr">
+                        {{body.content}}
+                    </div>
+                </td>
+                <td>{{sentTime}}</td>
+            </tr>
+            {{/list}}
+        </tbody>
+
+    </table>
+</div>
+<div class="invest-pager-wrapper" id="invest-pager"></div>

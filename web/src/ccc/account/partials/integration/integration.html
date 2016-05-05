@@ -1,0 +1,62 @@
+<!--筛选器-->
+{{#if tabIndex === 0}}
+<div class="payload-filters">
+    
+
+    <div class="input-group date-from-picker pull-left">
+        <span class="input-group-addon icon-calendar"></span>
+        <input class="form-control" value="{{ dateFrom }}" readonly />
+    </div>
+
+    <span class="spliter pull-left">-</span>
+
+    <div class="input-group date-to-picker pull-left">
+        <span class="input-group-addon icon-calendar"></span>
+        <input class="form-control" value="{{ dateTo }}" readonly />
+    </div>
+
+    <div class="input-group pull-left">
+        <button class="btn btn-filter btn-orange btn-smaller" on-click="do-filter">筛选</button>
+        <button class="btn btn-export" style="display:none;">导出</button>
+    </div>
+
+    <div class="clearfix"></div>
+</div>
+{{/if}}
+
+<div class="tables">
+    {{#if !loading}}
+        <div class="payload-detail-wrapper">
+            <table class="table table-striped">
+                <col width="210px" />
+                <col width="210px" />
+                <col width="80px" align="right" class="col-amount" />
+                <col width="210px" />
+                <thead>
+                    <tr>
+                        <th>日期</th>
+                        <th>来源/用途</th>
+                        <th class="col-amount">积分变化</th>
+                        <th>状态</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {{#each list}}
+                    <tr>
+                        <td>{{ timeRecord }}</td>
+                        <td>{{ remark }}</td>
+                        <td class="col-amount {{ amountClass }}">
+                            {{ pointsChanged }}
+                        </td>
+                        <td>{{ status }}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    {{else}}
+        <p class="loading">loading...</p>
+    {{/if}}
+    <div class="ccc-paging"></div>
+</div>

@@ -1,0 +1,23 @@
+<img class="title-bg" src="/ccc/aboutus/img/title-bg.png" />
+<ul style="margin-bottom:20px;">
+     <li class="aboutus-title">
+        关于我们
+    </li> 
+    
+    {{#each tabs.slice(0,10)}}
+    <li class="{{#if tabIndex === @index }}active{{/if}}">
+        <a href="{{ url }}">{{ text }}</a>
+    </li>
+    {{/each}}
+<!--
+    <img class="title-bg-notice" src="/ccc/aboutus/img/title-bg.png" />
+    <li class="aboutus-title">
+        资讯公告
+    </li>
+    {{#each tabs.slice(8)}}
+    <li class="{{#if tabIndex - 8 === @index }}active{{/if}}">
+        <a href="{{ url }}">{{ text }}</a>
+    </li>
+    {{/each}}
+-->
+</ul>

@@ -1,0 +1,49 @@
+{{>layouts.default.head}}
+<link rel="stylesheet" href="/ccc/account/css/common.css">
+<link rel="stylesheet" href="/ccc/global/css/modules/cccTips.css">
+<link rel="stylesheet" href="/ccc/global/css/modules/cccPaging.css">
+<link rel="stylesheet" href="/ccc/account/css/message.css">
+{{>layouts.default.header}}
+<dsBody layout={{dsLayoutPath}}>
+<div class="account-wraper">
+    {{>topNav}}
+
+    <div>
+        <div class="space space-20"></div>
+        <div class="has-line">
+            <div class="row ccc-container">
+                <div class="col-md-12">
+                    <div class="header-text pull-left" sty>消息中心</div>
+                    <div class="ccc-tab pull-right" data-header-selector=".header-text">
+                        <ul class="tabs" id="messageTab">
+                            <li class="active" data-type="ALL">
+                                <a href="javascript:void(0)" on-click="getData">全部</a>
+                            </li>
+                            <li data-type="NEW">
+                                <a href="javascript:void(0)" on-click="getData">未读</a>
+                            </li>
+                            <li data-type="READ">
+                                <a href="javascript:void(0)">已读</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+     <div class="space space-20"></div>
+        <div class="ccc-container row">
+            <div class="col-md-12 ccc-invests-wrap">
+            	<div class="ccc-tab-panels">
+            		<div class="tab-panel message-wrap active">
+            			<p class="loading">加载中...</p>
+            		</div>
+            	</div>
+            </div>
+        </div>
+        <div class="space space-50">&nbsp;</div>
+    </div>
+</div>
+
+{{>layouts.default.footer}}
+<script src="/ccc/account/js/main/message.js"></script>
+</dsBody>

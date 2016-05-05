@@ -1,0 +1,95 @@
+
+#main-container{
+	margin-top: 7px;
+}
+
+.tab-panel > table > tbody > tr > td {
+  padding: 15px 10px!important;
+}
+.tab-panel > table > thead > tr > th {
+  padding: 10px 10px!important;
+}
+.tab-panel > table > thead > tr > th.p-tit {
+  width: 240px;
+}
+.tab-panel > table > thead > tr > th.p-op {
+  width: 100px;
+}
+.tab-panel > table > thead > tr > th.p-opc {
+  text-align: center;
+}
+.tab-panel > table > thead > tr > th.p-method {
+  width: 140px;
+}
+.tab-panel > table > thead > tr > th.p-status {
+  width: 80px;
+}
+.tab-panel > table > thead > tr > th.p-duration {
+  width: 80px;
+}
+.tab-panel > table > thead > tr > th.p-amount {
+  min-width: 80px;
+  *width: 80px;
+}
+.tab-panel > table > thead > tr > th.p-rate {
+  width: 65px;
+}
+.tab-panel > table td a {
+  color: #3B558E;
+}
+.tab-panel .undue-detail-btn {
+  margin-left: 22px;
+}
+.tab-panel .overdue-detail-btn {
+  margin-left: 68px;
+}
+.tab-panel .today-detail-btn {
+  margin-left: 18px;
+}
+.ccc-repay-detail-wrap {
+  padding: 20px;
+}
+.ccc-repay-detail-wrap > p {
+  padding-bottom: 5px;
+  border-bottom: 1px #ddd solid;
+  font-size: 15px;
+  color: #000;
+  margin-bottom: 10px;
+}
+.ccc-repay-detail-wrap table td {
+  color: #666;
+  padding: 2px 0;
+}
+.ccc-repay-detail-wrap table td:last-child {
+  color: #c43;
+}
+.ccc-repay-detail-wrap > h2 {
+  border-top: 1px #ddd solid;
+  margin-top: 10px;
+  text-align: right;
+}
+.ccc-repay-detail-wrap > h2 .btn {
+  height: 24px;
+  background: white;
+  border: 1px #ddd solid;
+  color: #666;
+}
+.ccc-repay-detail-wrap .repay-confirm .btn {
+  padding: 5px 18px;
+}
+.ccc-repay-detail-wrap .repay-no-money p {
+  border: none;
+  font-size: 13px;
+}
+.ccc-repay-detail-wrap .repay-no-money p a {
+  padding: 1px 6px;
+  margin-left: 5px;
+  vertical-align: inherit;
+}
+.ccc-repay-detail-wrap .repay-no-money h3 {
+  font-size: 16px;
+  color: #c43;
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+/*# sourceMappingURL=/ccc/account/css/loan.css.map */

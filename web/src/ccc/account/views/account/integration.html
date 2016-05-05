@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="/ccc/account/css/common.css">
+<link rel="stylesheet" href="/ccc/account/css/integration.css">
+<link rel="stylesheet" href="/ccc/global/css/modules/cccPaging.css">
+
+<div class="account-wraper">
+    {{>topNav}}
+</div>
+
+ <div class="account-integration-wrapper">
+    <div class="space space-20"></div>
+    <div class="has-line">
+        <div class="row ccc-container">
+            <div class="col-md-12">
+                <div class="header-text pull-left">我的积分</div>
+                <div class="ccc-tab pull-right" data-header-selector=".header-text">
+                    <ul class="tabs">
+                        <li class="active"><a href="#">全部</a>
+                        </li>
+                        <li><a href="#">收入</a>
+                        </li>
+                        <li><a href="#">支出</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="space space-8"></div>
+    <div class="ccc-container row">
+        <div class="col-md-12 integration-ractive-container current-container">
+            <p class="loading">loading...</p>
+        </div>
+    </div>
+</div>
+<div class="space space-50">&nbsp;</div>
+
+<script src="/ccc/account/js/main/integration.js"></script>
