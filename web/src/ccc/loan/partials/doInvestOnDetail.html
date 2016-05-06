@@ -1,4 +1,5 @@
 <!--{{JSON.stringify(loan)}}-->
+
 {{#if loan.status == "FINISHED"||loan.status == "SETTLED"||loan.status == "CLEARED"}}
 <div class="firstLine">
     <div class="tip">投资金额 </div>
@@ -17,20 +18,34 @@
 </div>
 <p class="finished-money">预期收益&nbsp;&nbsp;&nbsp;<span style="color:#ff7200;">0.00</span><span style="font-size:14px;">元</span></p>
 {{#if loan.status == "FINISHED"}}
-<button class="finished-btn">已满标</button>{{/if}}{{#if loan.status == "SETTLED"}}
-<button class="finished-btn">已抢完</button>{{/if}}{{#if loan.status == "CLEARED"}}
-<button class="finished-btn">还款结束</button>{{/if}}
+<button class="finished-btn">已满标</button>
+{{/if}}
+{{#if loan.status == "SETTLED"}}
+<button class="finished-btn">已抢完</button>
+{{/if}}
+{{#if loan.status == "CLEARED"}}
+<button class="finished-btn">还款结束</button>
+{{/if}}
 <!--<button class="finished-btn">还款结束</button>-->
 <!--<img src="/ccc/loan/img/full.png" class="finishBlock"> -->
-{{/if}} {{#if loan.status == "ARCHIVED" }}
+{{/if}} 
+
+
+
+{{#if loan.status == "ARCHIVED" }}
 <div class="firstLine">
     <div class="tip">{{loan.rule.min}}元起投 </div>
     <div class="highAmount">最高投资限额：{{loan.rule.max}}元</div>
 
 </div>
-<img src="/ccc/loan/img/over.png" class="cleared"> {{/if}} {{#if loan.status == "SCHEDULED"
-}}
+<img src="/ccc/loan/img/over.png" class="cleared"> 
+{{/if}} 
+
+
+
+{{#if loan.status == "SCHEDULED"}}
 <div class="status">
+    <div class="login-see">我要投资</div>
     <div class="info">
         <div class="leftMoney">
             <h1 class="red"> 账户余额：¥<span class="left-money">
@@ -74,13 +89,19 @@
         </div>
     </div>
 </div>
-{{/if}} {{#if loan.status == "OPENED"}}
+{{/if}}
+
+
+
+
+{{#if loan.status == "OPENED"}}
 <div class="status">
+    <div class="login-see">我要投资</div>
     <div class="info">
 
         <div class="userBlock" id="userBlock">
             {{#if user}} {{! 已登录,但是没开第三方支付 }} {{#if !name}}
-            <div class="leftMoney-open">账户余额：¥&nbsp;<i class="red" >{{user.availableAmount}}</i>
+            <div class="leftMoney-open">账户可用余额：¥&nbsp;<i class="red" >{{user.availableAmount}}</i>
                 <a href="/newAccount/recharge" class="recharge">
                     <button>充值</button>
                 </a>
@@ -187,21 +208,21 @@
 
             {{/if}} {{else}}
 
-            <p class="login-see">
-                您尚未登录，账户余额<a href="/login" style="color:#5b9dff;">登录</a>后可见
-            </p>
             <div class="firstLine" style="padding:0px;">
             </div>
+            <img src="/ccc/loan/img/unlogin.png" class="unlogin_img">
 
-
+<!--
             <div class="calculatorBox">
                 <div class="calculator">
                     <input placeholder="请输入投资金额" type="text" value="{{ inputNum }}">
                 </div>
             </div>
             <p class="totalInterest">最大可投<span>{{loan.rule.max}}</span>元，预计收益<span> {{(loan.durationdays/365 * (inputNum || 0) *loan.rate/100).toFixed(2)}}</span>元</p>
+-->
+            
             <a href="/login?url={{backUrl}}" class="loginBtn">
-                            立即登录
+                            登录投资
                         </a> {{/if}}
         </div>
     </div>

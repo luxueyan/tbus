@@ -158,10 +158,12 @@ setTimeout((function () {
             }
             loanService.getInvestNum(function (res) {
               var list = res.results;
+//                console.log("11111list")
+//                console.log(list)
               var investNum = false;
               for (var i = 0; i < list.length; i++) {
 
-                  if(list[i].product.productKey=='XSZX'){
+                  if(list[i].product.productKey=='NEW'){
                       investNum=true;
                       break;
                   }
@@ -216,18 +218,21 @@ setTimeout((function () {
            var couponSelection=$("#couponSelection").find("option:selected").text();
         var indexnum=couponSelection.indexOf("最低投资额：");
         var minnum=couponSelection.substring(indexnum+6,couponSelection.length-1);
-        if (investRactive.get('user').totalInvest > 0) {
-          if (CC.loan.productKey === 'XSZX') {
-              showErrors('只有新手可以投');
+        
+        if(CC.loan.productKey === 'NEW'){
+             if (investRactive.get('user').totalInvest > 0) {
+                  showErrors('只有新手可以投');
+                  return false;
+            };
+            
+            var isnew = this.get('isnew');
+            if(isnew){
+              showErrors('您已投过新手标，不可重复！');
               return false;
-          }
-      }
+            }
+        }
+   
 
-      var isnew = this.get('isnew');
-      if(isnew){
-          showErrors('您已投过新手标，不可重复！');
-          return false;
-      }
         if(num<minnum){
             showErrors('投资额小于奖券最低投资额');
              return false;
@@ -745,8 +750,8 @@ var recordRactive = new Ractive({
     },
     getRecord: function () {
         var self = this;
-        var api = self.api + self.page + '/' + self.pageSize;
-        console.log(api);
+//        var api = self.api + self.page + '/' + self.pageSize;
+        var api = self.api;
         request(api)
             .end()
             .get('body')
@@ -759,11 +764,9 @@ var recordRactive = new Ractive({
     },
     setData: function (r) {
         var self = this;
-        console.log('zzdhahahha');
         //self.set('rebateMoney',rebateMoney);
         self.set('loading', false);
-        console.log(self.get('loading'));
-        self.set('list', self.parseData(r.results));
+        self.set('list', self.parseData(r));
         self.set('totalSize', r.totalSize);
         //self.set('protimeT',)
         self.renderPager();
@@ -773,19 +776,19 @@ var recordRactive = new Ractive({
             list[i].submitTime = moment(list[i].submitTime)
                 .format('YYYY-MM-DD HH:mm:ss');
 
-            if (/^ZQJR_/.test(list[i].userLoginName)) {
-                list[i].userLoginName = list.userLoginName.replace('ZQJR_', '手机用户');
-            } else if (list[i].userLoginName.indexOf('手机用户') === 0) {
-                var _name = list[i].userLoginName.substring(4).replace(/(\d{2})\d{7}(\d{2})/, '$1*******$2');
-            } else {
-                if (list[i].userLoginName.length === 2) {
-                    var _name = mask(list[i].userLoginName, 1);
-                } else {
-                    var _name = mask(list[i].userLoginName, 2);
-                }
-            }
-
-            list[i].userLoginName = _name;
+//            if (/^HRJK_/.test(list[i].userLoginName)) {
+//                list[i].userLoginName = list.userLoginName.replace('HRJK_', '手机用户');
+//            } else if (list[i].userLoginName.indexOf('手机用户') === 0) {
+//                var _name = list[i].userLoginName.substring(4).replace(/(\d{2})\d{7}(\d{2})/, '$1*******$2');
+//            } else {
+//                if (list[i].userLoginName.length === 2) {
+//                    var _name = mask(list[i].userLoginName, 1);
+//                } else {
+//                    var _name = mask(list[i].userLoginName, 2);
+//                }
+//            }
+//
+//            list[i].userLoginName = _name;
         }
         return list;
     },
