@@ -104,6 +104,7 @@
                                item.couponPackage.type === 'CASH'
                             && ['INITIATED', 'PLACED'].indexOf(item.status) > -1
                         "
+                        ng-disabled="self.submit_sending"
                 >兑换</button>
             </li>
         </ul>
