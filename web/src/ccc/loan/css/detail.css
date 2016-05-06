@@ -1,14 +1,10 @@
-#main-container {
-    margin-top: 7px;
-    background-color: #f8f8f8;
-}
+
 .nav-tabs > li.active > a {
     pointer-events: none;
 }
 .current-container {
-    width: 1100px;
+    width: 1200px;
     margin: 0 auto;
-    background-color: #f2f4f5;
 }
 .after-header {
     margin-top: 45px;
@@ -53,15 +49,14 @@
     color: #0387CF;
 }
 .invest-data-wrapper {
-    width: 730px;
+    width: 800px;
     float: left;
     background: #fff;
-    border-radius: 3px;
-    border: 1px solid #eee;
+    border-top: 2px solid #d9d9d9;
+    margin-top: 35px;
 }
 .invest-data-wrapper .investContainer {
-    width: 730px;
-    height: 344px;
+    height: 332px;
     /*	border: 1px solid #eee;*/
     /*  margin: 0 25px;*/
 }
@@ -76,10 +71,13 @@
     /*  font-weight: bold;*/
 }
 .invest-data-wrapper .investContainer .investTitle .title {
+    height: 60px;
+    line-height: 60px;
     font-size: 18px;
-    color: #4f4e4e;
+    color: #000;
     float: left;
     word-break: break-all;
+    padding-left: 42px;
 }
 .invest-data-wrapper .investContainer .investTitle .title img {
     margin-left: 20px;
@@ -119,142 +117,99 @@
     background: red;
 }
 .invest-data-wrapper .investContainer .content {
-    height: 180px;
+  
 }
 .invest-data-wrapper .investContainer .content .inner {
     height: 130px;
-    border-top: 1px solid #eeeeee;
-    padding-top: 33px;
-    padding-bottom: 13px;
     /*  margin-top: 20px;*/
 }
 .invest-data-wrapper .investContainer .content .inner .item {
     float: left;
-    width: 125px;
     height: 100%;
-    margin-right: 5px;
     text-indent: 20px;
 }
 .invest-data-wrapper .investContainer .content .inner .item.itemFirst {
-    width: 240px;
-    border-left: 1px solid #eee;
+     width: 250px;
+    margin-right: 0px;
+    
+    background: #fffaf3;
 }
 .invest-data-wrapper .investContainer .content .inner .item.itemFirst .value {
     color: #4f4e4e;
 }
 .invest-data-wrapper .investContainer .content .inner .item.itemSecond {
-    width: 240px;
-    border-right: 1px solid #eee;
+    width: 210px;
+    background-color: #fff7f7;
+    background-image: url(/ccc/loan/img/rate_bg.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100%;
+    margin-left: 30px;
 }
 .invest-data-wrapper .investContainer .content .inner .item.itemSecond .name img {
     margin-left: 30px;
 }
 .invest-data-wrapper .investContainer .content .inner .item.itemSecond .value {
-    margin-left: 50px;
-    color: #fe8008;
+    text-align: center;
+    color: #ff5451;
+    margin-top: 5px;
+    margin-left: -20px;
 }
 .invest-data-wrapper .investContainer .content .inner .item.itemThird {
-    width: 205px;
+    width: 230px;
     margin-right: 0px;
-    border-right: 1px solid #eee;
+    
+    background: #fffaf3;
+}
+.invest-data-wrapper .investContainer .content .inner .item .content {
+    margin-left: 60px;
+    height: 55px;
+    border-left: 1px dashed #c1bfbc;
+    
 }
 .invest-data-wrapper .investContainer .content .inner .item .name {
-    width: 100%;
-    height: 30px;
-    line-height: 30px;
-    color: #4f4e4e;
+    color: #928e8e;
     font-size: 14px;
+    text-align: center;
+    margin-left: -20px;
+    margin-top: 40px;
 }
-.invest-data-wrapper .investContainer .content .inner .item .name img {
-    margin-right: 10px;
+.invest-data-wrapper .investContainer .content .inner .item .content .name {
+     margin-left: 0;
+     text-align: left;
 }
 .invest-data-wrapper .investContainer .content .inner .item .value {
-    margin-top: 5px;
-    width: 100%;
-    height: 30px;
-    line-height: 30px;
-    margin-left: 34px;
     color: #4f4e4e;
     font-size: 30px;
     font-weight: bold;
-    font-family: sans-serif, Hiragino Sans GB;
 }
 .invest-data-wrapper .investContainer .content .inner .item .value span {
-    position: relative;
     font-size: 16px;
-    top: -1px;
-    /*	color: #f06f21;*/
 }
 .invest-data-wrapper .investContainer .content .innerBottom {
-    /*  margin-top: 25px;*/
+     margin-top: 25px;
+    padding-bottom: 20px;
     overflow: hidden;
-}
-.invest-data-wrapper .investContainer .content .innerBottom .process {
-    /*	float: right;*/
-}
-.invest-data-wrapper .investContainer .content .innerBottom ul {
-    display: inline-block;
-    overflow: hidden;
-    float: left;
-    position: relative;
-    margin-left: 180px;
-}
-.invest-data-wrapper .investContainer .content .innerBottom ul div {
-    position: absolute;
-    right: 35px;
-    bottom: 0;
-    color: #009ada;
-    font-family: '微软雅黑';
-}
-.invest-data-wrapper .investContainer .content .innerBottom ul li {
-    font-family: '微软雅黑';
-    color: #7e7e7e;
-    line-height: 42px;
-}
-.invest-data-wrapper .investContainer .content .innerBottom .itemt {
-    font-size: 14px;
     color: #999;
+    border-bottom: 1px dashed #e0e0e0;
 }
-.invest-data-wrapper .investContainer .content .innerBottom .pic {
-    width: 130px;
-    height: 130px;
+
+.invest-data-wrapper .investContainer .content .innerBottom .invest_num {
+    margin-left: 70px;
     float: left;
-    margin-left: 60px;
-    margin-top: 16px;
-    position: relative;
 }
-.invest-data-wrapper .investContainer .content .innerBottom .protocol {
-    font-size: 14px;
-    font-weight: normal;
-    width: 100%;
-    text-align: left;
-    color: #009ada;
+.invest-data-wrapper .investContainer .content .innerBottom  span{
+    margin-left: 20px;
 }
-.invest-data-wrapper .investContainer .content .innerBottom .itemt .leftAmount {
-    margin-left: 30px;
-}
-.invest-data-wrapper .investContainer .content .innerBottom .itemt .leftAmount span {
-    color: #009ada;
-    font-size: 18px;
-}
-.invest-data-wrapper .investContainer .content .innerBottom .itemt .goldenDot {
-    color: #b5a16b;
-    margin-right: 5px;
-}
-.invest-data-wrapper .investContainer .content .innerBottom .itemt .blueDot {
-    color: #232B50;
-    margin-right: 5px;
-}
-.invest-data-wrapper .investContainer .content .innerBottom .right {
+.invest-data-wrapper .investContainer .content .innerBottom .start_time {
     float: left;
-    width: 250px;
-    height: 100%;
+    margin-left: 120px;
 }
-.invest-data-wrapper .investContainer .content .innerBottom .right .itemt {
-    height: 30px;
-    line-height: 30px;
-    font-size: 12px;
+.invest-data-wrapper .investContainer .content .innerBottom .end_time {
+    float: left;
+    margin-left: 80px;
 }
+
 .invest-data-wrapper .investContainer .content .innerBottom .right .itemt .percentWrapper {
     float: right;
     width: 150px;
@@ -301,7 +256,6 @@
 }
 .invest-data-wrapper .investContainer .invest-datas .row-1 > li .num {
     font-size: 150%;
-    font-family: 'Rounded Helvetica', Helvetica;
     font-weight: 700;
 }
 .invest-data-wrapper .investContainer .invest-datas .row-2 {
@@ -313,11 +267,9 @@
     margin-left: 45px;
 }
 .invest-data-wrapper .investContainer .invest-datas .row-2 .date {
-    font-family: 'Rounded Helvetica', Helvetica;
     font-weight: 700;
 }
 .invest-data-wrapper .investContainer .invest-datas .row-2 .num {
-    font-family: 'Rounded Helvetica', Helvetica;
     font-weight: 700;
 }
 .invest-data-wrapper .investContainer .invest-datas .row-2 .row-2-1 {
@@ -355,18 +307,16 @@
     color: #535353;
 }
 .do-invest-wrapper {
-    /*	position: relative;*/
-    border: 1px solid #eee;
-    float: right;
-    width: 350px;
-    /*height: 346px;*/
-    background-color: #fff;
-    border-radius: 3px;
+    float: left;
+    width: 407px;
+    height: 365px;
     text-align: center;
-    border-left: solid #eee 1px;
-    padding-bottom: 20px;
-    /*background-image: url(/assets/img/box_bj.jpg);*/
-    /*	min-height: 350px;*/
+    background-image: url(/ccc/loan/img/detail_bg.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center center;
+    margin-left: -7px;
+    margin-top: 22px;
 }
 .do-invest-wrapper .tooltip {
     top: 10px;
@@ -393,11 +343,10 @@
     margin-right: 5px;
 }
 .do-invest-wrapper .status {
-    background: #f5f5f5;
+   margin-left: 7px;
 }
 .do-invest-wrapper .status .info {
-    background-color: #fff;
-    border-radius: 3px;
+   
 }
 .firstLine {
     overflow: hidden;
@@ -455,7 +404,6 @@
     margin: 0px 2px;
 }
 .do-invest-wrapper .status .userBlock {
-    background-color: #fff;
     font-size: 16px;
     color: #6b6b6b;
     position: relative;
@@ -475,7 +423,6 @@
     font-size: 16px;
     color: #4b4b4b;
     line-height: 50px;
-    font-family: '微软雅黑';
 }
 .do-invest-wrapper .status .leftMoney h1 .left-money {
     font-size: 20px;
@@ -486,12 +433,9 @@
     color: #4f4e4e;
     text-align: left;
     padding-top: 13px;
-    border-bottom: 1px solid #eee;
     padding-bottom: 13px;
-    font-family: '微软雅黑';
     padding-left: 30px;
     padding-right: 30px;
-    margin-bottom: 20px;
 }
 .do-invest-wrapper .status .userBlock .leftMoney-open .recharge {
     float: right;
@@ -519,7 +463,6 @@
     font-size: 16px;
     margin-top: 9px;
     margin-right: 2px;
-    font-family: '微软雅黑';
     height: 30px;
 }
 .do-invest-wrapper .status .leftMoney .recharge:hover {
@@ -559,7 +502,7 @@
 }
 .do-invest-wrapper .status .userBlock .input .selectOption select {
     background: #fff;
-    height: 40px;
+    height: 30px;
     color: #abb2ba;
     font-size: 14px;
     width: 288px;
@@ -576,20 +519,19 @@
     height: 44px;
     width: 288px;
     color: #fff;
-    background-color: #5B9DFF;
+    background-color: #ef9c2c;
     font-size: 18px;
     line-height: 36px;
     /*    padding: 1px;*/
     border: none;
     /*	margin-top: 20px;*/
-    font-family: '微软雅黑';
     letter-spacing: 5px;
 }
 .do-invest-wrapper .status .userBlock .input .btn-warning1 {
     width: 323px;
 }
 .do-invest-wrapper .status .userBlock .input .invest-button:hover {
-    background-color: #2866C2;
+    background-color: #DE840B;
 }
 .do-invest-wrapper .status .userBlock .left-money {
     color: #999;
@@ -600,30 +542,26 @@
     margin-top: 13px;
     padding-left: 30px;
     font-weight: normal;
-    font-family: '微软雅黑';
     margin: 20px 0px 20px 30px;
 }
-.do-invest-wrapper .status .userBlock .login-see {
-    font-size: 16px;
-    color: #4f4e4e;
+.do-invest-wrapper  .login-see {
+    font-size: 18px;
+    color: #a4a4a4;
     text-align: left;
-    padding-left: 30px;
-    border-bottom: 1px solid #eee;
-    line-height: 55px;
-    margin-bottom: 25px;
+    padding-left: 50px;
+    border-bottom: 1px dashed #e0e0e0;
+    line-height: 60px;
 }
 .do-invest-wrapper .status .userBlock .p-max {
     color: #999;
     text-align: left;
     font-size: 14px;
-    font-family: '微软雅黑';
     line-height: 18px;
 }
 .do-invest-wrapper .status .userBlock .one-time-max {
     color: #999;
     text-align: left;
     font-size: 12px;
-    font-family: '微软雅黑';
     line-height: 30px;
     margin-left: 15px;
 }
@@ -657,13 +595,12 @@
     text-align: left;
     font-size: 12px;
     color: #999;
-    font-family: '微软雅黑';
     line-height: 30px;
 }
 .do-invest-wrapper .status .userBlock .loginBtn {
     height: 44px;
     color: #fff;
-    background-color: #5B9DFF;
+    background-color: #ef9c2c;
     font-size: 18px;
     line-height: 44px;
     padding: 0;
@@ -673,11 +610,10 @@
     border-radius: 4px;
     margin: 0 auto;
     text-decoration: none;
-    font-family: '微软雅黑';
     letter-spacing: 5px;
 }
 .do-invest-wrapper .status .userBlock .loginBtn:hover {
-    background-color: #2866C2;
+    background-color: #DE840B;
 }
 .do-invest-wrapper .finishBlock {
     vertical-align: middle;
@@ -721,7 +657,6 @@
     font-size: 26px;
     color: #b5a16b;
     margin: 5px;
-    font-family: sans-serif;
 }
 .do-invest-wrapper .left-time .text {
     text-align: center;
@@ -808,9 +743,7 @@
 .do-invest-wrapper .para3 .charge a, .do-invest-wrapper .para3 .charge a:hover {
     color: orange;
 }
-.do-invest-wrapper .selectOption {
-    height: 40px;
-}
+
 .do-invest-wrapper .selectOption .sif {
     display: block;
     float: left;
@@ -854,6 +787,10 @@
     height: 40px;
     float: left;
     background: #b5a16b;
+}
+.do-invest-wrapper .unlogin_img{
+    margin: 60px auto;
+    width: 75px;
 }
 .invest-info-wrapper > .current-container {
     background-color: #f7f5f6;
@@ -978,60 +915,70 @@
     border: 1px solid #f00;
 }
 .invest-detail-wrapper .scontent {
-    min-height: 800px;
-    background: #fff;
-    /*	margin-top: 20px;*/
-    width: 730px;
-    margin-left: 0;
-    float: left;
-    border: 1px solid #eee;
-    /*	border-top: none;*/
+    padding: 0 40px;
 }
 .invest-detail-wrapper .nav-tabs {
-    /*	border: solid 1px #eee;*/
-    border-left: none;
-    border-right: none;
-    /*	margin: 0 5px 0 5px;*/
-    border-color: #eee;
+    border-bottom: 1px solid #d9d9d9;
 }
 .invest-detail-wrapper {
-    width: 1100px;
+    width: 1200px;
     margin: auto;
     overflow: hidden;
-    /*	border: 1px solid #ccc;*/
+     border-top: 2px solid #d9d9d9;
     margin-top: 15px;
-    /*	background-color: #fff;*/
+    background: #fff;
 }
 .invest-detail-wrapper .nav-tabs li {
-    border-right: 1px solid #eee;
+   padding-right: 30px;
+}
+.invest_detail {
+    background: url(/ccc/loan/img/detail_icon.png) no-repeat 20px 20px;
+    background-size: 20px;
+}
+.active .invest_detail {
+    background: url(/ccc/loan/img/detail_active.png) no-repeat 20px 20px;
+    background-size: 20px;
+}
+.invest_record {
+    background: url(/ccc/loan/img/record_icon.png) no-repeat 20px 20px;
+    background-size: 20px;
+}
+.active .invest_record {
+    background: url(/ccc/loan/img/detail_active.png) no-repeat 20px 20px;
+    background-size: 20px;
+}
+
+.invest_question {
+    background: url(/ccc/loan/img/qw_icon.png) no-repeat 20px 20px;
+    background-size: 20px;
+}
+.active .invest_question {
+    background: url(/ccc/loan/img/detail_active.png) no-repeat 20px 20px;
+    background-size: 20px;
 }
 .invest-detail-wrapper .nav-tabs li a {
     display: block;
     border-radius: 0;
     margin-right: 0;
-    color: #666;
-    width: 132px;
-    height: 52px;
+    color: #999;
+    width: 145px;
+    height: 60px;
     line-height: 40px;
-    font-weight: normal;
-    font-size: 16px;
-    border: none;
-    border-bottom: 1px solid #eee;
-    text-align: center;
-    background: #fff;
-    /*	font-size: 18px;*/
-    font-family: '微软雅黑';
-}
-.invest-detail-wrapper .nav-tabs .active a, .invest-detail-wrapper .nav-tabs .active a:focus {
     font-size: 18px;
     border: none;
+    padding-left: 40px;
+}
+.invest-detail-wrapper .nav-tabs .active a, .invest-detail-wrapper .nav-tabs .active a:focus {
+    border: none;
+    font-size: 18px;
     text-align: center;
-    color: #333;
-    background: #fff;
-    border-top: 2px solid #5b9dff;
+    color: #ef9c2c;
+    border-bottom: 3px solid #ef9c2c;
+    margin-bottom: -1px;
 }
 .invest-detail-wrapper .tab-panels {
-    margin-top: 60px;
+    margin-top: 30px;
+    margin-bottom: 130px;
 }
 .invest-detail-wrapper .tab-panels .tab-panel .invest-record .repay-plan {
     width: 670px;
@@ -1043,7 +990,7 @@
     font-size: 14px;
     background-color: #e8e8e8;
 }
-.invest-detail-wrapper .tab-panels .tab-panel .invest-record .repay-record thead th {
+.invest-info-box .repay-record thead th {
     width: 16%;
     color: #777777;
     height: 40px;
@@ -1161,18 +1108,7 @@
 .invest-detail-wrapper .tab-panels .active {
     display: block;
 }
-.invest-detail-wrapper .table > thead > tr > th {
-    color: #000;
-    text-align: center;
-    font-size: 13px;
-}
-.invest-detail-wrapper .table > tbody > tr > th {
-    text-align: center;
-    font-size: 14px;
-    line-height: 60px;
-    color: #666;
-    border-bottom: 1px solid #ddd;
-}
+
 .invest-record .table > tbody > tr > th.col-current-period {
     color: #437193;
 }
@@ -1327,7 +1263,6 @@
     line-height: 40px;
     color: #0090e0;
     background: #fff;
-    font-family: '微软雅黑';
     cursor: default;
 }
 .topAmountActive {
@@ -1350,7 +1285,7 @@
 }
 #userBlock .calculator input {
     width: 174px;
-    height: 40px;
+    height: 33px;
     border: none;
     padding: 0;
     margin: 0;
@@ -1366,7 +1301,7 @@
 }
 #userBlock .calculatorBox {
     overflow: hidden;
-    /*    margin-top: 30px;*/
+        margin-top: 20px;
     clear: both;
     margin-left: 30px;
     margin-right: 30px;
@@ -1432,7 +1367,6 @@
 .do-invest-wrapper .status .userBlock .left-time-start span {
     text-align: center;
     color: #999999;
-    font-family: '微软雅黑';
     font-weight: normal;
 }
 .captchaWra {
@@ -1504,9 +1438,9 @@
     font-size: 14px;
     color: #5b9dff;
     border: none;
-    line-height: 38px;
+    line-height: 33px;
     width: 190px;
-    height: 38px;
+    height: 33px;
 }
 .calculatorBox .password-box {
     overflow: hidden;
@@ -1523,7 +1457,7 @@
 .calculatorBox .password {
     border: 1px solid #ccc;
     border-radius: 4px;
-    height: 40px;
+    height: 33px;
     width: 174px;
     overflow: hidden;
     float: left;
@@ -1535,7 +1469,6 @@
     border-radius: 3px;
     width: 80px;
     height: 30px;
-    font-family: '微软雅黑';
 }
 #userBlock .leftMoney-open .recharge button:hover {
     background-color: #df6502;
@@ -1545,7 +1478,6 @@
     color: #999;
     line-height: 50px;
     margin-left: 10px;
-    font-family: '微软雅黑';
     border-bottom: 1px solid #ccc;
     margin-bottom: 10px;
 }
@@ -1562,7 +1494,6 @@
 }
 .box-large {
     overflow: hidden;
-    background-color: #f8f8f8;
 }
 .item-pic {
     height: 250px;
@@ -1603,10 +1534,19 @@
 .invest-data-wrapper .investContainer .content .innerBottom .interestMethod {
     margin-left: 50px;
 }
+.progress-wp{
+    color: #a0a0a0;
+    margin-top: 25px;
+    float: left;
+}
+.progress-num{
+    float: left;
+    margin-left: 68px;
+}
 .progress-striped {
-    width: 565px;
-    height: 6px;
-    margin: 7px 0px 0px 50px;
+    width: 300px;
+    height: 8px;
+    margin: 7px 0px 0px 15px;
     float: left;
 }
 .progress-line span {
@@ -1614,7 +1554,11 @@
     color: #a0a0a0;
 }
 .progress-line {
-    margin-top: 20px;
+    float: left;
+}
+.progress-wp .leftAmount{
+    float: left;
+    margin-left: 58px;
 }
 .invest-process li {
     float: left;
@@ -1632,9 +1576,50 @@
     margin-left: 10px;
 }
 .progress-striped .progress-bar-danger {
+/*
     background: -webkit-linear-gradient(left, #3a6dfe, #41ccb4);
     background: -o-linear-gradient(right, #3a6dfe, #41ccb4);
     background: -moz-linear-gradient(right, #3a6dfe, #41ccb4);
-    /* Firefox 3.6 - 15 */
     background: linear-gradient(to right, #3a6dfe, #41ccb4);
+*/
+    background: #ff6600;
+}
+
+/*华瑞金科*/
+.invest-info-box {
+    font-size: 16px;
+}
+.invest-info-box tr{
+    border-top: 1px solid #eee;
+}
+.invest-info-box .gray {
+    color: #000;
+}
+
+.invest-info-box .title {
+    color: #999;
+    width: 200px;
+    vertical-align: top;
+    padding: 20px;
+    background: #f9f9f9;
+    text-align: center;
+}
+
+.invest-info-box .content {
+    padding: 9px;
+    width: 1000px;
+    padding-left: 35px;
+}
+
+.invest-info-box .table > thead > tr > th {
+    color: #999;
+    text-align: center;
+    font-size: 13px;
+}
+.invest-info-box .table > tbody > tr > th {
+    text-align: center;
+    font-size: 14px;
+    line-height: 60px;
+    color: #666;
+    border-bottom: 1px solid #ddd;
 }

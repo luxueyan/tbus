@@ -64,6 +64,8 @@ router.get('/:id',
                 '/api/v2/loan/' + req.params.id)
                 .end()
                 .then(function (r) {
+                    console.log('==-=-0=11r.body');
+                    console.log(r.body);
                     var result = parseLoan(r.body);
                     result.userId = result.loanRequest.userId;
                     result.requestId = result.loanRequest.id;
@@ -230,6 +232,9 @@ function parseLoan(loan) {
         loan.fduration = loan.duration.totalMonths;
         loan.fdurunit = "个月";
     }
+    loan.timeOpen = moment(loan.timeOpen).format('YYYY-MM-DD');
+    loan.timeFinished = moment(loan.timeFinished).format('YYYY-MM-DD');
+    loan.timeEnd = moment(loan.timeOpen).add(loan.duration.totalDays, 'days').format('YYYY-MM-DD');
     //格式化序列号
     if( loan.providerProjectCode ){
         if( loan.providerProjectCode.indexOf('#') > 0 ){
