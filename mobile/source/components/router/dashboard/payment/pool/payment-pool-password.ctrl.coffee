@@ -71,8 +71,9 @@ do (_, angular) ->
                             @$window.location.reload()
                             return
 
+                        key = _.get data, 'error[0].message', 'UNKNOWN'
+                        @$window.alert @$scope.msg[key] or key
                         @submit_sending = false
-                        @$window.alert _.get data, 'error[0].message',  @$scope.msg.FAILURE
                 )
 
 
@@ -109,7 +110,7 @@ do (_, angular) ->
                 .post '/api/v2/user/MYSELF/resetPaymentPassword',
                     {password, smsCaptcha}
 
-                .then (response) -> success: response.data is true
+                .then @TAKE_RESPONSE_DATA
                 .catch @TAKE_RESPONSE_ERROR
 
 
