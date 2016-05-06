@@ -1,71 +1,120 @@
 <dsBody layout={{dsLayoutPath}}>
-<link rel="stylesheet" href="/ccc/invest/css/component.css">
-<link rel="stylesheet" href="/ccc/global/css/modules/cccAnimate.css">
-<link rel="stylesheet" href="/ccc/global/css/modules/cccCalculator.css">
-<link rel="stylesheet" href="/ccc/invest/css/style.css">
+    <link rel="stylesheet" href="/ccc/invest/css/component.css">
+    <link rel="stylesheet" href="/ccc/global/css/modules/cccAnimate.css">
+    <link rel="stylesheet" href="/ccc/global/css/modules/cccCalculator.css">
+    <link rel="stylesheet" href="/ccc/invest/css/style.css">
 
-<div id="main-container">
-    <p class="title"><a href="/">首页</a>&nbsp;&nbsp;>&nbsp;&nbsp;理财产品列表</p>
-    <div class="s-content u-pos-r-center">
+    <div id="main-container">
+        <p class="title"><a href="/">首页</a>&nbsp;&nbsp;>&nbsp;&nbsp;理财产品列表</p>
 
-        <div class="investBox">
-             <div class="no-warry-ul">
-                 {{#products:num}}
-                 <div class="no-warry" data-product="{{data.productKey}}" {{#if num===2}} style="margin-right:0px;"{{/if}}>
-                     <div class="no-warry-left">
-                          {{#if num===0}}<img src="/ccc/invest/img/XNB.png"/>{{elseif num===1}}<img src="/ccc/invest/img/HDZX.png"/>{{else}}<img src="/ccc/invest/img/XSZX.png"/>{{/if}}
-                           <p {{#if num===0}}style="color:#4dbaa6;"{{elseif num===1}}style="color:#d64341;"{{else}}
-                           style="color:#36aad0;"{{/if}}>{{data.name}}</p>
-                     </div>
-                 </div>
-                 {{/products}}
+        <div class="s-content u-pos-r-center">
+
+            <div class="s-contentL">
+                <div class="s-nav-view">
+                    <ul class="u-nolist-ul investType">
+                        <li class="selectTitle">产品类型：</li>
+                        <li class="s__is-selected personal not" data-product="allType">全部</li>
+                        {{#products:num}}
+                        <li data-product="{{data.productKey}}" class="personal">{{data.name}}</li>
+                        {{/products}}
+                    </ul>
+
+                    <ul class="u-nolist-ul sRate">
+                        <li class="selectTitle">年化收益：</li>
+                        <li class="s__is-selected" data-min-rate="0" data-max-rate="100">全部</li>
+                        <li data-min-rate="0" data-max-rate="5">5%以下</li>
+                        <li data-min-rate="5" data-max-rate="6">5%-6%</li>
+                        <li data-min-rate="6" data-max-rate="7">6%-7%</li>
+                        <li data-min-rate="7" data-max-rate="13">7%-8%</li>
+                    </ul>
+
+                    <ul class="u-nolist-ul sDuration">
+                        <li class="selectTitle">产品期限：</li>
+                        <li class="s__is-selected" data-min-duration="0" data-max-duration="100">全部</li>
+                        <li data-min-duration="0" data-max-duration="1">一个月内</li>
+                        <li data-min-duration="1" data-max-duration="3">1-3个月</li>
+                        <li data-min-duration="3" data-max-duration="6">3-6个月</li>
+                        <li data-min-duration="6" data-max-duration="12">6-12个月</li>
+                        <li data-min-duration="12" data-max-duration="100">1年以上</li>
+                    </ul>
+
+                    <ul class="u-nolist-ul sDuration">
+                        <li class="selectTitle">起投金额：</li>
+                        <li class="s__is-selected" data-min-duration="0" data-max-duration="100">全部</li>
+                        <li data-min-duration="0" data-max-duration="1">1000元以下</li>
+                        <li data-min-duration="1" data-max-duration="3">1000元~5000元</li>
+                        <li data-min-duration="4" data-max-duration="6">5000元~10000元</li>
+                        <li data-min-duration="25" data-max-duration="100">10000元以上</li>
+                    </ul>
+
+                    <ul class="u-nolist-ul sDuration">
+                        <li class="selectTitle">收益方式：</li>
+                        <li class="s__is-selected" data-min-duration="0" data-max-duration="100">全部</li>
+                        <li data-min-duration="0" data-max-duration="1">按月付息到期还本</li>
+                        <li data-min-duration="1" data-max-duration="3">按日等额本息</li>
+                        <li data-min-duration="4" data-max-duration="6">按月等额本息</li>
+                        <li data-min-duration="25" data-max-duration="100">一次性还本付息</li>
+                    </ul>
+                </div>
+
+                <div class="invest-list-top">
+                    <span>排序：</span>
+                    <ul>
+                        <li class="tacitly">默认</li>
+                        <li>年化收益</li>
+                        <li>项目周期</li>
+                        <li>起投金额</li>
+                    </ul>
+                </div>
+
+                <div class="invest-list-wrapper">
+                    <p style="padding: 45px;">加载中...</p>
+                </div>
+
+                <div class="invest-pager-wrapper" id="invest-pager"></div>
             </div>
+
+            <div class="s-contentR">
+                <div class="s-contentR01">
+                    <a href=""><img src="/ccc/invest/img/ad01.jpg" alt="" /></a>
+                </div>
+
+                <div class="s-contentR02">
+                    <a href=""><img src="/ccc/invest/img/ad02.jpg" alt="" /></a>
+                </div>
+
+                <div class="s-contentR03">
+                    <a href="">
+                        <h2>华安科普全球石油-160416</h2>
+
+                        <h3>最新净值</h3>
+
+                        <h4>0.8889<em>2016-4-14</em></h4>
+
+                        <p>最近一个月涨幅<em>0.56%</em></p>
+                    </a>
+                </div>
+
+                <div class="s-contentR03">
+                    <a href="">
+                        <h2>华安科普全球石油-160416</h2>
+
+                        <h3>最新净值</h3>
+
+                        <h4>0.8889<em>2016-4-14</em></h4>
+
+                        <p>最近一个月涨幅<em>0.56%</em></p>
+                    </a>
+                </div>
+            </div>
+
         </div>
-        <div class="s-nav-view">
-            <ul class="u-nolist-ul sRate">
-                <li class="selectTitle">年化收益：</li>
-                <li class="s__is-selected" data-min-rate="0" data-max-rate="100" style="width:50px">全部</li>
-                <li data-min-rate="0" data-max-rate="6" style="width:74px">6%以下</li>
-                <li data-min-rate="6" data-max-rate="9" style="width:74px">6%-9%</li>
-                <li data-min-rate="9" data-max-rate="11" style="width:84px;">9%-11%</li>
-                <li data-min-rate="11" data-max-rate="13">11%-13%</li>
-                <li data-min-rate="13" data-max-rate="100">13%以上</li>
-            </ul>
-            <ul class="u-nolist-ul sDuration">
-                <li class="selectTitle">期&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp限：</li>
-                <li class="s__is-selected"  data-min-duration="0" data-max-duration="100" style="width:50px">全部</li>
-                <li data-min-duration="0" data-max-duration="1" style="width:74px">0-1个月</li>
-                <li data-min-duration="1" data-max-duration="3" style="width:74px">1-4个月</li>
-                <li data-min-duration="4" data-max-duration="6" style="width:84px;">4-7个月</li>
-                <li data-min-duration="7" data-max-duration="12">7-13个月</li>
-                <li data-min-duration="13" data-max-duration="24">13-25个月</li>
-                <li data-min-duration="25" data-max-duration="100">25个月以上</li>
-            </ul>
-        </div>
-        <table>
-            <tr>
-                <th style="width:280px;padding-left:40px;">名称</th>
-<!--                <th style="width:160px;">标的金额</th>-->
-                <th style="width:140px;padding-left:30px;">年化收益</th>
-                <th style="width:154px;">投资期限</th>
-                <th style="width:190px;padding-left:15px;">还款方式</th>
-
-                <th style="width:172px;">进度</th>
-
-
-                <th style="width:126px;">状态</th>
-            </tr>
-        </table>
-
-        <div class="invest-list-wrapper">
-            <p style="padding: 45px;">加载中...</p>
-        </div>
-        <div class="invest-pager-wrapper" id="invest-pager"></div>
     </div>
-</div>
-<!--<hr />-->
-<!--<div class="invest-pager-wrapper" id="invest-pager"></div>-->
-<div class="space space-30"></div>
-<script>{{{state}}}</script>
-<script src="/ccc/invest/js/main/investList.js"></script>
+    <!--<hr />-->
+    <!--<div class="invest-pager-wrapper" id="invest-pager"></div>-->
+    <div class="space space-30"></div>
+    <script>
+        {{{state}}}
+    </script>
+    <script src="/ccc/invest/js/main/investList.js"></script>
 </dsBody>
