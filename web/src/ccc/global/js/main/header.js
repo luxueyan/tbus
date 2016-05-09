@@ -28,22 +28,17 @@ if (new RegExp("^/$")
 
 } else if (new RegExp("^/invest")
     .test(path)) {
-    $(".u-nolist-ul li a#touzi")
-        .addClass("navactive");
-
-} else if (new RegExp("^/applyloan")
-    .test(path)) {
-    $(".u-nolist-ul li a#jiekuan")
+    $(".u-nolist-ul li a#invest")
         .addClass("navactive");
 
 } else if (new RegExp("^/newAccount/*")
     .test(path)) {
-    $(".u-nolist-ul li a#safety")
+    $(".u-nolist-ul li a#account")
         .addClass("navactive");
 
 } else if (new RegExp("^/guide")
     .test(path)) {
-    $(".u-nolist-ul li a#help")
+    $(".u-nolist-ul li a#guide")
         .addClass("navactive");
 
 } else if (new RegExp("^/aboutus/*")
