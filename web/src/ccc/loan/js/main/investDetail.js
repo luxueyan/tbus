@@ -1,5 +1,5 @@
 "use strict";
-var loanService = require('./service/loans.js').loanService;
+var loanService = require('./service/loans').loanService;
 var utils = require('ccc/global/js/lib/utils');
 var accountService = require('ccc/account/js/main/service/account').accountService;
 var CommonService = require('ccc/global/js/modules/common').CommonService;
@@ -7,7 +7,7 @@ var CccOk = require('ccc/global/js/modules/cccOk');
 var i18n = require('@ds/i18n')['zh-cn'];
 var format = require('@ds/format')
 require('ccc/global/js/modules/tooltip');
-require('ccc/global/js/lib/jquery.easy-pie-chart.js');
+require('ccc/global/js/lib/jquery.easy-pie-chart');
 require('bootstrap/js/carousel');
 
 require('bootstrap/js/transition');

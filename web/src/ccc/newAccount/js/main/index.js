@@ -495,5 +495,22 @@ infoRactive.on('guide',function(){
 	$('.account-bg').css('display','none');
 }
 );
-    
 
+//注册弹框
+//弹出框
+$('.pop-box').css({
+    height:$(window).height(),
+    width:$(window).width()
+})
+
+var path = location.search.slice(1);
+if(path=='register'){
+    $('.pop-box').fadeIn(1000);
+    $('.register-success').fadeIn(1000);
+}
+
+$('.close-img').click(function(){
+    $('.register-success').fadeOut(100);
+    $('.pop-box').fadeOut(1000);
+   
+})

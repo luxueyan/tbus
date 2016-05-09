@@ -10,7 +10,7 @@ input:-webkit-autofill {
 .login-error {
     text-align: left!important;
     margin-left: -20px;
-    width: 360px;
+    width: 362px;
     height: 75px;
     background-color: #fff6f6;
     border: 1px solid #ff8585;
@@ -120,10 +120,8 @@ input:-webkit-autofill {
 }
 
 .s-login-view .s-login-window button {
-    padding-left: 28px;
     background-color: #ef9c2c;
     color: #fff;
-    letter-spacing: 30px;
     font-size: 16px;
     border: none;
     width: 320px;
