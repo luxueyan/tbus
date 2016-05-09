@@ -4,7 +4,7 @@
 
 var i18n = require('@ds/i18n')['zh-cn'];
 
-var InvestListService = require('./service/list')
+var InvestListService = require('ccc/invest/js/main/service/list')
     .InvestListService;
 var utils = require('ccc/global/js/lib/utils');
 require('ccc/global/js/lib/jquery.easy-pie-chart.js')
@@ -24,6 +24,8 @@ var params = {
     minRate: 0,
     maxRate: 100,
     currentPage: 1,
+    minamount:0,
+    maxamount:100000000,
 
 };
 
@@ -38,47 +40,47 @@ function jsonToParams(params) {
     return str;
 }
 
-function formateLeftTime(leftTime){
+function formateLeftTime(leftTime) {
     var diffmin = leftTime / 1000 / 60;
     var str = "";
     if (diffmin > 0) {
         var _day = Math.ceil(diffmin / 60 / 24);
-        if( _day > 1){
-            str = _day+"天";
-        }else{
+        if (_day > 1) {
+            str = _day + "天";
+        } else {
             var _hour = Math.ceil(diffmin / 60);
-            if(_hour > 1){
-                str = _hour+"小时";
-            }else{
-                str = Math.ceil(diffmin)+"分";
+            if (_hour > 1) {
+                str = _hour + "小时";
+            } else {
+                str = Math.ceil(diffmin) + "分";
             }
         }
-    }else {
+    } else {
         var sec = Math.ceil(leftTime / 1000);
-        str = sec+"秒";
+        str = sec + "秒";
     }
     return str;
 }
 
 function formatItem(item) {
     var purposeMap = {
-        "SHORTTERM" : "短期周转",
-        "PERSONAL" : "个人信贷",
-        "INVESTMENT" : "投资创业",
-        "CAR" : "车辆融资",
-        "HOUSE" : "房产融资",
-        "CORPORATION" : "企业融资",
-        "OTHER" : "其它借款"
+        "SHORTTERM": "短期周转",
+        "PERSONAL": "个人信贷",
+        "INVESTMENT": "投资创业",
+        "CAR": "车辆融资",
+        "HOUSE": "房产融资",
+        "CORPORATION": "企业融资",
+        "OTHER": "其它借款"
     };
 
     item.rate = item.rate / 100;
     item.deductionRate = item.loanRequest.deductionRate / 100;
     item.basicRate = item.rate - item.deductionRate;
     item.purpose = purposeMap[item.purpose];
-    if (item.investPercent* 100 > 0 && item.investPercent * 100 < 1) {
+    if (item.investPercent * 100 > 0 && item.investPercent * 100 < 1) {
         item.investPercent = 1;
     } else {
-      item.investPercent = parseInt(item.investPercent * 100, 10);
+        item.investPercent = parseInt(item.investPercent * 100, 10);
     };
     if (item.duration.days > 0) {
         if (typeof item.duration.totalDays === "undefined") {
@@ -102,14 +104,14 @@ function formatItem(item) {
     if (item.status == "OPENED") {
         item.leftTime = formateLeftTime(item.timeLeft);
         item.open = true;
-    } else if (item.status == "SCHEDULED"){
+    } else if (item.status == "SCHEDULED") {
         item.scheduled = true;
     } else {
         item.finished = true;
     }
     //格式化序列号
-    if( item.providerProjectCode ){
-        if( item.providerProjectCode.indexOf('#') > 0 ){
+    if (item.providerProjectCode) {
+        if (item.providerProjectCode.indexOf('#') > 0) {
             var hh_project_code = item.providerProjectCode.split('#');
             item.fProjectType = hh_project_code[0];
             item.fProjectCode = hh_project_code[1];
@@ -127,25 +129,23 @@ function parseLoanList(list) {
         var method = list[i].method;
         var methodFmt = i18n.enums.RepaymentMethod[method][0];
         list[i].methodFmt = methodFmt;
-		list[i].titleLength = replaceStr(list[i].title);
+        list[i].titleLength = replaceStr(list[i].title);
     }
     return list;
 }
 
-function replaceStr(str){
-	return str.replace(/[^\x00-xff]/g,'xx').length;
+function replaceStr(str) {
+    return str.replace(/[^\x00-xff]/g, 'xx').length;
 }
 
 InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) {
-    console.log('res**--');
-    console.log(res);
     var investRactive = new Ractive({
         el: ".invest-list-wrapper",
         template: require('ccc/global/partials/singleInvestList.html'),
         data: {
             list: parseLoanList(res.results),
             RepaymentMethod: i18n.enums.RepaymentMethod, // 还款方式
-            user:CC.user
+            user: CC.user
         }
     });
     initailEasyPieChart();
@@ -156,35 +156,32 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
         this.set(e.keypath + ".hovering", hovering);
     });
 
-    $('.no-warry-ul .no-warry').click(function(){
+    $('.no-warry-ul .no-warry').click(function () {
         if (!$(this).hasClass("selected active")) {
             $(this).addClass("selected active").siblings().removeClass("selected active");
-             var product = $(this).data('product');
+            var product = $(this).data('product');
             params.currentPage = 1;
-            params.product=product;
+            params.product = product;
             render(params);
         }
     });
 
-       //标的类型
-    $('.investType li').click(function(){
+    //标的类型
+    $('.investType li').click(function () {
         if (!$(this).hasClass("selectTitle")) {
             $(this).addClass("s__is-selected not").siblings().removeClass("s__is-selected not");
             var product = $(this).data('product');
             params.currentPage = 1;
-            if($.trim(product)!="allType")
-            {
-                params.product=product;
-            }
-            else
-            {
+            if ($.trim(product) != "allType") {
+                params.product = product;
+            } else {
                 delete params.product;
             }
             render(params);
         }
     });
 
-    $('.sRate li').click(function(){
+    $('.sRate li').click(function () {
         if (!$(this).hasClass("selectTitle")) {
             $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
             var minRate = $(this)
@@ -199,7 +196,7 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
         }
     });
 
-    $('.sDuration li').click(function(){
+    $('.sDuration li').click(function () {
         if (!$(this).hasClass("selectTitle")) {
             $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
             var minDuration = $(this)
@@ -213,6 +210,21 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
             render(params);
         }
     });
+    
+    $('.sTitou li').click(function () {
+        if (!$(this).hasClass("selectTitle")) {
+            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
+            var minamount = $(this)
+                .data('min-amount');
+            var maxamount = $(this)
+                .data('max-amount');
+
+            params.currentPage = 1;
+            params.minamount = minamount;
+            params.maxamount = maxamount;
+            render(params);
+        }
+    });
 
 
     function render(params) {
@@ -222,7 +234,7 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
                 investRactive.set('list', []);
                 setTimeout(function () {
                     investRactive.set('list', parseLoanList(res.results));
-					console.log(investRactive.get('list'));
+                    console.log(investRactive.get('list'));
                     initailEasyPieChart();
                     ininconut();
                     renderPager(res, params.currentPage);
@@ -269,7 +281,7 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
             e.original.preventDefault();
             var current = this.get('current');
             if (current < this.get('totalPage')[this.get('totalPage')
-                .length - 1]) {
+                    .length - 1]) {
                 current += 1;
                 this.set('current', current);
                 params.currentPage = current;
@@ -281,33 +293,35 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
 
 function createList(len, current) {
     var arr = [];
-    var i=parseInt(len/params.pageSize);
-    if(len%params.pageSize>0){i++;}
-    for(var m=0;m<i;m++){
-         arr[m] =  m + 1;
+    var i = parseInt(len / params.pageSize);
+    if (len % params.pageSize > 0) {
+        i++;
+    }
+    for (var m = 0; m < i; m++) {
+        arr[m] = m + 1;
     }
     return arr;
 };
 
-function ininconut () {
+function ininconut() {
     $(".investBtn > .investbtn-time").each(function () {
         var t = $(this);
-        if(t.data("status") === 'SCHEDULED'){
+        if (t.data("status") === 'SCHEDULED') {
             var id = t.data("id");
             var openTime = t.data("open");
             var serverDate = t.data("serv");
             var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-            var textDay = leftTime.day ? leftTime.day +'天' : '';
+            var textDay = leftTime.day ? leftTime.day + '天' : '';
             var interval = setInterval((function () {
                 serverDate += 1000;
                 var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-                var textDay = leftTime.day ? leftTime.day +'天' : '';
-                if(!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
+                var textDay = leftTime.day ? leftTime.day + '天' : '';
+                if (!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
                     clearInterval(interval);
-					t.prev().hide();
-                    t.replaceWith('<a href="/loan/'+id+'" style="text-decoration:none"><div class="investbtn">立即投资</div></a>');
-                }else {
-                    t.html('<span class="text" style="color:#c6c6c6">倒计时<span style="color:#ff7200">'+ textDay + leftTime.hour +'</span>时<span style="color:#ff7200">'+ leftTime.min +'</span>分<span style="color:#ff7200">'+ leftTime.sec +'</span>秒</span>')
+                    t.prev().hide();
+                    t.replaceWith('<a href="/loan/' + id + '" style="text-decoration:none"><div class="investbtn">立即投资</div></a>');
+                } else {
+                    t.html('<span class="text" style="color:#c6c6c6">倒计时<span style="color:#ff7200">' + textDay + leftTime.hour + '</span>时<span style="color:#ff7200">' + leftTime.min + '</span>分<span style="color:#ff7200">' + leftTime.sec + '</span>秒</span>')
                 }
             }), 1000);
         }
@@ -329,13 +343,13 @@ function initailEasyPieChart() {
         var oldie = /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase());
         $(".easy-pie-chart").each(function () {
             var percentage = $(this).data("percent");
-             var status=$(this).data("status");
+            var status = $(this).data("status");
             // 100%进度条颜色显示为背景色
 
             //var color = percentage != 100 && (status==='SETTLED'|| status==='CLEARED') ? "#f58220" : '#009ada';
-            var color = (status==='OPENED') ? '#ff6600' : "#ff6600";
+            var color = (status === 'OPENED') ? '#ff6600' : "#ff6600";
 
-//            var color = percentage === 100 ? "#f58220" : '#f58220';
+            //            var color = percentage === 100 ? "#f58220" : '#f58220';
             $(this).easyPieChart({
                 barColor: color,
                 trackColor: '#ddd',
@@ -348,7 +362,7 @@ function initailEasyPieChart() {
                     $(this.el).find('.percent').text(Math.round(percent));
                 }
             });
-            $(this).find("span.percentageNum").html(percentage+"%");
+            $(this).find("span.percentageNum").html(percentage + "%");
         });
 
     });
@@ -361,9 +375,27 @@ function initailEasyPieChart() {
 //    $(this).removeClass("active");
 //})
 
-initselect();
-function initselect(){
-    var path=CC.product;
-    $('.no-warry').removeClass('active');
-    $('.no-warry[data-product='+path+']').addClass('active');
-}
+//initselect();
+//function initselect() {
+//    var path = CC.product;
+//    $('.no-warry').removeClass('active');
+//    $('.no-warry[data-product=' + path + ']').addClass('active');
+//};
+
+InvestListService.getProductHot(function (list) {
+
+    var listHOT = [];
+    for (var i = 0; i < list.length; i++) {
+        if (list[i].loanRequest.productKey == 'HOT') {
+            listHOT.push(list[i]);
+        }
+    }
+
+    var investRactive = new Ractive({
+        el: ".s-contentR03",
+        template: require('ccc/invest/partials/hotproduct.html'),
+        data: {
+            list: listHOT,
+        }
+    });
+})

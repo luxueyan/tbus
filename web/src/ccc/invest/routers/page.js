@@ -17,8 +17,8 @@ module.exports = function (router) {
         var productKeySBTZ=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[0]).end().get('body');
         var productKeyHOT=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[1]).end().get('body');
         var productKeyLHB=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[2]).end().get('body');
-        var productKeyDCB=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[2]).end().get('body');
-        var productKeyNEW=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[2]).end().get('body');
+        var productKeyDCB=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[3]).end().get('body');
+        var productKeyNEW=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[4]).end().get('body');
         res.locals.products.push(productKeySBTZ);
         res.locals.products.push(productKeyHOT);
         res.locals.products.push(productKeyLHB);
@@ -45,8 +45,8 @@ router.get('/:product', async function (req, res) {
         var productKeySBTZ=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[0]).end().get('body');
         var productKeyHOT=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[1]).end().get('body');
         var productKeyLHB=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[2]).end().get('body');
-        var productKeyDCB=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[2]).end().get('body');
-        var productKeyNEW=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[2]).end().get('body');
+        var productKeyDCB=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[3]).end().get('body');
+        var productKeyNEW=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[4]).end().get('body');
         res.locals.products.push(productKeySBTZ);
         res.locals.products.push(productKeyHOT);
         res.locals.products.push(productKeyLHB);

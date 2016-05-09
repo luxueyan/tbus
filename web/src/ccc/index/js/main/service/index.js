@@ -9,8 +9,6 @@ exports.IndexService = {
     getSummaryData: function (next) {
          request.get('/api/web/index/loans').then(function (res) {
             next(res.body);
-             console.log('0000res.body');
-             console.log(res.body);
         });
     },
     getLoanSummary: function (next) {
