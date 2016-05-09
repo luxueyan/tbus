@@ -40,7 +40,6 @@ function replaceStr(str){
 
 
 IndexService.getLoanSummary(function (list) {
-
     var listXSZX = [],listDCB = [],listLHB = [],listSBTZ = [],listHOT = [];
     for(var i=0;i<list.length;i++){
         list[i].method = i18n.enums.RepaymentMethod[list[i].method][0];
@@ -285,8 +284,6 @@ $(document).keyup(function (e) {
 request.get(encodeURI('/api/v2/cms/category/COOPERATION/name/合作伙伴'))
     .end()
     .then(function (res) {
-    console.log("111res")
-    console.log(res.body)
         var partnerRactive = new Ractive({
             el: '.partner .icon-grounp',
             template: require('ccc/index/partials/partner.html'),
