@@ -1,4 +1,4 @@
-var loanService = require('./service/loans.js').loanService;
+var loanService = require('./service/loans').loanService;
 var utils = require('ccc/global/js/lib/utils');
 var accountService = require('ccc/account/js/main/service/account').accountService;
 var CommonService = require('ccc/global/js/modules/common').CommonService;

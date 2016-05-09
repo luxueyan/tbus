@@ -4,7 +4,7 @@
 
 var i18n = require('@ds/i18n')['zh-cn'];
 
-var InvestListService = require('ccc/invest/js/main/service/list')
+var InvestListService = require('./service/list')
     .InvestListService;
 var utils = require('ccc/global/js/lib/utils');
 require('ccc/global/js/lib/jquery.easy-pie-chart.js')
@@ -24,7 +24,7 @@ var params = {
     minRate: 0,
     maxRate: 100,
     currentPage: 1,
-    
+
 };
 
 
@@ -165,7 +165,7 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
             render(params);
         }
     });
-    
+
        //标的类型
     $('.investType li').click(function(){
         if (!$(this).hasClass("selectTitle")) {
