@@ -12,8 +12,41 @@
 		{{else}}
 			<span class="icon-home"></span>
 		{{/if}}
-		<span class="nav-text {{#if home}}nav-text-active{{/if}}"><a href="/newAccount/home">我的账户</a></span>
+		<span class="nav-text {{#if home}}nav-text-active{{/if}}"><a href="/newAccount/home">理财账户</a></span>
 	</li>
+    <li class="nav-li">
+		{{#if fundA}}
+			<span class="icon-fund-active"></span>
+		{{else}}
+			<span class="icon-fund"></span>
+		{{/if}}
+		<span class="nav-text {{#if fundA}}nav-text-active{{/if}}"><a href="/newAccount/fund">基金账户</a></span>
+	</li>
+    <li class="nav-li">
+		{{#if loanDeal}}
+			<span class="icon-loanDeal-active"></span>
+		{{else}}
+			<span class="icon-loanDeal"></span>
+		{{/if}}
+		<span class="nav-text {{#if loanDeal}}nav-text-active{{/if}}"><a href="/newAccount/fund/loanDeal">资金记录</a></span>
+	</li>
+    <li class="nav-li">
+		{{#if bankCards}}
+			<span class="icon-bankCards-active"></span>
+		{{else}}
+			<span class="icon-bankCards"></span>
+		{{/if}}
+		<span class="nav-text {{#if bankCards}}nav-text-active{{/if}}"><a href="/newAccount/settings/bankCards">银行卡管理</a></span>
+	</li>    
+    <li class="nav-li">
+		{{#if password}}
+			<span class="icon-password-active"></span>
+		{{else}}
+			<span class="icon-password"></span>
+		{{/if}}
+		<span class="nav-text {{#if password}}nav-text-active{{/if}}"><a href="/newAccount/settings/password">密码管理</a></span>
+	</li>
+<!--
 	{{#if isEnterprise}}
 	<li class="nav-li">
 		{{#if loanRequest}}
@@ -35,7 +68,7 @@
 		{{/if}}
 	</li>
 	{{else}}
-		<li class="nav-li">
+    <li class="nav-li">
 		{{#if invest}}
 			<span class="icon-invest-active icon-my-invest-active"></span>
 		{{else}}
@@ -52,7 +85,7 @@
 			</ul>
 		{{/if}}
 	</li>
-        	<li class="nav-li">
+    <li class="nav-li">
 		{{#if loanRequest}}
 			<span class="icon-invest-active"></span>
 		{{else}}
@@ -112,7 +145,7 @@
 			</ul>
 		{{/if}}
 	</li>
-	{{#if !isEnterprise}}
+-->
 
 	<li class="nav-li coupon-nav">
 		{{#if coupon}}
@@ -130,7 +163,7 @@
 		{{/if}}
 		<span class="nav-text {{#if invite}}nav-text-active{{/if}}"><a href="/newAccount/invite">好友邀请</a></span>
 	</li>
-	{{/if}}
+<!--
 	<li class="nav-li">
 		{{#if message}}
 			<span class="icon-message-active"></span>
@@ -139,6 +172,7 @@
 		{{/if}}
 		<span class="nav-text {{#if message}}nav-text-active{{/if}}"><a href="/newAccount/message">消息中心</a></span>
 	</li>
+-->
     <!-- <li class="nav-li">
 		{{#if autobid}}
 			<span class="icon-message-active"></span>
