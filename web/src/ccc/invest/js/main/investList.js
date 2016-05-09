@@ -18,13 +18,13 @@ $('.benefit-calculator')
 
 var params = {
     pageSize: 10,
-    status: 'SCHEDULED',
+    status: '',
     minDuration: 0,
     maxDuration: 100,
     minRate: 0,
     maxRate: 100,
     currentPage: 1,
-    product: CC.product
+    
 };
 
 
@@ -137,6 +137,8 @@ function replaceStr(str){
 }
 
 InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) {
+    console.log('res**--');
+    console.log(res);
     var investRactive = new Ractive({
         el: ".invest-list-wrapper",
         template: require('ccc/global/partials/singleInvestList.html'),
@@ -160,6 +162,24 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
              var product = $(this).data('product');
             params.currentPage = 1;
             params.product=product;
+            render(params);
+        }
+    });
+    
+       //标的类型
+    $('.investType li').click(function(){
+        if (!$(this).hasClass("selectTitle")) {
+            $(this).addClass("s__is-selected not").siblings().removeClass("s__is-selected not");
+            var product = $(this).data('product');
+            params.currentPage = 1;
+            if($.trim(product)!="allType")
+            {
+                params.product=product;
+            }
+            else
+            {
+                delete params.product;
+            }
             render(params);
         }
     });
@@ -313,7 +333,7 @@ function initailEasyPieChart() {
             // 100%进度条颜色显示为背景色
 
             //var color = percentage != 100 && (status==='SETTLED'|| status==='CLEARED') ? "#f58220" : '#009ada';
-            var color = (status==='OPENED') ? '#009ada' : "#f58220";
+            var color = (status==='OPENED') ? '#ff6600' : "#ff6600";
 
 //            var color = percentage === 100 ? "#f58220" : '#f58220';
             $(this).easyPieChart({
@@ -323,7 +343,7 @@ function initailEasyPieChart() {
                 lineCap: 'butt',
                 lineWidth: 4,
                 animate: oldie ? false : 1000,
-                size: 45,
+                size: 50,
                 onStep: function (from, to, percent) {
                     $(this.el).find('.percent').text(Math.round(percent));
                 }
