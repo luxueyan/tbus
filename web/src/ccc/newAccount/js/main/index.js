@@ -522,20 +522,20 @@ var Tab = {
     // 持有中 (SETTLED/OVERDUE/BREACH)
     HOLDING: {
         ractive: null,
-        api: '/api/v2/user/MYSELF/invests/list/$page/$size?status=SETTLED&status=OVERDUE&status=BREACH',
+        api: '/api/v2/user/MYSELF/invest/list/$page/$size?status=SETTLED&status=OVERDUE&status=BREACH',
         template: require('ccc/newAccount/partials/invest/inhand.html')
     },
     // 进行中/申请中 (FINISHED/PROPOSED/FROZEN)
     INHAND: {
         ractive: null,
-        api: '/api/v2/user/MYSELF/invests/list/$page/$size?status=FINISHED&status=PROPOSED&status=FROZEN',
+        api: '/api/v2/user/MYSELF/invest/list/$page/$size?status=FINISHED&status=PROPOSED&status=FROZEN',
         template: require('ccc/newAccount/partials/invest/inhand.html')
     },
     // 已结清 (CLEARED)
     CLEARED: {
         ractive: null,
 
-        api: '/api/v2/user/MYSELF/invests/list/$page/$size?status=CLEARED',
+        api: '/api/v2/user/MYSELF/invest/list/$page/$size?status=CLEARED',
         template: require('ccc/newAccount/partials/invest/inhand.html')
     }
     // REALIZATION (可变现)
@@ -584,10 +584,10 @@ function init(type) {
             parseData: function (res) {
                 var datas = res.results;
                 for (var i = 0; i < datas.length; i++) {
-                    var o = datas[i].ext;
+                    var o = datas[i];
                     switch (type) {
                     case 'ALL':
-                        datas[i].Fduration = utils.format.duration(o.duration);
+//                        datas[i].Fduration = utils.format.duration(o.duration);
                         datas[i].Frate = utils.format.percent(o.rate / 100, 2);
                         datas[i].Famount = utils.format.amount(o.amount, 2);
                         datas[i].Fstatus = utils.i18n.InvestStatus[o.status];
@@ -607,7 +607,7 @@ function init(type) {
 
                         break;
                     case 'HOLDING':
-                        datas[i].Fduration = utils.format.duration(o.duration);
+//                        datas[i].Fduration = utils.format.duration(o.duration);
                         datas[i].Frate = utils.format.percent(o.rate / 100, 2);
                         datas[i].Famount = utils.format.amount(o.amount, 2);
                         datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true : false;
@@ -630,7 +630,7 @@ function init(type) {
                         datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true : false;
                         break;
                     case 'CLEARED':
-                        datas[i].Fduration = utils.format.duration(o.duration);
+//                        datas[i].Fduration = utils.format.duration(o.duration);
                         datas[i].Frate = utils.format.percent(o.rate / 100, 2);
                         datas[i].Famount = utils.format.amount(o.amount, 2);
                         datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true : false;
