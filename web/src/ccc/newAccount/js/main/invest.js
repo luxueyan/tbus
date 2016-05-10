@@ -9,19 +9,19 @@ require('ccc/global/js/modules/tooltip');
 var Plan = require('ccc/global/js/modules/cccRepayments');
 
 var Tab = {
-	// 持有中 (SETTLED/OVERDUE/BREACH)
+	// 回款中 (SETTLED/OVERDUE/BREACH)
 	HOLDING: {
 		ractive: null,
 		api: '/api/v2/user/MYSELF/invest/list/$page/$size?status=SETTLED&status=OVERDUE&status=BREACH',
 		template: require('ccc/newAccount/partials/invest/holding.html')
 	},
-	// 进行中 (FINISHED/PROPOSED/FROZEN)
+	// 投资中 (FINISHED/PROPOSED/FROZEN) 
 	INHAND: {
 		ractive: null,
 		api: '/api/v2/user/MYSELF/invest/list/$page/$size?status=FINISHED&status=PROPOSED&status=FROZEN',
 		template: require('ccc/newAccount/partials/invest/inhand.html')
 	},
-	// 已结清 (BREACH)
+	// 已结束 (BREACH)
 	CLEARED: {
 		ractive: null,
 		api: '/api/v2/user/MYSELF/invest/list/$page/$size?status=CLEARED',

@@ -1,38 +1,41 @@
-
-#main-container{
+#main-container {
     position: relative;
     border-top: 1px solid #e2e2e2;
 }
+
 .account-wrapper {
-	width: 100%;
-	height: 100%;
+    width: 100%;
+    height: 100%;
     padding-top: 23px;
 }
-.account-container {
-	width: 1200px;
-	margin: 0 auto;
-}
-.account-nav {
-	width: 194px;
-	min-height: 748px;
-	float: left;
-    background: #fff;
-}
-.account-content-wrapper {
 
-	height: 100%;
-	float: left;
-	margin-left: 16px;
-	min-height: 748px;
-	position: relative;
+.account-container {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.account-nav {
+    width: 194px;
+    min-height: 748px;
+    float: left;
     background: #fff;
 }
-.account-content {
-	width: 990px;
-	margin: 0 auto;
-	margin-bottom: 30px;
+
+.account-content-wrapper {
+    height: 100%;
+    float: left;
+    margin-left: 16px;
+    min-height: 748px;
+    position: relative;
 }
-.nav-title{
+
+.account-content {
+    width: 990px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+.nav-title {
     font-size: 18px;
     height: 45px;
     line-height: 45px;
@@ -40,375 +43,429 @@
     color: #ababab;
     padding-left: 23px;
 }
+
 .nav-wrapper .nav-li {
-	width: 100%;
-	min-height: 35px;
-	line-height: 35px;
-	text-align:  center;
+    width: 100%;
+    min-height: 35px;
+    line-height: 35px;
+    text-align: center;
     margin-top: 35px;
 }
+
 .nav-wrapper .nav-li a {
-	text-decoration: none;
-	font-size: 14px;
-	color: #999999;
+    text-decoration: none;
+    font-size: 14px;
+    color: #999999;
 }
+
 .nav-recharge {
-	height: 80px;
+    height: 80px;
 }
+
 .nav-recharge .nav-recharge-btn {
-	margin: 0 auto;
-	width: 100px;
-	height: 40px;
-	border-radius: 5px;
-	background-color: #f58220;
-	color: #fff;
-	line-height: 40px;
-	text-align: center;
-	font-size: 20px;
-	font-family: '微软雅黑';
+    margin: 0 auto;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #f58220;
+    color: #fff;
+    line-height: 40px;
+    text-align: center;
+    font-size: 20px;
+    font-family: '微软雅黑';
 }
-.nav-recharge .nav-recharge-btn:hover{
-    background:#df6502;
+
+.nav-recharge .nav-recharge-btn:hover {
+    background: #df6502;
 }
+
 .nav-li span {
-	display: block;
-	float: left;
-	height: 35px;
+    display: block;
+    float: left;
+    height: 35px;
 }
+
 .nav-li .icon-home {
-	width: 52px;
-	margin-right: 8px;
-	background: url(/ccc/newAccount/img/icon-home.png) no-repeat center right;
+    width: 52px;
+    margin-right: 8px;
+    background: url(/ccc/newAccount/img/icon-home.png) no-repeat center right;
 }
+
 .nav-li .icon-loanDeal {
-	width: 52px;
-	margin-right: 8px;
-	background: url(/ccc/newAccount/img/icon-loanDeal.png) no-repeat center right;
+    width: 52px;
+    margin-right: 8px;
+    background: url(/ccc/newAccount/img/icon-loanDeal.png) no-repeat center right;
 }
-.nav-li .icon-bankCards{
-	width: 52px;
-	margin-right: 8px;
-	background: url(/ccc/newAccount/img/icon-bankCards.png) no-repeat center right;
+
+.nav-li .icon-bankCards {
+    width: 52px;
+    margin-right: 8px;
+    background: url(/ccc/newAccount/img/icon-bankCards.png) no-repeat center right;
 }
-.nav-li .icon-password{
-	width: 52px;
-	margin-right: 8px;
-	background: url(/ccc/newAccount/img/icon-password.png) no-repeat center right;
+
+.nav-li .icon-password {
+    width: 52px;
+    margin-right: 8px;
+    background: url(/ccc/newAccount/img/icon-password.png) no-repeat center right;
 }
+
 .nav-li .icon-invest {
-	width: 52px;
-	margin-right: 8px;
-	background: url(/ccc/newAccount/img/invest.png) no-repeat center right;
+    width: 52px;
+    margin-right: 8px;
+    background: url(/ccc/newAccount/img/invest.png) no-repeat center right;
 }
+
 .nav-li .icon-my-invest {
-	background: url(/ccc/newAccount/img/my-invest.png) no-repeat center right;
+    background: url(/ccc/newAccount/img/my-invest.png) no-repeat center right;
 }
+
 .nav-li .icon-fund {
-	width: 52px;
-	margin-right: 8px;
-	background: url(/ccc/newAccount/img/icon-fund.png) no-repeat center right;
+    width: 52px;
+    margin-right: 8px;
+    background: url(/ccc/newAccount/img/icon-fund.png) no-repeat center right;
 }
+
 .nav-li .icon-account {
-	width: 52px;
-	margin-right: 8px;
-	background: url(/ccc/newAccount/img/icon-account.png) no-repeat center right;
+    width: 52px;
+    margin-right: 8px;
+    background: url(/ccc/newAccount/img/icon-account.png) no-repeat center right;
 }
+
 .nav-li .icon-coupon {
-	width: 52px;
-	margin-right: 8px;
-	background: url(/ccc/newAccount/img/icon-coupon.png) no-repeat center right;
+    width: 52px;
+    margin-right: 8px;
+    background: url(/ccc/newAccount/img/icon-coupon.png) no-repeat center right;
 }
+
 .nav-li .icon-friend {
-	width: 52px;
-	margin-right: 8px;
-	background: url(/ccc/newAccount/img/icon-friend.png) no-repeat center right;
+    width: 52px;
+    margin-right: 8px;
+    background: url(/ccc/newAccount/img/icon-friend.png) no-repeat center right;
 }
+
 .nav-li .icon-message {
-	width: 52px;
-	margin-right: 8px;
-	background: url(/ccc/newAccount/img/icon-message.png) no-repeat center right;
+    width: 52px;
+    margin-right: 8px;
+    background: url(/ccc/newAccount/img/icon-message.png) no-repeat center right;
 }
+
 .nav-li .nav-text {
-	width: 75px;
-	text-align: left;;
+    width: 75px;
+    text-align: left;
+    ;
 }
+
 .nav-li .nav-toggle-btn {
-	cursor: pointer;
-	width: 16px;
-	background: url(/ccc/newAccount/img/toggle.png) no-repeat center left;
+    cursor: pointer;
+    width: 16px;
+    background: url(/ccc/newAccount/img/toggle.png) no-repeat center left;
 }
+
 .nav-li .icon-home-active {
-	width: 52px;
-	margin-right: 8px;
-	background: url(/ccc/newAccount/img/icon-home-active.png) no-repeat center right;
+    width: 52px;
+    margin-right: 8px;
+    background: url(/ccc/newAccount/img/icon-home-active.png) no-repeat center right;
     border-left: 4px #ef9c2c solid;
 }
+
 .nav-li .icon-loanDeal-active {
-	width: 52px;
-	margin-right: 8px;
-	background: url(/ccc/newAccount/img/icon-loanDeal-active.png) no-repeat center right;
+    width: 52px;
+    margin-right: 8px;
+    background: url(/ccc/newAccount/img/icon-loanDeal-active.png) no-repeat center right;
     border-left: 4px #ef9c2c solid;
 }
-.nav-li .icon-bankCards-active{
-	width: 52px;
-	margin-right: 8px;
-	background: url(/ccc/newAccount/img/icon-bankCards-active.png) no-repeat center right;
+
+.nav-li .icon-bankCards-active {
+    width: 52px;
+    margin-right: 8px;
+    background: url(/ccc/newAccount/img/icon-bankCards-active.png) no-repeat center right;
     border-left: 4px #ef9c2c solid;
 }
-.nav-li .icon-password-active{
-	width: 52px;
-	margin-right: 8px;
-	background: url(/ccc/newAccount/img/icon-password-active.png) no-repeat center right;
+
+.nav-li .icon-password-active {
+    width: 52px;
+    margin-right: 8px;
+    background: url(/ccc/newAccount/img/icon-password-active.png) no-repeat center right;
     border-left: 4px #ef9c2c solid;
 }
+
 .nav-li .icon-invest-active {
-	width: 52px;
-	margin-right: 8px;
-	background: url(/ccc/newAccount/img/invest_active.png) no-repeat center right;
+    width: 52px;
+    margin-right: 8px;
+    background: url(/ccc/newAccount/img/invest_active.png) no-repeat center right;
 }
+
 .nav-li .icon-my-invest-active {
-	background: url(/ccc/newAccount/img/icon-my-invest-active.png) no-repeat center right;
+    background: url(/ccc/newAccount/img/icon-my-invest-active.png) no-repeat center right;
 }
+
 .nav-li .icon-fund-active {
-	width: 52px;
-	margin-right: 8px;
-	background: url(/ccc/newAccount/img/icon-fund-active.png) no-repeat center right;
+    width: 52px;
+    margin-right: 8px;
+    background: url(/ccc/newAccount/img/icon-fund-active.png) no-repeat center right;
 }
+
 .nav-li .icon-account-active {
-	width: 52px;
-	margin-right: 8px;
-	background: url(/ccc/newAccount/img/icon-account-acitve.png) no-repeat center right;
+    width: 52px;
+    margin-right: 8px;
+    background: url(/ccc/newAccount/img/icon-account-acitve.png) no-repeat center right;
 }
+
 .nav-li .icon-coupon-active {
-	width: 52px;
-	margin-right: 8px;
-	background: url(/ccc/newAccount/img/icon-coupon-active.png) no-repeat center right;
+    width: 52px;
+    margin-right: 8px;
+    background: url(/ccc/newAccount/img/icon-coupon-active.png) no-repeat center right;
     border-left: 4px #ef9c2c solid;
 }
+
 .nav-li .icon-friend-active {
-	width: 52px;
-	margin-right: 8px;
-	background: url(/ccc/newAccount/img/icon-friend-active.png) no-repeat center right;
+    width: 52px;
+    margin-right: 8px;
+    background: url(/ccc/newAccount/img/icon-friend-active.png) no-repeat center right;
     border-left: 4px #ef9c2c solid;
 }
+
 .nav-li .icon-message-active {
-	width: 52px;
-	margin-right: 8px;
-	background: url(/ccc/newAccount/img/icon-message-active.png) no-repeat center right;
+    width: 52px;
+    margin-right: 8px;
+    background: url(/ccc/newAccount/img/icon-message-active.png) no-repeat center right;
 }
+
 .nav-li .nav-text {
-	width: 75px;
-	text-align: left;;
+    width: 75px;
+    text-align: left;
+    ;
 }
+
 .nav-li .nav-text-active a {
-	color: #ef9c2c;
-	font-weight: 300;
+    color: #ef9c2c;
+    font-weight: 300;
 }
+
 .nav-li .nav-toggle-btn {
-	cursor: pointer;
-	width: 16px;
-/*	background: url(/ccc/newAccount/img/toggle-up.png) no-repeat center left;*/
+    cursor: pointer;
+    width: 16px;
+    /*	background: url(/ccc/newAccount/img/toggle-up.png) no-repeat center left;*/
 }
+
 .nav-li .nav-toggle-btn-up {
-	background: url(/ccc/newAccount/img/toggle-up.png) no-repeat center left;
+    background: url(/ccc/newAccount/img/toggle-up.png) no-repeat center left;
 }
+
 .nav-li .nav-toggle-btn-down {
-	background: url(/ccc/newAccount/img/toggle.png) no-repeat center left;
+    background: url(/ccc/newAccount/img/toggle.png) no-repeat center left;
 }
+
 .nav-li .nav-toggle-menu li a {
-	display: block;
-	width: 75px;
-	text-align: left;
-	margin-left: 60px;
+    display: block;
+    width: 75px;
+    text-align: left;
+    margin-left: 60px;
 }
+
 .nav-li .nav-toggle-menu .active {
-	border-left: 4px #ef9c2c solid;
+    border-left: 4px #ef9c2c solid;
 }
+
 .space-40 {
-	height: 40px;
+    height: 40px;
 }
+
 .space-30 {
-	height: 30px;
+    height: 30px;
 }
+
 .space-20 {
-	height: 20px;
+    height: 20px;
 }
+
 .space-10 {
-	height: 10px;
+    height: 10px;
 }
+
 table thead tr {
-	height: 40px;
-	background: #f5f4f9;
+    height: 40px;
+    background: #f5f4f9;
 }
+
 table thead tr th {
-	border: 0!important;
-	font-size: 14px!important;
-	color: #4a4a4a!important;
-	font-family: '微软雅黑'!important;
+    border: 0!important;
+    font-size: 14px!important;
+    color: #4a4a4a!important;
 }
+
 table tbody tr td {
-	padding: 0;
-	height: 69px;
-	border-bottom: 1px #eeeeee solid;
-	font-size:14px!important;
-	color: #4a4a4a;
-	font-family: '微软雅黑';
+    padding: 0;
+    height: 76px;
+    border-bottom: 1px #eeeeee solid;
+    font-size: 14px!important;
+    color: #4a4a4a;
 }
+
 .ccc-paging {
-	text-align: center;
+    text-align: center;
     margin-top: 20px;
 }
+
 .ccc-paging a {
-	padding: 8px 11px;
-	border: 1px #eeeeee solid;
-	text-decoration: none;
-	background-color: #fefefe;
-	font-size: 14px;
-	color: #4a4a4a;
-	margin: 0 5px;
-	cursor: pointer;
+    padding: 8px 11px;
+    border: 1px #eeeeee solid;
+    text-decoration: none;
+    background-color: #fefefe;
+    font-size: 14px;
+    color: #4a4a4a;
+    margin: 0 5px;
+    cursor: pointer;
 }
-.ccc-paging a:hover{
+
+.ccc-paging a:hover {
     background: #0096de;
     color: #fff;
     border: 1px #0096de solid;
- }
-.ccc-paging span {
-	display: inline-block;
-	width: 31px;
-	height: 31px;
-	line-height: 31px;
-	text-align: center;
-	font-size: 14px;
-	color: #4a4a4a;
-	border: 1px #eeeeee solid;
-	margin: 0 5px;
-	cursor: pointer;
-}
-.ccc-paging span.current {
-	background-color: #0096de;
-	color: #fff;
-	border: 1px #0096de solid;
-		padding: 0px;
-}
-.null {
-	margin: 0 auto;
-	width: 250px;
-	height: 250px;
-	background: url(/ccc/newAccount/img/null.png) no-repeat center;
-}
-.no-back-data {
-	margin: 0 auto;
-	width: 250px;
-	height: 250px;
-	background: url(/ccc/newAccount/img/no-back-data.png) no-repeat center;
-}
-.no-fund-data {
-	margin: 0 auto;
-	width: 250px;
-	height: 250px;
-	background: url(/ccc/newAccount/img/no-fund.png) no-repeat center;
 }
 
-.no-loan{
-   	margin: 0 auto;
-	width: 250px;
-	height: 250px;
-	background: url(/ccc/newAccount/img/no-loan.png) no-repeat center;
+.ccc-paging span {
+    display: inline-block;
+    width: 31px;
+    height: 31px;
+    line-height: 31px;
+    text-align: center;
+    font-size: 14px;
+    color: #4a4a4a;
+    border: 1px #eeeeee solid;
+    margin: 0 5px;
+    cursor: pointer;
 }
+
+.ccc-paging span.current {
+    background-color: #0096de;
+    color: #fff;
+    border: 1px #0096de solid;
+    padding: 0px;
+}
+
+.null {
+    margin: 0 auto;
+    width: 220px;
+    height: 220px;
+    background: url(/ccc/newAccount/img/null.png) no-repeat center;
+    background-size: 150px;
+    font-size: 18px;
+    color: #e5e5e5;
+    text-align: center;
+    letter-spacing: 2px;
+    padding-top: 200px;
+}
+
+.no-back-data {
+    margin: 0 auto;
+    width: 250px;
+    height: 250px;
+    background: url(/ccc/newAccount/img/no-back-data.png) no-repeat center;
+}
+
+.no-fund-data {
+    margin: 0 auto;
+    width: 250px;
+    height: 250px;
+    background: url(/ccc/newAccount/img/no-fund.png) no-repeat center;
+}
+
+.no-loan {
+    margin: 0 auto;
+    width: 250px;
+    height: 250px;
+    background: url(/ccc/newAccount/img/no-loan.png) no-repeat center;
+}
+
 .nomsg {
-	margin: 0 auto;
-	width: 250px;
-	height: 250px;
-	background: url(/ccc/newAccount/img/msg.png) no-repeat center;
+    margin: 0 auto;
+    width: 250px;
+    height: 250px;
+    background: url(/ccc/newAccount/img/msg.png) no-repeat center;
 }
-.account-bg{
-    background:#4a4a4a;
-    opacity:0.7;
+
+.account-bg {
+    background: #4a4a4a;
+    opacity: 0.7;
     width: 100%;
-    height:100%;
-	position: fixed;
-	z-index: 100;
-	top: 0;
-	left: 0;
+    height: 100%;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
 }
 
 .box-main {
-	position: relative;
-	width: 100%;
-	height: 100%;
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
-.bankcard-gray{
-
-	background-image: url(/ccc/newAccount/img/true-name.png);
-	background-repeat: no-repeat;
-	background-position: left center;
-	width: 350px;
-	height: 250px;
-	position: absolute;
-	z-index: 101;
-
-	left: 159px;
-	top: 21px;
+.bankcard-gray {
+    background-image: url(/ccc/newAccount/img/true-name.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    width: 350px;
+    height: 250px;
+    position: absolute;
+    z-index: 101;
+    left: 159px;
+    top: 21px;
 }
+
 .rightnow {
-	position: absolute;
-	right: -20px;
-	bottom: 0;
-
-}
-.bankcard-gray a{
-	display: block;
-	position: absolute;
-	right: 0;
-	bottom: 0;
+    position: absolute;
+    right: -20px;
+    bottom: 0;
 }
 
-.password-png{
-	background-image: url(/ccc/newAccount/img/password.png);
-	left: 227px;
-
+.bankcard-gray a {
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 
-
-
-
-.backcard-png{
-	background-image: url(/ccc/newAccount/img/bankcard.png);
-
-	left: 291px;
-
+.password-png {
+    background-image: url(/ccc/newAccount/img/password.png);
+    left: 227px;
 }
 
-.know{
-  background-color: #009ada;
-  color: white;
-  font-family: '微软雅黑';
-  border: none;
-  width: 90px;
-  height: 30px;
-  border-radius: 3px;
-  position: absolute;
-  right: 119px;
-  bottom: 0;
+.backcard-png {
+    background-image: url(/ccc/newAccount/img/bankcard.png);
+    left: 291px;
 }
 
-.know:hover{
-	background-color: #015989;
+.know {
+    background-color: #009ada;
+    color: white;
+    font-family: '微软雅黑';
+    border: none;
+    width: 90px;
+    height: 30px;
+    border-radius: 3px;
+    position: absolute;
+    right: 119px;
+    bottom: 0;
 }
 
+.know:hover {
+    background-color: #015989;
+}
 
 .hide {
-	display: none;
+    display: none;
 }
-.btn-success:hover{
+
+.btn-success:hover {
     font-size: 13px;
 }
 
 
 /*注册成功弹框*/
-.pop-box{
+
+.pop-box {
     background: url(/ccc/register/img/tchk_bg.png);
     opacity: 0.8;
     position: fixed;
@@ -417,21 +474,23 @@ table tbody tr td {
     display: none;
     z-index: 1;
 }
-.register-success{
+
+.register-success {
     border: 1px solid #ccc;
     width: 700px;
     height: 420px;
     border-radius: 5px;
     position: absolute;
     top: 10%;
-/*    margin-top: -210px;*/
+    /*    margin-top: -210px;*/
     left: 50%;
     margin-left: -350px;
     z-index: 2;
     display: none;
     background: #fff;
 }
-.register-success .header{
+
+.register-success .header {
     height: 55px;
     background: #f2f2f2;
     line-height: 55px;
@@ -440,39 +499,48 @@ table tbody tr td {
     color: #000;
     padding-right: 20px;
 }
-.register-success .header .title{
+
+.register-success .header .title {
     margin-left: 20px;
 }
-.register-success .header img{
+
+.register-success .header img {
     float: right;
     margin-top: 17px;
     width: 20px;
     cursor: pointer;
 }
-.register-success .content{
+
+.register-success .content {
     margin-top: 60px;
 }
-.register-success .success-img{
+
+.register-success .success-img {
     float: left;
     margin-left: 80px;
 }
-.register-success .success-img img{
+
+.register-success .success-img img {
     width: 200px;
 }
-.register-success .success-content{
+
+.register-success .success-content {
     float: left;
     margin: 60px 45px;
 }
-.register-success .success-content p{
+
+.register-success .success-content p {
     font-size: 18px;
 }
-.register-success .success-content .bolder{
+
+.register-success .success-content .bolder {
     font-size: 24px;
     font-weight: 600;
     padding: 10px 0;
 }
-.register-success .success-content .btn-after{
-    width:  140px;
+
+.register-success .success-content .btn-after {
+    width: 140px;
     height: 45px;
     border: 1px solid #ef9c2c;
     line-height: 45px;
@@ -481,10 +549,33 @@ table tbody tr td {
     border-radius: 3px;
     margin-right: 20px;
 }
-.register-success .success-content .button{
+
+.register-success .success-content .button {
     margin-top: 60px;
 }
-.register-success .success-content .btn-bank{
+
+.register-success .success-content .btn-bank {
     color: #fff;
     background: #ef9c2c;
+}
+
+
+/*表格*/
+
+.table-title {
+    color: #7e838e;
+    line-height: 30px;
+}
+
+.table-invest-time{
+    font-size: 16px;
+    color: #9d9d9d;
+}
+.table-invest-num{
+    font-size: 16px;
+    color: #f4ab4a;
+}
+.table-invest-expect{
+    color: #f4ab4a;
+    font-size: 26px;
 }

@@ -1,4 +1,5 @@
-<table class="table table-hover has-padding">
+<table class="table has-padding">
+<!--
     <thead>
         <tr>
             <th class="p-tit" style="text-indent:20px;">项目信息</th>
@@ -10,33 +11,30 @@
             <th class="w-100 align-center">操作</th>
         </tr>
     </thead>
+-->
     {{#if list}}
     <tbody>
         {{#each list}}
         <tr>
-            <td style="text-indent:20px;">
-                <a class="loan-tit" href="/loan/{{loanId}}" target="_blank" style="color:#4a4a4a;text-decoration:none" rel="nofollow" >{{loanTitle}}</a>
+            <td>
+                <p class="table-title">项目名称</p>
+                <p><a class="loan-tit" href="/loan/{{loanId}}" target="_blank" rel="nofollow">{{loanTitle}}</a></p>  
             </td>
-            <td style="color:#f58220">{{Frate}}%</td>
-            <td style="color:#f58220">{{Fduration}}</td>
-    		<td style="color:#f58220">{{Famount}}</td>
-			<td style="color:#999999">{{FrepayMethod}}</td>
-			<td style="color:#999999">{{Fstatus}}</td>
-            <td class="align-center">
-                {{#if hasContract}}
-				<a href="/invest/allContracts/{{id}}" class="btn btn-smaller btn-light btn-contract" target="_blank" style="background:#009ada;border:1px #009ada solid;color:#fff" rel="nofollow" >查看合同</a>
-				{{else}}
-					{{#if status === 'CANCELED'}}
-					<i class="fa fa-ban text-muted size-16 tips-top tooltip-error" title="已被取消"></i>
-					{{else}}
-					<i class="fa fa-clock-o text-muted tips-top" title="审核通过后生成合同"></i>
-					{{/if}}
-				{{/if}}
+             <td>
+                <p class="table-title">投资日期</p>
+                <p class="table-invest-time">{{Fduration}}</p>
+            </td> 
+            <td>
+                <p class="table-title">预期年化</p>
+                <p class="table-invest-num">{{Frate}}%</p>
+            </td>  
+    		<td>
+                <p class="table-title">投资金额（元）</p>
+                <p class="table-invest-num">{{Famount}}</p>
             </td>
-        </tr>
-        <tr class="repay-plan-wp" id="invest-{{id}}" style="display:none">
-            <td colspan="6">
-                <p class="loading">loading...</p>
+            <td>
+                <p class="table-invest-expect">{{Famount}}</p>
+                <p class="table-title">预计收益（元）</p>
             </td>
         </tr>
         {{/each}}
@@ -47,5 +45,7 @@
 <div class="space-40"></div>
 <div class="ccc-paging"></div>
 {{else}}
-<div class="null"></div>
+<div class="null">
+    还没投资，赶紧投资吧！
+</div>
 {{/if}}
