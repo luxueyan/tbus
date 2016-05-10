@@ -61,11 +61,11 @@ var _hmt = _hmt || [];
              <a href="/help/login" class="text account" style="color:#999;font-size:12px;margin-left:10px;text-decoration:none">帮助中心 </a>
             {{#if user.loginName}}
             <a href="/newAccount/message">
-                <div  style="color:#f58220;position:relative;bottom:4px;" class="text"><img src="/ccc/newAccount/img/message.png" alt="" style="margin:0;width:20px;"><span id='head-message-container' style="color:#009ada;font-size:12px;margin:0;position:relative;top:1px;margin-left:5px;"></span>
+                <div  style="color:#f58220;position:relative;bottom:4px;" class="text"><img src="/ccc/newAccount/img/message.png" alt="" style="margin:0;width:16px;padding-top:6px;"><span id='head-message-container' style="color:#009ada;font-size:12px;margin:0;position:relative;top:1px;margin-left:5px;"></span>
 				</div>
             </a>
             {{/if}}
-            <a href="/logout" class="text" style="color:#999;margin-right:5px;">退出&nbsp;&nbsp;|</a>
+            <a href="/logout" class="text" style="color:#999;margin-right:5px;margin-left:5px;">退出&nbsp;&nbsp;|</a>
 			{{#if user.name}}
             	<a href="/newAccount/home"><div id='head-ractive-container' style="color:#009ada;position:relative;bottom:1px;" class="text"></div></a>
 			{{else}}
@@ -80,7 +80,11 @@ var _hmt = _hmt || [];
                 <a href="/login" id="dingbudenglu" class="text">登录</a>
             </div>
             {{/if}}
+            {{#if user}}
+            <p style="float:right;">{{user.name}}</p>
+            {{else}}
             <p style="float:right;">您好，欢迎来到自金网！</p>
+            {{/if}}
         </div>
 
     </div>
