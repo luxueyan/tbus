@@ -1,13 +1,13 @@
-<div class="space-30"></div>
+<!-- <div class="space-30"></div>
 <div class="account-opened-notice" style="width:600px;margin: 0 auto">
     <div class="ftips" style="text-align:left">
         <span class="glyphicon glyphicon-exclamation-sign exclamation" style="color:#ff892a;"></span> 重要提示：{{#if authenticated}}此银行卡的开户名必须为“<span style="font-size:20px;color:#f58220">{{realName}}</span>”的借记卡，否则提现会失败。{{/if}} 每个用户只允许绑定1张银行卡，今后仅能使用该银行卡进行快捷充值与提现；绑定后如需更换，须联系客服经审核才能更换。请慎重选择！！
     </div>
 </div>
-<div class="space-40"></div>
-{{#if !authenticated}}
+<div class="space-40"></div> -->
+<!-- {{#if !authenticated}} -->
 <!--{{#if flase}}-->
-<div class="row">
+<!-- <div class="row">
 	<div class="space space-30"></div>
 	<div class="col-md-12 align-center">
 		<p class="text-warning" style="color:#009ada">您还没有实名认证为，实名后才能绑定银行卡</p>
@@ -16,16 +16,23 @@
 			<a href="/newAccount/settings/authentication" style="width: 230px;background-color:#009ada" class="btn btn-orange">立即认证</a>
 		</p>
 	</div>
-</div>
-{{else}}
+</div> -->
+<!-- {{else}} -->
 <!--要绑定银行卡-->
+<!-- 页头 -->
+<div class="bankcard-nav">
+  <span>基金银行卡</span><span class="shuline">｜</span><span>绑卡</span>
+</div>
 {{#if status === 0}}
-<div class="bind-card-wrapper">
-    <form action="" method="POST" on-submit="bind-card-submit">
-        <div class="banks-container control-group" style="position:relative;left:50%;width:500px;margin-left:-185px;">
-            <div class="space space-30"></div>
 
-            <div class="row">
+<div class="bind-card-wrapper">
+
+    <form action="" method="POST" on-submit="bind-card-submit">
+      <p class="addcard-info">验证并绑定银行卡之后才能进行购买基金</p>
+        <div class="banks-container control-group" style="position:relative;left:50%;width:500px;margin-left:-185px;">
+            <!-- <div class="space space-30"></div> -->
+
+            <!-- <div class="row">
                 <div class="tipss" style="width:90px;text-align:right;margin-right: 20px;">开户银行：</div>
                 <select name="bankName" class="select" value="{{bankName}}">
                     {{#each banks}}
@@ -33,10 +40,12 @@
                     {{/each}}
                 </select>
                 <div class="clearfix"></div>
-            </div>
+            </div> -->
             <div class="row">
-                <div class="tipss" style="width:90px;text-align:right;margin-right: 20px;">银行卡号：</div>
-                <input on-keyup="validateCardNo" on-blur="checkSame" type="text" name="cardNo" value="{{cardNo}}" class="payInp">
+              <div class="card-brame">
+                <img src="/ccc/newAccount/img/card-card.png"/>
+                <input on-keyup="validateCardNo" on-blur="checkSame" type="text" name="cardNo" value="{{cardNo}}" class="payInp" placeholder="输入银行卡号">
+              </div>
                 <span class="error">{{errorMessagea}}</span>
                 {{#if cardNoError}}
                 <span class="error">* 银行卡号只能由数字组成</span>
@@ -44,14 +53,47 @@
                 <div class="clearfix"></div>
             </div>
             <div class="row">
-                <div class="tipss" style="width:90px;text-align:right;margin-right: 20px;">确认卡号：</div>
+              <div class="card-brame">
+                <img src="/ccc/newAccount/img/card-id.png"/>
+                <input on-keyup="validateCardNo" on-blur="checkSame" type="text" name="cardNo" value="{{cardNo}}" class="payInp" placeholder="输入身份证号">
+              </div>
+                <span class="error">{{errorMessagea}}</span>
+                {{#if cardNoError}}
+                <span class="error">* 银行卡号只能由数字组成</span>
+                {{/if}}
+                <div class="clearfix"></div>
+            </div>
+            <div class="row">
+              <div class="card-brame">
+                <img src="/ccc/newAccount/img/card-man.png"/>
+                <input on-keyup="validateCardNo" on-blur="checkSame" type="text" name="cardNo" value="{{cardNo}}" class="payInp" placeholder="持卡人姓名">
+              </div>
+                <span class="error">{{errorMessagea}}</span>
+                {{#if cardNoError}}
+                <span class="error">* 银行卡号只能由数字组成</span>
+                {{/if}}
+                <div class="clearfix"></div>
+            </div>
+            <div class="row">
+              <div class="card-brame">
+                <img src="/ccc/newAccount/img/card-mobile.png"/>
+                <input on-keyup="validateCardNo" on-blur="checkSame" type="text" name="cardNo" value="{{cardNo}}" class="payInp" placeholder="银行预留手机号">
+              </div>
+                <span class="error">{{errorMessagea}}</span>
+                {{#if cardNoError}}
+                <span class="error">* 银行卡号只能由数字组成</span>
+                {{/if}}
+                <div class="clearfix"></div>
+            </div>
+            <!-- <div class="row">
+                <img src="/ccc/newAccount/img/card-card.png"/>
                 <input on-keyup="validateCardNo" on-blur="checkSame" type="text" name="recardNo" value="{{recardNo}}" class="payInp" onPaste='return false;'>
                 <span class="error">{{errorMessageb}}</span>
                 {{#if cardDiff}}
                 <span class="error">* 两次银行卡号不一致</span>
                 {{/if}}
                 <div class="clearfix"></div>
-            </div>
+            </div> -->
             <div class="" style="display:none">
                 <div class="tipss" style="width:90px;text-align:right;margin-right: 20px;">预留手机号：</div>
                 <input on-keyup="validatePhoneNo" type="text" name="cardPhone" value="{{mobile}}" class="payInp">
@@ -60,7 +102,7 @@
                 {{/if}}
                 <div class="clearfix"></div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="tipss" style="width:90px;text-align:right;margin-right: 20px;">开户省市：</div>
                 <select name="province" on-change="selectPro" style="width:90px;margin-right:16px;font-size:16px;" value="{{myProvince}}">
                     {{#each province}}
@@ -73,7 +115,7 @@
                     {{/each}}
                 </select>
                 <div class="clearfix"></div>
-            </div>
+            </div> -->
 <!--
             <div class="row">
                 <div class="tipss" style="width:90px;text-align:right;margin-right: 20px;">开户行：</div>
@@ -83,9 +125,12 @@
             </div>
 -->
             <div class="row">
-                <div class="tipss" style="width:90px;text-align:right;margin-right: 20px;">短信验证码：</div>
-                <input type="text" name="smsCaptcha" class="payInp" style="width:90px;margin-right:16px;" on-blur="checkSmsCaptcha" value="{{smsCaptcha}}">
-                <span class="sendCode" on-click="sendCode">获取验证码</span>
+              <div class="card-brame">
+                <img src="/ccc/newAccount/img/card-yanzheng.png"/>
+                <input type="text" name="smsCaptcha" class="payInp" style="width:218px;border-right: 1px solid #ccc;" on-blur="checkSmsCaptcha" value="{{smsCaptcha}}" placeholder="输入验证码">
+
+                <span class="sendCode" on-click="sendCode">发送验证码</span>
+              </div>
                 {{#if SMS_NULL}}
                 <span class="error">* 验证码不能为空</span>
                 {{/if}}
@@ -94,8 +139,8 @@
             <div class="space-20"></div>
             <div class="form-group">
                 <div class="row row-3">
-                    <div class="col-md-12">
-                        <button type="submit" class="btn btn-large btn-success" style="width:150px;background:#009ada;border-color:#009ada;position:relative;left:90px;">确认绑定</button>
+                    <div>
+                        <button type="submit" class="btn btn-large btn-success" style="width:380px;background:position:relative;height: 48px;letter-spacing: 15px;font-size: 20px;">绑定</button>
                     </div>
                 </div>
                 <div class="space space-10"></div>
@@ -138,8 +183,8 @@
 
 </div>
 {{/if}}
-{{/if}}
-<div class="space-20"></div>
+<!-- {{/if}} -->
+<!-- <div class="space-20"></div>
 <div class="form-group descript" style="width:700px;height:200px;background-color:#f4fcff;padding:10px;margin: 0 auto">
     <p style="color: #f58220;">温馨提示： </p>
     <p>1、为保障您的资金安全，绑卡前请先进行实名认证。</p>
@@ -147,4 +192,4 @@
     <p>3、718金融目前只支持绑定一张银行卡，认证支付充值、提现采用同卡进出原则，即提现银行卡需与充值银行卡一致。</p>
     <p>4、已绑定的银行卡如需更换，请联系客服：4001-718-718。</p>
 </div>
-<div class="img-wrapperbn"></div>
+<div class="img-wrapperbn"></div> -->

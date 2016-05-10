@@ -41,18 +41,18 @@ p.tips {
 	top: 20px;
 }
 .sendCode {
-  height: 30px;
-  width: 90px;
-  cursor: pointer;
-  display: inline-block;
-  line-height: 30px;
-  text-align: center;
-  border: 1px #009ada solid;
-  color: #009ada;
-  border-radius: 5px;
-  position: relative;
-  top: 1px;
-  font-size: 12px;
+	/* height: 30px; */
+	width: 110px;
+	cursor: pointer;
+	display: inline-block;
+	/* line-height: 39px; */
+	text-align: center;
+	/* border-left: 1px #ccc solid; */
+	color: #009ada;
+	/* border-radius: 5px; */
+	/* position: relative; */
+	/* top: 1px; */
+	/* font-size: 12px; */
 }
 .isAu {
 	margin-left: 180px;
@@ -89,22 +89,28 @@ p.tips {
 .updateWra,.formwra{
 	    text-align: left;
 }
+#main-container .row .card-brame {
+	/**/
+margin-left: 0px;
+margin-right: 0px;
+border: 1px solid #ccc;
+width: 380px;
+}
 #main-container .row {
-	margin-bottom: 15px;
-    margin-left: 0px;
-    margin-right: 0px;
+	margin-bottom: 22px;
 }
 .row .payInp {
-	width: 200px;
-	height: 30px;
-	border-radius: 5px;
-	text-indent: 10px;
-	border: 1px #cccccc solid;
+	width: 334px;
+	height: 48px;
+	/* border-radius: 5px; */
+	text-indent: 16px;
+	border-left: 1px #cccccc solid;
+	    border-top: none;
 }
 .row .tipss {
 	display: inline-block;
-	height: 30px;
-	line-height: 30px;
+	height: 48px;
+	line-height: 48px;
 	width: 80px;
 	font-size: 14px;
 	text-align: left;
@@ -532,4 +538,29 @@ margin-left: 264px;
 }
 .errorPass{
 	display: inline;
+}
+/*银行卡管理新加*/
+.bankcard-nav{
+	line-height: 66px;
+	border-bottom: 1px dashed #dbdbdb;
+	font-size: 24px;
+	padding-left: 46px;
+	color: #000;
+}
+.bankcard-nav .shuline{
+	color: #ccc;
+	font-size: 30px;
+	margin: 0px 10px;
+}
+.row img{
+	width: 24px;
+	margin: 0px 8px;
+}
+.addcard-info{
+	position: relative;
+left: 50%;
+width: 500px;
+margin-left: -185px;
+line-height: 60px;
+color: #666;
 }
