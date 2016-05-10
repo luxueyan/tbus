@@ -23,5 +23,8 @@ module.exports = function (router, auth) {
     
     //注册
     router.get('/api/v2/users/smsCaptcha', auth.pass());
+    
+    //账户中心我要投资接口
+    router.get('/api/v2/user/MYSELF/invests/list/$page/$size', auth.user());
 
 };
