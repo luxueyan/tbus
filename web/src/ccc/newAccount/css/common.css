@@ -338,9 +338,9 @@ table tbody tr td {
 }
 
 .ccc-paging span.current {
-    background-color: #0096de;
+    background-color: #EF9C2C;
     color: #fff;
-    border: 1px #0096de solid;
+    border: 1px #EF9C2C solid;
     padding: 0px;
 }
 
