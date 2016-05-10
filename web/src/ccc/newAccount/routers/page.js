@@ -298,7 +298,7 @@ module.exports = function(router) {
         res.render('/newAccount/fund', {});
 
     });
-    
+
     //邮箱验证
     router.get('/authenticateEmail', function (req, res, next) {
 
