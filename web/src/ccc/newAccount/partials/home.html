@@ -1,29 +1,42 @@
 <div class="home-topnav">
-	<div class="space-10"></div>
+	<div class="home-title">{{user.name}} <span>你好！</span></div>
 	<div class="home-top-container">
-		<div class="home-interest">
-			<div class="home-tab-amount"><span class="money">￥</span>{{investInterestAmount}}.<span class="more-amount">{{moreiAmount}}</div>
-			<div class="home-tab-info">累计收益</div>
+        <div class="home-avaliable">
+            <div class="home-tab-info">
+                <span class="info-title">可用余额<span>（元）</span></span>
+                <span class="home-tab-amount">{{avaAmount}}.{{morAmount}}</span>
+            </div>		
 		</div>
-		<div class="home-total">
-			<div class="home-tab-amount"><span class="money">￥</span>{{totalAmount}}.<span class="more-amount">{{moreAmount}}</span></div>
-			<div class="home-tab-info">总资产<span class="wh tips-top" data-original-title="总资产=可用余额+待收本息+冻结资金 {{cTotalAmount}} = {{cAmount}} + {{dueInAmount}} + {{frozenAmount}}"></span></div>
-		</div>
-		<div class="home-avaliable">
-			<div class="home-tab-amount"><span class="money">￥</span>{{avaAmount}}.<span class="more-amount">{{morAmount}}</div>
-			<div class="home-tab-info">可用余额</div>
-		</div>
-		<div class="clearfix"></div>
-		<div class="space-10"></div>
-		<div class="home-bottomBar">
+        <div class="home-bottomBar">
 			<a href="/newAccount/withdraw"><div class="home-withdraw-btn">提现</div></a>
 			<a href="/newAccount/recharge"><div class="home-recharge-btn">充值</div></a>
 		</div>
 	</div>
-	<div class="clearfix"></div>
-	<div class="space-40"></div>
 </div>
-<div class="space-30"></div>
+    
+<div class="clearfix"></div>
+    
+<div class="home-count">
+    <div class="home-total common">
+        <div class="home-tab-info">账户总资产<span>（元）</span>
+<!--            <span class="wh tips-top" data-original-title="总资产=可用余额+待收本息+冻结资金 {{cTotalAmount}} = {{cAmount}} + {{dueInAmount}} + {{frozenAmount}}"></span>-->
+        </div>
+        <div class="home-tab-amount">{{totalAmount}}.{{moreAmount}}</div>
+  
+    </div>   
+    <div class="home-interest common">
+        <div class="home-tab-info">累计收益<span>（元）</span></div>
+        <div class="home-tab-amount"><span>{{investInterestAmount}}.{{moreiAmount}}</span></div>
+        
+    </div>
+
+    <div class="home-expect common">
+        <div class="home-tab-info">预计收益<span>（元）</span></div>
+        <div class="home-tab-amount"><span>{{investInterestAmount}}.{{moreiAmount}}</span></div>      
+    </div>
+</div> 
+
+<!--
 <div class="home-invest-wrapper">
 	{{#if isEnterprise}}
 	<div class="home-invest-top-wrapper">
@@ -36,4 +49,40 @@
 	</div>
 	<div class="home-invest-container ccc-myinvest-wrap"></div>
 	{{/if}}
+</div>
+-->
+
+
+<div class="ccc-tab invest_status" data-header-selector=".header-text">
+    <div class="title">我的投资</div>
+    <ul class="tabs">
+<!--
+        <li class="active" data-type="ALL">
+            <a href="#">全部</a>
+        </li>
+-->
+        <li class="active" data-type="INHAND">
+            <a href="#">投资中</a>
+        </li>
+        <li data-type="HOLDING">
+            <a href="#">回款中</a>
+        </li>
+        <li data-type="CLEARED">
+            <a href="#">已结束</a>
+        </li>
+    </ul>
+</div>
+
+<div class="ccc-tab-panels index-invest">
+<!--
+    <div class="tab-panel panel-ALL active">
+        <p class="loading">加载中...</p>
+    </div>
+-->
+    <div class="tab-panel panel-INHAND active">
+        <p class="loading">加载中...</p>
+    </div>
+    <div class="tab-panel panel-HOLDING "></div>
+
+    <div class="tab-panel panel-CLEARED"></div>
 </div>
