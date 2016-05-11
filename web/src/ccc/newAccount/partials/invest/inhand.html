@@ -22,7 +22,7 @@
             </td>
              <td>
                 <p class="table-title">投资日期</p>
-                <p class="table-invest-time">{{Fduration}}</p>
+                <p class="table-invest-time">{{submitTime}}</p>
             </td> 
             <td>
                 <p class="table-title">预期年化</p>
@@ -43,7 +43,9 @@
 </table>
 {{#if list}}
 <div class="space-40"></div>
-<div class="ccc-paging"></div>
+<div class="total_invest_num">共{{total}}条记录</div>
+<div class="ccc-paging">
+</div>
 {{else}}
 <div class="null">
     还没投资，赶紧投资吧！

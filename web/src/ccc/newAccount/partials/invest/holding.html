@@ -1,54 +1,43 @@
-<table class="table table-hover has-padding">
+<table class="table has-padding">
 <!--
     <thead>
         <tr>
             <th class="p-tit" style="text-indent:20px;">项目信息</th>
-            <th class="p-amount">投资金额(元)</th>
-            <th class="p-rate">已回款(元)</th>
-            <th class="p-duration">待回款(元)</th>
+            <th class="p-amount">利率</th>
+            <th class="p-rate">期限(月)</th>
+            <th class="p-duration">投资总额(元)</th>
+            <th>还款方式</th>
             <th>状态</th>
-            <th class="w-180 align-center">操作</th>
+            <th class="w-100 align-center">操作</th>
         </tr>
     </thead>
 -->
     {{#if list}}
     <tbody>
-         
         {{#each list}}
-       
         <tr>
-            <td style="text-indent:20px;">
-                <a class="loan-tit" href="/loan/{{loanId}}" target="_blank" style="color:#4a4a4a;text-decoration:none" rel="nofollow" >{{loanTitle}}</a>
-                <span>利率：{{Frate}}% &nbsp; 期限：{{Fduration}}</span>
+            <td>
+                <p class="table-title">项目名称</p>
+                <p><a class="loan-tit" href="/loan/{{loanId}}" target="_blank" rel="nofollow">{{loanTitle}}</a></p>  
             </td>
-            <td style="color:#f58220">{{Famount}}</td>
-            <td style="color:#f58220">{{Frepayed}}</td>
-    		<td style="color:#f58220">{{Funrepay}}</td>
-			<td style="color:#999999">{{Fstatus}}</td>
-            <td class="align-center">
-                {{#if hasContract}}
-                <a href="/account/invest/allContracts/{{id}}" class="btn btn-smaller btn-light" target="_blank" rel="nofollow" >查看合同</a>
-				<button class="btn btn-smaller btn-blue-light back-plan repay-btn" on-click="show-repayments"
-				data-id="{{id}}"
-				data-loanid="{{loanId}}" style="">还款计划</button>
-				{{else}}
-					{{#if status === 'CANCELED'}}
-					<i class="fa fa-ban text-muted size-16 tips-top tooltip-error" title="已被取消"></i>
-					{{else}}
-					<i class="fa fa-clock-o text-muted tips-top" title="审核通过后生成还款计划和合同"></i>
-					{{/if}}
-				{{/if}}
+             <td>
+                <p class="table-title">结束日期</p>
+                <p class="table-invest-time">{{endDate}}</p>
+            </td> 
+            <td>
+                <p class="table-title">预期年化</p>
+                <p class="table-invest-num">{{Frate}}%</p>
+            </td>  
+    		<td>
+                <p class="table-title">投资金额（元）</p>
+                <p class="table-invest-num">{{Famount}}</p>
+            </td>
+            <td>
+                <p class="table-invest-expect">{{endAmount}}</p>
+                <p class="table-title">到期收益（元）</p>
             </td>
         </tr>
-        <tr class="repay-plan-wp" id="invest-{{id}}" style="display:none">
-            <td colspan="6">
-                <p class="loading">loading...</p>
-            </td>
-        </tr>   
-       
-        
         {{/each}}
-        
     </tbody>
     {{/if}}
 </table>

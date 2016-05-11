@@ -81,16 +81,16 @@
 	float: right;
 	width: 80px;
 	height: 30px;
-	border-radius: 5px;
+	border-radius: 2px;
 	text-align: center;
 	line-height: 30px;
 	color: #fff;
 	font-size: 16px;
-	background-color: #f58220;
-	border: 1px #f58220 solid;
+	background-color: #ef9c2c;
+	border: 1px #ef9c2c solid;
 }
 .home-recharge-btn:hover{
-    background:#df6502;
+    background:#f58220;
 }
 .home-withdraw-btn {
 	float: right;
@@ -98,16 +98,16 @@
 	margin-left: 20px;
 	width: 80px;
 	height: 30px;
-	border-radius: 5px;
+	border-radius: 2px;
 	text-align: center;
 	line-height: 30px;
-	color: #f58220;
+	color: #ef9c2c;
 	font-size: 16px;
-	border: 1px #f58220 solid;
+	border: 1px #ef9c2c solid;
 	background-color: #fff;
 }
 .home-withdraw-btn:hover{
-    background: #f58220;
+    background: #ef9c2c;
     color: #fff;
 }
 .home-invest-top-wrapper {
