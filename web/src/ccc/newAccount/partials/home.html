@@ -1,5 +1,9 @@
 <div class="home-topnav">
+    {{#if user.name}}
 	<div class="home-title">{{user.name}} <span>你好！</span></div>
+    {{else}}
+	<div class="home-title">{{user.mobile}} <span>你好！</span></div>
+    {{/if}}
 	<div class="home-top-container">
         <div class="home-avaliable">
             <div class="home-tab-info">
@@ -32,7 +36,7 @@
 
     <div class="home-expect common">
         <div class="home-tab-info">预计收益<span>（元）</span></div>
-        <div class="home-tab-amount"><span>{{investInterestAmount}}.{{moreiAmount}}</span></div>      
+        <div class="home-tab-amount"><span>{{outstandingInterest}}.{{moreiAmount}}</span></div>      
     </div>
 </div> 
 

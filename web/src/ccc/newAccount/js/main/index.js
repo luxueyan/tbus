@@ -12,7 +12,8 @@ var avaAmount = parseFloat(CC.user.availableAmount).toFixed(2);
 
 // 累计收益
 var investInterestAmount = parseFloat(CC.user.investStatistics.investInterestAmount || 0).toFixed(2);
-
+// 预计收益
+var outstandingInterest = parseFloat(CC.user.investStatistics.outstandingInterest || 0).toFixed(2);
 // 待收金额
 var dueInAmount = CC.user.dueInAmount || 0;
 
@@ -30,6 +31,7 @@ var homeRactive = new Ractive({
 		avaAmount : avaAmount,
 		cAmount : parseFloat(CC.user.availableAmount).toFixed(2),
 		investInterestAmount : investInterestAmount,
+		outstandingInterest : outstandingInterest,
 		totalAmount : totalAmount,
 		cTotalAmount : parseFloat(CC.user.availableAmount + dueInAmount + frozenAmount).toFixed(2),
 		dueInAmount : parseFloat(dueInAmount).toFixed(2),
@@ -48,8 +50,8 @@ var homeRactive = new Ractive({
 			self.set('totalAmount',parseInt(totalAmount));
             self.set('avaAmount',parseInt(avaAmount));
             self.set('investInterestAmount',parseInt(investInterestAmount));
+            self.set('outstandingInterest',parseInt(outstandingInterest));
 		}else{
-			console.log(investInterestAmount);
 			var amoutArray = totalAmount.split('.');
 			self.set('totalAmount',parseInt(amoutArray[0]));
 			self.set('moreAmount',amoutArray[1] );
@@ -58,9 +60,10 @@ var homeRactive = new Ractive({
 			self.set('morAmount',amoutArray[1]);
             var amoutArray = investInterestAmount.split('.');
 			self.set('investInterestAmount',parseInt(amoutArray[0]));
+			self.set('moreiAmount',amoutArray[1]);     
+            var amoutArray = outstandingInterest.split('.');
+			self.set('outstandingInterest',parseInt(amoutArray[0]));
 			self.set('moreiAmount',amoutArray[1]);
-			console.log(amoutArray);
-			console.log(this.get('moreiAmount'));
 		}
 	}
 });
@@ -505,11 +508,11 @@ if(path=='register'){
 $('.close-img').click(function(){
     $('.register-success').fadeOut(100);
     $('.pop-box').fadeOut(1000);
+    window.location.href = "/newAccount/home";
    
-})
+});
 
-
-//我的投资
+//华瑞金科 我的投资
 require('ccc/global/js/modules/cccTab');
 
 var Tab = {
@@ -523,7 +526,7 @@ var Tab = {
     HOLDING: {
         ractive: null,
         api: '/api/v2/user/MYSELF/invest/list/$page/$size?status=SETTLED&status=OVERDUE&status=BREACH',
-        template: require('ccc/newAccount/partials/invest/inhand.html')
+        template: require('ccc/newAccount/partials/invest/holding.html')
     },
     // 进行中/申请中 (FINISHED/PROPOSED/FROZEN)
     INHAND: {
@@ -536,7 +539,7 @@ var Tab = {
         ractive: null,
 
         api: '/api/v2/user/MYSELF/invest/list/$page/$size?status=CLEARED',
-        template: require('ccc/newAccount/partials/invest/inhand.html')
+        template: require('ccc/newAccount/partials/invest/cleared.html')
     }
     // REALIZATION (可变现)
 };
@@ -559,7 +562,7 @@ function init(type) {
         tab.ractive = new Ractive({
             el: '.panel-' + type,
             template: tab.template,
-            size: 5, // pageSize
+            size: 4, // pageSize
             data: {
                 loading: true,
                 total: 0,
@@ -587,7 +590,7 @@ function init(type) {
                     var o = datas[i];
                     switch (type) {
                     case 'ALL':
-//                        datas[i].Fduration = utils.format.duration(o.duration);
+                        datas[i].Fduration = utils.format.duration(o.duration);
                         datas[i].Frate = utils.format.percent(o.rate / 100, 2);
                         datas[i].Famount = utils.format.amount(o.amount, 2);
                         datas[i].Fstatus = utils.i18n.InvestStatus[o.status];
@@ -607,22 +610,21 @@ function init(type) {
 
                         break;
                     case 'HOLDING':
-//                        datas[i].Fduration = utils.format.duration(o.duration);
+                        datas[i].Fduration = utils.format.duration(o.duration);
                         datas[i].Frate = utils.format.percent(o.rate / 100, 2);
                         datas[i].Famount = utils.format.amount(o.amount, 2);
                         datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true : false;
                         datas[i].submitTime = moment(o.submitTime).format('YYYY-MM-DD');
                         datas[i].endDate = o.repayments[o.repayments.length - 1].repayment.dueDate;
                         //获取未到期的个数
-                        var notodays = 0;
+                        var endAmount = 0;
                         for (var j = 0; j < o.repayments.length; j++) {
-                            if (o.repayments[j].status == 'UNDUE') {
-                                notodays++;
-                            }
+                             endAmount = endAmount +  o.repayments[j].repayment.amountInterest;
                         }
-                        datas[i].notodays = notodays;
+                        datas[i].endAmount = utils.format.amount(endAmount, 2);
                         break;
                     case 'INHAND':
+                        datas[i].submitTime = moment(o.submitTime).format('YYYY-MM-DD');
                         datas[i].Fduration = utils.format.duration(o.duration);
                         datas[i].Frate = utils.format.percent(o.rate / 100, 2);
                         datas[i].Famount = utils.format.amount(o.amount, 2);
@@ -630,12 +632,13 @@ function init(type) {
                         datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true : false;
                         break;
                     case 'CLEARED':
-//                        datas[i].Fduration = utils.format.duration(o.duration);
+                        datas[i].Fduration = utils.format.duration(o.duration);
                         datas[i].Frate = utils.format.percent(o.rate / 100, 2);
                         datas[i].Famount = utils.format.amount(o.amount, 2);
                         datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true : false;
                         datas[i].submitTime = moment(o.submitTime).format('YYYY-MM-DD');
                         datas[i].endDate = o.repayments[o.repayments.length - 1].repayment.dueDate;
+                       
                         //获取未到期的个数
                         var notodays = 0;
                         for (var j = 0; j < o.repayments.length; j++) {

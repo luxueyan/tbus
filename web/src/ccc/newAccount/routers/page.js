@@ -183,10 +183,27 @@ module.exports = function(router) {
         });
     });
     router.get('/recharge', function(req, res) {
+        var enterprise = res.locals.user.enterprise;
+        var banks = _.filter(res.locals.user.bankCards, r => r.deleted === false);
+        if (!banks.length && !enterprise) {
+            res.redirect('/newAccount/settings/bankCards');
+        }
         res.render('newAccount/recharge', {
             title: '华瑞金控'
         });
 
+    });
+    // 对提现进行限制,如果是企业用户,显示企业充值
+    router.get('/recharge', function(req, res, next) {
+        var enterprise = res.locals.user.enterprise;
+        var banks = _.filter(res.locals.user.bankCards, function(r) {
+            return r.deleted === false;
+        });
+        if (!banks.length && !enterprise) {
+            res.redirect('/newAccount/settings/bankCards');
+        } else {
+            next();
+        }
     });
     router.get('/withdraw', async function(req, res) {
         var enterprise = res.locals.user.enterprise;
@@ -279,18 +296,6 @@ module.exports = function(router) {
             });
     });
 
-    // 对提现进行限制,如果是企业用户,显示企业充值
-    router.get('/recharge', function(req, res, next) {
-        var enterprise = res.locals.user.enterprise;
-        var banks = _.filter(res.locals.user.bankCards, function(r) {
-            return r.deleted === false;
-        });
-        if (!banks.length && !enterprise) {
-            res.redirect('/newAccount/settings/bankCards');
-        } else {
-            next();
-        }
-    });
 
     // 对体现进行限制
     router.get('/fund/:name', function(req, res, next) {
