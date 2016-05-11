@@ -301,48 +301,43 @@ table tbody tr td {
     font-size: 14px!important;
     color: #4a4a4a;
 }
-
+.total_invest_num{
+    float: right;
+    color: #7e838e;
+    padding-left: 20px;
+}
 .ccc-paging {
-    text-align: center;
-    margin-top: 20px;
+    float: right;
 }
 
 .ccc-paging a {
-    padding: 8px 11px;
+    padding: 8px 15px;
     border: 1px #eeeeee solid;
     text-decoration: none;
-    background-color: #fefefe;
+    background-color: #fff;
     font-size: 14px;
-    color: #4a4a4a;
-    margin: 0 5px;
+    color: #7e838e;
     cursor: pointer;
+    border-collapse: collapse;
 }
 
 .ccc-paging a:hover {
-    background: #0096de;
-    color: #fff;
-    border: 1px #0096de solid;
+    background: #f1f1f1;
+    color: #9d9d9d;
+    padding: 8px 15px;
 }
 
 .ccc-paging span {
-    display: inline-block;
-    width: 31px;
-    height: 31px;
-    line-height: 31px;
-    text-align: center;
-    font-size: 14px;
-    color: #4a4a4a;
+    padding: 8px 15px;
     border: 1px #eeeeee solid;
-    margin: 0 5px;
+    text-decoration: none;
+    background-color: #f1f1f1;
+    font-size: 14px;
+    color: #7e838e;
     cursor: pointer;
+    border-collapse: collapse;
 }
 
-.ccc-paging span.current {
-    background-color: #EF9C2C;
-    color: #fff;
-    border: 1px #EF9C2C solid;
-    padding: 0px;
-}
 
 .null {
     margin: 0 auto;
