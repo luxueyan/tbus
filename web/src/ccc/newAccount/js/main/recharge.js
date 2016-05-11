@@ -1,5 +1,7 @@
 'use strict';
 
+var utils = require('ccc/global/js/lib/utils');
+var UMPBANKS = require('ccc/global/js/modules/cccUmpBanks');
 var NETBANKS = require('ccc/global/js/modules/netBank');
 require('ccc/global/js/modules/cccTab');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
@@ -28,6 +30,7 @@ var ractive = new Ractive({
         isNormal: false,
         banks: banks,
         corBanks: corBanks,
+        bankcards: CC.user.bankcards,
         isEnterpriseUser: CC.user.enterprise,
         bankCodeEnd: (function () {
             if(CC.user.enterprise) {
@@ -38,9 +41,24 @@ var ractive = new Ractive({
         })(),
         isBankCard: CC.user.bankCards.length,
         amountValue: 10000000,
-        action: '/yeepay/onlineBankDeposit',
+        action: '/api/v2/hundsun/recharge/MYSELF',
         showNum: 9,
         minAmount: 100
+    },
+    oninit: function () {
+        var self = this;
+        // get banks
+        this.set('loadMessage', '正在载入银行卡...');
+        var url = '/api/v2/user/MYSELF/fundaccounts';
+        $.get(url, function (o) {
+            if (o.length === 0) {
+                self.set('loadMessage', '暂无数据');
+            }
+            self.set('bankcards', self.parseBankData(o));
+            self.set('loadMessage', null);
+        }).error(function () {
+            self.set('loadMessage', '请求出错了');
+        });
     },
     parseData:function(){
         var self = this;
@@ -53,8 +71,22 @@ var ractive = new Ractive({
                 'intNum':num[0],
                 'pointNum':num[1]
             })
+        };
+        
+    },
+    parseBankData: function (datas) {
+        // 依据UMPBANKS的code来分组
+        var BANKS = _.groupBy(UMPBANKS, function (b) {
+            return b.code;
+        });
+
+        // format data
+        for (var i = 0; i < datas.length; i++) {
+            var o = datas[i];
+            datas[i].account.imgPos = BANKS[o.account.bank][0].imgPos;
+            datas[i].Faccount = utils.bankAccount(o.account.account);
         }
-        console.log(num);
+        return datas;
     },
     oncomplete: function () {
         var self = this;
@@ -166,15 +198,15 @@ ractive.on('recharge_submit', function (e){
         this.$amount.focus();
         return false;
     }
-    if (!this.get('isNormal')) {
-        var code = this.get('bankCode');
-        if (!code) {
-            e.original.preventDefault();
-            this.set('msg.BANKCODE_NULL', true);
-            return false;
-        }
-
-    }
+//    if (!this.get('isNormal')) {
+//        var code = this.get('bankCode');
+//        if (!code) {
+//            e.original.preventDefault();
+//            this.set('msg.BANKCODE_NULL', true);
+//            return false;
+//        }
+//
+//    }
 
     Confirm.create({
         msg: '充值是否成功？',
