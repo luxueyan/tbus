@@ -605,10 +605,33 @@ color: #666;
 .bank-success h2{
 	font-weight: bold;
 	font-size: 24px;
+	line-height: 50px;
 }
 .bank-success p{
 	font-size: 18px;
 }
+.bank-success div{
+float: left;
+    margin-top: 62px;
+}
 .bank-success img{
-	width: 180px;
+	width: 200px;
+	display: block;
+	float: left;
+	margin: auto 50px auto 200px;
+}
+.bank-success{
+	margin: 50px auto;
+	height: 200px;
+}
+.success-next button{
+	width: 140px;
+	height: 48px;
+	border-radius: 5px;
+	font-size: 18px;
+	border: none;
+	margin-right: 22px;
+}
+.success-next{
+	    text-align: center;
 }
