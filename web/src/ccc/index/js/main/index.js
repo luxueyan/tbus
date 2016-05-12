@@ -73,7 +73,7 @@ IndexService.getLoanSummary(function (list) {
         el: ".NEWproductList",
         template: require('ccc/global/partials/singleInvest1.html'),
         data: {
-            list: listXSZX,
+            list: listXSZX.slice(0,3),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });
@@ -82,7 +82,7 @@ IndexService.getLoanSummary(function (list) {
         el: ".DCBproductList",
         template: require('ccc/global/partials/singleInvest1.html'),
         data: {
-            list: listDCB,
+            list: listDCB.slice(0,3),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });
@@ -91,7 +91,7 @@ IndexService.getLoanSummary(function (list) {
         el: ".LHBproductList",
         template: require('ccc/global/partials/singleInvest1.html'),
         data: {
-            list: listLHB,
+            list: listLHB.slice(0,3),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });    
@@ -99,7 +99,7 @@ IndexService.getLoanSummary(function (list) {
         el: ".SBTZproductList",
         template: require('ccc/global/partials/singleInvest1.html'),
         data: {
-            list: listSBTZ,
+            list: listSBTZ.slice(0,3),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });    
@@ -107,7 +107,7 @@ IndexService.getLoanSummary(function (list) {
         el: ".HOTproductList",
         template: require('ccc/global/partials/singleInvest1.html'),
         data: {
-            list: listHOT,
+            list: listHOT.slice(0,3),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });
