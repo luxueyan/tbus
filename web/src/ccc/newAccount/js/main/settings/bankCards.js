@@ -119,12 +119,12 @@ ractive.on("bind-card-submit", function (e) {
     var cardNo = this.get('cardNo');
     var idNo = this.get('idNo');
     var personal=this.get('personal');
-    // var recardNo = this.get('recardNo');
     var cardPhone = this.get('mobile');
+    var smsCaptcha = this.get('smsCaptcha');
+    // var recardNo = this.get('recardNo');
     // var province = this.get('myProvince');
     // var city = this.get('myCity');
     // var branchName = this.get('branchName');
-    var smsCaptcha = this.get('smsCaptcha');
 
     if(cardNo === ''){
         showErrorIndex('showErrorMessagea','errorMessagea','* 卡号不能为空');
@@ -140,46 +140,66 @@ ractive.on("bind-card-submit", function (e) {
     // }
 
     var sendObj = {
-        userId:CC.user.userId,
         bankCode: bankName,
         cardNo: cardNo,
-        // idNo:idNo,
-        // personal:personal,
         cardPhone: cardPhone,
+        smsCaptcha: smsCaptcha
+        // personal:personal,
         // province: province,
         // city: city,
         // branchName: branchName,
-        smsCaptcha: smsCaptcha
     }
-    // $.post('/api/v2/hundsun/checkCard/MYSELF',sendCheckc,function(r){
-    //
-    // })
+    var sendName={
+      idNumber:idNo,
+      name:personal
+    }
+    var sendCard={
+       bankCode:bankName,
+       cardNo:cardNo,
+       cardPhone:cardPhone,
+       idNumber:idNo,
+       name:personal
+    }
+    $.get('/api/v2/user/MYSELF',function(r){
+      if(!r.priv){
+        $.post('/api/v2/hundsun/register/MYSELF',sendName,function(){
+        })
+      }else{
+        $.post('/api/v2/hundsun/checkCard/MYSELF',sendCard,function(r){
+          if(r.success){
+            $.post('/api/v2/hundsun/bindCard/MYSELF', sendObj, function (r) {
+                if(r.success) {
+                  window.location.reload();
+                    // CccOk.create({
+                    //     msg: '绑卡成功',
+                    //     okText: '确定',
+                    //     ok: function () {
+                    //         window.location.reload();
+                    //     },
+                    //     cancel: function () {
+                    //         window.location.reload();
+                    //     }
+                    // });
+                } else {
+                    CccOk.create({
+                        msg: '绑卡失败，' + r.error[0].message,
+                        okText: '确定',
+                        ok: function () {
+                            window.location.reload();
+                        },
+                        cancel: function () {
+                            window.location.reload();
+                        }
+                    });
+                }
+            });
+          }
+        })
+      }
+    })
 
-    $.post('/api/v2/hundsun/bindCard/MYSELF', sendObj, function (r) {
-        if(r.success) {
-            CccOk.create({
-                msg: '绑卡成功',
-                okText: '确定',
-                ok: function () {
-                    window.location.reload();
-                },
-                cancel: function () {
-                    window.location.reload();
-                }
-            });
-        } else {
-            CccOk.create({
-                msg: '绑卡失败，' + r.error[0].message,
-                okText: '确定',
-                ok: function () {
-                    window.location.reload();
-                },
-                cancel: function () {
-                    window.location.reload();
-                }
-            });
-        }
-    });
+
+
 });
 
 ractive.on("delete-card-submit", function (e) {

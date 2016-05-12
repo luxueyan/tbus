@@ -19,9 +19,10 @@
 </div> -->
 <!-- {{else}} -->
 <!--要绑定银行卡-->
+<div style="height:100%;background:#fff;">
 <!-- 页头 -->
 <div class="bankcard-nav">
-  <span>基金银行卡</span><span class="shuline">｜</span><span>绑卡</span>
+  <span>理财银行卡</span><span class="shuline">｜</span><span>绑卡</span>
 </div>
 {{#if status === 0}}
 
@@ -35,7 +36,7 @@
             <div class="row">
               <div class="card-brame">
                 <div class="img-box">
-                <img src="/ccc/newAccount/img/card-card.png"/>
+                <img src="/ccc/newAccount/img/bankcode.png"/>
                 </div>
                 <select name="bankName" class="select" value="{{bankName}}">
                     {{#each banks}}
@@ -156,7 +157,7 @@
 {{#if status === 1}}
 <div class="binded-card-wrapper">
     <!--一张银行卡-->
-    {{#each bankAccount}}
+    <!-- {{#each bankAccount}}
         <div class="bank-card">
             <div class="card-img {{account.bank}}">
             </div>
@@ -165,8 +166,20 @@
                 {{account.account.substr(0,4)}}************{{account.account.substr(-4,4)}}
             </div>
         </div>
-    {{/each}}
-    <form action="/lianlianpay/deleteCard" method="POST" target="_blank" on-submit="delete-card-submit" style="margin:30px 0;text-align:center">
+    {{/each}} -->
+    <div class="bank-success">
+      <img src="/ccc/newAccount/img/band-success.png"/>
+      <div>
+        <p>绑卡成功</p>
+        <h2>请设置交易密码</h2>
+      </div>
+    </div>
+    <div class="success-next">
+      <a href="/newAccount/settings/showbank"><button>以后再说</button></a>
+      <a href="/newAccount/settings/password"><button>马上去设置</button></a>
+    </div>
+
+    <!-- <form action="/lianlianpay/deleteCard" method="POST" target="_blank" on-submit="delete-card-submit" style="margin:30px 0;text-align:center">
         <input type="hidden" name="cardNo" value="{{bankAccount[0].account.account}}">
         {{#if ifDel}}
         <div class="row">
@@ -181,17 +194,9 @@
             <button type="button" class="btn btn-sm btn-success btn-change-card disabled" style="background:#999;border-color:#999">审核中</button>
             {{/if}}
         {{/if}}
-    </form>
+    </form> -->
 
 </div>
 {{/if}}
 <!-- {{/if}} -->
-<!-- <div class="space-20"></div>
-<div class="form-group descript" style="width:700px;height:200px;background-color:#f4fcff;padding:10px;margin: 0 auto">
-    <p style="color: #f58220;">温馨提示： </p>
-    <p>1、为保障您的资金安全，绑卡前请先进行实名认证。</p>
-    <p>2、您所绑定的银行卡须是借记卡，718金融严禁利用信用卡套现。</p>
-    <p>3、718金融目前只支持绑定一张银行卡，认证支付充值、提现采用同卡进出原则，即提现银行卡需与充值银行卡一致。</p>
-    <p>4、已绑定的银行卡如需更换，请联系客服：4001-718-718。</p>
 </div>
-<div class="img-wrapperbn"></div> -->
