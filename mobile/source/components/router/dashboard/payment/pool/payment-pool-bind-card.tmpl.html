@@ -15,6 +15,7 @@
         <param ng-model="msg" ng-init="msg = {
             SEND_CAPTCHA_FAILED: '验证码发送失败',
             SMSCAPTCHA_IS_NOT_CORRECT: '手机验证码不匹配',
+            IDNUMBER_ALREADY_EXISTED: '此身份证号已被注册',
             REGISTER_FAILED: '开户失败',
             CHECK_CARD_FAILED: '验卡失败',
             BIND_CARD_FAILED: '绑卡失败',
@@ -53,6 +54,7 @@
                                    placeholder="18位身份证号"
                                    required
                                    x-id-number
+                                   ui-validate-async="{ already_exists: 'self.does_not_exist_id_number($modelValue)' }"
                                    ng-if="is_id_number_init_editable"
                             >
 
@@ -70,6 +72,7 @@
                     >
                         <span ng-show="form.id_number.$error.required">必须填写</span>
                         <span ng-show="form.id_number.$viewValue && form.id_number.$error.id_number">请填写正确的 18 位身份证号码</span>
+                        <span ng-show='form.id_number.$error.already_exists'>此身份证号已被注册</span>
                     </div>
                 </div>
 
@@ -130,7 +133,7 @@
                                ui-mask="9999 9999 9999 9999 ?9?9?9"
                                ui-mask-placeholder
                                ui-mask-placeholder-char="space"
-                               ui-validate="{ already_exists: 'self.does_not_exist($modelValue)' }"
+                               ui-validate="{ already_exists: 'self.does_not_exist_bank($modelValue)' }"
                                placeholder="请输入16至19位的本人借记卡号"
                                required
                         >
