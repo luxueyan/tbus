@@ -116,7 +116,14 @@ do (_, angular) ->
             does_not_exist_id_number: (value) ->
 
                 @api.check_id_number(value)
+
                     .then @api.process_response
+
+                    .catch (data) =>
+                        if data?.success is false
+                            @$q.reject()
+                        else
+                            @$q.resolve()
 
 
             does_not_exist_bank: (value) ->
