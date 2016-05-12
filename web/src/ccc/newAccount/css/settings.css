@@ -100,12 +100,12 @@ width: 380px;
 	margin-bottom: 22px;
 }
 .row .payInp {
-	width: 334px;
+	width: 320px;
 	height: 48px;
 	/* border-radius: 5px; */
 	text-indent: 16px;
-	border-left: 1px #cccccc solid;
-	    border-top: none;
+	border: none;
+	border-left: 1px solid #ccc;
 }
 .row .tipss {
 	display: inline-block;
@@ -197,10 +197,10 @@ width: 380px;
 	padding: 2px 0;
 }
 .select {
-	width: 200px;
-	font-size: 16px;
-  height: 30px;
-    font-weight: bold;
+	width: 330px;
+	font-size: 14px;
+	height: 48px;
+	border: none;
 }
 .ABC {
   background-image: url(/ccc/global/img/banks/ABC.png);
@@ -563,4 +563,14 @@ width: 500px;
 margin-left: -185px;
 line-height: 60px;
 color: #666;
+}
+.account-content-wrapper{
+	background: #fff;
+}
+.img-box{
+	width: 42px;
+    display: inline-block;
+    border-right: 1px solid #ccc;
+    height: 48px;
+    line-height: 48px;
 }
