@@ -113,7 +113,13 @@ do (_, angular) ->
                 )
 
 
-            does_not_exist: (value) ->
+            does_not_exist_id_number: (value) ->
+
+                @api.check_id_number(value)
+                    .then @api.process_response
+
+
+            does_not_exist_bank: (value) ->
                 _.every @user.bank_account_list, (item) -> item.account.account isnt value
 
 
@@ -152,6 +158,15 @@ do (_, angular) ->
 
 
     EXTEND_API = (api) ->
+
+        api.__proto__.check_id_number = (idNumber) ->
+
+            @$http
+                .post '/api/v2/users/check/id_number', {idNumber}
+
+                .then @TAKE_RESPONSE_DATA
+                .catch @TAKE_RESPONSE_ERROR
+
 
         api.__proto__.payment_pool_bind_card_sent_captcha = (mobile) ->
 
