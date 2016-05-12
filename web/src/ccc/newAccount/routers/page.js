@@ -194,17 +194,17 @@ module.exports = function(router) {
 
     });
     // 对提现进行限制,如果是企业用户,显示企业充值
-    router.get('/recharge', function(req, res, next) {
-        var enterprise = res.locals.user.enterprise;
-        var banks = _.filter(res.locals.user.bankCards, function(r) {
-            return r.deleted === false;
-        });
-        if (!banks.length && !enterprise) {
-            res.redirect('/newAccount/settings/bankCards');
-        } else {
-            next();
-        }
-    });
+//    router.get('/recharge', function(req, res, next) {
+//        var enterprise = res.locals.user.enterprise;
+//        var banks = _.filter(res.locals.user.bankCards, function(r) {
+//            return r.deleted === false;
+//        });
+//        if (!banks.length && !enterprise) {
+//            res.redirect('/newAccount/settings/bankCards');
+//        } else {
+//            next();
+//        }
+//    });
     router.get('/withdraw', async function(req, res) {
         var enterprise = res.locals.user.enterprise;
         var paymentPasswordHasSet = await req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')

@@ -1,260 +1,425 @@
+
 .bankItem {
-	width: 140px;
-	height: 58px;
-	display: inline-block;
-	border: 1px #cccccc solid;
-	margin-right: 31px;
-	margin-bottom: 20px;
-	border-radius: 5px;
-	cursor: pointer;
-	position: relative;
+    width: 140px;
+    height: 58px;
+    display: inline-block;
+    border: 1px #cccccc solid;
+    margin-right: 31px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
 }
+
 .currentBank {
-	border: 1px #f58220 solid;
+    border: 1px #f58220 solid;
 }
+
 .row {
-	margin: 0;
-	position: relative;
-	left: 20px;
+    margin: 0;
+    position: relative;
+    left: 20px;
 }
-.tipss,.ava {
-	display: inline-block;
-	height: 30px;
-	line-height: 30px;
-	color: #999999;
-	font-size: 14px;
-	margin-right: 50px;
-	font-family: "Arial";
-}
+
+.tipss,
 .ava {
-	color: #f58220;
-	font-size: 20px;
-	margin-right: 5px;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    color: #999999;
+    font-size: 14px;
+    margin-right: 50px;
+    font-family: "Arial";
 }
+
+.ava {
+    color: #f58220;
+    font-size: 20px;
+    margin-right: 5px;
+}
+
 .line {
-	border-bottom: 1px #ccc solid;
+    border-bottom: 1px #ccc solid;
 }
+
 .methodwr {
-	color: #4a4a4a;
-	font-size: 14px;
+    color: #4a4a4a;
+    font-size: 14px;
 }
+
 .dec-li li {
-	color: #999999;
-	font-size: 14px;
-  text-align: left;
+    color: #999999;
+    font-size: 14px;
+    text-align: left;
 }
+
 .check {
-	z-index: 99;
-	display: none;
-	position: absolute;
-	left: -1px;
-	width: 19px;
-	height: 22px;
-	background: url(/ccc/newAccount/img/checka.png) no-repeat center;
-	top: -1px;
+    z-index: 99;
+    display: none;
+    position: absolute;
+    left: -1px;
+    width: 19px;
+    height: 22px;
+    background: url(/ccc/newAccount/img/checka.png) no-repeat center;
+    top: -1px;
 }
+
 .more {
-	display: inline-block;
-	height: 58px;
-	width: 140px;
-	background: url(/ccc/newAccount/img/more.png) no-repeat center;
-	border: none;
+    display: inline-block;
+    height: 58px;
+    width: 140px;
+    background: url(/ccc/newAccount/img/more.png) no-repeat center;
+    border: none;
 }
+
 .llzf {
-	background: url(/ccc/newAccount/img/llzf.png) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/llzf.png) no-repeat left #fff;
 }
+
 .yeepay {
-	background: url(/ccc/newAccount/img/yeepay.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/yeepay.jpg) no-repeat left #fff;
 }
+
 .ICBC {
-  background: url(/ccc/newAccount/img/pBanks/ICBC.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/ICBC.jpg) no-repeat left #fff;
 }
 
 .CCB {
-  background: url(/ccc/newAccount/img/pBanks/CCB.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/CCB.jpg) no-repeat left #fff;
 }
 
 .ABC {
-  background: url(/ccc/newAccount/img/pBanks/ABC.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/ABC.jpg) no-repeat left #fff;
 }
+
 .CMBCHINA {
-  background: url(/ccc/newAccount/img/pBanks/CMBCHINA.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/CMBCHINA.jpg) no-repeat left #fff;
 }
+
 .BIC {
-  background: url(/ccc/newAccount/img/pBanks/BIC.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/BIC.jpg) no-repeat left #fff;
 }
+
 .BOC {
-  background: url(/ccc/newAccount/img/pBanks/BOC.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/BOC.jpg) no-repeat left #fff;
 }
+
 .CEB {
-  background: url(/ccc/newAccount/img/pBanks/CEB.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/CEB.jpg) no-repeat left #fff;
 }
+
 .CMBC {
-  background: url(/ccc/newAccount/img/pBanks/CMBC.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/CMBC.jpg) no-repeat left #fff;
 }
+
 .CIB {
-  background: url(/ccc/newAccount/img/pBanks/CIB.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/CIB.jpg) no-repeat left #fff;
 }
+
 .ECITIC {
-  background: url(/ccc/newAccount/img/pBanks/ECITIC.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/ECITIC.jpg) no-repeat left #fff;
 }
+
 .GDB {
-  background: url(/ccc/newAccount/img/pBanks/GDB.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/GDB.jpg) no-repeat left #fff;
 }
 
 .SPDB {
-  background: url(/ccc/newAccount/img/pBanks/SPDB.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/SPDB.jpg) no-repeat left #fff;
 }
 
 .PINGAN {
-  background: url(/ccc/newAccount/img/pBanks/PINGAN.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/PINGAN.jpg) no-repeat left #fff;
 }
+
 .HXB {
-  background: url(/ccc/newAccount/img/pBanks/HXB.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/HXB.jpg) no-repeat left #fff;
 }
+
 .NB {
-  background: url(/ccc/newAccount/img/pBanks/NB.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/NB.jpg) no-repeat left #fff;
 }
+
 .DY {
-  background: url(/ccc/newAccount/img/pBanks/DY.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/DY.jpg) no-repeat left #fff;
 }
+
 .SH {
-  background: url(/ccc/newAccount/img/pBanks/SH.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/SH.jpg) no-repeat left #fff;
 }
+
 .POST {
-  background: url(/ccc/newAccount/img/pBanks/POST.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/POST.jpg) no-repeat left #fff;
 }
+
 .NJ {
-  background: url(/ccc/newAccount/img/pBanks/NJ.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/NJ.jpg) no-repeat left #fff;
 }
 
 .SHNS {
-  background: url(/ccc/newAccount/img/pBanks/SHNS.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/SHNS.jpg) no-repeat left #fff;
 }
 
 .CD {
-  background: url(/ccc/newAccount/img/pBanks/CD.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/CD.jpg) no-repeat left #fff;
 }
 
 .BH {
-  background: url(/ccc/newAccount/img/pBanks/BH.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/BH.jpg) no-repeat left #fff;
 }
 
 .BCCB {
-  background: url(/ccc/newAccount/img/pBanks/BCCB.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/BCCB.jpg) no-repeat left #fff;
 }
+
+
 /*企业*/
 
 .cICBC {
-  background: url(/ccc/newAccount/img/nBanks/ICBC.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/nBanks/ICBC.jpg) no-repeat center #fff;
 }
 
 .cCCB {
-  background: url(/ccc/newAccount/img/nBanks/CCB.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/nBanks/CCB.jpg) no-repeat center #fff;
 }
 
 .cABC {
-  background: url(/ccc/newAccount/img/nBanks/ABC.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/nBanks/ABC.jpg) no-repeat center #fff;
 }
+
 .cCMBCHINA {
-  background: url(/ccc/newAccount/img/nBanks/CMBCHINA.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/nBanks/CMBCHINA.jpg) no-repeat center #fff;
 }
+
 .cBIC {
-  background: url(/ccc/newAccount/img/nBanks/BIC.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/nBanks/BIC.jpg) no-repeat center #fff;
 }
+
 .cBOC {
-  background: url(/ccc/newAccount/img/nBanks/BOC.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/nBanks/BOC.jpg) no-repeat center #fff;
 }
+
 .cCEB {
-  background: url(/ccc/newAccount/img/nBanks/CEB.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/nBanks/CEB.jpg) no-repeat center #fff;
 }
+
 .cCMBC {
-  background: url(/ccc/newAccount/img/nBanks/CMBC.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/nBanks/CMBC.jpg) no-repeat center #fff;
 }
+
 .cCIB {
-  background: url(/ccc/newAccount/img/nBanks/CIB.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/nBanks/CIB.jpg) no-repeat center #fff;
 }
+
 .cECITIC {
-  background: url(/ccc/newAccount/img/nBanks/ECITIC.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/nBanks/ECITIC.jpg) no-repeat center #fff;
 }
+
 .cGDB {
-  background: url(/ccc/newAccount/img/nBanks/GDB.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/nBanks/GDB.jpg) no-repeat center #fff;
 }
 
 .cSPDB {
-  background: url(/ccc/newAccount/img/nBanks/SPDB.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/nBanks/SPDB.jpg) no-repeat center #fff;
 }
+
 .cPINGAN {
-  background: url(/ccc/newAccount/img/nBanks/PINGAN.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/nBanks/PINGAN.jpg) no-repeat center #fff;
 }
+
 .cHXB {
-  background: url(/ccc/newAccount/img/nBanks/HXB.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/nBanks/HXB.jpg) no-repeat center #fff;
 }
+
 .cNB {
-  background: url(/ccc/newAccount/img/nBanks/NB.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/nBanks/NB.jpg) no-repeat center #fff;
 }
+
 .cDY {
-  background: url(/ccc/newAccount/img/nBanks/DY.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/nBanks/DY.jpg) no-repeat center #fff;
 }
+
 .cSH {
-  background: url(/ccc/newAccount/img/nBanks/SH.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/nBanks/SH.jpg) no-repeat center #fff;
 }
+
 .cPOST {
-  background: url(/ccc/newAccount/img/nBanks/POST.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/nBanks/POST.jpg) no-repeat center #fff;
 }
+
 .cNJ {
-  background: url(/ccc/newAccount/img/nBanks/NJ.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/nBanks/NJ.jpg) no-repeat center #fff;
 }
 
 .cSHNS {
-  background: url(/ccc/newAccount/img/nBanks/SHNS.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/nBanks/SHNS.jpg) no-repeat center #fff;
 }
 
 .cCD {
-  background: url(/ccc/newAccount/img/nBanks/CD.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/nBanks/CD.jpg) no-repeat center #fff;
 }
 
 .cBH {
-  background: url(/ccc/newAccount/img/nBanks/BH.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/nBanks/BH.jpg) no-repeat center #fff;
 }
 
 .cBCCB {
-  background: url(/ccc/newAccount/img/nBanks/BCCB.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/nBanks/BCCB.jpg) no-repeat center #fff;
 }
+
 table.tinfo {
-  width: 850px;
-  margin: 0 auto;
-  border-color: #cccccc;
+    width: 850px;
+    margin: 0 auto;
+    border-color: #cccccc;
 }
-table.tinfo td,th {
-  border: 1px;
-  border-style: solid;
-  border-color: #cccccc;
-  color: #999999;
+
+table.tinfo td,
+th {
+    border: 1px;
+    border-style: solid;
+    border-color: #cccccc;
+    color: #999999;
 }
-table.tinfo th,tr,td,div {
-  border-color: #cccccc;
-  color: #999999;
+
+table.tinfo th,
+tr,
+td,
+div {
+    border-color: #cccccc;
+    color: #999999;
 }
+
 table.tinfo div {
-  height: 25px;
-  line-height: 25px;
-  border-bottom: 1px #cccccc solid;
+    height: 25px;
+    line-height: 25px;
+    border-bottom: 1px #cccccc solid;
 }
-th,td {
-  text-align: center;
+
+th,
+td {
+    text-align: center;
 }
+
 table.tinfo tbody tr {
-  display: none;
+    display: none;
 }
-.btn-success{
-   background-color: #f58220;
-    border-color:#f58220;
+
+.btn-success {
+    background-color: #f58220;
+    border-color: #f58220;
 }
-.btn-success:hover{
+
+.btn-success:hover {
     font-size: 16px;
 }
-.btn-confirm-cancel{
+
+.btn-confirm-cancel {
     background: #d3d3d3;
     color: white;
+}
+
+
+/*华瑞金科*/
+.ccc-banks-wrap{
+    background: #fff;
+    margin: 0 auto;
+    width: 990px;
+    min-height: 748px;
+}
+
+.recharge-wrap{
+    width: 520px;
+    margin: auto;
+}
+.bankcard-nav{
+    line-height: 66px;
+    border-bottom: 1px dashed #dbdbdb;
+    font-size: 24px;
+    padding-left: 46px;
+    color: #4a4a4a;
+}
+.bankcard-nav .shuline {
+    color: #ccc;
+    font-size: 30px;
+    margin: 0px 10px;
+}
+.recharge-input {
+    width: 380px;
+    height: 46px;
+    line-height: 46px;
+    border: 1px #cccccc solid;
+    color: #999999;
+    text-indent: 10px;
+    margin-top: 25px;
+}
+.submit_btn{
+    width: 380px;
+    height: 46px;
+    line-height: 46px;
+    border: 1px #ef9c2c solid;
+    color: #fff;
+    text-indent: 10px;
+    margin-top: 32px;
+    background: #ef9c2c;
+    font-size: 16px;
+    border-radius: 2px;
+}
+.bankcards-wrap{
+    margin-top: 30px;
+    position: relative;
+    left: 20px;
+    
+}
+.bankcard-box {
+    height: 70px;
+    line-height: 70px;
+    font-size: 18px;
+    color: #4a4a4a;
+}
+.bankcard-box span{
+    padding-left: 160px;
+}
+
+.warm-tip{
+    color: #9b9b9b;
+    padding-top: 8px;
+    margin-bottom: 5px;
+}
+
+.forgot-pwd,
+.forgot-pwd:hover{
+    color: #4a90e2;
+    padding-left: 15px;
+    text-decoration: none;
+}
+.bring-in input {
+    width: 262px;
+}
+.bring-in button {
+    background-color: #fff;
+    width: 118px;
+    height: 46px;
+    color: #007ec5;
+    border: 1px solid #ccc;
+    border-left: none;
+    margin-left: -4px;
+}
+/*placeholder颜色设置*/
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #d6d6d6;  
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #d6d6d6;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: #d6d6d6;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #d6d6d6;
 }

@@ -1,5 +1,7 @@
 'use strict';
 
+var utils = require('ccc/global/js/lib/utils');
+var UMPBANKS = require('ccc/global/js/modules/cccUmpBanks');
 var NETBANKS = require('ccc/global/js/modules/netBank');
 require('ccc/global/js/modules/cccTab');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
@@ -19,42 +21,71 @@ var ractive = new Ractive({
         loading: true,
         availableAmount: CC.user.availableAmount || 0,
         msg: {
-            BANK_NULL: false,
             AMOUNT_NULL: false,
-            AMOUNT_INVALID: false
+            AMOUNT_INVALID: false,
+            CODE_NULL: false,
+            CODE_INVALID: false,
         },
-        pointNum:null,
-        intNum:null,
+        pointNum: null,
+        intNum: null,
         isNormal: false,
         banks: banks,
         corBanks: corBanks,
+        bankcards: CC.user.bankcards,
         isEnterpriseUser: CC.user.enterprise,
         bankCodeEnd: (function () {
-            if(CC.user.enterprise) {
+            if (CC.user.enterprise) {
                 return '-NET-B2B';
-            }else {
+            } else {
                 return '-NET-B2C';
             }
         })(),
         isBankCard: CC.user.bankCards.length,
-        amountValue: 10000000,
-        action: '/yeepay/onlineBankDeposit',
+        amountValue: 5000,
         showNum: 9,
         minAmount: 100
     },
-    parseData:function(){
+    oninit: function () {
         var self = this;
-        var availableAmount = self.get('availableAmount').toFixed(2)+'';
-        console.log(availableAmount);
+        // get banks
+        this.set('loadMessage', '正在载入银行卡...');
+        var url = '/api/v2/user/MYSELF/fundaccounts';
+        $.get(url, function (o) {
+            if (o.length === 0) {
+                self.set('loadMessage', '暂无数据');
+            }
+            self.set('bankcards', self.parseBankData(o));
+            self.set('loadMessage', null);
+        }).error(function () {
+            self.set('loadMessage', '请求出错了');
+        });
+    },
+    parseData: function () {
+        var self = this;
+        var availableAmount = self.get('availableAmount').toFixed(2) + '';
         var point = availableAmount.indexOf('.');
-        if(point !== -1){
+        if (point !== -1) {
             var num = availableAmount.split('.');
             self.set({
-                'intNum':num[0],
-                'pointNum':num[1]
+                'intNum': num[0],
+                'pointNum': num[1]
             })
+        };
+
+    },
+    parseBankData: function (datas) {
+        // 依据UMPBANKS的code来分组
+        var BANKS = _.groupBy(UMPBANKS, function (b) {
+            return b.code;
+        });
+
+        // format data
+        for (var i = 0; i < datas.length; i++) {
+            var o = datas[i];
+            datas[i].account.imgPos = BANKS[o.account.bank][0].imgPos;
+            datas[i].Faccount = o.account.account.slice(-4);
         }
-        console.log(num);
+        return datas;
     },
     oncomplete: function () {
         var self = this;
@@ -67,65 +98,36 @@ var ractive = new Ractive({
 
         this.on('changeValue', function (e) {
             self.set('msg', {
-                BANK_NULL: false,
                 AMOUNT_NULL: false,
-                AMOUNT_INVALID: false
+                AMOUNT_INVALID: false,
+                CODE_NULL: false,
+                CODE_INVALID: false,
             });
             var value = $(e.node)
                 .val();
 
             if (value === '') {
                 self.set('msg.AMOUNT_NULL', true);
+                self.set('msg.CODE_NULL', true);
                 return;
             }
-//            if (value > 10){
-//                self.set('msg.AMOUNT_NOTENOUGH',true);
-//                return;
-//            }
+            //            if (value > 10){
+            //                self.set('msg.AMOUNT_NOTENOUGH',true);
+            //                return;
+            //            }
 
             if (!self.get('msg.AMOUNT_MULL')) {
                 self.set('msg.AMOUNT_NULL', false);
+                self.set('msg.CODE_NULL', false);
             } else {
                 self.set('msg.AMOUNT_NULL', true);
+                self.set('msg.CODE_NULL', true);
             }
 
             self.set('msg.AMOUNT_INVALID', !self.match($(e.node)
                 .val()));
 
         });
-
-        $(".bankwrap").delegate('.bankItem', 'click', function () {
-
-            var classMap = ['ICBC','CCB','ABC','CMBCHINA','BOC','CEB','CMBC','ECITIC','GDB','PINGAN','HXB','POST','BCCB'];
-
-            var code = $(this).data('cc');
-            if ($.inArray(code,classMap) == -1) {
-                ractive.set('showamountInfo', false);
-            } else {
-                ractive.set('showamountInfo', true);
-                $("#" + code).show().siblings().hide();
-            }
-            $('.bankwrap .bankItem')
-                .removeClass('currentBank');
-            $(this)
-                .addClass('currentBank');
-            $('.bankwrap .bankItem')
-            	.find('span.check')
-            	.hide();
-            $(this)
-            	.find('span.check')
-            	.show()
-
-          	var type = $(this).parent().siblings('.methodwr').data('type');
-		    if (type !== 'net') {
-        		ractive.set('isNormal', true);
-		        ractive.set('action', '/yeepay/deposit');
-		    } else {
-        		ractive.set('isNormal', false);
-		        ractive.set('action', '/yeepay/onlineBankDeposit');
-		    }
-        });
-
 
     },
 
@@ -137,76 +139,84 @@ var ractive = new Ractive({
 
 ractive.parseData();
 
-ractive.on('recharge_submit', function (e){
+ractive.on('recharge_submit', function (e) {
     var amount = this.get('amount');
+    var password = this.get('password');
+    var bankcardNo = this.get('bankcards');
+    var cardNo = bankcardNo[0].account.account;
+    console.log("1`1`1res")
+            console.log(cardNo);
     this.set('msg', {
-        BANK_NULL: false,
         AMOUNT_NULL: false,
         AMOUNT_INVALID: false,
-        BANKCODE_NULL: false,
-        AMOUNT_NOTENOUGH : false,
+        AMOUNT_NOTENOUGH: false,
+        CODE_NULL: false,
+        CODE_INVALID: false,
     });
 
+
     if (amount === '') {
-        console.log(amount=== '');
         e.original.preventDefault();
         this.$amount.focus();
         this.set('msg.AMOUNT_NULL', true);
         return false;
-    }
-//    else if (amount > 10 ) {
-//        e.original.preventDefault();
-//        this.set('msg.AMOUNT_NOTENOUGH', true);
-//        this.$amount.focus();
-//        return false;
-//    }
-    else if (!this.match(amount) || parseFloat(amount) > parseFloat(this.get('amountValue'))) {
+    } else if (!this.match(amount) || parseFloat(amount) > parseFloat(this.get('amountValue'))) {
         e.original.preventDefault();
         this.set('msg.AMOUNT_INVALID', true);
         this.$amount.focus();
         return false;
     }
-    if (!this.get('isNormal')) {
-        var code = this.get('bankCode');
-        if (!code) {
-            e.original.preventDefault();
-            this.set('msg.BANKCODE_NULL', true);
-            return false;
-        }
 
-    }
-
-    Confirm.create({
-        msg: '充值是否成功？',
-        okText: '充值成功',
-        cancelText: '充值失败',
-        ok: function () {
-            window.location.href = '/newAccount/fund/loanDeal';
-        },
-        cancel: function () {
-            window.location.reload();
-        }
-    });
-});
-
-ractive.on('changeMethod', function (event) {
-    var type = event.node.getAttribute('data-type');
-    if (type !== 'net') {
-        ractive.set('isNormal', true);
-        ractive.set('action', '/yeepay/deposit');
+    if (password === '') {
+        e.original.preventDefault();
+        this.set('msg.CODE_NULL', true);
+        return false;
     } else {
-        ractive.set('isNormal', false);
-        ractive.set('action', '/yeepay/onlineBankDeposit');
+        var self = this;
+        accountService.checkPassword(password, function (res) {
+            
+            if(res){
+                request.post('/api/v2/hundsun/recharge/MYSELF')
+                .type("form")
+                .send({
+                    amount: amount,
+                    paymentPassword: password,
+                    cardNo: cardNo
+                })
+                .end()
+                .then(function (r) {
+                    if (r.body.success) {
+//                        ractive.set('step1',false);
+//                        ractive.set('step2',sucess);
+                                Confirm.create({
+                                    msg: '充值是否成功？',
+                                    okText: '充值成功',
+                                    cancelText: '充值失败',
+                                    ok: function () {
+                                        window.location.href = '/newAccount/fund/loanDeal';
+                                    },
+                                    cancel: function () {
+                                        window.location.reload();
+                                    }
+                                });
+                    } else {
+                        alert('充值失败');
+                    }
+                });
+            }else{
+                self.set('msg.CODE_INVALID', true);
+            }
+        })
+        return false;
     }
+
 });
+
+
 ractive.on('showAll', function () {
-	this.set('showNum', banks.length);
+    this.set('showNum', banks.length);
 });
 ractive.on('selectBank', function (event) {
-    var code = event.node.getAttribute('data-cc');
-    this.set('bankCode', code);
-});
-ractive.on('chooseBank', function (event) {
     var code = event.node.getAttribute('data-cc');
     this.set('bankCode', code);
 });
