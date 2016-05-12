@@ -244,7 +244,8 @@ module.exports = function(router) {
         "authentication",
         "password",
         "resetPassword",
-        "userInfo"
+        "userInfo",
+        "showbank"
     ].forEach(function(tabName) {
         router.get('/settings/' + tabName, function(req, res) {
             Promise.join(

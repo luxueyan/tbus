@@ -31,13 +31,13 @@
 		<span class="nav-text {{#if loanDeal}}nav-text-active{{/if}}"><a href="/newAccount/fund/loanDeal">资金记录</a></span>
 	</li>
     <li class="nav-li">
-		{{#if bankCards}}
+		{{#if showbank||bankCards}}
 			<span class="icon-bankCards-active"></span>
 		{{else}}
 			<span class="icon-bankCards"></span>
 		{{/if}}
-		<span class="nav-text {{#if bankCards}}nav-text-active{{/if}}"><a href="/newAccount/settings/bankCards">银行卡管理</a></span>
-	</li>    
+		<span class="nav-text {{#if bankCards}}nav-text-active{{/if}}"><a href="/newAccount/settings/showbank">银行卡管理</a></span>
+	</li>
     <li class="nav-li">
 		{{#if password}}
 			<span class="icon-password-active"></span>
