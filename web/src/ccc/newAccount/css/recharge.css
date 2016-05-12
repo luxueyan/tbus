@@ -1,3 +1,4 @@
+
 .bankItem {
     width: 140px;
     height: 58px;
@@ -72,103 +73,103 @@
 }
 
 .llzf {
-    background: url(/ccc/newAccount/img/llzf.png) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/llzf.png) no-repeat left #fff;
 }
 
 .yeepay {
-    background: url(/ccc/newAccount/img/yeepay.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/yeepay.jpg) no-repeat left #fff;
 }
 
 .ICBC {
-    background: url(/ccc/newAccount/img/pBanks/ICBC.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/ICBC.jpg) no-repeat left #fff;
 }
 
 .CCB {
-    background: url(/ccc/newAccount/img/pBanks/CCB.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/CCB.jpg) no-repeat left #fff;
 }
 
 .ABC {
-    background: url(/ccc/newAccount/img/pBanks/ABC.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/ABC.jpg) no-repeat left #fff;
 }
 
 .CMBCHINA {
-    background: url(/ccc/newAccount/img/pBanks/CMBCHINA.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/CMBCHINA.jpg) no-repeat left #fff;
 }
 
 .BIC {
-    background: url(/ccc/newAccount/img/pBanks/BIC.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/BIC.jpg) no-repeat left #fff;
 }
 
 .BOC {
-    background: url(/ccc/newAccount/img/pBanks/BOC.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/BOC.jpg) no-repeat left #fff;
 }
 
 .CEB {
-    background: url(/ccc/newAccount/img/pBanks/CEB.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/CEB.jpg) no-repeat left #fff;
 }
 
 .CMBC {
-    background: url(/ccc/newAccount/img/pBanks/CMBC.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/CMBC.jpg) no-repeat left #fff;
 }
 
 .CIB {
-    background: url(/ccc/newAccount/img/pBanks/CIB.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/CIB.jpg) no-repeat left #fff;
 }
 
 .ECITIC {
-    background: url(/ccc/newAccount/img/pBanks/ECITIC.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/ECITIC.jpg) no-repeat left #fff;
 }
 
 .GDB {
-    background: url(/ccc/newAccount/img/pBanks/GDB.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/GDB.jpg) no-repeat left #fff;
 }
 
 .SPDB {
-    background: url(/ccc/newAccount/img/pBanks/SPDB.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/SPDB.jpg) no-repeat left #fff;
 }
 
 .PINGAN {
-    background: url(/ccc/newAccount/img/pBanks/PINGAN.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/PINGAN.jpg) no-repeat left #fff;
 }
 
 .HXB {
-    background: url(/ccc/newAccount/img/pBanks/HXB.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/HXB.jpg) no-repeat left #fff;
 }
 
 .NB {
-    background: url(/ccc/newAccount/img/pBanks/NB.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/NB.jpg) no-repeat left #fff;
 }
 
 .DY {
-    background: url(/ccc/newAccount/img/pBanks/DY.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/DY.jpg) no-repeat left #fff;
 }
 
 .SH {
-    background: url(/ccc/newAccount/img/pBanks/SH.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/SH.jpg) no-repeat left #fff;
 }
 
 .POST {
-    background: url(/ccc/newAccount/img/pBanks/POST.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/POST.jpg) no-repeat left #fff;
 }
 
 .NJ {
-    background: url(/ccc/newAccount/img/pBanks/NJ.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/NJ.jpg) no-repeat left #fff;
 }
 
 .SHNS {
-    background: url(/ccc/newAccount/img/pBanks/SHNS.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/SHNS.jpg) no-repeat left #fff;
 }
 
 .CD {
-    background: url(/ccc/newAccount/img/pBanks/CD.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/CD.jpg) no-repeat left #fff;
 }
 
 .BH {
-    background: url(/ccc/newAccount/img/pBanks/BH.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/BH.jpg) no-repeat left #fff;
 }
 
 .BCCB {
-    background: url(/ccc/newAccount/img/pBanks/BCCB.jpg) no-repeat center #fff;
+    background: url(/ccc/newAccount/img/pBanks/BCCB.jpg) no-repeat left #fff;
 }
 
 
@@ -319,7 +320,29 @@ table.tinfo tbody tr {
 
 
 /*华瑞金科*/
+.ccc-banks-wrap{
+    background: #fff;
+    margin: 0 auto;
+    width: 990px;
+    min-height: 748px;
+}
 
+.recharge-wrap{
+    width: 520px;
+    margin: auto;
+}
+.bankcard-nav{
+    line-height: 66px;
+    border-bottom: 1px dashed #dbdbdb;
+    font-size: 24px;
+    padding-left: 46px;
+    color: #4a4a4a;
+}
+.bankcard-nav .shuline {
+    color: #ccc;
+    font-size: 30px;
+    margin: 0px 10px;
+}
 .recharge-input {
     width: 380px;
     height: 46px;
@@ -327,16 +350,76 @@ table.tinfo tbody tr {
     border: 1px #cccccc solid;
     color: #999999;
     text-indent: 10px;
-    margin-bottom: 20px;
+    margin-top: 25px;
 }
 .submit_btn{
     width: 380px;
     height: 46px;
     line-height: 46px;
-    border: 1px #f58220 solid;
+    border: 1px #ef9c2c solid;
     color: #fff;
     text-indent: 10px;
-    margin-bottom: 10px;
-    background: #f58220;
+    margin-top: 32px;
+    background: #ef9c2c;
     font-size: 16px;
+    border-radius: 2px;
+}
+.bankcards-wrap{
+    margin-top: 30px;
+    position: relative;
+    left: 20px;
+    
+}
+.bankcard-box {
+    height: 70px;
+    line-height: 70px;
+    font-size: 18px;
+    color: #4a4a4a;
+}
+.bankcard-box span{
+    padding-left: 160px;
+}
+
+.warm-tip{
+    color: #9b9b9b;
+    padding-top: 8px;
+    margin-bottom: 5px;
+}
+
+.forgot-pwd,
+.forgot-pwd:hover{
+    color: #4a90e2;
+    padding-left: 15px;
+    text-decoration: none;
+}
+.bring-in input {
+    width: 262px;
+}
+.bring-in button {
+    background-color: #fff;
+    width: 118px;
+    height: 46px;
+    color: #007ec5;
+    border: 1px solid #ccc;
+    border-left: none;
+    margin-left: -4px;
+}
+/*placeholder颜色设置*/
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #d6d6d6;  
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #d6d6d6;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: #d6d6d6;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #d6d6d6;
 }

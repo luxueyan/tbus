@@ -13,88 +13,66 @@
 </div>
 {{else}}
 <div class="ccc-banks-wrap">
-    <div class="bankcards-wrap">
-		{{#each bankcards}}
-		<div class="bankcard-box {{account.bank}}" style="position:relative;">
-            {{#if hasExpress}}
-                {{#if !expressAccount}}
-                    <div class="wrapper"></div>
+    <div class="bankcard-nav"><span>理财账户</span><span class="shuline">｜</span><span>充值</span></div>
+    <div class="recharge-wrap">
+        <div class="bankcards-wrap">
+            {{#each bankcards}}
+            <div class="bankcard-box {{account.bank}}" style="position:relative;">
+                {{#if hasExpress}}
+                    {{#if !expressAccount}}
+                        <div class="wrapper"></div>
+                    {{/if}}
                 {{/if}}
-            {{/if}}
-			<div class="bank-img"
-			style="visibility:hidden;background-position: 10px -{{account.imgPos+3}}px"></div>
-			<div class="bankcard-no center">
-				<span>{{Faccount}}</span>
-			</div>
-		</div>
-		{{/each}}
-        
-		{{loadMessage}}
-    </div>
-    <div class="recharge-form-wrap">
-        <form role="form" name="rechargeForm" action="{{action}}" method="POST" target="_blank"
-          on-submit="recharge_submit">
-
-            <div class="row">
-                <!--                <div class="methodwr">填写充值金额</div>-->
-                <div class="">
-                    <div class="rows">
-                        <span class="tipss">账户余额</span>
-                        <span class="ava">{{intNum}}.<span style="font-size:14px;">{{pointNum}}</span></span>
-                        <span class="tipss" style="color:#f58220">元</span>
-                    </div>
-                    <div class="space-20"></div>
-                    <div class="rows">
-                        <input type="text" name="amount" id="rechargeValue" on-blur="changeValue" placeholder="请输入充值金额"
-                          value="{{amount}}" class="recharge-input" autocomplete="off">
-<!--                        <span class="tipss" style="position:relative;left:5px;top:15px;">元</span>-->
-                        <p class="help-block text-danger" style="color:red;text-indent:95px;display:inline;">
-                            {{#msg.AMOUNT_NULL}}请输入充值金额{{/msg.AMOUNT_NULL}}
-                            {{#msg.AMOUNT_INVALID}}输入的金额有误{{/msg.AMOUNT_INVALID}}
-                            {{#msg.AMOUNT_NOTENOUGH}}单笔充值10元内{{/msg.AMOUNT_NOTENOUGH}}
-                        </p>
-                    </div>
-                    <div class="rows">
-                        <input type="text" name="password" id="rechargePassword" on-blur="changeValue" placeholder="请输入交易密码"
-                          value="{{password}}" class="recharge-input" autocomplete="off">
-                        <p class="help-block text-danger" style="color:red;text-indent:95px;display:inline;">
-                            {{#msg.AMOUNT_NULL}}请输入交易密码{{/msg.AMOUNT_NULL}}
-                        </p>
-                    </div>
-                    <div class="rows">
-                        <input type="text" name="code" id="rechargeCode" on-blur="changeValue" placeholder="请输入手机动态码"
-                          value="{{code}}" class="recharge-input" autocomplete="off">
-                        <p class="help-block text-danger" style="color:red;text-indent:95px;display:inline;">
-                            {{#msg.AMOUNT_NULL}}请输入手机动态码{{/msg.AMOUNT_NULL}}
-                        </p>
-                    </div>
-                    <div class="col-md-12">
-
-                    </div>
-                </div>
-            </div>
-            <div class="row">
 <!--
-                <div class="bankwrap">
-                    {{#banks:index}}
-                        {{#if index< showNum}} 
-                        <span class="bankItem {{code}}" data-cc="{{code}}" data-code="{{bankCode}}"on-click="selectBank">
-                        <span class="check"></span>
-                        </span>
-                        {{/if}} 
-                        {{#if index == showNum}}
-                        <span class="bankItem more" on-click="showAll"></span> 
-                        {{/if}}
-                        {{/banks}}
- 
-                </div>
+                <div class="bank-img"
+                style="visibility:hidden;background-position: 10px -{{account.imgPos+3}}px"></div>
 -->
-                <input type="hidden" name="isEnterpriseUser" value="{{isEnterpriseUser}}">
-                <!--                <input type="hidden" name="retUrl" value="http://xyjr.uats.cc/api/v2/yeepay/BankDepositReturn">-->
-                <input type="hidden" name="bankCode" value="{{bankCode}}{{bankCodeEnd}}">
+                <span>尾号{{Faccount}}</span>
+            </div>
+            {{/each}}
 
+            {{loadMessage}}
+        </div>
+        <form role="form" name="rechargeForm"  method="POST" target="_blank"
+          on-submit="recharge_submit" class="form">
+
+            <div class="row">
+                <div class="rows">
+                    <input type="text" name="amount" id="rechargeValue" on-blur="changeValue" placeholder="请输入充值金额"
+                      value="{{amount}}" class="recharge-input" autocomplete="off">
+                    <p class="text-danger" style="color:red;">
+                        {{#msg.AMOUNT_NULL}}请输入充值金额{{/msg.AMOUNT_NULL}}
+                        {{#msg.AMOUNT_INVALID}}输入的金额有误{{/msg.AMOUNT_INVALID}}
+<!--                        {{#msg.AMOUNT_NOTENOUGH}}单笔充值10元内{{/msg.AMOUNT_NOTENOUGH}}-->
+                    </p>
+                    <p class="warm-tip">单笔限额5000元，单日限额50000元</p>
+                </div>
+                <div class="rows">
+                    <input type="text" name="paymentPassword" id="rechargePassword" on-blur="changeValue" placeholder="请输入交易密码"
+                      value="{{password}}" class="recharge-input" autocomplete="off">
+                    <a href="/forgot" class="forgot-pwd">忘记密码？</a>
+                    <p class="text-danger" style="color:red;">
+                        {{#msg.CODE_NULL}}请输入交易密码{{/msg.CODE_NULL}}
+                        {{#msg.CODE_INVALID}}输入的密码有误{{/msg.CODE_INVALID}}
+                    </p>
+                </div>
+<!--
+                <div class="rows bring-in">
+                    <input type="text" name="code" id="rechargeCode" on-blur="changeValue" placeholder="请输入手机动态码"
+                      value="{{code}}" class="recharge-input" autocomplete="off">
+                    <button id="get-message">发送验证码</button>
+                    <p class="text-danger" style="color:red;">
+                        {{#msg.AMOUNT_NULL}}请输入手机动态码{{/msg.AMOUNT_NULL}}
+                        {{#msg.AMOUNT_INVALID}}输入的动态码有误{{/msg.AMOUNT_INVALID}}
+                    </p>
+                </div>    
+-->
+            </div>
+            
+            <div class="row">
+<!--                <input type="hidden" name="cardNo" value="{{bankCode}}{{bankCodeEnd}}">-->
                 <button type="submit" class="submit_btn">确认充值</button>
-                <p>预计1分钟到账，以实际到账时间为准</p>
+                <p class="warm-tip">预计1分钟到账，以实际到账时间为准</p>
             </div>
         </form>
         </div>

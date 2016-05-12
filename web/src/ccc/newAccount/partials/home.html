@@ -12,8 +12,13 @@
             </div>		
 		</div>
         <div class="home-bottomBar">
-			<a href="/newAccount/withdraw"><div class="home-withdraw-btn">提现</div></a>
+            {{#if !user.paymentPasswordHasSet}}
+            <a href="/newAccount/settings/password"><div class="home-withdraw-btn">提现</div></a>
+			<a href="/newAccount/settings/password"><div class="home-recharge-btn">充值</div></a>
+            {{else}}
+            <a href="/newAccount/withdraw"><div class="home-withdraw-btn">提现</div></a>
 			<a href="/newAccount/recharge"><div class="home-recharge-btn">充值</div></a>
+            {{/if}}
 		</div>
 	</div>
 </div>
