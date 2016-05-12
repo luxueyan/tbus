@@ -50,7 +50,7 @@
                 <div class="rows">
                     <input type="text" name="paymentPassword" id="rechargePassword" on-blur="changeValue" placeholder="请输入交易密码"
                       value="{{password}}" class="recharge-input" autocomplete="off">
-                    <a href="/forgot" class="forgot-pwd">忘记密码？</a>
+                    <a href="/newAccount/settings/resetPassword" class="forgot-pwd">忘记密码？</a>
                     <p class="text-danger" style="color:red;">
                         {{#msg.CODE_NULL}}请输入交易密码{{/msg.CODE_NULL}}
                         {{#msg.CODE_INVALID}}输入的密码有误{{/msg.CODE_INVALID}}

@@ -57,6 +57,17 @@ var ractive = new Ractive({
 		userInfo.then(function(){
 			self.set('availableAmount', CC.user.availableAmount);
 		});
+        this.set('loadMessage', '正在载入银行卡...');
+        var url = '/api/v2/user/MYSELF/fundaccounts';
+        $.get(url, function (o) {
+            if (o.length === 0) {
+                self.set('loadMessage', '暂无数据');
+            }
+            self.set('bankcards', self.parseData(o));
+            self.set('loadMessage', null);
+        }).error(function () {
+            self.set('loadMessage', '请求出错了');
+        });
 	},
 	oncomplete: function(){
 		var self = this;
@@ -116,7 +127,7 @@ var ractive = new Ractive({
 		for (var i=0; i < datas.length; i++) {
 			var o = datas[i];
 			datas[i].account.imgPos = BANKS[o.account.bank][0].imgPos;
-			datas[i].Faccount = utils.bankAccount(o.account.account);
+			datas[i].Faccount = o.account.account.slice(-4);
 		}
 		return datas;
 	},
