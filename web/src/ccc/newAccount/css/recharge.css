@@ -1,4 +1,4 @@
-
+input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
 .bankItem {
     width: 140px;
     height: 58px;
@@ -23,18 +23,15 @@
 
 .tipss,
 .ava {
-    display: inline-block;
-    height: 30px;
-    line-height: 30px;
-    color: #999999;
-    font-size: 14px;
-    margin-right: 50px;
-    font-family: "Arial";
+    color: #4a4a4a;
+    font-size: 17px;
+    height: 50px;
+    line-height: 50px;
 }
 
 .ava {
-    color: #f58220;
-    font-size: 20px;
+    color: #ef9c2c;
+    font-size: 18px;
     margin-right: 5px;
 }
 
@@ -344,7 +341,7 @@ table.tinfo tbody tr {
     margin: 0px 10px;
 }
 .recharge-input {
-    width: 380px;
+    width: 400px;
     height: 46px;
     line-height: 46px;
     border: 1px #cccccc solid;
@@ -353,7 +350,7 @@ table.tinfo tbody tr {
     margin-top: 25px;
 }
 .submit_btn{
-    width: 380px;
+    width: 400px;
     height: 46px;
     line-height: 46px;
     border: 1px #ef9c2c solid;
@@ -384,6 +381,9 @@ table.tinfo tbody tr {
     color: #9b9b9b;
     padding-top: 8px;
     margin-bottom: 5px;
+}
+.warm-tip span{
+   padding-left: 20px;
 }
 
 .forgot-pwd,
