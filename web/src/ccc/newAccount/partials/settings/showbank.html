@@ -1,12 +1,45 @@
 
 <div class="showbank-box" style="margin-bottom:24px;">
   <h1 class="showbank-title">理财银行卡</h1>
+  {{#if bankCards.length>0}}
+  <table style="margin: 18px 40px;" class="has-card-box">
+  <thead>
+  <tr class="has-card">
+    <th style="width:184px;">银行名称</th>
+    <th style="width:280px;">卡号</th>
+    <th style="width:170px;">状态</th>
+    <th style="width:272px;">操作</th>
+  </tr>
+</thead>
+<tbody>
+  {{#each bankCards}}
+  <tr>
+    <td>{{account.bank}}</td>
+    <td>{{account.account.substr(0,4)}}************{{account.account.substr(-4,4)}}</td>
+    <td>已认证</td>
+    <td>
+      {{#if defaultAccount}}
+      <button on-click="deleted-card" style="margin-left:110px;" lala="{{account.account}}">解绑</button>
+      {{else}}
+      <!-- {{#each account1}} -->
+      <button class="let-allow" on-click="let-allow" name='cardNo' arg="{{account.account}}">设为默认卡</button>
+      <button on-click="deleted-card" lala="{{account.account}}">解绑</button>
+      <!-- {{/each}} -->
+      {{/if}}
+    </td>
+  </tr>
+  {{/each}}
+</tbody>
+</table>
+  <a href="/newAccount/settings/bankCards" class="showbank-word"><p>添加银行卡</p></a>
+  {{else}}
   <a href="/newAccount/settings/bankCards" class="showbank-img"><img src="/ccc/newAccount/img/showbank.png"/></a>
   <a href="/newAccount/settings/bankCards" class="showbank-word"><p>添加银行卡</p></a>
+  {{/if}}
 </div>
 
 <div class="showbank-box">
   <h1 class="showbank-title">基金银行卡</h1>
-  <a href="/newAccount/settings/bankCards" class="showbank-img"><img src="/ccc/newAccount/img/showbank.png"/></a>
-  <a href="/newAccount/settings/bankCards" class="showbank-word"><p>添加银行卡</p></a>
+  <a href="" class="showbank-img"><img src="/ccc/newAccount/img/showbank.png"/></a>
+  <a href="" class="showbank-word"><p>添加银行卡</p></a>
 </div>
