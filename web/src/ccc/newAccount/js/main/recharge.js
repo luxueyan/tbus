@@ -18,7 +18,6 @@ var ractive = new Ractive({
     el: '#ractive-container',
     template: require('ccc/newAccount/partials/recharge/recharge.html'),
     data: {
-        loading: true,
         availableAmount: CC.user.availableAmount || 0,
         msg: {
             AMOUNT_NULL: false,
@@ -28,11 +27,9 @@ var ractive = new Ractive({
         },
         pointNum: null,
         intNum: null,
-        isNormal: false,
         banks: banks,
         corBanks: corBanks,
         bankcards: CC.user.bankcards,
-        isEnterpriseUser: CC.user.enterprise,
         bankCodeEnd: (function () {
             if (CC.user.enterprise) {
                 return '-NET-B2B';
@@ -43,7 +40,9 @@ var ractive = new Ractive({
         isBankCard: CC.user.bankCards.length,
         amountValue: 5000,
         showNum: 9,
-        minAmount: 100
+        minAmount: 100,
+        step1: true,
+        step2: false
     },
     oninit: function () {
         var self = this;
@@ -144,8 +143,7 @@ ractive.on('recharge_submit', function (e) {
     var password = this.get('password');
     var bankcardNo = this.get('bankcards');
     var cardNo = bankcardNo[0].account.account;
-    console.log("1`1`1res")
-            console.log(cardNo);
+
     this.set('msg', {
         AMOUNT_NULL: false,
         AMOUNT_INVALID: false,
@@ -174,8 +172,8 @@ ractive.on('recharge_submit', function (e) {
     } else {
         var self = this;
         accountService.checkPassword(password, function (res) {
-            
             if(res){
+                $('.submit_btn').text('正在充值中，请稍等...');
                 request.post('/api/v2/hundsun/recharge/MYSELF')
                 .type("form")
                 .send({
@@ -185,22 +183,16 @@ ractive.on('recharge_submit', function (e) {
                 })
                 .end()
                 .then(function (r) {
+                    
                     if (r.body.success) {
-//                        ractive.set('step1',false);
-//                        ractive.set('step2',sucess);
-                                Confirm.create({
-                                    msg: '充值是否成功？',
-                                    okText: '充值成功',
-                                    cancelText: '充值失败',
-                                    ok: function () {
-                                        window.location.href = '/newAccount/fund/loanDeal';
-                                    },
-                                    cancel: function () {
-                                        window.location.reload();
-                                    }
-                                });
+                        ractive.set('step1',false);
+                        ractive.set('step2',true);
+                        ractive.on('close',function(){
+                            window.location.href = "/newAccount/home";
+                        });
                     } else {
-                        alert('充值失败');
+                        alert('充值失败');   
+                        $('.submit_btn').text('确认充值');
                     }
                 });
             }else{
@@ -212,11 +204,3 @@ ractive.on('recharge_submit', function (e) {
 
 });
 
-
-ractive.on('showAll', function () {
-    this.set('showNum', banks.length);
-});
-ractive.on('selectBank', function (event) {
-    var code = event.node.getAttribute('data-cc');
-    this.set('bankCode', code);
-});
