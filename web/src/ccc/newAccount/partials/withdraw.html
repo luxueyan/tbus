@@ -1,24 +1,15 @@
 <div class="ccc-banks-wrap">
      <div class="bankcard-nav"><span>理财账户</span><span class="shuline">｜</span><span>取现</span></div>
     {{#if paymentPasswordHasSet}}
+    {{#if step1}}
     <div class="recharge-wrap">
         <div class="bankcards-wrap">
             {{#each bankcards}}
             <div class="bankcard-box {{account.bank}}" style="position:relative;">
-                {{#if hasExpress}}
-                    {{#if !expressAccount}}
-                        <div class="wrapper"></div>
-                    {{/if}}
-                {{/if}}
-    <!--
-                <div class="bank-img"
-                style="visibility:hidden;background-position: 10px -{{account.imgPos+3}}px"></div>
-    -->
                 <span>尾号{{Faccount}}</span>
             </div>
             {{/each}}
 
-            {{loadMessage}}
         </div> 
             <form role="form" name="withdrawForm" action="/yeepay/withdraw" method="POST" target="_blank" on-submit="withdrawForm">
                 <div class="row">
@@ -30,9 +21,12 @@
                     </div>
            
                     <div class="rows">
-                        <input type="text" name="amount" id="withdraw" on-keyup="changeValue" class="recharge-input" value="{{amount}}" autocomplete="off" placeholder="输入取现余额">
+                        <input type="text" name="amount" id="withdraw" on-blur="changeValue" class="recharge-input" value="{{amount}}" autocomplete="off" placeholder="输入取现余额">
                         <p class="text-danger" style="color:red;">
-                            {{submitMessage}}
+                             {{#msg.AMOUNT_NULL}}请输入充值金额{{/msg.AMOUNT_NULL}}
+                             {{#msg.AMOUNT_INVALID}}输入的金额有误{{/msg.AMOUNT_INVALID}}
+                             {{#msg.AMOUNT_POOR}}您的可用余额不足{{/msg.AMOUNT_POOR}}
+                            
                         </p>
                         <p class="warm-tip">工作日取现无上限，非工作日取现单笔不超过5万元<span>手续费2元</span></p>
 
@@ -41,6 +35,11 @@
                     <div class="rows">
                         <input type="password" name="paymentPassword" class="inputsMs" placeholder="输入交易密码" on-blur="checkPassword" autocomplete="off"  value="{{paymentPassword}}" class="recharge-input">
                         <a href="/newAccount/settings/resetPassword" class="forgot-pwd">忘记密码？</a>
+                         <p class="text-danger" style="color:red;">
+                            {{#msg.CODE_NULL}}请输入交易密码{{/msg.CODE_NULL}}
+                            {{#msg.CODE_INVALID}}输入的密码有误{{/msg.CODE_INVALID}}
+                        </p>
+<!--                        {{submitMessage}}-->
                     </div>
                 </div>
                 <div class="row">
@@ -50,6 +49,25 @@
           
             </form>
     </div>
+    {{/if}}
+    {{#if step2}}
+    <div class="recharge-success">
+        <div class="content">
+            <div class="success-img">
+                <img src="/ccc/register/img/success.png"/> 
+            </div>
+            <div class="success-content">
+                <p>取现成功！</p>
+                <p class="bolder">提现<span>{{amount}}元</span></p>
+                <div class="button">
+                    <button class="close-img btn-after" on-click="close">以后再说</button>
+                    <a href="/invest"><button class="btn-after btn-bank">马上去投资</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+    
     {{else}}
     <div class="has-line" style="padding:30px 20px;">
         提现需要先开通交易密码，否则无法进行提现 <a href="/newAccount/settings/password"><span class="btn" style="background-color:#009ada;margin-left:10px;color:#fff">现在去开通</span></a>
