@@ -24,7 +24,7 @@
 <div class="bankcard-nav">
   <span>理财银行卡</span><span class="shuline">｜</span><span>绑卡</span>
 </div>
-{{#if status === 0}}
+<!-- {{#if status === 0}} -->
 
 <div class="bind-card-wrapper">
 
@@ -152,11 +152,11 @@
         </div>
     </form>
 </div>
-{{/if}}
+<!-- {{/if}} -->
 
 <!--已绑-->
-{{#if status === 1}}
-<div class="binded-card-wrapper">
+<!-- {{#if status === 1}} -->
+<div class="binded-card-wrapper" style="display:none;">
     <!--一张银行卡-->
     <!-- {{#each bankAccount}}
         <div class="bank-card">
@@ -198,6 +198,6 @@
     </form> -->
 
 </div>
-{{/if}}
+<!-- {{/if}} -->
 <!-- {{/if}} -->
 </div>

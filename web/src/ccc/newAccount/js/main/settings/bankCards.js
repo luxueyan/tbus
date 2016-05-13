@@ -24,7 +24,7 @@ var ractive = new Ractive({
     template: require('ccc/newAccount/partials/settings/bankCards.html'),
 
     data: {
-        status: banksabled.length ? 1 : 0,
+        // status: banksabled.length ? 1 : 0,
         payment: CC.user.name ? true : false,
         banks: banks,
         msg: {
@@ -173,7 +173,9 @@ ractive.on("bind-card-submit", function (e) {
           if(r.success){
             $.post('/api/v2/hundsun/bindCard/MYSELF', sendObj, function (r) {
                 if(r.success) {
-                  window.location.reload();
+                  // window.location.reload();
+                  $('.bind-card-wrapper').css('display','none');
+                  $('.binded-card-wrapper').css('display','block');
                     // CccOk.create({
                     //     msg: '绑卡成功',
                     //     okText: '确定',
@@ -206,49 +208,49 @@ ractive.on("bind-card-submit", function (e) {
 
 });
 
-ractive.on("delete-card-submit", function (e) {
-    e.original.preventDefault();
-    Confirm.create({
-        msg: '请先确认当前的投资待还本金全部结清，再进行解绑银行卡！',
-        okText: '确定解绑',
-        cancelText: '取消解绑',
-        ok: function () {
-            $('.btn-confirm-cancel').trigger('click');
-            $.post('/yeepay/deleteCard', {
-                cardNo : ractive.get('bankAccount[0].account.account'),
-                paymentPassword : ractive.get('password')
-            }, function (r) {
-                if(r.success) {
-                    CccOk.create({
-                        msg: '删卡申请成功，请等待审核!',
-                        okText: '确定',
-                        ok: function () {
-                            window.location.reload();
-                        },
-                        cancel: function () {
-                            window.location.reload();
-                        }
-                    });
-                } else {
-                    CccOk.create({
-                        msg: '删卡失败，' + r.error[0].message,
-                        okText: '确定',
-                        ok: function () {
-                            window.location.reload();
-                        },
-                        cancel: function () {
-                            window.location.reload();
-                        }
-                    });
-                }
-
-            });
-        },
-        cancel: function () {
-        }
-    });
-
-});
+// ractive.on("delete-card-submit", function (e) {
+//     e.original.preventDefault();
+//     Confirm.create({
+//         msg: '请先确认当前的投资待还本金全部结清，再进行解绑银行卡！',
+//         okText: '确定解绑',
+//         cancelText: '取消解绑',
+//         ok: function () {
+//             $('.btn-confirm-cancel').trigger('click');
+//             $.post('/yeepay/deleteCard', {
+//                 cardNo : ractive.get('bankAccount[0].account.account'),
+//                 paymentPassword : ractive.get('password')
+//             }, function (r) {
+//                 if(r.success) {
+//                     CccOk.create({
+//                         msg: '删卡申请成功，请等待审核!',
+//                         okText: '确定',
+//                         ok: function () {
+//                             window.location.reload();
+//                         },
+//                         cancel: function () {
+//                             window.location.reload();
+//                         }
+//                     });
+//                 } else {
+//                     CccOk.create({
+//                         msg: '删卡失败，' + r.error[0].message,
+//                         okText: '确定',
+//                         ok: function () {
+//                             window.location.reload();
+//                         },
+//                         cancel: function () {
+//                             window.location.reload();
+//                         }
+//                     });
+//                 }
+//
+//             });
+//         },
+//         cancel: function () {
+//         }
+//     });
+//
+// });
 
 // ractive.on('selectPro', function () {
 //     var province = this.get('myProvince');
