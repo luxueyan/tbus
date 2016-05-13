@@ -61,10 +61,18 @@ var ractive = new Ractive({
 
 ractive.on("validateCardNo", function () {
     var no = this.get("cardNo");
-    if (!/^\d*$/.test(no)) {
+    if (!/^\d*$/.test(no)||no=='') {
         this.set("cardNoError", true);
     } else {
         this.set("cardNoError", false);
+    }
+});
+ractive.on("validateIdNo", function () {
+    var no = this.get("idNo");
+    if (!/^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/.test(no)) {
+        this.set("idNoError", true);
+    } else {
+        this.set("idNoError", false);
     }
 });
 
@@ -107,9 +115,10 @@ ractive.on('doDel', function () {
 ractive.on("bind-card-submit", function (e) {
     e.original.preventDefault();
     var cardNoError = this.get("cardNoError");
+    var idNoError = this.get("idNoError");
     var phoneNoError = this.get("phoneNoError");
     var SMS_NULL = this.get('SMS_NULL');
-    if (cardNoError || phoneNoError || SMS_NULL) {
+    if (cardNoError || phoneNoError || idNoError||SMS_NULL) {
         return false;
     }
     // var bankr= _.filter(CC.user.bankCards, function (r) {
@@ -126,18 +135,13 @@ ractive.on("bind-card-submit", function (e) {
     // var city = this.get('myCity');
     // var branchName = this.get('branchName');
 
-    if(cardNo === ''){
-        showErrorIndex('showErrorMessagea','errorMessagea','* 卡号不能为空');
-        return false;
-    }else{
-         clearErrorIndex('showErrorMessagea','errorMessagea');
-    }
-    //  if(recardNo === ''){
-    //     showErrorIndex('showErrorMessageb','errorMessageb','* 确认卡号不能为空');
+    // if(cardNo === ''){
+    //     showErrorIndex('showErrorMessagea','errorMessagea','* 卡号不能为空');
     //     return false;
     // }else{
-    //     clearErrorIndex('showErrorMessageb','errorMessageb');
+    //      clearErrorIndex('showErrorMessagea','errorMessagea');
     // }
+
 
     var sendObj = {
         bankCode: bankName,
