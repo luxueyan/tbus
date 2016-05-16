@@ -1,5 +1,17 @@
 'use strict';
 var RegisterRactive = require('@ccc/register').RegisterRactive;
+//var validation = require('@ccc/validation').validation;
+//var errmsgs = require('@ccc/validation').errmsgs;
+//
+//errmsgs.PASSWORD_INVALID = '密码需要为8位以上数字字母组合';
+//
+//validation.password.sync = function(password){
+//    var reg = /(?!^\d+$)(?!^[a-zA-Z]+$)[0-9a-zA-Z]{8,16}/;
+//    if(!reg.test(password)){
+//        return 'PASSWORD_INVALID';
+//    }
+//};
+
 var registerRactive = new RegisterRactive({
     el: '#register-container',
     template: require('ccc/register/partials/steps.html'),
@@ -64,6 +76,8 @@ request.get(encodeURI('/api/v2/cms/category/IMAGE/name/注册')).end().then(func
 if (CC.registerRel) {
     registerRactive.set('reftf.data.value', CC.registerRel);
 }
+
+
 
 if (CC.channelRel) {
     registerRactive.set('channel.data.value', CC.channelRel);
