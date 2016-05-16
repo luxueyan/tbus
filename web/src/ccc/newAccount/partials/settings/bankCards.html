@@ -24,12 +24,12 @@
 <div class="bankcard-nav">
   <span>理财银行卡</span><span class="shuline">｜</span><span>绑卡</span>
 </div>
-<!-- {{#if status === 0}} -->
+{{#if status === 0}}
 
 <div class="bind-card-wrapper">
 
     <form action="" method="POST" on-submit="bind-card-submit">
-      <p class="addcard-info">验证并绑定银行卡之后才能进行购买基金</p>
+      <p class="addcard-info">验证并绑定银行卡之后才能进行投资</p>
         <div class="banks-container control-group" style="position:relative;left:50%;width:500px;margin-left:-185px;">
             <!-- <div class="space space-30"></div> -->
 
@@ -39,8 +39,8 @@
                 <img src="/ccc/newAccount/img/bankcode.png"/>
                 </div>
                 <select name="bankName" class="select" value="{{bankName}}">
-                    {{#each banks}}
-                        <option value="{{code}}">{{name}}</option>
+                    {{#each newbanks}}
+                        <option value="{{bankCode}}">{{bankName}}</option>
                     {{/each}}
                 </select>
               </div>
@@ -152,11 +152,11 @@
         </div>
     </form>
 </div>
-<!-- {{/if}} -->
+{{/if}}
 
 <!--已绑-->
-<!-- {{#if status === 1}} -->
-<div class="binded-card-wrapper" style="display:none;">
+{{#if status === 1}}
+<div class="binded-card-wrapper">
     <!--一张银行卡-->
     <!-- {{#each bankAccount}}
         <div class="bank-card">
@@ -198,6 +198,6 @@
     </form> -->
 
 </div>
-<!-- {{/if}} -->
+{{/if}}
 <!-- {{/if}} -->
 </div>

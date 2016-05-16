@@ -1,15 +1,15 @@
 "use strict";
 
 var utils = require('ccc/global/js/lib/utils');
-var LLPBANKS = require('ccc/global/js/modules/cccUmpBanks');
+// var LLPBANKS = require('ccc/global/js/modules/cccUmpBanks');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 var CommonService = require('ccc/global/js/modules/common').CommonService;
 var CccOk = require('ccc/global/js/modules/cccOk');
 // 过滤银行卡，只显示enabled=true的
-var banks = _.filter(LLPBANKS, function (r) {
-    return r.enable === true;
-});
+// var banks = _.filter(LLPBANKS, function (r) {
+//     return r.enable === true;
+// });
 
 if (CC.user.account) {
     CC.user.account.Faccount = utils.bankAccount(CC.user.account.account);
@@ -24,9 +24,10 @@ var ractive = new Ractive({
     template: require('ccc/newAccount/partials/settings/bankCards.html'),
 
     data: {
-        // status: banksabled.length ? 1 : 0,
+        status: banksabled.length ? 1 : 0,
         payment: CC.user.name ? true : false,
-        banks: banks,
+        // banks: banks,
+        newbanks:[],
         msg: {
             BANK_NULL: false,
             CARD_NULL: false,
@@ -45,6 +46,9 @@ var ractive = new Ractive({
     oninit: function () {
         accountService.getUserInfo(function (o) {
             ractive.set('realName', o.user.name);
+        });
+        $.get('/api/v2/hundsun/banks',function(r){
+          ractive.set('newbanks',r);
         });
     },
     oncomplete: function () {
@@ -173,9 +177,9 @@ ractive.on("bind-card-submit", function (e) {
           if(r.success){
             $.post('/api/v2/hundsun/bindCard/MYSELF', sendObj, function (r) {
                 if(r.success) {
-                  // window.location.reload();
-                  $('.bind-card-wrapper').css('display','none');
-                  $('.binded-card-wrapper').css('display','block');
+                  window.location.reload();
+                  // $('.bind-card-wrapper').css('display','none');
+                  // $('.binded-card-wrapper').css('display','block');
                     // CccOk.create({
                     //     msg: '绑卡成功',
                     //     okText: '确定',
