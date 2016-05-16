@@ -1,56 +1,63 @@
-#main-container{
-    background: #f6f8fc;
-    position: relative;
+.ccc-paging{
+    margin-bottom: 10px;
+    margin-right: 30px;
 }
 .fund-content {
-    height: auto;
-    width: 840px;
-    margin-bottom: 33px;
-	margin-left: 40px;
+    background: #fff;
+}
+
+.fund-content .fund-nav {
+    line-height: 66px;
+    border-bottom: 1px dashed #dbdbdb;
+    font-size: 24px;
+    padding-left: 46px;
+    color: #4a4a4a;
 }
 
 .fund-content .fund-nav-view {
     position: relative;
     height: auto;
-    width: 886px;
-    padding-left: 16px;
-    padding-right: 16px;
+    width: 850px;
     border-bottom: 1px solid #ccc;
+    margin: 20px auto;
 }
 
 .fund-content .fund-nav-view .sDuration {
     padding: 10px 0;
     overflow: hidden;
 }
+
 .fund-content .fund-nav-view .sRate {
     padding: 10px 0;
-    height:50px;
+    height: 50px;
 }
-.fund-content .fund-nav-view .sRate .personal{
-  width: 50px;
+
+.fund-content .fund-nav-view .sRate .personal {
+    width: 50px;
     text-align: center;
-/*    color: #6d6c6c;*/
+    /*    color: #6d6c6c;*/
     cursor: pointer;
     display: block;
     float: left;
     margin-right: 32px;
 }
-.fund-content .fund-nav-view .sRate .personal-big{
+
+.fund-content .fund-nav-view .sRate .personal-big {
     width: 90px;
 }
-.fund-content .fund-nav-view ul .selectTitle{
-	width: 100px;
-	color: #4a4a4a;
-	float: left;
+
+.fund-content .fund-nav-view ul .selectTitle {
+    width: 100px;
+    color: #4a4a4a;
+    float: left;
 }
-.fund-content .fund-nav-view ul .select-brame{
-	color: #000;
-	float: left;
+
+.fund-content .fund-nav-view ul .select-brame {
+    color: #000;
+    float: left;
     width: 400px;
     margin-top: -6px;
 }
-
-
 
 .fund-content .fund-nav-view .sDuration li {
     width: 50px;
@@ -63,23 +70,28 @@
 }
 
 .fund-content .fund-nav-view ul li:hover,
-.fund-content .fund-nav-view ul .s__is-selected{
-    background-color: #009ada;
+.fund-content .fund-nav-view ul .s__is-selected {
+    background-color: #f58220;
     color: white;
-	border-radius: 4px;
+    border-radius: 4px;
 }
 
-.fund-content .fund-nav-view ul .get-cash{
-    width:70px;
+.fund-content .fund-nav-view ul .get-cash {
+    width: 70px;
+}
+.payload-detail-wrapper{
+     width: 850px;
+    margin: auto;
+    padding-bottom: 50px;
 }
 .fund-content table {
-    width: 840px;
+   
     border-collapse: collapse;
     vertical-align: middle;
     text-align: center;
     background-color: white;
-    margin-top: 30px;
 }
+
 .fund-content table th {
     background-color: #eeeeee;
     color: #4a4a4a;
@@ -87,55 +99,69 @@
     text-align: center;
     font-size: 14px;
 }
+.fund-content table tbody tr td.in{
+    color: #64bb82;
+}
+.fund-content table tbody tr td.out{
+    color: #f16051;
+}
 .select-brame .date-from-picker .icon-calendar {
     cursor: pointer;
     background: url(/ccc/newAccount/img/calendar.png) #fff center no-repeat;
 }
+
 .select-brame .date-to-picker .icon-calendar {
     cursor: pointer;
     background: url(/ccc/newAccount/img/calendar.png) #fff center no-repeat;
 }
-.select-brame .input-group{
-    width:125px;
+
+.select-brame .input-group {
+    width: 125px;
 }
 
-.select-brame .input-group input{
-	padding: 0;
-	padding-left: 10px;
+.select-brame .input-group input {
+    padding: 0;
+    padding-left: 10px;
 }
 
-.select-brame .form-control{
+.select-brame .form-control {
     background: #fff;
-    border-right:none;
+    border-right: none;
 }
-.select-brame .btn-blue{
- background-color: #009ada;
- position: relative;
- top: 1px;
- left: 10px;
+
+.select-brame .btn-blue {
+    background-color: #f58220;
+    position: relative;
+    top: 1px;
+    left: 10px;
     color: #fff;
     margin-left: 10px;
     margin-top: 4px;
     height: 24px;
 }
-.select-brame .spliter{
+
+.select-brame .spliter {
     margin-left: 5px;
     margin-right: 5px;
-    font-size: 26px;   
+    font-size: 26px;
 }
+
+
 /*企业用户*/
-.dropdown{
+
+.dropdown {
     width: 220px;
 }
+
 .dropdown-menu {
-/*
+    /*
     position: absolute;
     top: 100%;
     left: 0;
     z-index: 1000;
 */
     display: none;
-/*    float: left;*/
+    /*    float: left;*/
     min-width: 160px;
     padding: 5px 0;
     margin: 2px 0 0;
@@ -146,13 +172,14 @@
     border: 1px solid #cccccc;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 4px;
-	text-align: left;
-
+    text-align: left;
 }
+
 .open > .dropdown-menu {
     display: block;
 }
-.dropdown-menu > li > a{
+
+.dropdown-menu > li > a {
     font-size: 14px;
-	text-align: left;
+    text-align: left;
 }
