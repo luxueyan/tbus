@@ -49,21 +49,22 @@
 
                     <ul class="u-nolist-ul sShouyi">
                         <li class="selectTitle">收益方式：</li>
-                        <li class="s__is-selected" data-min-duration="0" data-max-duration="100">全部</li>
-                        <li data-min-duration="0" data-max-duration="1">按月付息到期还本</li>
-                        <li data-min-duration="1" data-max-duration="3">按日等额本息</li>
-                        <li data-min-duration="4" data-max-duration="6">按月等额本息</li>
-                        <li data-min-duration="25" data-max-duration="100">一次性还本付息</li>
+                        <li class="s__is-selected" data-method="">全部</li>
+                        <li data-method="BulletRepayment">一次性还本付息</li>
+                        <li data-method="MonthlyInterest">按月付息到期还本</li>
+                        <li data-method="EqualInstallment">按月等额本息</li>
+                        <li data-method="EqualPrincipal">按月等额本金</li>
+                        <li data-method="EqualInterest">月平息</li>
                     </ul>
                 </div>
 
                 <div class="invest-list-top">
                     <span>排序：</span>
-                    <ul>
-                        <li class="tacitly">默认</li>
-                        <li>年化收益</li>
-                        <li>项目周期</li>
-                        <li>起投金额</li>
+                    <ul class="orderbyrules">
+                        <li class="tacitly" data-rules="normal">默认</li>
+                        <li data-rules="rate">年化收益</li>
+                        <li data-rules="duration">项目周期</li>
+                        <li data-rules="minAmount">起投金额</li>
                     </ul>
                 </div>
 

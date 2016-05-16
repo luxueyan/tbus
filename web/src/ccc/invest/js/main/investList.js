@@ -24,9 +24,10 @@ var params = {
     minRate: 0,
     maxRate: 100,
     currentPage: 1,
-    minamount:0,
-    maxamount:100000000,
-
+    minAmount:0,
+    maxAmount:100000000,
+    minInvestAmount: 1,
+    maxInvestAmount: 100000000
 };
 
 
@@ -210,7 +211,7 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
             render(params);
         }
     });
-    
+
     $('.sTitou li').click(function () {
         if (!$(this).hasClass("selectTitle")) {
             $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
@@ -220,12 +221,37 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
                 .data('max-amount');
 
             params.currentPage = 1;
-            params.minamount = minamount;
-            params.maxamount = maxamount;
+            params.minInvestAmount = minamount;
+            params.maxInvestAmount = maxamount;
             render(params);
         }
     });
 
+    $('.sShouyi li').click(function () {
+        if (!$(this).hasClass("selectTitle")) {
+            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
+            var method = $(this)
+                .data('method');
+
+            params.currentPage = 1;
+            params.method = method;
+            render(params);
+        }
+    });
+
+    $('.orderbyrules li').click(function () {
+      var rules = $(this).data('rules');
+      if (rules != 'normal') {
+        params.currentPage = 1;
+        params.orderBy = rules;
+        params.asc= true;
+      } else {
+        params.currentPage = 1;
+        delete params.orderBy;
+        delete params.asc;
+      }
+      render(params);
+    });
 
     function render(params) {
         InvestListService.getLoanListWithCondition(jsonToParams(params),
