@@ -9,15 +9,6 @@
     line-height: 76px;
 }
 
-
-/*
-.ftips {
-	text-align: center;
-	color: #4a4a4a;
-	font-size: 14px;
-}
-*/
-
 .account-opened-wrapper {
     width: 400px;
     margin: 0 auto;
@@ -64,24 +55,17 @@ p.tips {
 
 .sendCode {
     font-size: 14px;
-    /* height: 30px; */
     width: 110px;
     cursor: pointer;
     display: inline-block;
-    /* line-height: 39px; */
     text-align: center;
-    /* border-left: 1px #ccc solid; */
-    line-height: 46px;height: 46px;
+    line-height: 46px;
+    height: 46px;
     background: #fcfcfc;
     color: #4c91e2;
     border-bottom: 1px solid #cdcdcd;
     border-top: 1px solid #cdcdcd;
     border-right: 1px solid #cdcdcd;
-    
-    /* border-radius: 5px; */
-    /* position: relative; */
-    /* top: 1px; */
-    /* font-size: 12px; */
 }
 
 .isAu {
@@ -89,7 +73,6 @@ p.tips {
 }
 
 .account-password-tab {
-    /*	height: 30px;*/
     border-bottom: 1px #ebebeb solid;
     margin-left: 46px;
     margin-top: 44px;
@@ -115,7 +98,6 @@ p.tips {
 }
 
 .PassTabActive {
-    /*	color: #4a4a4a;*/
     border-bottom: 3px #ef9c2c solid;
 }
 
@@ -146,16 +128,22 @@ p.tips {
 }
 
 #main-container .row .card-brame {
-    /**/
     margin-left: 0px;
     margin-right: 0px;
     border: 1px solid #ccc;
     width: 380px;
+    overflow: hidden;
+}
+
+#main-container .row .card-brame input {
+    border: 0;
 }
 
 #main-container .row {
     margin-bottom: 23px;
-    margin-left: 0;margin-right: 0;margin-left: 186px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-left: 186px;
 }
 
 .row .payInp {
@@ -163,15 +151,13 @@ p.tips {
     display: inline-block;
     width: 330px;
     height: 46px;
-    /* border-radius: 5px; */
     font-size: 14px;
     color: #cdcdcd;
     text-indent: 16px;
     border: none;
-/*    border-left: 1px solid #ccc;*/
     border-right: 1px solid #cdcdcd;
-     border-top: 1px solid #cdcdcd;
-     border-bottom: 1px solid #cdcdcd;
+    border-top: 1px solid #cdcdcd;
+    border-bottom: 1px solid #cdcdcd;
 }
 
 .row .tipss {
@@ -196,7 +182,6 @@ p.tips {
     display: inline-block;
     font-size: 18px;
     height: 48px;
-/*    margin: 0 auto;*/
     color: #fff;
     font-weight: normal;
     line-height: 38px;
@@ -204,10 +189,26 @@ p.tips {
     cursor: pointer;
     text-align: center;
 }
-.btn-update:hover{color: #fff;}
-.wenanjiaoyi{font-size: 15px!important;color: #a3a3a3;}
-.wenanjiaoyi a span{color: #ef9d30;background: url(/ccc/newAccount/img/jiantoumima.png) no-repeat left center;padding-left: 20px;}
-.wenanjiaoyi a:hover{text-decoration:none; }
+
+.btn-update:hover {
+    color: #fff;
+}
+
+.wenanjiaoyi {
+    font-size: 15px!important;
+    color: #a3a3a3;
+}
+
+.wenanjiaoyi a span {
+    color: #ef9d30;
+    background: url(/ccc/newAccount/img/jiantoumima.png) no-repeat left center;
+    padding-left: 20px;
+}
+
+.wenanjiaoyi a:hover {
+    text-decoration: none;
+}
+
 .tabwra .tab li {
     cursor: pointer;
 }
@@ -217,28 +218,15 @@ p.tips {
     font-size: 16px;
 }
 
-.modify-password-wrapper {
-/*
-    width: 460px;
-    margin: 0 auto;
-*/
-/*
-    position: relative;
-    left: 60px;
-*/
-}
+.modify-password-wrapper {}
 
 .cap {
     padding: 0;
     float: left;
     width: 112px;
-    /* height: 12px; */
     height: 48px;
     background-color: #f5f9f8;
-
     display: inline-block;
-/*    position: relative;*/
-/*    right: 7px;*/
     margin-left: 20px;
 }
 
@@ -246,12 +234,11 @@ p.tips {
     margin: 10px 0;
     color: red;
     text-indent: 70px;
-    font-size: 12px;clear: both;
-    line-height: 46px;padding-left: 10px;
+    font-size: 12px;
+    clear: both;
+    line-height: 46px;
+    padding-left: 10px;
 }
-
-
-/*bank*/
 
 .bank-card {
     width: 305px;
@@ -296,6 +283,7 @@ p.tips {
     font-size: 14px;
     height: 48px;
     border: none;
+    float: left;
 }
 
 .ABC {
@@ -408,17 +396,6 @@ p.tips {
     margin-top: 40px;
     background: url(/ccc/newAccount/img/visa.png) no-repeat center right;
 }
-
-
-/*
-.img-wrapperps {
-  margin: 0 auto;
-  width: 840px;
-  height: 240px;
-  margin-top: 40px;
-  background: url(/ccc/newAccount/img/lock.png) no-repeat center right;
-}
-*/
 
 .account-userInfo-wrapper .img-wrapper img {
     width: 100%;
@@ -581,7 +558,6 @@ p.tips {
     clear: both;
     padding: 10px;
     padding-left: 20px;
-    /*	background-image: url(/ccc/register/img/gou-bg.png);*/
     background-position: left center;
     background-repeat: no-repeat;
 }
@@ -646,7 +622,6 @@ p.tips {
     background: #eee;
     border-bottom: 1px solid #cdcdcd;
     border-right: 1px solid #cdcdcd;
-    
 }
 
 .payInp[name='captcha'] {
@@ -679,9 +654,6 @@ p.tips {
     color: black;
     padding-left: 10px;
 }
-
-
-/*.btn-success:hover,*/
 
 .info-submit:hover {
     background-color: #015989 !important;
@@ -721,18 +693,31 @@ p.tips {
 }
 
 .row img {
-    width:95%;
-/*    margin: 0px 8px;*/
-    margin-top: 10px;
+    width: 23px;
+    margin-left: 8px;
 }
-.changenext{float: left;line-height: 48px;margin-left: 15px;color: #4a90e2;text-decoration: underline;cursor: pointer;}
+
+.row .floatleft {
+    float: left;
+}
+
+.changenext {
+    float: left;
+    line-height: 48px;
+    margin-left: 15px;
+    color: #4a90e2;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.banks-container .row {
+    margin-left: 276px!important;
+}
+
 .addcard-info {
-    position: relative;
-    left: 50%;
-    width: 500px;
-    margin-left: -185px;
     line-height: 60px;
     color: #666;
+    margin-left: 276px;
 }
 
 .account-content-wrapper {
@@ -745,6 +730,7 @@ p.tips {
     border-right: 1px solid #ccc;
     height: 48px;
     line-height: 48px;
+    float: left;
 }
 
 
@@ -850,4 +836,17 @@ p.tips {
     color: #fff;
     margin: auto 8px;
 }
-.resetfundpass{margin-top: 110px; display: none; font-size: 24px;color: #4a4a4a;font-weight: bold;background: url(/ccc/newAccount/img/band-success.png) no-repeat left center;height: 170px;padding-left: 235px;margin-left: 230px;background-size: 188px;line-height:170px; }
+
+.resetfundpass {
+    margin-top: 110px;
+    display: none;
+    font-size: 24px;
+    color: #4a4a4a;
+    font-weight: bold;
+    background: url(/ccc/newAccount/img/band-success.png) no-repeat left center;
+    height: 170px;
+    padding-left: 235px;
+    margin-left: 230px;
+    background-size: 188px;
+    line-height: 170px;
+}

@@ -38,14 +38,17 @@ passwordRactive.on('checkTab', function (event) {
     }
     $('.resetfundpass').css('display', 'none');
 });
+
+
+//重置交易密码开始
 passwordRactive.on('checkpwd', function () {
     var pwd = this.get('password');
     var rePwd = this.get('repassword');
     this.set('isAcessa', false);
     if (pwd === '') {
         showErrorIndex('showErrorMessagea', 'errorMessagea', '交易密码不能为空');
-    } else if (pwd.length < 6) {
-        showErrorIndex('showErrorMessagea', 'errorMessagea', '交易密码长度最少为6位');
+    } else if (pwd.length < 6 || !/^[0-9]*$/g.test(pwd)) {
+        showErrorIndex('showErrorMessagea', 'errorMessagea', '交易密码为6位纯数字');
     } else {
         clearErrorIndex('showErrorMessagea', 'errorMessagea');
         this.set('isAcessa', true);
@@ -64,157 +67,26 @@ passwordRactive.on('checkrepwd', function () {
         this.set('isAcessb', true);
     }
 });
-passwordRactive.on('initialPassword', function () {
-    var pwd = this.get('password');
-    var rePwd = this.get('repassword');
-    var isAcess = this.get('isAcessa') && this.get('isAcessb');
-    passwordRactive.fire('checkpwd');
-    passwordRactive.fire('checkrepwd');
 
-    var msg, link;
-    if (this.get('bank') && this.get('paymentPasswordHasSet')) {
-        msg = "恭喜您，设置成功！";
-        link = '/newAccount/recharge';
-    } else if (!this.get('bank') && this.get('paymentPasswordHasSet')) {
-        msg = "设置成功，请绑定银行卡！";
-        link = '/newAccount/settings/bankCards';
+
+passwordRactive.on('checksms', function () {
+    var smsCaptcha = this.get('smsCaptcha');
+    this.set('isAcessc', false);
+    if (smsCaptcha.length < 6 || smsCaptcha === '' || smsCaptcha.length > 6) {
+        showErrorIndex('showErrorMessagec', 'errorMessagec', '短信验证码为6位');
     } else {
-        msg = "恭喜您，设置成功！";
-        link = '/newAccount/recharge';
-    }
-    if (isAcess) {
-        accountService.initialPassword(pwd, function (r) {
-            //            if (r.success) {
-            //                CccOk.create({
-            //                    msg: msg,
-            //                    okText: '确定',
-            //                    cancelText: '稍后再说',
-            //                    ok: function () {
-            //                        // if (link) {
-            //                        window.location.href = link;
-            //                        // }
-            //                        // window.location.reload();
-            //                    },
-            //                    cancel: function () {
-            //                        window.location.reload();
-            //                    }
-            //                });
-            //                return;
-            //            }
-            $('.resetfundpass').css('display', 'block');
-            $('.initialWra').css('display', 'none');
-        });
+        clearErrorIndex('showErrorMessagec', 'errorMessagec');
+        this.set('isAcessc', true);
     }
 });
-//passwordRactive.on('checkoldpwd', function () {
-//    var oldpwd = this.get('oldPassword');
-//    var newPwd = this.get('newPassword');
-//    var reNewPwd = this.get('reNewPassword');
-//    this.set('isAcess0', false);
-//    if (oldpwd === '') {
-//        showErrorIndex('showErrorMessage0', 'errorMessage0', '原密码不能为空');
-//    } else {
-//        clearErrorIndex('showErrorMessage0', 'errorMessage0');
-//        this.set('isAcess0', true);
-//    }
-//});
-//passwordRactive.on('checknewpwd', function () {
-//    var oldpwd = this.get('oldPassword');
-//    var newPwd = this.get('newPassword');
-//    var reNewPwd = this.get('reNewPassword');
-//    this.set('isAcess1', false);
-//    if (newPwd.length < 6) {
-//        showErrorIndex('showErrorMessage1', 'errorMessage1', '交易密码长度最少为6位');
-//    } else if (newPwd === '') {
-//        showErrorIndex('showErrorMessage1', 'errorMessage1', '交易密码不能为空');
-//    } else if (oldpwd == newPwd) {
-//        showErrorIndex('showErrorMessage1', 'errorMessage1', '新密码原密码不能相同！');
-//    } else if (newPwd.indexOf(' ') > -1) {
-//        showErrorIndex('showErrorMessage1', 'errorMessage1', '含有非法字符:空格');
-//    } else {
-//        clearErrorIndex('showErrorMessage1', 'errorMessage1');
-//        this.set('isAcess1', true);
-//    }
-//
-//});
-//passwordRactive.on('checkreNewPassword', function () {
-//    var oldpwd = this.get('oldPassword');
-//    var newPwd = this.get('newPassword');
-//    var reNewPwd = this.get('reNewPassword');
-//    this.set('isAcess2', false);
-//    if (reNewPwd === '') {
-//        showErrorIndex('showErrorMessage2', 'errorMessage2', '交易密码不能为空');
-//    } else if (newPwd !== reNewPwd) {
-//        showErrorIndex('showErrorMessage2', 'errorMessage2', '两次密码输入不一致');
-//    } else {
-//        clearErrorIndex('showErrorMessage2', 'errorMessage2');
-//        this.set('isAcess2', true);
-//    }
-//});
-
-function clearErrorIndex(key, msgkey) {
-    passwordRactive.set(key, false);
-    passwordRactive.set(msgkey, '');
-    return false;
-}
-
-function showErrorIndex(key, msgkey, msg) {
-    passwordRactive.set(key, true);
-    passwordRactive.set(msgkey, msg);
-    return false;
-}
-//passwordRactive.on('updatePassword', function () {
-//
-//    var oldpwd = this.get('oldPassword');
-//    var newPwd = this.get('newPassword');
-//    var reNewPwd = this.get('reNewPassword');
-//    passwordRactive.fire('checkoldpwd');
-//    passwordRactive.fire('checknewpwd');
-//    passwordRactive.fire('checkreNewPassword');
-//    var isAcess = this.get('isAcess0') && this.get('isAcess1') && this.get('isAcess2');
-//
-//
-//    if (isAcess) {
-//
-//        accountService.checkPassword(oldpwd, function (r) {
-//            if (!r) {
-//                // showError("原始密码错误！");
-//                showErrorIndex('showErrorMessage0', 'errorMessage0', '原始密码错误!');
-//            } else {
-//
-//                accountService.updatePassword(oldpwd, newPwd, function (r) {
-//                    if (r.success) {
-//                        //                CccOk.create({
-//                        //                    msg: '交易密码修改成功！',
-//                        //                    okText: '确定',
-//                        //                    // cancelText: '重新登录',
-//                        //                    ok: function () {
-//                        //                        window.location.href = "/newAccount/recharge";
-//                        //                    },
-//                        //                    cancel: function () {
-//                        //                        window.location.reload();
-//                        //                    }
-//                        //                });
-//                        //                return;
-//                        $('.resetfundpass').css('display', 'block');
-//                        $('.paypwd-wp').css('display', 'none');
-//                    }
-//                });
-//            }
-//
-//        });
-//
-//    }
-//});
 
 
-
-passwordRactive.on('sendCode', function (){
-	var pwd = this.get('password');
-	var repwd = this.get('repassword');
-    if(pwd === ""||repwd === ""){
-			  return showErrorIndex('showErrorMessagec','errorMessagec','交易密码不能为空');
-		}
+passwordRactive.on('sendCode', function () {
+    var pwd = this.get('password');
+    var repwd = this.get('repassword');
+    if (pwd === "" || repwd === "") {
+        return showErrorIndex('showErrorMessagec', 'errorMessagec', '交易密码不能为空');
+    }
     if (!this.get('isSend')) {
         this.set('isSend', true);
         var smsType = 'CONFIRM_CREDITMARKET_RESET_PAYMENTPASSWORD';
@@ -243,123 +115,70 @@ function countDown() {
                 .html(previousText);
             $('.sendCode')
                 .removeClass('disabled');
-			passwordRactive.set('isSend',false);
+            passwordRactive.set('isSend', false);
             clearInterval(interval);
         }
     }), 1000);
 }
-
-
-passwordRactive.on('checksms',function(){
-  var smsCaptcha = this.get('smsCaptcha');
-    this.set('isAcessc',false);
-    if (smsCaptcha.length < 6 || smsCaptcha === '') {
-        showErrorIndex('showErrorMessagec','errorMessagec','短信验证码为6位');
-  }else {
-    clearErrorIndex('showErrorMessagec','errorMessagec');
-      this.set('isAcessc',true);
-  }
-});
-
-
 passwordRactive.on('resetPassword', function () {
     var pwd = this.get('password');
     var repwd = this.get('repassword');
     var smsCaptcha = this.get('smsCaptcha');
-		var isAcess=this.get('isAcessa')&&this.get('isAcessb')&&this.get('isAcessc');
+    var isAcess = this.get('isAcessa') && this.get('isAcessb') && this.get('isAcessc');
     passwordRactive.fire('checkpwd');
     passwordRactive.fire('checkrepwd');
-		passwordRactive.fire('checksms');
-    // if (pwd === "") {
-    //     return showError('请填写交易密码');
-    // } else if (pwd.indexOf(" ") >=0) {
-    //     return showError("密码不能为空格");
-    // } else if (pwd.length < 6) {
-    //     return showError('交易密码至少为6位');
-    // } else if (pwd !== repwd ) {
-    //     return showError('两次密码输入不一致');
-    // } else if (smsCaptcha.length < 6 || smsCaptcha === '') {
-    //     return showError('短信验证码为6位');
-    // } else {
-        // clearError();
-//        isAcess = true;
-        // if (pwd === '') {
-        //     var r = confirm('您未输入重置密码，系统将生成随机的交易密码并发送到您的手机上,确定这样做吗？');
-        //     if (r) {
-        //         isAcess = true;
-        //     } else {
-        //         isAcess = false;
-        //     }
-        // }
-
-        if(isAcess) {
-					accountService.checkPassword(pwd,function(r){
-	       if(r){
-			        showErrorIndex('showErrorMessagea','errorMessagea','与原密码相同');
-	             }else{
-            accountService.resetPassword(pwd, smsCaptcha, function (r) {
-                if (r) {
-//                    CccOk.create({
-//                        msg: '交易密码重置成功！',
-//                        okText: '确定',
-//                        // cancelText: '重新登录',
-//                        ok: function () {
-//                            window.location.href = "/newAccount/home";
-//                        },
-//                        cancel: function () {
-//                            window.location.reload();
-//                        }
-//                    });
-//                    return;
-                    
-                    
-                    $('.resetfundpass').css('display', 'block');
-                $('.initialWra').css('display', 'none');
-                    
-                    
-                    
-                }
-								else{
-									showErrorIndex('showErrorMessagec','errorMessagec','短信验证码错误');
-								}
-            });}});
-        }
+    passwordRactive.fire('checksms');
+    if (isAcess) {
+        accountService.checkPassword(pwd, function (r) {
+            if (r) {
+                showErrorIndex('showErrorMessagea', 'errorMessagea', '与原密码相同');
+            } else {
+                accountService.resetPassword(pwd, smsCaptcha, function (r) {
+                    if (r.success) {
+                        $('.resetfundpass').css('display', 'block');
+                        $('.initialWra').css('display', 'none');
+                    } else {
+                        showErrorIndex('showErrorMessagec', 'errorMessagec', '短信验证码错误');
+                    }
+                });
+            }
+        });
+    }
 
     // }
 });
+//重置交易密码结束
+
+
+
+
+
+
+
+
+
+//初次设置交易密码开始
+passwordRactive.on('initialPassword', function () {
+    var pwd = this.get('password');
+    var rePwd = this.get('repassword');
+    var isAcess = this.get('isAcessa') && this.get('isAcessb');
+    passwordRactive.fire('checkpwd');
+    passwordRactive.fire('checkrepwd');
+    if (isAcess) {
+        accountService.initialPassword(pwd, function (r) {
+            $('.resetfundpass').css('display', 'block');
+            $('.initialWra').css('display', 'none');
+        });
+    }
+});
+
+//初次设置交易密码结束
 
 passwordRactive.on('tab', function (event) {
     var step = event.node.getAttribute('data-step');
     passwordRactive.set('step', step);
     clearError();
 });
-
-$("#newPassword").keyup(function () {
-    var newPassword = $("#newPassword").val();
-    if (newPassword.indexOf(' ') > -1) {
-        showError("含有非法字符:空格");
-    } else {
-        passwordRactive.set({
-            showErrorMessage: false
-        });
-    }
-
-});
-$("#oldPassword").blur(function () {
-    var oldPassword = $("#oldPassword").val().trim();
-
-    accountService.checkPassword(oldPassword, function (r) {
-        if (!r) {
-            showError("原始密码错误！");
-        } else {
-            passwordRactive.set({
-                showErrorMessage: false
-            });
-        }
-
-    });
-});
-
 
 CommonService.getCaptcha(function (res) {
     passwordRactive.set('captcha', {
@@ -378,7 +197,7 @@ passwordRactive.on('changeCaptcha', function () {
     });
 });
 
-//登陆原密码判定
+//登陆原密码判定开始
 passwordRactive.on('checkcurrentpwd', function () {
     var currentPassword = this.get("currentPassword");
     this.set('isAcessc', false);
@@ -396,8 +215,8 @@ passwordRactive.on('checknewp', function () {
     this.set('isAcessd', false);
     if (!newPassword) {
         showErrorIndex('showErrorMessaged', 'errorMessaged', '还未填写新密码');
-    } else if (newPassword.length < 6) {
-        showErrorIndex('showErrorMessaged', 'errorMessaged', '密码长度必须大于6位');
+    } else if (newPassword.length < 8) {
+        showErrorIndex('showErrorMessaged', 'errorMessaged', '密码长度必须大于8位');
     } else if (newPassword.indexOf(" ") >= 0) {
         showErrorIndex('showErrorMessaged', 'errorMessaged', '密码不能为空格');
     } else {
@@ -419,32 +238,16 @@ passwordRactive.on('checkrepwdConfirm', function () {
         this.set('isAcesse', true);
     }
 });
-//passwordRactive.on('checkCaptcha', function () {
-//    var captcha = this.get("captcha.captcha");
-//    this.set('isAcessf', false);
-//    if (!captcha) {
-//        showErrorIndex('showErrorMessagef', 'errorMessagef', '请填写图形验证码');
-//    } else {
-//        clearErrorIndex('showErrorMessagef', 'errorMessagef');
-//        this.set('isAcessf', true);
-//    }
-//});
+
 passwordRactive.on("submit-modify-password", function (event) {
     event.original.preventDefault();
     var currentPassword = this.get("currentPassword");
     var newPassword = this.get("newPassword");
     var passwordConfirm = this.get("passwordConfirm");
-    //    var captcha = this.get("captcha.captcha");
     passwordRactive.fire('checkcurrentpwd');
     passwordRactive.fire('checknewp');
     passwordRactive.fire('checkrepwdConfirm');
-    //    passwordRactive.fire('checkCaptcha');
-    //    var isAcess = this.get('isAcessc') && this.get('isAcessf') && this.get('isAcesse') && this.get('isAcessd');
-    //    if (!isAcess) {
-    //        return false;
-    //    }
-    //    CommonService.checkCaptcha(passwordRactive.get('captcha'), function (res) {
-    //        if (res.success) {
+
     if (currentPassword === newPassword) {
         return showErrorIndex('showErrorMessaged', 'errorMessaged', '新密码不能与原始密码相同');
     } else if (newPassword !== passwordConfirm) {
@@ -461,36 +264,15 @@ passwordRactive.on("submit-modify-password", function (event) {
             res = JSON.parse(res.text);
 
             if (res.success) {
-
-                //                        CccOk.create({
-                //                            msg: '恭喜您修改密码成功！',
-                //                            okText: '确定',
-                //                            cancelText: '重新登录',
-                //                            ok: function () {
-                //                                window.location.pathname = "/login";
-                //                            },
-                //                            cancel: function () {
-                //                                window.location.reload();
-                //                            }
-                //                        });
-                //
-                //                        return;
                 $('.resetfundpass').css('display', 'block');
                 $('.modify-password-wrapper').css('display', 'none');
             }
 
-            // var msg = res.message;
             return showErrorIndex('showErrorMessagec', 'errorMessagec', '原始密码错误');
         });
-    //        } else {
-    //            return showErrorIndex('showErrorMessagef', 'errorMessagef', '图片验证码错误或已失效');
-    //        }
-    //    });
-
-
     return false;
 });
-
+//登陆原密码判定结束
 
 function showError(msg) {
     passwordRactive.set({
@@ -506,4 +288,16 @@ function clearError(msg) {
         showErrorMessage: false,
         errorMessage: ''
     });
+}
+
+function clearErrorIndex(key, msgkey) {
+    passwordRactive.set(key, false);
+    passwordRactive.set(msgkey, '');
+    return false;
+}
+
+function showErrorIndex(key, msgkey, msg) {
+    passwordRactive.set(key, true);
+    passwordRactive.set(msgkey, msg);
+    return false;
 }
