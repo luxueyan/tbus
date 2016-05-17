@@ -132,7 +132,7 @@ function init(type) {
                     }
                     if (o[i].type === 'INTEREST') {
                         o[i].interest = true;
-                        o[i].displayValue = (parseFloat(o[i].parValue) / 100).toFixed(2) + '%';
+                        o[i].displayValue = (parseFloat(o[i].parValue) / 100).toFixed(2);
                         o[i].Ftype = '返现券'
                     } else if (o[i].type === 'CASH') {
                         o[i].displayValue = parseInt(o[i].parValue);
