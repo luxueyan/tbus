@@ -1,171 +1,134 @@
 
-<!--{{JSON.stringify(list)}}-->
 {{#if list}}
 	{{#each list}}
 	<div class="couponWrapper">
-			{{#if type==='CASH'}}
-			<div class="CASH">
-                <div class="valueText">￥<span class="big">{{displayValue}}</span></div>
-						{{#if canuse}}
-						<div class="couponDescription" style="float:right;margin-right:20px;">
-						 <span class="exchange" data-id="{{ id }}" onclick="redeemCoupon(this);" style="margin-left:10px;">兑现奖卷</span>
-						</div>
-						{{/if}}				
-				<div class="couponWrapper-right">
-                    <div class="couponWrapper-left">
-					{{displayName}}
-				    </div>
-					
-						
-						<div class="couponTitle-right">有效期至：{{timeExpire}}</div>		
-					
-				</div>	
-                	<div class="couponDescription couponDescription-invest" style="float:left;">
-						<p class="descriptionLeft">最低投资{{couponPackage.minimumInvest}}元，</p>
-						<p class="descriptionRight">起投期限{{couponPackage.minimumDuration }}个月</p>
-					</div>
-                   <div class="couponTitle">
-                   <div class="couponTitle-left incline">
-							{{#if notUse}}
-								<span class="label label-light">{{ displayStatus }}</span>
-							{{/if}}
-							{{#if USED}}
-								<span class=" label label-warning">{{ displayStatus }}</span>
-							{{/if}}
-							{{#if REDEEMED}}
-								<span class="label label-success">{{ displayStatus }}</span>
-							{{/if}}
-							{{#if EXPIRED}}
-								<span class=" label label-pink">{{ displayStatus }}</span>
-							{{/if}}
-							{{#if CANCELLED}}
-								<span class=" label label-light">{{ displayStatus }}</span>
-							{{/if}}
-						</div>
-                     </div>
-					</div>
-<!--					<div class="valueText">￥<span class="big">{{displayValue}}</span>元</div>-->
+        {{#if type==='CASH'}}
+        <div class="CASH">
+             <div class="valueText">
+                <p class="big">{{displayValue}}<span>元</span></p>
+                <p>{{Ftype}}</p>
+             </div>
 
+            <div class="couponWrapper-right">
+                <div class="description">
+                    {{#if description}}
+                    {{description}}
+                    {{else}}
+                    暂无描述
+                    {{/if}}
+                    <p class="couponDescription">投资满{{couponPackage.minimumInvest}}元，{{couponPackage.minimumDuration }}个月可使用</p>
+                </div>
+                <div class="couponTitle-right">
+                    有效期至：{{timeExpire}}
+                    {{#if canuse}}
+                    <span class="exchange" data-id="{{ id }}" onclick="redeemCoupon(this);" style="margin-left:10px;">兑现奖卷</span>
+                    {{/if}}	
+                </div>			
+            </div>
+            
+            <div class="couponTitle">
+                {{#if USED}}
+                    <div class="coupon-used"></div>
+                {{/if}}
 
-			
-			{{/if}}
-			{{#if type==='INTEREST'}}
-			<div class="INTEREST">
-                <div class="valueText">加<span class="big">{{displayValue}}</span>利息</div>
-			
-				<div class="couponWrapper-right">
-				
-				<div class="couponWrapper-left">
-					<p class="type-title">{{displayName}}</p>
-				</div>
-                    <div class="couponTitle-right">有效期至：{{timeExpire}}</div>
-					<div class="couponDescription couponDescription-invest">
-						<p class="descriptionLeft">最低投资{{couponPackage.minimumInvest}}元，</p>
-						<p class="descriptionRight">起投期限{{couponPackage.minimumDuration }}个月</p>
-					</div>
-				</div>	
-                	<div class="couponTitle">
-						<div class="couponTitle-left incline">
-							{{#if notUse}}
-								<span class="label label-light">{{ displayStatus }}</span>
-							{{/if}}
-							{{#if USED}}
-								<span class=" label label-warning">{{ displayStatus }}</span>
-							{{/if}}
-							{{#if REDEEMED}}
-								<span class="label label-success">{{ displayStatus }}</span>
-							{{/if}}
-							{{#if EXPIRED}}
-								<span class=" label label-pink">{{ displayStatus }}</span>
-							{{/if}}
-							{{#if CANCELLED}}
-								<span class=" label label-light">{{ displayStatus }}</span>
-							{{/if}}
-						</div>
-								
-					</div>
-			</div>
-			{{/if}}
-			{{#if type==='PRINCIPAL'}}
-			<div class="PRINCIPAL">
-				<div class="valueText">￥<span class="big">{{displayValue}}</span></div>
-				
-				<div class="couponWrapper-right">
-                    <div class="couponWrapper-left">
-					<p class="type-title">{{displayName}}</p>
-				    </div>
-                    <div class="couponTitle-right">有效期至：{{timeExpire}}</div>
-                    <div class="couponDescription couponDescription-invest">
-						<p class="descriptionLeft">最低投资{{couponPackage.minimumInvest}}元，</p>
-						<p class="descriptionRight">起投期限{{couponPackage.minimumDuration }}个月</p>
-					</div>	
-				</div>
-                <div class="couponTitle">
-						<div class="couponTitle-left incline">
-							{{#if notUse}}
-								<span class="label label-light">{{ displayStatus }}</span>
-							{{/if}}
-							{{#if USED}}
-								<span class=" label label-warning">{{ displayStatus }}</span>
-							{{/if}}
-							{{#if REDEEMED}}
-								<span class="label label-success">{{ displayStatus }}</span>
-							{{/if}}
-							{{#if EXPIRED}}
-								<span class=" label label-pink">{{ displayStatus }}</span>
-							{{/if}}
-							{{#if CANCELLED}}
-								<span class=" label label-light">{{ displayStatus }}</span>
-							{{/if}}
-						</div>
-							
-				</div>
-			</div>
-			{{/if}}
+                {{#if EXPIRED}}
+                   <div class="coupon-expired"></div>
+                {{/if}}
+            </div>
+        </div>
+        {{/if}}
+        {{#if type==='INTEREST'}}
+        <div class="INTEREST">
+            <div class="valueText">
+                <p class="big">{{displayValue}}<span>%</span></p>
+                <p>{{Ftype}}</p>
+            </div>
+           <div class="couponWrapper-right">
+                <div class="description">
+                    {{#if description}}
+                    {{description}}
+                    {{else}}
+                    暂无描述
+                    {{/if}}
+                    <p class="couponDescription">投资满{{couponPackage.minimumInvest}}元，{{couponPackage.minimumDuration }}个月可使用</p>
+                </div>
+                <div class="couponTitle-right">有效期至：{{timeExpire}}</div>			
+            </div>	
+            <div class="couponTitle">
+                {{#if USED}}
+                    <div class="coupon-used"></div>
+                {{/if}}
 
-			{{#if type==='REBATE'}}
-			<div class="REBATE">
-                <div class="valueText">￥<span class="big">{{displayValue}}</span>元</div>
-				
-				<div class="couponWrapper-right">
-                    <div class="couponWrapper-left">
-					   <p class="type-title">{{displayName}}</p>
-				    </div>
-                    <div class="couponTitle-right">有效期至：{{timeExpire}}</div>
-		
-					
-					<div class="couponDescription couponDescription-invest">
-						<p class="descriptionLeft">最低投资{{couponPackage.minimumInvest}}元，</p>
-						<p class="descriptionRight">起投期限{{couponPackage.minimumDuration }}个月</p>
-					</div>
-				</div>	
-                			<div class="couponTitle">
-						<div class="couponTitle-left incline">
-							{{#if notUse}}
-								<span class="label label-light">{{ displayStatus }}</span>
-							{{/if}}
-							{{#if USED}}
-								<span class=" label label-warning">{{ displayStatus }}</span>
-							{{/if}}
-							{{#if REDEEMED}}
-								<span class="label label-success">{{ displayStatus }}</span>
-							{{/if}}
-							{{#if EXPIRED}}
-								<span class=" label label-pink">{{ displayStatus }}</span>
-							{{/if}}
-							{{#if CANCELLED}}
-								<span class=" label label-light">{{ displayStatus }}</span>
-							{{/if}}
-						</div>
-								
-					</div>
-			</div>
-			{{/if}}
+                {{#if EXPIRED}}
+                   <div class="coupon-expired"></div>
+                {{/if}}
+            </div>
+        </div>
+        {{/if}}
+        {{#if type==='PRINCIPAL'}}
+        <div class="PRINCIPAL">
+            <div class="valueText">
+                <p class="big">{{displayValue}}<span>元</span></p>
+                <p>{{Ftype}}</p>
+            </div>
+            <div class="couponWrapper-right">
+                <div class="description">
+                    {{#if description}}
+                    {{description}}
+                    {{else}}
+                    暂无描述
+                    {{/if}}
+                    <p class="couponDescription">投资满{{couponPackage.minimumInvest}}元，{{couponPackage.minimumDuration }}个月可使用</p>
+                </div>
+                <div class="couponTitle-right">有效期至：{{timeExpire}}</div>			
+            </div>	
+            <div class="couponTitle">
+                {{#if USED}}
+                    <div class="coupon-used"></div>
+                {{/if}}
+
+                {{#if EXPIRED}}
+                   <div class="coupon-expired"></div>
+                {{/if}}
+            </div>
+        </div>
+        {{/if}}
+
+        {{#if type==='REBATE'}}
+        <div class="REBATE">
+            <div class="valueText">
+                <p class="big">{{displayValue}}<span>元</span></p>
+                <p>{{Ftype}}</p>
+            </div>
+
+            <div class="couponWrapper-right">
+                <div class="description">
+                    {{#if description}}
+                    {{description}}
+                    {{else}}
+                    暂无描述
+                    {{/if}}
+                    <p class="couponDescription">投资满{{couponPackage.minimumInvest}}元，{{couponPackage.minimumDuration }}个月可使用</p>
+                </div>
+                <div class="couponTitle-right">有效期至：{{timeExpire}}</div>			
+            </div>	
+            <div class="couponTitle">
+                {{#if USED}}
+                    <div class="coupon-used"></div>
+                {{/if}}
+
+                {{#if EXPIRED}}
+                   <div class="coupon-expired"></div>
+                {{/if}}
+            </div>
+        </div>
+        {{/if}}
 
 	</div>
 	{{/each}}
 {{else}}
 	<div class="no-coupon"></div>
+<!--	<div class="no-coupon－data">暂无数据</div>-->
 {{/if}}
 <div class="clear"></div>
 <!--
