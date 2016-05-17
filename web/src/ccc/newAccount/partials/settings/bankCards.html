@@ -30,7 +30,7 @@
 
     <form action="" method="POST" on-submit="bind-card-submit">
       <p class="addcard-info">验证并绑定银行卡之后才能进行投资</p>
-        <div class="banks-container control-group" style="position:relative;left:50%;width:500px;margin-left:-185px;">
+        <div class="banks-container control-group" style="">
             <!-- <div class="space space-30"></div> -->
 
             <div class="row">
@@ -48,7 +48,9 @@
             </div>
             <div class="row">
               <div class="card-brame">
-                <img src="/ccc/newAccount/img/card-card.png"/>
+                  <div class="img-box">
+                <img class="" src="/ccc/newAccount/img/card-card.png"/>
+                  </div>
                 <input on-keyup="validateCardNo" on-blur="checkSame" type="text" name="cardNo" value="{{cardNo}}" class="payInp" placeholder="输入银行卡号">
               </div>
                 <span class="error">{{errorMessagea}}</span>
@@ -59,7 +61,9 @@
             </div>
             <div class="row">
               <div class="card-brame">
-                <img src="/ccc/newAccount/img/card-id.png"/>
+                  <div class="img-box">
+                <img class="" src="/ccc/newAccount/img/card-id.png"/>
+                  </div>
                 <input on-keyup="validateIdNo" on-blur="checkSame" type="text" name="idNo" value="{{idNo}}" class="payInp" placeholder="输入身份证号">
               </div>
                 <span class="error">{{errorMessageb}}</span>
@@ -70,7 +74,9 @@
             </div>
             <div class="row">
               <div class="card-brame">
-                <img src="/ccc/newAccount/img/card-man.png"/>
+                  <div class="img-box">
+                <img class="" src="/ccc/newAccount/img/card-man.png"/>
+                  </div>
                 <input on-keyup="validatePersonal" on-blur="checkSame" type="text" name="personal" value="{{personal}}" class="payInp" placeholder="持卡人姓名">
               </div>
               <span class="error">{{errorMessagec}}</span>
@@ -81,7 +87,9 @@
             </div>
             <div class="row">
               <div class="card-brame">
-                <img src="/ccc/newAccount/img/card-mobile.png"/>
+                  <div class="img-box">
+                <img class="" src="/ccc/newAccount/img/card-mobile.png"/>
+                  </div>
                 <input on-keyup="validatePhoneNo" on-blur="checkSame" type="text" name="cardPhone" value="{{mobile}}" class="payInp" placeholder="银行预留手机号">
               </div>
                 {{#if phoneNoError}}
@@ -130,10 +138,12 @@
 -->
             <div class="row">
               <div class="card-brame">
-                <img src="/ccc/newAccount/img/card-yanzheng.png"/>
-                <input type="text" name="smsCaptcha" class="payInp" style="width:218px;border-right: 1px solid #ccc;" on-blur="checkSmsCaptcha" value="{{smsCaptcha}}" placeholder="输入验证码">
+                  <div class="img-box">
+                <img class="" src="/ccc/newAccount/img/card-yanzheng.png"/>
+                  </div>
+                <input type="text" name="smsCaptcha" class="payInp" style="width:218px;border-right: 1px solid #ccc;height:48px;" on-blur="checkSmsCaptcha" value="{{smsCaptcha}}" placeholder="输入验证码">
 
-                <span class="sendCode" on-click="sendCode">发送验证码</span>
+                <span class="sendCode" on-click="sendCode" style="border:0;">发送验证码</span>
               </div>
                 {{#if SMS_NULL}}
                 <span class="error">* 验证码不能为空</span>
