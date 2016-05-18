@@ -212,11 +212,12 @@ passwordRactive.on('checknewp', function () {
     var currentPassword = this.get("currentPassword");
     var newPassword = this.get("newPassword");
     var passwordConfirm = this.get("passwordConfirm");
-    this.set('isAcessd', false);
+    this.set('isAcessd', false);    
+    var reg = /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,16})$/;   
     if (!newPassword) {
-        showErrorIndex('showErrorMessaged', 'errorMessaged', '还未填写新密码');
-    } else if (newPassword.length < 8) {
-        showErrorIndex('showErrorMessaged', 'errorMessaged', '密码长度必须大于8位');
+        showErrorIndex('showErrorMessaged', 'errorMessaged', '还未填写新密码');        
+    } else if (newPassword.length < 8 || !reg.test(newPassword)) {
+        showErrorIndex('showErrorMessaged', 'errorMessaged', '密码需要为至少8位数字字母组合');
     } else if (newPassword.indexOf(" ") >= 0) {
         showErrorIndex('showErrorMessaged', 'errorMessaged', '密码不能为空格');
     } else {
