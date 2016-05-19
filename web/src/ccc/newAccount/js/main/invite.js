@@ -100,7 +100,6 @@ new Ractive({
     bindActions: function () {
         var self = this;
         // 初始化二维码
-        //$('#er-img').replaceWith('<img style="width:150px;height:150px;" src="'+ this.buildImgUrl() +'">');
         var qrcode = qr(this.buildImgUrl(), {
             render: !!window.CanvasRenderingContext2D ? 'canvas' : 'table',
             width:120,
@@ -148,63 +147,6 @@ new Ractive({
                     }, 2000);
                 }
             });
-        });
-
-        // share
-        $('.invite-share').share({
-            showIndex: [1, 2, 6, 9, 8, 10],
-            liMargin: 15,
-            bigImg: true,
-            showFont: true,
-            //imgUrl: '/assets/img/',
-            share: [{
-                title: 'twitter',
-                click: 'twitter'
-            }, {
-                title: '新浪微博',
-                click: 'tsina'
-            }, {
-                title: '腾讯微博',
-                click: 'tqq'
-            }, {
-                title: '搜狐微博',
-                click: 'tsohu'
-            }, {
-                title: '网易微博',
-                click: 't163'
-            }, {
-                title: 'facebook',
-                click: 'fbook'
-            }, {
-                title: '豆瓣',
-                click: 'douban'
-            }, {
-                title: '人人网',
-                click: 'renren'
-            }, {
-                title: '开心网',
-                click: 'kaixin001'
-            }, {
-                title: 'Qzone',
-                click: 'qzone'
-            }, {
-                title: '百度搜藏',
-                click: 'baidu'
-            }, {
-                title: '鲜果',
-                click: 'xianguo'
-            }, {
-                title: '抓虾',
-                click: 'zhuaxia'
-            }, {
-                title: 'delicious',
-                click: 'delicious'
-            }, {
-                title: 'qq书签',
-                click: 'qq'
-            }],
-            url: $('.SHARE_URL').text(),
-            content: $('.SHARE_TEXT').text()
         });
     }
 });
