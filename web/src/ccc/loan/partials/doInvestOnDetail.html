@@ -100,7 +100,8 @@
     <div class="info">
 
         <div class="userBlock" id="userBlock">
-            {{#if user}} {{! 已登录,但是没开第三方支付 }} {{#if !name}}
+            {{#if user}} {{! 已登录,但是没开第三方支付 }} 
+            {{#if !user.bankCards.length}}
             <div class="leftMoney-open">账户可用余额：¥&nbsp;<i class="red" >{{user.availableAmount}}</i>
                 <a href="/newAccount/recharge" class="recharge">
                     <button>充值</button>
@@ -117,10 +118,10 @@
             </div>
             <div class="clearfix"></div>
             <div class="prompt-open-3rdpay">
-                <p class="shiming">您的账户尚未实名认证，认证后可投资</p>
+                <p class="shiming">您还未绑定银行卡，绑定后可投资</p>
             </div>
             <div class="invest-button-wrapper">
-                <a class="btn btn-warning open-button loginBtn" href="/newAccount/settings/authentication">立即认证</a>
+                <a class="btn btn-warning open-button loginBtn" href="/newAccount/settings/bankCards">去绑定</a>
             </div>
             {{else}} {{! 已登录 }} {{! 未签订无密投资}}
 
@@ -206,7 +207,9 @@
                 </form>
             </div>
 
-            {{/if}} {{else}}
+            {{/if}} 
+            
+            {{else}}
 
             <img src="/ccc/loan/img/unlogin.png" class="unlogin_img">
 
@@ -220,8 +223,9 @@
 -->
             
             <a href="/login?url={{backUrl}}" class="loginBtn">
-                            登录投资
-                        </a> {{/if}}
+                登录投资
+            </a> 
+            {{/if}}
         </div>
     </div>
 </div>

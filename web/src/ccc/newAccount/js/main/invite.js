@@ -9,7 +9,7 @@ var qr = require('qr-element');
 
 CC.imgUrlS = $('#imgurls').attr('src');
 CC.imgUrl = $('#imgurl').attr('src');
-ZeroClipboard.moviePath = $('#ZeroClipboard-path').attr('src');
+ZeroClipboard.moviePath = '/ccc/global/img/ZeroClipboard.swf';
 
 new Ractive({
     el: '.account-invite-wrapper',
