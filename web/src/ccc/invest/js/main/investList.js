@@ -426,7 +426,7 @@ InvestListService.getProductHot(function (list) {
     }
 
     var investRactive = new Ractive({
-        el: ".s-contentR03",
+        el: "#s-contentR03",
         template: require('ccc/invest/partials/hotproduct.html'),
         data: {
             list: listHOT,
