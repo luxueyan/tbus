@@ -180,10 +180,11 @@
 	        isVer = false;
 	        return false;
 	    }
-	    if (user.newPassword.length < 6) {
+        var reg = /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,16})$/;   
+	    if (user.newPassword.length < 8 || !reg.test(user.newPassword)) {
 	        rePassword.set('errors', {
 	            visible: true,
-	            msg: '请填写至少 6 位密码'
+	            msg: '密码需要为至少8位数字字母组合'
 	        });
 	        isVer = false;
 	        return false;
