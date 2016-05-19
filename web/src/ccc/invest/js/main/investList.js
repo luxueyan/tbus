@@ -24,8 +24,8 @@ var params = {
     minRate: 0,
     maxRate: 100,
     currentPage: 1,
-    minAmount:0,
-    maxAmount:100000000,
+    minAmount: 0,
+    maxAmount: 100000000,
     minInvestAmount: 1,
     maxInvestAmount: 100000000
 };
@@ -82,7 +82,8 @@ function formatItem(item) {
         item.investPercent = 1;
     } else {
         item.investPercent = parseInt(item.investPercent * 100, 10);
-    };
+    }
+    ;
     if (item.duration.days > 0) {
         if (typeof item.duration.totalDays === "undefined") {
             item.fduration = item.duration.days;
@@ -240,27 +241,40 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
     });
 
     $('.orderbyrules li').click(function () {
-      var rules = $(this).data('rules');
-      if (rules != 'normal') {
-        params.currentPage = 1;
-        params.orderBy = rules;
-        params.asc= true;
-      } else {
-        params.currentPage = 1;
-        delete params.orderBy;
-        delete params.asc;
-      }
-      render(params);
+        var rules = $(this).data('rules');
+        if (rules != 'normal') {
+            if ($(this).hasClass('activeLi01')) {
+                params.asc = false;
+                console.log($(this).hasClass('activeLi01'));
+                $(this).addClass('activeLi02').removeClass('activeLi01');
+                $(this).siblings().removeClass('activeLi01');
+                $(this).siblings().removeClass('activeLi02');
+            } else {
+                params.asc = true;
+                console.log($(this).hasClass('activeLi01'))
+                $(this).addClass('activeLi01').removeClass('activeLi02');
+                $(this).siblings().removeClass('activeLi01');
+                $(this).siblings().removeClass('activeLi02');
+            }
+            params.currentPage = 1;
+            params.orderBy = rules;
+        } else {
+            params.currentPage = 1;
+            delete params.orderBy;
+            delete params.asc;
+            $(this).addClass('activeLi01');
+            $(this).siblings().removeClass('activeLi01');
+            $(this).siblings().removeClass('activeLi02');
+        }
+        render(params);
     });
 
     function render(params) {
         InvestListService.getLoanListWithCondition(jsonToParams(params),
-            function (
-                res) {
+            function (res) {
                 investRactive.set('list', []);
                 setTimeout(function () {
                     investRactive.set('list', parseLoanList(res.results));
-                    console.log(investRactive.get('list'));
                     initailEasyPieChart();
                     ininconut();
                     renderPager(res, params.currentPage);
@@ -353,12 +367,6 @@ function ininconut() {
         }
     });
 };
-
-
-
-
-
-
 
 
 function initailEasyPieChart() {
