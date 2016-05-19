@@ -56,7 +56,7 @@
                         </div>
                     </div>
                     <div class="innerBottom">
-                        <div class="invest_num">产品规模：<span style="color: #ef9c2c;">{{loans.amount}}元</span></div>
+                        <div class="invest_num">产品规模：<span style="color: #ef9c2c;">{{loans.amount}}{{loans.aUnit}}</span></div>
                         <div class="start_time">起息日期：<span style="color:#4a4a4a;">{{}}元</span></div>
                         <div class="end_time">到息日期：<span style="color:#4a4a4a;">{{}}元</span></div>
                     </div>
@@ -70,7 +70,7 @@
                             </div>
                               <span>{{ loans.investPercent }}%</span>
                         </div>
-                        <div class="leftAmount">剩余可投：<span style="color: #ef9c2c;">{{loans.balance}}{{loans.amountUnit}}</span></div>
+                        <div class="leftAmount">剩余可投：<span style="color: #ef9c2c;">{{loans.balance}}元</span></div>
                     </div>
 <!--
                     <div class="protocol">
@@ -109,14 +109,14 @@
                     <table>
                         <tr>
                             <th class="title">产品名称</th>
-                            <th class="content gray">{{loans.title}}</th>
+                            <th class="content gray" style="font-weight:bold;">{{loans.title}}</th>
                         </tr>
                         <tr>
                             <th class="title">募集截止日</th>
-                            {{#if loans.status == 'OPENED'}}
-                            <th class="content gray">{{loans.timeEnd}}</th>
-                            {{else}}
+                            {{#if loans.timeFinished === 'null'}}
                             <th class="content gray">{{loans.timeFinished}}</th>
+                            {{else}}
+                            <th class="content gray">{{loans.timeEnd}}</th>
                             {{/if}}
                         </tr>
                         <tr>
@@ -138,12 +138,17 @@
                         <tr>
                             <th class="title">预期收益</th>
                             <th class="content">
-<!--
-                                以{{}}计息为例
-                                单位：元
--->
+                                <div class="repay-plan-title">
+                                    {{#if loans.timeFinished === 'null'}}
+                                    <p class="left">以明日({{loans.start}})满标为例</p>
+                                    {{else}}
+                                    <p class="left">以明日({{loans.end}})满标为例</p>
+                                    {{/if}}
+                                    <p class="right">单位：元</p>
+                                </div>
+                               
                                 <table class="table repay-plan repay-record">
-                                    
+                               
                                     <thead>
                                         <th>日期</th>
                                         <th>回款利息(元)</th>
@@ -151,8 +156,8 @@
                                         <th style="border-top-right-radius: 3px;">剩余本金(元)</th>
                                     </thead>
 
-                                    {{#each replay}}
-                                    <tr>
+                                    {{#each replay:i}}
+                                    <tr class="{{#if i%2==0}}white{{else}}gray{{/if}}">
                                         <th>{{dueDate}}</th>
                                         <th class="col-current-period">{{amountInterest}}</th>
                                         <th>{{amountPrincipal}}</th>

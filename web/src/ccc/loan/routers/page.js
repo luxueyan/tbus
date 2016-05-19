@@ -234,8 +234,14 @@ function parseLoan(loan) {
     }
     loan.timeOpen = moment(loan.timeOpen).format('YYYY-MM-DD');
     loan.timeFinished = moment(loan.timeFinished).format('YYYY-MM-DD');
-    loan.timeEnd = moment(loan.timeOpen).add(loan.duration.totalDays, 'days').format('YYYY-MM-DD');
-    //格式化序列号
+    loan.timeout = loan.timeout/24;
+    loan.timeEnd = moment(loan.timeOpen).add(loan.timeout, 'days').format('YYYY-MM-DD');
+    
+    loan.start = moment(loan.timeFinished).add(1, 'days').format('YYYY-MM-DD');
+    loan.end =  moment(loan.timeEnd).add(1, 'days').format('YYYY-MM-DD');
+    console.log( "=====loan.start" + loan.start);
+    console.log( "=====loan.end" + loan.end);
+    //格式化序列号 
     if( loan.providerProjectCode ){
         if( loan.providerProjectCode.indexOf('#') > 0 ){
             var hh_project_code = loan.providerProjectCode.split('#');

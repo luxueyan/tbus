@@ -981,9 +981,34 @@
     margin-top: 30px;
     margin-bottom: 130px;
 }
-.invest-detail-wrapper .tab-panels .tab-panel .invest-record .repay-plan {
+.invest-detail-wrapper .invest-info-box table.repay-plan{
     width: 670px;
-    margin: 0px auto;
+    
+}
+.invest-detail-wrapper .invest-info-box table.repay-plan thead th{
+   background: #f4f4f6;
+    
+}
+.invest-detail-wrapper .invest-info-box table.repay-plan tbody .gray{
+   background: #f8f8f9;
+    
+}
+.invest-detail-wrapper .invest-info-box table.repay-plan tbody .white{
+   background: #fff;
+    
+}
+.repay-plan-title {
+    width: 670px;
+    color: #999;
+    margin: 15px 0;
+    height: 30px;
+    line-height: 30px;
+}
+.repay-plan-title .left{
+    float: left;
+}
+.repay-plan-title .right{
+    float: right;
 }
 .invest-detail-wrapper .tab-panels .tab-panel .invest-record .repay-plan thead tr {
     line-height: 25px;
@@ -1494,7 +1519,7 @@
     color: #f58220;
 }
 .box-large {
-    overflow: hidden;
+/*    overflow: hidden;*/
 }
 .item-pic {
     height: 250px;
