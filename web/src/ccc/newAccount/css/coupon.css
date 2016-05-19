@@ -12,10 +12,9 @@
 }
 
 .coupon-content .coupon-nav-view {
-    margin: 0 60px;
+    margin: 30px 60px;
     border-bottom: 1px solid #ebebeb;
     width: 870px;
-    margin-top: 30px;
 }
 
 .coupon-content .coupon-nav-view ul {
@@ -115,9 +114,8 @@
 /*jo*/
 
 .couponWrapper {
-    float: left;
     color: #fff;
-    margin: 30px 40px 0px 40px;
+    margin: 30px 0 0 40px;
     overflow: hidden;
     position: relative;
 }
