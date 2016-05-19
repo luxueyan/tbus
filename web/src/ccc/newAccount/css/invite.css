@@ -1,184 +1,83 @@
-.ccc-invite-wrap input:focus {
-  outline: none!important;
+.account-invite-wrapper{
+    background: #fff;
+    min-height: 748px;
 }
-#main-container{
-/*	margin-top: 7px;*/
+.account-invite-wrapper .invite-nav{
+    line-height: 66px;
+    border-bottom: 1px dashed #dbdbdb;
+    font-size: 24px;
+    padding-left: 46px;
+    color: #4a4a4a;
 }
-.ccc-invite-wrap .add-wrap {
-  width: 100%;
-  float: left;
-  clear: both;
-  margin-top: 20px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  border: 1px #eee solid;
-  border-left: 0;
-  border-right: 0;
-}
-.ccc-invite-wrap .add-wrap div.checkbox {
-  clear: both;
-  float: left;
-  width: 100%;
-  padding-bottom: 15px;
-}
-.ccc-invite-wrap .add-wrap p.msg {
-  font-size: 13px;
-}
-.ccc-invite-wrap .recod-wrap {
-  padding: 30px 0;
-  height: auto;
-  overflow: hidden;
-}
-.ccc-invite-wrap .recod-wrap > p {
-  font-size: 15px;
-  color: #777;
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
-.ccc-invite-wrap .recod-wrap .btn-reco {
-  padding: 13px 40px;
-  font-size: 16px;
-}
-.ccc-invite-wrap .recod-wrap .form-control {
-  width: 385px;
-}
-.ccc-invite-wrap table > thead > tr > th {
-  padding-left: 10px;
-  text-align: center;
-}
-.ccc-invite-wrap table > tbody > tr > td {
-  padding: 15px 8px;
-  text-align: center;
-}
-.ccc-invite-wrap table a {
-  color: #00327c;
-  font-size: 14px;
-}
-.ccc-invite-wrap table {
-  font-size: 12px;
-}
-.ccc-invite-wrap table a {
-  color: #f17420;
-}
-.ccc-invite-modify-box .space-50 {
-  margin-top: 20px;
-}
-.ccc-invite-modify-box .invite-modify-box table {
-  width: 320px;
-  margin: 0 auto;
-}
-.ccc-invite-modify-box .invite-modify-box p {
-  padding-bottom: 15px;
-}
-.ccc-invite-modify-box .invite-modify-box input.form-modify {
-  width: 150px;
-  margin: 0 auto;
-  text-align: center;
-  margin-top: 6px;
-}
-.ccc-invite-modify-box .btn {
-  width: 80px;
-}
-.invite-share {
-  margin-top: 30px;
-}
-.invite-tit {
-  margin: 35px 0 10px;
-}
-/*
-.invite-tit span {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  line-height: 40px;
-  font-size: 28px;
-  border-radius: 100%;
-  background: #e8383d;
-  color: #fff;
-}
-*/
-.invite-tit p {
-  display: inline-block;
-  vertical-align: super;
-  padding-left: 15px;
-}
-.ccc-invite-wrap .record{
-    float: left;
-    margin-right:20px;
-    padding: 5px;
-    margin-bottom: 10px;
-}
-.ccc-invite-wrap .reward{
-    float: left;
-    padding: 5px;
-    margin-bottom: 10px;
-}
+
 .invite-code {
-    margin-left:20px;
+    margin-left: 20px;
     position: relative;
+    height: 150px;
 }
 .code-img {
     position:absolute;
     width:150px;
     right:50px;
-    top:0;
+    top:20px;
     text-align:center;
     font-size:12px;
     color:#999999;
 }
-.title .hint {
-    color: #B02039;
-    font-weight: bold;
-}
 .form-inline {
-    background:#EEEEEE;
-    padding:5px 0;
     border-radius: 5px;
-    width:560px;
+    width: 560px;
+    padding-top: 70px;
 }
 .btn-default {
-    background: none;
-    border:none;
-    color:#797878;
-    margin-left:17px;
+    background: #ef9c2c;
+    border: 1px solid #ef9c2c;
+    color: #fff;
+    margin-left: 17px;
 }
 .tip {
     font-size:12px;
-    margin:10px 0;
+    margin:10px 20px;
     color:#9B9B9B;
 }
 .img-wrapper {
-    width:800px;
-    margin:10px auto;
+    border-top: 1px solid #ebebeb;
+    margin: 46px;
+    padding-top: 20px;
+    color: #666;
+    border-bottom: 1px solid #ebebeb;
 }
 .img-wrapper img {
-    width:100%;
+    margin: 0 20px;
 }
-h4 {
-    color:#999999;
+.img-wrapper ul li{
+    margin-bottom: 30px;
+}
+.img-wrapper ul .step2{
+    border-bottom: 1px solid #ebebeb;
+    line-height: 50px;
+}
+h3 {
+    color:#666;
+    margin-bottom: 12px;
+}
+.rule-info{
+    padding-left: 46px;
+    color: #9d9fa5;
 }
 .rule-info span {
     float:left;
-    color:indianred;
+    color: #ec8a78;
 }
 .rule-info ul {
     margin-left: 80px;
+    letter-spacing: 1px;
 }
 .record {
-    margin:20px 0 10px;
-    border-bottom: 1px solid #EEE;
-    padding:0 5px;
+    margin: 20px 0;
+    padding: 0 46px;
 }
-.record a {
-    border-bottom: 2px solid #009ada;
-    color: #4a4a4a;
-    font-size:18px;
-    line-height: 18px;
-}
-.record a:hover {
-    text-decoration: none;
-}
+
 th , td {
     text-align: center;
 }

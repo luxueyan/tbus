@@ -60,7 +60,7 @@ var homeRactive = new Ractive({
 			self.set('morAmount',amoutArray[1]);
             var amoutArray = investInterestAmount.split('.');
 			self.set('investInterestAmount',parseInt(amoutArray[0]));
-			self.set('moreiAmount',amoutArray[1]);     
+			self.set('moAmount',amoutArray[1]);     
             var amoutArray = outstandingInterest.split('.');
 			self.set('outstandingInterest',parseInt(amoutArray[0]));
 			self.set('moreiAmount',amoutArray[1]);
