@@ -842,3 +842,90 @@ a {
 #carousel-company{
     padding: 0 90px;
 }
+/*新手推荐*/
+.newWrapper .contentwrapper{
+    padding: 0 30px;
+}
+.newWrapper .contentwrapper .event{
+    font-size: 22px;
+    border-bottom: 1px dashed #dbdbdb;
+    line-height: 90px;
+    height: 90px;
+    padding-left: 20px;
+}
+.newWrapper .left-box{
+    float: left;
+}
+.newWrapper .right-box{
+    float: left;
+    border-left: 1px solid #dbdbdb;
+    height: 210px;
+    text-align: center;
+}
+.newWrapper .pre-rate {
+    background-image: url(/ccc/index/img/rate.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    width: 250px;
+    padding: 30px 20px;
+    border-right: 1px solid #dddddd;
+    height: 105px;
+    margin-top: 30px;
+    float: left;
+}
+.newWrapper .rate {
+	color: #ff5451;
+	font-size: 24px;
+}
+.newWrapper .percent{
+    color: #ff5451;
+	font-size: 18px;
+}
+.newWrapper .rate_word{
+    font-size: 14px;
+    text-align: center;
+}
+.newWrapper .investTime{
+    float: left;
+    width: 160px;
+    text-align: center;
+    padding: 30px 20px;
+    border-right: 1px solid #dddddd;
+    height: 105px;
+    margin-top: 30px;
+}
+.newWrapper .investNum{
+    float: left;
+    width: 160px;
+    text-align: center;
+    padding: 30px 20px;
+    height: 105px;
+    margin-top: 30px;
+}
+.newWrapper .investTime span{
+    font-size: 20px;
+    color: #000;
+}
+.newWrapper .investNum span{
+    font-size: 20px;
+    color: #000;
+}
+.newWrapper .opre {
+	width: 165px;
+    margin-top: 52px;
+    text-align: center;
+}
+
+.newWrapper .opre .investbtn {
+	width: 132px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    color: #fff;
+    background-color: #ef9c2c;
+    font-size: 16px;
+    border-radius: 3px;
+    margin-left: 19px;
+    margin-top: 28px;
+}

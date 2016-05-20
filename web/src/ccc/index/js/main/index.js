@@ -71,9 +71,9 @@ IndexService.getLoanSummary(function (list) {
 //    }
     var investRactive = new Ractive({
         el: ".NEWproductList",
-        template: require('ccc/global/partials/singleInvest1.html'),
+        template: require('ccc/global/partials/singleInvest.html'),
         data: {
-            list: listXSZX.slice(0,3),
+            list: listXSZX.slice(0,1),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });

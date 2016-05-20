@@ -12,20 +12,10 @@ router.get('/:id',
         var buffer = new Buffer(req.path);
         var backUrl = buffer.toString('base64');
         res.expose(backUrl, 'backUrl');
-        // agreement
-        var agreement = null;
-        if (res.locals.user && res.locals.user.accountId) {
-            agreement = req.uest('/api/v2/user/MYSELF/agreement')
-                .end()
-                .then(function (r) {
-                    return r.body;
-                });
-            if (!_.isEmpty(agreement)) {
-                _.assign(res.locals.user, {
-                    agreement: agreement
-                });
-            }
-        }
+        // 交易密码
+        var paymentPasswordHasSet =await req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
+                .end().get('body');
+        res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet;
 
         var repayments =await req.uest(
               '/api/v2/loan/' + req.params.id +
@@ -182,7 +172,7 @@ function parseLoan(loan) {
     loan.rate = loan.rate / 100;
     loan.loanRequest.deductionRate = loan.loanRequest.deductionRate / 100;
     loan.basicRate = loan.rate - loan.loanRequest.deductionRate;
-    loan.dueDate = loan.timeout * 60 * 60 * 1000 + loan.timeOpen;
+//    loan.dueDate = loan.timeout * 60 * 60 * 1000 + loan.timeOpen;
     if (loan.timeSettled) {
         loan.borrowDueDate = formatBorrowDueDate(loan.timeSettled, loan
             .duration);
@@ -212,8 +202,10 @@ function parseLoan(loan) {
     }
     loan.loanRequest.timeSubmit = moment(loan.loanRequest.timeSubmit)
         .format('YYYY-MM-DD');
-    loan.dueDate = moment(loan.dueDate)
-        .format('YYYY-MM-DD');
+
+    loan.valueDate = moment(loan.loanRequest.valueDate).format('YYYY-MM-DD');
+    loan.dueDate = moment(loan.loanRequest.dueDate).format('YYYY-MM-DD');
+    
     loan.method = methodZh[loan.method];
     loan.timeLeftStamp=loan.timeLeft;
 
@@ -236,11 +228,15 @@ function parseLoan(loan) {
     loan.timeFinished = moment(loan.timeFinished).format('YYYY-MM-DD');
     loan.timeout = loan.timeout/24;
     loan.timeEnd = moment(loan.timeOpen).add(loan.timeout, 'days').format('YYYY-MM-DD');
-    
-    loan.start = moment(loan.timeFinished).add(1, 'days').format('YYYY-MM-DD');
-    loan.end =  moment(loan.timeEnd).add(1, 'days').format('YYYY-MM-DD');
-    console.log( "=====loan.start" + loan.start);
-    console.log( "=====loan.end" + loan.end);
+    console.log( "=====loan.timeFinished" + loan.timeFinished);
+    console.log( "=====loan.timeEnd" + loan.timeEnd);
+//    起息日
+    loan.start1 = moment(loan.timeFinished).add(1, 'days').format('YYYY-MM-DD');
+    loan.start2 =  moment(loan.timeEnd).add(1, 'days').format('YYYY-MM-DD');
+//    到息日
+    loan.end1 =  moment(loan.start1).add(loan.duration.days, 'days').format('YYYY-MM-DD');
+    loan.end2 =  moment(loan.start2).add(loan.duration.days, 'days').format('YYYY-MM-DD');
+
     //格式化序列号 
     if( loan.providerProjectCode ){
         if( loan.providerProjectCode.indexOf('#') > 0 ){

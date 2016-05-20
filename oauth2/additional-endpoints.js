@@ -26,5 +26,7 @@ module.exports = function (router, auth) {
     
     //账户中心我要投资接口
     router.get('/api/v2/user/MYSELF/invests/list/:page/:size', auth.user());
-
+    
+    //根据用户ID获取可用奖券列表
+    router.get('/api/v2/rebateCounpon/listUserCouponPlacement/:userId', auth.pass());
 };
