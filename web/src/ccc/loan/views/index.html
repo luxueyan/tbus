@@ -57,8 +57,28 @@
                     </div>
                     <div class="innerBottom">
                         <div class="invest_num">产品规模：<span style="color: #ef9c2c;">{{loans.amount}}{{loans.aUnit}}</span></div>
-                        <div class="start_time">起息日期：<span style="color:#4a4a4a;">{{}}元</span></div>
-                        <div class="end_time">到息日期：<span style="color:#4a4a4a;">{{}}元</span></div>
+                        <div class="start_time">起息日期：
+                            {{#if loans.valueDate !== 'Invalid date'}}
+                            <span style="color:#4a4a4a;">{{loans.valueDate}}</span>
+                            {{else}}
+                                {{#if loans.timeFinished !== 'Invalid date'}}
+                                <span style="color:#4a4a4a;">{{loans.start1}}</span>
+                                {{else}}
+                                <span style="color:#4a4a4a;">{{loans.start2}}</span>
+                                {{/if}}
+                            {{/if}}
+                        </div>
+                        <div class="end_time">到息日期：
+                            {{#if loans.dueDate !== 'Invalid date'}}
+                            <span style="color:#4a4a4a;">{{loans.dueDate}}</span>
+                            {{else}}
+                                {{#if loans.timeFinished !== 'Invalid date'}}
+                                <span style="color:#4a4a4a;">{{loans.end1}}</span>
+                                {{else}}
+                                <span style="color:#4a4a4a;">{{loans.end2}}</span>
+                                {{/if}}
+                            {{/if}}
+                        </div>
                     </div>
                     <div class="progress-wp">
                         <div class="progress-num">当前进度：
@@ -113,7 +133,7 @@
                         </tr>
                         <tr>
                             <th class="title">募集截止日</th>
-                            {{#if loans.timeFinished === 'null'}}
+                            {{#if loans.timeFinished !== 'Invalid date'}}
                             <th class="content gray">{{loans.timeFinished}}</th>
                             {{else}}
                             <th class="content gray">{{loans.timeEnd}}</th>
@@ -139,11 +159,7 @@
                             <th class="title">预期收益</th>
                             <th class="content">
                                 <div class="repay-plan-title">
-                                    {{#if loans.timeFinished === 'null'}}
-                                    <p class="left">以明日({{loans.start}})满标为例</p>
-                                    {{else}}
-                                    <p class="left">以明日({{loans.end}})满标为例</p>
-                                    {{/if}}
+                                    <p class="left">以募集截止日当天满标为例</p>
                                     <p class="right">单位：元</p>
                                 </div>
                                

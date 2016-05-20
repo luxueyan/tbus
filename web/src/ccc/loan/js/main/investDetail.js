@@ -34,8 +34,8 @@ new Ractive({
     template: template,
     data: {
         timeOpen: moment(CC.loan.timeOpen).format('YYYY-MM-DD HH:mm'),
-//        timeFinished: moment(new Date(parseInt(CC.loan.timeFinished))).format('YYYY-MM-DD HH:mm')
-        timeSettled:CC.loan.timeSettled
+        //        timeFinished: moment(new Date(parseInt(CC.loan.timeFinished))).format('YYYY-MM-DD HH:mm')
+        timeSettled: CC.loan.timeSettled
     }
 });
 
@@ -51,12 +51,12 @@ function initailEasyPieChart() {
         var oldie = /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase());
         $(".easy-pie-chart").each(function () {
             var percentage = $(this).data("percent");
-            var status=$(this).data("status");
-			var percentageNum = CC.loan.rule.leftAmount;
+            var status = $(this).data("status");
+            var percentageNum = CC.loan.rule.leftAmount;
             // 100%进度条颜色显示为背景色
 
             //var color = percentage != 100 && (status==='SETTLED'|| status==='CLEARED') ? "#f58220" : '#009ada';
-             var color = (status==='OPENED') ? '#009ada' : "#f58220";
+            var color = (status === 'OPENED') ? '#009ada' : "#f58220";
 
             //            var color = percentage === 100 ? "#f58220" : '#f58220';
 
@@ -73,10 +73,13 @@ function initailEasyPieChart() {
                 }
             });
 
-            $(this).find("span.percentageNum").html('<span style="color:#f58220;font-size:24px;">' + percentageNum + '</span>' + '<span style="color:#4b4b4b;">' +  CC.loan.rule.dw + '</span>');
+            $(this).find("span.percentageNum").html('<span style="color:#f58220;font-size:24px;">' + percentageNum + '</span>' + '<span style="color:#4b4b4b;">' + CC.loan.rule.dw + '</span>');
 
-			var width = $(this).find("span.percentageNum").width();
-			$(this).find("span.percentageNum").css({'left':'50%','margin-left':-width/2});
+            var width = $(this).find("span.percentageNum").width();
+            $(this).find("span.percentageNum").css({
+                'left': '50%',
+                'margin-left': -width / 2
+            });
             //			console.log(width);
 
         });
@@ -97,9 +100,9 @@ $("[data-toggle=tooltip]")
                     .find('.tooltip-container')
             });
     });
+
 setTimeout((function () {
     CC.loan.timeElapsed = utils.format.timeElapsed(CC.loan.timeElapsed);
-    console.log(CC.loan.timeElapsed);
     CC.loan.timeLeft = JSON.parse(CC.loan.timeLeft);
     var leftTime = CC.loan.timeLeft;
     var timeLeftToal = leftTime.ss + leftTime.mm * 60 + leftTime.hh * 60 * 60 + leftTime.dd * 60 * 60 * 24;
@@ -116,7 +119,7 @@ setTimeout((function () {
                 ss: ss
             }
             var days = newTimeleftTotal.dd ? '<i>' + newTimeleftTotal.dd + '</i>日' : '';
-            $('.time>span').html( days + '<i>' + newTimeleftTotal.hh + '</i>时<i>' + newTimeleftTotal.mm + '</i>分<i>' + newTimeleftTotal.ss + '</i>秒');
+            $('.time>span').html(days + '<i>' + newTimeleftTotal.hh + '</i>时<i>' + newTimeleftTotal.mm + '</i>分<i>' + newTimeleftTotal.ss + '</i>秒');
         }, 1000)
         //获取最后还款日期
     if (CC.repayments instanceof Array && CC.repayments.length > 0) {
@@ -139,8 +142,6 @@ setTimeout((function () {
             // inputNum: CC.loan.rule.min,
             rate: utils.format.percent(CC.loan.investPercent *
                 100, 2),
-            agreement: CC.user ? (CC.user.agreement ?
-                CC.user.agreement : false) : false,
             errors: {
                 visible: false,
                 msg: ''
@@ -149,36 +150,38 @@ setTimeout((function () {
             serverDate: moment(CC.serverDate).format('YYYY-MM-DD'),
             isSend: false,
             backUrl: CC.backUrl,
-            dueDate:(CC.repayments[0]||{}).dueDate,
-            timeSettled:nextDate(CC.loan.timeSettled),
+            dueDate: (CC.repayments[0] || {}).dueDate,
+            timeSettled: nextDate(CC.loan.timeSettled),
         },
         oninit: function () {
+            var self = this;
             if (CC.loan.rule.balance < CC.loan.rule.min) {
                 this.set('inputNum', CC.loan.rule.balance);
             }
             loanService.getInvestNum(function (res) {
-              var list = res.results;
-//                console.log("11111list")
-//                console.log(list)
-              var investNum = false;
-              for (var i = 0; i < list.length; i++) {
+                var list = res.results;
+                //                console.log("11111list")
+                //                console.log(list)
+                var investNum = false;
+                for (var i = 0; i < list.length; i++) {
 
-                  if(list[i].product.productKey=='NEW'){
-                      investNum=true;
-                      break;
-                  }
-              }
-              this.set('isnew', investNum);
+                    if (list[i].product.productKey == 'NEW') {
+                        investNum = true;
+                        break;
+                    }
+                }
+                self.set('isnew', investNum);
 
-          });
+            });
         }
     });
-      function nextDate(timestr){
-            var date=new Date(timestr.replace('/-/g','\/'));
-            var timeunix=Math.round((date.getTime()+1000*60*60*24)/1000);
-            var time=moment(timeunix*1000).format('YYYY-MM-DD');
-            return time;
-        }
+
+    function nextDate(timestr) {
+        var date = new Date(timestr.replace('/-/g', '\/'));
+        var timeunix = Math.round((date.getTime() + 1000 * 60 * 60 * 24) / 1000);
+        var time = moment(timeunix * 1000).format('YYYY-MM-DD');
+        return time;
+    }
     var serverDate = CC.serverDate;
     var openTime = CC.loan.timeOpen;
     serverDate += 1000;
@@ -189,7 +192,7 @@ setTimeout((function () {
             if (!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
                 clearInterval(interval);
             } else {
-                $('.left-time-start').html('<span class="text">距离开标时间还有<span style="color:#009ada">' + textDay + '</span>天<span style="color:#009ada;">'+ leftTime.hour + '</span>时<span style="color:#009ada">' + leftTime.min + '</span>分<span style="color:#009ada">' + leftTime.sec + '</span>秒</span>')
+                $('.left-time-start').html('<span class="text">距离开标时间还有<span style="color:#009ada">' + textDay + '</span>天<span style="color:#009ada;">' + leftTime.hour + '</span>时<span style="color:#009ada">' + leftTime.min + '</span>分<span style="color:#009ada">' + leftTime.sec + '</span>秒</span>')
             }
         }), 1000);
     }
@@ -215,29 +218,29 @@ setTimeout((function () {
         var num = parseInt(this.get('inputNum'), 10); // 输入的值
         var smsCaptcha = this.get('smsCaptcha');
         var paymentPassword = this.get('paymentPassword');
-           var couponSelection=$("#couponSelection").find("option:selected").text();
-        var indexnum=couponSelection.indexOf("最低投资额：");
-        var minnum=couponSelection.substring(indexnum+6,couponSelection.length-1);
-        
-        if(CC.loan.productKey === 'NEW'){
-             if (investRactive.get('user').totalInvest > 0) {
-                  showErrors('只有新手可以投');
-                  return false;
+        var couponSelection = $("#couponSelection").find("option:selected").text();
+        var indexnum = couponSelection.indexOf("最低投资额：");
+        var minnum = couponSelection.substring(indexnum + 6, couponSelection.length - 1);
+
+        if (CC.loan.productKey === 'NEW') {
+            if (investRactive.get('user').totalInvest > 0) {
+                showErrors('只有新手可以投');
+                return false;
             };
-            
+
             var isnew = this.get('isnew');
-            if(isnew){
-              showErrors('您已投过新手标，不可重复！');
-              return false;
+            if (isnew) {
+                showErrors('您已投过新手标，不可重复！');
+                return false;
             }
         }
-   
 
-        if(num<minnum){
+
+        if (num < minnum) {
             showErrors('投资额小于奖券最低投资额');
-             return false;
+            return false;
         }
-        if(CC.loan.userId===CC.user.userId){
+        if (CC.loan.userId === CC.user.userId) {
             showErrors('该标为您本人借款，无法投标 ');
             return false;
         }
@@ -248,12 +251,12 @@ setTimeout((function () {
         }
 
         if (CC.loan.rule.balance < CC.loan.rule.min) {
-            if(this.get('inputNum') != CC.loan.rule.balance) {
-                 this.set('inputNum', CC.loan.rule.balance);
-                 showErrors('投资金额必须为标的剩余金额');
-                 return false;
+            if (this.get('inputNum') != CC.loan.rule.balance) {
+                this.set('inputNum', CC.loan.rule.balance);
+                showErrors('投资金额必须为标的剩余金额');
+                return false;
             } else {
-                 disableErrors();
+                disableErrors();
             }
         } else {
             if (num < CC.loan.rule.min) {
@@ -300,156 +303,156 @@ setTimeout((function () {
                     if ($("#couponSelection")) {
                         var value = $("#couponSelection").find("option:selected").val();
 
-                        if(investRactive.get('selectOption')==null){
-                        if ( value == '') {
-                            couponText = '未使用任何奖券,';
-                        } else {
+                        if (investRactive.get('selectOption') == null) {
+                            if (value == '') {
+                                couponText = '未使用任何奖券,';
+                            } else {
 
-                            couponText = '将使用' + $("#couponSelection").find("option:selected").text();
-                        }
+                                couponText = '将使用' + $("#couponSelection").find("option:selected").text();
+                            }
                         }
                     }
 
 
-					if (document.getElementById('agree').checked == true){
-						$('.agree-error').css('visibility','hidden');
-                    	Confirm.create({
-                        msg: '您本次投资的金额为' + num + '元，'+ couponText +'是否确认投资？',
-                        okText: '确定',
-                        cancelText: '取消',
+                    if (document.getElementById('agree').checked == true) {
+                        $('.agree-error').css('visibility', 'hidden');
+                        Confirm.create({
+                            msg: '您本次投资的金额为' + num + '元，' + couponText + '是否确认投资？',
+                            okText: '确定',
+                            cancelText: '取消',
 
-                        ok: function () {
-                            if ($("#couponSelection").find("option:selected").val().replace(/^\s*/g,"")=='返现券') {
-                                var thisRebate=parseFloat(jQuery('#thisRebate').text()).toFixed(2);
-                                $.post('/api/v2/invest/tenderUseRebate/'+CC.user.userId, {
-                                    amount : num,
-                                    loanId : investRactive.get('loan.id'),
-                                    paymentPassword : investRactive.get('paymentPassword'),
-                                    rebateAmount:thisRebate
-                                }, function (res) {
-                                    if (res.success) {
-                                        CccOk.create({
-                                            msg: '投资成功，<a href="/invest" style="color:#009ada;text-decoration:none">继续浏览其他项目</a>',
-                                            okText: '确定',
-                                            // cancelText: '重新登录',
-                                            ok: function () {
-                                                window.location.reload();
-                                            },
-                                            cancel: function () {
-                                                window.location.reload();
-                                            }
-                                        });
-                                    } else {
-                                        var errType = res.error && res.error[0] && res.error[0].message || '';
-                                        var errMsg = {
-                                            TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
-                                        }[errType] || errType;
-                                        CccOk.create({
-                                            msg: '投资失败' + errMsg,
-                                            okText: '确定',
-                                            // cancelText: '重新登录',
-                                            ok: function () {
-                                                window.location.reload();
-                                            },
-                                            cancel: function () {
-                                                window.location.reload();
-                                            }
-                                        });
-                                    }
-                                });
-                            }//使用返现劵接口end
-                            else{
-                                $.post('/lianlianpay/tender', {
-                                    amount : num,
-                                    loanId : investRactive.get('loan.id'),
-                                    placementId : investRactive.get('coupon'),
-                                    paymentPassword : investRactive.get('paymentPassword')
-                                }, function (res) {
-                                    if (res.success) {
-                                        CccOk.create({
-                                            msg: '投资成功，<a href="/invest" style="color:#009ada;text-decoration:none">继续浏览其他项目</a>',
-                                            okText: '确定',
-                                            // cancelText: '重新登录',
-                                            ok: function () {
-                                                window.location.reload();
-                                            },
-                                            cancel: function () {
-                                                window.location.reload();
-                                            }
-                                        });
-                                    } else {
-                                        var errType = res.error && res.error[0] && res.error[0].message || '';
-                                        var errMsg = {
-                                            TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
-                                        }[errType] || errType;
-                                        CccOk.create({
-                                            msg: '投资失败' + errMsg,
-                                            okText: '确定',
-                                            // cancelText: '重新登录',
-                                            ok: function () {
-                                                window.location.reload();
-                                            },
-                                            cancel: function () {
-                                                window.location.reload();
-                                            }
-                                        });
-                                    }
-                                });
+                            ok: function () {
+                                if ($("#couponSelection").find("option:selected").val().replace(/^\s*/g, "") == '返现券') {
+                                    var thisRebate = parseFloat(jQuery('#thisRebate').text()).toFixed(2);
+                                    $.post('/api/v2/invest/tenderUseRebate/' + CC.user.userId, {
+                                        amount: num,
+                                        loanId: investRactive.get('loan.id'),
+                                        paymentPassword: investRactive.get('paymentPassword'),
+                                        rebateAmount: thisRebate
+                                    }, function (res) {
+                                        if (res.success) {
+                                            CccOk.create({
+                                                msg: '投资成功，<a href="/invest" style="color:#009ada;text-decoration:none">继续浏览其他项目</a>',
+                                                okText: '确定',
+                                                // cancelText: '重新登录',
+                                                ok: function () {
+                                                    window.location.reload();
+                                                },
+                                                cancel: function () {
+                                                    window.location.reload();
+                                                }
+                                            });
+                                        } else {
+                                            var errType = res.error && res.error[0] && res.error[0].message || '';
+                                            var errMsg = {
+                                                TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
+                                            }[errType] || errType;
+                                            CccOk.create({
+                                                msg: '投资失败' + errMsg,
+                                                okText: '确定',
+                                                // cancelText: '重新登录',
+                                                ok: function () {
+                                                    window.location.reload();
+                                                },
+                                                cancel: function () {
+                                                    window.location.reload();
+                                                }
+                                            });
+                                        }
+                                    });
+                                } //使用返现劵接口end
+                                else {
+                                    $.post('/lianlianpay/tender', {
+                                        amount: num,
+                                        loanId: investRactive.get('loan.id'),
+                                        placementId: investRactive.get('coupon'),
+                                        paymentPassword: investRactive.get('paymentPassword')
+                                    }, function (res) {
+                                        if (res.success) {
+                                            CccOk.create({
+                                                msg: '投资成功，<a href="/invest" style="color:#009ada;text-decoration:none">继续浏览其他项目</a>',
+                                                okText: '确定',
+                                                // cancelText: '重新登录',
+                                                ok: function () {
+                                                    window.location.reload();
+                                                },
+                                                cancel: function () {
+                                                    window.location.reload();
+                                                }
+                                            });
+                                        } else {
+                                            var errType = res.error && res.error[0] && res.error[0].message || '';
+                                            var errMsg = {
+                                                TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
+                                            }[errType] || errType;
+                                            CccOk.create({
+                                                msg: '投资失败' + errMsg,
+                                                okText: '确定',
+                                                // cancelText: '重新登录',
+                                                ok: function () {
+                                                    window.location.reload();
+                                                },
+                                                cancel: function () {
+                                                    window.location.reload();
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
+
+                                $('.dialog').hide();
+                            },
+                            cancel: function () {
+                                $('.dialog').hide();
                             }
-                            
-                            $('.dialog').hide();
-                        },
-                        cancel: function () {
-                           $('.dialog').hide();
-						}
-                    });
-					}else{
-						$('.agree-error').css('visibility','visible');
-						$('.agree-error').html('请先同意新毅用户投资服务协议');
-					}
+                        });
+                    } else {
+                        $('.agree-error').css('visibility', 'visible');
+                        $('.agree-error').html('请先同意新毅用户投资服务协议');
+                    }
                 }
             });
         };
     });
     //显示返现金额
-    investRactive.on('rebate',function(){
-        jQuery('.calculator input[type="text"]').val(jQuery('.calculator input[type="text"]').val().replace(/[^0-9]/g,''))
-        //var inpNum=parseInt(jQuery('.calculator input[type="text"]').val());
-        var inpNum = investRactive.get('inputNum');
-        if (inpNum>CC.loan.rule.balance) {
-           inpNum= CC.loan.rule.balance;
-        }
-        
-        if (jQuery('#couponSelection').find("option:selected").val()=='返现券'&&isNaN(inpNum)==false) {
-            $.get('/api/v2/loan/'+ CC.loan.id,
-              function(r){
-                    var protimeT='';
-                    var rebateMoney='';
-                    if(r.duration.days!=0){
-                        protimeT=parseInt(r.duration.totalDays);
-                        rebateMoney=inpNum*protimeT/365*0.005;
-                    }else{
-                        protimeT=parseInt(r.duration.totalMonths);
-                        rebateMoney=inpNum*protimeT/12*0.005;
-                    }
-                    var actualAmountNum=investRactive.get('actualAmountNum');
-                    if (rebateMoney>actualAmountNum) {
-                        rebateMoney=actualAmountNum;
-                    }
-                    jQuery('#thisRebate').html(rebateMoney.toFixed(2));
-                    jQuery('.totalInterestRebate').css('display','block');
+    investRactive.on('rebate', function () {
+            jQuery('.calculator input[type="text"]').val(jQuery('.calculator input[type="text"]').val().replace(/[^0-9]/g, ''))
+                //var inpNum=parseInt(jQuery('.calculator input[type="text"]').val());
+            var inpNum = investRactive.get('inputNum');
+            if (inpNum > CC.loan.rule.balance) {
+                inpNum = CC.loan.rule.balance;
+            }
 
-              }
-            );
-        }else{
-            jQuery('.totalInterestRebate').css('display','none');
-            // jQuery('.totalNum span').html('0.00');
-        }
-        
-    })
-    // investRactive.on('rebateKeyup',function(){
-    //     CC.loan.rule.balance
-    // })
+            if (jQuery('#couponSelection').find("option:selected").val() == '返现券' && isNaN(inpNum) == false) {
+                $.get('/api/v2/loan/' + CC.loan.id,
+                    function (r) {
+                        var protimeT = '';
+                        var rebateMoney = '';
+                        if (r.duration.days != 0) {
+                            protimeT = parseInt(r.duration.totalDays);
+                            rebateMoney = inpNum * protimeT / 365 * 0.005;
+                        } else {
+                            protimeT = parseInt(r.duration.totalMonths);
+                            rebateMoney = inpNum * protimeT / 12 * 0.005;
+                        }
+                        var actualAmountNum = investRactive.get('actualAmountNum');
+                        if (rebateMoney > actualAmountNum) {
+                            rebateMoney = actualAmountNum;
+                        }
+                        jQuery('#thisRebate').html(rebateMoney.toFixed(2));
+                        jQuery('.totalInterestRebate').css('display', 'block');
+
+                    }
+                );
+            } else {
+                jQuery('.totalInterestRebate').css('display', 'none');
+                // jQuery('.totalNum span').html('0.00');
+            }
+
+        })
+        // investRactive.on('rebateKeyup',function(){
+        //     CC.loan.rule.balance
+        // })
 
     // 初始化倒计时
     if (CC.loan.timeOpen > 0) {
@@ -487,6 +490,7 @@ setTimeout((function () {
             }), 1000);
         }
     }
+
     function parsedata(o) {
         var type = {
             'CASH': '现金券',
@@ -494,7 +498,7 @@ setTimeout((function () {
             'PRINCIPAL': '增值券',
             'REBATE': '返现券'
         };
-        for (var i = o.length-1; i>=0; i--) {
+        for (var i = o.length - 1; i >= 0; i--) {
             //var canuse = o[i].disabled;
             //o[i] = o[i].data;
             o[i].value = parseInt(o[i].couponPackage.parValue);
@@ -511,14 +515,14 @@ setTimeout((function () {
             } else if (o[i].couponPackage.type === 'PRINCIPAL') {
                 o[i].displayValue = parseInt(o[i].couponPackage.parValue) + "元";
             } else if (o[i].couponPackage.type === 'REBATE') {
-                o[i].displayValue ='';
-                o[i].minimumInvest ='';
-                var actualAmountNum=o[i].actualAmount;
-                console.log('zhsha'+actualAmountNum);
-                investRactive.set('actualAmountNum',actualAmountNum);
+                o[i].displayValue = '';
+                o[i].minimumInvest = '';
+                var actualAmountNum = o[i].actualAmount;
+                console.log('zhsha' + actualAmountNum);
+                investRactive.set('actualAmountNum', actualAmountNum);
 
             };
-            
+
             //o[i].canuse = canuse;
         }
         return o;
@@ -543,47 +547,48 @@ setTimeout((function () {
                 msg: ''
             });
     }
+
     function showSelect(amount) {
-            $('#couponSelection').val('');
-            var months = CC.loan.duration;
-            investRactive.set('inum', parseFloat(amount));
-            disableErrors();
-            loanService.getMyCoupon(amount, months, function (coupon) {                
-                if (coupon.success) {
-                    var list=parsedata(coupon.data);
-                    list.sort(function(a,b){
-                        return a.couponPackage.timeExpire-b.couponPackage.timeExpire;
-                    });
-                    investRactive.set('selectOption', list); 
-                }
-            });
-        }
-        //初始化选项
+        $('#couponSelection').val('');
+        var months = CC.loan.duration;
+        investRactive.set('inum', parseFloat(amount));
+        disableErrors();
+        loanService.getMyCouponlist(amount, months, function (coupon) {
+            if (coupon.success) {
+                var list = parsedata(coupon.data);
+                list.sort(function (a, b) {
+                    return a.couponPackage.timeExpire - b.couponPackage.timeExpire;
+                });
+                investRactive.set('selectOption', list);
+            }
+        });
+    }
+    //初始化选项
     showSelect(CC.loan.rule.min);
 
     investRactive.on('getCoupon', function () {
         var inputNum = this.get('inputNum');
         var inum = this.get('inum');
-        jQuery('.totalInterestRebate').css('display','none');
-        if(inputNum.length>10){
+        jQuery('.totalInterestRebate').css('display', 'none');
+        if (inputNum.length > 10) {
             showErrors('投标金额最大允许10位数字');
             return false;
         }
         if (parseFloat(inputNum) !== parseFloat(inum)) {
-           showSelect(inputNum);
+            showSelect(inputNum);
         }
     });
-    investRactive.on('tenNum',function(){
+    investRactive.on('tenNum', function () {
         disableErrors();
         var inputNum = this.get('inputNum');
-        var amount=CC.loan.rule.leftAmount*(CC.loan.rule.amountUnit=='万'?10000:1);
-        var mout=CC.loan.rule.max>amount?amount:CC.loan.rule.max;
-        if(parseInt(inputNum)>parseInt(mout)){
-            this.set('inputNum',mout);
-            inputNum=mout;
+        var amount = CC.loan.rule.leftAmount * (CC.loan.rule.amountUnit == '万' ? 10000 : 1);
+        var mout = CC.loan.rule.max > amount ? amount : CC.loan.rule.max;
+        if (parseInt(inputNum) > parseInt(mout)) {
+            this.set('inputNum', mout);
+            inputNum = mout;
         }
-        if(inputNum.length>10){
-            this.set('inputNum',inputNum.substring(0,10));
+        if (inputNum.length > 10) {
+            this.set('inputNum', inputNum.substring(0, 10));
             showErrors('投标金额最大允许10位数字');
             return false;
         }
@@ -597,116 +602,116 @@ setTimeout((function () {
 
 
 $('.investInput').on('keyup', function () {
-        showSelect($(this).val());
+    showSelect($(this).val());
 });
 
 loanService.getLoanProof(CC.loan.requestId, function (r1) {
     loanService.getCareerProof(CC.loan.LuserId, function (r2) {
-        var loanPurpose=[];
-		for (var j=0;j<r1.length;j++){
-            if(r1[j].proof.proofType=="GUARANTEE_ID"){
+        var loanPurpose = [];
+        for (var j = 0; j < r1.length; j++) {
+            if (r1[j].proof.proofType == "GUARANTEE_ID") {
 
-			if(r1[j].proof.proofType !== ''){
-				r1[j].proofType = i18n.enums.ProofType[r1[j].proof.proofType][0];
-			}else{
-				r1[j].proofType = '暂无认证信息';
-			}
+                if (r1[j].proof.proofType !== '') {
+                    r1[j].proofType = i18n.enums.ProofType[r1[j].proof.proofType][0];
+                } else {
+                    r1[j].proofType = '暂无认证信息';
+                }
                 loanPurpose.push(r1[j]);
             }
-		}
+        }
 
 
-		var proofTypeArr = r2.proofs.CAREER;
-		for(var i=0;i<proofTypeArr.length;i++){
-			if(proofTypeArr[i].proof.proofType !== ''){
-				proofTypeArr[i].proofType = i18n.enums.ProofType[proofTypeArr[i].proof.proofType][0];
-			}else{
-				proofTypeArr[i].proofType = '暂无认证信息';
-			}
-		};
-        if(CC.loan.enterprise){
-        var relateDataRactive = new Ractive({
-            // insurance 担保
-            el: ".insurance-wrapper",
-            template: require('ccc/loan/partials/relateDataOnDetail.html'),
-            data: {
-                loanPurpose: loanPurpose,
-                career: proofTypeArr,
-                currentIndex: 0,
-				currentIndexB:0,
-                selectorsMarginLeft: 0,
-                stageLen: 5,
-
+        var proofTypeArr = r2.proofs.CAREER;
+        for (var i = 0; i < proofTypeArr.length; i++) {
+            if (proofTypeArr[i].proof.proofType !== '') {
+                proofTypeArr[i].proofType = i18n.enums.ProofType[proofTypeArr[i].proof.proofType][0];
+            } else {
+                proofTypeArr[i].proofType = '暂无认证信息';
             }
-        });
+        };
+        if (CC.loan.enterprise) {
+            var relateDataRactive = new Ractive({
+                // insurance 担保
+                el: ".insurance-wrapper",
+                template: require('ccc/loan/partials/relateDataOnDetail.html'),
+                data: {
+                    loanPurpose: loanPurpose,
+                    career: proofTypeArr,
+                    currentIndex: 0,
+                    currentIndexB: 0,
+                    selectorsMarginLeft: 0,
+                    stageLen: 5,
 
-		relateDataRactive.on("prev-pic next-pic", function (e) {
-			var self = this;
-            console.log(self.get("currentIndex"));
-			if(e.name === 'prev-pic'){
-				self.set("currentIndex", self.get("currentIndex") - 1);
-			 if (self.get('currentIndex') < 0) {
-					self.set('currentIndex',self.get('career').length - 1);
-			 	}
-			}else {
-                self.set("currentIndex", self.get("currentIndex") + 1);
-				if(self.get('currentIndex') >= self.get('career').length){
-					self.set('currentIndex',0);
-				}
-            }
+                }
+            });
 
-		});
+            relateDataRactive.on("prev-pic next-pic", function (e) {
+                var self = this;
+                console.log(self.get("currentIndex"));
+                if (e.name === 'prev-pic') {
+                    self.set("currentIndex", self.get("currentIndex") - 1);
+                    if (self.get('currentIndex') < 0) {
+                        self.set('currentIndex', self.get('career').length - 1);
+                    }
+                } else {
+                    self.set("currentIndex", self.get("currentIndex") + 1);
+                    if (self.get('currentIndex') >= self.get('career').length) {
+                        self.set('currentIndex', 0);
+                    }
+                }
 
-        relateDataRactive.on("prev-picB next-picB", function (e) {
-			var self = this;
-            console.log(self.get("currentIndexB"));
-			if(e.name === 'prev-picB'){
-				self.set("currentIndexB", self.get("currentIndexB") - 1);
-			 if (self.get('currentIndexB') < 0) {
-					self.set('currentIndexB',self.get('loanPurpose').length - 1);
-			 	}
-			}else {
-                self.set("currentIndexB", self.get("currentIndexB") + 1);
-				if(self.get('currentIndexB') >= self.get('loanPurpose').length){
-					self.set('currentIndexB',0);
-				}
-            }
+            });
 
-		});
+            relateDataRactive.on("prev-picB next-picB", function (e) {
+                var self = this;
+                console.log(self.get("currentIndexB"));
+                if (e.name === 'prev-picB') {
+                    self.set("currentIndexB", self.get("currentIndexB") - 1);
+                    if (self.get('currentIndexB') < 0) {
+                        self.set('currentIndexB', self.get('loanPurpose').length - 1);
+                    }
+                } else {
+                    self.set("currentIndexB", self.get("currentIndexB") + 1);
+                    if (self.get('currentIndexB') >= self.get('loanPurpose').length) {
+                        self.set('currentIndexB', 0);
+                    }
+                }
 
-        relateDataRactive.on('begin-big-pic-career', function (e) {
-			console.log(e);
-            var index = Number(e.keypath.substr(-1));
-            var options = {
-                imgs: r2.proofs.CAREER,
-                currentIndex: index,
-                selectorsMarginLeft: 0,
-                stageLen: 5,
-                imgLen: r2.proofs.CAREER.length
-            };
-            popupBigPic.show(options);
-//			console.log(r2);
-            return false;
+            });
 
-        });
+            relateDataRactive.on('begin-big-pic-career', function (e) {
+                console.log(e);
+                var index = Number(e.keypath.substr(-1));
+                var options = {
+                    imgs: r2.proofs.CAREER,
+                    currentIndex: index,
+                    selectorsMarginLeft: 0,
+                    stageLen: 5,
+                    imgLen: r2.proofs.CAREER.length
+                };
+                popupBigPic.show(options);
+                //			console.log(r2);
+                return false;
 
-        relateDataRactive.on('begin-big-pic-loan', function (e) {
-			console.log(e);
-            var index = Number(e.keypath.substr(-1));
-			console.log('*********');
-			console.log(index);
-            var options = {
-                imgs: loanPurpose,
-                currentIndex: index,
-                selectorsMarginLeft: 0,
-                stageLen: 5,
-                imgLen: loanPurpose.length
-            };
-            popupBigPic.show(options);
-            return false;
+            });
 
-        });
-    }
+            relateDataRactive.on('begin-big-pic-loan', function (e) {
+                console.log(e);
+                var index = Number(e.keypath.substr(-1));
+                console.log('*********');
+                console.log(index);
+                var options = {
+                    imgs: loanPurpose,
+                    currentIndex: index,
+                    selectorsMarginLeft: 0,
+                    stageLen: 5,
+                    imgLen: loanPurpose.length
+                };
+                popupBigPic.show(options);
+                return false;
+
+            });
+        }
     });
 });
 
@@ -739,7 +744,7 @@ var recordRactive = new Ractive({
     template: require('ccc/loan/partials/record.html'),
     page: 1,
     pageSize: 40,
-    api:'/api/v2/loan/'+ CC.loan.id + '/invests/',
+    api: '/api/v2/loan/' + CC.loan.id + '/invests/',
     data: {
         loading: true,
         list: [],
@@ -750,7 +755,7 @@ var recordRactive = new Ractive({
     },
     getRecord: function () {
         var self = this;
-//        var api = self.api + self.page + '/' + self.pageSize;
+        //        var api = self.api + self.page + '/' + self.pageSize;
         var api = self.api;
         request(api)
             .end()
@@ -759,7 +764,7 @@ var recordRactive = new Ractive({
                 console.log('zzzzboomzzzhahaha')
                 console.log(r);
                 self.setData(r);
-                
+
             });
     },
     setData: function (r) {
@@ -776,19 +781,19 @@ var recordRactive = new Ractive({
             list[i].submitTime = moment(list[i].submitTime)
                 .format('YYYY-MM-DD HH:mm:ss');
 
-//            if (/^HRJK_/.test(list[i].userLoginName)) {
-//                list[i].userLoginName = list.userLoginName.replace('HRJK_', '手机用户');
-//            } else if (list[i].userLoginName.indexOf('手机用户') === 0) {
-//                var _name = list[i].userLoginName.substring(4).replace(/(\d{2})\d{7}(\d{2})/, '$1*******$2');
-//            } else {
-//                if (list[i].userLoginName.length === 2) {
-//                    var _name = mask(list[i].userLoginName, 1);
-//                } else {
-//                    var _name = mask(list[i].userLoginName, 2);
-//                }
-//            }
-//
-//            list[i].userLoginName = _name;
+            //            if (/^HRJK_/.test(list[i].userLoginName)) {
+            //                list[i].userLoginName = list.userLoginName.replace('HRJK_', '手机用户');
+            //            } else if (list[i].userLoginName.indexOf('手机用户') === 0) {
+            //                var _name = list[i].userLoginName.substring(4).replace(/(\d{2})\d{7}(\d{2})/, '$1*******$2');
+            //            } else {
+            //                if (list[i].userLoginName.length === 2) {
+            //                    var _name = mask(list[i].userLoginName, 1);
+            //                } else {
+            //                    var _name = mask(list[i].userLoginName, 2);
+            //                }
+            //            }
+            //
+            //            list[i].userLoginName = _name;
         }
         return list;
     },
@@ -803,7 +808,7 @@ var recordRactive = new Ractive({
         var totalPage = [];
         console.log("===>> totalPage = " + self.totalPage);
         for (var i = 0; i < self.totalPage; i++) {
-            totalPage.push(i+1);
+            totalPage.push(i + 1);
         }
 
         renderPager(totalPage, self.page);
@@ -815,14 +820,14 @@ function renderPager(totalPage, current) {
     if (!current) {
         current = 1;
     }
-   var pagerRactive = new Ractive({
-       el: '#record-pager',
-       template: require('ccc/loan/partials/pagerRecord.html'),
-       data: {
-           totalPage: totalPage,
-           current: current
-       }
-   });
+    var pagerRactive = new Ractive({
+        el: '#record-pager',
+        template: require('ccc/loan/partials/pagerRecord.html'),
+        data: {
+            totalPage: totalPage,
+            current: current
+        }
+    });
 
     pagerRactive.on('previous', function (e) {
         e.original.preventDefault();
@@ -861,29 +866,25 @@ function renderPager(totalPage, current) {
     });
 }
 
-function mask (str, s, l) {
-	if (!str) {
-		return '';
-	}
-	var len = str.length;
-	if (!len) {
-		return '';
-	}
-	if (!l || l < 0) {
-		l = len === 2 ? 1 : len - 2;
-	} else if (l > len - 1) {
-		l = len - 1;
-		s = !! s ? 1 : 0;
-	}
-	if (s > len) {
-		s = len - 1;
-	}
-	str = str.substring(0, s) + (new Array(l + 1))
-		.join('*') + str.substring(s + l);
-	str = str.substring(0, len);
-	return str;
+function mask(str, s, l) {
+    if (!str) {
+        return '';
+    }
+    var len = str.length;
+    if (!len) {
+        return '';
+    }
+    if (!l || l < 0) {
+        l = len === 2 ? 1 : len - 2;
+    } else if (l > len - 1) {
+        l = len - 1;
+        s = !!s ? 1 : 0;
+    }
+    if (s > len) {
+        s = len - 1;
+    }
+    str = str.substring(0, s) + (new Array(l + 1))
+        .join('*') + str.substring(s + l);
+    str = str.substring(0, len);
+    return str;
 }
-
-
-
-
