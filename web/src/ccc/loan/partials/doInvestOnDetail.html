@@ -171,10 +171,11 @@
                             <div class="selectOption">
                                 <select name="placementId" id="couponSelection" on-change="rebate"> 
                                     {{#if selectOption}}
-
+                                    <option selected value="">请选择红包</option>
                                     {{#each selectOption}} {{#if !hide}}
-                                     {{#if typeKey == "返现券"}}
-                                    <option selected value="{{ id }}">{{ displayValue }}{{ typeKey }}</option>
+                                    
+                                    {{#if typeKey == "返现券"}}
+                                    <option  value="{{ id }}">{{ displayValue }}{{ typeKey }}</option>
                                     {{else}}
                                     <option value="{{ id }}">{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest}}</option>
                                     {{/if}}
@@ -218,7 +219,7 @@
                         <div class="tooltip">
                             <div class="tooltip-arrow"></div>
                             <div class="tooltip-inner">
-                                <span class="glyphicon glyphicon-exclamation-sign icon"></span>
+<!--                                <span class="glyphicon glyphicon-exclamation-sign icon"></span>-->
                                 <span class="text">{{ errors.msg }}</span>
                             </div>
                         </div>
