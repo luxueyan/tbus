@@ -182,7 +182,7 @@
 }
 
 .couponWrapper .valueText {
-    font-size: 14px;
+    font-size: 20px;
     float: left;
     height: 125px;
     width: 150px;
@@ -191,11 +191,11 @@
 }
 
 .couponWrapper .valueText .big {
-    font-size: 28px;
+    font-size: 30px;
     margin: 23px 0 10px 0;
 }
 .couponWrapper .valueText .big span{
-    font-size: 12px;
+    font-size: 14px;
 }
 .description{
     margin-left: 20px;

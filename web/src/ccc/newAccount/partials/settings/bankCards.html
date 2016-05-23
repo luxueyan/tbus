@@ -1,33 +1,12 @@
-<!-- <div class="space-30"></div>
-<div class="account-opened-notice" style="width:600px;margin: 0 auto">
-    <div class="ftips" style="text-align:left">
-        <span class="glyphicon glyphicon-exclamation-sign exclamation" style="color:#ff892a;"></span> 重要提示：{{#if authenticated}}此银行卡的开户名必须为“<span style="font-size:20px;color:#f58220">{{realName}}</span>”的借记卡，否则提现会失败。{{/if}} 每个用户只允许绑定1张银行卡，今后仅能使用该银行卡进行快捷充值与提现；绑定后如需更换，须联系客服经审核才能更换。请慎重选择！！
-    </div>
-</div>
-<div class="space-40"></div> -->
-<!-- {{#if !authenticated}} -->
-<!--{{#if flase}}-->
-<!-- <div class="row">
-	<div class="space space-30"></div>
-	<div class="col-md-12 align-center">
-		<p class="text-warning" style="color:#009ada">您还没有实名认证为，实名后才能绑定银行卡</p>
-		<div class="space space-40"></div>
-		<p>
-			<a href="/newAccount/settings/authentication" style="width: 230px;background-color:#009ada" class="btn btn-orange">立即认证</a>
-		</p>
-	</div>
-</div> -->
-<!-- {{else}} -->
-<!--要绑定银行卡-->
+
 <div style="height:100%;background:#fff;">
 <!-- 页头 -->
 <div class="bankcard-nav">
   <span>理财银行卡</span><span class="shuline">｜</span><span>绑卡</span>
 </div>
+    
 {{#if status === 0}}
-
 <div class="bind-card-wrapper">
-
     <form action="" method="POST" on-submit="bind-card-submit">
       <p class="addcard-info">验证并绑定银行卡之后才能进行投资</p>
         <div class="banks-container control-group" style="">
@@ -166,48 +145,34 @@
 
 <!--已绑-->
 {{#if status === 1}}
-<div class="binded-card-wrapper">
-    <!--一张银行卡-->
-    <!-- {{#each bankAccount}}
-        <div class="bank-card">
-            <div class="card-img {{account.bank}}">
-            </div>
-
-            <div class="card-num">
-                {{account.account.substr(0,4)}}************{{account.account.substr(-4,4)}}
-            </div>
+    {{#if paymentPasswordHasSet}}
+    <div class="binded-card-wrapper">
+        <div class="bank-success">
+          <img src="/ccc/newAccount/img/band-success.png"/>
+          <div>
+            <h2>绑卡成功！</h2>
+          </div>
         </div>
-    {{/each}} -->
-    <div class="bank-success">
-      <img src="/ccc/newAccount/img/band-success.png"/>
-      <div>
-        <p>绑卡成功</p>
-        <h2>请设置交易密码</h2>
-      </div>
-    </div>
-    <div class="success-next">
-      <a href="/newAccount/settings/showbank"><button style="background: #fff;color: #ef9c2c;border:1px solid #ef9c2c">以后再说</button></a>
-      <a href="/newAccount/settings/password"><button style="background: #ef9c2c;color:#fff;">马上去设置</button></a>
-    </div>
-
-    <!-- <form action="/lianlianpay/deleteCard" method="POST" target="_blank" on-submit="delete-card-submit" style="margin:30px 0;text-align:center">
-        <input type="hidden" name="cardNo" value="{{bankAccount[0].account.account}}">
-        {{#if ifDel}}
-        <div class="row">
-            <span class="tipss">交易密码</span>
-            <input type="password" name="paymentPassword" class="payInp" value="{{password}}">
-            <button type="submit" class="btn btn-sm btn-success btn-change-card" style="margin:0;width:100px;line-height:28px;">确定</button>
+        <div class="success-next">
+            <a href="/invest"><button style="background: #ef9c2c;color:#fff;">马上去投资</button></a>
+            <a href="/newAccount/settings/showbank"><button style="background: #fff;color: #ef9c2c;border:1px solid #ef9c2c">以后再说</button></a>
         </div>
-        {{else}}
-            {{#if !isAuditing}}
-            <button type="button" class="btn btn-sm btn-success btn-change-card" on-click="doDel">更换银行卡</button>
-            {{else}}
-            <button type="button" class="btn btn-sm btn-success btn-change-card disabled" style="background:#999;border-color:#999">审核中</button>
-            {{/if}}
-        {{/if}}
-    </form> -->
-
-</div>
+    </div>
+    {{else}}
+    <div class="binded-card-wrapper">
+        <div class="bank-success">
+          <img src="/ccc/newAccount/img/band-success.png"/>
+          <div>
+            <p>绑卡成功</p>
+            <h2>请设置交易密码</h2>
+          </div>
+        </div>
+        <div class="success-next">
+          <a href="/newAccount/settings/showbank"><button style="background: #fff;color: #ef9c2c;border:1px solid #ef9c2c">以后再说</button></a>
+          <a href="/newAccount/settings/password"><button style="background: #ef9c2c;color:#fff;">马上去设置</button></a>
+        </div>
+    </div>
+    {{/if}}
 {{/if}}
-<!-- {{/if}} -->
+
 </div>
