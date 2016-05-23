@@ -14,14 +14,6 @@ exports.loanService = {
                 next(res.body);
             });
     },
-    getInvestNum: function (next) {
-        request
-            .get('/api/v2/user/MYSELF/invest/list/0/10?status=FINISHED&status=PROPOSED&status=FROZEN')
-            .end()
-            .then(function (res) {
-                next(res.body);
-            });
-    },
     getCareerProof: function (userId, next) {
         request
             .get('/api/v2/user/' + userId + '/certificates/proofs')
@@ -44,11 +36,10 @@ exports.loanService = {
             })
 
     },
-    getMyCouponlist: function (amount, totalMonths, days, next) {
+    getMyCouponlist: function (amount, totalMonths, next) {
         var sendObj = {
             amount: amount,
-            months: totalMonths,
-            days: days % 30
+            months: totalMonths
         };
         request('POST', '/api/v2/coupon/MYSELF/listCoupon')
             .type('form')

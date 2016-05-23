@@ -1,7 +1,7 @@
 "use strict";
 var loanService = require('./service/loans').loanService;
 var utils = require('ccc/global/js/lib/utils');
-var accountService = require('ccc/account/js/main/service/account').accountService;
+var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 var CommonService = require('ccc/global/js/modules/common').CommonService;
 var CccOk = require('ccc/global/js/modules/cccOk');
 var i18n = require('@ds/i18n')['zh-cn'];
@@ -158,21 +158,6 @@ setTimeout((function () {
             if (CC.loan.rule.balance < CC.loan.rule.min) {
                 this.set('inputNum', CC.loan.rule.balance);
             }
-            loanService.getInvestNum(function (res) {
-                var list = res.results;
-                //                console.log("11111list")
-                //                console.log(list)
-                var investNum = false;
-                for (var i = 0; i < list.length; i++) {
-
-                    if (list[i].product.productKey == 'NEW') {
-                        investNum = true;
-                        break;
-                    }
-                }
-                self.set('isnew', investNum);
-
-            });
         }
     });
 
@@ -224,15 +209,9 @@ setTimeout((function () {
 
         if (CC.loan.productKey === 'NEW') {
             if (investRactive.get('user').totalInvest > 0) {
-                showErrors('只有新手可以投');
-                return false;
-            };
-
-            var isnew = this.get('isnew');
-            if (isnew) {
                 showErrors('您已投过新手标，不可重复！');
                 return false;
-            }
+            };
         }
 
 
@@ -323,6 +302,7 @@ setTimeout((function () {
 
                             ok: function () {
                                 if ($("#couponSelection").find("option:selected").val().replace(/^\s*/g, "") == '返现券') {
+                                    
                                     var thisRebate = parseFloat(jQuery('#thisRebate').text()).toFixed(2);
                                     $.post('/api/v2/invest/tenderUseRebate/' + CC.user.userId, {
                                         amount: num,
@@ -446,13 +426,9 @@ setTimeout((function () {
                 );
             } else {
                 jQuery('.totalInterestRebate').css('display', 'none');
-                // jQuery('.totalNum span').html('0.00');
             }
 
         })
-        // investRactive.on('rebateKeyup',function(){
-        //     CC.loan.rule.balance
-        // })
 
     // 初始化倒计时
     if (CC.loan.timeOpen > 0) {
@@ -492,6 +468,7 @@ setTimeout((function () {
     }
 
     function parsedata(o) {
+
         var type = {
             'CASH': '现金券',
             'INTEREST': '加息券',
@@ -499,8 +476,8 @@ setTimeout((function () {
             'REBATE': '返现券'
         };
         for (var i = o.length - 1; i >= 0; i--) {
+            o[i] = o[i].placement;
             //var canuse = o[i].disabled;
-            //o[i] = o[i].data;
             o[i].value = parseInt(o[i].couponPackage.parValue);
             o[i].id = o[i].id;
             o[i].typeKey = type[o[i].couponPackage.type];
@@ -518,7 +495,6 @@ setTimeout((function () {
                 o[i].displayValue = '';
                 o[i].minimumInvest = '';
                 var actualAmountNum = o[i].actualAmount;
-                console.log('zhsha' + actualAmountNum);
                 investRactive.set('actualAmountNum', actualAmountNum);
 
             };
@@ -553,7 +529,7 @@ setTimeout((function () {
         var months = CC.loan.duration;
         investRactive.set('inum', parseFloat(amount));
         disableErrors();
-        loanService.getMyCouponlist(amount, months, function (coupon) {
+        loanService.getMyCouponlist(amount, CC.loan.duration, function (coupon) {
             if (coupon.success) {
                 var list = parsedata(coupon.data);
                 list.sort(function (a, b) {
@@ -761,8 +737,6 @@ var recordRactive = new Ractive({
             .end()
             .get('body')
             .then(function (r) {
-                console.log('zzzzboomzzzhahaha')
-                console.log(r);
                 self.setData(r);
 
             });
