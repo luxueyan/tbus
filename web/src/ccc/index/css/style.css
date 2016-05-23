@@ -867,30 +867,33 @@ a {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100%;
-    width: 250px;
-    padding: 30px 20px;
+    width: 200px;
+    padding: 5px 20px;
     border-right: 1px solid #dddddd;
     height: 105px;
     margin-top: 30px;
     float: left;
 }
 .newWrapper .rate {
-	color: #ff5451;
-	font-size: 24px;
+    color: #ff5451;
+    font-size: 30px;
+    font-weight: bold;
 }
 .newWrapper .percent{
     color: #ff5451;
-	font-size: 18px;
+    font-size: 30px;
+    padding-left: 5px;
 }
 .newWrapper .rate_word{
     font-size: 14px;
     text-align: center;
+    margin-top: 10px;
 }
 .newWrapper .investTime{
     float: left;
     width: 160px;
     text-align: center;
-    padding: 30px 20px;
+    padding: 5px 20px;
     border-right: 1px solid #dddddd;
     height: 105px;
     margin-top: 30px;
@@ -899,26 +902,29 @@ a {
     float: left;
     width: 160px;
     text-align: center;
-    padding: 30px 20px;
+    padding: 5px 20px;
     height: 105px;
     margin-top: 30px;
 }
 .newWrapper .investTime span{
-    font-size: 20px;
-    color: #000;
+    font-size: 28px;
+    color: #4a4a4a;
 }
 .newWrapper .investNum span{
-    font-size: 20px;
-    color: #000;
+    font-size: 28px;
+    color: #4a4a4a;
+}
+.investTime-space{
+    margin-bottom: 12px;
 }
 .newWrapper .opre {
-	width: 165px;
-    margin-top: 52px;
+	width: 211px;
+    margin-top: 30px;
     text-align: center;
 }
 
 .newWrapper .opre .investbtn {
-	width: 132px;
+    width: 132px;
     height: 36px;
     text-align: center;
     line-height: 36px;
@@ -926,6 +932,6 @@ a {
     background-color: #ef9c2c;
     font-size: 16px;
     border-radius: 3px;
-    margin-left: 19px;
+    margin-left: 41px;
     margin-top: 28px;
 }

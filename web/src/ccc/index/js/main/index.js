@@ -192,7 +192,7 @@ function initailEasyPieChart() {
                 lineCap: 'butt',
                 lineWidth: 4,
                 animate: oldie ? false : 1000,
-                size: 45,
+                size: 70,
                 onStep: function (from, to, percent) {
                     $(this.el).find('.percent').text(Math.round(percent));
                 }
