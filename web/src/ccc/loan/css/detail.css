@@ -441,6 +441,7 @@
 .do-invest-wrapper .status .userBlock .leftMoney-open .recharge {
     float: right;
     display: block;
+    margin-top: -4px;
 }
 .do-invest-wrapper .status .userBlock .leftMoney .red {
     color: #ff7200;
@@ -499,18 +500,16 @@
 .do-invest-wrapper .status .userBlock .input .selectOption {
     clear: both;
     text-align: left;
-    margin-top: 5px;
 }
 .do-invest-wrapper .status .userBlock .input .selectOption select {
     background: #fff;
-    height: 30px;
+    height: 24px;
     color: #abb2ba;
-    font-size: 14px;
+    font-size: 12px;
     width: 288px;
     border: none;
-    line-height: 20px;
     text-indent: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid #eee;
 }
 .do-invest-wrapper .status .userBlock .input .invest-input {
     width: 220px;
@@ -551,7 +550,7 @@
     text-align: left;
     padding-left: 50px;
     border-bottom: 1px dashed #e0e0e0;
-    line-height: 60px;
+    line-height: 50px;
 }
 .do-invest-wrapper .status .userBlock .p-max {
     color: #999;
@@ -1460,13 +1459,13 @@
 		color:#7e7e7e;
 }
 .calculatorBox .trade-password {
-    padding-left: 10px;
-    font-size: 14px;
+    padding-left: 15px;
+    font-size: 12px;
     color: #5b9dff;
     border: none;
-    line-height: 33px;
+    line-height: 24px;
     width: 190px;
-    height: 33px;
+    height: 30px;
 }
 .calculatorBox .password-box {
     overflow: hidden;
@@ -1474,19 +1473,19 @@
 }
 .calculatorBox .password-box p {
     float: right;
-    margin-top: 10px;
+    margin-top: 6px;
 }
 .calculatorBox .password-box p a {
     color: #5b9dff;
     line-height: 12px;
 }
 .calculatorBox .password {
-    border: 1px solid #ccc;
     border-radius: 4px;
-    height: 33px;
+    height: 30px;
     width: 174px;
     overflow: hidden;
     float: left;
+    border: 1px solid #eee;
 }
 #userBlock .leftMoney-open .recharge button {
     background: #f58220;

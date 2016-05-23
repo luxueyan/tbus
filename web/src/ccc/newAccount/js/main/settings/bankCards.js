@@ -41,7 +41,8 @@ var ractive = new Ractive({
         mobile: CC.user.mobile,
         realName: CC.user.name,
         isAuditing : CC.user.fundaccountsMap.data.auditingList.length > 0 ? true : false,
-        authenticated: CC.user.authenticates.idauthenticated || false
+        authenticated: CC.user.authenticates.idauthenticated || false,
+        paymentPasswordHasSet: CC.user.paymentPasswordHasSet
     },
     oninit: function () {
         accountService.getUserInfo(function (o) {
@@ -50,16 +51,6 @@ var ractive = new Ractive({
         $.get('/api/v2/hundsun/banks',function(r){
           ractive.set('newbanks',r);
         });
-    },
-    oncomplete: function () {
-        // accountService.getProvince(function (res) {
-        //     ractive.set('province', changeToList(res));
-        //     ractive.set('myProvince','广东');
-        //     var fProvince = ractive.get('myProvince') || '广东';
-        //     accountService.getCity(fProvince, function (res) {
-        //         ractive.set('city', changeToList(res));
-        //     });
-        // });
     }
 });
 
@@ -79,20 +70,6 @@ ractive.on("validateIdNo", function () {
         this.set("idNoError", false);
     }
 });
-
-// ractive.on('checkSame', function () {
-//     var no = this.get("cardNo");
-//     var reno = this.get("recardNo");
-//
-//     if (reno !== '') {
-//         if (no !== reno) {
-//             this.set('cardDiff', true);
-//             this.set("cardNoError", false);
-//         } else {
-//             this.set('cardDiff', false);
-//         }
-//     }
-// });
 
 
 ractive.on('checkSmsCaptcha', function () {
@@ -116,6 +93,7 @@ ractive.on("validatePhoneNo", function () {
 ractive.on('doDel', function () {
     this.set('ifDel',true);
 });
+
 ractive.on("bind-card-submit", function (e) {
     e.original.preventDefault();
     var cardNoError = this.get("cardNoError");
@@ -125,26 +103,12 @@ ractive.on("bind-card-submit", function (e) {
     if (cardNoError || phoneNoError || idNoError||SMS_NULL) {
         return false;
     }
-    // var bankr= _.filter(CC.user.bankCards, function (r) {
-    // return r.deleted === false;
-    // });
     var bankName = this.get('bankName');
     var cardNo = this.get('cardNo');
     var idNo = this.get('idNo');
     var personal=this.get('personal');
     var cardPhone = this.get('mobile');
     var smsCaptcha = this.get('smsCaptcha');
-    // var recardNo = this.get('recardNo');
-    // var province = this.get('myProvince');
-    // var city = this.get('myCity');
-    // var branchName = this.get('branchName');
-
-    // if(cardNo === ''){
-    //     showErrorIndex('showErrorMessagea','errorMessagea','* 卡号不能为空');
-    //     return false;
-    // }else{
-    //      clearErrorIndex('showErrorMessagea','errorMessagea');
-    // }
 
 
     var sendObj = {
@@ -152,10 +116,6 @@ ractive.on("bind-card-submit", function (e) {
         cardNo: cardNo,
         cardPhone: cardPhone,
         smsCaptcha: smsCaptcha
-        // personal:personal,
-        // province: province,
-        // city: city,
-        // branchName: branchName,
     }
     var sendName={
       idNumber:idNo,
@@ -212,56 +172,6 @@ ractive.on("bind-card-submit", function (e) {
 
 });
 
-// ractive.on("delete-card-submit", function (e) {
-//     e.original.preventDefault();
-//     Confirm.create({
-//         msg: '请先确认当前的投资待还本金全部结清，再进行解绑银行卡！',
-//         okText: '确定解绑',
-//         cancelText: '取消解绑',
-//         ok: function () {
-//             $('.btn-confirm-cancel').trigger('click');
-//             $.post('/yeepay/deleteCard', {
-//                 cardNo : ractive.get('bankAccount[0].account.account'),
-//                 paymentPassword : ractive.get('password')
-//             }, function (r) {
-//                 if(r.success) {
-//                     CccOk.create({
-//                         msg: '删卡申请成功，请等待审核!',
-//                         okText: '确定',
-//                         ok: function () {
-//                             window.location.reload();
-//                         },
-//                         cancel: function () {
-//                             window.location.reload();
-//                         }
-//                     });
-//                 } else {
-//                     CccOk.create({
-//                         msg: '删卡失败，' + r.error[0].message,
-//                         okText: '确定',
-//                         ok: function () {
-//                             window.location.reload();
-//                         },
-//                         cancel: function () {
-//                             window.location.reload();
-//                         }
-//                     });
-//                 }
-//
-//             });
-//         },
-//         cancel: function () {
-//         }
-//     });
-//
-// });
-
-// ractive.on('selectPro', function () {
-//     var province = this.get('myProvince');
-//     accountService.getCity(province, function (res) {
-//         ractive.set('city', changeToList(res));
-//     });
-// });
 
 function changeToList(map) {
     var _arr = [];

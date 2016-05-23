@@ -36,7 +36,7 @@
 		{{else}}
 			<span class="icon-bankCards"></span>
 		{{/if}}
-		<span class="nav-text {{#if bankCards}}nav-text-active{{/if}}"><a href="/newAccount/settings/showbank">银行卡管理</a></span>
+		<span class="nav-text {{#if showbank || bankCards}}nav-text-active{{/if}}"><a href="/newAccount/settings/showbank">银行卡管理</a></span>
 	</li>
     <li class="nav-li">
 		{{#if password}}
