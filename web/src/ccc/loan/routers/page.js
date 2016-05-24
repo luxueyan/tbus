@@ -13,9 +13,11 @@ router.get('/:id',
         var backUrl = buffer.toString('base64');
         res.expose(backUrl, 'backUrl');
         // 交易密码
-        var paymentPasswordHasSet =await req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
-                .end().get('body');
-        res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet;
+        if (res.locals.user) {
+            var paymentPasswordHasSet =await req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
+                    .end().get('body');
+            res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet;
+        };
 
         var repayments =await req.uest(
               '/api/v2/loan/' + req.params.id +
@@ -112,8 +114,6 @@ router.get('/:id',
             // TODO 如何共享 loanRequestId 减少请求次数
             replay: repayments
         });
-        console.log('======');
-        console.log(repayments);
         // repayments.then(function (repayments) {
             res.expose(repayments, 'repayments');
             res.render('index', _.assign(res.locals, {
