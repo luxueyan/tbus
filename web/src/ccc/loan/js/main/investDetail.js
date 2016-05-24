@@ -151,7 +151,7 @@ setTimeout((function () {
             isSend: false,
             backUrl: CC.backUrl,
             dueDate: (CC.repayments[0] || {}).dueDate,
-            timeSettled: nextDate(CC.loan.timeSettled),
+            timeSettled: nextDate(CC.loan.timeSettled)
         },
         oninit: function () {
             var self = this;
