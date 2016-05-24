@@ -1648,3 +1648,29 @@
     color: #666;
     border-bottom: 1px solid #ddd;
 }
+/*华瑞金控新手标投资提示*/
+.info-new{
+    display: none;
+}
+.info-new img{
+    margin: 40px auto;
+}
+.info-new .warn-word{
+    width: 365px;
+    background: #fffaf3;
+    border: 1px solid #f5c37e;
+    margin: auto;
+    height: 80px;
+}
+.info-new .warn-word p{
+    text-align: left;
+    margin-left: 30px;
+    font-size: 20px;
+    color: #919296;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.do-invest-wrapper .info-new .warn-word a{
+    color: #6baaf5;
+    margin-left: 128px;
+}

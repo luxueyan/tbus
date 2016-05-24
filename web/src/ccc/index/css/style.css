@@ -858,7 +858,7 @@ a {
 }
 .newWrapper .right-box{
     float: left;
-    border-left: 1px solid #dbdbdb;
+    border-left: 1px solid #ebebeb;
     height: 210px;
     text-align: center;
 }
@@ -869,7 +869,7 @@ a {
     background-size: 100%;
     width: 200px;
     padding: 5px 20px;
-    border-right: 1px solid #dddddd;
+    border-right: 1px solid #ebebeb;
     height: 105px;
     margin-top: 30px;
     float: left;
@@ -894,7 +894,7 @@ a {
     width: 160px;
     text-align: center;
     padding: 5px 20px;
-    border-right: 1px solid #dddddd;
+    border-right: 1px solid #ebebeb;
     height: 105px;
     margin-top: 30px;
 }
@@ -915,11 +915,11 @@ a {
     color: #4a4a4a;
 }
 .investTime-space{
-    margin-bottom: 12px;
+    margin-bottom: 13px;
 }
 .newWrapper .opre {
 	width: 211px;
-    margin-top: 30px;
+    margin-top: 29px;
     text-align: center;
 }
 
@@ -932,6 +932,6 @@ a {
     background-color: #ef9c2c;
     font-size: 16px;
     border-radius: 3px;
-    margin-left: 41px;
+    margin-left: 42px;
     margin-top: 28px;
 }

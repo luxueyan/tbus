@@ -209,7 +209,8 @@ setTimeout((function () {
 
         if (CC.loan.productKey === 'NEW') {
             if (investRactive.get('user').totalInvest > 0) {
-                showErrors('您已投过新手标，不可重复！');
+                $('.info').css('display','none');
+                $('.info-new').css('display','block');
                 return false;
             };
         }
