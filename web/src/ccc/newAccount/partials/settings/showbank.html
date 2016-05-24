@@ -18,14 +18,7 @@
     <td>{{account.account.substr(0,4)}}************{{account.account.substr(-4,4)}}</td>
     <td>已认证</td>
     <td>
-      {{#if defaultAccount}}
-      <button on-click="deleted-card" style="margin-left:110px;" lala="{{account.account}}">解绑</button>
-      {{else}}
-      <!-- {{#each account1}} -->
-      <button class="let-allow" on-click="let-allow" name='cardNo' arg="{{account.account}}">设为默认卡</button>
       <button on-click="deleted-card" lala="{{account.account}}">解绑</button>
-      <!-- {{/each}} -->
-      {{/if}}
     </td>
   </tr>
   {{/each}}
