@@ -1648,7 +1648,7 @@
 }
 /*华瑞金控新手标投资提示*/
 .info-new{
-    display: none;
+    display: block;
 }
 .info-new img{
     margin: 40px auto;
