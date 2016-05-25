@@ -1,0 +1,68 @@
+<dsBody layout={{dsLayoutPath}}>
+    <link rel="stylesheet" href="/ccc/aboutus/css/aboutus.css">
+
+    <div class="page-guide">
+<!--        <p class="aboutus-title"><a href="/">首页</a> >关于我们>{{tab.text}}</p>-->
+
+        <!-- Nav tabs -->
+        <div class="aboutus_tab">
+            <ul class="tab_left">
+                <li class="active ptjs"><a href="#ptjs" data-toggle="tab">平台介绍</a></li>
+                <li class="ptgg"><a href="#ptgg" data-toggle="tab">平台公告</a></li>
+                <li class="aqbz"><a href="#aqbz" data-toggle="tab">安全保障</a></li>
+                <li class="fwxy"><a href="#fwxy" data-toggle="tab">服务协议</a></li>
+                <li class="ggtd"><a href="#ggtd" data-toggle="tab">高管团队</a></li>
+                <li class="lxwm"><a href="#lxwm" data-toggle="tab">联系我们</a></li>
+                <li class="bgcd"><a href="#bgcd" data-toggle="tab">办公场地</a></li>
+                <li class="mtbd"><a href="#mtbd" data-toggle="tab">媒体报道</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content tab_right">
+                <div class="tab_right_title">biaoti</div>
+                <div class="tab-pane active" id="ptjs">
+                    11
+                </div>
+                <div class="tab-pane" id="ptgg">
+                    22
+                    {{#CMSgltd.reverse()}}
+                    <div>{{{content}}}</div>
+                    {{/CMSgyebb}}
+                </div>
+                <div class="tab-pane" id="aqbz">
+                    333
+                    {{#CMSgwtd.reverse()}}
+                    <div>{{{content}}}</div>
+                    {{/CMSgyebb}}
+                </div>
+
+                <div class="tab-pane" id="fwxy">
+                    444
+                    <div class="terrace-wrap"></div>
+                    <div id="invest-pager2"></div>
+                </div>
+                <div class="tab-pane" id="ggtd">
+                    555
+                    <div class="hangye-wrap"></div>
+                    <div id="invest-pager3"></div>
+                </div>
+                <div class="tab-pane" id="lxwm">
+                    666
+                    <div class="media-wrap"></div>
+                    <div id="invest-pager1"></div>
+                </div>
+                <div class="tab-pane" id="bgcd">
+                    777
+                    <div class="touzi-wrap"></div>
+                    <div id="invest-pager4"></div>
+                </div>
+                <div class="tab-pane" id="mtbd">
+                    888
+                    {{#CMSmzsm.reverse()}}
+                    <div>{{{content}}}</div>
+                    {{/CMSgyebb}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/ccc/aboutus/js/main/index.js"></script>
+</dsBody>
