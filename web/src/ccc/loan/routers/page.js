@@ -62,27 +62,12 @@ router.get('/:id',
                     result.userId = result.loanRequest.userId;
                     result.requestId = result.loanRequest.id;
                     res.locals.keywords = '理财产品、投资、理财投资、个人理财、理财新品、新能宝、活动专享、新手专享';
-                    if(result.loanRequest.productKey=='XNB'){
-                    res.locals.title = '新能宝_'+result.title+'理财产品_718金融理财平台';
-                    res.locals.description = '新能宝是'+result.title+'系列理财产品的一种，预期年化收益率达'+result.rate+'，无手续费。';}
-                    else if(result.loanRequest.productKey=='FB'){
-                    res.locals.title = '新抵宝_'+result.title+'理财产品_718金融理财平台';
-                    res.locals.description = '新抵宝是'+result.title+'系列理财产品的一种，预期年化收益率达'+result.rate+'，无手续费。';}
-                    else if(result.loanRequest.productKey=='XJB'){
-                    res.locals.title = '薪金宝_'+result.title+'理财产品_718金融理财平台';
-                    res.locals.description = '薪金宝是'+result.title+'系列理财产品的一种，预期年化收益率达'+result.rate+'，无手续费。';}
-                    else if(result.loanRequest.productKey=='XSZX'){
-                    res.locals.title = '新手专享_'+result.title+'理财产品_718金融理财平台';
-                    res.locals.description = '新手专享是'+result.title+'系列理财产品的一种，预期年化收益率达'+result.rate+'，无手续费。';}
+                    if(result.loanRequest.productKey=='NEW'){
+                        res.locals.title = '新手专享_'+result.title+'理财产品_自金网理财平台';
+                    }
                     else if(result.loanRequest.productKey=='HDZX'){
-                    res.locals.title = '活动专享_'+result.title+'理财产品_718金融理财平台';
+                    res.locals.title = '活动专享_'+result.title+'理财产品_自金网理财平台';
                     res.locals.description = '活动专享是'+result.title+'系列理财产品的一种，预期年化收益率达'+result.rate+'，无手续费。';}
-                  //  else{
-                  //  res.locals.title =result.title+'理财产品_718金融理财平台';
-                  //  res.locals.description = '是'+result.title+'系列理财产品的一种，预期年化收益率达'+result.rate+'，无手续费。'
-                  //     };
-
-                    // res.locals.description = result.loanRequest.description;
                     return result;
 
 

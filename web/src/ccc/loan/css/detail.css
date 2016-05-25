@@ -584,11 +584,9 @@
 }
 .do-invest-wrapper .status .userBlock .shiming {
     text-align: center;
-    text-align: left;
-    margin-left: 30px;
     color: #d4242f;
-    font-size: 12px;
-    margin-bottom: 10px;
+    font-size: 16px;
+    margin: 50px auto;
 }
 .do-invest-wrapper .status .userBlock .rule-max {
     margin-left: 15px;

@@ -157,6 +157,14 @@ setTimeout((function () {
             var self = this;
             if (CC.loan.rule.balance < CC.loan.rule.min) {
                 this.set('inputNum', CC.loan.rule.balance);
+            };
+            if (CC.loan.productKey === 'NEW') {
+                console.log('CC.loan.productKey+'+CC.loan.productKey)
+                if (self.get('user').totalInvest > 0) {
+                    $('.info').css('display','none');
+                    $('.info-new').css('display','block');
+                    return false;
+                };
             }
         }
     });
@@ -206,15 +214,6 @@ setTimeout((function () {
         var couponSelection = $("#couponSelection").find("option:selected").text();
         var indexnum = couponSelection.indexOf("最低投资额：");
         var minnum = couponSelection.substring(indexnum + 6, couponSelection.length - 1);
-
-        if (CC.loan.productKey === 'NEW') {
-            if (investRactive.get('user').totalInvest > 0) {
-                $('.info').css('display','none');
-                $('.info-new').css('display','block');
-                return false;
-            };
-        }
-
 
         if (num < minnum) {
             showErrors('投资额小于奖券最低投资额');
