@@ -143,7 +143,6 @@ function formatNews(news) {
         news[i].pubDate = moment(news[i].pubDate)
             .format('YYYY-MM-DD');
     }
-    //                        console.log(news);
     return news;
 }
 
