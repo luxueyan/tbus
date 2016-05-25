@@ -97,6 +97,8 @@
 {{#if loan.status == "OPENED"}}
 <div class="status">
     <div class="login-see">我要投资</div>
+    
+    {{#if isnew}}
     <div class="info-new">
         <img src="/ccc/loan/img/new_icon_warn.jpg">
         <div class="warn-word">
@@ -104,6 +106,7 @@
             <a href="/newAccount/invite">邀请好友投资>></a>
         </div>
     </div>
+    {{else}}
     <div class="info">
 
         <div class="userBlock" id="userBlock">
@@ -247,5 +250,6 @@
             {{/if}}
         </div>
     </div>
+    {{/if}}
 </div>
 {{/if}}
