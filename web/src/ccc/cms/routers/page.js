@@ -41,7 +41,46 @@ router.get('/:channelName', function (req, res) {
         });
 });
 
-router.get('/p/:id', function (req, res) {
+//平台公告
+router.get('/ptgg/:id', function (req, res) {
+    var user = res.locals.user;
+    if (user && user.idNumber) {
+        delete user.idNumber;
+    }
+    res.expose(user, 'user');
+
+    req.uest(
+        '/api/v2/cms/article/' + req.params.id)
+        .end()
+        .then(function (r) {
+            res.locals.title = '华瑞金控';
+            res.locals.description = r.body.content.replace(/<\/?[^>]*>/g, '').slice(0,100);
+            res.render('detail', {
+                detail: formatDetail(r.body)
+            });
+        });
+});
+//服务协议
+router.get('/fwxy/:id', function (req, res) {
+    var user = res.locals.user;
+    if (user && user.idNumber) {
+        delete user.idNumber;
+    }
+    res.expose(user, 'user');
+
+    req.uest(
+        '/api/v2/cms/article/' + req.params.id)
+        .end()
+        .then(function (r) {
+            res.locals.title = '华瑞金控';
+            res.locals.description = r.body.content.replace(/<\/?[^>]*>/g, '').slice(0,100);
+            res.render('detail', {
+                detail: formatDetail(r.body)
+            });
+        });
+});
+//媒体报道
+router.get('/mtbd/:id', function (req, res) {
     var user = res.locals.user;
     if (user && user.idNumber) {
         delete user.idNumber;

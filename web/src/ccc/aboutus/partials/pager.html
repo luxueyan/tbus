@@ -1,14 +1,14 @@
 {{# totalPage.length }}
 <ul class="invest-pager">
     <li>
-        <a href="#" on-click="previous"><img src="/ccc/aboutus/img/about_left.png"></a>
+        <a href="#" on-click="previous">&lt;上一页</a>
     </li>
     {{#totalPage}}
     <li class="{{#if current == totalPage[@key]}} current-page {{/if}}"><a href="#" on-click="page:{{this}}">{{totalPage[@key]}}</a>
     </li>
     {{/totalPage}}
     <li>
-        <a href="#" on-click="next"><img src="/ccc/aboutus/img/about_rigth.png"></a>
+        <a href="#" on-click="next">下一页&gt;</a>
     </li>
 </ul>
 {{/if}}

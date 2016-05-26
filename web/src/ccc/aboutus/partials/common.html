@@ -1,0 +1,12 @@
+<ul class="list_each">
+    {{#each list}}
+    <a href="/cms/ptgg/{{this.id}}">
+        <li>
+            <div class="circle"></div>
+            <div class="list-title">{{title}}</div>
+            <div class="list-date">{{pubDate}}</div>
+        </li>
+    </a>
+    {{/each}}
+</ul>
+<p class="footer-record">共{{list.length}}条记录</p>
