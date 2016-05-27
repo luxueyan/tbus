@@ -228,7 +228,7 @@ function createList(len, current) {
 
 
 //关于我们 路由
-var nameMap = ['ptjs','ptgg','aqbz','fwxy','ggtd','bgcd','mebd','lxwm'];
+var nameMap = ['ptjs','ptgg','aqbz','fwxy','ggtd','bgcd','mtbd','lxwm'];
 
 var mediaHref = document.location.hash.slice(1);
 
@@ -240,17 +240,42 @@ $.each(nameMap,function(i){
 
 });
 
-$('.tab_left li').click(function(){
-    var url = $(this).children().attr('href');
-    location.href= '/aboutus'+url;
-});
-
 $('.s-footer .left-guide a').click(function(){
     var url = $(this).attr('href');
     location.href= '/aboutus'+url;
 });
 
+$('.tab_left li a').click(function(){
+    var url = $(this).attr('href').slice(1);
+    location.href= '/aboutus#'+url;
+    
+    $(this).parent().siblings().children().each(function(){
+        var class_name = $(this).attr('href').slice(1);
+        $(this).css('background-image','url(/ccc/aboutus/img/'+class_name+'.png)');
+    });
+        
+});
 
+//导航栏图标
+$('.tab_left li a').hover(
+    function(){
+        var class_name = $(this).parent().attr('class');
+        $(this).css('background-image','url(/ccc/aboutus/img/'+class_name+'_active.png)');
+    },
+    function(){
+        var class_name = $(this).parent().attr('class');
+        $(this).css('background-image','url(/ccc/aboutus/img/'+class_name+'.png)');
+    }
+);
+
+$('.tab_left li a').each(function(){
+    var class_name = $(this).attr('href').slice(1);
+    $(this).css('background-image','url(/ccc/aboutus/img/'+class_name+'.png)');
+    if($(this).parent().hasClass('active')){
+        $(this).css('background-image','url(/ccc/aboutus/img/'+class_name+'_active.png)');
+    }
+    
+});
 
 
 
