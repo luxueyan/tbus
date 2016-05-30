@@ -145,7 +145,46 @@
 .invest-pager li:hover{
     background-color: #f1f1f1;
 }
+
 .footer-record{
     float: right;
     margin: 48px 60px 0 20px;
 }
+/*安全保障*/
+.centent-nr{
+    margin: 0 30px 30px;
+    line-height: 22px;
+    min-height: 500px;
+}
+.the-aqbz {
+    color: #666;
+    font-size: 14px;
+    height: auto;
+    margin: 40px auto 50px;
+    overflow: hidden;
+    width: 90%;
+}
+.the-aqbz span {
+    font-weight: bold;
+}
+/*办公地址*/
+.bgcd {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+.bgcd img {
+    display: block;
+    margin: 30px auto;
+}
+.bgcd p {
+    font-size: 16px;
+    color: #666;
+    text-indent: -80px;
+    padding-left: 180px;
+}
+.bgcd p span {
+    color: #333;
+    font-weight: bold;
+}
+
