@@ -53,6 +53,23 @@
                 </div>
                 <div class="tab-pane" id="ggtd">
                     <div class="tab_right_title">高管团队</div>
+                    <div class="ggtd-nr">
+                        <ul>
+                            {{#CMSggtd}}
+                            <li>
+                                <div class="div-1">
+                                    <img src="{{url}}" alt="">
+                                    <p>
+                                        <span>{{author}}</span> {{media}}
+                                    </p>
+                                </div>
+                                <div class="div-2">
+                                    {{{content}}}
+                                </div>
+                            </li>  
+                            {{/CMSggtd}}
+                        </ul>
+                    </div>  
                 </div>
                 <div class="tab-pane" id="lxwm">
                     <div class="tab_right_title">联系我们</div>
@@ -65,7 +82,6 @@
                             <span>办公地址：</span>
                             上海市徐汇区肇嘉浜路789号均瑶国际广场3楼
                         </p>
-                        <img src="/ccc/aboutus/img/bgcd.jpg" alt=""/>
                     </div>
                 </div>
                 <div class="tab-pane" id="mtbd">

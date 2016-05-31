@@ -4,6 +4,9 @@ var ccBody = require('cc-body');
 
 module.exports = function (router) {
     router.get('/', function (req, res, next) {
+        _.assign(res.locals, {
+            title : '注册_自金网平台'
+        });
         res.expose('/api/web/register/smsCaptcha', 'registerSmsCaptchaApi');
         res.expose('/api/web/register/voiceCaptcha', 'CC.registerVoiceCaptchaApi');
         res.expose('/api/web/register/submit', 'registerSubmit');
