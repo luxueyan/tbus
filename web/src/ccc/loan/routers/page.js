@@ -66,7 +66,8 @@ router.get('/:id',
                         res.locals.title = '新手专享_自金网平台';
                     }
                     else{
-                    res.locals.title = result.title+'_自金网平台';
+//                    res.locals.title = result.title+'_自金网平台';
+                    res.locals.title = '投资详情_理财_自金网平台';
                     }
                     return result;
 

@@ -980,7 +980,7 @@
 }
 .invest-detail-wrapper .invest-info-box table.repay-plan{
     width: 670px;
-    
+    border: 1px solid #eee;
 }
 .invest-detail-wrapper .invest-info-box table.repay-plan thead th{
    background: #f4f4f6;
@@ -1016,7 +1016,7 @@
 .invest-info-box .repay-record thead th {
     width: 16%;
     color: #777777;
-    height: 40px;
+    height: 50px;
 }
 .invest-detail-wrapper .tab-panels .loanInfoWrapper {
     width: 730px;
@@ -1486,7 +1486,7 @@
     border: 1px solid #eee;
 }
 #userBlock .leftMoney-open .recharge button {
-    background: #f58220;
+    background: #ef9c2c;
     color: #fff;
     border: none;
     border-radius: 3px;
@@ -1634,17 +1634,21 @@
     padding-left: 35px;
 }
 
-.invest-info-box .table > thead > tr > th {
+.invest-info-box table.repay-plan > thead > tr > th {
     color: #999;
     text-align: center;
     font-size: 13px;
+    border: 1px solid #eee;
 }
-.invest-info-box .table > tbody > tr > th {
+.invest-info-box table.repay-plan > tbody > tr > th {
     text-align: center;
     font-size: 14px;
     line-height: 60px;
     color: #666;
-    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #eee;
+}
+.invest-info-box table.repay-plan > tbody > tr {
+    border-top: none;
 }
 /*华瑞金控新手标投资提示*/
 .info-new{
