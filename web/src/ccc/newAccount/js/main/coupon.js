@@ -289,10 +289,10 @@ window.redeemCoupon = function (btn) {
         placementId: id
     }, function (res) {
         if (res) {
-            alert("兑换申请提交成功!");
+            alert("兑现成功!");
             location.reload();
         } else {
-            alert("兑换申请提交失败!");
+            alert("兑现失败!");
         }
     });
 }

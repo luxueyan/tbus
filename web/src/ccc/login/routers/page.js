@@ -13,9 +13,7 @@ var log = require('bunyan-hub-logger')({ app: 'web', name: 'wx' })
 module.exports = function (router) {
     router.get('/', function (req, res) {
         _.assign(res.locals, {
-//            title : '718_金融理财平台',
-//            keywords : '718_金融理财平台',
-//            description : '718_金融理财平台'
+            title : '登录_自金网平台'
         });
         res.render();
     });

@@ -63,11 +63,11 @@ router.get('/:id',
                     result.requestId = result.loanRequest.id;
                     res.locals.keywords = '理财产品、投资、理财投资、个人理财、理财新品、新能宝、活动专享、新手专享';
                     if(result.loanRequest.productKey=='NEW'){
-                        res.locals.title = '新手专享_'+result.title+'理财产品_自金网理财平台';
+                        res.locals.title = '新手专享_自金网平台';
                     }
-                    else if(result.loanRequest.productKey=='HDZX'){
-                    res.locals.title = '活动专享_'+result.title+'理财产品_自金网理财平台';
-                    res.locals.description = '活动专享是'+result.title+'系列理财产品的一种，预期年化收益率达'+result.rate+'，无手续费。';}
+                    else{
+                    res.locals.title = result.title+'_自金网平台';
+                    }
                     return result;
 
 

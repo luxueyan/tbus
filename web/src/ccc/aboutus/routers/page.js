@@ -6,7 +6,16 @@ module.exports = function (router) {
                 delete user.idNumber;
         }
         res.expose(user, 'user');
-        res.locals.title = '关于我们_自金网';
+        res.locals.CMSggtd = req.uest(
+            '/api/v2/cms/category/INTRODUCTION/name/' + encodeURIComponent('高管团队'))
+            .end()
+            .get('body')
+            .then(function (data) {
+            console.log("_____data")
+            console.log(data)
+                return data;
+            });
+        res.locals.title = '关于我们_自金网平台';
         res.render('aboutus');
     });
 }

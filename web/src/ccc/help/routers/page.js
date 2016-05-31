@@ -67,14 +67,7 @@ module.exports = function (router) {
             }
         
             var user = res.locals.user;
-//            res.locals.title='帮助中心_奇乐融_联想控股成员企业-正奇金融旗下互联网金融战略平台';
-//            res.locals.keywords='奇乐融帮助中心';
-//            res.locals.description = '奇乐融帮助中心为您解答各种操作问题，提供p2p投资,网络投资,贷款咨询服务';
-    
-        
-        
-        
-        
+            res.locals.title='帮助中心_自金网平台';
 
             req.uest('/api/v2/cms/category/' + cateMap[req.params.tab] + '/name/' + encodeURIComponent(nameMap[req.params.tab])).end().then(function (r) {
                 if (r.body.length > 1) {

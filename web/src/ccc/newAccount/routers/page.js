@@ -26,7 +26,7 @@ module.exports = function(router) {
             delete user.idNumber;
         }
 
-        res.locals.title = '华瑞金控';
+        res.locals.title = '自金网平台';
         res.locals.keywords = '华瑞金控';
         res.locals.description = '华瑞金控';
         res.expose(user, 'user');
@@ -151,14 +151,14 @@ module.exports = function(router) {
                     paymentPasswordHasSet;
                 res.render('newAccount/home', {
 
-                    title: '华瑞金控',
+                    title: '理财账户_自金网平台',
                     isEnterprise: res.locals.user.enterprise
                 });
             });
     });
     router.get('/coupon', function(req, res) {
         res.render('newAccount/coupon', {
-            title: '华瑞金控'
+            title: '我的红包_自金网平台'
         });
     });
     router.get('/autobid', async function(req, res) {
@@ -168,18 +168,18 @@ module.exports = function(router) {
         res.expose(user, 'user');
 
         res.render('newAccount/autobid', {
-            title: '华瑞金控'
+            title: '自动投标_自金网平台'
         });
         return false;
     });
     router.get('/assign', function(req, res) {
         res.render('newAccount/assign', {
-            title: '华瑞金控'
+            title: '我的债转_自金网平台'
         });
     });
     router.get('/invite', function(req, res) {
         res.render('newAccount/invite', {
-            title: '华瑞金控'
+            title: '好友邀请_自金网平台'
         });
     });
     router.get('/recharge', function(req, res) {
@@ -189,7 +189,7 @@ module.exports = function(router) {
             res.redirect('/newAccount/settings/bankCards');
         }
         res.render('newAccount/recharge', {
-            title: '华瑞金控'
+            title: '充值_自金网平台'
         });
 
     });
@@ -217,19 +217,19 @@ module.exports = function(router) {
                 '/newAccount/settings/bankCards');
         }
         res.render('newAccount/withdraw', {
-            title: '华瑞金控'
+            title: '提现_自金网平台'
         });
         return false;
     });
     router.get('/message', function(req, res) {
         res.render('newAccount/message', {
-            title: '华瑞金控'
+            title: '我的消息_自金网平台'
         });
     });
 
     router.get('/invest/*', function(req, res) {
         res.render('newAccount/invest', {
-            title: '华瑞金控'
+            title: '我的投资_自金网平台'
         });
     });
 
@@ -248,6 +248,11 @@ module.exports = function(router) {
         "showbank"
     ].forEach(function(tabName) {
         router.get('/settings/' + tabName, function(req, res) {
+            if(tabName == 'bankCards' || tabName == 'showbank'){
+                res.locals.title = '银行卡管理_自金网平台';
+            }else if(tabName == 'password'){
+                res.locals.title = '密码管理_自金网平台';
+            }
             Promise.join(
                 req.uest(
                     '/api/v2/user/MYSELF/authenticates'
@@ -272,7 +277,7 @@ module.exports = function(router) {
                         fundaccountsMap;
                     res.render('newAccount/settings', {
                         tabName: tabName,
-                        title: '华瑞金控'
+//                        title: tabName + '_自金网平台'
                     });
                 });
         });
@@ -298,10 +303,12 @@ module.exports = function(router) {
     });
 
 
-    // 对体现进行限制
+    // 资金记录
     router.get('/fund/:name', function(req, res, next) {
         res.expose(req.params.name, 'loanl.urlname');
-        res.render('/newAccount/fund', {});
+        res.render('/newAccount/fund', {
+            title: '资金记录_自金网平台'
+        });
 
     });
 
