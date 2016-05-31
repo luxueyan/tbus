@@ -149,8 +149,9 @@ setTimeout((function () {
         },
         oninit: function () {
             var self = this;
+            self.set('inputNum', null);
             if (CC.loan.rule.balance < CC.loan.rule.min) {
-                this.set('inputNum', CC.loan.rule.balance);
+                self.set('inputNum', CC.loan.rule.balance);
             };
             if (self.get('user') && CC.loan.productKey === 'NEW') {
                 if (self.get('user').totalInvest > 0) {
