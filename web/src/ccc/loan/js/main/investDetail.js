@@ -149,6 +149,7 @@ setTimeout((function () {
         },
         oninit: function () {
             var self = this;
+            var inputNum = self.get('inputNum');
             self.set('inputNum', '');
             if (CC.loan.rule.balance < CC.loan.rule.min) {
                 self.set('inputNum', CC.loan.rule.balance);
