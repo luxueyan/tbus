@@ -22,8 +22,9 @@
            
                     <div class="rows">
                         <input type="text" name="amount" id="withdraw" on-blur="changeValue" class="recharge-input" value="{{amount}}" autocomplete="off" placeholder="输入取现余额">
+                        <input style="display:none;">
                         <p class="text-danger" style="color:red;">
-                             {{#msg.AMOUNT_NULL}}请输入充值金额{{/msg.AMOUNT_NULL}}
+                             {{#msg.AMOUNT_NULL}}请输入提现金额{{/msg.AMOUNT_NULL}}
                              {{#msg.AMOUNT_INVALID}}输入的金额有误{{/msg.AMOUNT_INVALID}}
                              {{#msg.AMOUNT_POOR}}您的可用余额不足{{/msg.AMOUNT_POOR}}
                             

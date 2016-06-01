@@ -39,8 +39,10 @@
 
             <div class="row">
                 <div class="rows">
+                    
                     <input type="text" name="amount" id="rechargeValue" on-blur="changeValue" placeholder="请输入充值金额"
                       value="{{amount}}" class="recharge-input" autocomplete="off">
+                    <input style="display:none;">
                     <p class="text-danger" style="color:red;">
                         {{#msg.AMOUNT_NULL}}请输入充值金额{{/msg.AMOUNT_NULL}}
                         {{#msg.AMOUNT_INVALID}}输入的金额有误{{/msg.AMOUNT_INVALID}}

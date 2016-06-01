@@ -142,9 +142,9 @@
                         <div class="calculatorBox">
                             <div class="calculator">
                                 <input type="hidden" name="loanId" value="{{loan.id}}">
-                                <input style="display:none">
                                 <input style="width: 285px;" placeholder="请输入投资金额" name="amount" type="text" value="{{ inputNum }}"
                                 autocomplete="off" on-keyup="tenNum"/>
+                                <input style="display:none">
                             </div>
                             <div class="clearfix"></div>
                             <p class="totalInterest totalNum" style="line-height: 35px;margin: 0;">预计收益
@@ -172,8 +172,6 @@
                             </div>
                             <div class="password-box">
                                 <div class="password">
-                                    <input style="display:none" type="password" placeholder="请输入交易密码" />
-
                                     <input class="trade-password" type="password" placeholder="请输入交易密码" name="paymentPassword"
                                     value="{{paymentPassword}}" autocomplete="off" />
                                 </div>
