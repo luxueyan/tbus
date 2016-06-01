@@ -51,6 +51,15 @@ var ractive = new Ractive({
         $.get('/api/v2/hundsun/banks',function(r){
           ractive.set('newbanks',r);
         });
+        $.get('/api/v2/user/MYSELF', function (m) {
+            if (m.idNumber) {
+                ractive.set('hasCardO',true);
+                ractive.set('idNo',m.idNumber);
+                ractive.set('personal',m.name);
+            }else{
+                ractive.set('hasCardO',false);
+            }
+        })
     }
 });
 

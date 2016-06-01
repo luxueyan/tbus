@@ -628,6 +628,7 @@ function init(type) {
                         datas[i].Fduration = utils.format.duration(o.duration);
                         datas[i].Frate = utils.format.percent(o.rate / 100, 2);
                         datas[i].Famount = utils.format.amount(o.amount, 2);
+						datas[i].expectYield = utils.format.amount(o.repayments[0].repayment.amountInterest, 2);
                         datas[i].FrepayMethod = utils.i18n.RepaymentMethod[o.repayMethod][0];
                         datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true : false;
                         break;
@@ -635,6 +636,7 @@ function init(type) {
                         datas[i].Fduration = utils.format.duration(o.duration);
                         datas[i].Frate = utils.format.percent(o.rate / 100, 2);
                         datas[i].Famount = utils.format.amount(o.amount, 2);
+						datas[i].expectYield = utils.format.amount(o.repayments[0].repayment.amountInterest, 2);
                         datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true : false;
                         datas[i].submitTime = moment(o.submitTime).format('YYYY-MM-DD');
                         datas[i].endDate = o.repayments[o.repayments.length - 1].repayment.dueDate;

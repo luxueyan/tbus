@@ -43,7 +43,7 @@
                   <div class="img-box">
                 <img class="" src="/ccc/newAccount/img/card-id.png"/>
                   </div>
-                <input on-keyup="validateIdNo" on-blur="checkSame" type="text" name="idNo" value="{{idNo}}" class="payInp" placeholder="输入身份证号">
+                <input on-keyup="validateIdNo" on-blur="checkSame" type="text" name="idNo" {{hasCardO?'disabled':''}} value="{{idNo}}" class="payInp" placeholder="输入身份证号">
               </div>
                 <span class="error">{{errorMessageb}}</span>
                 {{#if idNoError}}
@@ -56,7 +56,7 @@
                   <div class="img-box">
                 <img class="" src="/ccc/newAccount/img/card-man.png"/>
                   </div>
-                <input on-keyup="validatePersonal" on-blur="checkSame" type="text" name="personal" value="{{personal}}" class="payInp" placeholder="持卡人姓名">
+                <input on-keyup="validatePersonal" on-blur="checkSame" type="text" name="personal" {{hasCardO?'disabled':''}} value="{{personal}}" class="payInp" placeholder="持卡人姓名">
               </div>
               <span class="error">{{errorMessagec}}</span>
                 <!-- {{#if cardNoError}}
