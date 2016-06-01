@@ -1,11 +1,11 @@
 {{#if isBankCard===0}}
 <div class="row">
-    <div class="space space-30"></div>
+    <div class="space space-40"></div>
     <div class="col-md-12 align-center">
-        <p class="text-warning" style="color:#009ada">您还没有绑定银行卡，绑卡后才能进行充值</p>
+        <p class="text-warning" style="color:#ef9c2c">您还没有绑定银行卡，绑卡后才能进行充值</p>
         <div class="space space-40"></div>
         <p>
-            <a href="/newAccount/settings/bankCards" style="width: 230px;background-color:#009ada"
+            <a href="/newAccount/settings/bankCards" style="width: 230px;background-color:#ef9c2c"
               class="btn btn-orange">立即绑卡</a>
         </p>
         <div class="space space-40"></div>
@@ -39,8 +39,10 @@
 
             <div class="row">
                 <div class="rows">
+                    
                     <input type="text" name="amount" id="rechargeValue" on-blur="changeValue" placeholder="请输入充值金额"
                       value="{{amount}}" class="recharge-input" autocomplete="off">
+                    <input style="display:none;">
                     <p class="text-danger" style="color:red;">
                         {{#msg.AMOUNT_NULL}}请输入充值金额{{/msg.AMOUNT_NULL}}
                         {{#msg.AMOUNT_INVALID}}输入的金额有误{{/msg.AMOUNT_INVALID}}
