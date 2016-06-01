@@ -7,7 +7,7 @@
         <span style="font-size:14px;">元</span>
     </p>
     <p class="finished-money">剩余时间&nbsp;&nbsp;&nbsp;<span style="font-size:14px;">已完成</span></p>
-    <p class="finished-money">可用余额&nbsp;&nbsp;&nbsp;<span style="font-size:14px;">
+    <p class="finished-money">账户可用余额&nbsp;&nbsp;&nbsp;<span style="font-size:14px;">
         {{#if user.availableAmount}}{{user.availableAmount}}{{else}}0{{/if}}元</span></p>
     <div class="col-sm-8" style="width:300px;padding:0;margin-left:24px;line-height:38px;text-align:right;border:1px solid #ccc;border-radius:3px;background-color:#eee;color: #abb2ba;">
         <input type="text" class="form-control col-sm-8 form_input loanmoney" {{#if loan.status=="FINISHED"
@@ -45,7 +45,7 @@
     <div class="login-see">我要投资</div>
     <div class="info">
         <div class="leftMoney">
-            <h1 class="red"> 账户余额：¥<span class="left-money">
+            <h1 class="red"> 账户可用余额：¥<span class="left-money">
 				{{#if user.availableAmount}}
 				{{#if user.availableAmount.length>8}}
 					{{user.availableAmount.substr(0,5)}}...
@@ -103,7 +103,7 @@
             {{#if user}} {{! 已登录}} 
             {{#if !user.bankCards.length}} {{! 但是没绑定银行卡 }}
             <div class="leftMoney-open">账户可用余额：¥&nbsp;<i class="red" >{{user.availableAmount}}</i>
-                <a href="/newAccount/recharge" class="recharge">
+                <a href="/newAccount/settings/bankCards" class="recharge">
                     <button>充值</button>
                 </a>
             </div>
@@ -119,7 +119,7 @@
             
                 {{#if !user.paymentPasswordHasSet}} {{! 绑卡，但是没设置交易密码}}
                 <div class="leftMoney-open">账户可用余额：¥&nbsp;<i class="red" >{{user.availableAmount}}元</i>
-                    <a href="/newAccount/recharge" class="recharge">
+                    <a href="/newAccount/settings/password" class="recharge">
                         <button>充值</button>
                     </a>
                 </div>
@@ -131,7 +131,7 @@
                     <a class="btn btn-warning open-button loginBtn" href="/newAccount/settings/password">去设置交易密码</a>
                 </div>
                 {{else}} 
-                <div class="leftMoney-open">账户余额：¥&nbsp;<i class="red" style="{{#if user.availableAmount>10000000}}font-size:16px;{{/if}}">{{user.availableAmount}}</i>
+                <div class="leftMoney-open">账户可用余额：¥&nbsp;<i class="red" style="{{#if user.availableAmount>10000000}}font-size:16px;{{/if}}">{{user.availableAmount}}元</i>
                     <a href="/newAccount/recharge" class="recharge">
                         <button>充值</button>
                     </a>
@@ -142,12 +142,12 @@
                         <div class="calculatorBox">
                             <div class="calculator">
                                 <input type="hidden" name="loanId" value="{{loan.id}}">
-                                <input style="width: 285px;" placeholder="请输入投资金额" name="amount" type="text" value="{{ inputNum }}"
+                                <input placeholder="请输入投资金额" name="amount" type="text" value="{{ inputNum }}"
                                 autocomplete="off" on-keyup="tenNum"/>
                                 <input style="display:none">
                             </div>
                             <div class="clearfix"></div>
-                            <p class="totalInterest totalNum" style="line-height: 35px;margin: 0;">预计收益
+                            <p class="totalInterest totalNum">预计收益
                                 <span>
                             <!-- {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}} -->
                                 {{(loan.durationdays/360 * (isNaN(inputNum)?0 : inputNum) *loan.rate/100).toFixed(2)}}
@@ -177,7 +177,7 @@
                                 </div>
                                 <p><a href="/newAccount/settings/password" style="font-size:12px">忘记交易密码？</a></p>
                             </div>
-                            <p class="agree-box" style="text-align:left;line-height: 30px;">
+                            <p class="agree-box">
                                 <input type="checkbox" class="agree" checked id="agree" />
                                 <span>我同意
                                      {{#if loan.productKey==="FB"}}
@@ -190,7 +190,7 @@
                                 </span>
                             </p>
                             <p class="agree-error"></p>
-                            <input type="submit" class="btn btn-warning invest-button" value="确认投资" />
+                            <input type="submit" class="btn btn-warning invest-button" value="立即投资" />
 
                         </div>
 

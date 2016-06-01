@@ -15,11 +15,7 @@
 	var rePassword = new Ractive({
 	    el: '#u-page-container',
 	    template: require('ccc/forgot/partials/rePassword.html'),
-	    init: function () {
-	        if (!CC.user.id) {
-	            // window.location.href = '/';
-	        }
-	    },
+
 	    data: {
 	        // 这里存放有关于注册用户的所有信息
 	        telcode: false,
@@ -67,7 +63,7 @@
 	    // alert(1);
 	    e.original.preventDefault();
 	    var user = {
-	        loginName: 'zqjr_' + this.get('user.mobile'),
+//	        loginName: 'zqjr_' + this.get('user.mobile'),
 	        mobile: this.get('user.mobile'),
 	        captcha: this.get('captcha.text'),
 	        token: this.get('captcha.token')
