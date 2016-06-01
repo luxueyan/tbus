@@ -100,7 +100,9 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
 .BOC {
     background: url(/ccc/newAccount/img/pBanks/BOC.jpg) no-repeat left #fff;
 }
-
+.BOCOM {
+    background: url(/ccc/newAccount/img/pBanks/BOCOM.jpg) no-repeat left #fff;
+}
 .CEB {
     background: url(/ccc/newAccount/img/pBanks/CEB.jpg) no-repeat left #fff;
 }

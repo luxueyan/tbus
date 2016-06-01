@@ -1,5 +1,6 @@
 <div class="ccc-banks-wrap">
      <div class="bankcard-nav"><span>理财账户</span><span class="shuline">｜</span><span>取现</span></div>
+    
     {{#if paymentPasswordHasSet}}
     {{#if step1}}
     <div class="recharge-wrap">
@@ -22,8 +23,9 @@
            
                     <div class="rows">
                         <input type="text" name="amount" id="withdraw" on-blur="changeValue" class="recharge-input" value="{{amount}}" autocomplete="off" placeholder="输入取现余额">
+                        <input style="display:none;">
                         <p class="text-danger" style="color:red;">
-                             {{#msg.AMOUNT_NULL}}请输入充值金额{{/msg.AMOUNT_NULL}}
+                             {{#msg.AMOUNT_NULL}}请输入提现金额{{/msg.AMOUNT_NULL}}
                              {{#msg.AMOUNT_INVALID}}输入的金额有误{{/msg.AMOUNT_INVALID}}
                              {{#msg.AMOUNT_POOR}}您的可用余额不足{{/msg.AMOUNT_POOR}}
                             
@@ -70,7 +72,7 @@
     
     {{else}}
     <div class="has-line" style="padding:30px 20px;">
-        提现需要先开通交易密码，否则无法进行提现 <a href="/newAccount/settings/password"><span class="btn" style="background-color:#009ada;margin-left:10px;color:#fff">现在去开通</span></a>
+        提现需要先开通交易密码，否则无法进行提现 <a href="/newAccount/settings/password"><span class="btn" style="background-color:#ef9c2c;margin-left:10px;color:#fff">现在去开通</span></a>
     </div>
     {{/if}}
 </div>

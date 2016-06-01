@@ -182,40 +182,40 @@ module.exports = function(router) {
             title: '好友邀请_自金网平台'
         });
     });
-    router.get('/recharge', function(req, res) {
-        var enterprise = res.locals.user.enterprise;
+    router.get('/recharge', async function(req, res) {
+        var paymentPasswordHasSet = await req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
+            .end().get('body');
         var banks = _.filter(res.locals.user.bankCards, r => r.deleted === false);
-        if (!banks.length && !enterprise) {
-            res.redirect('/newAccount/settings/bankCards');
-        }
+        if (!banks.length) {
+            res.redirect(
+                '/newAccount/settings/bankCards');
+        };
+        if(!paymentPasswordHasSet){
+            res.redirect(
+                '/newAccount/settings/password');
+        };
+      
         res.render('newAccount/recharge', {
             title: '充值_自金网平台'
         });
+        return false;
 
     });
-    // 对提现进行限制,如果是企业用户,显示企业充值
-//    router.get('/recharge', function(req, res, next) {
-//        var enterprise = res.locals.user.enterprise;
-//        var banks = _.filter(res.locals.user.bankCards, function(r) {
-//            return r.deleted === false;
-//        });
-//        if (!banks.length && !enterprise) {
-//            res.redirect('/newAccount/settings/bankCards');
-//        } else {
-//            next();
-//        }
-//    });
     router.get('/withdraw', async function(req, res) {
-        var enterprise = res.locals.user.enterprise;
         var paymentPasswordHasSet = await req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
             .end().get('body');
         res.locals.user.paymentPasswordHasSet =
             paymentPasswordHasSet;
         var banks = _.filter(res.locals.user.bankCards, r => r.deleted === false);
-        if (!banks.length && !enterprise) {
+        if (!banks.length) {
             res.redirect(
                 '/newAccount/settings/bankCards');
-        }
+        };
+        if(!paymentPasswordHasSet){
+            res.redirect(
+                '/newAccount/settings/password');
+        };
+      
         res.render('newAccount/withdraw', {
             title: '提现_自金网平台'
         });

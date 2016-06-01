@@ -55,16 +55,12 @@
                         <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
                     </div>
                 </RInput>
-<!--
-               <RInput field="reftf">
+                
+                <RInput field="reftf">
                     <div class="rinput">
-                        <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">推荐码:</label>
-                        <input id="{{rinputId}}" name="reftf" value="{{value}}" placeholder="请输入推荐码或手机号，可不填">
-                        <span class="tip-loading">{{#loading}}<img src='/ccc/global/img/loading.gif' style="width:20px;"/>{{/loading}}</span>
-                        <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
+                        <input type="hidden" id="{{rinputId}}" name="reftf" value="{{value}}" placeholder="请输入推荐码或手机号，可不填">
                     </div>
                 </RInput>
--->
 
                 <RInput field="agreement" valueStableDuration=100>
                     <div class="rinput agreement-div">
