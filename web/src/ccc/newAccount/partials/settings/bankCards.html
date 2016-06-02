@@ -10,130 +10,91 @@
     <form action="" method="POST" on-submit="bind-card-submit">
       <p class="addcard-info">请先绑定银行卡才能进行充值、提现、投资等操作！</p>
         <div class="banks-container control-group" style="">
-            <!-- <div class="space space-30"></div> -->
-
             <div class="row">
-              <div class="card-brame">
-                <div class="img-box">
-                <img src="/ccc/newAccount/img/bankcode.png"/>
+                <div class="card-brame">
+                    <div class="img-box">
+                        <img src="/ccc/newAccount/img/bankcode.png"/>
+                    </div>
+                    <select name="bankName" class="select" value="{{bankName}}">
+                        {{#each newbanks}}
+                            <option value="{{bankCode}}">{{bankName}}</option>
+                        {{/each}}
+                    </select>
                 </div>
-                <select name="bankName" class="select" value="{{bankName}}">
-                    {{#each newbanks}}
-                        <option value="{{bankCode}}">{{bankName}}</option>
-                    {{/each}}
-                </select>
-              </div>
                 <div class="clearfix"></div>
             </div>
+            
             <div class="row">
-              <div class="card-brame">
-                  <div class="img-box">
-                <img class="" src="/ccc/newAccount/img/card-card.png"/>
-                  </div>
-                <input on-keyup="validateCardNo" on-blur="checkSame" type="text" name="cardNo" value="{{cardNo}}" class="payInp" placeholder="输入银行卡号">
-              </div>
-                <span class="error">{{errorMessagea}}</span>
+                <div class="card-brame">
+                    <div class="img-box">
+                        <img class="" src="/ccc/newAccount/img/card-card.png"/>
+                    </div>
+                    <input on-keyup="validateCardNo" type="text" name="cardNo" value="{{cardNo}}" class="payInp" placeholder="输入银行卡号">
+                </div>
                 {{#if cardNoError}}
-                <span class="error">* 银行卡号只能由数字组成</span>
-                {{/if}}
+                <span class="error">{{errMessgaeBank}}</span>
+                {{/if}}   
                 <div class="clearfix"></div>
             </div>
+            
             <div class="row">
-              <div class="card-brame">
-                  <div class="img-box">
-                <img class="" src="/ccc/newAccount/img/card-id.png"/>
-                  </div>
-                <input on-keyup="validateIdNo" on-blur="checkSame" type="text" name="idNo" {{hasCardO?'disabled':''}} value="{{idNo}}" class="payInp" placeholder="输入身份证号">
-              </div>
-                <span class="error">{{errorMessageb}}</span>
+                <div class="card-brame">
+                    <div class="img-box">
+                        <img class="" src="/ccc/newAccount/img/card-id.png"/>
+                    </div>
+                    <input on-keyup="validateIdNo" type="text" name="idNo" {{hasCardO?'disabled':''}} value="{{idNo}}" class="payInp" placeholder="输入身份证号">
+                </div>
                 {{#if idNoError}}
                 <span class="error">* 请填写正确的18位身份证号码</span>
                 {{/if}}
                 <div class="clearfix"></div>
             </div>
+            
             <div class="row">
-              <div class="card-brame">
-                  <div class="img-box">
-                <img class="" src="/ccc/newAccount/img/card-man.png"/>
-                  </div>
-                <input on-keyup="validatePersonal" on-blur="checkSame" type="text" name="personal" {{hasCardO?'disabled':''}} value="{{personal}}" class="payInp" placeholder="持卡人姓名">
-              </div>
-              <span class="error">{{errorMessagec}}</span>
-                <!-- {{#if cardNoError}}
-                <span class="error">* 银行卡号只能由数字组成</span>
-                {{/if}} -->
+                <div class="card-brame">
+                    <div class="img-box">
+                        <img class="" src="/ccc/newAccount/img/card-man.png"/>
+                    </div>
+                    <input type="text" name="personal" {{hasCardO?'disabled':''}} value="{{personal}}" class="payInp" placeholder="持卡人姓名">
+                </div>
+                {{#if personalError}}
+                <span class="error">* 请输入持卡人姓名</span>
+                {{/if}} 
                 <div class="clearfix"></div>
             </div>
+            
             <div class="row">
-              <div class="card-brame">
-                  <div class="img-box">
-                <img class="" src="/ccc/newAccount/img/card-mobile.png"/>
-                  </div>
-                <input on-keyup="validatePhoneNo" on-blur="checkSame" type="text" name="cardPhone" value="{{mobile}}" class="payInp" placeholder="银行预留手机号">
-              </div>
+                <div class="card-brame">
+                    <div class="img-box">
+                        <img class="" src="/ccc/newAccount/img/card-mobile.png"/>
+                    </div>
+                    <input on-keyup="validatePhoneNo" type="text" name="cardPhone" value="{{mobile}}" class="payInp" placeholder="银行预留手机号">
+                </div>
                 {{#if phoneNoError}}
                 <span class="error">* 手机号码只能由数字组成</span>
                 {{/if}}
                 <div class="clearfix"></div>
             </div>
-            <!-- <div class="row">
-                <img src="/ccc/newAccount/img/card-card.png"/>
-                <input on-keyup="validateCardNo" on-blur="checkSame" type="text" name="recardNo" value="{{recardNo}}" class="payInp" onPaste='return false;'>
-                <span class="error">{{errorMessageb}}</span>
-                {{#if cardDiff}}
-                <span class="error">* 两次银行卡号不一致</span>
-                {{/if}}
-                <div class="clearfix"></div>
-            </div> -->
-            <!-- <div class="" style="display:none">
-                <div class="tipss" style="width:90px;text-align:right;margin-right: 20px;">预留手机号：</div>
-                <input on-keyup="validatePhoneNo" type="text" name="cardPhone" value="{{mobile}}" class="payInp">
-                {{#if phoneNoError}}
-                <span class="error">* 手机号码只能由数字组成</span>
-                {{/if}}
-                <div class="clearfix"></div>
-            </div> -->
-            <!-- <div class="row">
-                <div class="tipss" style="width:90px;text-align:right;margin-right: 20px;">开户省市：</div>
-                <select name="province" on-change="selectPro" style="width:90px;margin-right:16px;font-size:16px;" value="{{myProvince}}">
-                    {{#each province}}
-                        <option value="{{key}}">{{key}}</option>
-                    {{/each}}
-                </select>
-                <select name="city" style="width:90px;font-size:16px;" value="{{myCity}}">
-                    {{#each city}}
-                        <option value="{{val}}">{{key}}</option>
-                    {{/each}}
-                </select>
-                <div class="clearfix"></div>
-            </div> -->
-<!--
+            
             <div class="row">
-                <div class="tipss" style="width:90px;text-align:right;margin-right: 20px;">开户行：</div>
-                <input type="text" name="branchName" value="{{branchName}}" class="payInp" placeholder="如：招商银行肥西路支行">
-                <a href="http://jingyan.baidu.com/article/76a7e409b18839fc3b6e1527.html" target="_blank" style="text-decoration:none;margin-left:10px;color:#009ada"><span>查询支行?</span></a>
-                <div class="clearfix"></div>
-            </div>
--->
-            <div class="row">
-              <div class="card-brame">
-                  <div class="img-box">
-                <img class="" src="/ccc/newAccount/img/card-yanzheng.png"/>
-                  </div>
-                <input type="text" name="smsCaptcha" class="payInp" style="width:218px;border-right: 1px solid #ccc;height:48px;" on-blur="checkSmsCaptcha" value="{{smsCaptcha}}" placeholder="输入验证码">
-
-                <span class="sendCode" on-click="sendCode" style="border:0;">发送验证码</span>
-              </div>
+                <div class="card-brame">
+                    <div class="img-box">
+                        <img class="" src="/ccc/newAccount/img/card-yanzheng.png"/>
+                    </div>
+                    <input on-keyup="validateCaptcha" type="text" name="smsCaptcha" class="payInp" style="width:218px;border-right: 1px solid #ccc;height:48px;"  value="{{smsCaptcha}}" placeholder="输入验证码">
+                    <span class="sendCode" on-click="sendCode" style="border:0;">发送验证码</span>
+                </div>
                 {{#if SMS_NULL}}
                 <span class="error">* 验证码不能为空</span>
                 {{/if}}
                 <div class="clearfix"></div>
             </div>
+            
             <div class="space-20"></div>
             <div class="form-group">
                 <div class="row row-3">
                     <div>
-                        <button type="submit" class="btn btn-large btn-success" style="width:380px;background:position:relative;height: 48px;letter-spacing: 15px;font-size: 20px;">绑定</button>
+                        <button type="submit" class="btn btn-large" style="width:380px;background:#f58220;position:relative;height: 48px;letter-spacing: 15px;font-size: 20px;color:#fff;">绑定</button>
                     </div>
                 </div>
                 <div class="space space-10"></div>
