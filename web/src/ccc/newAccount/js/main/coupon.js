@@ -285,7 +285,7 @@ init(getCurrentType());
 
 window.redeemCoupon = function (btn) {
     var id = $(btn).data("id");
-    $.post("/api/v2/coupon/MYSELF/redeemCoupon", {
+    $.post("/api/v2/coupon/MYSELF/redeemCouponIgnoreApproval", {
         placementId: id
     }, function (res) {
         if (res) {

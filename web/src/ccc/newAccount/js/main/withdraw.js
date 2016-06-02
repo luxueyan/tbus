@@ -61,19 +61,33 @@ var ractive = new Ractive({
             var amount = $.trim($(e.node).val());
 
             if (amount === '') {
-                self.set('msg.AMOUNT_NULL', true);
-                self.set('msg.AMOUNT_INVALID', false);
+                self.set('msg', {
+                    AMOUNT_NULL: true,
+                    AMOUNT_INVALID: false,
+                    AMOUNT_POOR: false
+                });
                 self.set('error', false);
                 return;
             } else if (amount == 0) {
-                self.set('msg.AMOUNT_INVALID', true);
-                self.set('msg.AMOUNT_NULL', false);
+                self.set('msg', {
+                    AMOUNT_NULL: false,
+                    AMOUNT_INVALID: true,
+                    AMOUNT_POOR: false
+                });
+                return;
             } else if (!self.match(amount)) {
-                self.set('msg.AMOUNT_INVALID', true);
-                self.set('msg.AMOUNT_NULL', false);
+                self.set('msg', {
+                    AMOUNT_NULL: false,
+                    AMOUNT_INVALID: true,
+                    AMOUNT_POOR: false
+                });
                 return;
             } else if (parseFloat(amount) > CC.user.availableAmount) {
-                self.set('msg.AMOUNT_POOR', true);
+                self.set('msg', {
+                    AMOUNT_NULL: false,
+                    AMOUNT_INVALID: false,
+                    AMOUNT_POOR: true
+                });
                 return;
             } else {
                 self.set('msg', {
