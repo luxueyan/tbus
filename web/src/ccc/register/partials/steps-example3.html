@@ -3,7 +3,7 @@
 <Step>
 <RInput field="mobile">
 <div class="rinput">
-    <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">手机号</label>
+    <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}" onkeyup="this.value=this.value.replace(' ','')">手机号</label>
     <input id="{{rinputId}}" value="{{value}}">
     {{#loading}}loading...{{/loading}}
     {{#errMsg}}{{errMsg}}{{/errMsg}}
