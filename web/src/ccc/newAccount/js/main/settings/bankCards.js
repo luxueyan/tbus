@@ -74,7 +74,7 @@ ractive.on("validateIdNo", function () {
     }
 });
 ractive.on("validatePhoneNo", function () {
-    var no = this.get("phoneNo");
+    var no = this.get("mobile");
     if (!/^\d*$/.test(no)) {
         this.set("phoneNoError", true);
     } else {
