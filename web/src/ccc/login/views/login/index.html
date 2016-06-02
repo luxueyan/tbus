@@ -25,7 +25,7 @@
                             <label for="loginName">用户名或手机号</label>
                         </dt>
                         <dd class="login__form__dd">
-                            <input class="login__input" type="text" id="loginName" name="loginName"><br>
+                            <input class="login__input" type="text" id="loginName" name="loginName" onkeyup="this.value=this.value.replace(' ','')"><br>
                         </dd>
                         <dt class="login__form__dt">
                             <label for="password">密码</label>

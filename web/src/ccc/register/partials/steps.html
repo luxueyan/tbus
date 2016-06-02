@@ -5,7 +5,7 @@
                 <RInput field="mobile">  
                     <div class="rinput">
                         <span class="mdi"></span>
-                        <input class="phone" name="phone" id="{{rinputId}}" value="{{value}}" placeholder="输入手机号">
+                        <input class="phone" name="phone" id="{{rinputId}}" value="{{value}}" placeholder="输入手机号" onkeyup="this.value=this.value.replace(' ','')">
                         <span class="tip">{{#errMsg}}{{errMsg}}{{/if}}</span>
                     </div>
                 </RInput>
