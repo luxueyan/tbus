@@ -231,8 +231,15 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
     $('.sShouyi li').click(function () {
         if (!$(this).hasClass("selectTitle")) {
             $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
-            var method = $(this)
-                .data('method');
+            var method = $(this).data('method');
+            if (!method) {
+                method = 'BulletRepayment,MonthlyInterest,EqualInstallment,EqualPrincipal,EqualInterest';
+                //params.method = 'BulletRepayment';
+                //params.method = 'MonthlyInterest';
+                //params.method = 'EqualInstallment';
+                //params.method = 'EqualPrincipal';
+                //params.method = 'EqualInterest';
+            }
 
             params.currentPage = 1;
             params.method = method;
