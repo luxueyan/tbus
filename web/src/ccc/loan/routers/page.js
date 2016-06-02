@@ -100,14 +100,13 @@ router.get('/:id',
             // TODO 如何共享 loanRequestId 减少请求次数
             replay: repayments
         });
-        // repayments.then(function (repayments) {
             res.expose(repayments, 'repayments');
+            res.locals.title = '投资详情_理财_自金网平台';
             res.render('index', _.assign(res.locals, {
                 totalInterest: repayments.reduce(function (p, r) {
                     return p + (r && r.amountInterest || 0);
                 }, 0)
             }));
-        // });
         return false;
     });
 
