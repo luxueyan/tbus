@@ -38,8 +38,6 @@ new Ractive({
 });
 
 
-
-
 ///////////////////////////////////////////////////////////
 // 初始化饼状图
 ///////////////////////////////////////////////////////////
@@ -50,7 +48,7 @@ function initailEasyPieChart() {
             var percentage = $(this).data("percent");
             var status = $(this).data("status");
             var percentageNum = CC.loan.rule.leftAmount;
-            
+
             // 100%进度条颜色显示为背景色
             //var color = percentage != 100 && (status==='SETTLED'|| status==='CLEARED') ? "#f58220" : '#009ada';
             var color = (status === 'OPENED') ? '#009ada' : "#f58220";
@@ -102,28 +100,29 @@ setTimeout((function () {
     var leftTime = CC.loan.timeLeft;
     var timeLeftToal = leftTime.ss + leftTime.mm * 60 + leftTime.hh * 60 * 60 + leftTime.dd * 60 * 60 * 24;
     setInterval(function () {
-            timeLeftToal -= 1;
-            var dd = parseInt(timeLeftToal / (60 * 60 * 24), 10),
-                hh = parseInt((timeLeftToal - dd * 60 * 60 * 24) / (60 * 60), 10),
-                mm = parseInt((timeLeftToal - dd * 60 * 60 * 24 - hh * 60 * 60) / 60, 10),
-                ss = parseInt(timeLeftToal - dd * 60 * 60 * 24 - hh * 60 * 60 - mm * 60, 10);
-            var newTimeleftTotal = {
-                dd: dd,
-                hh: hh,
-                mm: mm,
-                ss: ss
-            }
-            var days = newTimeleftTotal.dd ? '<i>' + newTimeleftTotal.dd + '</i>日' : '';
-            $('.time>span').html(days + '<i>' + newTimeleftTotal.hh + '</i>时<i>' + newTimeleftTotal.mm + '</i>分<i>' + newTimeleftTotal.ss + '</i>秒');
-        }, 1000)
-        //获取最后还款日期
+        timeLeftToal -= 1;
+        var dd = parseInt(timeLeftToal / (60 * 60 * 24), 10),
+            hh = parseInt((timeLeftToal - dd * 60 * 60 * 24) / (60 * 60), 10),
+            mm = parseInt((timeLeftToal - dd * 60 * 60 * 24 - hh * 60 * 60) / 60, 10),
+            ss = parseInt(timeLeftToal - dd * 60 * 60 * 24 - hh * 60 * 60 - mm * 60, 10);
+        var newTimeleftTotal = {
+            dd: dd,
+            hh: hh,
+            mm: mm,
+            ss: ss
+        }
+        var days = newTimeleftTotal.dd ? '<i>' + newTimeleftTotal.dd + '</i>日' : '';
+        $('.time>span').html(days + '<i>' + newTimeleftTotal.hh + '</i>时<i>' + newTimeleftTotal.mm + '</i>分<i>' + newTimeleftTotal.ss + '</i>秒');
+    }, 1000)
+    //获取最后还款日期
     if (CC.repayments instanceof Array && CC.repayments.length > 0) {
         CC.loan.lastRepaymentsDate = CC.repayments[0].dueDate;
         for (var i = 0; i < CC.repayments.length; i++) {
             if (CC.loan.lastRepaymentsDate < CC.repayments[i].dueDate) {
                 CC.loan.lastRepaymentsDate = CC.repayments[i].dueDate;
             }
-        };
+        }
+        ;
     }
 
     var investRactive = new Ractive({
@@ -159,10 +158,13 @@ setTimeout((function () {
             if (self.get('user') && CC.loan.productKey === 'NEW') {
                 if (self.get('user').totalInvest > 0) {
                     self.set('isnew', true);
-                };
+                }
+                ;
             }
         }
     });
+
+    investRactive.set('hasID', CC.user.id);
 
     function nextDate(timestr) {
         var date = new Date(timestr.replace('/-/g', '\/'));
@@ -170,6 +172,7 @@ setTimeout((function () {
         var time = moment(timeunix * 1000).format('YYYY-MM-DD');
         return time;
     }
+
     var serverDate = CC.serverDate;
     var openTime = CC.loan.timeOpen;
     serverDate += 1000;
@@ -226,7 +229,7 @@ setTimeout((function () {
         } else {
             if (num < CC.loan.rule.min) {
                 showErrors('单次投标金额不可少于' + CC.loan.rule
-                    .min + '元 !');
+                        .min + '元 !');
                 return false;
             }
 
@@ -243,7 +246,7 @@ setTimeout((function () {
 
         if (num > CC.loan.rule.max) {
             showErrors('单次投标金额不可超过' + CC.loan.rule
-                .max +
+                    .max +
                 '元!');
             return false;
         }
@@ -291,8 +294,8 @@ setTimeout((function () {
                                     } else {
                                         var errType = res.error && res.error[0] && res.error[0].message || '';
                                         var errMsg = {
-                                            TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
-                                        }[errType] || errType;
+                                                TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
+                                            }[errType] || errType;
                                         CccOk.create({
                                             msg: '投资失败' + errMsg,
                                             okText: '确定',
@@ -318,13 +321,14 @@ setTimeout((function () {
                     }
                 }
             });
-        };
+        }
+        ;
     });
 
     //显示返现金额
     investRactive.on('rebate', function () {
         jQuery('.calculator input[type="text"]').val(jQuery('.calculator input[type="text"]').val().replace(/[^0-9]/g, ''))
-            //var inpNum=parseInt(jQuery('.calculator input[type="text"]').val());
+        //var inpNum=parseInt(jQuery('.calculator input[type="text"]').val());
         var inpNum = investRactive.get('inputNum');
         if (inpNum > CC.loan.rule.balance) {
             inpNum = CC.loan.rule.balance;
@@ -419,7 +423,8 @@ setTimeout((function () {
                 o[i].displayValue = parseInt(o[i].couponPackage.parValue) + "元";
             } else if (o[i].couponPackage.type === 'REBATE') {
                 o[i].displayValue = parseInt(o[i].couponPackage.parValue) + "元";
-            };
+            }
+            ;
         }
         return o;
     };
@@ -455,6 +460,7 @@ setTimeout((function () {
             }
         });
     }
+
     //初始化选项
     showSelect(CC.loan.rule.min);
 
@@ -474,11 +480,6 @@ setTimeout((function () {
         }
     });
 }), 100);
-
-
-
-
-
 
 
 $('.investInput').on('keyup', function () {
@@ -508,7 +509,8 @@ loanService.getLoanProof(CC.loan.requestId, function (r1) {
             } else {
                 proofTypeArr[i].proofType = '暂无认证信息';
             }
-        };
+        }
+        ;
         if (CC.loan.enterprise) {
             var relateDataRactive = new Ractive({
                 // insurance 担保
@@ -611,12 +613,12 @@ $('.nav-tabs > li')
     });
 
 
-
 function add() {
     var getNum = parseInt(document.getElementById("calculatorText").value);
     if (getNum > 0) {
         document.getElementById("calculatorText").value = getNum + 100;
-    } else {}
+    } else {
+    }
 }
 
 var recordRactive = new Ractive({
@@ -762,7 +764,7 @@ function mask(str, s, l) {
         s = len - 1;
     }
     str = str.substring(0, s) + (new Array(l + 1))
-        .join('*') + str.substring(s + l);
+            .join('*') + str.substring(s + l);
     str = str.substring(0, len);
     return str;
 }
