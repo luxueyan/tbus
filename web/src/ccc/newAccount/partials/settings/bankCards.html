@@ -31,9 +31,6 @@
                     </div>
                     <input on-keyup="validateCardNo" type="text" name="cardNo" value="{{cardNo}}" class="payInp" placeholder="输入银行卡号">
                 </div>
-                {{#if cardNoError}}
-                <span class="error">{{errMessgaeBank}}</span>
-                {{/if}}   
                 <div class="clearfix"></div>
             </div>
             
@@ -44,9 +41,6 @@
                     </div>
                     <input on-keyup="validateIdNo" type="text" name="idNo" {{hasCardO?'disabled':''}} value="{{idNo}}" class="payInp" placeholder="输入身份证号">
                 </div>
-                {{#if idNoError}}
-                <span class="error">* 请填写正确的18位身份证号码</span>
-                {{/if}}
                 <div class="clearfix"></div>
             </div>
             
@@ -57,9 +51,6 @@
                     </div>
                     <input type="text" name="personal" {{hasCardO?'disabled':''}} value="{{personal}}" class="payInp" placeholder="持卡人姓名">
                 </div>
-                {{#if personalError}}
-                <span class="error">* 请输入持卡人姓名</span>
-                {{/if}} 
                 <div class="clearfix"></div>
             </div>
             
@@ -70,9 +61,6 @@
                     </div>
                     <input on-keyup="validatePhoneNo" type="text" name="cardPhone" value="{{mobile}}" class="payInp" placeholder="银行预留手机号">
                 </div>
-                {{#if phoneNoError}}
-                <span class="error">* 手机号码只能由数字组成</span>
-                {{/if}}
                 <div class="clearfix"></div>
             </div>
             
@@ -84,9 +72,6 @@
                     <input on-keyup="validateCaptcha" type="text" name="smsCaptcha" class="payInp" style="width:218px;border-right: 1px solid #ccc;height:48px;"  value="{{smsCaptcha}}" placeholder="输入验证码">
                     <span class="sendCode" on-click="sendCode" style="border:0;">发送验证码</span>
                 </div>
-                {{#if SMS_NULL}}
-                <span class="error">* 验证码不能为空</span>
-                {{/if}}
                 <div class="clearfix"></div>
             </div>
             

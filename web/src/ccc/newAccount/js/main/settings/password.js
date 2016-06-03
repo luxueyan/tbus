@@ -124,10 +124,10 @@ passwordRactive.on('resetPassword', function () {
     var pwd = this.get('password');
     var repwd = this.get('repassword');
     var smsCaptcha = this.get('smsCaptcha');
-    var isAcess = this.get('isAcessa') && this.get('isAcessb') && this.get('isAcessc');
     passwordRactive.fire('checkpwd');
     passwordRactive.fire('checkrepwd');
     passwordRactive.fire('checksms');
+    var isAcess = this.get('isAcessa') && this.get('isAcessb') && this.get('isAcessc');
     if (isAcess) {
         accountService.checkPassword(pwd, function (r) {
             if (r) {
@@ -161,9 +161,9 @@ passwordRactive.on('resetPassword', function () {
 passwordRactive.on('initialPassword', function () {
     var pwd = this.get('password');
     var rePwd = this.get('repassword');
-    var isAcess = this.get('isAcessa') && this.get('isAcessb');
     passwordRactive.fire('checkpwd');
     passwordRactive.fire('checkrepwd');
+    var isAcess = this.get('isAcessa') && this.get('isAcessb');
     if (isAcess) {
         accountService.initialPassword(pwd, function (r) {
             $('.resetfundpass').css('display', 'block');

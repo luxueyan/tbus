@@ -25,8 +25,7 @@ exports.accountService = {
             });
         
     },
-    
-    
+        
     getLoanCount: function(status,next){         
         var api = '/api/v2/user/MYSELF/loan/count';
         api = api+status;
@@ -241,5 +240,5 @@ exports.accountService = {
             .then(function (r) {
                 next(r.body);
             });
-    },
+    }
 };
