@@ -52,7 +52,7 @@ function init(type) {
             data: {
                 loading: true,
                 list: [],
-                total: 0
+                total: 0,
             },
             bindTime: 0,
             status: {
@@ -83,8 +83,7 @@ function init(type) {
                 if (self.bindTime == 0) {
                     self.initClick();
                     self.bindTime++;
-                }
-
+                };
             },
             getCouponData: function (callback) {
                 var self = this;
@@ -117,7 +116,7 @@ function init(type) {
                     'REBATE': '返现券'
                 };
                 for (var i = 0; i < o.length; i++) {
-
+                    
                     o[i].displayName = o[i].couponPackage.displayName;
                     o[i].parValue = o[i].couponPackage.parValue;
                     o[i].type = o[i].couponPackage.type;
@@ -133,7 +132,6 @@ function init(type) {
                     if (o[i].type === 'INTEREST') {
                         o[i].interest = true;
                         o[i].displayValue = (parseFloat(o[i].parValue) / 100).toFixed(2);
-                        o[i].Ftype = '返现券'
                     } else if (o[i].type === 'CASH') {
                         o[i].displayValue = parseInt(o[i].parValue);
                     } else if (o[i].type === 'PRINCIPAL') {
@@ -179,8 +177,7 @@ function init(type) {
 
                     if (o[i].description === "") {
                         o[i].description = "暂无描述";
-                    }
-                    //                    o[i].status = this.status[o[i].status];
+                    };
                 }
                 return o;
 
