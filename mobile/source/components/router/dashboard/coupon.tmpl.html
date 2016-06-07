@@ -85,8 +85,12 @@
                     <div class="media-body">
                         <div class="desc">{{ item.couponPackage.description || '暂无描述' }}</div>
 
-                        <div class="desc">
-                            投资满{{ item.couponPackage.minimumInvest | number }}元，{{ item.couponPackage.minimumDuration }}个月可使用
+                        <div class="desc" ng-if="item.couponPackage.type !== 'CASH'">
+                            投资满{{ item.couponPackage.minimumInvest | number }}元可使用
+                        </div>
+
+                        <div class="desc" ng-if="item.couponPackage.type === 'CASH'">
+                            现金券可以直接兑换
                         </div>
 
                         <div class="expire">
