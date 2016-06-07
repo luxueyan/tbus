@@ -210,18 +210,19 @@ ractive.on("bind-card-submit", function (e) {
         $.post('/api/v2/hundsun/checkCard/MYSELF',sendCard,function(r){ //checkCard
           if(r.success){
             $.post('/api/v2/hundsun/bindCard/MYSELF', sendObj, function (r) { //bindCard
-                CccOk.create({
-                    msg: msg[r.error[0].message],
-                    okText: '确定',
-                    ok: function () {
-                        if(r.error[0].message !== 'SUCCEED'){
+                if(r.success){
+                    window.location.reload();
+                }else{
+                    CccOk.create({
+                        msg: msg[r.error[0].message],
+                        okText: '确定',
+                        ok: function () {
                             $('.ccc-box-overlay').remove();
-                            $('.ccc-box-wrap').remove();
-                        }else{
-                            window.location.reload();
-                        };  
-                    }
-                });
+                            $('.ccc-box-wrap').remove();  
+                        }
+                    });
+                }
+       
             });
           }else{
               CccOk.create({
