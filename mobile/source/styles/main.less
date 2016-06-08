@@ -2306,6 +2306,13 @@ a {
 ----*/
 
 #dashboard-coupon {
+    .page-nav {
+        .actions {
+            font-size: 12px;
+            color: @color-theme-link;
+        }
+    }
+
     .btn-group {
         #dashboard-invest .btn-group;
     }
@@ -3384,6 +3391,43 @@ a {
             }
         }
     }
+}
+
+/*=============================================================================
+                                                          [Router] About Coupon
+----*/
+
+#about-coupon {
+
+    section:not(.omit-margin) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .detail {
+        border-top: 1px solid @color-gray-light;
+        border-bottom: 1px solid @color-gray-light;
+        background-color: #FFF;
+
+        .list {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            line-height: 1.5;
+            color: @color-gray-dark;
+
+            > li {
+                + li {
+                    margin-top: 15px;
+                }
+
+                em {
+                    font-style: normal;
+                    color: @color-theme-main;
+                }
+            }
+        }
+    }
+
 }
 
 /*=============================================================================
