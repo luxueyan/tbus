@@ -150,6 +150,97 @@
     float: right;
     margin: 48px 60px 0 20px;
 }
+/*平台介绍*/
+.ptjs_content{
+    margin: 0 33px;
+    counter-reset:section;
+}
+.ptjs_content h3{
+    font-family: '';
+    color: #666;
+    margin-top: 30px;
+    margin-bottom: 10px;    
+}
+.ptjs_content h3:before{
+    counter-increment: section;
+    content: counter(section);
+    background-color: #f8b62b;
+    padding: 4px 7px;
+    border-radius: 20px;
+    color: #fff;
+    margin-right: 6px;
+
+}
+.ptjs_content p{
+    line-height: 24px;
+}
+.ptjs_content_step3{
+    margin: auto;
+    overflow: hidden;
+    font-family: '';
+    margin-top: 30px;
+}
+.ptjs_content_step3 span{
+    font-size: 18px;
+    color: #000;
+    font-weight: bold;
+}
+.ptjs_content_step3 img{
+    width: 80px;
+    margin: auto;
+    display: block;
+}
+.ptjs_content .common{
+    width: 426px;
+    height: 70px;
+    border: 2px solid #a4c98b;
+    margin: auto;
+    border-radius: 4px;
+    padding: 1px;
+}
+.line{
+    overflow: hidden;
+    margin: auto;
+    width: 400px;
+}
+.ptjs_content .line1{
+    width: 140px;
+    height: 2px;
+    background-color: #a4c98b;
+    transform: rotate(145deg);
+    margin: 70px auto;
+    float: left;
+}
+.ptjs_content .line2{
+    width: 140px;
+    height: 2px;
+    background-color: #a4c98b;
+    transform: rotate(35deg);
+    margin: 70px auto;
+    float: left;
+    margin-left: 100px;
+}
+.ptjs_content .last{
+    position: relative;
+    margin-top: 30px;
+}
+.ptjs_content .last1{
+    position: absolute;
+    left: 152px;
+    top: -85px;
+}
+.ptjs_content .last2{
+    position: absolute;
+    right: 172px;
+    top: -94px;
+}
+.ptjs_content .last .common{
+    float: left;
+}
+.ptjs_content .last .income{
+    margin-left: 12px;
+    padding: 10px 12px;
+}
 /*安全保障*/
 .centent-nr{
     margin: 0 30px 30px;
@@ -240,4 +331,21 @@
     margin-top: 20px;
     line-height: 200%;
     padding: 0px 10px;
+}
+/*联系我们*/
+.lxwm_content{
+    height: 500px;
+    width: 450px;
+    background: url(/ccc/aboutus/img/contact.png) no-repeat center;
+    background-size: 100%;
+    margin: auto;
+    padding-top: 60px;
+    margin-top: 40px;
+    font-family: '宋体';
+    font-size: 18px;
+    line-height: 36px;
+    padding-left: 100px;
+}
+.lxwm_content span{
+    color: #000;
 }

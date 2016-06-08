@@ -293,3 +293,16 @@ window.redeemCoupon = function (btn) {
         }
     });
 }
+
+$('.rule').click(function(){
+    $('.coupon-nav-view').hide();
+    $('.coupon-content-detail').hide();
+    $('#coupon-pager').hide();
+    $('.coupon_rule').show();
+});
+$('.back').click(function(){
+    $('.coupon_rule').hide();
+    $('.coupon-nav-view').show();
+    $('.coupon-content-detail').show();
+    $('#coupon-pager').show();  
+});

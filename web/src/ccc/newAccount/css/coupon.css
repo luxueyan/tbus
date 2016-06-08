@@ -10,7 +10,17 @@
     padding-left: 46px;
     color: #4a4a4a;
 }
-
+.coupon-content .coupon-nav p{
+    color: #4a90e2;
+    font-size: 14px;
+    float: right;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.coupon-content .coupon-nav img{
+    padding-right: 8px;
+    margin-top: -2px;
+}
 .coupon-content .coupon-nav-view {
     margin: 30px 60px;
     border-bottom: 1px solid #ebebeb;
@@ -389,16 +399,6 @@
     border: 1px #ef9c2c solid;
 }
 
-.coupon-rule {
-    color: #0096de;
-    font-size: 14px;
-    line-height: 40px;
-}
-
-.coupon-rule img {
-    margin-left: 8px;
-    margin-top: -4px;
-}
 #coupon-pager{
     text-align: center;
     margin-top: 20px;
@@ -412,4 +412,41 @@
     background: url(/ccc/newAccount/img/coupon/coupon-expired.png) no-repeat;
     width: 80px;
     height: 80px;
+}
+/*红包规则*/
+.coupon_rule{
+    display: none;
+    width: 850px;
+    margin: 30px auto;
+}
+.coupon_rule_nav{
+    background: #eee;
+    padding: 0 20px;
+    line-height: 45px;
+}
+.coupon_rule_nav span{
+    font-size: 18px;
+    color: #000;
+}
+.coupon_rule_nav .back{
+    float: right;
+    color: #4a90e2;
+    font-size: 14px;
+    cursor: pointer;
+}
+.coupon_rule_nav .back img{
+    padding-right: 8px;
+    margin-top: -2px;
+}
+.coupon_rule ul{
+    margin: 30px;
+    color: #999;
+}
+.coupon_rule ul li{
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+.coupon_rule ul li span{
+    color: #f8b62b;
+    letter-spacing: 2px;
 }
