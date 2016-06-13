@@ -128,6 +128,24 @@ var ractive = new Ractive({
 
         });
 
+        //去除chrome浏览器里的自动填充
+        if(navigator.userAgent.toLowerCase().indexOf("chrome") != -1){
+            var selectors = document.getElementsByTagName("input");
+            for(var i=0;i<selectors.length;i++){
+                if((selectors[i].type !== "submit") && (selectors[i].type !== "password")){
+                    var input = selectors[i];
+                    var inputName = selectors[i].name;
+                    var inputid = selectors[i].id;
+                    selectors[i].removeAttribute("name");
+                    selectors[i].removeAttribute("id");
+                    setTimeout(function(){
+                        input.setAttribute("name",inputName);
+                        input.setAttribute("id",inputid);
+                    },1)
+                }
+            }
+        }
+
     },
 
     match: function (v) {
