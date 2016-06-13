@@ -121,7 +121,7 @@ var ractive = new Ractive({
         });
 
         //去除chrome浏览器里的自动填充
-        if(navigator.userAgent.toLowerCase().indexOf("chrome") != -1 || navigator.userAgent.toLowerCase().indexOf("Safari") != -1){
+        if(navigator.userAgent.toLowerCase().indexOf("chrome") != -1 || navigator.userAgent.toLowerCase().indexOf("Safari") == -1){
             var selectors = document.getElementsByTagName("input");
             for(var i=0;i<selectors.length;i++){
                 if((selectors[i].type !== "submit") && (selectors[i].type !== "password")){
@@ -137,7 +137,6 @@ var ractive = new Ractive({
                 }
             }
         }
-
     },
 
     confirm: function (amount) {
