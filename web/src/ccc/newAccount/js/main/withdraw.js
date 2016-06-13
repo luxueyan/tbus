@@ -137,6 +137,7 @@ var ractive = new Ractive({
                 }
             }
         }
+
     },
 
     confirm: function (amount) {

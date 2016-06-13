@@ -145,7 +145,6 @@ var ractive = new Ractive({
                 }
             }
         }
-
     },
 
     match: function (v) {
