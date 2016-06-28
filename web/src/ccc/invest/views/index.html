@@ -1,70 +1,74 @@
 <dsBody layout={{dsLayoutPath}}>
-    <link rel="stylesheet" href="/ccc/invest/css/component.css">
-    <link rel="stylesheet" href="/ccc/global/css/modules/cccAnimate.css">
     <link rel="stylesheet" href="/ccc/global/css/modules/cccCalculator.css">
+    <link rel="stylesheet" href="/ccc/invest/css/component.css">
     <link rel="stylesheet" href="/ccc/invest/css/style.css">
 
     <div id="main-container">
-        <p class="title"><a href="/">首页</a>&nbsp;&nbsp;>&nbsp;&nbsp;理财产品列表</p>
+        <p class="title">我要理财&nbsp;&nbsp;>&nbsp;&nbsp;<span>理财列表</span></p>
 
         <div class="s-content u-pos-r-center">
+            <div class="s-nav-view">
+                <ul class="u-nolist-ul investType">
+                    <li class="selectTitle">产品类型：</li>
+                    <li class="s__is-selected personal not" data-product="allType">全部</li>
+                    <li data-pro-type="">固定</li>
+                    <li data-pro-type="">浮动</li>
+                    <li data-pro-type="">固定+浮动</li>
+                    <!--{{#products:num}}-->
+                    <!--<li data-product="{{data.productKey}}" class="personal">{{data.name}}</li>-->
+                    <!--{{/products}}-->
+                </ul>
+
+                <ul class="u-nolist-ul sRate">
+                    <li class="selectTitle">年化收益：</li>
+                    <li class="s__is-selected" data-min-rate="0" data-max-rate="100">全部</li>
+                    <li data-min-rate="0" data-max-rate="5">5%以下</li>
+                    <li data-min-rate="5" data-max-rate="6">5%~6%</li>
+                    <li data-min-rate="6" data-max-rate="7">6%~7%</li>
+                    <li data-min-rate="7" data-max-rate="8">7%~8%</li>
+                    <li data-min-rate="8" data-max-rate="100">8%以上</li>
+                </ul>
+
+                <ul class="u-nolist-ul sDuration">
+                    <li class="selectTitle">产品期限：</li>
+                    <li class="s__is-selected" data-min-duration="0" data-max-duration="100">全部</li>
+                    <li data-min-duration="0" data-max-duration="1">1个月内</li>
+                    <li data-min-duration="1" data-max-duration="3">1~3个月</li>
+                    <li data-min-duration="3" data-max-duration="6">3~6个月</li>
+                    <li data-min-duration="6" data-max-duration="12">6~12个月</li>
+                    <li data-min-duration="12" data-max-duration="24">1~2年</li>
+                    <li data-min-duration="24" data-max-duration="100">2年以上</li>
+                </ul>
+
+                <ul class="u-nolist-ul sTitou">
+                    <li class="selectTitle">起投金额：</li>
+                    <li class="s__is-selected" data-min-amount="0" data-max-amount="100000000">全部</li>
+                    <li data-min-amount="0" data-max-amount="100000">10万以下</li>
+                    <li data-min-amount="100000" data-max-amount="300000">10万~30万</li>
+                    <li data-min-amount="300000" data-max-amount="500000">30万~50万</li>
+                    <li data-min-amount="500000" data-max-amount="1000000">50万~100万</li>
+                    <li data-min-amount="1000000" data-max-amount="100000000">100万以上</li>
+                </ul>
+
+                <!--<ul class="u-nolist-ul sShouyi">-->
+                <!--<li class="selectTitle">收益方式：</li>-->
+                <!--<li class="s__is-selected" data-method="">全部</li>-->
+                <!--<li data-method="BulletRepayment">一次性还本付息</li>-->
+                <!--<li data-method="MonthlyInterest">按月付息到期还本</li>-->
+                <!--<li data-method="EqualInstallment">按月等额本息</li>-->
+                <!--<li data-method="EqualPrincipal">按月等额本金</li>-->
+                <!--<li data-method="EqualInterest">月平息</li>-->
+                <!--</ul>-->
+            </div>
 
             <div class="s-contentL">
-                <div class="s-nav-view">
-                    <ul class="u-nolist-ul investType">
-                        <li class="selectTitle">产品类型：</li>
-                        <li class="s__is-selected personal not" data-product="allType">全部</li>
-                        {{#products:num}}
-                        <li data-product="{{data.productKey}}" class="personal">{{data.name}}</li>
-                        {{/products}}
-                    </ul>
-
-                    <ul class="u-nolist-ul sRate">
-                        <li class="selectTitle">年化收益：</li>
-                        <li class="s__is-selected" data-min-rate="0" data-max-rate="100">全部</li>
-                        <li data-min-rate="0" data-max-rate="5">5%以下</li>
-                        <li data-min-rate="5" data-max-rate="6">5%-6%</li>
-                        <li data-min-rate="6" data-max-rate="7">6%-7%</li>
-                        <li data-min-rate="7" data-max-rate="8">7%-8%</li>
-                        <li data-min-rate="8" data-max-rate="100">8%以上</li>
-                    </ul>
-
-                    <ul class="u-nolist-ul sDuration">
-                        <li class="selectTitle">产品期限：</li>
-                        <li class="s__is-selected" data-min-duration="0" data-max-duration="100">全部</li>
-                        <li data-min-duration="0" data-max-duration="1">一个月内</li>
-                        <li data-min-duration="1" data-max-duration="3">1-3个月</li>
-                        <li data-min-duration="3" data-max-duration="6">3-6个月</li>
-                        <li data-min-duration="6" data-max-duration="12">6-12个月</li>
-                        <li data-min-duration="12" data-max-duration="100">1年以上</li>
-                    </ul>
-
-                    <ul class="u-nolist-ul sTitou">
-                        <li class="selectTitle">起投金额：</li>
-                        <li class="s__is-selected" data-min-amount="0" data-max-amount="100000000">全部</li>
-                        <li data-min-amount="0" data-max-amount="1000">1000元以下</li>
-                        <li data-min-amount="1000" data-max-amount="5000">1000元~5000元</li>
-                        <li data-min-amount="5000" data-max-amount="10000">5000元~10000元</li>
-                        <li data-min-amount="10000" data-max-amount="100000000">10000元以上</li>
-                    </ul>
-
-                    <ul class="u-nolist-ul sShouyi">
-                        <li class="selectTitle">收益方式：</li>
-                        <li class="s__is-selected" data-method="">全部</li>
-                        <li data-method="BulletRepayment">一次性还本付息</li>
-                        <li data-method="MonthlyInterest">按月付息到期还本</li>
-                        <li data-method="EqualInstallment">按月等额本息</li>
-                        <li data-method="EqualPrincipal">按月等额本金</li>
-                        <li data-method="EqualInterest">月平息</li>
-                    </ul>
-                </div>
 
                 <div class="invest-list-top">
                     <span>排序：</span>
                     <ul class="orderbyrules">
                         <li class="tacitly activeLi01" data-rules="normal">默认</li>
                         <li data-rules="rate">年化收益</li>
-                        <li data-rules="duration">项目周期</li>
+                        <li data-rules="duration">产品期限</li>
                         <li data-rules="minAmount">起投金额</li>
                     </ul>
                 </div>
@@ -85,8 +89,8 @@
                     <a href=""><img src="/ccc/invest/img/ad02.jpg" alt="" /></a>
                 </div>
 
-                <div id="s-contentR03">
-                </div>
+                <!--<div id="s-contentR03">-->
+                <!--</div>-->
             </div>
         </div>
     </div>
@@ -97,4 +101,5 @@
         {{{state}}}
     </script>
     <script src="/ccc/invest/js/main/investList.js"></script>
+
 </dsBody>

@@ -101,8 +101,8 @@
     },
     "ccc/payment/router.js": {
         "copiedFrom": "node_modules/@ccc/payment/router.js",
-        "fromVersion": "1.7.0",
-        "revHash": "5e72758541"
+        "fromVersion": "1.7.1",
+        "revHash": "1aa1cac03c"
     },
     "ccc/payment/views/payment/post.html": {
         "copiedFrom": "node_modules/@ccc/payment/views/payment/post.html",

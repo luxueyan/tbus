@@ -1,20 +1,17 @@
 #main-container .title {
-    font-size: 14px;
-    color: #7e7e7e;
-    width: 1100px;
+    font-size: 12px;
+    color: #999;
+    width: 1200px;
     margin: 0px auto;
     line-height: 45px;
 }
-
-#main-container .title a {
-    font-size: 14px;
-    color: #009ada;
+#main-container .title span {
+    color: #eb0000;
 }
 
 #main-container .s-content {
     width: 1200px;
     margin: auto;
-    border: 1px solid #eee;
     overflow: hidden;
 }
 
@@ -189,7 +186,7 @@
     width: 100%;
     line-height: 50px;
     background: #fafafa;
-    border-top: 4px solid #d9d9d9;
+    border-top: 1px solid #cfa972;
     overflow: hidden;
 }
 
@@ -209,6 +206,7 @@
     padding-right: 9px;
     margin: 0 15px;
     background: url("../img/listB.png") right center no-repeat;
+    cursor: pointer;
 }
 
 .invest-list-top ul .tacitly {
@@ -217,17 +215,17 @@
 }
 
 .invest-list-top ul .activeLi01 {
-    color: #f09c2c;
+    color: #ff0000;
     background: url("../img/listCT.png") right center no-repeat;
 }
 
 .invest-list-top ul .tacitly.activeLi01 {
-    color: #f09c2c;
+    color: #ff0000;
     background: none;
 }
 
 .invest-list-top ul .activeLi02 {
-    color: #f09c2c;
+    color: #ff0000;
     background: url("../img/listCB.png") right center no-repeat;
 }
 

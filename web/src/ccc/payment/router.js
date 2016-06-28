@@ -34,6 +34,9 @@ module.exports = function (router) {
                 userId: res.locals.user.id,
                 retUrl: protocol + req.headers.host,
             };
+            if (req.query.pageType) {
+                body.pageType = req.query.pageType;
+            }
             log.info({
                 type: 'payment' + fe + '/request',
                 req: req,

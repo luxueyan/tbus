@@ -1,42 +1,46 @@
 
 <!-- 合作伙伴 -->
 <!--<div class="module">-->
-    <div id="carousel-company" class="carousel slide" data-ride="carousel">
+<div id="carousel-company" class="carousel slide" data-ride="carousel">
 
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox">
-            <div class="item active">
-                <div class="row">
-                   {{#each cooperation}}
-                   <div class="icon-single">
-                       <a href="{{author}}" target=_blank>
-                           <img class="company-pic" src="{{url}}" />
-                       </a>
-                   </div>
-                   {{/each}}
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <div class="row">
+                {{#each cooperation}}
+                <div class="icon-single">
+                    <a href="{{author}}" target=_blank>
+                        <!--<img class="company-pic" src="{{content}}" />-->
+                        {{{content}}}
+                    </a>
                 </div>
+                {{/each}}
             </div>
-            {{#list:i}}
-            <div class="item">
-                <div class="row">
-                    {{#each list[i]}}
-                   <div class="icon-single">
-                       <a href="{{author}}"><img class="company-pic" src="{{url}}" /></a>
-                   </div>
-                   {{/each}}
-                </div>
-            </div>
-            {{/list}}
         </div>
-
-        <!-- Controls -->
-        <a class="left carousel-control" href="#carousel-company" role="button" data-slide="prev">
-            <span class="glyphicon" aria-hidden="true"><img src="ccc/index/img/left.png" alt=""></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#carousel-company" role="button" data-slide="next">
-            <span class="glyphicon" aria-hidden="true"><img src="ccc/index/img/right.png" alt=""></span>
-            <span class="sr-only">Next</span>
-        </a>
+        {{#list:i}}
+        <div class="item">
+            <div class="row">
+                {{#each list[i]}}
+                <div class="icon-single">
+                    <a href="{{author}}">
+                        <!--<img class="company-pic" src="{{url}}" />-->
+                        {{{content}}}
+                    </a>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        {{/list}}
     </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-company" role="button" data-slide="prev">
+        <span class="glyphicon" aria-hidden="true"><img src="/ccc/index/img/left.png" alt=""></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#carousel-company" role="button" data-slide="next">
+        <span class="glyphicon" aria-hidden="true"><img src="/ccc/index/img/right.png" alt=""></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
 <!--</div>-->

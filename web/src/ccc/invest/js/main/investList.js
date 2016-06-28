@@ -293,7 +293,8 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
             template: require('ccc/invest/partials/pager.html'),
             data: {
                 totalPage: createList(res.totalSize, current),
-                current: current
+                current: current,
+                totalSize:res.totalSize
             }
         });
 
@@ -404,34 +405,21 @@ function initailEasyPieChart() {
     });
 };
 
-// banenr动效
-//$(".no-warry").mouseenter(function(){
-//    $(this).addClass("active");
-//}).mouseleave(function(){
-//    $(this).removeClass("active");
+
+//InvestListService.getProductHot(function (list) {
+//
+//    var listHOT = [];
+//    for (var i = 0; i < list.length; i++) {
+//        if (list[i].loanRequest.productKey == 'HOT') {
+//            listHOT.push(list[i]);
+//        }
+//    }
+//
+//    var investRactive = new Ractive({
+//        el: "#s-contentR03",
+//        template: require('ccc/invest/partials/hotproduct.html'),
+//        data: {
+//            list: listHOT,
+//        }
+//    });
 //})
-
-//initselect();
-//function initselect() {
-//    var path = CC.product;
-//    $('.no-warry').removeClass('active');
-//    $('.no-warry[data-product=' + path + ']').addClass('active');
-//};
-
-InvestListService.getProductHot(function (list) {
-
-    var listHOT = [];
-    for (var i = 0; i < list.length; i++) {
-        if (list[i].loanRequest.productKey == 'HOT') {
-            listHOT.push(list[i]);
-        }
-    }
-
-    var investRactive = new Ractive({
-        el: "#s-contentR03",
-        template: require('ccc/invest/partials/hotproduct.html'),
-        data: {
-            list: listHOT,
-        }
-    });
-})

@@ -1,229 +1,180 @@
 <dsBody layout={{dsLayoutPath}}>
-<link rel="stylesheet" href="/ccc/index/css/style.css">
-<link rel="stylesheet" href="/ccc/global/css/modules/cccAnimate.css">
-<link rel="stylesheet" href="/ccc/index/css/style1.css">
-<link rel="stylesheet" href="/ccc/index/css/loanlist.css">
 
-<!--
-<style type="text/css">
-    .dn{display: none!important;}
-    .db{display: block!important;}
-    .tan{position: fixed; width: 570px;top: 80px; left: 0;right: 0;margin: 0 auto;border:7px solid #1ca2ef;border-radius: 20px; background-color: #fff;z-index: 999;color: #333;font-size: 14px;line-height: 1.6em;}
-    .tanTit{text-align: center;padding: 15px 0;border-bottom: 1px solid #ccc;}
-    .tanTit span{color: red;font-size: 16px;}
-    .tanTit .close{float: right;color: #000;margin-right: 15px;font-size: 20px;font-family: arial;cursor: pointer;}
-    .tanDes{padding: 35px;padding-top: 20px;}
-    .tanEnd{text-align: right;margin-top: 30px;}
-    .tanTime{text-align: center;margin-top: 20px;}
-    .tanTime span,.tanW span{color:red;}
-    .tanW p{margin-top: 0; font-size: 16px; text-indent: 2em;}
-    .tanW p span{color: #1ca2ef; cursor: pointer;}
-    .tanClose{background-color: #1ca2ef;color: #fff; width: 140px;height:36px;text-align: center;line-height: 36px;border-radius: 3px;margin: auto; cursor: pointer;margin-top: 52px;}
-</style>
-<div class="mask dn" style="background-color: rgba(0,0,0,0.6);background-color: #000\9;filter: progid:DXImageTransform.Microsoft.Alpha(opacity=60);  position: fixed;top: 0;bottom: 0;left: 0;right: 0; z-index: 9999;"></div>
-<div class="dn tan" style="z-index: 10000;">
-    <div style="margin-top: 38px;margin-left: 36px;">
-        <span>亲爱的718金融会员您好：</span>
-    </div>
-    <div class="tanDes">
-        <div class="tanW">
-            <p>
-                为了响应国家对互联网金融行业的规范号召，我们决定对<span>www.718bank.com</span>网站进行升级，树立718金融在行业内的合规标杆。届时您可能无法正常浏览该网站，给您造成的困扰深表歉意。您可以通过<span>www.718zc.com</span>继续访问。
-            </p>
-            <p>718金融将给您账户打入500元投资红包作为补偿，以便您在投资中使用，对于给您造成的困扰再次表示歉意。在此期间，手机客户端将会短暂升级，请您根据网站提示信息更新下载最新版本</p>
-            <p>如有问题您可以拨打4001-718-718， 会有专人为您解答疑问。718金融带给您：新金融！新生活！新生态！</p>
+    <link rel="stylesheet" href="/ccc/index/css/style.css">
+    <link rel="stylesheet" href="/ccc/index/css/style1.css">
+    <link rel="stylesheet" href="/ccc/index/css/loanlist.css">
 
-        </div>
-        <div class="tanClose">
-            知道了
-        </div>
 
-    </div>
-</div>
--->
-<!--
-        <script type="text/javascript">
-            //cookie start
-            function setCookie(name,value)
-            {
-                var Days = 30;
-                var exp = new Date();
-                exp.setTime(exp.getTime() + Days*24*60*60*1000);
-                document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
-            }
-            function getCookie(name)
-            {
-                var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
-                if(arr=document.cookie.match(reg))
-                    return unescape(arr[2]);
-                else
-                    return null;
-            }
+    <!-- 轮播组件 -->
+    <div class="carousel-wrapper">
 
-            jQuery(function(){
-                if(getCookie('dd')==null){
-                    jQuery('.tan').removeClass('dn').addClass('db');
-                    jQuery('.mask').removeClass('dn').addClass('db');
-                    tanClose('.tan .tanClose');
-                    tanClose('.tanW p span');
-                    setCookie('dd','22');
-                }
-            })
+        <div id="my-carousel" class="carousel slide" data-ride="carousel" data-interval="5000">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <!--{{JSON.stringify(carousel)}}-&#45;&#45;&#45;&#45;-->
+                {{#carousel}}
 
-            function tanClose(className){
-                jQuery(className).bind('click',function(){
-                    jQuery('.tan').removeClass('db').addClass('dn');
-                    jQuery('.mask').removeClass('db').addClass('dn');
-                })
-            }
-        </script>
--->
+                <li data-target="#my-carousel" data-slide-to="{{@index}}" class="{{#if @index === 0 }}active{{/if}}">
+                </li>
 
-<!-- 轮播组件 -->
-<div class="carousel-wrapper">
+                {{/}}
+            </ol>
 
-    <div id="my-carousel" class="carousel slide" data-ride="carousel" data-interval="5000">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            {{#carousel}}
-
-            <li data-target="#my-carousel" data-slide-to="{{@index}}" class="{{#if @index === 0 }}active{{/if}}">
-            </li>
-
-            {{/}}
-        </ol>
-
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox">
-            {{#carousel}}
-            <div class="item {{#if @index === 0}}active{{/if}}" style="background: {{this.bgc}}">
-                <a href="{{this.link}}" target="_blank">
-                    <div style="background-image:url({{this.content}}); background-repeat:no-repeat; background-position:center;background-size: 100% 350px;padding-top:350px;">
-                    </div>
-                </a>
-            </div>
-            {{/carousel}}
-        </div>
-        
-<!--
-        <div class="carousel-control-box" style="display:none;">
-            <a class="left carousel-control" href="#my-carousel" role="button" data-slide="next">
-                <span class="glyphicon" aria-hidden="true">
-                    <img src="ccc/index/img/banner-left.png" alt="">
-                </span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#my-carousel" role="button" data-slide="prev">
-                <span class="glyphicon" aria-hidden="true">
-                    <img src="ccc/index/img/banner-right.png" alt="">
-                </span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
--->
-
-        <div class="banner-account－box">
-            <div class="banner-account">
-                <p class="banner-account1">自金网预期年化收益率</p>
-                <p class="banner-account2">高达<span class="banner-account-2">9.00%</span></p>
-                <p class="banner-account2"><span class="banner-account-2">30</span>倍活期存款收益</p>
-                <p class="line"></p>
-                <div class="free-register">
-                    {{#if user}}
-                        <a href="/newAccount/home"><div class="btn-index">我的账户</div></a>
-                    {{else}}
-                        <a href="/register"><div class="btn-index">立即注册</div></a>
-                    {{/if}}
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                {{#carousel}}
+                <div class="item {{#if @index === 0}}active{{/if}}" style="background: {{this.bgc}}">
+                    <a href="{{this.link}}" target="_blank">
+                        <div style="background-image:url({{this.content}}); background-repeat:no-repeat; background-position:center;background-size: 100% 350px;padding-top:350px;">
+                        </div>
+                    </a>
                 </div>
-                {{#if user}}
+                {{/carousel}}
+            </div>
+
+            <div class="banner-account－box">
+                <div class="banner-account">
+
+                    {{#picture[1]}}
+                    <div class="ad">
+                        <a href="{{this.link}}" target="_blank">
+                            <div style="background-image:url({{this.content}});
+                            background-repeat:no-repeat; background-position:center;
+                            background-size: 100% 200px;padding-top:200px;">
+                            </div>
+                        </a>
+                    </div>
+                    {{/}}
+
+                    <div class="free-register">
+                        {{#if user}}
+                        <a href="/newAccount/home"><div class="btn-index">我的账户</div></a>
+                        {{else}}
+                        <a href="/register"><div class="btn-index">立即注册</div></a>
+                        {{/if}}
+                    </div>
+                    {{#if user}}
                     <h3 class="bannerLogin">{{#if userInfo.user.name}}您当前的登录账户是{{else}}{{shangwuxiawu}}好{{/if}}：<span >{{#if !userInfo.user.name}}{{user.mobile}}{{else}}{{userInfo.user.name}}{{/if}}</span></h3>
                     {{else}}
                     <h3 class="bannerLogin">已有账号? <a class="underline" href="/login">立即登录</a></h3>
-                {{/if}}
+                    {{/if}}
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
-<!--kitty-->
-<div class="content">
-    <!--新手推荐-->
-    <div class="newList">
-        <div class="listHeader">
-            <div class="title">新手推荐</div>
-            <div class="sub_title">新客专享</div>
-            <img src="/ccc/index/img/new_icon.png">
-<!--            <a href="">查看更多 》</a>-->
-        </div>
-        <div class="listContent">
-           <div class="NEWproductList"></div>
-        </div>
-        <div class="rightAd">
-            <div style="padding:10px 0 30px 10px;">手机端App</div>
-            <img src="/ccc/index/img/app.png" style="display:block;margin:auto;width:160px;">
-            <p style="text-align:center;">扫描下载手机端App</p>
-            <p style="text-align:center;color:#ff5754;">赢大礼</p>
-        </div>
-    </div>
-    <!--精选理财-->
-    <div class="investList">
-        <div class="listHeader">
-            <div class="title">精选理财</div>
-            <div class="sub_title">火热抢购</div>
-            <ul>
-                <li class="active">定存宝</li>
-                <li>灵活宝</li>
-                <li>散标投资</li>
-            </ul>
-            <a href="/invest">查看更多 》</a>
-        </div>
-        <div class="listContent">
-            <div class="productList active">
-                <div class="DCBproductList">1</div>
+    <!--kitty-->
+    <div class="content">
+        <!--热门推荐-->
+        <div class="newList">
+            <div class="listHeader">
+                <div class="title">热门推荐</div>
+                <div class="sub_title">火热抢购</div>
+                <!--<img src="/ccc/index/img/new_icon.png">-->
+                <a href="">查看更多 &gt; </a>
             </div>
-             <div class="productList">
-                <div class="LHBproductList">2</div>
+            <div class="listContent">
+                <div class="HOTproductList"></div>
             </div>
-             <div class="productList">
-                <div class="SBTZproductList">3</div>
+            <div class="rightAd">
+                <div style="padding:10px 0 30px 10px;">手机端App</div>
+                <img src="/ccc/index/img/app.png" style="display:block;margin:auto;width:160px;">
+                <p style="text-align:center;">扫描下载手机端App</p>
+                <p style="text-align:center;color:#ff5754;">赢大礼</p>
             </div>
         </div>
-        <div class="rightAd">
-            <div class="investAd"></div>
+        <!--短期理财-->
+        <div class="shortList">
+            <div class="listHeader">
+                <div class="title">短期理财</div>
+                <div class="sub_title">火热抢购</div>
+                <a href="/invest">查看更多 &gt; </a>
+            </div>
+            <div class="listContent">
+                <div class="DQLCproductList"></div>
+            </div>
+            <div class="rightAd">
+                {{#picture[0]}}
+                <img src="{{content}}" style="width:100%;height:302px;">
+                {{/}}
+            </div>
+        </div>
+        <!--&lt;!&ndash;精选理财&ndash;&gt;-->
+        <!--<div class="investList">-->
+        <!--<div class="listHeader">-->
+        <!--<div class="title">精选理财</div>-->
+        <!--<div class="sub_title">火热抢购</div>-->
+        <!--<ul>-->
+        <!--<li class="active">定存宝</li>-->
+        <!--<li>灵活宝</li>-->
+        <!--<li>散标投资</li>-->
+        <!--</ul>-->
+        <!--<a href="/invest">查看更多 》</a>-->
+        <!--</div>-->
+        <!--<div class="listContent">-->
+        <!--<div class="productList active">-->
+        <!--<div class="DCBproductList">1</div>-->
+        <!--</div>-->
+        <!--<div class="productList">-->
+        <!--<div class="LHBproductList">2</div>-->
+        <!--</div>-->
+        <!--<div class="productList">-->
+        <!--<div class="SBTZproductList">3</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="rightAd">-->
+        <!--<div class="investAd"></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--广告位-->
+        <div class="ad">
+            {{#picture[2]}}
+            <img src="{{content}}" style="width:100%;margin-top:42px;">
+            {{/}}
+        </div>
+        <!--小额理财-->
+        <div class="smallList">
+            <div class="listHeader">
+                <div class="title">小额理财</div>
+                <div class="sub_title">火热抢购</div>
+                <a href="/invest">查看更多 &gt; </a>
+            </div>
+            <div class="listContent">
+                <div class="XELCproductList"></div>
+            </div>
+            <div class="rightAd">
+                {{#hotAd}}
+                <img src="{{content}}" style="width:100%;height:304px;">
+                {{/hotAd}}
+            </div>
+        </div>
+        <!--高端理财-->
+        <div class="highList">
+            <div class="listHeader">
+                <div class="title">高端理财</div>
+                <div class="sub_title">火热抢购</div>
+                <a href="/invest">查看更多 &gt; </a>
+            </div>
+            <div class="listContent">
+                <div class="GDLCproductList"></div>
+            </div>
+            <div class="rightAd">
+                {{#hotAd}}
+                <img src="{{content}}" style="width:100%;height:304px;">
+                {{/hotAd}}
+            </div>
         </div>
     </div>
-    <!--广告位-->
-    <div class="ad">
-        {{#middleAd}}
-        <img src="{{content}}" style="width:100%;margin-top:42px;">
-        {{/middleAd}}
-    </div>
-    <!--热门推荐-->
-    <div class="hotList">
-        <div class="listHeader">
-            <div class="title">热门推荐</div>
-            <div class="sub_title">火热抢购</div>
-            <a href="/invest">查看更多 》</a>
-        </div>
-        <div class="listContent">
-            <div class="HOTproductList"></div>
-        </div>
-        <div class="rightAd">
-            {{#hotAd}}
-            <img src="{{content}}" style="width:100%;height:304px;">
-            {{/hotAd}}
-        </div>
-    </div>
-</div>
-    
-<!--合作伙伴-->
-<div class="partnerList">
-   <div class="partner">
-        <h4>合作伙伴</h4>
-        <div class="icon-grounp"></div>
-    </div>
-</div>
 
-<script src="/ccc/index/js/main/index.js"></script>
+    <!--合作伙伴-->
+    <div class="partnerList">
+        <div class="partner">
+            <h4>合作伙伴</h4>
+            <div class="icon-grounp"></div>
+        </div>
+    </div>
+
+    <script src="/ccc/index/js/main/index.js"></script>
+
 </dsBody>

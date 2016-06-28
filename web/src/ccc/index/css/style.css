@@ -491,6 +491,7 @@ a {
 	width: 265px;
 	border-left: 1px #ebebeb solid;
     float: left;
+	color: #999;
 }
 .trangle{
     width: 120px;
@@ -514,7 +515,8 @@ a {
 }
 
 .loanWrapper .contentwrapper{
-    padding-left: 30px;
+    /*padding-left: 20px;*/
+	text-align: center;
 }
 
 .loanWrapper table{
@@ -527,8 +529,8 @@ a {
     font-size: 14px;
 }
 .loanWrapper .event {
-	color: #6e6e6e;
-    margin-top:40px;
+	color: #666;
+    margin-top:20px;
     padding-bottom: 20px;
     text-align: center;
 }
@@ -551,12 +553,13 @@ a {
     background-image: url(/ccc/index/img/rate.png);
     background-repeat:no-repeat; 
     background-position:center;
-    background-size: 100%;
+    background-size: 70%;
+	height: 80px;
 
 }
 .loanWrapper .rate {
-	color: #ff5451;
-	font-size: 24px;
+	color: #e60012;
+	font-size: 30px;
 }
 .loanWrapper .percent{
     color: #ff5451;
@@ -567,15 +570,17 @@ a {
     text-align: center;
 }
 .loanWrapper .investData{
-    margin-top: 30px;
+    /*margin-top: 30px;*/
+	overflow: hidden;
 }
 
 .loanWrapper .investTime{
     float: left;
+	padding-left: 20px;
 }
 .loanWrapper .investNum{
     float: right;
-        padding-right: 26px;
+        padding-right: 20px;
 }
 .loanWrapper .investData span{
    color: #000;
@@ -650,15 +655,15 @@ a {
 
 .loanWrapper .opre .investbtn {
 	width: 132px;
-    height: 36px;
-    text-align: center;
-    line-height: 36px;
-    color: #fff;
-    background-color: #ef9c2c;
-    font-size: 16px;
-    border-radius: 3px;
-    margin-left: 33px;
-    margin-top: 28px;
+	height: 36px;
+	text-align: center;
+	line-height: 36px;
+	color: #fff;
+	background-color: #cfa972;
+	font-size: 16px;
+	border-radius: 3px;
+	margin-left: 66px;
+	margin-top: 16px;
 }
 
 .easyPieChart {
@@ -705,8 +710,20 @@ a {
 .newList{
     height: 330px;
     background: url(/ccc/index/img/new_bg.png) no-repeat left center;
-    background-size: 145px;
+    background-size: 150px;
     margin-top: 42px;
+}
+.shortList{
+	height: 330px;
+	background: url(/ccc/index/img/short_bg.png) no-repeat left center;
+	background-size: 150px;
+	margin-top: 42px;
+}
+.smallList{
+	height: 330px;
+	background: url(/ccc/index/img/small_bg.png) no-repeat left center;
+	background-size: 150px;
+	margin-top: 42px;
 }
 .listHeader{
     color: #fff;
@@ -747,8 +764,10 @@ a {
     background: #fff;
 }
 .newList .listContent,
-.newList .rightAd{
-    border-top: 2px solid #f39857;  
+.newList .rightAd,
+.smallList .listContent,
+.smallList .rightAd{
+    border-top: 2px solid #e60012;
 }
 .rightAd{
     float: right;
@@ -800,14 +819,17 @@ a {
     height: 304px;
     background-size: 235px;
 }
-.hotList{
+.highList{
     height: 330px;
-    background: url(/ccc/index/img/hot_bg.png) no-repeat left center;
-    background-size: 145px;
+    background: url(/ccc/index/img/high_bg.png) no-repeat left center;
+    background-size: 150px;
     margin-top: 42px;
 }
-.hotList .listContent{
-    border-top: 2px solid #fa6290;  
+.shortList .listContent,
+.shortList .rightAd,
+.highList .listContent,
+.highList .rightAd{
+    border-top: 2px solid #cfa972;
 }
 /*
 .hotAd{
@@ -821,6 +843,7 @@ a {
     padding-bottom: 35px;
     margin-top: 42px;
     background: #eaeaea;
+	overflow: hidden;
 }
 .partnerList .partner{
     width: 1200px;
@@ -834,7 +857,7 @@ a {
 }
 .partnerList .icon-single{
     float: left;
-    padding: 16px;
+    padding: 14px;
 }
 .partnerList .icon-single img{
     width: 230px;
@@ -844,15 +867,19 @@ a {
 }
 /*新手推荐*/
 .newWrapper .contentwrapper{
-    padding: 0 30px;
+	padding: 0 30px;
+	overflow: hidden;
+	color: #999;
 }
 .newWrapper .contentwrapper .event{
-    font-size: 22px;
-    border-bottom: 1px dashed #dbdbdb;
-    line-height: 90px;
-    height: 90px;
-    padding-left: 20px;
+	font-size: 28px;
+	border-bottom: 1px dashed #dbdbdb;
+	line-height: 90px;
+	height: 90px;
+	padding-left: 20px;
+	color: #666;
 }
+
 .newWrapper .left-box{
     float: left;
 }
@@ -866,23 +893,23 @@ a {
     background-image: url(/ccc/index/img/rate.png);
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 100%;
+    background-size: 80%;
     width: 200px;
-    padding: 5px 20px;
+    /*padding: 5px 20px;*/
     border-right: 1px solid #ebebeb;
     height: 105px;
     margin-top: 30px;
     float: left;
 }
 .newWrapper .rate {
-    color: #ff5451;
-    font-size: 30px;
-    font-weight: bold;
+	color: #e60011;
+	font-size: 40px;
+	/*font-weight: bold;*/
 }
 .newWrapper .percent{
-    color: #ff5451;
-    font-size: 30px;
-    padding-left: 5px;
+	color: #ff5451;
+	font-size: 30px;
+	padding-left: 5px;
 }
 .newWrapper .rate_word{
     font-size: 14px;
@@ -929,7 +956,7 @@ a {
     text-align: center;
     line-height: 36px;
     color: #fff;
-    background-color: #ef9c2c;
+    background-color: #cfa972;
     font-size: 16px;
     border-radius: 3px;
     margin-left: 42px;
