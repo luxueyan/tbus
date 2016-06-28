@@ -46,42 +46,42 @@ var _hmt = _hmt || [];
 
     <div class="s-header-info" id="nav-color">
         <div class="s-header-info-content u-pos-r-center">
-            <img class="float-img wx_img" src="/ccc/global/img/wx_icon.png">
-            <img src="/ccc/global/img/wx_gzh.jpg" class="wx_gzh" >
-            <a href="http://weibo.com/u/5639831528?refer_flag=1001030101_&is_all=1"><img class="float-img" src="/ccc/global/img/wb_icon.png"></a>
-            <div class="app">
-                <img src="/ccc/global/img/app_icon.png">
-                手机自金网
-                <span>|</span>   
+            <!--<a href="http://weibo.com/u/5639831528?refer_flag=1001030101_&is_all=1"><img class="float-img" src="/ccc/global/img/wb_icon.png"></a>-->
+            <div class="float-img wx_img">
+                <!--<img src="/ccc/global/img/wx_icon.png">-->
+                <span>太合汇微信</span>
+                <img src="/ccc/global/img/wx_gzh.jpg" class="wx_gzh" >
+            </div>
+            <div class="float-img app">
+                <span>手机太合汇APP</span>
                 <img src="/ccc/index/img/app.png" class="app_img" style="width:120px;">
             </div>
-             
 
             {{#if user}}
-                 <a href="/aboutus" class="text account" style="font-size:12px;margin-left:10px;text-decoration:none">关于我们</a>
-<!--
-                <a href="/newAccount/message">
-                    <div  style="color:#f58220;position:relative;bottom:4px;" class="text"><img src="/ccc/newAccount/img/message.png" alt="" style="margin:0;width:16px;padding-top:6px;"><span id='head-message-container' style="color:#009ada;font-size:12px;margin:0;position:relative;top:1px;margin-left:5px;"></span>
-                    </div>
-                </a>
--->
-                <a href="/logout" class="text" style="color:#999;margin-right:5px;margin-left:5px;">退出&nbsp;&nbsp;|</a>
-                {{#if user.name}}
-                    <a href="/newAccount/home"><div id='head-ractive-container' style="color:#009ada;position:relative;bottom:1px;" class="text"></div>{{user.name}}</a>
-                {{else}}
-                    <a href="/newAccount/home"><div id='head-ractive-container' style="color:#f58220;position:relative;bottom:1px;" class="text"></div>{{user.mobile}}</a>
-                {{/if}}
+            <a href="/aboutus" class="text account" style="font-size:12px;margin-left:10px;text-decoration:none">关于我们</a>
+            <!--
+                            <a href="/newAccount/message">
+                                <div  style="color:#f58220;position:relative;bottom:4px;" class="text"><img src="/ccc/newAccount/img/message.png" alt="" style="margin:0;width:16px;padding-top:6px;"><span id='head-message-container' style="color:#009ada;font-size:12px;margin:0;position:relative;top:1px;margin-left:5px;"></span>
+                                </div>
+                            </a>
+            -->
+            <a href="/logout" class="text" style="color:#999;margin-right:5px;margin-left:5px;">退出&nbsp;&nbsp;|</a>
+            {{#if user.name}}
+            <a href="/newAccount/home"><div id='head-ractive-container' style="color:#009ada;position:relative;bottom:1px;" class="text"></div>{{user.name}}</a>
             {{else}}
-                <div class="nav-fastregister">
-                    <span>|</span><a href="/register" id="dingbuzhuce" class="text">注册</a>
-                </div>
-                <div class="nav-fastlogin">
-                    <!--               <span>|</span>-->
-                    <a href="/login" id="dingbudenglu" class="text">登录</a>
-                </div>
-                <p style="float:right;">您好，欢迎来到自金网！</p>
+            <a href="/newAccount/home"><div id='head-ractive-container' style="color:#f58220;position:relative;bottom:1px;" class="text"></div>{{user.mobile}}</a>
             {{/if}}
-            
+            {{else}}
+            <div class="nav-fastregister">
+                <span>|</span><a href="/register" id="dingbuzhuce" class="text">注册</a>
+            </div>
+            <div class="nav-fastlogin">
+                <!--               <span>|</span>-->
+                <a href="/login" id="dingbudenglu" class="text">登录</a>
+            </div>
+            <p style="float:right;">您好，欢迎来到太合汇！</p>
+            {{/if}}
+
 
         </div>
 
@@ -90,27 +90,28 @@ var _hmt = _hmt || [];
 
     <div class="s-header-menu" id="menu">
         <div class="s-header-menu-content u-pos-r-center">
-            <a href="/" style="float: left;" alt="自金网" title="自金网">
+            <a href="/" alt="自金网" title="自金网" class="global_logo">
                 <img class="s-icon" src="/ccc/global/img/logo.png">
             </a>
 
             <ul class="u-nolist-ul">
                 <li><a id="index" href="/">首页</a></li>
-                <li><a id="invest" href="/invest">理财</a></li>
-                <li><a id="fund" href="">基金</a></li>
-                <li><a id="guide" href="/guide">新手导航</a></li>
+                <li><a id="invest" href="/invest">我要理财</a></li>
+                <li><a id="fund" href="">公司动态</a></li>
+                <li><a id="guide" href="/guide">新手指引</a></li>
                 <li>
-					{{#if user}}
-						<a id="account" href="/newAccount/home">我的账户</a>
-					{{else}}
-						<a id="account" href="/login">我的账户</a>
-					{{/if}}
-				</li>
+                    {{#if user}}
+                    <a id="account" href="/newAccount/home">我的账户</a>
+                    {{else}}
+                    <a id="account" href="/login">我的账户</a>
+                    {{/if}}
+                </li>
             </ul>
 
         </div>
     </div>
 </div>
+<!-- 导航结束 -->
 
 <div id="main-container" style="padding-bottom:0">{{>content}}</div>
 
@@ -128,62 +129,32 @@ var _hmt = _hmt || [];
         <div class="s-footer-nav" id="footer-color">
             <div class="footer-guide">
                 <div class="left-guide">
-                    <a href="/aboutus#ptjs">平台介绍</a>
-                    <span>|</span>
-                    <a href="/aboutus#ptgg">平台公告</a>
+                    <a href="/aboutus#ptjs">公司介绍</a>
                     <span>|</span>
                     <a href="/aboutus#aqbz">安全保障</a>
                     <span>|</span>
-                    <a href="/aboutus#fwxy">服务协议</a>
-                    <span>|</span>
-                    <a href="/aboutus#ggtd">高管团队</a>
-                    <span>|</span>
-                    <a href="/aboutus#bgcd">办公场地</a>
+                    <a href="/guide">新手指引</a>
                     <span>|</span>
                     <a href="/aboutus#mtbd">媒体报道</a>
                     <span>|</span>
                     <a href="/aboutus#lxwm">联系我们</a>
                 </div>
-                <div class="left-copy">&copy; 版权所有 上海华瑞金融科技有限公司沪ICP备15021893号</div>
+                <p>服务热线(工作时间9:00至18:00) &nbsp;: &nbsp; <span>400-1688-188</span></p>
+                <p>客服邮箱 &nbsp;: &nbsp; <a href="#">service@tahone.com</a></p>
+                <div class="left-guide">&copy;  版权所有<span>太合汇资本</span>沪ICP备15678900号</div>
             </div>
             <div class="footer-info">
-                <div class="right-service">
-                    <p class="service-title">服务热线<span> (工作日9:00至18:00)</span></p>
-                    <p class="service-phone">400-7566-688</p>
-                </div>
                 <div class="right-report">
                     <div class="report-phone">
-                        <div>举报电话</div>
-                        <p>021-51763521</p>
-                        <p>021-51763558</p>
+                        手机太合汇APP
                     </div>
                     <div class="report-email">
-                        <div>举报邮箱</div>
-                        <p>service@ftzex.com</p>
+                        太合汇微信
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!--    旁边导航条-->
-<!--
-<div class="side-bar-box">
-    <div class="side-bar">
-        <a class="side-bar-mobile" href="javascript:;" ><img src="/ccc/global/img/mobile-sidebar.png" onmouseover="this.src='/ccc/global/img/mobile-sidebar-nav.png'" onmouseout="this.src='/ccc/global/img/mobile-sidebar.png'"/></a>
-        <a href="javascript:;" class="jiathis_button_weixin"><img src="/ccc/global/img/weixin.png" onmouseover="this.src='/ccc/global/img/weixin-nav.png'" onmouseout="this.src='/ccc/global/img/weixin.png'"/></a>
-         <a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODE5MDUyMV8zNjY4MDlfNDAwMTcxODcxOF8yXw"><img src="/ccc/global/img/qq.png" onmouseover="this.src='/ccc/global/img/qq-nav.png'" onmouseout="this.src='/ccc/global/img/qq.png'"/></a>
-        <a class="back-top"><img src="/ccc/global/img/backTotop.png" onmouseover="this.src='/ccc/global/img/backTotop-nav.png'" onmouseout="this.src='/ccc/global/img/backTotop.png'"/></a>
-    </div>
-    <div class="wap" style="display:none;">
-        <div class="wap-header">
-           <span class="wap-close">x</span>
-           <h3 class="topwap">下载718金融理财客户端</h3>
-        </div>
-        <div class="wxwap"><img src="/ccc/global/img/app_ewm.png" style="width:200px;height:200px" alt="718金融理财客户端"></div>
-        <p class="bottomwap">扫描二维码，下载718金融理财客户端</p>
-    </div>
-</div>
--->
 
 <script src="/ccc/global/js/main/header.js" async defer></script>

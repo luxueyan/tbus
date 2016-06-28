@@ -6,10 +6,10 @@ module.exports = function (router) {
             delete user.idNumber;
         }
         res.expose(user, 'user');
-        res.locals.title = '理财_自金网平台';
-        res.locals.keywords = '理财产品、投资、理财投资、个人理财、理财新品、新能宝、活动专享、新手专享';
+        res.locals.title = '太合汇';
+        res.locals.keywords = '理财产品、投资、理财投资、个人理财、理财新品、活动专享、新手专享';
         res.locals.description =
-            '自金网平台为您提供了多种理财产品，每种理财产品都有不同的特点，满足您的投资需求。理财产品有：新手专享、活动专享、新能宝等。';
+            '太合汇为您提供了多种理财产品，每种理财产品都有不同的特点，满足您的投资需求。理财产品有：新手专享、活动专享、新能宝等。';
 
         //var productKey = ['XNB', 'FB', 'XJB'];
 		var productKey = ['SBTZ', 'HOT','LHB','DCB','NEW'];

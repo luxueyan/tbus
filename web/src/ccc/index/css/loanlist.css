@@ -83,9 +83,9 @@
     margin-right: 64px;
 }
 #yellow-progress .progress-bar{
-    background: #3a6dfe;
-    background: linear-gradient(to right, #3a6dfe , #41ccb4);
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#3a6dfe, endColorstr=#41ccb4)";
+    background: #ff0000;
+    /*background: linear-gradient(to right, #3a6dfe , #41ccb4);*/
+    /*-ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#3a6dfe, endColorstr=#41ccb4)";*/
     border-radius: 2px;
 }
 #yellow-progress{
@@ -93,11 +93,12 @@
     margin-top: 14px;
     height:8px;
     width: 180px;
+    margin-left: 20px;
 }
 #yellow-progress .progress-bar-word {
     position: absolute;
     margin-left: 190px;
-    color: #666666;
+    color: #999;
     font-size: 14px;
     margin-top: -6px;
 }

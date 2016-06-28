@@ -14,7 +14,7 @@
 }
 
 #nav-color{
-  border-bottom:2px solid #f3f3f3;
+  /*border-bottom:2px solid #f3f3f3;*/
     line-height: 30px;
 }
 #nav-color .text img {
@@ -33,13 +33,7 @@
 
     color: #bcbcbc;
 }
-#nav-color .s-header-info-content .float-img{
-    float: right;
-    width: 16px;
-    margin-left: 12px;
-    padding-top: 9px;
-    cursor: pointer;
-}
+
 #nav-color .s-header-info-content .nav-help{
  float: right;
     color: #777777;
@@ -106,7 +100,7 @@
 
 }
 #footer-color-box{
-   background:#363b3f;
+   background:#535353;
 
 }
 
@@ -115,84 +109,70 @@
     margin: auto;
 }
 
-
 #footer-color a{
-    color: #abb2ba;
+    color: #999;
 }
-#footer-color a{
-    color: #abb2ba;
-}
-.ssfooter{
-    margin-top:25px;
 
-}
-.footer-guide dd{
-/*    margin-top: 14px;*/
-    color:#abb2ba;
-    font-family: "微软雅黑";
-    font-size: 14px;
-    line-height: 24px;
-    margin-left: 4px;
-
-}
-#footer-color dt a{
-    color: #e1e1e1;
-}
-.bottom-bg{
-    float:left;
-    margin-left: 100px;
-    margin-top: 25px;
-}
 .footer-guide{
     float: left;
     width: 660px;
-    border-right: 1px dashed #4a4e52;
+    border-image: url(/ccc/global/img/footer_line.png) 0 1 0 0;
     height: 168px;
     margin: 24px auto;
+    color: #999;
 }
 .footer-guide .left-guide{
-    padding-top: 75px;
+    padding: 12px 0;
 
 }
 .footer-guide .left-guide span{
-    padding: 0 6px;
+    padding: 0 16px;
 
 }
-.footer-guide .left-copy{
-  color: #686c6f;
-    padding-top: 10px;
+.footer-guide p{
+    /*padding-top: 10px;*/
+    line-height: 28px;
 }
-
+.footer-guide p span{
+    color: #cfa972;
+    font-size: 24px;
+}
+.footer-guide p a{
+   text-decoration: underline;
+}
 .footer-info{
     float: left;
     margin-left: 45px;
 }
 
-.footer-info .right-service{
-    padding-top: 45px;
-}
-.footer-info .right-service .service-title{
-    font-size: 16px;
-}
-.footer-info .right-service .service-title span{
-    font-size: 14px;
-    color: #686a6c;
-}
 .footer-info .service-phone{
     font-size: 18px;
     padding-top: 10px;
 }
 .right-report{
     margin-top: 30px;
+    color: #888888;
+    font-size: 18px;
 }
 .right-report .report-phone{
-    float: left;
-    width: 140px;
-    border-right: 1px dashed #4a4e52;
+    background: url("/ccc/global/img/app_unactive.png") no-repeat 9px center;
+    padding: 24px 56px;
+    cursor: pointer;
+}
+.right-report .report-phone:hover{
+    background: url("/ccc/global/img/app_active.png") no-repeat 9px center;
+    padding: 24px 56px;
+    color: #cfa972;
 }
 .right-report .report-email{
-    float: left;
-    padding-left: 40px;
+    background: url("/ccc/global/img/wx_unactive.png") no-repeat left center;
+    padding: 20px 56px;
+    cursor: pointer;
+}
+.right-report .report-email:hover{
+    background: url("/ccc/global/img/wx_active.png") no-repeat left center;
+    padding: 20px 56px;
+    color: #cfa972;
 }
 .right-report p{
     color: #686a6c;
@@ -223,12 +203,21 @@
 
 #menu{
     font-size: 18px;
+    clear: both;
 }
 
 .u-nolist-ul-li {
 /*    margin-left: 24px;*/
     cursor: pointer;
     position: relative;
+}
+.s-header-menu-content{
+    position: relative;
+}
+.s-header-menu-content  .global_logo{
+    float: left;
+    position: absolute;
+    top: -20px;
 }
 .s-header-menu-content .u-nolist-ul li a{
     padding: 0 8px;
@@ -283,9 +272,6 @@
     line-height: 84px;
 }
 
-.s-header-menu-content .s-icon{
-    width: 282px;
-}
 #s-header-height{
     height:102px;
     font-size: 12px;
@@ -369,9 +355,9 @@
 }
 
 #menu .navactive{
-    color: #ef9c2c;
+    color: #e60012;
     text-decoration: none;
-    border-bottom: 3px solid #ef9c2c;
+    border-bottom: 3px solid #e60012;
 }
 
 
@@ -513,18 +499,22 @@ input[type=button]{
     color:white;
     background: gray;
 }
-.app{
+#nav-color .s-header-info-content .float-img{
+    padding-left: 5px;
     float: right;
     position: relative;
     cursor: pointer;
+    margin-left: 12px;
 }
-.app img{
-    width: 12px;
-    margin-left: 20px;
-    padding-top: 5px;
-    margin-right: 5px;
-    margin-top: -4px;
+
+.app{
+    background: url("/ccc/global/img/app_icon.png") no-repeat left center;
+    background-size: 8px;
 }
+/*.app:hover{*/
+    /*background: url("/ccc/global/img/app_active.png") no-repeat left center;*/
+    /*background-size: 8px;*/
+/*}*/
 .app_img{
     position: absolute;
     top: 30px;
@@ -532,6 +522,17 @@ input[type=button]{
     display: none;
     z-index: 1;
 }
+
+#nav-color .s-header-info-content .wx_img{
+    background: url("/ccc/global/img/wx_icon.png") no-repeat left center;
+    background-size: 16px;
+    padding-left: 12px;
+    margin-left: 5px;
+}
+/*#nav-color .s-header-info-content .wx_img:hover{*/
+    /*background: url("/ccc/global/img/wx_active.png") no-repeat left center;*/
+    /*background-size: 16px;*/
+/*}*/
 .wx_gzh{
     position: absolute;
     top: 30px;

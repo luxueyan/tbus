@@ -40,26 +40,24 @@ function replaceStr(str){
 
 
 IndexService.getLoanSummary(function (list) {
-    var listXSZX = [],listDCB = [],listLHB = [],listSBTZ = [],listHOT = [];
+    var listXELC = [],listDQLC = [],listGDLC = [],listHOT = [];
     for(var i=0;i<list.length;i++){
         list[i].method = i18n.enums.RepaymentMethod[list[i].method][0];
         list[i].titleLength = replaceStr(list[i].title);
         if(list[i].titleLength > 60){
-             list[i].title = list[i].title.substr(0,60)+'...';
+            list[i].title = list[i].title.substr(0,60)+'...';
         }
 
-        if(list[i].loanRequest.productKey == 'NEW'){
-             listXSZX.push(list[i]);
-         }else if(list[i].loanRequest.productKey == 'DCB'){
-             listDCB.push(list[i]);
-         }else if(list[i].loanRequest.productKey == 'LHB'){
-             listLHB.push(list[i]);
-         }else if(list[i].loanRequest.productKey == 'SBTZ'){
-             listSBTZ.push(list[i]);
-         }else if(list[i].loanRequest.productKey == 'HOT'){
-             listHOT.push(list[i]);
-         }
-     }
+        if(list[i].loanRequest.productKey == 'XELC'){
+            listXELC.push(list[i]);
+        }else if(list[i].loanRequest.productKey == 'DQLC'){
+            listDQLC.push(list[i]);
+        }else if(list[i].loanRequest.productKey == 'GDLC'){
+            listGDLC.push(list[i]);
+        }else if(list[i].loanRequest.productKey == 'HOT'){
+            listHOT.push(list[i]);
+        };
+    }
 
 //    listLHB = [listLHB[0],listXNB[0],listFB[0]];
 //
@@ -69,45 +67,39 @@ IndexService.getLoanSummary(function (list) {
 //            i-=1;
 //        }
 //    }
-    var investRactive = new Ractive({
-        el: ".NEWproductList",
-        template: require('ccc/global/partials/singleInvest.html'),
-        data: {
-            list: listXSZX.slice(0,1),
-            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
-        }
-    });
-
-    var investRactive = new Ractive({
-        el: ".DCBproductList",
-        template: require('ccc/global/partials/singleInvest1.html'),
-        data: {
-            list: listDCB.slice(0,3),
-            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
-        }
-    });
-
-    var investRactive = new Ractive({
-        el: ".LHBproductList",
-        template: require('ccc/global/partials/singleInvest1.html'),
-        data: {
-            list: listLHB.slice(0,3),
-            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
-        }
-    });    
-    var investRactive = new Ractive({
-        el: ".SBTZproductList",
-        template: require('ccc/global/partials/singleInvest1.html'),
-        data: {
-            list: listSBTZ.slice(0,3),
-            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
-        }
-    });    
+    //热门推荐
     var investRactive = new Ractive({
         el: ".HOTproductList",
-        template: require('ccc/global/partials/singleInvest1.html'),
+        template: require('ccc/global/partials/singleInvestHot.html'),
         data: {
-            list: listHOT.slice(0,3),
+            list: listHOT.slice(0,1),
+            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+        }
+    });
+    //短期理财
+    var investRactive = new Ractive({
+        el: ".DQLCproductList",
+        template: require('ccc/global/partials/singleInvest.html'),
+        data: {
+            list: listDQLC.slice(0,3),
+            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+        }
+    });
+    //小额理财
+    var investRactive = new Ractive({
+        el: ".XELCproductList",
+        template: require('ccc/global/partials/singleInvest.html'),
+        data: {
+            list: listXELC.slice(0,3),
+            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+        }
+    });
+    //高端理财
+    var investRactive = new Ractive({
+        el: ".GDLCproductList",
+        template: require('ccc/global/partials/singleInvest.html'),
+        data: {
+            list: listGDLC.slice(0,3),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });
