@@ -10,6 +10,12 @@ module.exports = function (router) {
         res.locals.keywords = '理财产品、投资、理财投资、个人理财、理财新品、活动专享、新手专享';
         res.locals.description =
             '太合汇为您提供了多种理财产品，每种理财产品都有不同的特点，满足您的投资需求。理财产品有：新手专享、活动专享、新能宝等。';
+        res.locals.listPicture = req.uest(encodeURI('/api/v2/cms/category/IMAGE/name/理财列表页广告栏'))
+            .end()
+            .get('body')
+            .then(function(data){
+                return data;
+            });
 
         //var productKey = ['XNB', 'FB', 'XJB'];
 		var productKey = ['SBTZ', 'HOT','LHB','DCB','NEW'];
