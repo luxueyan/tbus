@@ -1,245 +1,194 @@
-#main-container .title {
-    font-size: 12px;
-    color: #999;
-    width: 1200px;
-    margin: 0px auto;
-    line-height: 45px;
+.pro_box{
+  width: 1200px;
+  margin: auto;
+  background: #fff;
+  margin-top: 24px;
 }
-#main-container .title span {
-    color: #eb0000;
+.pro_header{
+  overflow: hidden;
+  padding: 10px 20px;
+    box-shadow:0px 15px 10px -15px #ccc;
 }
-
-#main-container .s-content {
-    width: 1200px;
-    margin: auto;
-    overflow: hidden;
+.pro_title{
+  float: left;
+  width: 500px;
 }
-
-#main-container .s-content table {
-    width: 940px;
-    border-top: 2px solid #5b9dff;
+.pro_title img{
+  float: left;
 }
-
-#main-container .s-content .investBoxTitle {
-    text-align: center;
-    color: #007ec5;
-    font-size: 24px;
-    width: 180px;
-    margin: auto;
-    border-bottom: 1px solid #d9d9d9;
-    line-height: 70px;
+.pro_title h2{
+  float: left;
+  font-size: 24px;
+  color: #e4262b;
+  border-left: 3px solid #e4262b;
+  padding-left: 10px;
+  margin-left: 30px;
+  margin-top: 6px;
 }
-
-#main-container .s-content .investBoxNew {
-    text-align: center;
-    color: #4a4a4a;
-    font-size: 14px;
-    line-height: 14px;
-    margin-top: 16px;
-    padding-bottom: 42px;
+.pro_title span{
+  font-size: 16px;
+  color: #999;
+  margin-left: 30px;
+  margin-top: 12px;
+  display: block;
+  float: left;
 }
-
-#main-container .s-content .investBox {
-    background: #fff;
-    height: 214px;
+.pro_header a{
+  float: right;
+  color: #c09c69;
+  margin-top: 15px;
+}
+.pro_content{
+  padding: 30px;
 }
 
-#main-container .s-content .investBoxNew a {
-    color: #007ec5;
+/*产品详情*/
+.loanItemWrapper{
+  border: 1px solid #c9c9c9;
+  margin: 0 12px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.loanItemWrapper:hover{
+  border: 1px solid #e4262b;
+}
+.loanItemWrapper .loan_left{
+  float: left;
+}
+.loan_title{
+  margin: 0 16px;
+  border-bottom: 1px solid #c9c9c9;
+  width: 630px;
+  overflow: hidden;
+}
+.loan_title .title_info{
+  float: left;
+  padding-left: 32px;
+  margin: 10px 0;
+}
+.loan_title .title_info h2{
+  font-size: 24px;
+  color: #e4262b;
+}
+.loan_title .title_info p{
+  font-size: 14px;
+  color: #999;
+}
+.loan_title a{
+  float: right;
+  width: 94px;
+  height: 28px;
+  display: block;
+  color: #fff;
+  background: #e4262b;
+  text-align: center;
+  padding-top: 4px;
+  margin-top: 24px;
+  margin-right: 35px;
+}
+.loan_info{
+  margin-top: 38px;
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+.loan_info .info_box{
+  border-right: 1px solid #c9c9c9;
+  float: left;
+  height: 80px;
+  padding: 12px 100px 0 50px;
+}
+.loan_info .rate_box{
+  padding: 5px 100px 0 50px;
+}
+.loan_info .info_box:last-child{
+  border-right:none;
+}
+.loan_info .info_box .title{
+  color: #666;
+  font-size: 14px;
+  margin-top: 10px;
+}
+.loan_info .info_box div{
+  font-size: 14px;
+  color: #666;
+}
+.loan_info .info_box div span{
+  font-size: 24px;
+}
+.loan_info .info_box .rate{
+  color: #e60012;
+  font-size: 16px;
+}
+.loan_info .info_box .rate span{
+  font-size: 30px;
+}
+.loanItemWrapper .loan_right{
+  float: right;
+  border-left: 1px solid #c9c9c9;
+  margin: 30px 0;
+  width: 450px;
+  padding-left: 90px;
+  color: #666;
+}
+.leftTime{
+  overflow: hidden;
 }
 
-#main-container .s-content table th {
-    background-color: #f8f8f8;
-    color: #777777;
-    font-size: 14px;
-    text-align: left;
-    height: 40px;
+.leftTime img{
+  float: left;
+  margin-right: 10px;
 }
-
-/*banner*/
-
-.no-warry-ul {
-    margin: 0 50px;
+.leftTime .time{
+  font-size: 18px;
 }
-
-.no-warry {
-    width: 180px;
-    height: 166px;
-    float: left;
-    cursor: pointer;
-    background: #fff;
-    margin-top: 30px;
-    margin-left: 120px;
+.leftAmount{
+  padding-top: 10px;
+  padding-left: 33px;
+  padding-bottom: 20px;
 }
-
-.active {
-    border: 2px solid #009ada;
-    cursor: pointer;
+.leftAmount span{
+  font-size: 18px;
+  color: #e4262b;
 }
-
-.leave {
-    border: 2px solid #eeeeee;
+.percentage{
+  overflow: hidden;
 }
-
-.no-warry-left {
-    height: 90px;
-    margin-top: 35px;
-    text-align: center;
+.percentage .word{
+  float: left;
+  margin-right: 10px;
+  color: #7e8c8d;
+  font-size: 12px;
 }
+.percentage .progress{
+  width: 240px;
+  height: 10px;
+  border-radius: 0;
+  border: 1px solid #b5b5b5;
+  margin-top: 5px;
 
-.no-warry-left img {
-    width: 48px;
 }
-
-.s-content .no-warry-right {
-    float: right;
-    width: 212px;
-    margin-top: 42px;
+.percentage .progress-bar{
+  background: #e4262b;
 }
+.percentage .progress-bar-word{
+  position: absolute;
+  margin-left: 250px;
+  color: #7e8c8d;
+  font-size: 12px;
+  margin-top: -5px;
 
-.s-content .no-warry-right p {
-    line-height: 24px;
-    font-size: 16px;
-    color: #4a4a4a;
 }
-
-.s-content .no-warry-left p {
-    font-size: 16px;
-    color: #ffc808;
+.investBtn a{
+  width: 303px;
+  height: 36px;
+  display: block;
+  background: #c9c9c9;
+  line-height: 36px;
+  text-align: center;
+  color: #fff;
+  margin-top: 20px;
+  text-decoration:none
 }
-
-.s-contentL {
-    width: 940px;
-    float: left;
-}
-
-.s-contentR {
-    width: 240px;
-    float: right;
-}
-
-.s-contentR01,
-.s-contentR02,
-.s-contentR03 {
-    width: 240px;
-    margin-bottom: 15px;
-}
-
-.s-contentR01 img,
-.s-contentR02 img {
-    width: 100%;
-}
-
-.s-contentR03 {
-    padding: 10px;
-    border-top: 2px solid #eb842c;
-    background: #fff url("../img/arrow-right.png") 223px 110px no-repeat;
-}
-
-.s-contentR03 a:hover {
-    text-decoration: none;
-}
-
-.s-contentR03 h2 {
-    color: #5e6080;
-    font-size: 16px;
-    font-weight: bolder;
-    line-height: 50px;
-    border-bottom: 1px dashed #d8d8e0;
-}
-
-.s-contentR03 h3 {
-    font-size: 14px;
-    line-height: 20px;
-    padding-top: 10px;
-}
-
-.s-contentR03 h4 {
-    color: #ff5451;
-    font-size: 24px;
-    font-weight: bolder;
-    line-height: 30px;
-    padding-top: 10px;
-}
-
-.s-contentR03 h4 em {
-    color: #929292;
-    font-size: 14px;
-    padding-left: 10px;
-}
-
-.s-contentR03 p {
-    color: #929292;
-    font-size: 14px;
-    line-height: 30px;
-    padding-top: 10px;
-}
-
-.s-contentR03 p em {
-    color: #ff5451;
-    font-size: 16px;
-    line-height: 20px;
-    padding-left: 10px;
-}
-
-.invest-list-top {
-    width: 100%;
-    line-height: 50px;
-    background: #fafafa;
-    border-top: 1px solid #cfa972;
-    overflow: hidden;
-}
-
-.invest-list-top span {
-    float: left;
-    margin-left: 20px;
-    color: #8e8e8e;
-}
-
-.invest-list-top ul {
-    float: left;
-}
-
-.invest-list-top ul li {
-    width: auto;
-    float: left;
-    padding-right: 9px;
-    margin: 0 15px;
-    background: url("../img/listB.png") right center no-repeat;
-    cursor: pointer;
-}
-
-.invest-list-top ul .tacitly {
-    color: #666;
-    background: none;
-}
-
-.invest-list-top ul .activeLi01 {
-    color: #ff0000;
-    background: url("../img/listCT.png") right center no-repeat;
-}
-
-.invest-list-top ul .tacitly.activeLi01 {
-    color: #ff0000;
-    background: none;
-}
-
-.invest-list-top ul .activeLi02 {
-    color: #ff0000;
-    background: url("../img/listCB.png") right center no-repeat;
-}
-
-.loanItemWrapper .investBtn {
-    width: 200px;
-    text-align: center;
-}
-
-.easyPieChart {
-    position: relative;
-    text-align: center;
-    margin-right: 40px;
-}
-
-.loanItemWrapper .investBtn .investbtn-hover {
-    margin-top: 0;
+.investBtn .open{
+  background: #e4262b;
 }

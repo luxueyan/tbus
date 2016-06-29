@@ -9,13 +9,6 @@ var InvestListService = require('ccc/invest/js/main/service/list')
 var utils = require('ccc/global/js/lib/utils');
 require('ccc/global/js/lib/jquery.easy-pie-chart.js')
 
-// 收益计算器
-var Cal = require('ccc/global/js/modules/cccCalculator');
-$('.benefit-calculator')
-    .on('click', function () {
-        Cal.create();
-    });
-
 var params = {
     pageSize: 10,
     status: '',
@@ -83,7 +76,6 @@ function formatItem(item) {
     } else {
         item.investPercent = parseInt(item.investPercent * 100, 10);
     }
-    ;
     if (item.duration.days > 0) {
         if (typeof item.duration.totalDays === "undefined") {
             item.fduration = item.duration.days;
@@ -141,9 +133,35 @@ function replaceStr(str) {
 }
 
 InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) {
+
+  var listFixed = [],listFloat = [];
+  for(var i=0;i<res.results.length;i++){
+    if(res.results[i].loanRequest.productKey == 'XELC'){
+      listFixed.push(res.results[i]);
+    }
+  }
+  // 固定收益
+  var listRactive = new Ractive({
+    el:".fixedPro",
+    template:require('ccc/invest/partials/fixedPro.html'),
+    data:{
+      list: parseLoanList(listFixed.slice(0,3)),
+      RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+    }
+  });
+  // 浮动收益
+  var listRactive = new Ractive({
+    el:".floatPro",
+    template:require('ccc/invest/partials/floatPro.html'),
+    data:{
+      list: parseLoanList(listFixed.slice(0,1)),
+      RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+    }
+  });
+
     var investRactive = new Ractive({
         el: ".invest-list-wrapper",
-        template: require('ccc/global/partials/singleInvestList.html'),
+        template: require('ccc/invest/partials/list.html'),
         data: {
             list: parseLoanList(res.results),
             RepaymentMethod: i18n.enums.RepaymentMethod, // 还款方式
@@ -423,3 +441,13 @@ function initailEasyPieChart() {
 //        }
 //    });
 //})
+
+InvestListService.getstatusNum(function (res) {
+    var getstatusNum = new Ractive({
+        el: ".getstatusNum",
+        template: require('ccc/invest/partials/statusNum.html'),
+        data: {
+            list: res,
+        }
+    });
+});

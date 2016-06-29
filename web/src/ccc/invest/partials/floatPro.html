@@ -1,0 +1,71 @@
+<!--{{JSON.stringify(list)}}-->
+{{#list}}
+<div class="loanItemWrapper">
+  <div class="loan_left">
+    <div class="loan_title">
+      <div class="title_info">
+        <h2>{{title}}</h2>
+        <p>产品成立逾10年 累计收益高达619.0%！</p>
+      </div>
+      <a href="/loan/{{ id }}">查看详情</a>
+    </div>
+    <div class="loan_info">
+      <div class="info_box rate_box">
+        <div class="rate"><span>{{rate}}</span>%</div>
+        <p class="title">年收益率</p>
+      </div>
+      <div class="info_box">
+        <div><span>{{fduration}}</span></div>
+        <p class="title">净值</p>
+      </div>
+      <div class="info_box">
+        <div><span>{{loanRequest.investRule.minAmount}}</span>元</div>
+        <p class="title">起投金额</p>
+      </div>
+    </div>
+  </div>
+  <div class="loan_right">
+    <div class="leftTime">
+      <img src="/ccc/invest/img/clock_icon.png" alt="" />
+      <div class="time">
+        距离结束：
+      </div>
+    </div>
+    <div class="leftAmount">
+      剩余可投资：<span>{{balance}}</span>元
+    </div>
+    <!-- <div class="process">
+        <div class="rate-chart">
+            <div class="easy-pie-chart pie" data-percent="{{ investPercent }}" data-status='{{status}}'>
+                <span class="percentageNum">{{ investPercent }} </span>
+            </div>
+        </div>
+    </div> -->
+    <div class="percentage">
+        <p class="word">进度</p>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ investPercent }}%;">
+            </div>
+            <p class="progress-bar-word">{{ investPercent }}%</p>
+        </div>
+    </div>
+    <div class="investBtn">
+        {{#if status === 'OPENED'}}
+        <a class="open" href="/loan/{{id}}">立即投资</a>
+        {{/if}} {{#if status === 'SCHEDULED'}}
+        <a href="/loan/{{id}}">即将开始</a>
+        <div class="investbtn-time" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}" data-serv="{{ serverDate }}" style="margin-top:5px;color: black;width: 180px;text-align: center;"></div>
+        {{/if}} {{#if status === 'FINISHED'}}
+        <a href="/loan/{{id}}">已满标</a>
+        {{/if}} {{#if status === 'FAILED'}}
+        <a href="/loan/{{id}}">流标</a>
+        {{/if}} {{#if status === 'SETTLED'}}
+        <a href="/loan/{{id}}">已抢完</a>
+        {{/if}} {{#if status === 'CLEARED'}}
+        <a href="/loan/{{id}}">还款结束</a>
+        {{/if}}
+    </div>
+  </div>
+</div>
+
+{{/list}}
