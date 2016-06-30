@@ -40,7 +40,7 @@ function replaceStr(str){
 
 
 IndexService.getLoanSummary(function (list) {
-    var listXELC = [],listDQLC = [],listGDLC = [],listHOT = [];
+    var listGDSY = [],listDQLC = [],listGDLC = [],listHOT = [];
     for(var i=0;i<list.length;i++){
         list[i].method = i18n.enums.RepaymentMethod[list[i].method][0];
         list[i].titleLength = replaceStr(list[i].title);
@@ -48,10 +48,8 @@ IndexService.getLoanSummary(function (list) {
             list[i].title = list[i].title.substr(0,60)+'...';
         }
 
-        if(list[i].loanRequest.productKey == 'XELC'){
-            listXELC.push(list[i]);
-        }else if(list[i].loanRequest.productKey == 'DQLC'){
-            listDQLC.push(list[i]);
+        if(list[i].loanRequest.productKey == 'DQLC'){
+            listGDSY.push(list[i]);
         }else if(list[i].loanRequest.productKey == 'GDLC'){
             listGDLC.push(list[i]);
         }else if(list[i].loanRequest.productKey == 'HOT'){
@@ -59,73 +57,37 @@ IndexService.getLoanSummary(function (list) {
         };
     }
 
-//    listLHB = [listLHB[0],listXNB[0],listFB[0]];
-//
-//    for(var i=0; i<listLHB.length; i++){
-//        if(listLHB[i] == undefined || listLHB[i] == ''){
-//            listLHB.splice(i,1);
-//            i-=1;
-//        }
-//    }
-    //热门推荐
+    //固定收益
     var investRactive = new Ractive({
-        el: ".HOTproductList",
-        template: require('ccc/global/partials/singleInvestHot.html'),
+        el: ".GDSYproductList",
+        template: require('ccc/index/partials/gdsy.html'),
         data: {
-            list: listHOT.slice(0,1),
+            list: listGDSY.slice(0,3),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });
-    //短期理财
-    var investRactive = new Ractive({
-        el: ".DQLCproductList",
-        template: require('ccc/global/partials/singleInvest.html'),
-        data: {
-            list: listDQLC.slice(0,3),
-            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
-        }
-    });
-    //小额理财
-    var investRactive = new Ractive({
-        el: ".XELCproductList",
-        template: require('ccc/global/partials/singleInvest.html'),
-        data: {
-            list: listXELC.slice(0,3),
-            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
-        }
-    });
-    //高端理财
-    var investRactive = new Ractive({
-        el: ".GDLCproductList",
-        template: require('ccc/global/partials/singleInvest.html'),
-        data: {
-            list: listGDLC.slice(0,3),
-            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
-        }
-    });
+    ////浮动收益
+    //var investRactive = new Ractive({
+    //    el: ".DQLCproductList",
+    //    template: require('ccc/global/partials/singleInvest.html'),
+    //    data: {
+    //        list: listDQLC.slice(0,3),
+    //        RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+    //    }
+    //});
+    ////精选基金
+    //var investRactive = new Ractive({
+    //    el: ".XELCproductList",
+    //    template: require('ccc/global/partials/singleInvest.html'),
+    //    data: {
+    //        list: listXELC.slice(0,3),
+    //        RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+    //    }
+    //});
     initailEasyPieChart();
     ininconut();
 
 });
-
-//借款计划
-//IndexService.getLoanSummary(function (list) {
-//
-//    var investRactive = new Ractive({
-//        el: "#loan-plan",
-//        template: require('ccc/global/partials/singleInvest.html'),
-//        data: {
-//            list: list,
-//            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
-//        }
-//    });
-//
-//    initailEasyPieChart();
-//    ininconut();
-//
-//});
-
-
 
 
 IndexService.getLatestScheduled(function (loan) {

@@ -1,0 +1,62 @@
+
+
+{{#list}}
+<div class="proWrapper">
+    <div class="header">
+        <div class="header_title">固定收益</div>
+        <p class="word">迄今为止100%安全兑付</p>
+        <p class="word">7天-36个月灵活期限</p>
+    </div>
+    <img src="/ccc/index/img/line.png">
+    <div class="infoBox">
+        <div class="infoBox_title">
+            <a href="loan/{{ id }}">
+                {{title}}
+            </a>
+        </div>
+
+        <div class="detail-box">
+            <div class="investNum">
+                <div class="rate"><span>{{rate}}</span>+{{ basicRate }}%</div>
+                <p>年收益率</p>
+            </div>
+            <div class="investNum">
+                <div><span>{{fduration}}</span>{{fdurunit}}</div>
+                <p>期限</p>
+            </div>
+            <div class="investNum">
+                <div><span>{{amount}}</span>{{TamountUnit}}</div>
+                <p>投资规模</p>
+            </div>
+        </div>
+        <div class="opre">
+            {{#if status === 'OPENED'}}
+            <a href="/loan/{{id}}">
+                <div class="investbtn investbtn-open">立即投资</div>
+            </a>
+            {{/if}} {{#if status === 'SCHEDULED'}}
+
+            <a href="/loan/{{id}}">
+                <div class="investbtn">即将开始</div>
+            </a>
+            <div class="investbtn" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}" data-serv="{{ serverDate }}" style="margin-top:-56px;color: black;width: 180px;text-align: center;margin-left:-30px"></div>
+
+            {{/if}} {{#if status === 'FINISHED'}}
+            <a href="/loan/{{id}}">
+                <div class="investbtn">已满标</div>
+            </a>
+            {{/if}} {{#if status === 'SETTLED'}}
+            <a href="/loan/{{id}}">
+                <div class="investbtn">已抢完</div>
+            </a>
+            {{/if}} {{#if status === 'CLEARED'}}
+            <a href="/loan/{{id}}">
+                <div class="investbtn">还款结束</div>
+            </a>
+            {{/if}}
+            </div>
+    </div>
+
+</div>
+
+{{/list}}

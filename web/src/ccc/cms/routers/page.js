@@ -41,8 +41,8 @@ router.get('/:channelName', function (req, res) {
         });
 });
 
-//平台公告
-router.get('/ptgg/:id', function (req, res) {
+//财富讲堂
+router.get('/cfjt/:id', function (req, res) {
     var user = res.locals.user;
     if (user && user.idNumber) {
         delete user.idNumber;
@@ -53,7 +53,7 @@ router.get('/ptgg/:id', function (req, res) {
         '/api/v2/cms/article/' + req.params.id)
         .end()
         .then(function (r) {
-            res.locals.title = '平台公告_自金网平台';
+            res.locals.title = '财富讲堂_自金网平台';
             res.locals.description = r.body.content.replace(/<\/?[^>]*>/g, '').slice(0,100);
             res.render('detail', {
                 detail: formatDetail(r.body)

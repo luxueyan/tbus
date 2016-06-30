@@ -27,6 +27,14 @@ router.get('/', function (req, res, next) {
             return data;
         });
 
+    res.locals.latestNews = req.uest(
+        '/api/v2/cms/category/NEWS/name/' + encodeURIComponent('财富讲堂'))
+        .end()
+        .get('body')
+        .then(function (data) {
+            return data;
+        });
+
     res.locals.regUser = req.uest(
         '/api/v2/users/getHomeDynamicData?userDynamicTypes=RIGISTER&userDynamicTypes=COUPON&userDynamicTypes=INVEST')
         .end()
@@ -79,14 +87,6 @@ router.get('/', function (req, res, next) {
             data = (Array.isArray(data) ? data : []).sort(compare('pubDate'));
             return data;
         });
-    res.locals.latestNews = req.uest(
-        '/api/v2/cms/category/COVERAGE/name/' + encodeURIComponent('媒体报道'))
-        .end()
-        .get('body')
-        .then( function(data) {
-            data = (Array.isArray(data) ? data : []).sort(compare('pubDate'));
-            return data;
-        });
     res.locals.hotAd = req.uest(
         '/api/v2/cms/category/IMAGE/name/' + encodeURIComponent('热门广告位'))
         .end()
@@ -101,12 +101,7 @@ router.get('/', function (req, res, next) {
          .get('body').then( function(data) {
             return data;
         });
-//     res.locals.cooperation = req.uest(
-//         '/api/v2/cms/category/COOPERATION/name/' + encodeURIComponent('合作伙伴'))
-//         .end()
-//         .get('body').then( function(data) {
-//            return data;
-//        });
+
     res.locals.userInfo = req.uest(
          '/api/v2/user/MYSELF/userinfo')
          .end()
