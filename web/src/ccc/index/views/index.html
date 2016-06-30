@@ -63,109 +63,72 @@
         </div>
     </div>
 
-
-    <!--kitty-->
-    <div class="content">
-        <!--热门推荐-->
-        <div class="newList">
-            <div class="listHeader">
-                <div class="title">热门推荐</div>
-                <div class="sub_title">火热抢购</div>
-                <!--<img src="/ccc/index/img/new_icon.png">-->
-                <a href="">查看更多 &gt; </a>
+    <div class="banner_header">
+        <div class="header_box">
+            <div class="header_info">
+                <img src="/ccc/index/img/safe_icon.png">
+                <h2>安全</h2>
+                <div class="word">
+                    <p>银行级风控</p>
+                    <p>专款专项专用</p>
+                </div>
             </div>
-            <div class="listContent">
-                <div class="HOTproductList"></div>
+            <div class="header_info">
+                <img src="/ccc/index/img/zhy_icon.png">
+                <h2>专业</h2>
+                <div class="word">
+                    <p>360°项目审核</p>
+                    <p>优中优选</p>
+                </div>
             </div>
-            <div class="rightAd">
-                <div style="padding:10px 0 30px 10px;">手机端App</div>
-                <img src="/ccc/index/img/app.png" style="display:block;margin:auto;width:160px;">
-                <p style="text-align:center;">扫描下载手机端App</p>
-                <p style="text-align:center;color:#ff5754;">赢大礼</p>
-            </div>
-        </div>
-        <!--短期理财-->
-        <div class="shortList">
-            <div class="listHeader">
-                <div class="title">短期理财</div>
-                <div class="sub_title">火热抢购</div>
-                <a href="/invest">查看更多 &gt; </a>
-            </div>
-            <div class="listContent">
-                <div class="DQLCproductList"></div>
-            </div>
-            <div class="rightAd">
-                {{#picture[0]}}
-                <img src="{{content}}" style="width:100%;height:302px;">
-                {{/}}
-            </div>
-        </div>
-        <!--&lt;!&ndash;精选理财&ndash;&gt;-->
-        <!--<div class="investList">-->
-        <!--<div class="listHeader">-->
-        <!--<div class="title">精选理财</div>-->
-        <!--<div class="sub_title">火热抢购</div>-->
-        <!--<ul>-->
-        <!--<li class="active">定存宝</li>-->
-        <!--<li>灵活宝</li>-->
-        <!--<li>散标投资</li>-->
-        <!--</ul>-->
-        <!--<a href="/invest">查看更多 》</a>-->
-        <!--</div>-->
-        <!--<div class="listContent">-->
-        <!--<div class="productList active">-->
-        <!--<div class="DCBproductList">1</div>-->
-        <!--</div>-->
-        <!--<div class="productList">-->
-        <!--<div class="LHBproductList">2</div>-->
-        <!--</div>-->
-        <!--<div class="productList">-->
-        <!--<div class="SBTZproductList">3</div>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--<div class="rightAd">-->
-        <!--<div class="investAd"></div>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--广告位-->
-        <div class="ad">
-            {{#picture[2]}}
-            <img src="{{content}}" style="width:100%;margin-top:42px;">
-            {{/}}
-        </div>
-        <!--小额理财-->
-        <div class="smallList">
-            <div class="listHeader">
-                <div class="title">小额理财</div>
-                <div class="sub_title">火热抢购</div>
-                <a href="/invest">查看更多 &gt; </a>
-            </div>
-            <div class="listContent">
-                <div class="XELCproductList"></div>
-            </div>
-            <div class="rightAd">
-                {{#hotAd}}
-                <img src="{{content}}" style="width:100%;height:304px;">
-                {{/hotAd}}
-            </div>
-        </div>
-        <!--高端理财-->
-        <div class="highList">
-            <div class="listHeader">
-                <div class="title">高端理财</div>
-                <div class="sub_title">火热抢购</div>
-                <a href="/invest">查看更多 &gt; </a>
-            </div>
-            <div class="listContent">
-                <div class="GDLCproductList"></div>
-            </div>
-            <div class="rightAd">
-                {{#hotAd}}
-                <img src="{{content}}" style="width:100%;height:304px;">
-                {{/hotAd}}
+            <div class="header_info">
+                <img src="/ccc/index/img/kk_icon.png">
+                <h2>可靠</h2>
+                <div class="word">
+                    <p>历史到期</p>
+                    <p>100%兑付</p>
+                </div>
             </div>
         </div>
     </div>
+    <!--产品展示-->
+    <div class="pro_content">
+        <div class="title">
+            我们为您选择最<span>安全</span>，最<span>适合</span>您的理财产品。
+        </div>
+        <div class="pro_box">
+            <div class="pro_detail">
+                <div class="GDSYproductList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!--财富讲堂-->
+    <div class="partnerList wealthList">
+        <div class="partner">
+            <h4>财富讲堂</h4>
+            <div class="wealth-grounp">
+                {{#latestNews:num}}
+                {{#if num <=2 }}
+                <dl>
+                    <dt>
+                        <a href="/cms/cfjt/{{this.id}}" target="_blank">
+                            <img src="{{url}}">
+                        </a>
+                    </dt>
+                    <dd class="dd01">
+                        <a href="/cms/cfjt/{{this.id}}" target="_blank">{{this.title}}</a>
+                    </dd>
+                    <dd class="dd02">
+                        <a href="/cms/cfjt/{{this.id}}" target="_blank"> {{{this.content}}}</a>
+                    </dd>
+                </dl>
+                {{/if}}
+                {{/latestNews}}
+            </div>
+        </div>
+    </div>
+
 
     <!--合作伙伴-->
     <div class="partnerList">

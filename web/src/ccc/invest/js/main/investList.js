@@ -133,11 +133,13 @@ function replaceStr(str) {
 }
 
 InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) {
-
+    parseLoanList(res.results);
   var listFixed = [],listFloat = [];
   for(var i=0;i<res.results.length;i++){
     if(res.results[i].loanRequest.productKey == 'XELC'){
       listFixed.push(res.results[i]);
+    }else if(res.results[i].loanRequest.productKey == ''){
+        listFloat.push(res.results[i]);
     }
   }
   // 固定收益
@@ -145,7 +147,7 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
     el:".fixedPro",
     template:require('ccc/invest/partials/fixedPro.html'),
     data:{
-      list: parseLoanList(listFixed.slice(0,3)),
+      list: (listFixed.slice(0,3)),
       RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
     }
   });
@@ -154,7 +156,7 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
     el:".floatPro",
     template:require('ccc/invest/partials/floatPro.html'),
     data:{
-      list: parseLoanList(listFixed.slice(0,1)),
+      list: (listFixed.slice(0,1)),
       RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
     }
   });
@@ -163,7 +165,7 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
         el: ".invest-list-wrapper",
         template: require('ccc/invest/partials/list.html'),
         data: {
-            list: parseLoanList(res.results),
+            list: (res.results),
             RepaymentMethod: i18n.enums.RepaymentMethod, // 还款方式
             user: CC.user
         }
@@ -176,88 +178,18 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
         this.set(e.keypath + ".hovering", hovering);
     });
 
-    $('.no-warry-ul .no-warry').click(function () {
-        if (!$(this).hasClass("selected active")) {
-            $(this).addClass("selected active").siblings().removeClass("selected active");
-            var product = $(this).data('product');
-            params.currentPage = 1;
-            params.product = product;
-            render(params);
-        }
-    });
-
     //标的类型
-    $('.investType li').click(function () {
-        if (!$(this).hasClass("selectTitle")) {
-            $(this).addClass("s__is-selected not").siblings().removeClass("s__is-selected not");
-            var product = $(this).data('product');
-            params.currentPage = 1;
-            if ($.trim(product) != "allType") {
-                params.product = product;
-            } else {
-                delete params.product;
-            }
-            render(params);
+    $('.sStatus li').click(function () {
+        $(this).addClass("selected").siblings().removeClass("selected");
+        var status = $(this).data("status");
+        if (status == 'SCHEDULED') {
+            params.minDuration = 0;
+            params.maxDuration = 100;
         }
-    });
+        params.status = status;
+        params.currentPage = 1;
+        render(params);
 
-    $('.sRate li').click(function () {
-        if (!$(this).hasClass("selectTitle")) {
-            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
-            var minRate = $(this)
-                .data('min-rate');
-            var maxRate = $(this)
-                .data('max-rate');
-
-            params.currentPage = 1;
-            params.minRate = minRate;
-            params.maxRate = maxRate;
-            render(params);
-        }
-    });
-
-    $('.sDuration li').click(function () {
-        if (!$(this).hasClass("selectTitle")) {
-            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
-            var minDuration = $(this)
-                .data('min-duration');
-            var maxDuration = $(this)
-                .data('max-duration');
-
-            params.currentPage = 1;
-            params.minDuration = minDuration;
-            params.maxDuration = maxDuration;
-            render(params);
-        }
-    });
-
-    $('.sTitou li').click(function () {
-        if (!$(this).hasClass("selectTitle")) {
-            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
-            var minamount = $(this)
-                .data('min-amount');
-            var maxamount = $(this)
-                .data('max-amount');
-
-            params.currentPage = 1;
-            params.minInvestAmount = minamount;
-            params.maxInvestAmount = maxamount;
-            render(params);
-        }
-    });
-
-    $('.sShouyi li').click(function () {
-        if (!$(this).hasClass("selectTitle")) {
-            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
-            var method = $(this).data('method');
-            if (method) {
-                params.method = method;
-            }else{
-                delete params.method;
-            }
-            params.currentPage = 1;
-            render(params);
-        }
     });
 
     $('.orderbyrules li').click(function () {
@@ -307,7 +239,7 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
             current = 1;
         }
         var pagerRactive = new Ractive({
-            el: '#invest-pager',
+            el: '.invest-pager',
             template: require('ccc/invest/partials/pager.html'),
             data: {
                 totalPage: createList(res.totalSize, current),

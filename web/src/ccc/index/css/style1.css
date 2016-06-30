@@ -3,7 +3,7 @@
 }
 
 #main-container{
-    background: #f5f5f5;
+    background: #f5f5f4;
     padding-bottom: 0px;
 }
 .small img {
@@ -554,4 +554,134 @@
 #newsBg  .imgnews-carousel-wrapper{
     float: left;
     width: 292px;
+}
+
+
+/*首页改版*/
+.banner_header{
+    height: 134px;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0px 15px 10px -15px #ccc;
+    color: #999;
+}
+.header_box{
+    width: 1200px;
+    margin: auto;
+    overflow: hidden;
+}
+.header_info{
+    float: left;
+    margin-top: 48px;
+    padding: 0 75px;
+}
+.header_info img{
+    float: left;
+    margin-left: 10px;
+    margin-top: -4px;
+}
+.header_info h2{
+    float: left;
+    font-size: 36px;
+    border-right: 2px solid #999;
+    padding: 0 10px;
+    height: 44px;
+    line-height: 44px;
+    color: #999;
+}
+.header_info .word{
+    float: left;
+    margin-left: 10px;
+
+}
+.pro_content{
+    width: 1200px;
+    margin: auto;
+}
+.pro_content .title{
+    text-align: center;
+    font-size: 30px;
+    color: #999;
+    padding: 0;
+    margin: 30px 0;
+    letter-spacing: 1px;
+}
+.pro_content .title span{
+    font-weight: bold;
+}
+.pro_box .GDSYproductList{
+    overflow: hidden;
+    color: #999;
+}
+.pro_box .proWrapper{
+    width: 380px;
+    float: left;
+    border: 1px solid #e5e5e5;
+    margin-right: 30px;
+    background: #fff;
+}
+.pro_box .proWrapper:last-child{
+    margin-right:0;
+}
+.proWrapper .header{
+    padding: 20px 30px;
+    height: 134px;
+    background: url("/ccc/index/img/fixed_icon.png") no-repeat right 2px;
+}
+.proWrapper .header_title{
+    color: #e4262b;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+.proWrapper .infoBox_title{
+    font-size: 24px;
+    text-align: center;
+    border-bottom: 1px solid #e4262b;
+    margin: 0px 18px;
+    padding: 25px 0;
+}
+.proWrapper .infoBox_title a{
+    color: #666;
+}
+.proWrapper .detail-box{
+    overflow: hidden;
+    margin-left: 12px;
+}
+.proWrapper .detail-box .investNum{
+    float: left;
+    padding: 28px;
+}
+.proWrapper .detail-box .investNum div{
+    margin-top: 8px;
+}
+.proWrapper .detail-box .investNum p{
+    margin-top: 5px;
+}
+.proWrapper .detail-box .investNum div span{
+    font-size: 24px;
+    color: #666;
+}
+.proWrapper .detail-box .investNum .rate{
+    color: #e60012;
+    margin-top: 0;
+}
+.proWrapper .detail-box .investNum .rate span{
+    font-size: 30px;
+    color: #e60012;
+}
+.infoBox a{
+    text-decoration: none;
+}
+.infoBox .investbtn{
+    width: 328px;
+    height: 36px;
+    line-height: 36px;
+    background: #cfa972;
+    color: #fff;
+    text-align: center;
+    margin-left: 25px;
+    margin-bottom: 30px;
+}
+.infoBox .investbtn-open{
+    background: #e4262b;
 }

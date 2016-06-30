@@ -13,6 +13,9 @@
   float: left;
   width: 200px;
   font-size: 18px;
+
+}
+.list_title a{
   color: #999;
 }
 .list_title span{
@@ -24,6 +27,10 @@
 .getstatusNum ul li{
   float: left;
   padding-left: 40px;
+  cursor: pointer;
+}
+.getstatusNum ul li:hover{
+  color: #e4262b;
 }
 .getstatusNum ul li.selected{
   color: #e4262b;
@@ -70,4 +77,26 @@
 }
 .invest-list-wrapper .investbtn-open{
   background: #e4262b;
+}
+/*分页*/
+.invest-pager{
+  overflow: hidden;
+  font-size: 18px;
+  margin: 50px 40px 20px 0;
+}
+.invest-pager ul {
+  float: right;
+}
+.invest-pager ul li{
+  float: left;
+  padding: 0 10px;
+}
+.invest-pager ul li a{
+  color: #666;
+}
+.invest-pager ul .current-page a{
+  color: #e4262b;
+}
+.invest-pager ul li a:hover{
+  color: #e4262b;
 }

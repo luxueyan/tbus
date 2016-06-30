@@ -842,7 +842,6 @@ a {
 .partnerList{ 
     padding-bottom: 35px;
     margin-top: 42px;
-    background: #eaeaea;
 	overflow: hidden;
 }
 .partnerList .partner{
@@ -851,9 +850,10 @@ a {
    
 }
 .partnerList h4{
-    font-size: 16px;
-    line-height: 50px;
-    border-bottom: 1px solid #d8d8d8;
+	font-size: 24px;
+	line-height: 50px;
+	border-bottom: 1px solid #d8d8d8;
+	color: #666;
 }
 .partnerList .icon-single{
     float: left;
@@ -864,6 +864,48 @@ a {
 }
 #carousel-company{
     padding: 0 90px;
+}
+/*财富讲堂*/
+.wealthList{
+	padding-bottom: 0;
+}
+.wealthList .wealth-grounp{
+	overflow: hidden;
+	margin-top: 26px;
+}
+.wealthList .wealth-grounp dl{
+	width: 380px;
+	float: left;
+	border: 1px solid #e5e5e5;
+	margin-right: 30px;
+	background: #fff;
+
+}
+.wealthList .wealth-grounp dl dt img{
+	width: 380px;
+	height: 96px;
+}
+
+.wealth-grounp .dd01{
+	text-align: center;
+	margin: 0px 26px;
+	border-bottom: 1px solid #cfa972;
+	padding: 26px 0 10px;
+}
+.wealth-grounp .dd01 a{
+	font-size: 18px;
+	color: #a48b67;
+}
+.wealth-grounp .dd02{
+	height: 92px;
+	overflow: hidden;
+	margin: 18px 24px;
+	line-height: 18px;
+}
+.wealth-grounp .dd02 a{
+	font-size: 12px;
+	color: #999;
+	text-decoration: none;
 }
 /*新手推荐*/
 .newWrapper .contentwrapper{
