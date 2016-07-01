@@ -10,7 +10,7 @@ var utils = require('ccc/global/js/lib/utils');
 require('ccc/global/js/lib/jquery.easy-pie-chart.js')
 
 var params = {
-    pageSize: 10,
+    pageSize: 8,
     status: '',
     minDuration: 0,
     maxDuration: 100,
@@ -297,27 +297,30 @@ function createList(len, current) {
 };
 
 function ininconut() {
-    $(".investBtn > .investbtn-time").each(function () {
+    $(".investbtn-time").each(function () {
         var t = $(this);
-        if (t.data("status") === 'SCHEDULED') {
-            var id = t.data("id");
-            var openTime = t.data("open");
-            var serverDate = t.data("serv");
+        var id = t.data("id");
+        var openTime = t.data("open");
+        var serverDate = t.data("serv");
+        var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
+        var textDay = leftTime.day ? leftTime.day + '天' : '';
+
+        var interval = setInterval((function () {
+            serverDate += 1000;
             var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
             var textDay = leftTime.day ? leftTime.day + '天' : '';
-            var interval = setInterval((function () {
-                serverDate += 1000;
-                var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-                var textDay = leftTime.day ? leftTime.day + '天' : '';
-                if (!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
-                    clearInterval(interval);
-                    t.prev().hide();
-                    t.replaceWith('<a href="/loan/' + id + '" style="text-decoration:none"><div class="investbtn">立即投资</div></a>');
-                } else {
-                    t.html('<span class="text" style="color:#c6c6c6">倒计时<span style="color:#ff7200">' + textDay + leftTime.hour + '</span>时<span style="color:#ff7200">' + leftTime.min + '</span>分<span style="color:#ff7200">' + leftTime.sec + '</span>秒</span>')
-                }
-            }), 1000);
-        }
+            if (!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
+                clearInterval(interval);
+                t.prev().hide();
+                //t.replaceWith('<a href="/loan/' + id + '" style="text-decoration:none"><div class="investbtn">立即投资</div></a>');
+            } else {
+                t.html('<span class="text" style="color:#666">距离结束：' +
+                    '<span style="color:#e4262b">' + leftTime.day + '</span>天' +
+                    '<span style="color:#e4262b">' + leftTime.hour + '</span>时' +
+                    '<span style="color:#e4262b">' + leftTime.min + '</span>分' +
+                    '<span style="color:#e4262b">' + leftTime.sec + '</span>秒</span>')
+            }
+        }), 1000);
     });
 };
 
