@@ -63,11 +63,11 @@ router.get('/:id',
                     result.requestId = result.loanRequest.id;
                     res.locals.keywords = '理财产品、投资、理财投资、个人理财、理财新品、新能宝、活动专享、新手专享';
                     if(result.loanRequest.productKey=='NEW'){
-                        res.locals.title = '新手专享_自金网平台';
+                        res.locals.title = '太合汇';
                     }
                     else{
 //                    res.locals.title = result.title+'_自金网平台';
-                    res.locals.title = '投资详情_理财_自金网平台';
+                    res.locals.title = '太合汇';
                     }
                     return result;
 
@@ -101,7 +101,7 @@ router.get('/:id',
             replay: repayments
         });
             res.expose(repayments, 'repayments');
-            res.locals.title = '投资详情_理财_自金网平台';
+            res.locals.title = '太合汇';
             res.render('index', _.assign(res.locals, {
                 totalInterest: repayments.reduce(function (p, r) {
                     return p + (r && r.amountInterest || 0);

@@ -141,6 +141,7 @@
 }
 .leftTime .time{
   font-size: 18px;
+  float: left;
 }
 .leftAmount{
   padding-top: 10px;
@@ -192,4 +193,11 @@
 }
 .investBtn .open{
   background: #e4262b;
+}
+.bottom_ad{
+  width: 1200px;
+  margin: 30px auto 80px;
+}
+.bottom_ad img{
+  width: 100%;
 }

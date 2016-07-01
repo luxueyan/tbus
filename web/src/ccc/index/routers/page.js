@@ -95,12 +95,7 @@ router.get('/', function (req, res, next) {
 //            data = (Array.isArray(data) ? data : []).sort(compare('pubDate'));
             return data;
         });
-     res.locals.middleAd = req.uest(
-         '/api/v2/cms/category/IMAGE/name/' + encodeURIComponent('页中广告位'))
-         .end()
-         .get('body').then( function(data) {
-            return data;
-        });
+
 
     res.locals.userInfo = req.uest(
          '/api/v2/user/MYSELF/userinfo')

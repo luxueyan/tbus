@@ -10255,7 +10255,7 @@ body {
 .s-header-menu-content .u-nolist-ul li {
 /*  margin-left: 33px;*/
   cursor: pointer;
-    padding: 0px 18px;
+    padding: 0px 10px;
 }
 .s-header-menu-content .u-nolist-ul li:last-child {
   padding-right: 0;

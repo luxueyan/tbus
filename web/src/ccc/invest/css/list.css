@@ -100,3 +100,11 @@
 .invest-pager ul li a:hover{
   color: #e4262b;
 }
+
+.bottom_ad{
+  width: 1200px;
+  margin: 30px auto 80px;
+}
+.bottom_ad img{
+  width: 100%;
+}

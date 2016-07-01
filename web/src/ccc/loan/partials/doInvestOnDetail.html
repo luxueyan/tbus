@@ -20,7 +20,7 @@
         style="font-size:14px;">元</span></p>
 {{else}}
 <div class="login-see">我要投资</div>
-<img src="/ccc/loan/img/unlogin.png" class="unlogin_img" style="display: block;">
+<p class="un_login">请先登录</p>
 {{/if}}
 {{#if loan.status == "FINISHED"}}
 <button class="finished-btn">已满标</button>
@@ -220,7 +220,7 @@
 
             {{else}}
 
-            <img src="/ccc/loan/img/unlogin.png" class="unlogin_img">
+            <p class="un_login">请先登录</p>
 
             <!--
                         <div class="calculatorBox">

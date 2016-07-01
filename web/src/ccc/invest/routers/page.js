@@ -11,6 +11,12 @@ module.exports = function (router) {
         res.locals.description =
             '太合汇为您提供了多种理财产品，每种理财产品都有不同的特点，满足您的投资需求。理财产品有：新手专享、活动专享、新能宝等。';
 
+        res.locals.bottomAd = req.uest(
+            '/api/v2/cms/category/IMAGE/name/' + encodeURIComponent('理财列表页广告栏'))
+            .end()
+            .get('body').then( function(data) {
+                return data;
+            });
         res.render('index');
     });
 
@@ -27,6 +33,12 @@ module.exports = function (router) {
         res.locals.description =
             '太合汇为您提供了多种理财产品，每种理财产品都有不同的特点，满足您的投资需求。理财产品有：新手专享、活动专享、新能宝等。';
 
+        res.locals.bottomAd = req.uest(
+            '/api/v2/cms/category/IMAGE/name/' + encodeURIComponent('理财历史页广告栏'))
+            .end()
+            .get('body').then( function(data) {
+                return data;
+            });
         res.render('list');
     });
 
