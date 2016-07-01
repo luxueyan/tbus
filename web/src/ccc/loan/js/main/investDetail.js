@@ -38,23 +38,22 @@ new Ractive({
 });
 
 
-///////////////////////////////////////////////////////////
-// 初始化饼状图
-///////////////////////////////////////////////////////////
+
 function initailEasyPieChart() {
+    ///////////////////////////////////////////////////////////
+    // 初始化饼状图
+    ///////////////////////////////////////////////////////////
     $(function () {
         var oldie = /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase());
         $(".easy-pie-chart").each(function () {
             var percentage = $(this).data("percent");
             var status = $(this).data("status");
-            var percentageNum = CC.loan.rule.leftAmount;
-
             // 100%进度条颜色显示为背景色
+
             //var color = percentage != 100 && (status==='SETTLED'|| status==='CLEARED') ? "#f58220" : '#009ada';
-            var color = (status === 'OPENED') ? '#009ada' : "#f58220";
+            var color = (status === 'OPENED') ? '#ff0000' : "#ff0000";
 
-            //var color = percentage === 100 ? "#f58220" : '#f58220';
-
+            //            var color = percentage === 100 ? "#f58220" : '#f58220';
             $(this).easyPieChart({
                 barColor: color,
                 trackColor: '#ddd',
@@ -67,14 +66,7 @@ function initailEasyPieChart() {
                     $(this.el).find('.percent').text(Math.round(percent));
                 }
             });
-
-            $(this).find("span.percentageNum").html('<span style="color:#f58220;font-size:24px;">' + percentageNum + '</span>' + '<span style="color:#4b4b4b;">' + CC.loan.rule.dw + '</span>');
-
-            var width = $(this).find("span.percentageNum").width();
-            $(this).find("span.percentageNum").css({
-                'left': '50%',
-                'margin-left': -width / 2
-            });
+            $(this).find("span.percentageNum").html(percentage + "%");
         });
 
     });

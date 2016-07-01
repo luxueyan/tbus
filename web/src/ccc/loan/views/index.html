@@ -3,96 +3,73 @@
 
 <div class="">
     <div class="current-container">
-<!--        <p class="detailTitle"><a href="/">首页</a> > <a href="/invest">理财产品列表 </a>> {{loans.title}}产品详情</p>-->
 		<div class="box-large">
         <div class="invest-data-wrapper">
+            <p class="detailTitle"><a href="/">我要理财</a> > <span>产品详情</span></p>
+            <img src="/ccc/loan/img/line.png">
             <div class="investContainer">
                 <div class="investTitle">
-<!--
-                     {{#if loans.status == "OPENED" }}
-					<div class="time">剩余时间：<span class="time-left">{{loans.timeLeft.dd}}日{{loans.timeLeft.hh}}小时{{loans.timeLeft.mm}}分{{loans.timeLeft.ss}}</span>
-                    </div>
-                    {{/if}}
-                      {{#if loans.status == "SCHEDULED" || loans.status == "SETTLED" }}
-                    <div class="time openTime">
-                        开标时间:{{loans.timeOpen}}
-                    </div>
-                    {{/if}}
--->
                     <div class="title">
                         {{loans.title}}
                     </div>
-
+                    <div class="rate">
+                        收益率
+                        <span class="color">{{loans.rate}}<span>%</span></span>
+                    </div>
                 </div>
                 <div class="content">
                     <div class="inner">
-                        <div class="item itemSecond">
-                            <div class="name">预期年化率</div>
+                        <div class="item">
                             <div class="value">
-                                {{loans.basicRate}}
-                                <span>%</span>
+                                <span>{{loans.fduration}}</span>
+                                {{loans.fdurunit}}
                             </div>
+                            <div class="name">投资期限</div>
+                        </div>
+                        <div class="item">
+
+                            <div class="value">
+                                <span>{{loans.amount}}</span>
+                                {{loans.aUnit}}
+                            </div>
+                            <div class="name">投资规模</div>
 
                         </div>
-                        <div class="item itemThird">
-                            <div class="content">
-                                <div class="name">项目周期</div>
-                                <div class="value">{{loans.fduration}}
-                                    <span style="color:#ccc">{{loans.fdurunit}}</span>
-                                </div>
+
+                        <div class="item">
+                            <div class="value">
+                                <span>{{loans.fduration}}</span>元
                             </div>
-                        
-                        </div>
-                        <div class="item itemFirst">
-                             <div class="content">
-                                 <div class="name">收益方式</div>
-                                <div class="value"><span style="font-size:18px;">{{loans.method}}</span>
-                                </div>
-                            </div>
+                            <div class="name">起投金额</div>
                         </div>
                     </div>
                     <div class="innerBottom">
-                        <div class="invest_num">产品规模：<span style="color: #ef9c2c;">{{loans.amount}}{{loans.aUnit}}</span></div>
-                        <div class="start_time">起息日期：
-                            {{#if loans.valueDate !== 'Invalid date'}}
-                            <span style="color:#4a4a4a;">{{loans.valueDate}}</span>
-                            {{else}}
-                                {{#if loans.timeFinished !== 'Invalid date'}}
-                                <span style="color:#4a4a4a;">{{loans.start1}}</span>
-                                {{else}}
-                                <span style="color:#4a4a4a;">{{loans.start2}}</span>
-                                {{/if}}
-                            {{/if}}
+                        <div class="start_time">
+                            起息时间：购买成功后第二天
                         </div>
-                        <div class="end_time">到息日期：
-                            {{#if loans.dueDate !== 'Invalid date'}}
-                            <span style="color:#4a4a4a;">{{loans.dueDate}}</span>
-                            {{else}}
-                                {{#if loans.timeFinished !== 'Invalid date'}}
-                                <span style="color:#4a4a4a;">{{loans.end1}}</span>
-                                {{else}}
-                                <span style="color:#4a4a4a;">{{loans.end2}}</span>
-                                {{/if}}
-                            {{/if}}
+                        <div class="end_time">
+                            剩余可投资：<span>{{loans.balance}}</span>元
                         </div>
                     </div>
-                    <div class="progress-wp">
-                        <div class="progress-num">当前进度：
+                </div>
+                <!--<div class="progress-wp">-->
+                    <!--<div class="progress-num">当前进度：-->
+                    <!--</div>-->
+                    <!--<div class="progress-line">-->
+
+                        <!--<div class="progress progress-striped">-->
+                            <!--<div class="progress-bar progress-bar-danger" style="width:{{ loans.investPercent }}%;"></div>-->
+                        <!--</div>-->
+                        <!--<span>{{ loans.investPercent }}%</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+                  <div class="process">
+                    <div class="rate-chart">
+                        <div class="easy-pie-chart pie" data-percent="{{ loans.investPercent }}" data-status='{{loans.status}}'>
+                            <span class="percentageNum">{{ loans.investPercent }} </span>
                         </div>
-                        <div class="progress-line">
-                            
-                           <div class="progress progress-striped">
-                                <div class="progress-bar progress-bar-danger" style="width:{{ loans.investPercent }}%;"></div>
-                            </div>
-                              <span>{{ loans.investPercent }}%</span>
-                        </div>
-                        <div class="leftAmount">剩余可投：<span style="color: #ef9c2c;">{{loans.balance}}元</span></div>
                     </div>
-<!--
-                    <div class="protocol">
-                        <a target="_blank" href="/loan/loanRequest/{{loans.requestId}}/contract/template">协议范本</a>
-                    </div>
--->
+                    <p>进度</p>
                 </div>
             </div>
         </div>
@@ -104,6 +81,11 @@
 
         <div class="clearfix"></div>
     </div>
+</div>
+
+<div class="invest-status">
+    <span>资金状态</span>
+    <img src="/ccc/loan/img/fund_status.png">
 </div>
 
 <div class="invest-detail-wrapper">

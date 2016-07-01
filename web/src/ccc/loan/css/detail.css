@@ -12,63 +12,32 @@ select {
 /*清除ie的默认选择框样式清除，隐藏下拉箭头*/
 select::-ms-expand { display: none; }
 
-
-
 .nav-tabs > li.active > a {
     pointer-events: none;
 }
+
+
+/*详情页样式*/
 .current-container {
     width: 1200px;
     margin: 0 auto;
 }
-.after-header {
-    margin-top: 45px;
-    padding-bottom: 20px;
+.detailTitle {
+    margin: 25px 0 20px 35px;
+    font-size: 18px;
 }
-.after-header .current-container {
-    border-bottom: 1px solid #e8e8e8;
-    padding-bottom: 10px;
+.detailTitle a {
+    color: #999;
 }
-.after-header .invest-usage {
-    font-size: 1.5em;
-    color: #000;
-    float: left;
-}
-.after-header .risk-level {
-    font-size: 1em;
-    float: left;
-    color: #2693ce;
-    margin-top: 6px;
-    margin-left: 10px;
-}
-.after-header .risk-level > .question-mark {
-    color: #7ea9c9;
-}
-.after-header .risk-level .tooltip-container .tooltip-arrow {
-    border-right-color: #f3f8fc;
-}
-.after-header .risk-level .tooltip-container .tooltip-inner {
-    background-color: #f3f8fc;
-    color: #568398;
-    max-width: 330px;
-}
-.after-header .name {
-    float: right;
-    margin-right: 12px;
-    margin-top: 8px;
-}
-.after-header .name a {
-    color: #333;
-}
-.after-header .name a:hover {
-    color: #0387CF;
+.detailTitle span {
+    color: #e4262b;
 }
 .invest-data-wrapper {
-    width: 800px;
+    width: 767px;
     float: left;
     background: #fff;
-    border-top: 2px solid #d9d9d9;
     margin-top: 35px;
+    height: 422px;
 }
 .invest-data-wrapper .investContainer {
     height: 332px;
@@ -77,262 +46,128 @@ select::-ms-expand { display: none; }
 }
 .invest-data-wrapper .investContainer .investTitle {
     overflow: hidden;
-}
-.invest-data-wrapper .investContainer .investTitle .serial {
-    height: 15px;
-    line-height: 15px;
-    color: #939393;
-    font-size: 12px;
-    /*  font-weight: bold;*/
+    border-bottom: 1px solid #dcdcdc;
+    margin: 0 10px;
+    padding: 6px 0 12px;
 }
 .invest-data-wrapper .investContainer .investTitle .title {
     height: 60px;
     line-height: 60px;
-    font-size: 18px;
-    color: #000;
+    font-size: 24px;
+    color: #666;
     float: left;
     word-break: break-all;
-    padding-left: 42px;
+    padding-left: 26px;
 }
-.invest-data-wrapper .investContainer .investTitle .title img {
-    margin-left: 20px;
-    margin-right: 12px;
-}
-.invest-data-wrapper .investContainer .investTitle .protocol {
-    font-size: 14px;
-    color: #b5a16b;
-    text-decoration: underline;
+.invest-data-wrapper .investContainer .investTitle .rate {
     float: right;
-    line-height: 40px;
+    margin-right: 40px;
+    color: #999;
+    font-size: 16px;
 }
-.invest-data-wrapper .investContainer .loanbottom {
-    height: 40px;
-    line-height: 40px;
-    border-top: 1px solid #c7c7c8;
+.invest-data-wrapper .investContainer .investTitle .rate .color{
+    color: #e60012;
+    font-size: 40px;
+    margin-left: 10px;
 }
-.invest-data-wrapper .investContainer .loanbottom .swra {
-    position: relative;
-    display: inline-block;
-    width: 150px;
-    text-align: left;
-    text-indent: 20px;
+.invest-data-wrapper .investContainer .investTitle .rate .color span{
+    font-size: 30px;
 }
-.invest-data-wrapper .investContainer .loanbottom .swra .circle {
-    display: block;
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    top: 14px;
-}
-.invest-data-wrapper .investContainer .loanbottom .swra .yel {
-    background: #ffd700;
-}
-.invest-data-wrapper .investContainer .loanbottom .swra .red {
-    background: red;
-}
+
 .invest-data-wrapper .investContainer .content {
-  
+    width: 568px;
+    border-right: 1px solid #dcdcdc;
+    float: left;
+    clear: both;
+    margin-top: 20px;
 }
 .invest-data-wrapper .investContainer .content .inner {
-    height: 130px;
-    /*  margin-top: 20px;*/
+    overflow: hidden;
+    margin: 20px 30px;
+    border-bottom: 1px solid #dcdcdc;
+    padding-bottom: 25px;
+    margin-bottom: 0;
 }
 .invest-data-wrapper .investContainer .content .inner .item {
     float: left;
-    height: 100%;
-    text-indent: 20px;
+    padding-right: 120px;
 }
-.invest-data-wrapper .investContainer .content .inner .item.itemFirst {
-     width: 250px;
-    margin-right: 0px;
-    
-    background: #fffaf3;
-}
-.invest-data-wrapper .investContainer .content .inner .item.itemFirst .value {
-    color: #4f4e4e;
-}
-.invest-data-wrapper .investContainer .content .inner .item.itemSecond {
-    width: 210px;
-    background-color: #fff7f7;
-    background-image: url(/ccc/loan/img/rate_bg.png);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 100%;
-    margin-left: 30px;
-}
-.invest-data-wrapper .investContainer .content .inner .item.itemSecond .name img {
-    margin-left: 30px;
-}
-.invest-data-wrapper .investContainer .content .inner .item.itemSecond .value {
-    text-align: center;
-    color: #ff5451;
-    margin-top: 5px;
-    margin-left: -20px;
-}
-.invest-data-wrapper .investContainer .content .inner .item.itemThird {
-    width: 230px;
-    margin-right: 0px;
-    
-    background: #fffaf3;
-}
-.invest-data-wrapper .investContainer .content .inner .item .content {
-    margin-left: 60px;
-    height: 55px;
-    border-left: 1px dashed #c1bfbc;
-    
+.invest-data-wrapper .investContainer .content .inner .item:last-child{
+    padding-right: 0px;
 }
 .invest-data-wrapper .investContainer .content .inner .item .name {
-    color: #928e8e;
-    font-size: 14px;
-    text-align: center;
-    margin-left: -20px;
-    margin-top: 40px;
+    color: #999;
+    font-size: 16px;
+    margin-top: 25px;
 }
-.invest-data-wrapper .investContainer .content .inner .item .content .name {
-     margin-left: 0;
-     text-align: left;
-}
+
 .invest-data-wrapper .investContainer .content .inner .item .value {
-    color: #4f4e4e;
-    font-size: 30px;
-    font-weight: bold;
+    color: #999;
+    font-size: 18px;
 }
 .invest-data-wrapper .investContainer .content .inner .item .value span {
-    font-size: 16px;
+    font-size: 30px;
+    color: #666;
 }
 .invest-data-wrapper .investContainer .content .innerBottom {
-     margin-top: 25px;
-    padding-bottom: 20px;
     overflow: hidden;
-    color: #999;
-    border-bottom: 1px dashed #e0e0e0;
+    color: #666;
+    font-size: 16px;
+    padding: 30px 0;
 }
 
-.invest-data-wrapper .investContainer .content .innerBottom .invest_num {
-    margin-left: 70px;
-    float: left;
-}
-.invest-data-wrapper .investContainer .content .innerBottom  span{
-    margin-left: 20px;
-}
 .invest-data-wrapper .investContainer .content .innerBottom .start_time {
     float: left;
-    margin-left: 120px;
+    margin-left: 35px;
 }
 .invest-data-wrapper .investContainer .content .innerBottom .end_time {
-    float: left;
-    margin-left: 80px;
+    float: right;
+    margin-right: 35px;
+}
+.invest-data-wrapper .investContainer .content .innerBottom .end_time span{
+    color: #e4262b;
+    font-size: 18px;
+}
+/*进度条*/
+.easy-pie-chart {
+    position: relative;
+}
+.process{
+    color: #a0a0a0;
+    margin-top: 46px;
+    float: right;
+    width: 130px;
+    margin-right: 34px;
+}
+.process .percentageNum {
+    color: #666;
+    position: absolute;
+    top: 2px;
+    font-size: 32px;
+    left: 40px;
+}
+.process p{
+    text-align: center;
+    font-size: 24px;
+    color: #999;
+    margin-top: 10px;
 }
 
-.invest-data-wrapper .investContainer .content .innerBottom .right .itemt .percentWrapper {
-    float: right;
-    width: 150px;
-    height: 50px;
-    position: relative;
-    right: 33px;
-    top: 11px;
-    color: transparent;
-    height: 12px;
-    border-radius: 8px;
-    background-color: #E1E1E1;
-    line-height: 12px;
-    font-size: 12px;
-    text-align: center;
-    color: #fff;
-}
-.invest-data-wrapper .investContainer .content .innerBottom .right .itemt .percentWrapper .percent {
-    height: 12px;
-    background: #324075;
-    border-radius: 8px;
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-.invest-data-wrapper .investContainer .content .innerBottom .right .itemt .percentWrapper .realPercent {
-    width: 150px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    text-align: center;
-    height: 12px;
-    line-height: 12px;
-    color: #fff;
-}
-.invest-data-wrapper .investContainer .invest-datas {
-    margin-top: 30px;
-}
-.invest-data-wrapper .investContainer .invest-datas .row-1 {
-    margin-left: -45px;
-}
-.invest-data-wrapper .investContainer .invest-datas .row-1 > li {
-    float: left;
-    margin-left: 55px;
-}
-.invest-data-wrapper .investContainer .invest-datas .row-1 > li .num {
-    font-size: 150%;
-    font-weight: 700;
-}
-.invest-data-wrapper .investContainer .invest-datas .row-2 {
-    margin-left: -35px;
-    margin-top: 30px;
-}
-.invest-data-wrapper .investContainer .invest-datas .row-2 > li {
-    float: left;
-    margin-left: 45px;
-}
-.invest-data-wrapper .investContainer .invest-datas .row-2 .date {
-    font-weight: 700;
-}
-.invest-data-wrapper .investContainer .invest-datas .row-2 .num {
-    font-weight: 700;
-}
-.invest-data-wrapper .investContainer .invest-datas .row-2 .row-2-1 {
-    color: #000;
-    font-size: 16px;
-}
-.invest-data-wrapper .investContainer .invest-datas .row-2 .row-2-2 {
-    color: #979797;
-}
-.invest-data-wrapper .investContainer .invest-datas .row-2 .invest-data-text {
-    font-size: 12px;
-    color: #838383;
-}
-.invest-data-wrapper .investContainer .insurance-datas {
-    margin-top: 60px;
-    width: 95%;
-    height: 40px;
-    background-color: #f4f4f4;
-    text-align: center;
-}
-.invest-data-wrapper .investContainer .insurance-datas .insurance-company {
-    color: #545454;
-    font-size: 15px;
-    line-height: 40px;
-    vertical-align: middle;
-}
-.invest-data-wrapper .investContainer .insurance-datas .insurance-type {
-    color: #0387cf;
-    font-size: 16px;
-    line-height: 40px;
-    vertical-align: middle;
-    margin-left: 10px;
-}
-.invest-data-wrapper .investContainer .insurance-datas .insurance-type a, .invest-data-wrapper .investContainer .insurance-datas .insurance-type a:focus, .invest-data-wrapper .investContainer .insurance-datas .insurance-type a:hover {
-    color: #535353;
-}
+
+
 .do-invest-wrapper {
     float: left;
-    width: 407px;
-    height: 383px;
-    text-align: center;
-    background-image: url(/ccc/loan/img/detail_bg.png);
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center center;
-    margin-left: -7px;
-    margin-top: 22px;
+    width: 420px;
+    height: 422px;
+    margin-top: 35px;
+    background: #fff;
+    margin-left: 13px;
 }
+.do-invest-wrapper .un_login{
+    text-align: center;
+    margin: 40px 0;
+}
+
 .do-invest-wrapper .tooltip {
     top: 9px;
     left: 37px;
@@ -565,20 +400,20 @@ select::-ms-expand { display: none; }
 .do-invest-wrapper .status .userBlock .loginBtn {
     height: 44px;
     color: #fff;
-    background-color: #ef9c2c;
+    background-color: #e4262b;
     font-size: 18px;
     line-height: 44px;
     padding: 0;
     border: none;
     display: block;
-    width: 290px;
-    border-radius: 4px;
+    width: 296px;
     margin: 0 auto;
     text-decoration: none;
     letter-spacing: 5px;
+    text-align: center;
 }
 .do-invest-wrapper .status .userBlock .loginBtn:hover {
-    background-color: #DE840B;
+    background-color: #C71E23;
 }
 .do-invest-wrapper .finishBlock {
     vertical-align: middle;
@@ -714,6 +549,22 @@ select::-ms-expand { display: none; }
     margin: 60px auto;
     width: 75px;
 }
+
+/*资金状态*/
+.invest-status{
+    width: 1200px;
+    margin: 25px auto;
+    background: #fff;
+    padding: 15px 0;
+}
+.invest-status span{
+    font-size: 24px;
+    color: #666;
+    margin-left: 35px;
+    margin-right: 100px;
+}
+
+
 .invest-info-wrapper > .current-container {
     background-color: #f7f5f6;
     background-image: url(/assets/img/zl_bj.png);
@@ -1178,14 +1029,7 @@ select::-ms-expand { display: none; }
 
 /*添加*/
 
-.detailTitle a {
-    font-size: 14px;
-    color: #7e7e7e;
-}
-.detailTitle {
-    line-height: 50px;
-    color: #7e7e7e;
-}
+
 .detailBanner {
     width: 350px;
     float: right;
@@ -1271,12 +1115,7 @@ select::-ms-expand { display: none; }
 .easyPieChart canvas {
     position: absolute;
 }
-.percentageNum {
-    color: #009ada;
-    position: absolute;
-    /*	margin: 10px 0 0 40px;*/
-    top: 20px;
-}
+
 .itemt .processFont {
     position: absolute;
     /*	margin: 25px 0 0 20px;*/
@@ -1364,11 +1203,6 @@ select::-ms-expand { display: none; }
     cursor: default;
 }
 
-/*
-.finished-btn:hover {
-	background-color: gray;
-}
-*/
 
 .finished-money {
     text-align: left;
@@ -1415,45 +1249,8 @@ select::-ms-expand { display: none; }
 #userBlock .leftMoney-open .recharge button:hover {
     background-color: #df6502;
 }
-.controler-title {
-    font-size: 18px;
-    color: #999;
-    line-height: 50px;
-    margin-left: 10px;
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 10px;
-}
-.protocol {
-    text-align: right;
-    margin-right: 38px;
-    margin-top: 6px;
-}
-.protocol a {
-    color: #5b9dff;
-}
-.time-left {
-    color: #f58220;
-}
-.box-large {
-/*    overflow: hidden;*/
-}
-.item-pic {
-    height: 250px;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: contain;
-}
-.easy-pie-chart {
-    position: relative;
-}
-.no-pics {
-    color: #ccc;
-    font-size: 14px;
-    text-align: center
-}
-.proof {
-    margin-top: 15px;
-}
+
+/*分页*/
 .invest-pager li {
     display: inline-block;
     margin: 0 3px;
@@ -1473,61 +1270,9 @@ select::-ms-expand { display: none; }
     color: #fff;
     border: 1px #0096de solid;
 }
-.invest-data-wrapper .investContainer .content .innerBottom .interestMethod {
-    margin-left: 50px;
-}
-.progress-wp{
-    color: #a0a0a0;
-    margin-top: 25px;
-    float: left;
-}
-.progress-num{
-    float: left;
-    margin-left: 68px;
-}
-.progress-striped {
-    width: 300px;
-    height: 8px;
-    margin: 7px 0px 0px 15px;
-    float: left;
-}
-.progress-line span {
-    margin: 0px 0px 0px 20px;
-    color: #a0a0a0;
-}
-.progress-line {
-    float: left;
-}
-.progress-wp .leftAmount{
-    float: left;
-    margin-left: 58px;
-}
-.invest-process li {
-    float: left;
-    font-size: 12px;
-    color: #4a4a4a;
-    margin: 3px 24px;
-}
-.use-coupon {
-    color: #5c5c5c;
-    font-size: 14px;
-    text-align: left;
-    margin: 10px 0px 0px 30px;
-}
-.use-coupon span {
-    margin-left: 10px;
-}
-.progress-striped .progress-bar-danger {
-/*
-    background: -webkit-linear-gradient(left, #3a6dfe, #41ccb4);
-    background: -o-linear-gradient(right, #3a6dfe, #41ccb4);
-    background: -moz-linear-gradient(right, #3a6dfe, #41ccb4);
-    background: linear-gradient(to right, #3a6dfe, #41ccb4);
-*/
-    background: #ff6600;
-}
 
-/*华瑞金科*/
+
+    /*华瑞金科*/
 .invest-info-box {
     font-size: 16px;
 }
