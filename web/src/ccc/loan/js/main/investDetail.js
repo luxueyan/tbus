@@ -478,118 +478,6 @@ $('.investInput').on('keyup', function () {
     showSelect($(this).val());
 });
 
-loanService.getLoanProof(CC.loan.requestId, function (r1) {
-    loanService.getCareerProof(CC.loan.LuserId, function (r2) {
-        var loanPurpose = [];
-        for (var j = 0; j < r1.length; j++) {
-            if (r1[j].proof.proofType == "GUARANTEE_ID") {
-
-                if (r1[j].proof.proofType !== '') {
-                    r1[j].proofType = i18n.enums.ProofType[r1[j].proof.proofType][0];
-                } else {
-                    r1[j].proofType = '暂无认证信息';
-                }
-                loanPurpose.push(r1[j]);
-            }
-        }
-
-
-        var proofTypeArr = r2.proofs.CAREER;
-        for (var i = 0; i < proofTypeArr.length; i++) {
-            if (proofTypeArr[i].proof.proofType !== '') {
-                proofTypeArr[i].proofType = i18n.enums.ProofType[proofTypeArr[i].proof.proofType][0];
-            } else {
-                proofTypeArr[i].proofType = '暂无认证信息';
-            }
-        }
-        ;
-        if (CC.loan.enterprise) {
-            var relateDataRactive = new Ractive({
-                // insurance 担保
-                el: ".insurance-wrapper",
-                template: require('ccc/loan/partials/relateDataOnDetail.html'),
-                data: {
-                    loanPurpose: loanPurpose,
-                    career: proofTypeArr,
-                    currentIndex: 0,
-                    currentIndexB: 0,
-                    selectorsMarginLeft: 0,
-                    stageLen: 5,
-
-                }
-            });
-
-            relateDataRactive.on("prev-pic next-pic", function (e) {
-                var self = this;
-                console.log(self.get("currentIndex"));
-                if (e.name === 'prev-pic') {
-                    self.set("currentIndex", self.get("currentIndex") - 1);
-                    if (self.get('currentIndex') < 0) {
-                        self.set('currentIndex', self.get('career').length - 1);
-                    }
-                } else {
-                    self.set("currentIndex", self.get("currentIndex") + 1);
-                    if (self.get('currentIndex') >= self.get('career').length) {
-                        self.set('currentIndex', 0);
-                    }
-                }
-
-            });
-
-            relateDataRactive.on("prev-picB next-picB", function (e) {
-                var self = this;
-                console.log(self.get("currentIndexB"));
-                if (e.name === 'prev-picB') {
-                    self.set("currentIndexB", self.get("currentIndexB") - 1);
-                    if (self.get('currentIndexB') < 0) {
-                        self.set('currentIndexB', self.get('loanPurpose').length - 1);
-                    }
-                } else {
-                    self.set("currentIndexB", self.get("currentIndexB") + 1);
-                    if (self.get('currentIndexB') >= self.get('loanPurpose').length) {
-                        self.set('currentIndexB', 0);
-                    }
-                }
-
-            });
-
-            relateDataRactive.on('begin-big-pic-career', function (e) {
-                console.log(e);
-                var index = Number(e.keypath.substr(-1));
-                var options = {
-                    imgs: r2.proofs.CAREER,
-                    currentIndex: index,
-                    selectorsMarginLeft: 0,
-                    stageLen: 5,
-                    imgLen: r2.proofs.CAREER.length
-                };
-                popupBigPic.show(options);
-                //			console.log(r2);
-                return false;
-
-            });
-
-            relateDataRactive.on('begin-big-pic-loan', function (e) {
-                console.log(e);
-                var index = Number(e.keypath.substr(-1));
-                console.log('*********');
-                console.log(index);
-                var options = {
-                    imgs: loanPurpose,
-                    currentIndex: index,
-                    selectorsMarginLeft: 0,
-                    stageLen: 5,
-                    imgLen: loanPurpose.length
-                };
-                popupBigPic.show(options);
-                return false;
-
-            });
-        }
-    });
-});
-
-
 $('.nav-tabs > li')
     .click(function () {
         $(this)
@@ -652,20 +540,6 @@ var recordRactive = new Ractive({
         for (var i = 0, l = list.length; i < l; i++) {
             list[i].submitTime = moment(list[i].submitTime)
                 .format('YYYY-MM-DD HH:mm:ss');
-
-            //            if (/^HRJK_/.test(list[i].userLoginName)) {
-            //                list[i].userLoginName = list.userLoginName.replace('HRJK_', '手机用户');
-            //            } else if (list[i].userLoginName.indexOf('手机用户') === 0) {
-            //                var _name = list[i].userLoginName.substring(4).replace(/(\d{2})\d{7}(\d{2})/, '$1*******$2');
-            //            } else {
-            //                if (list[i].userLoginName.length === 2) {
-            //                    var _name = mask(list[i].userLoginName, 1);
-            //                } else {
-            //                    var _name = mask(list[i].userLoginName, 2);
-            //                }
-            //            }
-            //
-            //            list[i].userLoginName = _name;
         }
         return list;
     },
@@ -760,3 +634,129 @@ function mask(str, s, l) {
     str = str.substring(0, len);
     return str;
 }
+
+
+
+
+//产品介绍图片
+loanService.getLoanProof(CC.loan.requestId, function (imgs) {
+    var relateDataRactive = new Ractive({
+        // insurance 担保
+        el: ".insurance-wrapper",
+        template: require('ccc/loan/partials/relateDataOnDetail.html'),
+        data: {
+            imgs: imgs,
+            currentIndex: 0,
+            selectorsMarginLeft: 0,
+            stageLen: 5,
+            imgLen: imgs.length
+        }
+    });
+
+    var i = 1;
+    var imgLen = $('.pic-box .show-pic-box').length;
+    var lf = [], zs = [];
+
+    // 开始大图浏览
+    relateDataRactive.on('begin-big-pic', function (e) {
+        console.log(e.index.i)
+        relateDataRactive.set('currentIndex', e.index.i);
+        var options = {
+            imgs: imgs,
+            currentIndex: e.index.i,
+            selectorsMarginLeft: 0,
+            stageLen: 1,
+            imgLen: imgLen
+        };
+        popupBigPic.show(options);
+        init();
+        return false;
+    });
+
+    $("#left-arrow").click(function () {
+        if (i > 1) {
+            for (var j = 0; j < imgLen; j++) {
+                zs[j] = zs[j] + 200;
+                $(".show-pic-box").eq(j).css("left", zs[j]);
+            }
+            i--;
+        }
+    });
+
+    $("#right-arrow").click(function () {
+        if (i < imgLen) {
+            for (var j = 0; j < imgLen; j++) {
+                lf[j] = $(".show-pic-box").eq(j).css("left");
+                zs[j] = lf[j].slice(0, -2) - 200;
+
+                $(".show-pic-box").eq(j).css("left", zs[j]);
+            }
+            i++;
+        }
+    });
+});
+
+
+//产品介绍图片测试
+
+
+request.get(encodeURI('/api/v2/cms/category/IMAGE/name/信息披露测试用'))
+    .end()
+    .then(function (res) {
+        var imgs = res.body;
+        console.log('https://creditmanager.b0.upaiyun.com/82d732be36f577c6c873598bb84e737f')
+        console.log(res.body)
+        var relateDataRactive = new Ractive({
+            // insurance 担保
+            el: ".insurance-wrapper",
+            template: require('ccc/loan/partials/relateDataOnDetail.html'),
+            data: {
+                imgs: imgs,
+                currentIndex: 0,
+                selectorsMarginLeft: 0,
+                stageLen: 5,
+            }
+        });
+
+        var i = 1;
+        var imgLen = $('.pic-box .show-pic-box').length;
+        var lf = [], zs = [];
+
+        // 开始大图浏览
+        relateDataRactive.on('begin-big-pic', function (e) {
+            console.log(e.index.i)
+            relateDataRactive.set('currentIndex', e.index.i);
+            var options = {
+                imgs: imgs,
+                currentIndex: e.index.i,
+                selectorsMarginLeft: 0,
+                stageLen: 1,
+                imgLen: imgLen
+            };
+            popupBigPic.show(options);
+            //init();
+            return false;
+        });
+
+        $("#left-arrow").click(function () {
+            if (i > 1) {
+                for (var j = 0; j < imgLen; j++) {
+                    zs[j] = zs[j] + 200;
+                    $(".show-pic-box").eq(j).css("left", zs[j]);
+                }
+                i--;
+            }
+        });
+
+        $("#right-arrow").click(function () {
+            if (i < imgLen) {
+                for (var j = 0; j < imgLen; j++) {
+                    lf[j] = $(".show-pic-box").eq(j).css("left");
+                    zs[j] = lf[j].slice(0, -2) - 200;
+
+                    $(".show-pic-box").eq(j).css("left", zs[j]);
+                }
+                i++;
+            }
+        });
+    });
