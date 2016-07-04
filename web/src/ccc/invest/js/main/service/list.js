@@ -50,7 +50,7 @@ exports.InvestListService = {
     },
     getstatusNum: function (next) {
     request
-        .get('/api/v2/loans/summaryTotal/UNVIP')
+        .get('/api/v2/loan/summaryTotal')
         .end()
         .then(function (res) {
             next(res.body);
