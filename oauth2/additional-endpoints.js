@@ -30,6 +30,4 @@ module.exports = function (router, auth) {
     //根据用户ID获取可用奖券列表
     router.get('/api/v2/rebateCounpon/listUserCouponPlacement/:userId', auth.pass());
 
-    //获取产品的统计数据
-    router.get('/api/v2/loans/summaryTotal/UNVIP',auth.pass());
 };

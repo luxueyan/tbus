@@ -881,6 +881,9 @@ a {
 	background: #fff;
 
 }
+.wealthList .wealth-grounp dl:last-child{
+	margin-right: 0;
+}
 .wealthList .wealth-grounp dl dt img{
 	width: 380px;
 	height: 96px;
