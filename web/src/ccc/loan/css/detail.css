@@ -153,7 +153,193 @@ select::-ms-expand { display: none; }
     margin-top: 10px;
 }
 
+/*资金状态*/
+.invest-status{
+    width: 1200px;
+    margin: 25px auto;
+    background: #fff;
+    padding: 20px 0;
+    position: relative;
+    color: #828282;
+    font-size: 14px;
+    overflow: hidden;
+    padding-bottom: 40px;
+}
+.invest-status span{
+    font-size: 24px;
+    color: #666;
+    margin-left: 35px;
+    margin-right: 100px;
+    margin-top: 26px;
+    display: block;
+    float: left;
+}
+.invest-status .open_time{
+    position: absolute;
+    top: 85px;
+    left: 274px;
+}
+.invest-status .start_date{
+    position: absolute;
+    top: 85px;
+    left: 420px;
+}
+.invest-status .end_date{
+    position: absolute;
+    top: 85px;
+    right: 333px;
+}
+.invest-status .expected_date{
+    position: absolute;
+    top: 85px;
+    right: 190px;
+}
+/*信息详情*/
+.invest-detail-wrapper {
+    width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    background: #fff;
+}
+.invest-detail-wrapper .tab-panels .tab-panel {
+    display: none;
+    overflow: hidden;
+}
+.invest-detail-wrapper .tab-panels .active {
+    display: block;
+}
+.invest-detail-wrapper .nav-tabs {
+    border-bottom:none;
+}
+.invest-detail-wrapper .nav-tabs li a {
+    display: block;
+    border-radius: 0;
+    margin-right: 0;
+    width: 297px;
+    height: 72px;
+    line-height: 56px;
+    font-size: 24px;
+    border: none;
+    background: #cfa972;
+    color: #fff;
+    margin-right: 4px;
+    text-align: center;
+}
+.invest-detail-wrapper .nav-tabs li:last-child a{
+    margin-right: 0px;
+}
 
+.invest-detail-wrapper .nav-tabs .active a, .invest-detail-wrapper .nav-tabs .active a:focus {
+    color: #666;
+    background: #fff url(/ccc/loan/img/active_line.png) no-repeat center bottom;
+    height: 81px;
+    border: none;
+}
+.invest-detail-wrapper .tab-panels {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+/*产品介绍*/
+.invest-info-box {
+    font-size: 18px;
+    margin-left: 70px;
+}
+.invest-info-box .title {
+    color: #999;
+    width: 200px;
+    vertical-align: top;
+    padding: 20px;
+    text-align: center;
+}
+
+.invest-info-box .content{
+    padding: 9px;
+    width: 845px;
+    padding-left: 35px;
+    color: #666;
+}
+.invest-info-box .content h5{
+    font-size: 18px;
+    color: #666;
+}
+
+/*.invest-info-box table.repay-plan > thead > tr > th {*/
+    /*color: #999;*/
+    /*text-align: center;*/
+    /*font-size: 13px;*/
+    /*border: 1px solid #eee;*/
+/*}*/
+/*.invest-info-box table.repay-plan > tbody > tr > th {*/
+    /*text-align: center;*/
+    /*font-size: 14px;*/
+    /*line-height: 50px;*/
+    /*color: #999;*/
+    /*border-right: 1px solid #eee;*/
+/*}*/
+/*.invest-info-box table.repay-plan > tbody > tr {*/
+    /*border-top: none;*/
+/*}*/
+/*.invest-detail-wrapper .invest-info-box table.repay-plan{*/
+    /*width: 670px;*/
+    /*border: 1px solid #eee;*/
+/*}*/
+/*.invest-detail-wrapper .invest-info-box table.repay-plan thead th{*/
+    /*background: #f4f4f6;*/
+
+/*}*/
+/*.invest-detail-wrapper .invest-info-box table.repay-plan tbody .gray{*/
+    /*background: #f8f8f9;*/
+
+/*}*/
+/*.invest-detail-wrapper .invest-info-box table.repay-plan tbody .white{*/
+    /*background: #fff;*/
+/*}*/
+
+.invest-info-box .insurance-wrapper {
+    height: 170px;
+    margin-top: 15px;
+}
+.insurance-wrapper .big-box {
+    overflow: hidden;
+}
+.insurance-wrapper #left-arrow, #right-arrow {
+    float: left;
+    margin-top: 36px;
+    cursor: pointer;
+}
+.insurance-wrapper .pic-box{
+    float: left;
+    width: 1000px;
+    overflow: hidden;
+    height: 148px;
+}
+.insurance-wrapper .show-pic-box {
+    width: 176px;
+    float: left;
+    margin: 0px 12px;
+    text-align: center;
+    height: 148px;
+    color: #666;
+    line-height: 36px;
+}
+.insurance-wrapper .show-pic {
+    border: 1px solid #ccc;
+}
+.insurance-wrapper .show-pic img {
+    width: 176px;
+    height: 118px;
+}
+
+/*投资记录*/
+.invest-record{
+    width: 900px;
+    margin: auto;
+}
+.invest-record table thead tr th {
+    text-align: center;
+}
+
+/*投资框*/
 
 .do-invest-wrapper {
     float: left;
@@ -163,35 +349,25 @@ select::-ms-expand { display: none; }
     background: #fff;
     margin-left: 13px;
 }
-.do-invest-wrapper .un_login{
-    text-align: center;
-    margin: 40px 0;
-}
 
+.do-invest-wrapper .shiming {
+    text-align: center;
+    color: #d4242f;
+    font-size: 16px;
+    margin: 120px auto 50px;
+}
 .do-invest-wrapper .tooltip {
-    top: 9px;
-    left: 37px;
+    top: 62px;
+    left: 53px;
     opacity: 1;
     display: block;
 }
-.do-invest-wrapper .tooltip .tooltip-arrow {
-    position: absolute;
-    border-width: 5px 5px 0;
-    border-top-color: #fdf8e4;
-    bottom: -5px;
-    left: 10%;
-}
 .do-invest-wrapper .tooltip .tooltip-inner {
-    padding: 5px 10px;
     background-color: #fdf8e4;
     max-width: 330px;
     color: #c09956;
-    margin-top: 30px;
 }
 
-.do-invest-wrapper .status {
-   margin-left: 7px;
-}
 .firstLine {
     overflow: hidden;
     padding: 0px 30px;
@@ -209,30 +385,13 @@ select::-ms-expand { display: none; }
     font-size: 14px;
     color: #4a4a4a;
 }
-.do-invest-wrapper .status .info .time {
-    width: 180px;
-    height: 30px;
-    color: #222d4f;
-    font-size: 14px;
-    float: right;
-}
-.do-invest-wrapper .status .info .time i.clock {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background: url("/ccc/loan/img/icon.png") no-repeat 0px 0px;
-    vertical-align: middle;
-}
-.do-invest-wrapper .status .info .time i {
-    font-style: normal;
-    margin: 0px 2px;
-}
 .do-invest-wrapper .status .userBlock {
     font-size: 16px;
-    color: #6b6b6b;
+    color: #bbbbbb;
     position: relative;
     overflow: hidden;
 }
+
 .do-invest-wrapper .status .leftMoney {
     margin-bottom: 5px;
     border-bottom: 1px solid #eee;
@@ -242,95 +401,86 @@ select::-ms-expand { display: none; }
     margin-left: 15px;
     margin-right: 15px;
 }
-.do-invest-wrapper .status .leftMoney h1 {
-    display: inline;
-    font-size: 16px;
-    color: #4b4b4b;
-    line-height: 50px;
+
+.do-invest-wrapper .status .leftMoney-open {
+    font-size: 14px;
+    color: #999;
+    margin-top: 35px;
+    margin-left: 60px;
 }
-.do-invest-wrapper .status .leftMoney h1 .left-money {
-    font-size: 20px;
-    color: #ff7200;
-}
-.do-invest-wrapper .status .userBlock .leftMoney-open {
-    font-size: 16px;
-    color: #4f4e4e;
-    text-align: left;
-    padding-top: 13px;
-    padding-bottom: 13px;
-    padding-left: 37px;
-    padding-right: 25px;
-}
-.do-invest-wrapper .status .userBlock .leftMoney-open .recharge {
-    float: right;
-    display: block;
-    margin-top: -4px;
-}
-.do-invest-wrapper .status .userBlock .leftMoney .red {
-    color: #ff7200;
-    font-style: normal;
-    font-size: 20px;
-}
-.do-invest-wrapper .status .userBlock .leftMoney-open .red {
-    color: #ef9c2c;
-    font-style: normal;
-    font-size: 20px;
-}
-.do-invest-wrapper .status .leftMoney .recharge {
-    float: right;
-    color: white;
-    text-decoration: none;
-    width: 80px;
-    background-color: #f58220;
-    border-radius: 3px;
-    text-align: center;
-    line-height: 30px;
-    font-size: 16px;
-    margin-top: 9px;
-    margin-right: 2px;
-    height: 30px;
-}
-.do-invest-wrapper .status .leftMoney .recharge:hover {
-    background-color: #df6502;
-}
-.do-invest-wrapper .status .userBlock .open-button {
-    width: 320px;
-    height: 40px;
-    background-color: #009ada;
-    border: none;
-    font-size: 16px;
-    line-height: 30px;
-    letter-spacing: 5px;
-}
-.do-invest-wrapper .status .userBlock .open-button:hover {
-    background-color: #015989;
+.do-invest-wrapper .status .leftMoney-open span{
+    font-size: 21px;
 }
 
-.do-invest-wrapper .status .userBlock .input .selectOption {
-    clear: both;
-    text-align: left;
+/*.do-invest-wrapper .status .userBlock .leftMoney-open .recharge {*/
+    /*float: right;*/
+    /*display: block;*/
+    /*margin-top: -4px;*/
+/*}*/
+/*.do-invest-wrapper .status .leftMoney .recharge {*/
+    /*float: right;*/
+    /*color: white;*/
+    /*text-decoration: none;*/
+    /*width: 80px;*/
+    /*background-color: #f58220;*/
+    /*border-radius: 3px;*/
+    /*text-align: center;*/
+    /*line-height: 30px;*/
+    /*font-size: 16px;*/
+    /*margin-top: 9px;*/
+    /*margin-right: 2px;*/
+    /*height: 30px;*/
+/*}*/
+/*.do-invest-wrapper .status .leftMoney .recharge:hover {*/
+    /*background-color: #df6502;*/
+/*}*/
+.do-invest-wrapper .invest-form{
+    margin-top: 20px;
+    margin-left: 60px;
 }
-.do-invest-wrapper .status .userBlock .input .selectOption select {
-    height: 35px;
-    color: #abb2ba;
-    font-size: 14px;
-    width: 340px;
-    border: 1px solid #eee;
-    border-radius: 0;
+#userBlock .calculatorBox {
+    margin-top: 20px;
+}
+#userBlock .calculator {
+    float: left;
+}
+#userBlock .calculator input {
+    width: 255px;
+    height: 45px;
     padding-left: 10px;
 }
-.do-invest-wrapper .status .userBlock .input .invest-button {
-    height: 44px;
-    width: 306px;
-    color: #fff;
-    background-color: #ef9c2c;
-    font-size: 18px;
-    border-radius: 2px;
+#userBlock .calculator span.plus {
+    width: 47px;
+    border: 1px solid #ccc;
+    background: #cfa972 url(/ccc/loan/img/plus_icon.png) no-repeat center;
+    display: block;
+    float: right;
+    height: 47px;
+    border-left: none;
+    margin-top: -1px;
+}
+#userBlock .totalInterest {
+    font-size: 24px;
+    color: #999;
+    padding: 15px 0;
+}
+#userBlock .totalInterest span {
+    color: #e60012;
+    font-size: 36px;
+}
+.do-invest-wrapper .status .userBlock  .selectOption {
+    clear: both;
+}
+.do-invest-wrapper .status .userBlock  .selectOption select {
+    width: 255px;
+    height: 45px;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    padding-left: 10px;
+    color: #999;
 }
 
-.do-invest-wrapper .status .userBlock .input .invest-button:hover {
-    background-color: #DE840B;
-}
+
 .do-invest-wrapper .status .userBlock .left-money {
     color: #999;
     text-align: left;
@@ -384,12 +534,7 @@ select::-ms-expand { display: none; }
 .do-invest-wrapper .status .userBlock .agree-box span a {
     color: #5b9dff;
 }
-.do-invest-wrapper .status .userBlock .shiming {
-    text-align: center;
-    color: #d4242f;
-    font-size: 16px;
-    margin: 50px auto;
-}
+
 .do-invest-wrapper .status .userBlock .rule-max {
     margin-left: 15px;
     text-align: left;
@@ -409,11 +554,16 @@ select::-ms-expand { display: none; }
     width: 296px;
     margin: 0 auto;
     text-decoration: none;
-    letter-spacing: 5px;
+    letter-spacing: 1px;
     text-align: center;
 }
 .do-invest-wrapper .status .userBlock .loginBtn:hover {
     background-color: #C71E23;
+}
+.do-invest-wrapper .status .userBlock .invest-button {
+    margin-top: 50px;
+    margin-left: 0px;
+    cursor: pointer;
 }
 .do-invest-wrapper .finishBlock {
     vertical-align: middle;
@@ -435,16 +585,6 @@ select::-ms-expand { display: none; }
     text-align: center;
     left: 50%;
     margin-left: -100px;
-}
-.do-invest-wrapper .prompt-open-3rdpay h3 {
-    text-align: center;
-    font-size: 20px;
-    margin-top: 20px;
-}
-.do-invest-wrapper .prompt-open-3rdpay p {
-    margin-top: 15px;
-    margin-bottom: 60px;
-    color: #999;
 }
 .do-invest-wrapper .left-time {
     margin: 130px 0 60px;
@@ -498,42 +638,6 @@ select::-ms-expand { display: none; }
     margin-top: 20px;
     margin-bottom: 60px;
 }
-.do-invest-wrapper .invest-input-wrapper {
-    position: relative;
-    margin-bottom: 10px;
-}
-.do-invest-wrapper .invest-input-wrapper > .rmb-symbol {
-    position: absolute;
-    font-size: 20px;
-    left: 4px;
-    top: 4px;
-}
-.do-invest-wrapper .invest-input-wrapper > .invest-input {
-    padding-left: 25px;
-}
-.do-invest-wrapper .invest-input-wrapper .tooltip {
-    top: 27px;
-    left: 214px;
-    opacity: 1;
-    display: block;
-}
-.do-invest-wrapper .invest-input-wrapper .tooltip .tooltip-arrow {
-    position: absolute;
-    border-width: 5px 5px 0;
-    border-top-color: #fdf8e4;
-    bottom: -5px;
-    left: 10%;
-}
-.do-invest-wrapper .invest-input-wrapper .tooltip .tooltip-inner {
-    padding: 5px 10px;
-    background-color: #fdf8e4;
-    max-width: 200px;
-    color: #c09956;
-}
-.do-invest-wrapper .invest-input-wrapper .tooltip .tooltip-inner .icon {
-    color: #fe0002;
-    margin-right: 5px;
-}
 
 .do-invest-wrapper .invest-button-wrapper {
     /*	margin: 20px auto 0;*/
@@ -550,417 +654,52 @@ select::-ms-expand { display: none; }
     width: 75px;
 }
 
-/*资金状态*/
-.invest-status{
-    width: 1200px;
-    margin: 25px auto;
-    background: #fff;
-    padding: 15px 0;
-}
-.invest-status span{
-    font-size: 24px;
-    color: #666;
-    margin-left: 35px;
-    margin-right: 100px;
-}
 
-
-.invest-info-wrapper > .current-container {
-    background-color: #f7f5f6;
-    background-image: url(/assets/img/zl_bj.png);
-    padding-top: 25px;
-    width: 998px;
-    height: 329px;
-}
-.invest-info-wrapper .invest-info {
-    float: left;
-}
-.invest-info-wrapper .invest-info .text-invest-info {
-    margin-left: 15px;
-    color: #000;
-    font-size: 18px;
-}
-.invest-info-wrapper .invest-info .info {
-    margin: 20px 70px 0;
-}
-.invest-info-wrapper .invest-info .info .col-1, .invest-info-wrapper .invest-info .info .col-2 {
-    float: left;
-    font-size: 13px;
-}
-.invest-info-wrapper .invest-info .info .col-1 > li, .invest-info-wrapper .invest-info .info .col-2 > li {
-    width: 225px;
-    margin-bottom: 15px;
-}
-.invest-info-wrapper .invest-info .info .col-1 .text, .invest-info-wrapper .invest-info .info .col-2 .text {
-    margin-right: 20px;
-    display: inline-block;
-    color: #7b7b7b;
-}
-.invest-info-wrapper .invest-info .info .col-1 .value, .invest-info-wrapper .invest-info .info .col-2 .value {
-    width: 125px;
-    color: #000;
-}
-.invest-info-wrapper .invest-info .info .col-2 {
-    margin-left: 30px;
-}
-.invest-info-wrapper .invest-info .info .col-2 > li {
-    width: 180px;
-    margin-bottom: 15px;
-}
-.invest-info-wrapper .insurance-info {
-    float: left;
-}
-.invest-info-wrapper .insurance-info .text-related-data {
-    margin-left: 15px;
-    color: #000;
-    font-size: 18px;
-}
-.invest-info-wrapper .insurance-info .insurance-wrapper {
-    width: 300px;
-    margin-top: 20px;
-    margin-left: 70px;
-}
-.invest-info-wrapper .insurance-info .insurance-wrapper .insurance {
-    height: 190px;
-    position: relative;
-}
-.invest-info-wrapper .insurance-info .insurance-wrapper .insurance .preview {
-    background-color: #abc;
-    width: 300px;
-    height: 190px;
-}
-.invest-info-wrapper .insurance-info .insurance-wrapper .insurance .insurance-intro {
-    width: 300px;
-    height: 30px;
-    position: absolute;
-    bottom: 0;
-    background-color: rgba(30, 30, 30, 0.5);
-    text-align: center;
-    line-height: 30px;
-    color: #fff;
-    visibility: hidden;
-}
-.invest-info-wrapper .insurance-info .insurance-wrapper .insurance:hover .insurance-intro {
-    visibility: visible;
-}
-.invest-info-wrapper .insurance-info .insurance-wrapper .controler {
-    margin-top: 14px;
-}
-.invest-info-wrapper .insurance-info .insurance-wrapper .controler .left, .invest-info-wrapper .insurance-info .insurance-wrapper .controler .right {
-    display: inline-block;
-    float: left;
-    height: 20px;
-    width: 15px;
-}
-.invest-info-wrapper .insurance-info .insurance-wrapper .controler .left {
-    background-image: url(/assets/img/invest/detail/left-arrow.png);
-    background-position: 0 1px;
-}
-.invest-info-wrapper .insurance-info .insurance-wrapper .controler .right {
-    background-image: url(/assets/img/invest/detail/right-arrow.png);
-}
-.invest-info-wrapper .insurance-info .insurance-wrapper .controler .selectors-wrapper {
-    float: left;
-    height: 20px;
-    width: 240px;
-    margin: 0 5px;
-    overflow: hidden;
-}
-.invest-info-wrapper .insurance-info .insurance-wrapper .controler .selectors-wrapper .selectors {
-    float: left;
-    width: 9999px;
-}
-.invest-info-wrapper .insurance-info .insurance-wrapper .controler .selectors-wrapper .selectors .selector {
-    float: left;
-    height: 20px;
-    width: 35px;
-    margin-left: 5px;
-    border-radius: 2px;
-    background-color: #aaa;
-}
-.invest-info-wrapper .insurance-info .insurance-wrapper .controler .selectors-wrapper .selectors .selector img {
-    width: 35px;
-    height: 20px;
-    border-radius: 5px;
-    vertical-align: baseline;
-}
-.invest-info-wrapper .insurance-info .insurance-wrapper .controler .selectors-wrapper .selectors .active img {
-    border: 1px solid #f00;
-}
-.invest-detail-wrapper .scontent {
-    padding: 0 40px;
-}
-.invest-detail-wrapper .nav-tabs {
-    border-bottom: 1px solid #d9d9d9;
-}
-.invest-detail-wrapper {
-    width: 1200px;
-    margin: auto;
-    overflow: hidden;
-     border-top: 2px solid #d9d9d9;
-    margin-top: 15px;
-    background: #fff;
-}
-.invest-detail-wrapper .nav-tabs li {
-   padding-right: 30px;
-}
-.invest_detail {
-    background: url(/ccc/loan/img/detail_icon.png) no-repeat 20px 20px;
-    background-size: 20px;
-}
-.active .invest_detail {
-    background: url(/ccc/loan/img/detail_active.png) no-repeat 20px 20px;
-    background-size: 20px;
-}
-.invest_record {
-    background: url(/ccc/loan/img/record_icon.png) no-repeat 20px 20px;
-    background-size: 20px;
-}
-.active .invest_record {
-    background: url(/ccc/loan/img/detail_active.png) no-repeat 20px 20px;
-    background-size: 20px;
-}
-
-.invest_question {
-    background: url(/ccc/loan/img/qw_icon.png) no-repeat 20px 20px;
-    background-size: 20px;
-}
-.active .invest_question {
-    background: url(/ccc/loan/img/detail_active.png) no-repeat 20px 20px;
-    background-size: 20px;
-}
-.invest-detail-wrapper .nav-tabs li a {
-    display: block;
-    border-radius: 0;
-    margin-right: 0;
-    color: #999;
-    width: 145px;
-    height: 60px;
-    line-height: 40px;
-    font-size: 18px;
-    border: none;
-    padding-left: 40px;
-}
-.invest-detail-wrapper .nav-tabs .active a, .invest-detail-wrapper .nav-tabs .active a:focus {
-    border: none;
-    font-size: 18px;
-    text-align: center;
-    color: #ef9c2c;
-    border-bottom: 3px solid #ef9c2c;
-    margin-bottom: -1px;
-}
-.invest-detail-wrapper .tab-panels {
-    margin-top: 30px;
-    margin-bottom: 130px;
-}
-.invest-detail-wrapper .invest-info-box table.repay-plan{
-    width: 670px;
-    border: 1px solid #eee;
-}
-.invest-detail-wrapper .invest-info-box table.repay-plan thead th{
-   background: #f4f4f6;
-    
-}
-.invest-detail-wrapper .invest-info-box table.repay-plan tbody .gray{
-   background: #f8f8f9;
-    
-}
-.invest-detail-wrapper .invest-info-box table.repay-plan tbody .white{
-   background: #fff;
-    
-}
-.repay-plan-title {
-    width: 670px;
-    color: #999;
-    margin-bottom: 12px;
-    margin-top: 8px;
-    height: 30px;
-    line-height: 30px;
-    font-size: 14px;
-}
-.repay-plan-title .left{
-    float: left;
-}
-.repay-plan-title .right{
-    float: right;
-}
-.invest-detail-wrapper .tab-panels .tab-panel .invest-record .repay-plan thead tr {
-    line-height: 25px;
-    color: #232d4f;
-    font-size: 14px;
-    background-color: #e8e8e8;
-}
-.invest-info-box .repay-record thead th {
-    width: 16%;
-    color: #777777;
-    height: 50px;
-}
-.invest-detail-wrapper .tab-panels .loanInfoWrapper {
-    width: 730px;
-    min-height: 500px;
-    margin: 20px auto;
-}
-.invest-detail-wrapper .tab-panels .loanInfoWrapper .loanInfo {
-    float: left;
-    width: 670px;
-    min-height: 500px;
-    margin-left: 30px;
-    color: #7e7e7e;
-}
-.invest-detail-wrapper .tab-panels .loanInfoWrapper .loanInfo .eventCont {
-    margin: 10px 20px;
-    font-size: 14px;
-    line-height: 2;
-    word-spacing: 8px;
-    color: #666;
-    letter-spacing: 1px;
-    margin-bottom: 30px;
-}
-.invest-detail-wrapper .tab-panels .loanInfoWrapper .loanInfo .eventItem {
-    height: 30px;
-    line-height: 30px;
-    font-size: 20px;
-    text-indent: 20px;
-    color: #232d4f;
-}
-.invest-detail-wrapper .tab-panels .loanInfoWrapper .loanInfoImg {
-    float: left;
-    width: 300px;
-    margin-left: 30px;
-    min-height: 500px;
-}
-.invest-detail-wrapper .tab-panels .loanInfoWrapper .loanInfoImg .insurance-wrapper {
-    width: 300px;
-    /*	margin-top: 20px;*/
-    /*margin-left: 70px;*/
-}
-.invest-detail-wrapper .tab-panels .loanInfoWrapper .loanInfoImg .insurance-wrapper .insurance {
-    height: 190px;
-    position: relative;
-}
-.invest-detail-wrapper .tab-panels .loanInfoWrapper .loanInfoImg .insurance-wrapper .insurance .preview {
-    background-color: #abc;
-    width: 300px;
-    height: 190px;
-}
-.invest-detail-wrapper .tab-panels .loanInfoWrapper .loanInfoImg .insurance-wrapper .insurance .insurance-intro {
-    width: 300px;
-    height: 30px;
-    position: absolute;
-    bottom: 0;
-    background-color: rgba(30, 30, 30, 0.5);
-    text-align: center;
-    line-height: 30px;
-    color: #fff;
-    visibility: hidden;
-}
-.invest-detail-wrapper .tab-panels .loanInfoWrapper .loanInfoImg .insurance-wrapper .insurance:hover .insurance-intro {
-    visibility: visible;
-}
-.invest-detail-wrapper .tab-panels .loanInfoWrapper .loanInfoImg .insurance-wrapper .controler {
-    margin-top: 14px;
-}
-.invest-detail-wrapper .tab-panels .loanInfoWrapper .loanInfoImg .insurance-wrapper .controler .left, .invest-detail-wrapper .tab-panels .loanInfoWrapper .loanInfoImg .insurance-wrapper .controler .right {
-    display: inline-block;
-    float: left;
-    height: 20px;
-    width: 15px;
-}
-.invest-detail-wrapper .tab-panels .loanInfoWrapper .loanInfoImg .insurance-wrapper .controler .left {
-    background-image: url(/assets/img/invest/detail/left-arrow.png);
-    background-position: 0 1px;
-}
-.invest-detail-wrapper .tab-panels .loanInfoWrapper .loanInfoImg .insurance-wrapper .controler .right {
-    background-image: url(/assets/img/invest/detail/right-arrow.png);
-}
-.invest-detail-wrapper .tab-panels .loanInfoWrapper .loanInfoImg .insurance-wrapper .controler .selectors-wrapper {
-    float: left;
-    height: 20px;
-    width: 240px;
-    margin: 0 5px;
-    overflow: hidden;
-}
-.invest-detail-wrapper .tab-panels .loanInfoWrapper .loanInfoImg .insurance-wrapper .controler .selectors-wrapper .selectors {
-    float: left;
-    width: 9999px;
-}
-.invest-detail-wrapper .tab-panels .loanInfoWrapper .loanInfoImg .insurance-wrapper .controler .selectors-wrapper .selectors .selector {
-    float: left;
-    height: 20px;
-    width: 35px;
-    margin-left: 5px;
-    border-radius: 2px;
-    background-color: #aaa;
-}
-.invest-detail-wrapper .tab-panels .loanInfoWrapper .loanInfoImg .insurance-wrapper .controler .selectors-wrapper .selectors .selector img {
-    width: 35px;
-    height: 20px;
-    border-radius: 5px;
-    vertical-align: baseline;
-}
-.invest-detail-wrapper .tab-panels .loanInfoWrapper .loanInfoImg .insurance-wrapper .controler .selectors-wrapper .selectors .active img {
-    border: 1px solid #f00;
-}
-.invest-detail-wrapper .tab-panels .tab-panel {
+/*大图浏览*/
+#mask-layer-wraper{
     display: none;
-    overflow: hidden;
-}
-.invest-detail-wrapper .tab-panels .active {
-    display: block;
-}
-
-.invest-record .table > tbody > tr > th.col-current-period {
-    color: #437193;
-}
-.invest-record .table > thead > tr > th {
-    color: #000;
-    text-align: center;
-    font-size: 13px;
-}
-.invest-record .table > tbody > tr > th {
-    text-align: center;
-    font-size: 14px;
-    line-height: 60px;
-    color: #666;
-    border-bottom: 1px solid #ddd;
-}
-.invest-detail-wrapper .table > tbody > tr > th.col-current-period {
-    color: #437193;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: .3;
 }
 .big-pic-wrapper {
     z-index: 10000;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-}
-
-.big-pic-wrapper .img-wrapper {
     position: fixed;
-    left: 0;
     top: 0;
+    left: 0;
     width: 100%;
-    height: 100%;
-    text-align: center;
-    display: table;
 }
-.big-pic-wrapper .img-wrapper .big-pic-box {
-    width: 50%;
-    display: table-cell;
-    vertical-align: middle;
+.big-pic-wrapper .img-wrapper {
+    margin: 60px auto 0;
+    position: relative;
+    max-width: 90%;
+    width: 600px;
+    /* height: 800px; */
 }
-.big-pic-wrapper .img-wrapper .big-pic-box img {
-    max-height: 100%;
-    max-width: 100%;
-}
-.big-pic-wrapper .close {
-    height: 31px;
-    width: 30px;
+.big-pic-wrapper .close, .big-pic-wrapper .close:hover {
+    height: 36px;
+    width: 36px;
     position: absolute;
-    top: 15px;
-    right: 50px;
-    background: url(/ccc/global/img/main/close.png);
-    z-index: 100;
+    top: -35px;
+    right: -27px;
+    background: url(/ccc/loan/img/close.png);
+    border-radius: 50%;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+}
+.big-pic-wrapper .img-wrapper img {
+    width: 100%;
+    /* height: 800px; */
+}
+.big-pic-wrapper .prev-big {
+    left: 0;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0, rgba(0, 0, 0, 0.0001) 100%);
+    background-repeat: repeat-x;
 }
 .big-pic-wrapper .control {
     position: absolute;
@@ -974,269 +713,21 @@ select::-ms-expand { display: none; }
     filter: alpha(opacity=50);
     opacity: .5;
 }
-.big-pic-wrapper .control:hover {
-    opacity: 0.9;
-}
 .big-pic-wrapper .control span {
     position: absolute;
     top: 50%;
     margin-top: -15px;
     font-size: 150%;
 }
-.big-pic-wrapper .prev-big {
-    left: 0;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0, rgba(0, 0, 0, 0.0001) 100%);
-    background-repeat: repeat-x;
-}
 .big-pic-wrapper .next-big {
     right: 0;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0, rgba(0, 0, 0, 0.5) 100%);
     background-repeat: repeat-x;
 }
-.big-pic-wrapper .status {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    width: 150px;
-    margin-left: -75px;
-    background-color: #000;
-    color: #fff;
-    border-radius: 5px;
-    text-align: center;
-    padding: 3px 20px;
-    font-size: 12px;
-}
-.h30 {
-    height: 30px;
-}
-.h20 {
-    height: 20px;
-}
-.benefit-calculator {
-    display: block;
-    width: 40px;
-    height: 40px;
-    border-radius: 5px;
-    background: #ff9000;
-    float: right;
-    color: #fff;
-    text-align: center;
-    cursor: pointer;
-}
-
-/*# sourceMappingURL=/ccc/loan/css/detail.css.map */
 
 
-/*添加*/
 
 
-.detailBanner {
-    width: 350px;
-    float: right;
-}
-.detailBanner img {
-    width: 350px;
-    height: 200px;
-    margin-top: 20px;
-}
-.investTitle .time {
-    float: right;
-    color: #4a4a4a;
-    font-size: 14px;
-    line-height: 52px;
-    margin-right: 30px;
-}
-.topAmount {
-    float: right;
-    font-size: 14px;
-    width: 100px;
-    height: 40px;
-    border: 1px solid #0090e0;
-    /*	border-radius: 5px;*/
-    line-height: 40px;
-    color: #0090e0;
-    background: #fff;
-    cursor: default;
-}
-.topAmountActive {
-    font-size: 14px;
-    width: 100px;
-    height: 40px;
-    border: 1px solid #009ada;
-    border-radius: 5px;
-    line-height: 40px;
-    color: #009ada;
-    background: #fff;
-}
-#userBlock .calculator span {
-    width: 36px;
-    line-height: 40px;
-    border: none;
-    background: #eeeeee;
-    margin: 0;
-    padding: 0;
-}
-#userBlock .calculator input {
-    width: 340px;
-    height: 35px;
-    border: none;
-    padding: 0;
-    margin: 0;
-    font-size: 14px;
-    color: #abb2ba;
-    padding-left: 10px;
-}
-#userBlock .calculator {
-    border: 1px solid #eeeeee;
-    padding: 0;
-    margin: 0;
-    float: left;
-}
-#userBlock .calculatorBox {
-    margin-top: 20px;
-    margin-left: 37px;
-    margin-right: 25px;
-}
-#userBlock .calculatorBox1 {
-    margin-bottom: 5px;
-    overflow: hidden;
-    margin-top: 20px;
-}
-#userBlock .totalInterest {
-    font-size: 14px;
-    color: #7e7e7e;
-    text-align: left;
-    line-height: 40px;
-    margin-left: 5px;
-}
-#userBlock .totalInterest span {
-    color: #f0bf2e;
-}
-.easyPieChart canvas {
-    position: absolute;
-}
-
-.itemt .processFont {
-    position: absolute;
-    /*	margin: 25px 0 0 20px;*/
-    color: #4a4a4a;
-    left: 50%;
-    margin-left: -28px;
-    top: 36px;
-}
-#mask-layer-wraper {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 9999;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    opacity: .8;
-}
-.over-flow-hidden {
-    overflow-y: hidden;
-}
-.notLogin {
-    text-align: center;
-}
-.danger-control {
-    margin-left: 20px;
-}
-.insurance-wrapper {
-    width: 350px;
-    float: left;
-    margin-left: 20px;
-}
-.do-invest-wrapper .status .userBlock .left-time-start span {
-    text-align: center;
-    color: #999999;
-    font-weight: normal;
-}
-.captchaWra {
-    margin-top: 10px;
-}
-.captchaWra .smsCaptcha {
-    width: 120px;
-    height: 35px;
-    border-radius: 5px;
-    border: 1px #eeeeee solid;
-    text-indent: 20px;
-    font-size: 12px;
-    line-height: 35px;
-    /*padding:20px;*/
-}
-.captchaWra .send {
-    display: block;
-    float: right;
-    font-size: 12px;
-    width: 100px;
-    height: 35px;
-    border: 1px solid #009ada;
-    border-radius: 5px;
-    line-height: 35px;
-    color: #009ada;
-    background: #fff;
-    cursor: pointer;
-}
-.captchaWra .tip {
-    float: left;
-    display: block;
-    font-size: 14px;
-    line-height: 35px;
-}
-.investTitle .time i {
-    font-style: normal;
-}
-.finished-btn {
-    width: 318px;
-    height: 44px;
-    /*	background: #009ada;*/
-    color: white;
-    border: none;
-    font-size: 18px;
-    border-radius: 4px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    letter-spacing: 5px;
-    cursor: default;
-}
-
-
-.finished-money {
-    text-align: left;
-    margin-left: 30px;
-    font-size: 14px;
-    line-height: 30px;
-    width: 350px;
-    float: left;
-		color:#7e7e7e;
-}
-.calculatorBox .trade-password {
-    padding-left: 10px;
-    font-size: 14px;
-    color: #abb2ba;
-    line-height: 35px;
-    width: 207px;
-    height: 35px;
-    border: 1px solid #eee;
-}
-.calculatorBox .password-box {
-    overflow: hidden;
-    margin-top: 10px;
-}
-.calculatorBox .password-box p {
-    float: right;
-    margin-top: 6px;
-}
-.calculatorBox .password-box p a {
-    color: #5b9dff;
-    line-height: 12px;
-}
-.calculatorBox .password {
-    float: left;
-}
 #userBlock .leftMoney-open .recharge button {
     background: #ef9c2c;
     color: #fff;
@@ -1272,48 +763,7 @@ select::-ms-expand { display: none; }
 }
 
 
-    /*华瑞金科*/
-.invest-info-box {
-    font-size: 16px;
-}
-.invest-info-box tr{
-    border-top: 1px solid #eee;
-}
-.invest-info-box .gray {
-    color: #000;
-}
 
-.invest-info-box .title {
-    color: #999;
-    width: 200px;
-    vertical-align: top;
-    padding: 20px;
-    background: #f9f9f9;
-    text-align: center;
-}
-
-.invest-info-box .content {
-    padding: 9px;
-    width: 1000px;
-    padding-left: 35px;
-}
-
-.invest-info-box table.repay-plan > thead > tr > th {
-    color: #999;
-    text-align: center;
-    font-size: 13px;
-    border: 1px solid #eee;
-}
-.invest-info-box table.repay-plan > tbody > tr > th {
-    text-align: center;
-    font-size: 14px;
-    line-height: 50px;
-    color: #999;
-    border-right: 1px solid #eee;
-}
-.invest-info-box table.repay-plan > tbody > tr {
-    border-top: none;
-}
 /*华瑞金控新手标投资提示*/
 .info-new{
     display: block;

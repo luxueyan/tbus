@@ -86,83 +86,136 @@
 <div class="invest-status">
     <span>资金状态</span>
     <img src="/ccc/loan/img/fund_status.png">
+    <div class="open_time">{{loans.timeOpen}}</div>
+    <div class="start_date">购买成功后第二天</div>
+    <div class="end_date">
+        {{#if loans.dueDate !== 'Invalid date'}}
+            {{loans.dueDate}}
+        {{else}}
+        {{#if loans.timeFinished !== 'Invalid date'}}
+            {{loans.end1}}
+        {{else}}
+            {{loans.end2}}
+        {{/if}}
+        {{/if}}
+    </div>
+    <div class="expected_date">未知</div>
 </div>
 
 <div class="invest-detail-wrapper">
-    <div class="current-container scontent">
+    <div class="current-container">
         <ul class="nav nav-tabs">
             <li role="presentation" class="active" data-step='0'>
-                 <a href="javascript:;" class="invest_detail">项目概览</a>
+                 <a href="javascript:;">产品介绍</a>
             </li>
-            <li role="presentation" class="" data-step='1'><a href="javascript:;" class="invest_record">参投记录</a>
+            <li role="presentation" class="" data-step='1'><a href="javascript:;">产品亮点</a>
             </li>
-             <li role="presentation" class="" data-step='2'><a href="javascript:;" class="invest_question">常见问题</a>
+            <li role="presentation" class="" data-step='2'><a href="javascript:;">常见问题</a>
             </li>
+            <li role="presentation" class="" data-step='3'><a href="javascript:;">投资记录</a>
+            </li>
+
         </ul>
         <div class="clearfix"></div>
 
         <div class="tab-panels">
-             <div class="tab-panel  active">
+            <div class="tab-panel  active">
                 <div class="invest-info-box">
+                    <div class="insurance-wrapper"></div>
                     <table>
                         <tr>
                             <th class="title">产品名称</th>
-                            <th class="content gray" style="font-weight:bold;">{{loans.title}}</th>
+                            <th class="content">{{loans.title}}</th>
                         </tr>
                         <tr>
-                            <th class="title">募集截止日</th>
-                            {{#if loans.timeFinished !== 'Invalid date'}}
-                            <th class="content gray">{{loans.timeFinished}}</th>
-                            {{else}}
-                            <th class="content gray">{{loans.timeEnd}}</th>
-                            {{/if}}
+                            <th class="title">投资金额</th>
+                            <th class="content">{{loans.amount}}{{loans.aUnit}}</th>
+                        </tr>
+                        <tr>
+                            <th class="title">可否转让</th>
+                            <th class="content">可转让</th>
+                        </tr>
+                        <tr>
+                            <th class="title">转让周期</th>
+                            <th class="content">30天之后</th>
+                        </tr>
+                        <tr>
+                            <th class="title">投资期限</th>
+                            <th class="content">{{loans.fduration}}{{loans.fdurunit}}</th>
+                        </tr>
+                        <tr>
+                            <th class="title">收益率</th>
+                            <th class="content">{{loans.rate}}%</th>
                         </tr>
                         <tr>
                             <th class="title">起投金额</th>
-                            <th class="content gray">{{ loans.loanRequest.investRule.minAmount }}元</th>
+                            <th class="content">{{ loans.loanRequest.investRule.minAmount }}元</th>
                         </tr>
                         <tr>
-                            <th class="title">资产说明</th>
+                            <th class="title">递增金额</th>
+                            <th class="content">{{ loans.loanRequest.investRule.stepAmount }}元</th>
+                        </tr>
+                        <tr>
+                            <th class="title">产品风险等级</th>
+                            <th class="content">{{{loans.loanRequest.mortgageInfo}}}</th>
+                        </tr>
+                        <tr>
+                            <th class="title">资金用途</th>
                             <th class="content">{{{loans.loanRequest.guaranteeInfo}}}</th>
                         </tr>
                         <tr>
-                            <th class="title">安全保障</th>
+                            <th class="title">风控措施</th>
                             <th class="content">{{{loans.loanRequest.riskInfo}}}</th>
                         </tr>
                         <tr>
                             <th class="title">风险提示</th>
                             <th class="content"> {{{loans.loanRequest.mortgageInfo}}}</th>
                         </tr>
-                        <tr>
-                            <th class="title">预期收益</th>
-                            <th class="content">
-                                <div class="repay-plan-title">
-                                    <p class="left">以募集截止日当天满标为例</p>
-                                    <p class="right">单位：元</p>
-                                </div>
-                               
-                                <table class="repay-plan repay-record">
-                               
-                                    <thead>
-                                        <th>日期</th>
-                                        <th>回款利息</th>
-                                        <th>回款本金</th>
-                                        <th style="border-top-right-radius: 3px;">剩余本金</th>
-                                    </thead>
+                        <!--<tr>-->
+                        <!--<th class="title">募集截止日</th>-->
+                        <!--{{#if loans.timeFinished !== 'Invalid date'}}-->
+                        <!--<th class="content">{{loans.timeFinished}}</th>-->
+                        <!--{{else}}-->
+                        <!--<th class="content">{{loans.timeEnd}}</th>-->
+                        <!--{{/if}}-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<th class="title">预期收益</th>-->
+                            <!--<th class="content">-->
+                                <!--<div class="repay-plan-title">-->
+                                    <!--<p class="left">以募集截止日当天满标为例</p>-->
+                                    <!--<p class="right">单位：元</p>-->
+                                <!--</div>-->
+                               <!-- -->
+                                <!--<table class="repay-plan repay-record">-->
+                               <!-- -->
+                                    <!--<thead>-->
+                                        <!--<th>日期</th>-->
+                                        <!--<th>回款利息</th>-->
+                                        <!--<th>回款本金</th>-->
+                                        <!--<th style="border-top-right-radius: 3px;">剩余本金</th>-->
+                                    <!--</thead>-->
 
-                                    {{#each replay:i}}
-                                    <tr class="{{#if i%2==0}}white{{else}}gray{{/if}}">
-                                        <th>{{dueDate}}</th>
-                                        <th class="col-current-period">{{amountInterest}}</th>
-                                        <th>{{amountPrincipal}}</th>
-                                        <th>{{amountOutstanding}}</th>
-                                    </tr>
-                                    {{/each}}
-                                </table>
-                            </th>
-                        </tr>
+                                    <!--{{#each replay:i}}-->
+                                    <!--<tr class="{{#if i%2==0}}white{{else}}gray{{/if}}">-->
+                                        <!--<th>{{dueDate}}</th>-->
+                                        <!--<th class="col-current-period">{{amountInterest}}</th>-->
+                                        <!--<th>{{amountPrincipal}}</th>-->
+                                        <!--<th>{{amountOutstanding}}</th>-->
+                                    <!--</tr>-->
+                                    <!--{{/each}}-->
+                                <!--</table>-->
+                            <!--</th>-->
+                        <!--</tr>-->
                     </table>
                 </div>
+            </div>
+            <div class="tab-panel">
+                产品亮点
+            </div>
+
+            <div class="tab-panel">
+                {{{loans.loanRequest.description}}}
             </div>
             
             <div class="tab-panel">
@@ -180,9 +233,7 @@
                 {{/if}}
             </div>
 
-            <div class="tab-panel">
-                {{{loans.loanRequest.description}}}
-            </div>
+
 
         </div>
 
@@ -193,10 +244,9 @@
 <!--    <div class="insurance-wrapper"></div>-->
 </div>
 
-<div class="h30"></div>
-
+<!--<div class="mask-layer"></div>-->
+<div id="mask-layer-wraper"></div>
 <div id="big-pic-container">
-
 </div>
 
 

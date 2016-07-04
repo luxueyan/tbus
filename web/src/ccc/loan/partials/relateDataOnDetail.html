@@ -1,69 +1,46 @@
-<p class="controler-title">企业认证图片</p>
-{{#if career.length}}
-<div class="controler" style="margin-left:10px;margin-right:10px">
-    <div id="carousel-com-career" class="carousel slide li-content" data-ride="carousel" data-interval="5000">
-        <div class="carousel-inner" role="listbox">
-            {{#career}}
-            <div class="item item-pic {{#if @index===0}} active {{/if}}" on-click="begin-big-pic-career" title="认证类型：{{proofType}}">
-              <img src="{{uri}}" style="height: 100%;margin: auto;"/>
+<!--&lt;!&ndash;{{JSON.stringify(imgs)}}===&ndash;&gt;-->
+<!--&lt;!&ndash;detail页面的 相关资料部分&ndash;&gt;-->
+<!--{{#if imgLen}}-->
+<!--<div class="big-box">-->
+    <!--<div id="left-arrow"><img src="/ccc/loan/img/left-arrow.png"></div>-->
+    <!--<div class="pic-box" style="position:relative;left:0">-->
+        <!--{{#each imgs:i}}-->
+        <!--<div class="show-pic-box" style="position:absolute;left:{{i*200}}px;">-->
+            <!--<div class="show-pic">-->
+                <!--<img src="{{uri}}" on-click="begin-big-pic">-->
+            <!--</div>-->
+            <!--<p>{{ proof.description }}</p>-->
+        <!--</div>-->
+        <!--{{/each}}-->
+    <!--</div>-->
+    <!--<div id="right-arrow"><img src="/ccc/loan/img/right-arrow.png"></div>-->
+<!--</div>-->
+<!--{{else}}-->
+<!--<div>-->
+    <!--暂无相关资料-->
+<!--</div>-->
+<!--{{/if}}-->
+
+
+<!--{{JSON.stringify(imgs)}}===-->
+<!--detail页面的 相关资料部分-->
+<!--{{#if imgLen}}-->
+<div class="big-box">
+    <div id="left-arrow"><img src="/ccc/loan/img/left-arrow.png"></div>
+    <div class="pic-box" style="position:relative;left:0">
+        {{#each imgs:i}}
+        <div class="show-pic-box" style="position:absolute;left:{{i*200}}px;">
+            <div class="show-pic">
+                <img src="{{content}}" on-click="begin-big-pic">
             </div>
-            {{/career}}
-<!--
-			<div class="proof">
-				<lable style="color:#999;">认证类型：</lable>
-				<input type="text" value="{{career[currentIndex].proofType}}" disabled style="border:1px solid #999;text-align:center;color:#999;"/>
-			</div>
--->
+            <p>{{ proof.description }}</p>
         </div>
-
-        <a class="left carousel-control" href="#carousel-com-career" role="button" data-slide="prev" style="width:10%;" on-click="prev-pic">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#carousel-com-career" role="button" data-slide="next" style="width:10%;" on-click="next-pic">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
+        {{/each}}
     </div>
+    <div id="right-arrow"><img src="/ccc/loan/img/right-arrow.png"></div>
 </div>
-
-{{ else }}
-<div class="no-pics">
-    暂无相关资料
-</div>
-{{/if}}
-<p class="controler-title">风控认证图片</p>
-{{#if loanPurpose.length}}
-<div class="controler" style="margin-left:10px;margin-right:10px">
-    <div id="carousel-com-loan" class="carousel slide li-content" data-ride="carousel" data-interval="5000">
-        <div class="carousel-inner" role="listbox">
-            {{#loanPurpose}}
-
-            <div class="item item-pic {{#if @index===0}} active {{/if}}" on-click="begin-big-pic-loan" title="认证类型：{{proofType}}">
-              <img src="{{uri}}" style="height: 100%;margin: auto;"/>
-            </div>
-
-            {{/loanPurpose}}
-        </div>
-<!--
-		<div class="proof">
-			<lable style="color:#999;">认证类型：</lable>
-			<input type="text" value="{{loanPurpose[currentIndexB].proofType}}" disabled style="border:1px solid #999;text-align:center;color:#999;"/>
-		</div>
--->
-        <a class="left carousel-control" href="#carousel-com-loan" role="button" data-slide="prev" style="width:10%;" on-click="prev-picB">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#carousel-com-loan" role="button" data-slide="next" style="width:10%;" on-click="next-picB">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-</div>
-
-{{ else }}
-<div class="no-pics">
-    暂无相关资料
-</div>
-{{/if}}
+<!--{{else}}-->
+<!--<div>-->
+    <!--暂无相关资料-->
+<!--</div>-->
+<!--{{/if}}-->
