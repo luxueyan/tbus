@@ -1,36 +1,38 @@
 {{#if !user.enterprise}}
 {{#if !user.name}}
 <div style="width:1100px;position:relative;margin: 0 auto">
-	<a href="/newAccount/settings/authentication"><div class="bankcard-gray">
-		<div class="box-main">
-	    	<img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/>
-		</div>
-	</div>
+	<a href="/newAccount/settings/authentication">
+		<!--<div class="bankcard-gray">-->
+			<!--<div class="box-main">-->
+				<!--<img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/>-->
+			<!--</div>-->
+		<!--</div>-->
 	</a>
 </div>
-<div class="account-bg" on-click="guide"></div>
+<!--<div class="account-bg" on-click="guide"></div>-->
 {{else}}
 	{{#if !paymentPasswordHasSet}}
 	<div style="width:1100px;position:relative;margin: 0 auto">
 		<a href="/newAccount/settings/password" rel="nofollow" >
-		<div class="bankcard-gray password-png">
-			<div class="box-main">
-				<img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/>
-			</div>
-		</div>
+		<!--<div class="bankcard-gray password-png">-->
+			<!--<div class="box-main">-->
+				<!--<img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/>-->
+			<!--</div>-->
+		<!--</div>-->
 		</a>
 	</div>
-	<div class="account-bg" on-click="guide"></div>
+	<!--<div class="account-bg" on-click="guide"></div>-->
 	{{elseif !banksabled}}
 	<div style="width:1100px;position:relative;margin: 0 auto">
-		<a href="/newAccount/settings/bankCards" rel="nofollow" ><div class="bankcard-gray backcard-png">
-			<div class="box-main">
-				<img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/>
-			</div>
-		</div>
+		<a href="/newAccount/settings/bankCards" rel="nofollow" >
+			<!--<div class="bankcard-gray backcard-png">-->
+				<!--<div class="box-main">-->
+					<!--<img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/>-->
+				<!--</div>-->
+			<!--</div>-->
 		</a>
 	</div>
-	<div class="account-bg" on-click="guide"></div>
+	<!--<div class="account-bg" on-click="guide"></div>-->
 	{{/if}}
 {{/if}}
 {{/if}}
@@ -78,17 +80,9 @@
 -->
 		<div class="info">
 			<div class="tx"></div>
-			{{#if user.enterprise}}
-
-			<div class="name" style="width:500px;text-align:left;text-indent:45px;">
-
-				{{#if user.name}}{{user.name}}{{else}}{{user.mobile}}{{/if}}
-			</div>
-			{{else}}
 			<div class="name">
 				{{#if user.name}}{{user.name}}{{else}}{{user.mobile}}{{/if}}
 			</div>
-			{{/if}}
 		</div>
 		<div class="credit">
 			<ul class="doCredit">
@@ -163,26 +157,28 @@
 					
                 {{/if}}
 			</ul>
-			{{#if !isEnterprise}}
-			<div class="EdiT">
-				{{#if showVip}}
-				<div class="level">
-					<span>会员等级：</span>
-					<a href="/help/member" style="text-decoration:none" rel="nofollow" ><span class="lev" on-mouseover="showLevel" on-mouseleave="hideLevel">{{vip}}</span></a>
-				</div>
-				{{/if}}
-				<div class="safe">
-					<div class="safety">安全等级：
-					<span class="progress">
-					    <div class="progress-bar" role="progressbar" aria-valuemax="100" style="width: {{ safetyProgress }}%;"></div>
-					</span>
-					<span class="risk">{{riskText}}</span></div>
-				</div>
-			</div>
-			{{/if}}
+
+			<!--<div class="EdiT">-->
+				<!--{{#if showVip}}-->
+				<!--<div class="level">-->
+					<!--<span>会员等级：</span>-->
+					<!--<a href="/help/member" style="text-decoration:none" rel="nofollow" ><span class="lev" on-mouseover="showLevel" on-mouseleave="hideLevel">{{vip}}</span></a>-->
+				<!--</div>-->
+				<!--{{/if}}-->
+				<!--<div class="safe">-->
+					<!--<div class="safety">安全等级：-->
+					<!--<span class="progress">-->
+					    <!--<div class="progress-bar" role="progressbar" aria-valuemax="100" style="width: {{ safetyProgress }}%;"></div>-->
+					<!--</span>-->
+					<!--<span class="risk">{{riskText}}</span></div>-->
+				<!--</div>-->
+			<!--</div>-->
+
 		</div>
 	</div>
+	<img src="/ccc/newAccount/img/usernav_line.png">
 </div>
+
 <div class="clearfix"></div>
 <div class="space-30"></div>
 
