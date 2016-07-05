@@ -15,18 +15,19 @@
 }
 
 .account-nav {
-    width: 194px;
+    width: 190px;
     min-height: 748px;
     float: left;
-    background: #fff;
+    background: #eee;
 }
 
 .account-content-wrapper {
     height: 100%;
     float: left;
-    margin-left: 16px;
     min-height: 748px;
     position: relative;
+    padding-left: 20px;
+    background: #fff;
 }
 
 .account-content {
@@ -46,16 +47,16 @@
 
 .nav-wrapper .nav-li {
     width: 100%;
-    min-height: 35px;
-    line-height: 35px;
+    line-height: 65px;
     text-align: center;
-    margin-top: 35px;
+    /*margin-top: 35px;*/
+    clear: both;
 }
 
 .nav-wrapper .nav-li a {
     text-decoration: none;
-    font-size: 14px;
-    color: #999999;
+    font-size: 18px;
+    color: #666;
 }
 
 .nav-recharge {
@@ -82,153 +83,152 @@
 .nav-li span {
     display: block;
     float: left;
-    height: 35px;
+    height: 65px;
 }
 
 .nav-li .icon-home {
     width: 52px;
     margin-right: 8px;
-    background: url(/ccc/newAccount/img/icon-home.png) no-repeat center right;
+    /*background: url(/ccc/newAccount/img/icon-home.png) no-repeat center right;*/
 }
 
 .nav-li .icon-loanDeal {
     width: 52px;
     margin-right: 8px;
-    background: url(/ccc/newAccount/img/icon-loanDeal.png) no-repeat center right;
+    /*background: url(/ccc/newAccount/img/icon-loanDeal.png) no-repeat center right;*/
 }
 
 .nav-li .icon-bankCards {
     width: 52px;
     margin-right: 8px;
-    background: url(/ccc/newAccount/img/icon-bankCards.png) no-repeat center right;
+    /*background: url(/ccc/newAccount/img/icon-bankCards.png) no-repeat center right;*/
 }
 
 .nav-li .icon-password {
     width: 52px;
     margin-right: 8px;
-    background: url(/ccc/newAccount/img/icon-password.png) no-repeat center right;
+    /*background: url(/ccc/newAccount/img/icon-password.png) no-repeat center right;*/
 }
 
 .nav-li .icon-invest {
     width: 52px;
     margin-right: 8px;
-    background: url(/ccc/newAccount/img/invest.png) no-repeat center right;
+    /*background: url(/ccc/newAccount/img/invest.png) no-repeat center right;*/
 }
 
 .nav-li .icon-my-invest {
-    background: url(/ccc/newAccount/img/my-invest.png) no-repeat center right;
+    /*background: url(/ccc/newAccount/img/my-invest.png) no-repeat center right;*/
 }
 
 .nav-li .icon-fund {
     width: 52px;
     margin-right: 8px;
-    background: url(/ccc/newAccount/img/icon-fund.png) no-repeat center right;
+    /*background: url(/ccc/newAccount/img/icon-fund.png) no-repeat center right;*/
 }
 
 .nav-li .icon-account {
     width: 52px;
     margin-right: 8px;
-    background: url(/ccc/newAccount/img/icon-account.png) no-repeat center right;
+    /*background: url(/ccc/newAccount/img/icon-account.png) no-repeat center right;*/
 }
 
 .nav-li .icon-coupon {
     width: 52px;
     margin-right: 8px;
-    background: url(/ccc/newAccount/img/icon-coupon.png) no-repeat center right;
+    /*background: url(/ccc/newAccount/img/icon-coupon.png) no-repeat center right;*/
 }
 
 .nav-li .icon-friend {
     width: 52px;
     margin-right: 8px;
-    background: url(/ccc/newAccount/img/icon-friend.png) no-repeat center right;
+    /*background: url(/ccc/newAccount/img/icon-friend.png) no-repeat center right;*/
 }
 
 .nav-li .icon-message {
     width: 52px;
     margin-right: 8px;
-    background: url(/ccc/newAccount/img/icon-message.png) no-repeat center right;
+    /*background: url(/ccc/newAccount/img/icon-message.png) no-repeat center right;*/
 }
 
 .nav-li .nav-text {
     width: 75px;
     text-align: left;
-    ;
 }
 
 .nav-li .nav-toggle-btn {
     cursor: pointer;
     width: 16px;
-    background: url(/ccc/newAccount/img/toggle.png) no-repeat center left;
+    /*background: url(/ccc/newAccount/img/toggle.png) no-repeat center left;*/
 }
 
 .nav-li .icon-home-active {
     width: 52px;
     margin-right: 8px;
-    background: url(/ccc/newAccount/img/icon-home-active.png) no-repeat center right;
+    /*background: url(/ccc/newAccount/img/icon-home-active.png) no-repeat center right;*/
     border-left: 4px #ef9c2c solid;
 }
 
 .nav-li .icon-loanDeal-active {
     width: 52px;
     margin-right: 8px;
-    background: url(/ccc/newAccount/img/icon-loanDeal-active.png) no-repeat center right;
+    /*background: url(/ccc/newAccount/img/icon-loanDeal-active.png) no-repeat center right;*/
     border-left: 4px #ef9c2c solid;
 }
 
 .nav-li .icon-bankCards-active {
     width: 52px;
     margin-right: 8px;
-    background: url(/ccc/newAccount/img/icon-bankCards-active.png) no-repeat center right;
+    /*background: url(/ccc/newAccount/img/icon-bankCards-active.png) no-repeat center right;*/
     border-left: 4px #ef9c2c solid;
 }
 
 .nav-li .icon-password-active {
     width: 52px;
     margin-right: 8px;
-    background: url(/ccc/newAccount/img/icon-password-active.png) no-repeat center right;
+    /*background: url(/ccc/newAccount/img/icon-password-active.png) no-repeat center right;*/
     border-left: 4px #ef9c2c solid;
 }
 
 .nav-li .icon-invest-active {
     width: 52px;
     margin-right: 8px;
-    background: url(/ccc/newAccount/img/invest_active.png) no-repeat center right;
+    /*background: url(/ccc/newAccount/img/invest_active.png) no-repeat center right;*/
 }
 
 .nav-li .icon-my-invest-active {
-    background: url(/ccc/newAccount/img/icon-my-invest-active.png) no-repeat center right;
+    /*background: url(/ccc/newAccount/img/icon-my-invest-active.png) no-repeat center right;*/
 }
 
 .nav-li .icon-fund-active {
     width: 52px;
     margin-right: 8px;
-    background: url(/ccc/newAccount/img/icon-fund-active.png) no-repeat center right;
+    /*background: url(/ccc/newAccount/img/icon-fund-active.png) no-repeat center right;*/
 }
 
 .nav-li .icon-account-active {
     width: 52px;
     margin-right: 8px;
-    background: url(/ccc/newAccount/img/icon-account-acitve.png) no-repeat center right;
+    /*background: url(/ccc/newAccount/img/icon-account-acitve.png) no-repeat center right;*/
 }
 
 .nav-li .icon-coupon-active {
     width: 52px;
     margin-right: 8px;
-    background: url(/ccc/newAccount/img/icon-coupon-active.png) no-repeat center right;
+    /*background: url(/ccc/newAccount/img/icon-coupon-active.png) no-repeat center right;*/
     border-left: 4px #ef9c2c solid;
 }
 
 .nav-li .icon-friend-active {
     width: 52px;
     margin-right: 8px;
-    background: url(/ccc/newAccount/img/icon-friend-active.png) no-repeat center right;
+    /*background: url(/ccc/newAccount/img/icon-friend-active.png) no-repeat center right;*/
     border-left: 4px #ef9c2c solid;
 }
 
 .nav-li .icon-message-active {
     width: 52px;
     margin-right: 8px;
-    background: url(/ccc/newAccount/img/icon-message-active.png) no-repeat center right;
+    /*background: url(/ccc/newAccount/img/icon-message-active.png) no-repeat center right;*/
 }
 
 .nav-li .nav-text {
@@ -236,10 +236,23 @@
     text-align: left;
     ;
 }
-
+.nav-li .icon-common {
+    width: 52px;
+    margin-right: 8px;
+}
 .nav-li .nav-text-active a {
-    color: #ef9c2c;
+    color: #e4262b;
     font-weight: 300;
+    background: #fff;
+    display: block;
+    width: 142px;
+    text-align: left;
+    padding-left: 7px;
+}
+.nav-li .icon-active {
+    width: 52px;
+    border-left: 3px #e4262b solid;
+    background: #fff;
 }
 
 .nav-li .nav-toggle-btn {
@@ -249,24 +262,33 @@
 }
 
 .nav-li .nav-toggle-btn-up {
-    background: url(/ccc/newAccount/img/toggle-up.png) no-repeat center left;
+    /*background: url(/ccc/newAccount/img/toggle-up.png) no-repeat center left;*/
 }
 
 .nav-li .nav-toggle-btn-down {
-    background: url(/ccc/newAccount/img/toggle.png) no-repeat center left;
+    /*background: url(/ccc/newAccount/img/toggle.png) no-repeat center left;*/
 }
-
+.nav-li .nav-toggle-menu{
+    margin-top: 34px;
+}
+.nav-li .nav-toggle-menu li{
+    margin: 10px 0;
+    line-height: 50px;
+}
 .nav-li .nav-toggle-menu li a {
     display: block;
-    width: 75px;
+    padding-left: 75px;
+    font-size: 14px;
     text-align: left;
-    margin-left: 60px;
 }
-
 .nav-li .nav-toggle-menu .active {
-    border-left: 4px #ef9c2c solid;
+    border-left: 3px #e4262b solid;
+    background: #fff;
 }
-
+.nav-li .nav-toggle-menu .active a{
+    padding-left: 72px;
+    color: #e4262b;
+}
 .space-40 {
     height: 40px;
 }
@@ -574,4 +596,42 @@ table tbody tr td {
     color: #f4ab4a;
     font-size: 16px;
     font-weight: bold;
+}
+
+
+/*公共用户信息*/
+.userinfowra {
+    width: 100%;
+    height: 108px;
+    background: #fff;
+    width: 1200px;
+    margin: auto;
+
+}
+.infoContent {
+    margin: 0 auto;
+    position: relative;
+    height: 100px;
+    overflow: hidden;
+}
+.info {
+    float: left;
+
+}
+.info .tx {
+    width: 65px;
+    height: 65px;
+    background: url(/ccc/newAccount/img/txn.png) no-repeat center #fff;
+    border-radius: 50%;
+    margin-left: 25px;
+    float: left;
+}
+.info .name {
+    height: 55px;
+    width: 145px;
+    line-height: 55px;
+    color: #4a4a4a;
+    font-size: 20px;
+    text-align: center;
+    float: left;
 }

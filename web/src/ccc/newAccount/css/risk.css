@@ -1,0 +1,95 @@
+.account-invite-wrapper{
+    background: #fff;
+    min-height: 748px;
+}
+.account-invite-wrapper .invite-nav{
+    line-height: 66px;
+    border-bottom: 1px dashed #dbdbdb;
+    font-size: 24px;
+    padding-left: 46px;
+    color: #4a4a4a;
+}
+
+.invite-code {
+    margin-left: 20px;
+    position: relative;
+    height: 150px;
+}
+.code-img {
+    position:absolute;
+    width:150px;
+    right:50px;
+    top:20px;
+    text-align:center;
+    font-size:12px;
+    color:#999999;
+}
+.form-inline {
+    border-radius: 5px;
+    width: 560px;
+    padding-top: 70px;
+}
+.btn-default {
+    background: #ef9c2c;
+    border: 1px solid #ef9c2c;
+    color: #fff;
+    margin-left: 17px;
+}
+.tip {
+    font-size:12px;
+    margin:10px 20px;
+    color:#9B9B9B;
+}
+.img-wrapper {
+    border-top: 1px solid #ebebeb;
+    margin: 46px;
+    padding-top: 20px;
+    color: #666;
+    border-bottom: 1px solid #ebebeb;
+}
+.img-wrapper img {
+    margin: 0 20px;
+}
+.img-wrapper ul li{
+    margin-bottom: 30px;
+}
+.img-wrapper ul .step2{
+    border-bottom: 1px solid #ebebeb;
+    line-height: 50px;
+}
+h3 {
+    color:#666;
+    margin-bottom: 12px;
+}
+.rule-info{
+    padding-left: 46px;
+    color: #9d9fa5;
+}
+.rule-info span {
+    float:left;
+    color: #ec8a78;
+}
+.rule-info ul {
+    margin-left: 80px;
+    letter-spacing: 1px;
+}
+.record {
+    margin: 20px 0;
+    padding: 0 46px;
+}
+
+th , td {
+    text-align: center;
+}
+th {
+    padding:5px 0;
+}
+.cc-tips-wp {
+    position:absolute;
+}
+.cc-tips-container {
+    width:250px!important;
+    background: rgb(243, 247, 249);
+    box-shadow: 1px 1px 5px #B1ADAD;
+    border-radius: 10px;
+}

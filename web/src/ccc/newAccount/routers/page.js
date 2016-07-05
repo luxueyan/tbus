@@ -26,9 +26,9 @@ module.exports = function(router) {
             delete user.idNumber;
         }
 
-        res.locals.title = '自金网平台';
-        res.locals.keywords = '华瑞金控';
-        res.locals.description = '华瑞金控';
+        res.locals.title = '太合汇';
+        res.locals.keywords = '太合汇';
+        res.locals.description = '太合汇';
         res.expose(user, 'user');
         // 检测用户是否登录
         if (!user) {
@@ -137,7 +137,7 @@ module.exports = function(router) {
 
     // 特定页面的
 
-    router.get('/home', function(req, res) {
+    router.get('/settings/home', function(req, res) {
         Promise.join(
             req.uest('/api/v2/user/MYSELF/statistics/invest')
             .end().get('body'),
@@ -149,16 +149,12 @@ module.exports = function(router) {
                     investStatistics;
                 res.locals.user.paymentPasswordHasSet =
                     paymentPasswordHasSet;
-                res.render('newAccount/home', {
-
-                    title: '理财账户_自金网平台',
-                    isEnterprise: res.locals.user.enterprise
-                });
+                res.render('newAccount/home');
             });
     });
     router.get('/coupon', function(req, res) {
         res.render('newAccount/coupon', {
-            title: '我的红包_自金网平台'
+            title: '太合汇'
         });
     });
     router.get('/autobid', async function(req, res) {
@@ -168,18 +164,23 @@ module.exports = function(router) {
         res.expose(user, 'user');
 
         res.render('newAccount/autobid', {
-            title: '自动投标_自金网平台'
+            title: '太合汇'
         });
         return false;
     });
     router.get('/assign', function(req, res) {
         res.render('newAccount/assign', {
-            title: '我的债转_自金网平台'
+            title: '太合汇'
         });
     });
     router.get('/invite', function(req, res) {
         res.render('newAccount/invite', {
-            title: '好友邀请_自金网平台'
+            title: '太合汇'
+        });
+    });
+    router.get('/risk', function(req, res) {
+        res.render('newAccount/risk', {
+            title: '太合汇'
         });
     });
     router.get('/recharge', async function(req, res) {
@@ -196,7 +197,7 @@ module.exports = function(router) {
         };
       
         res.render('newAccount/recharge', {
-            title: '充值_自金网平台'
+            title: '太合汇'
         });
         return false;
 
@@ -217,25 +218,31 @@ module.exports = function(router) {
         };
       
         res.render('newAccount/withdraw', {
-            title: '提现_自金网平台'
+            title: '太合汇'
         });
         return false;
     });
     router.get('/message', function(req, res) {
         res.render('newAccount/message', {
-            title: '我的消息_自金网平台'
+            title: '太合汇'
+        });
+    });
+
+    router.get('/userInfo', function(req, res) {
+        res.render('newAccount/userInfo', {
+            title: '太合汇'
         });
     });
 
     router.get('/invest/*', function(req, res) {
         res.render('newAccount/invest', {
-            title: '我的投资_自金网平台'
+            title: '太合汇'
         });
     });
 
     router.get('/loanRequest/*', function(req, res) {
         res.render('newAccount/loan', {
-            title: '华瑞金控'
+            title: '太合汇'
         });
     });
 
@@ -244,14 +251,13 @@ module.exports = function(router) {
         "authentication",
         "password",
         "resetPassword",
-        "userInfo",
         "showbank"
     ].forEach(function(tabName) {
         router.get('/settings/' + tabName, function(req, res) {
             if(tabName == 'bankCards' || tabName == 'showbank'){
-                res.locals.title = '银行卡管理_自金网平台';
+                res.locals.title = '太合汇';
             }else if(tabName == 'password'){
-                res.locals.title = '密码管理_自金网平台';
+                res.locals.title = '太合汇';
             }
             Promise.join(
                 req.uest(
@@ -307,7 +313,7 @@ module.exports = function(router) {
     router.get('/fund/:name', function(req, res, next) {
         res.expose(req.params.name, 'loanl.urlname');
         res.render('/newAccount/fund', {
-            title: '资金记录_自金网平台'
+            title: '太合汇'
         });
 
     });

@@ -1,11 +1,5 @@
 
-.userinfowra {
-	width: 100%;
-	height: 160px;
-	background: url(/ccc/newAccount/img/topbg.png) no-repeat center;
-    background-color:#78dffe;
-	
-}
+
 .home-topnav {
 	height: 194px;
     background: #fff;
@@ -26,28 +20,6 @@
 	height: 118px;
     border-left: 3px solid #8dad69;
     line-height: 118px;
-}
-
-.home-total {
-	float: left;
-    border-left: 3px solid #93bdee;
-    margin-right: 14px;
-    background: url(/ccc/newAccount/img/icon-amount.png) no-repeat 40px center;
-    background-size: 45px;
-}
-
-.home-interest {
-    float: left;
-    border-left: 3px solid #e79999;
-    margin-right: 14px;
-    background: url(/ccc/newAccount/img/icon-iamount.png) no-repeat 40px center;
-    background-size: 45px;
-}
-.home-expect{
-    float: left;
-    border-left: 3px solid #7dd5c1;
-    background: url(/ccc/newAccount/img/icon-yamount.png) no-repeat 40px center;
-    background-size: 45px;
 }
 .home-avaliable {
 	height: 100%;
@@ -149,33 +121,8 @@
 	color: #7e838e;
 	font-size: 16px;
 }
-.infoContent {
-	width: 1000px;
-	height: 160px;
-	padding: 5px 0;
-	margin: 0 auto;
-	position: relative;
-}
-.tx {
-	width: 100px;
-	height: 100px;
-	background: url(/ccc/newAccount/img/txn.png) no-repeat center #fff;
-	border-radius: 50%;
-      margin-left: 25px;
-}
-.name {
-	height: 55px;
-	width: 145px;
-	line-height: 55px;
-	color: #4a4a4a;
-	font-size: 20px;
-	text-align: center;
-}
-.info {
-	width: 145px;
-	float: left;
-  
-}
+
+
 .credit {
 	float: left;
 	width: 500px; 
@@ -313,33 +260,49 @@
 	width: 300px!important;
 }
 
-/*华瑞金科*/
+/*太合汇*/
 .home-count{
-    margin-top: 13px;
-    height: 110px;
+	margin-top: 13px;
+	overflow: hidden;
+	border-bottom: 1px solid #d2d2d2;
+	margin-right: 20px;
+	padding-bottom: 15px;
+}
+.home-count .home-num{
+	float: left;
+}
+.home-count .home-risk{
+	float: right;
+	margin-right: 30px;
+	margin-top: 30px;
+}
+.home-count .home-risk span{
+	color: #b5925f;
 }
 .home-count .common{
-    height: 110px;
-    width: 320px;
+	float: left;
     background-color: #fff;
+	margin-right: 75px;
 }
 .home-count .home-tab-info {
-	padding-left: 120px;
+	padding-left: 20px;
     font-size: 18px;
-    color: #7e838e;
+    color: #666;
     margin-top: 26px;
 }
 .home-count .home-tab-info span{
 	font-size: 12px;
 }
 .home-count .home-tab-amount {
-	font-size: 26px;
-    color: #ef9c2c;
-    padding-left: 120px;
-    /* margin-top: 12px; */
+	font-size: 30px;
+	color: #666;
+	padding-left: 20px;
 }
 .home-count .home-tab-amount span{
-    color: #4a4a4a;
+	font-size: 20px;
+}
+.home-total .home-tab-amount{
+	color: #e60012;
 }
 .invest_status{
     height: 105px;
