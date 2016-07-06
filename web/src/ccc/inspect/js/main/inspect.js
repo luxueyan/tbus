@@ -1,8 +1,8 @@
 'use strict';
-$(function () {
-    $('body').append('<link rel="stylesheet" href="/ccc/inspect/css/inspect.css"/>');
-    var $cccInspect = $('<div id="cccInspect" class="ccc-inspect"></div>');
-    $('body').append($cccInspect);
+//$(function () {
+    //$('body').append('<link rel="stylesheet" href="/ccc/inspect/css/inspect.css"/>');
+    //var $cccInspect = $('<div id="cccInspect" class="ccc-inspect"></div>');
+    //$('body').append($cccInspect);
     var inspectRactive = new Ractive({
         el: '#cccInspect',
         template: getRactiveTemplate('ccc/inspect/partials/inspect.html'),
@@ -44,4 +44,4 @@ $(function () {
         inspectRactive.teardown();
         $cccInspect.remove();
     });
-});
+//});
