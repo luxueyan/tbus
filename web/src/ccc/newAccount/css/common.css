@@ -25,13 +25,12 @@
     height: 100%;
     float: left;
     min-height: 748px;
-    position: relative;
-    padding-left: 20px;
+    padding-left: 27px;
     background: #fff;
 }
 
 .account-content {
-    width: 990px;
+    width: 983px;
     margin: 0 auto;
     margin-bottom: 30px;
 }
@@ -47,7 +46,7 @@
 
 .nav-wrapper .nav-li {
     width: 100%;
-    line-height: 65px;
+    line-height: 79px;
     text-align: center;
     /*margin-top: 35px;*/
     clear: both;
@@ -83,7 +82,7 @@
 .nav-li span {
     display: block;
     float: left;
-    height: 65px;
+    height: 79px;
 }
 
 .nav-li .icon-home {
@@ -269,7 +268,7 @@
     /*background: url(/ccc/newAccount/img/toggle.png) no-repeat center left;*/
 }
 .nav-li .nav-toggle-menu{
-    margin-top: 34px;
+    /*margin-top: 34px;*/
 }
 .nav-li .nav-toggle-menu li{
     margin: 10px 0;
@@ -602,7 +601,7 @@ table tbody tr td {
 /*公共用户信息*/
 .userinfowra {
     width: 100%;
-    height: 108px;
+    height: 103px;
     background: #fff;
     width: 1200px;
     margin: auto;
@@ -611,7 +610,7 @@ table tbody tr td {
 .infoContent {
     margin: 0 auto;
     position: relative;
-    height: 100px;
+    height: 96px;
     overflow: hidden;
 }
 .info {
@@ -625,13 +624,153 @@ table tbody tr td {
     border-radius: 50%;
     margin-left: 25px;
     float: left;
+    margin-top: 22px;
 }
 .info .name {
     height: 55px;
     width: 145px;
     line-height: 55px;
-    color: #4a4a4a;
-    font-size: 20px;
-    text-align: center;
+    color: #999;
+    font-size: 18px;
+    text-align: left;
     float: left;
+    margin-left: 17px;
+    margin-top: 28px;
+}
+.info .name p{
+    line-height: 28px;
+}
+.credit {
+    float: left;
+    width: 400px;
+    margin-left: 20px;
+}
+
+.credit .doCredit {
+    padding-top: 37px;
+    position: relative;
+    overflow: hidden;
+}
+.credit .doCredit .info-tip{
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: black;
+    color: white;
+    line-height: 24px;
+    padding: 0 5px 0 5px;
+    border-radius: 5px;
+    opacity: 0.7;
+}
+.credit .doCredit li{
+    float: left;
+    margin-right: 40px;
+}
+
+.fix-mobile{
+    margin-left: -12px;
+    margin-top: 6px;
+}
+.fix-mobile a{
+    font-size: 12px;
+    color: #999;
+}
+.cmo {
+    background: url(/ccc/newAccount/img/phone_gray.png) no-repeat center;
+}
+.cmo-active {
+    background: url(/ccc/newAccount/img/phone.png) no-repeat center;
+}
+.cem {
+    background: url(/ccc/newAccount/img/email.png) no-repeat center;
+}
+.cem-active {
+    background: url(/ccc/newAccount/img/email-active.png) no-repeat center;
+}
+.cpass {
+    background: url(/ccc/newAccount/img/pass.png) no-repeat center;
+}
+.cpass-active {
+    background: url(/ccc/newAccount/img/pass-active.png) no-repeat center;
+}
+.ccr {
+    background: url(/ccc/newAccount/img/card.png) no-repeat center;
+}
+.ccr-active {
+    background: url(/ccc/newAccount/img/card-active.png) no-repeat center;
+}
+
+.rzpa {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+/*充值提现*/
+
+
+.home-topnav {
+    float: right;
+    width: 500px;
+    line-height: 104px;
+    margin-right: 23px;
+}
+.home-topnav .home-avaliable {
+    height: 100%;
+    float: left;
+}
+.home-avaliable .info-title {
+    font-size: 18px;
+    color: #666;
+    float: left;
+}
+
+.home-avaliable .home-tab-amount {
+    float: left;
+    font-size: 32px;
+    color: #e60012;
+    padding-left: 20px;
+}
+.home-avaliable .home-tab-amount span{
+    font-size: 23px;
+}
+
+.home-topnav .home-bottomBar{
+    float: right;
+    margin-top: 38px;
+}
+.home-recharge-btn {
+    float: right;
+    width: 80px;
+    height: 30px;
+    border-radius: 2px;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+    font-size: 16px;
+    background-color: #e4262b;
+    border: 1px #e4262b solid;
+}
+.home-recharge-btn:hover{
+    background:#C71E23;
+}
+.home-withdraw-btn {
+    float: right;
+    margin-right: 30px;
+    margin-left: 20px;
+    width: 80px;
+    height: 30px;
+    border-radius: 2px;
+    text-align: center;
+    line-height: 30px;
+    color: #e4262b;
+    font-size: 16px;
+    border: 1px #e4262b solid;
+    background-color: #fff;
+}
+.home-withdraw-btn:hover{
+    background: #C71E23;
+    color: #fff;
 }

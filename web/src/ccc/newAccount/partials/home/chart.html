@@ -1,0 +1,29 @@
+
+<div class="row">
+    {{#if !isIE}}
+    <div class="col-md-12">
+        <div class="chart-box">
+            {{#if !hasMoney}}
+            <img src="/ccc/account/img/yuan.png">
+            {{else}}
+            <canvas id="ccc-chart" width="{{chart.width}}" height="{{chart.height}}"></canvas>
+            {{/if}}
+        </div>
+        {{#if !hasMoney}}
+        <ul class="doughnut-legend">
+            <li><span style="background-color:#46BFBD"></span>可用余额(￥)<em>0.00</em></li>
+            <li><span style="background-color:#FDB45C"></span>待收本息(￥)<em>0.00</em></li>
+            <li><span style="background-color:#5b90bf"></span>冻结资金(￥)<em>0.00</em></li>
+        </ul>
+        {{/if}}
+    </div>
+    {{else}}
+    <div class="col-md-12">
+        <ul class="doughnut-legend isIE">
+            <li><span style="background-color:#46BFBD"></span>可用余额(￥)<em>{{avaAmount}}</em></li>
+            <li><span style="background-color:#FDB45C"></span>待收本息(￥)<em>{{dueInAmount}}</em></li>
+            <li><span style="background-color:#5b90bf"></span>冻结资金(￥)<em>{{frozenAmount}}</em></li>
+        </ul>
+    </div>
+    {{/if}}
+</div>

@@ -1,51 +1,99 @@
-<!--<div class="home-topnav">-->
-	<!--<div class="home-top-container">-->
-        <!--<div class="home-avaliable">-->
-            <!--<div class="home-tab-info">-->
-                <!--<span class="info-title">可用余额<span>（元）</span></span>-->
-                <!--<span class="home-tab-amount">{{avaAmount}}.{{morAmount}}</span>-->
-            <!--</div>-->
-		<!--</div>-->
-        <!--<div class="home-bottomBar">-->
-            <!-- -->
-            <!--{{#if !user.bankCards.length}}-->
-            <!--<a href="/newAccount/settings/bankCards"><div class="home-withdraw-btn">提现</div></a>-->
-			<!--<a href="/newAccount/settings/bankCards"><div class="home-recharge-btn">充值</div></a>-->
-            <!--{{elseif !user.paymentPasswordHasSet}}-->
-            <!--<a href="/newAccount/settings/password"><div class="home-withdraw-btn">提现</div></a>-->
-			<!--<a href="/newAccount/settings/password"><div class="home-recharge-btn">充值</div></a>-->
-            <!--{{else}}-->
-            <!--<a href="/newAccount/withdraw"><div class="home-withdraw-btn">提现</div></a>-->
-			<!--<a href="/newAccount/recharge"><div class="home-recharge-btn">充值</div></a>-->
-            <!--{{/if}}-->
-		<!--</div>-->
-	<!--</div>-->
-<!--</div>-->
-    
-<div class="clearfix"></div>
-    
+
 <div class="home-count">
     <div class="home-num">
         <div class="home-total common">
-            <div class="home-tab-info">我的资产（元）</div>
+            <div class="home-tab-info">我的资产(元)</div>
             <div class="home-tab-amount">{{totalAmount}}<span>.{{moreAmount}}</span></div>
 
         </div>
         <div class="home-expect common">
-            <div class="home-tab-info">预计收益（元）</div>
+            <div class="home-tab-info">当前收益(元)</div>
             <div class="home-tab-amount">{{outstandingInterest}}<span>.{{moreiAmount}}</span></div>
         </div>
 
         <div class="home-interest common">
-            <div class="home-tab-info">累计收益（元）</div>
+            <div class="home-tab-info">累计收益(元)</div>
             <div class="home-tab-amount">{{investInterestAmount}}<span>.{{moAmount}}</span></div>
 
         </div>
     </div>
     <div class="home-risk">
-        您的风险承受能力:<span>(系统默认)</span>
+        您的风险承受能力: <span>(系统默认)</span>
     </div>
-</div> 
+</div>
+
+<div class="asset_mod">
+    <div class="asset_title">资产配置</div>
+    <img src="/ccc/newAccount/img/title_line.png">
+    <div class="asset_cont">
+        <div class="asset_left_cont">
+            <a class="asset_box" href="#">
+                <div class="box box_1">
+                    <div class="label">固定收益</div>
+                    <div class="total">
+                        <div class="t_box">
+                            <p>0.<span>00</span></p>
+                            <span>持有本息(元)</span>
+                        </div>
+                    </div>
+                    <div class="detail">
+                        <p><span class="d_lab">预计当前收益(元)</span><span class="d_num">0.<em>00</em></span></p>
+                    </div>
+                </div>
+            </a>
+            <a class="asset_box" href="#">
+                <div class="box box_2">
+                    <div class="label">浮动收益</div>
+                    <div class="total">
+                        <div class="t_box">
+                            <p>0.<em>00</em></p>
+                            <span>持有本息(元)</span>
+                        </div>
+                    </div>
+                    <div class="detail">
+                        <p><span class="d_lab">预计当前收益(元)</span><span class="d_num">0.<em>00</em></span></p>
+                    </div>
+                </div>
+            </a>
+            <a class="asset_box" href="#">
+                <div class="box box_3">
+                    <div class="label">精选基金</div>
+                    <div class="total">
+                        <div class="t_box">
+                            <p>0.<em>00</em></p>
+                            <span>持有本息(元)</span>
+                        </div>
+                    </div>
+                    <div class="detail">
+                        <p><span class="d_lab">预计当前收益(元)</span><span class="d_num">0.<em>00</em></span></p>
+                    </div>
+                </div>
+            </a>
+            <a class="asset_box" href="#">
+                <div class="box box_4">
+                    <div class="label">高端理财</div>
+                    <div class="total">
+                        <div class="t_box">
+                            <p>0.<em>00</em></p>
+                            <span>持有本息(元)</span>
+                        </div>
+                    </div>
+                    <div class="detail">
+                        <p><span class="d_lab">预计当前收益(元)</span><span class="d_num">0.<em>00</em></span></p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="svg_cont">
+            <div class="svg" id="J_assets_chart" data-highcharts-chart="0"><div class="highcharts-container" id="highcharts-0" style="position: relative; overflow: hidden; width: 246px; height: 303px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="246" height="303"><desc>Created with Highcharts 4.0.3</desc><defs><clipPath id="highcharts-1"><rect x="0" y="0" width="226" height="258"></rect></clipPath></defs><rect x="0" y="0" width="246" height="303" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"></rect><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(10,30) scale(1 1)" style="cursor:default;"><path fill="#eaeaea" d="M 0.000009375106898801278 128.95396985691963 A 113 113 0 1 1 0.00003419509543789445 129.08790955807228 L 45.20002051705727 129.05274573484337 A 67.8 67.8 0 1 0 45.200005625064136 128.97238191415178 Z" stroke-linejoin="round" transform="translate(0,0)"></path></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(10,30) scale(1 1)"></g></g><text x="123" text-anchor="middle" class="highcharts-title" zIndex="4" style="color:#999999;font-size:12px;fill:#999999;width:182px;" y="20">当前配置百分比</text><g class="highcharts-legend" zIndex="7"><g zIndex="1"><g></g></g></g></svg></div></div>
+            <div class="svg_txt nodata" id="J_assets_chart_label" style="top: 130px;"><p>暂无投资</p></div>
+        </div>
+    </div>
+</div>
+
+<!--广告位-->
+<div class="ad"></div>
+
 
 <!--
 <div class="home-invest-wrapper">
@@ -64,36 +112,36 @@
 -->
 
 
-<div class="ccc-tab invest_status" data-header-selector=".header-text">
-    <div class="title">资产配置</div>
-    <ul class="tabs">
-<!--
-        <li class="active" data-type="ALL">
-            <a href="#">全部</a>
-        </li>
--->
-        <li class="active" data-type="INHAND">
-            <a href="#">投资中</a>
-        </li>
-        <li data-type="HOLDING">
-            <a href="#">回款中</a>
-        </li>
-        <li data-type="CLEARED">
-            <a href="#">已结束</a>
-        </li>
-    </ul>
-</div>
+<!--<div class="ccc-tab invest_status" data-header-selector=".header-text">-->
+    <!--<div class="title">资产配置</div>-->
+    <!--<ul class="tabs">-->
 
-<div class="ccc-tab-panels index-invest">
-<!--
-    <div class="tab-panel panel-ALL active">
-        <p class="loading">加载中...</p>
-    </div>
--->
-    <div class="tab-panel panel-INHAND active">
-        <p class="loading">加载中...</p>
-    </div>
-    <div class="tab-panel panel-HOLDING "></div>
+        <!--<li class="active" data-type="ALL">-->
+            <!--<a href="#">全部</a>-->
+        <!--</li>-->
 
-    <div class="tab-panel panel-CLEARED"></div>
-</div>
+        <!--<li class="active" data-type="INHAND">-->
+            <!--<a href="#">投资中</a>-->
+        <!--</li>-->
+        <!--<li data-type="HOLDING">-->
+            <!--<a href="#">回款中</a>-->
+        <!--</li>-->
+        <!--<li data-type="CLEARED">-->
+            <!--<a href="#">已结束</a>-->
+        <!--</li>-->
+    <!--</ul>-->
+<!--</div>-->
+
+<!--<div class="ccc-tab-panels index-invest">-->
+
+    <!--<div class="tab-panel panel-ALL active">-->
+        <!--<p class="loading">加载中...</p>-->
+    <!--</div>-->
+
+    <!--<div class="tab-panel panel-INHAND active">-->
+        <!--<p class="loading">加载中...</p>-->
+    <!--</div>-->
+    <!--<div class="tab-panel panel-HOLDING "></div>-->
+
+    <!--<div class="tab-panel panel-CLEARED"></div>-->
+<!--</div>-->

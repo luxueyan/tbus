@@ -70,23 +70,23 @@ module.exports = function(router) {
                     '/api/v2/user/MYSELF/authenticates')
                 .end().get('body'),
             isEnterprise: res.locals.user.enterprise,
-            groupMedal: req.uest(
-                    '/api/v2/users/MYSELF/groupMedal')
-                .end()
-                .then(function(r) {
-                    var results = r.body.results;
-                    if (results) {
-                        for (var i = 0; i < results.length; i++) {
-
-                            results[i] = results[i] +
-                                "!3";
-                        }
-
-                        return results;
-                    } else {
-                        return [];
-                    }
-                })
+            //groupMedal: req.uest(
+            //        '/api/v2/users/MYSELF/groupMedal')
+            //    .end()
+            //    .then(function(r) {
+            //        var results = r.body.results;
+            //        if (results) {
+            //            for (var i = 0; i < results.length; i++) {
+            //
+            //                results[i] = results[i] +
+            //                    "!3";
+            //            }
+            //
+            //            return results;
+            //        } else {
+            //            return [];
+            //        }
+            //    })
 
         });
 
@@ -251,7 +251,8 @@ module.exports = function(router) {
         "authentication",
         "password",
         "resetPassword",
-        "showbank"
+        "showbank",
+        "fixed"
     ].forEach(function(tabName) {
         router.get('/settings/' + tabName, function(req, res) {
             if(tabName == 'bankCards' || tabName == 'showbank'){
