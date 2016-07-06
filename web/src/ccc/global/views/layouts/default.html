@@ -67,9 +67,9 @@ var _hmt = _hmt || [];
             -->
             <a href="/logout" class="text" style="margin-right:5px;margin-left:5px;">退出&nbsp;&nbsp;|</a>
             {{#if user.name}}
-            <a href="/newAccount/home"><div id='head-ractive-container' style="color:#009ada;position:relative;bottom:1px;" class="text"></div>{{user.name}}</a>
+            <a href="/newAccount/settings/home"><div id='head-ractive-container' style="color:#009ada;position:relative;bottom:1px;" class="text"></div>{{user.name}}</a>
             {{else}}
-            <a href="/newAccount/home"><div id='head-ractive-container' style="color:#f58220;position:relative;bottom:1px;" class="text"></div>{{user.mobile}}</a>
+            <a href="/newAccount/settings/home"><div id='head-ractive-container' style="color:#f58220;position:relative;bottom:1px;" class="text"></div>{{user.mobile}}</a>
             {{/if}}
             {{else}}
             <div class="nav-fastregister">
@@ -103,7 +103,7 @@ var _hmt = _hmt || [];
                 <li><a id="guide" href="/guide">新手指引</a></li>
                 <li>
                     {{#if user}}
-                    <a id="account" href="/newAccount/home">我的账户</a>
+                    <a id="account" href="/newAccount/settings/home">我的账户</a>
                     {{else}}
                     <a id="account" href="/login">我的账户</a>
                     {{/if}}
@@ -131,6 +131,8 @@ var _hmt = _hmt || [];
         <div class="s-footer-nav" id="footer-color">
             <div class="footer-guide">
                 <div class="left-guide">
+                    <a href="/help">帮助中心</a>
+                    <span>|</span>
                     <a href="/aboutus#ptjs">公司介绍</a>
                     <span>|</span>
                     <a href="/aboutus#aqbz">安全保障</a>

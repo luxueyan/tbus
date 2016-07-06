@@ -860,3 +860,89 @@ p.tips {
 .disabled{
     cursor: default;
 }
+
+
+/*固定收益*/
+.home-count{
+    margin-top: 13px;
+    overflow: hidden;
+    margin-right: 20px;
+    padding-bottom: 15px;
+}
+.home-count .common{
+    float: left;
+    background-color: #fff;
+    margin-right: 75px;
+}
+.home-count .home-tab-info {
+    padding-left: 20px;
+    font-size: 18px;
+    color: #666;
+    margin-top: 26px;
+}
+.home-count .home-tab-info span{
+    font-size: 12px;
+}
+.home-count .home-tab-amount {
+    font-size: 30px;
+    color: #666;
+    padding-left: 20px;
+}
+.home-count .home-tab-amount span{
+    font-size: 20px;
+}
+.home-intrest .home-tab-amount{
+    color: #e60012;
+}
+/*重置ccc-tab*/
+.ccc-tab > ul.tabs > li {
+    float: left;
+    margin: 0 25px;
+}
+.ccc-tab > ul.tabs > li:first-child{
+    margin-left: 0;
+}
+.ccc-tab > ul.tabs > li a{
+    color: #999;
+    margin: 10px 25px;
+}
+.ccc-tab > ul.tabs > li a:hover,
+.ccc-tab > ul.tabs > li a:focus {
+    color: #e60012;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px 25px;
+    width: inherit;
+}
+.ccc-tab > ul.tabs .active {
+    border-bottom: 2px solid #e60012;
+    margin-bottom: 0px;
+}
+.ccc-tab > ul.tabs .active a{
+    color: #e60012;
+}
+
+.fixed-nav{
+    margin-top: 30px;
+    margin-left: 10px;
+}
+.fixed-nav ul{
+     overflow: hidden;
+     border-bottom: 1px solid #c9c9c9;
+     margin-right: 32px;
+ }
+
+.fixed-nav ul li a{
+    padding-left: 20px;
+    font-size: 18px;
+}
+.inhand_pro{
+    background: url("/ccc/newAccount/img/icon_inhand_active.png") no-repeat left center;
+}
+.assign_pro{
+    background: url("/ccc/newAccount/img/icon_assign.png") no-repeat left center;
+}
+.clear_pro{
+    background: url("/ccc/newAccount/img/icon_clear.png") no-repeat left center;
+}
+

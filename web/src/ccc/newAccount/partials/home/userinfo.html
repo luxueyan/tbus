@@ -1,184 +1,98 @@
-{{#if !user.enterprise}}
-{{#if !user.name}}
-<div style="width:1100px;position:relative;margin: 0 auto">
-	<a href="/newAccount/settings/authentication">
-		<!--<div class="bankcard-gray">-->
-			<!--<div class="box-main">-->
-				<!--<img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/>-->
-			<!--</div>-->
-		<!--</div>-->
-	</a>
-</div>
-<!--<div class="account-bg" on-click="guide"></div>-->
-{{else}}
-	{{#if !paymentPasswordHasSet}}
-	<div style="width:1100px;position:relative;margin: 0 auto">
-		<a href="/newAccount/settings/password" rel="nofollow" >
-		<!--<div class="bankcard-gray password-png">-->
-			<!--<div class="box-main">-->
-				<!--<img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/>-->
-			<!--</div>-->
-		<!--</div>-->
-		</a>
-	</div>
-	<!--<div class="account-bg" on-click="guide"></div>-->
-	{{elseif !banksabled}}
-	<div style="width:1100px;position:relative;margin: 0 auto">
-		<a href="/newAccount/settings/bankCards" rel="nofollow" >
-			<!--<div class="bankcard-gray backcard-png">-->
-				<!--<div class="box-main">-->
-					<!--<img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/>-->
-				<!--</div>-->
-			<!--</div>-->
-		</a>
-	</div>
-	<!--<div class="account-bg" on-click="guide"></div>-->
-	{{/if}}
-{{/if}}
-{{/if}}
 
 <div class="userinfowra">
 	<div class="infoContent">
-<!--
-		<div class="box-mutual">
-			
-			{{#if !user.enterprise}}
-			{{#if !user.name}}
-			
-			<div class="bankcard-gray">
-				<div class="box-main">
-					<a href="/newAccount/settings/authentication"><img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/></a>
-					<input class="know" type="button" value="我知道了" on-click="guide"/>
-				</div>
-			</div>
-			
-			<div class="account-bg"></div>
-			{{elseif !paymentPasswordHasSet}}
-			
-			<div class="bankcard-gray password-png">
-				<div class="box-main">
-					<a href="/newAccount/settings/authentication"><img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/></a>
-					<input class="know" type="button" value="我知道了" on-click="guide"/>
-				</div>
-			</div>
-			
-			<div class="account-bg"></div>
-			{{elseif !banksabled}}
-			
-			<div class="bankcard-gray backcard-png">
-				<div class="box-main">
-					<a href="/newAccount/settings/bankCards"><img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/></a>
-					<input class="know" type="button" value="我知道了" on-click="guide"/>
-				</div>
-			</div>
-			<div class="account-bg"></div>
-			
-			{{/if}}
-			{{/if}}
-			
-		</div>
--->
 		<div class="info">
 			<div class="tx"></div>
 			<div class="name">
-				{{#if user.name}}{{user.name}}{{else}}{{user.mobile}}{{/if}}
+				<p>{{greetingText}}</p>
+				<p>{{#if user.name}}{{user.name}}{{else}}{{user.mobile}}{{/if}}</p>
 			</div>
 		</div>
 		<div class="credit">
 			<ul class="doCredit">
-				{{#if user.enterprise}}
-					{{#if user.mobile}}
-					<li class="rzpa cmo-active"></li>
-					{{else}}
-					<li class="rzpa cmo"></li>
-					{{/if}}
+				<!--手机-->
+				{{#if user.mobile}}
+				<li class="rzpa cmo-active"></li>
 				{{else}}
-					{{#if user.mobile}}
-					<li class="rzpa cmo-active"></li>
-					{{else}}
-					<li class="rzpa cmo"></li>
-					{{/if}}
-					{{#if user.name}}
+				<li class="rzpa cmo"></li>
+				{{/if}}
+				<!--邮箱-->
+				{{#if emailAuthenticated}}
 				<li>
-					<a href="/newAccount/settings/authentication" class="mouse-enter rzpa cid-active" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
-					<p class="info-tip" style="top:16px;left:30px;">点击查看实名认证</p>
+					<a href="/newAccount/settings/userInfo" class="mouse-enter rzpa cem-active" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
+					<p class="info-tip" style="top:5px;left:56px;">点击设置邮箱</p>
 				</li>
-					{{else}}
+				{{else}}
 				<li>
-					<a href="/newAccount/settings/authentication" class="mouse-enter rzpa cid" id="mouse-enter" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
-					<p class="info-tip" style="top:16px;left:30px;">点击查看实名认证</p>
+					<a href="/newAccount/settings/userInfo" class="mouse-enter rzpa cem" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
+					<p class="info-tip" style="top:5px;left:56px;">点击设置邮箱</p>
 				</li>
-					{{/if}}
-					{{#if paymentPasswordHasSet}}
+				{{/if}}
+
+				<!--{{#if user.name}}-->
+				<!--<li>-->
+					<!--<a href="/newAccount/settings/authentication" class="mouse-enter rzpa cid-active" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>-->
+					<!--<p class="info-tip" style="top:16px;left:30px;">点击查看实名认证</p>-->
+				<!--</li>-->
+				<!--{{else}}-->
+				<!--<li>-->
+					<!--<a href="/newAccount/settings/authentication" class="mouse-enter rzpa cid" id="mouse-enter" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>-->
+					<!--<p class="info-tip" style="top:16px;left:30px;">点击查看实名认证</p>-->
+				<!--</li>-->
+				<!--{{/if}}-->
+
+				<!--交易密码-->
+				{{#if paymentPasswordHasSet}}
 				<li>
 					<a href="/newAccount/settings/password" class="mouse-enter rzpa cpass-active" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
-					<p class="info-tip" style="top:16px;left:90px;">点击设置交易密码</p>
+					<p class="info-tip" style="top:5px;left:125px;">点击设置交易密码</p>
 				</li>
-					{{else}}
+				{{else}}
 
 				<li>
 					<a href="/newAccount/settings/password" class="mouse-enter rzpa cpass" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
-					<p class="info-tip" style="top:16px;left:90px;">点击设置交易密码</p>
+					<p class="info-tip" style="top:5px;left:125px;">点击设置交易密码</p>
 				</li>
-
-					{{/if}}
-					{{#if banksabled}}
+				{{/if}}
+				<!--银行卡-->
+				{{#if banksabled}}
 				<li>
 					<a href="/newAccount/settings/bankCards" class="mouse-enter rzpa ccr-active" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
-					<p class="info-tip" style="top:16px;left:165px;">点击设置银行卡</p>
+					<p class="info-tip" style="top:5px;left:210px;">点击设置银行卡</p>
 				</li>
-					{{else}}
-
-                    
-
+				{{else}}
 				<li>
 					<a href="/newAccount/settings/bankCards" class="mouse-enter rzpa ccr" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
-					<p class="info-tip" style="top:16px;left:165px;">点击设置银行卡</p>
+					<p class="info-tip" style="top:5px;left:210px;">点击设置银行卡</p>
 				</li>
+				{{/if}}
 
-					{{/if}}
-					{{#if emailAuthenticated}}
-				<li>
-					<a href="/newAccount/settings/userInfo" class="mouse-enter rzpa cem-active" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
-					<p class="info-tip" style="top:16px;left:235px;">点击设置邮箱</p>
-				</li>
-					{{else}}
-				<li>
-					<a href="/newAccount/settings/userInfo" class="mouse-enter rzpa cem" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
-					<p class="info-tip" style="top:16px;left:235px;">点击设置邮箱</p>
-				</li>
-					{{/if}}
-				
-					{{#each groupMedal}}
-				<li>
-	                <img src="{{this}}" class="rzpa" alt="勋章" >
-				</li>
-	                {{/each}}
-					
-                {{/if}}
 			</ul>
-
-			<!--<div class="EdiT">-->
-				<!--{{#if showVip}}-->
-				<!--<div class="level">-->
-					<!--<span>会员等级：</span>-->
-					<!--<a href="/help/member" style="text-decoration:none" rel="nofollow" ><span class="lev" on-mouseover="showLevel" on-mouseleave="hideLevel">{{vip}}</span></a>-->
-				<!--</div>-->
-				<!--{{/if}}-->
-				<!--<div class="safe">-->
-					<!--<div class="safety">安全等级：-->
-					<!--<span class="progress">-->
-					    <!--<div class="progress-bar" role="progressbar" aria-valuemax="100" style="width: {{ safetyProgress }}%;"></div>-->
-					<!--</span>-->
-					<!--<span class="risk">{{riskText}}</span></div>-->
-				<!--</div>-->
-			<!--</div>-->
-
+			{{#if user.mobile}}
+			<p class="fix-mobile"><a href="#">修改手机号</a></p>
+			{{/if}}
+		</div>
+		<div class="home-topnav">
+			<div class="home-avaliable">
+				<span class="info-title">可用余额（元）</span>
+				<span class="home-tab-amount">{{avaAmount}}<span>.{{morAmount}}</span></span>
+			</div>
+			<div class="home-bottomBar">
+				{{#if !user.bankCards.length}}
+				<a href="/newAccount/settings/bankCards"><div class="home-withdraw-btn">提现</div></a>
+				<a href="/newAccount/settings/bankCards"><div class="home-recharge-btn">充值</div></a>
+				{{elseif !user.paymentPasswordHasSet}}
+				<a href="/newAccount/settings/password"><div class="home-withdraw-btn">提现</div></a>
+				<a href="/newAccount/settings/password"><div class="home-recharge-btn">充值</div></a>
+				{{else}}
+				<a href="/newAccount/withdraw"><div class="home-withdraw-btn">提现</div></a>
+				<a href="/newAccount/recharge"><div class="home-recharge-btn">充值</div></a>
+				{{/if}}
+			</div>
 		</div>
 	</div>
 	<img src="/ccc/newAccount/img/usernav_line.png">
 </div>
 
 <div class="clearfix"></div>
-<div class="space-30"></div>
 

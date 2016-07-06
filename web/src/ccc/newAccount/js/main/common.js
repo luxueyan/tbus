@@ -43,6 +43,8 @@ navRactive.on('toggleMenu', function (event) {
 });
 
 
+// 可用余额
+var avaAmount = parseFloat(CC.user.availableAmount).toFixed(2);
 
 var banksabled = _.filter(CC.user.bankCards, function (r) {
 	return r.deleted === false;
@@ -59,10 +61,27 @@ var infoRactive = new Ractive({
 		safetyProgress: 25,
 		riskText: '中',
 		vip:'普通用户',
-		showVip: true
+		showVip: true,
+		greetingText:'',
+		avaAmount : avaAmount
 	},
 
 	oninit: function () {
+		// 问候语
+		var now = new Date();
+		var hours = now.getHours();
+		if (6 < hours && hours < 9) {
+			this.set('greetingText','早上好');
+		} else if (9 <= hours && hours < 12) {
+			this.set('greetingText','上午好');
+		} else if (12 <= hours && hours < 13) {
+			this.set('greetingText','中午好');
+		} else if (13 <= hours && hours < 18) {
+			this.set('greetingText','下午好');
+		} else {
+			this.set('greetingText','晚上好');
+		}
+
 		var safetyProgress = 25;
 		accountService.getVipLevel(function (r) {
 			if(r.success && r.data) {
@@ -90,8 +109,29 @@ var infoRactive = new Ractive({
 			});
 		});
 
-		accountService.getGroupMedal(function (r) {
-			infoRactive.set('groupMedal', r);
-		});
+		//accountService.getGroupMedal(function (r) {
+		//	infoRactive.set('groupMedal', r);
+		//});
+		var self = this;
+		var avaAmount = self.get('avaAmount') + '';
+		var check = avaAmount.indexOf('.');
+		if (check == -1){
+			self.set('avaAmount',parseInt(avaAmount));
+		}else{
+			var amoutArray = avaAmount.split('.');
+			self.set('avaAmount',parseInt(amoutArray[0]));
+			self.set('morAmount',amoutArray[1]);
+		}
 	}
 });
+
+
+infoRactive.on({
+	'showTip':function(event){
+		$($(event)[0].node.nextElementSibling).fadeIn(200);
+
+	},
+	hideTip:function(event){
+		$($(event)[0].node.nextElementSibling).fadeOut(0);
+	}
+})

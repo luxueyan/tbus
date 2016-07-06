@@ -552,7 +552,7 @@ var recordRactive = new Ractive({
         }
 
         var totalPage = [];
-        console.log("===>> totalPage = " + self.totalPage);
+        //console.log("===>> totalPage = " + self.totalPage);
         for (var i = 0; i < self.totalPage; i++) {
             totalPage.push(i + 1);
         }
@@ -562,7 +562,7 @@ var recordRactive = new Ractive({
 });
 
 function renderPager(totalPage, current) {
-    console.log("===>render")
+    //console.log("===>render")
     if (!current) {
         current = 1;
     }
@@ -659,7 +659,7 @@ loanService.getLoanProof(CC.loan.requestId, function (imgs) {
 
     // 开始大图浏览
     relateDataRactive.on('begin-big-pic', function (e) {
-        console.log(e.index.i)
+        //console.log(e.index.i)
         relateDataRactive.set('currentIndex', e.index.i);
         var options = {
             imgs: imgs,
@@ -704,8 +704,8 @@ request.get(encodeURI('/api/v2/cms/category/IMAGE/name/信息披露测试用'))
     .end()
     .then(function (res) {
         var imgs = res.body;
-        console.log('https://creditmanager.b0.upaiyun.com/82d732be36f577c6c873598bb84e737f')
-        console.log(res.body)
+        //console.log('https://creditmanager.b0.upaiyun.com/82d732be36f577c6c873598bb84e737f')
+        //console.log(res.body)
         var relateDataRactive = new Ractive({
             // insurance 担保
             el: ".insurance-wrapper",
@@ -724,7 +724,7 @@ request.get(encodeURI('/api/v2/cms/category/IMAGE/name/信息披露测试用'))
 
         // 开始大图浏览
         relateDataRactive.on('begin-big-pic', function (e) {
-            console.log(e.index.i)
+            //console.log(e.index.i)
             relateDataRactive.set('currentIndex', e.index.i);
             var options = {
                 imgs: imgs,
