@@ -339,7 +339,7 @@ h3 {
 
 .rinput {
 	position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 .rinput .mdi{
      position: absolute;
@@ -380,7 +380,7 @@ h3 {
 }
 
 .agreement-div label a {
-	color: #999999;
+	color: #bd965e;
 }
 
 .on-step-0 .register-step-0,
@@ -393,20 +393,21 @@ h3 {
 
 /*华瑞金科*/
 .register-body{
-    margin-top: 80px;
+}
+.register-body-img{
+	padding: 0;
 }
 .register-body .register-body-img img{
     display: block;
     margin: auto;
-    padding-top: 30px;
 }
 
 #register-wrapper{
-    margin-left: 100px;
+    margin-left: 95px;
 }
 
 .agreement-div .next-step {
-    background-color: #ef9c2c;
+    background-color: #e60012;
     color: #fff;
     font-size: 16px;
     border: none;

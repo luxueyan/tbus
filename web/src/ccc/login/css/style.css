@@ -3,8 +3,8 @@ input:-webkit-autofill {
 }
 
 .s-login-view .s-login-window {
-    margin-left: 80px;
-    margin-top: 60px;
+    margin-left: 95px;
+    margin-top: 74px;
 }
 
 .login-error {
@@ -41,32 +41,39 @@ input:-webkit-autofill {
 }
 
 .s-input-wrapper .lineUser {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 
 
 /*华瑞金科*/
 
 .container {
-    width: 1100px;
-    margin: 40px auto;
+    width: 1200px;
+    margin: 56px auto 68px;
     background: #fff;
-    padding-bottom: 100px;
+    padding:0 !important;
 }
 
 .register-body {
-    margin-top: 80px;
-}
 
+}
+.register-body .register-body-img{
+    padding: 0;
+}
 .register-body .register-body-img img {
     display: block;
     margin: auto;
-    padding-top: 30px;
 }
-
+.s-login-header{
+    font-size: 42px;
+    line-height: 42px;
+    margin-bottom: 60px;
+    padding-left: 130px;
+    color: #666666;
+}
 .s-input-wrapper .lineUser .mdi {
     position: absolute;
-    border-right: 1px solid #ccc;
+    border-right: 1px solid #c0c8bd;
     height: 40px;
     width: 38px;
 }
@@ -90,12 +97,12 @@ input:-webkit-autofill {
     height: 40px;
     padding-left: 50px;
     width: 320px;
-    font-size: 1.0em;
-    border: 1px solid #ccc;
+    font-size: 16px;
+    border: 1px solid #c0c8bd;
 }
 
 .s-input-wrapper .lineUser a {
-    color: #4a90e2;
+    color: #e60012;
     text-decoration: underline;
     padding-left: 15px;
 }
@@ -109,7 +116,7 @@ input:-webkit-autofill {
 }
 
 .s-input-wrapper .lineUser span {
-    color: #4a90e2;
+    color: #e60012;
     text-decoration: underline;
     padding-left: 10px;
     cursor: pointer;
@@ -120,17 +127,19 @@ input:-webkit-autofill {
 }
 
 .s-login-view .s-login-window button {
-    background-color: #ef9c2c;
+    background-color: #e60012;
     color: #fff;
-    font-size: 16px;
+    font-size: 24px;
     border: none;
     width: 320px;
     height: 44px;
+    margin-top: 44px;
+    letter-spacing: 8px;
 }
 
 .register-banner {
     clear: both;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 .register-banner p {
@@ -139,6 +148,6 @@ input:-webkit-autofill {
 }
 
 .register-banner a {
-    color: #ef9c2c;
+    color: #e60012;
     font-size: 16px;
 }
