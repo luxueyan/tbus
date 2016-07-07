@@ -2,7 +2,7 @@
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 var ractive = new Ractive({
     el: "#ractive-container",
-    template: require('ccc/newAccount/partials/settings/userInfo.html'),
+    template: require('ccc/newAccount/partials/userInfo.html'),
 
     data: {
         showBasic:true,
