@@ -1,45 +1,58 @@
 .account-invite-wrapper{
     background: #fff;
     min-height: 748px;
+    padding-top: 20px;
 }
 .account-invite-wrapper .invite-nav{
-    line-height: 66px;
-    border-bottom: 1px dashed #dbdbdb;
     font-size: 24px;
-    padding-left: 46px;
-    color: #4a4a4a;
+    color: #ad8a58;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    border-bottom: 1px solid #dcdcdc;
+    margin-right: 27px;
 }
 
 .invite-code {
-    margin-left: 20px;
     position: relative;
-    height: 150px;
+    height: 185px;
 }
 .code-img {
     position:absolute;
-    width:150px;
     right:50px;
-    top:20px;
+    top:40px;
     text-align:center;
-    font-size:12px;
-    color:#999999;
+    font-size:14px;
+    color:#666;
+    margin-right: 35px;
+}
+.tip {
+    font-size: 14px;
+    color: #999;
+    padding-top: 60px;
+    padding-left: 10px;
 }
 .form-inline {
     border-radius: 5px;
-    width: 560px;
-    padding-top: 70px;
+    padding-top: 10px;
+    margin-left: 10px;
+}
+.form-inline .form-group input{
+    width: 470px;
+    border-radius: 0;
+    height: 48px;
+    line-height: 48px;
 }
 .btn-default {
-    background: #ef9c2c;
-    border: 1px solid #ef9c2c;
+    background: #cfa972;
+    border: 1px solid #cfa972;
     color: #fff;
     margin-left: 17px;
+    width: 135px;
+    height: 40px;
+    border-radius: 0;
+    font-size: 16px;
 }
-.tip {
-    font-size:12px;
-    margin:10px 20px;
-    color:#9B9B9B;
-}
+
 .img-wrapper {
     border-top: 1px solid #ebebeb;
     margin: 46px;
@@ -57,10 +70,6 @@
     border-bottom: 1px solid #ebebeb;
     line-height: 50px;
 }
-h3 {
-    color:#666;
-    margin-bottom: 12px;
-}
 .rule-info{
     padding-left: 46px;
     color: #9d9fa5;
@@ -75,14 +84,31 @@ h3 {
 }
 .record {
     margin: 20px 0;
-    padding: 0 46px;
+    padding-left: 10px;
 }
-
+.record h3 {
+    padding-left: 37px;
+    color: #999;
+    font-size: 18px;
+    background: url("/ccc/newAccount/img/icon_invite.png") no-repeat left 3px;
+    padding-bottom: 10px;
+}
+.record img{
+    width: 973px;
+}
+.record table{
+    margin-bottom: 0;
+    width: 95%;
+    margin: auto;
+}
+.record table tr{
+    border-bottom: 1px solid #dcdcdc;
+}
 th , td {
     text-align: center;
 }
 th {
-    padding:5px 0;
+    padding: 16px 0;
 }
 .cc-tips-wp {
     position:absolute;
