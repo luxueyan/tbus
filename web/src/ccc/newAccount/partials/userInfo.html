@@ -1,160 +1,120 @@
 <div class = "account-userInfo-wrapper">
-    <ul class="account-userInfo-tabs">
-        <li on-click="changeTab" class="{{#if showBasic}} tab-active {{/if}} userInfo-tab" data-tab="basic">基本信息</li>
-        <li on-click="changeTab" class="{{#if !showBasic}} tab-active {{/if}} userInfo-tab" data-tab="more">更多信息</li>
-    </ul>
+    <!--<ul class="account-userInfo-tabs">-->
+        <!--<li on-click="changeTab" class="{{#if showBasic}} tab-active {{/if}} userInfo-tab" data-tab="basic">基本信息</li>-->
+        <!--<li on-click="changeTab" class="{{#if !showBasic}} tab-active {{/if}} userInfo-tab" data-tab="more">更多信息</li>-->
+    <!--</ul>-->
     {{#if showBasic}}
-    {{#if isEnterprise}}
-    <div class="level-wrapper">
-        <span style="font-weight:bold">安全等级</span>
-        <div class="safetyLevel"><div class="levelBar" style="height:{{100-percent}}%"></div><span class="level-info" style="{{#if percent > 50}} color:white {{/if}}">{{levelText}}</span></div>
-        <span style="font-size:18px;margin-left:100px;">您的信息资料完整度为 <span style="color:#F58220; margin-left:20px;" >{{percent}}%</span></span>
-    </div>
-    <div class="safety-wrapper" style="height:100px;">
-        <table class="table">
-            <tbody>
-                <tr>
-                    <td style="width:35%">
-                        <span class="glyphicon glyphicon-ok"></span> &nbsp;手机认证：
-                    </td>
-                    <td style="width:45%">
-                        <span>{{mobile}}</span>
-                    </td>
-                    <td class="align-center">
-                        <span class="status">已认证</span>
-                    </td>
-                </tr>
-                <tr>
-                    {{#if paymentPasswordHasSet}}
-                    <td>
-                        <span class="glyphicon glyphicon-ok"></span> &nbsp;交易密码：
-                    </td>
-                    <td>
-                        <span>******</span>
-                    </td>
-                     <td class="align-center">
-                        <a href="/newAccount/settings/password" class="btn">去修改</a>
-                    </td>
-                    {{else}}
-                    <td>
-                        <span class="glyphicon glyphicon-remove"></span> &nbsp;交易密码：
-                    </td>
-                    <td>
-                        <span class="status-no">未设置!</span>
-                    </td>
-                    <td class="align-center">
-                        <a href="/newAccount/settings/password" class="btn" rel="nofollow" >去设置</a>
-                    </td>
-                    {{/if}}
-                </tr>
-            </tbody>
-        </table>
-        
-        <div class="rzz">
-            <input type="text" name="email" class="rZemail" placeholder="请输入邮箱">
-            <div class="rzE_button">确定</div>
-            <div class="errors"></div>
+    <div class="user_title">个人资料</div>
+    <div class="myinfo">
+        <h3>帐户信息</h3>
+        <div class="myinfo_valgroup">
+            <div class="valgroup">
+                <div class="check_state"></div>
+                <div class="value_name">身份认证</div>
+                <div class="val_detail"></div>
+            </div>
+            <div class="valgroup">
+                {{#if idNumber}}
+                <div class="check_state"></div>
+                <div class="value_name">实名认证</div>
+                <div class="val_detail">{{idNumber}}</div>
+                {{else}}
+                <div class="check_state_error"></div>
+                <div class="value_name">实名认证</div>
+                <div class="val_detail">未认证!</div>
+                <a class="go_approve" href="/newAccount/settings/authentication">立即认证</a>
+                {{/if}}
+            </div>
+            <div class="valgroup">
+                <div class="check_state"></div>
+                <div class="value_name">手机号码</div>
+                <div class="val_detail">{{mobile}}</div>
+                <a class="change" href="#">修改</a>
+            </div>
+            <div class="valgroup">
+                <div class="check_state"></div>
+                <div class="value_name">登录密码</div>
+                <div class="val_detail">********</div>
+                <a class="change" href="#">修改</a>
+            </div>
+            <div class="valgroup">
+                {{#if paymentPasswordHasSet}}
+                <div class="check_state"></div>
+                <div class="value_name">交易密码</div>
+                <div class="val_detail">********</div>
+                <a href="/newAccount/settings/password">修改</a>
+                {{else}}
+                <div class="check_state_error"></div>
+                <div class="value_name">交易密码</div>
+                <div class="val_detail">未设置!</div>
+                <a href="/newAccount/settings/password">设置</a>
+                {{/if}}
+            </div>
+            <div class="valgroup">
+                {{#if email}}
+                <div class="check_state"></div>
+                <div class="value_name">绑定邮箱</div>
+                <div class="val_detail">{{email}}</div>
+                <a href="#" class="goRz">修改</a>
+                {{else}}
+                <div class="check_state_error"></div>
+                <div class="value_name">绑定邮箱</div>
+                <div class="val_detail">未绑定!</div>
+                <a href="#" class="goRz go_approve">立即绑定</a>
+                {{/if}}
+            </div>
         </div>
+        <!--<div class="rzz">-->
+            <!--<input type="text" name="email" class="rZemail" placeholder="请输入邮箱">-->
+            <!--<div class="rzE_button">确定</div>-->
+            <!--<div class="errors"></div>-->
+        <!--</div>-->
     </div>
-    {{else}}
-    <div class="level-wrapper">
-        <span style="font-weight:bold">安全等级</span>
-        <div class="safetyLevel"><div class="levelBar" style="height:{{100-percent}}%"></div><span class="level-info" style="{{#if percent > 50}} color:white {{/if}}">{{levelText}}</span></div>
-        <span style="font-size:18px;margin-left:100px;">您的信息资料完整度为 <span style="color:#F58220; margin-left:20px;" >{{percent}}%</span></span>
-    </div>
-    <div class="safety-wrapper">
-        <table class="table">
-            <tbody>
-                <tr>
-                    <td style="width:35%">
-                        <span class="glyphicon glyphicon-ok"></span> &nbsp;手机认证：
-                    </td>
-                    <td style="width:45%">
-                        <span>{{mobile}}</span>
-                    </td>
-                    <td class="align-center">
-                        <span class="status">已认证</span>
-                    </td>
-                </tr>
-                <tr>
-                    {{#if idNumber}}
-                   <td>
-                        <span class="glyphicon glyphicon-ok"></span> &nbsp;实名认证：
-                   </td>
-                    <td>
-                        {{idNumber}}
-                    </td>
-                    <td class="align-center">
-                        <span class="status">已认证</span>
-                    </td>
-                    {{else}}
-                    <td>
-                        <span class="glyphicon glyphicon-remove"></span> &nbsp;实名认证：
-                    </td>
-                    <td>
-                        <span class="status-no">未认证!</span>
-                    </td>
-                    <td class="align-center">
-                        <a href="/newAccount/settings/authentication" class="btn" rel="nofollow" >去认证</a>
-                    </td>
-                    {{/if}}
-                </tr>
-                <tr>
-                    {{#if paymentPasswordHasSet}}
-                    <td>
-                        <span class="glyphicon glyphicon-ok"></span> &nbsp;交易密码：
-                    </td>
-                    <td>
-                        <span>******</span>
-                    </td>
-                     <td class="align-center">
-                        <a href="/newAccount/settings/password" class="btn" rel="nofollow" >去修改</a>
-                    </td>
-                    {{else}}
-                    <td>
-                        <span class="glyphicon glyphicon-remove"></span> &nbsp;交易密码：
-                    </td>
-                    <td>
-                        <span class="status-no">未设置!</span>
-                    </td>
-                    <td class="align-center">
-                        <a href="/newAccount/settings/password" class="btn" rel="nofollow" >去设置</a>
-                    </td>
-                    {{/if}}
-                </tr>
-                <tr>
-                    {{#if email}}
-                    <td>
-                        <span class="glyphicon glyphicon-ok"></span> &nbsp;认证邮箱：
-                    </td>
-                    <td>
-                        {{email}}
-                    </td>
-                    <td class="align-center">
-                        <span class="status">已认证</span>
-                    </td>
-                    {{else}}
-                    <td>
-                        <span class="glyphicon glyphicon-remove"></span> &nbsp;认证邮箱：
-                    </td>
-                    <td>
-                        <span class="status-no">未绑定!</span>
-                    </td>
-                    <td class="align-center">
-                        <a href="#" class="goRz btn" rel="nofollow" >去绑定</a>
-                    </td>
-                    {{/if}}
-                </tr>
-            </tbody>
-        </table>
-        
-        <div class="rzz">
-            <input type="text" name="email" class="rZemail" placeholder="请输入邮箱">
-            <div class="rzE_button">确定</div>
-            <div class="errors"></div>
+    <div class="myfortune">
+        <h3>我的银行卡</h3>
+        <div class="card_box">
+            <ul>
+                <li>
+                    <div class="card_add">
+                        <a href="/newAccount/settings/bankCards">
+                            <div class="add_bank_icon"></div>
+                            <h5>添加银行卡</h5>
+                            <p>最多添加5张银行卡</p>
+                        </a>
+                    </div>
+                </li>
+            </ul>
         </div>
+        <!--<div class="showbank-box" style="margin-bottom:24px;">-->
+            <!--{{#if bankCards.length>0}}-->
+            <!--<table style="margin: 18px 40px;" class="has-card-box">-->
+                <!--<thead>-->
+                <!--<tr class="has-card">-->
+                    <!--<th style="width:184px;">银行名称</th>-->
+                    <!--<th style="width:280px;">卡号</th>-->
+                    <!--<th style="width:170px;">状态</th>-->
+                    <!--<th style="width:272px;">操作</th>-->
+                <!--</tr>-->
+                <!--</thead>-->
+                <!--<tbody>-->
+                <!--{{#each bankCards}}-->
+                <!--<tr>-->
+                    <!--<td class="{{account.bank}}" style="background-size: 180px;background-repeat: no-repeat;"></td>-->
+                    <!--<td>{{account.account.substr(0,4)}}************{{account.account.substr(-4,4)}}</td>-->
+                    <!--<td>已认证</td>-->
+                    <!--<td>-->
+                        <!--<button on-click="deleted-card" lala="{{account.account}}">解绑</button>-->
+                    <!--</td>-->
+                <!--</tr>-->
+                <!--{{/each}}-->
+                <!--</tbody>-->
+            <!--</table>-->
+            <!--{{else}}-->
+            <!--<a href="/newAccount/settings/bankCards" class="showbank-img"><img src="/ccc/newAccount/img/showbank.png"/></a>-->
+            <!--<a href="/newAccount/settings/bankCards" class="showbank-word"><p>添加银行卡</p></a>-->
+            <!--{{/if}}-->
+        <!--</div>-->
     </div>
-    {{/if}}
     {{else}}
         {{#if !isSave}}
         <form method="post" name="moreInfo" id="moreInfo">
@@ -305,8 +265,5 @@
         </div>
         {{/if}}
     {{/if}}
-    <div class="img-wrapper">
-        <img src="/ccc/newAccount/img/userInfo.png">
-    </div>
 </div>
 
