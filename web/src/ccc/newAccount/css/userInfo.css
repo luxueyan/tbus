@@ -370,35 +370,15 @@ p.tips {
 /*个人信息*/
 
 .account-userInfo-wrapper {
-    position: relative;
-    min-height: 600px;
+    padding-top: 20px;
 }
-
-.account-userInfo-wrapper .img-wrapper {
-    position: absolute;
-    bottom: 10px;
-    right: 20px;
-    width: 200px;
-}
-
-.img-wrapperau {
-    margin: 0 auto;
-    width: 840px;
-    height: 240px;
-    margin-top: 40px;
-    background: url(/ccc/newAccount/img/sm.png) no-repeat center right;
-}
-
-.img-wrapperbn {
-    margin: 0 auto;
-    width: 840px;
-    height: 240px;
-    margin-top: 40px;
-    background: url(/ccc/newAccount/img/visa.png) no-repeat center right;
-}
-
-.account-userInfo-wrapper .img-wrapper img {
-    width: 100%;
+.account-userInfo-wrapper .user_title{
+    font-size: 24px;
+    color: #ad8a58;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    border-bottom: 1px solid #dcdcdc;
+    margin-right: 27px;
 }
 
 .account-userInfo-tabs {
@@ -422,99 +402,118 @@ p.tips {
     border-bottom: 2px #009ada solid;
 }
 
-.safety-wrapper {
-    position: relative;
-    border-left: 1px #cccccc solid;
-    width: 600px;
-    margin: auto;
-    padding-left: 50px;
-    height: 250px;
+.myinfo {
+    clear: both;
 }
-
-.level-wrapper {
-    margin: 30px;
-    position: relative;
+.myinfo h3 {
+    color: #666;
+    font-size: 18px;
+    background: url(/ccc/newAccount/img/icon_userinfo.png) no-repeat left center;
+    padding-left: 30px;
+    margin: 20px 0;
 }
-
-.safetyLevel {
-    position: absolute;
-    background: #F58220;
-    width: 70px;
-    height: 70px;
-    border-radius: 100px;
-    top: -15px;
-    left: 70px;
+.myinfo .myinfo_valgroup {
+    width: 100%;
     overflow: hidden;
-    line-height: 70px;
-    box-shadow: 1px 1px 5px grey;
 }
-
-.levelBar {
-    position: absolute;
-    width: 70px;
-    height: 75%;
-    background: rgb(251, 236, 225);
-}
-
-.level-info {
-    z-index: 10;
-    position: absolute;
-    font-size: 20px;
-    left: 26px;
-}
-
-.safety-wrapper .table tr th {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-size: 16px;
-    color: #005387;
-    text-align: center;
-}
-
-.safety-wrapper .table tr td {
-    padding-top: 15px;
-    padding-bottom: 15px;
+.myinfo .myinfo_valgroup .valgroup {
+    height: 50px;
+    line-height: 50px;
     font-size: 14px;
-    border: none;
-    position: relative;
+    overflow: hidden;
+    width: 480px;
+    float: left;
+    border-bottom: 1px dashed #e4e4e4;
+}
+.myinfo .myinfo_valgroup .valgroup .check_state {
+    width: 25px;
+    height: 50px;
+    float: left;
+    background: url(/ccc/newAccount/img/tick.png) no-repeat left center;
+}
+.myinfo .myinfo_valgroup .valgroup .check_state_error {
+    width: 25px;
+    height: 50px;
+    float: left;
+    background: url(/ccc/newAccount/img/tick_gray.png) no-repeat left center;
+}
+.myinfo .myinfo_valgroup .valgroup .value_name {
+    width: 150px;
+    float: left;
+    text-align: left;
+}
+.myinfo .myinfo_valgroup .valgroup .val_detail {
+    width: 130px;
+    color: #666;
+    float: left;
+    margin-right: 6px;
+    text-align: left;
+}
+.myinfo .myinfo_valgroup a {
+    float: right;
+    color: #cfa972;
+    margin-right: 60px;
+    text-decoration: underline;
+    text-align: left;
+    width: 60px;
+}
+.myinfo .myinfo_valgroup .go_approve {
+    color: #eb0303;
 }
 
-.safety-wrapper .table tr td .glyphicon {
-    color: #FAFBF8;
-    background-color: #0D9A95;
-    border-radius: 100px;
-    padding: 2px;
-    position: absolute;
-    left: -60px;
-    top: 26px;
+.myfortune{
+    margin-top: 40px;
+    overflow: hidden;
+    clear: both;
 }
-
-.safety-wrapper .table tr td .glyphicon-remove {
-    background-color: #AB1212;
+.myfortune h3 {
+    color: #666;
+    font-size: 18px;
+    background: url(/ccc/newAccount/img/card.png) no-repeat left center;
+    padding-left: 30px;
+    margin: 20px 0;
+    background-size: 20px;
 }
-
-.safety-wrapper .table tr .align-center {
+.myfortune .card_box {
+    overflow: hidden;
+    padding-top: 10px;
+}
+.card_box ul {
+    overflow: hidden;
+}
+.card_box li {
+    float: left;
+    margin-left: 15px;
+}
+.card_box li:first-child{
+    margin-left: 0;
+}
+.card_box .card_add {
+    border: #dcdcdc 1px solid;
+    width: 310px;
+    height: 185px;
+}
+.card_box .card_add a {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    text-decoration: none;
+}
+.card_box .card_add a .add_bank_icon {
+    width: 100%;
+    height: 60px;
+    margin-top: 40px;
+    background: url(/ccc/newAccount/img/plus-card.png) no-repeat center 0;
+}
+.card_box .card_add a h5 {
+    font-size: 18px;
+    color: #666;
+    padding: 9px 0 16px;
+}
+.card_box .card_add a p {
+    font-size: 14px;
+    color: #bbbbbb;
     text-align: center;
-}
-
-.safety-wrapper .table .status {
-    color: #009ada;
-}
-
-.safety-wrapper .table .status-no {
-    color: firebrick;
-}
-
-.safety-wrapper .table .btn {
-    background-color: #009ADA;
-    color: white;
-    width: 80px;
-    height: 30px;
-    line-height: 18px;
-}
-
-.safety-wrapper .table .btn:hover {
-    background: #0287be;
 }
 
 .rzz {
@@ -603,6 +602,7 @@ p.tips {
 #moreInfo .modify:hover {
     background-color: #015989;
 }
+/*个人信息 结束*/
 
 .descript p a {
     color: #999;

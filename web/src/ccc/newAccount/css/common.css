@@ -247,11 +247,13 @@
     width: 142px;
     text-align: left;
     padding-left: 7px;
+    box-shadow: 5px 6px 10px -2px #ccc;
 }
 .nav-li .icon-active {
     width: 52px;
     border-left: 3px #e4262b solid;
     background: #fff;
+    box-shadow: 9px 6px 10px -2px #ccc;
 }
 
 .nav-li .nav-toggle-btn {
