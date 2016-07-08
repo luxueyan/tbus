@@ -101,7 +101,7 @@
 .rinput label {
     color: #3c3c3c;
     float: left;
-    height: 40px;
+    height: 30px;
     font-weight: normal;
 }
 
@@ -110,11 +110,11 @@
     line-height: 44px;
 }
 .rinput input{
-    height: 40px;
+    height: 47px;
     padding-left: 50px;
-    width: 320px;
+    width: 380px;
     font-size: 1.0em;
-    border: 1px solid #ccc;
+    border: 1px solid #c0c8bd;
     background-repeat: no-repeat;
     background-size: 15px;
     background-position: 10px center;
@@ -130,7 +130,7 @@
     background-image: url(/ccc/register/img/psw_icon.png);
 }
 .picnum .register-test {
-    width: 146px;
+    width: 200px;
     float: left;
     background-image: url(/ccc/register/img/code_icon.png);
 }
@@ -160,14 +160,14 @@
 }
 
 .bring-in input {
-    width: 201px;
+    width: 260px;
 }
 
 .bring-in button {
     background-color: #fff;
-    width: 118px;
-    height: 40px;
-    color: #007ec5;
+    width: 120px;
+    height: 47px;
+    color: #ae8a45;
     border: 1px solid #ccc;
     border-left: none;
     margin-left: -4px;
@@ -333,6 +333,14 @@
     display: block;
     float: left;
 }
+.picnum .picspan{
+    width: 114px;
+    height: 47px;
+    display: block;
+    float: left;
+    background-color: #efece7;
+    margin-left: 20px;
+}
 
 .picnum span img {
     width: 90%;
@@ -343,15 +351,16 @@
 .picnum #refresh-captcha {
 /*    background-image: url(/ccc/register/img/update.png); */
     cursor: pointer;
-    color: #007ec5;
-    line-height: 40px;
+    color: #ae8a45;
+    line-height: 47px;
+    margin-left: 10px;
 }
 /*新加*/
 
 .register-title {
     font-size: 42px;
     line-height: 42px;
-    margin:38px 0 60px;
+    margin:38px 0;
     padding-left: 130px;
     color: #666666;
 }

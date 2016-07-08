@@ -51,29 +51,40 @@ body {
 
 .main {
     background-color: white;
-    margin-left: auto;
-    margin-right: auto;
     width: 1200px;
-    margin-bottom: 98px;
-    margin-top: 25px;
-    padding-bottom: 150px;
+    margin: 56px auto 68px;
+    background: #fff;
+    padding: 0 !important;
 }
 
 h2.forgot_title {
-    font-size: 28px;
+    font-size: 42px;
     color: #4a4a4a;
-    line-height: 116px;
+    line-height: 42px;
     text-align: center;
+    margin-top: 72px;
 }
-
+.forgot_step_img{
+    margin: 24px;
+    height: 112px;
+}
+.step1_img{
+     background: url("/ccc/forgot/img/step01.png") no-repeat center;
+ }
+.step2_img{
+    margin-bottom: 55px;
+    background: url("/ccc/forgot/img/step02.png") no-repeat center;
+}
+.step3_img{
+    background: url("/ccc/forgot/img/step03.png") no-repeat center;
+}
 .step01,
 .step02,
 .step03,
 .step04 {}
 
 .main .step02 .verify-content {
-    margin-left: 410px;
-    margin-top: 40px;
+    margin-left: 95px;
 }
 
 .main .step02 .verify-content .box-phone {
@@ -81,14 +92,13 @@ h2.forgot_title {
 }
 
 .main .step01 .verify-content {
-    margin-left: 408px;
-    margin-top: 44px;
+    margin-left: 95px;
 }
 
 .main .step01 .verify-content .u-form-panel {
     overflow: hidden;
     float: left;
-    border: 1px solid #cdcdcd;
+    border: 1px solid #c0c8bd;
 }
 
 .main .step01 .verify-content .u-form-panel-lg .s-form-row-lg {
@@ -106,16 +116,16 @@ h2.forgot_title {
 .main .step01 .verify-content input,
 .main .step02 .verify-content input {
     border: none;
-    height: 46px;
-    line-height: 46px;
-    color: #cdcdcd;
+    height: 47px;
+    line-height: 47px;
+    color: #c0c8bd;
     font-size: 15px;
-    width: 330px;
+    width: 334px;
     padding-left: 16px;
 }
 
 .main .step01 .verify-content .s-form-row {
-    width: 330px;
+    width: 334px;
     float: left;
 }
 
@@ -138,7 +148,7 @@ h2.forgot_title {
 .main .step01 .verify-content .s-form-row-lg .border {
     overflow: hidden;
     float: left;
-    border: 1px solid #cdcdcd;
+    border: 1px solid #c0c8bd;
 }
 
 .main .step01 .verify-content .s-form-row-sm,
@@ -198,14 +208,16 @@ h2.forgot_title {
     line-height: 48px;
     height: 48px;
     color: white;
-    background-color: #ef9c2c;
+    background-color: #e60012;
     border-radius: 3px;
     display: block;
-    margin-top: 30px;
+    margin-top: 56px;
     font-size: 16px;
     cursor: pointer;
 }
-
+.main .step02 .verify-content .u-form-btn-red {
+    margin-top: 37px;
+}
 .tip_information {
     font-size: 15px!important;
     color: #9d9d9d;
@@ -533,8 +545,8 @@ h2.forgot_title {
 
 .main .step01 .verify-content .u-form-panel .test-title {
     float: left;
-    line-height: 46px;
-    border-right: 1px solid #cdcdcd;
+    line-height: 47px;
+    border-right: 1px solid #c0c8bd;
     width: 46px;
     background-color: #fcfcfc;
 }
@@ -546,7 +558,7 @@ h2.forgot_title {
 
 .main .step01 .verify-content .s-form-row-lg .border .test-title {
     float: left;
-    line-height: 46px;
+    line-height: 47px;
     border-right: 1px solid #cdcdcd;
     width: 46px;
     background-color: #fcfcfc;
@@ -558,7 +570,7 @@ h2.forgot_title {
 }
 
 .main .step01 .verify-content .u-form-panel-lg .s-form-row-lg #get-text a {
-    color: #007ec5;
+    color: #ae8a45;
     font-size: 14px;
     text-align: center;
     display: block;
@@ -567,10 +579,10 @@ h2.forgot_title {
     background: #eee;
 }
 .main .step01 .verify-content .u-form-panel-lg .s-form-row-lg #get-text {
-    border: 1px solid #dcdcdc;
-    line-height: 46px;
+    border: 1px solid #c0c8bd;
+    line-height: 47px;
     float: left;
-    width: 110px;
+    width: 114px;
     border-left: 0;
     background-color: #fcfcfc;
 }
@@ -623,7 +635,7 @@ h2.forgot_title {
 
 .main .step01 .verify-content .box-phone {
     overflow: hidden;
-    margin-bottom: 22px;
+    margin-bottom: 24px;
 }
 
 .errors {
@@ -647,39 +659,37 @@ h2.forgot_title {
 
 .main .step02 .u-form-panel .box-password {
     overflow: hidden;
-    margin-bottom: 21px;
+    margin-bottom: 40px;
 }
 
 .step03 {
-    padding-top: 86px;
-    margin-left: 314px;
 }
-
+p.step03_img {
+    height: 193px;
+    margin: 98px auto 60px;
+    background: url(/ccc/newAccount/img/band-success.png) no-repeat center;
+}
 p.step03_title {
-    font-size: 22px;
-    color: #4a4a4a;
-    font-weight: bold;
-    background: url(/ccc/newAccount/img/band-success.png) no-repeat left center;
-    padding-left: 240px;
+    font-size: 30px;
+    color: #cf000e;
     background-size: 190px;
-    line-height: 160px;
+    line-height: 30px;
+    text-align: center;
 }
 
 .step03_conta {
     margin-top: 26px;
-    margin-left: 314px;
+    text-align: center;
+    font-size: 24px;
 }
-
+.step03_conta span{
+    color: #666666;
+}
 .step03_conta a {
     display: inline-block;
-    width: 138px;
     height: 46px;
-    border: 1px solid #ef9c2c;
     text-align: center;
-    font-size: 16px;
-    border-radius: 2px;
     line-height: 46px;
-    margin-right: 25px;
 }
 
 .step03_conta .then {
@@ -687,6 +697,8 @@ p.step03_title {
 }
 
 .step03_conta .now {
-    background-color: #ef9c2c;
-    color: #fff;
+    color: #bc955d;
+}
+.forgot-body-img{
+    padding: 0;
 }
