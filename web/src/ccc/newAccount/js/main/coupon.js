@@ -37,7 +37,7 @@ Date.prototype.Format = function (fmt) { //author: meizz
 }
 
 function init(type) {
-    console.log(type);
+    //console.log(type);
     if (type) {
         var couponRactive = new Ractive({
             el: '.panel-' + type,
@@ -77,7 +77,7 @@ function init(type) {
                     self.set('total', o.totalSize);
                     var parseResult = self.parseData(o.results);
                     //					self.setData(self.parseData(o.results));
-                    console.log('parseResult-----', parseResult);
+                    //console.log('parseResult-----', parseResult);
                     self.setData(parseResult);
                 });
                 if (self.bindTime == 0) {
@@ -94,7 +94,7 @@ function init(type) {
                     pageSize: self.size
                 }, function (o) {
 
-                    console.log(o.data);
+                    //console.log(o.data);
                     if (o.success) {
                         self.pageOneData = o.data.results;
                         callback(o.data);
@@ -213,7 +213,7 @@ function init(type) {
                 }
 
                 var totalPage = [];
-                console.log("===>> totalPage = " + self.totalPage);
+                //console.log("===>> totalPage = " + self.totalPage);
                 for (var i = 0; i < self.totalPage; i++) {
                     totalPage.push(i + 1);
                 }
@@ -223,7 +223,7 @@ function init(type) {
         });
 
         function renderPager(totalPage, current) {
-            console.log("===>render")
+            //console.log("===>render")
             if (!current) {
                 current = 1;
             }

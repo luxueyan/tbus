@@ -4,107 +4,87 @@
 	<div class="couponWrapper">
         {{#if type==='CASH'}}
         <div class="CASH">
+            <div class="header">
+                {{Ftype}}
+                <span>(过期时间：{{timeExpire}})</span>
+            </div>
              <div class="valueText">
-                <p class="big">{{displayValue}}<span>元</span></p>
-                <p>{{Ftype}}</p>
+                 ¥{{displayValue}}
+                 {{#if canuse}}
+                 <span class="exchange" data-id="{{ id }}" onclick="redeemCoupon(this);">兑现奖卷</span>
+                 {{/if}}
              </div>
 
-            <div class="couponWrapper-right">
+            <div class="couponWrapper-bottom">
                 <div class="description">
-                    {{description}}
-                    <p class="couponDescription">现金券可以直接兑换</p>
+                    说明: {{description}}
+                    <!--<p class="couponDescription">现金券可以直接兑换</p>-->
                 </div>
-                <div class="couponTitle-right">
-                    有效期至：{{timeExpire}}
-                    {{#if canuse}}
-                    <span class="exchange" data-id="{{ id }}" onclick="redeemCoupon(this);" style="margin-left:10px;">兑现奖卷</span>
-                    {{/if}}	
-                </div>			
             </div>
             
-            <div class="couponTitle">
-                {{#if USED}}
-                    <div class="coupon-used"></div>
-                {{/if}}
+            <!--<div class="couponTitle">-->
+                <!--{{#if USED}}-->
+                    <!--<div class="coupon-used"></div>-->
+                <!--{{/if}}-->
 
-                {{#if EXPIRED}}
-                   <div class="coupon-expired"></div>
-                {{/if}}
-            </div>
+                <!--{{#if EXPIRED}}-->
+                   <!--<div class="coupon-expired"></div>-->
+                <!--{{/if}}-->
+            <!--</div>-->
         </div>
         {{/if}}
         {{#if type==='INTEREST'}}
         <div class="INTEREST">
-            <div class="valueText">
-                <p class="big">{{displayValue}}<span>%</span></p>
-                <p>{{Ftype}}</p>
+            <div class="header">
+                {{Ftype}}
+                <span>(过期时间：{{timeExpire}})</span>
             </div>
-           <div class="couponWrapper-right">
-                <div class="description">
-                    {{description}}
-                    <p class="couponDescription">投资满{{couponPackage.minimumInvest}}元可使用</p>
-                </div>
-                <div class="couponTitle-right">有效期至：{{timeExpire}}</div>			
-            </div>	
-            <div class="couponTitle">
-                {{#if USED}}
-                    <div class="coupon-used"></div>
-                {{/if}}
+            <div class="valueText">
+                {{displayValue}}%
+            </div>
 
-                {{#if EXPIRED}}
-                   <div class="coupon-expired"></div>
-                {{/if}}
+            <div class="couponWrapper-bottom">
+                <div class="description">
+                    说明: {{description}}
+                    <!--<p class="couponDescription">现金券可以直接兑换</p>-->
+                </div>
             </div>
         </div>
         {{/if}}
         {{#if type==='PRINCIPAL'}}
         <div class="PRINCIPAL">
-            <div class="valueText">
-                <p class="big">{{displayValue}}<span>元</span></p>
-                <p>{{Ftype}}</p>
+            <div class="header">
+                {{Ftype}}
+                <span>(过期时间：{{timeExpire}})</span>
             </div>
-            <div class="couponWrapper-right">
-                <div class="description">
-                    {{description}}
-                    <p class="couponDescription">投资满{{couponPackage.minimumInvest}}元可使用</p>
-                </div>
-                <div class="couponTitle-right">有效期至：{{timeExpire}}</div>			
-            </div>	
-            <div class="couponTitle">
-                {{#if USED}}
-                    <div class="coupon-used"></div>
-                {{/if}}
+            <div class="valueText">
+                {{displayValue}}%
+            </div>
 
-                {{#if EXPIRED}}
-                   <div class="coupon-expired"></div>
-                {{/if}}
+            <div class="couponWrapper-bottom">
+                <div class="description">
+                    说明: {{description}}
+                    <!--<p class="couponDescription">现金券可以直接兑换</p>-->
+                </div>
             </div>
         </div>
         {{/if}}
 
         {{#if type==='REBATE'}}
         <div class="REBATE">
+            <div class="header">
+                {{Ftype}}
+                <span>(过期时间：{{timeExpire}})</span>
+            </div>
             <div class="valueText">
-                <p class="big">{{displayValue}}<span>元</span></p>
-                <p>{{Ftype}}</p>
+                {{displayValue}}%
             </div>
 
-            <div class="couponWrapper-right">
+            <div class="couponWrapper-bottom">
                 <div class="description">
-                    {{description}}
-<!--                    <p class="couponDescription">投资满{{couponPackage.minimumInvest}}元，{{couponPackage.minimumDuration }}个月可使用</p>-->
-                    <p class="couponDescription">投资满{{couponPackage.minimumInvest}}元可使用</p>
+                    说明: {{description}}
+                    <!--<p class="couponDescription">现金券可以直接兑换</p>-->
                 </div>
-                <div class="couponTitle-right">有效期至：{{timeExpire}}</div>			
-            </div>	
-            <div class="couponTitle">
-                {{#if USED}}
-                    <div class="coupon-used"></div>
-                {{/if}}
-
-                {{#if EXPIRED}}
-                   <div class="coupon-expired"></div>
-                {{/if}}
             </div>
         </div>
         {{/if}}
