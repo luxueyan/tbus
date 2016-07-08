@@ -615,6 +615,15 @@ table tbody tr td {
     height: 96px;
     overflow: hidden;
 }
+.infoContent .info_title{
+    font-size: 18px;
+    color: #999;
+    line-height: 103px;
+    margin-left: 35px;
+}
+.infoContent .info_title span{
+    color: #e4262b;
+}
 .info {
     float: left;
 
