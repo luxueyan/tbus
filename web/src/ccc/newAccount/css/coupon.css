@@ -1,14 +1,16 @@
 .coupon-content {
     background: #fff;
     min-height: 748px;
+    padding-top: 20px;
 }
 
 .coupon-content .coupon-nav {
-    line-height: 66px;
-    border-bottom: 1px dashed #dbdbdb;
     font-size: 24px;
-    padding-left: 46px;
-    color: #4a4a4a;
+    color: #ad8a58;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    border-bottom: 1px solid #dcdcdc;
+    margin-right: 27px;
 }
 .coupon-content .coupon-nav p{
     color: #4a90e2;
@@ -22,13 +24,11 @@
     margin-top: -2px;
 }
 .coupon-content .coupon-nav-view {
-    margin: 30px 60px;
-    border-bottom: 1px solid #ebebeb;
-    width: 870px;
+    margin: 30px 0;
 }
 
 .coupon-content .coupon-nav-view ul {
-    margin: 0 60px;
+    /*margin: 0 60px;*/
 }
 
 .coupon-content .coupon-nav-view .selectTitle {
@@ -40,39 +40,38 @@
 }
 
 .coupon-content .coupon-nav-view ul li {
-    width: 135px;
+    /*width: 230px;*/
     text-align: center;
-    color: #4a4a4a;
     cursor: pointer;
-    display: block;
     float: left;
-    /*    margin-right: 35px;*/
-    line-height: 30px;
+    margin-right: 5px;
+    background: #bb9f6a;
+    height: 40px;
 }
 
 .coupon-content .coupon-nav-view ul li:hover,
 .coupon-content .coupon-nav-view ul li.active {
-    border-bottom: 2px solid #ef9c2c;
-    color: #4a4a4a;
+    box-shadow: 0px 7px 6px -4px #ccc;
+    background: #fff;
 }
 
 .coupon-content .coupon-nav-view ul li:hover a {
-    background-color: #ef9c2c;
-    color: #fff;
-    padding: 0 24px;
+    color: #d60303;
+    /*padding: 0 24px;*/
 }
 
 .coupon-content-detail {
     clear: both;
-    margin-left: 60px;
+    /*margin-left: 60px;*/
 }
 
 .ccc-tab > ul.ttabs > li a {
     text-decoration: none;
-    color: #4a4a4a;
+    color: #fff;
     border-radius: 2px;
-    font-size: 16px;
+    font-size: 18px;
     margin: 10px 0;
+    padding: 0 100px;
 }
 
 .ccc-tab > ul.ttabs > li a:hover,
@@ -86,9 +85,8 @@
 }
 
 .ccc-tab > ul.ttabs .active a {
-    background-color: #ef9c2c;
-    color: #fff;
-    padding: 0 24px;
+    color: #d60303;
+    padding: 0 100px;
 }
 
 .ccc-tab > ul.stabs > li a {
@@ -125,72 +123,90 @@
 
 .couponWrapper {
     color: #fff;
-    margin: 30px 0 0 40px;
     overflow: hidden;
     position: relative;
+    float: left;
+    margin: 20px;
+    margin-left: 0;
+    box-shadow: 0px 4px 4px -3px #999;
 }
-
+.couponWrapper:last-child{
+    margin-right: 0px;
+}
 /*返现*/
 .couponWrapper .REBATE{
     background: url(/ccc/newAccount/img/coupon/rebate-bg.png ) no-repeat;
-    background-size: 150px 100%;
-    overflow: hidden;
     position: relative;
-    padding-left: 150px;
+    width: 306px;
+    height: 190px;
 }
 /*增值券*/
 .couponWrapper .PRINCIPAL{
     background: url(/ccc/newAccount/img/coupon/principal-bg.png ) no-repeat;
-    background-size: 150px 100%;
-    overflow: hidden;
     position: relative;
-    padding-left: 150px;
+    width: 306px;
+    height: 190px;
 }
 /*现金券*/
 .couponWrapper .CASH{
     background: url(/ccc/newAccount/img/coupon/cash-bg.png ) no-repeat;
-    background-size: 150px 100%;
-    overflow: hidden;
     position: relative;
-    padding-left: 150px;
+    width: 306px;
+    height: 190px;
 }
 /*加息券*/
 .couponWrapper .INTEREST{
     background: url(/ccc/newAccount/img/coupon/interest-bg.png ) no-repeat;
-    background-size: 150px 100%;
-    overflow: hidden;
     position: relative;
-    padding-left: 150px;
+    width: 306px;
+    height: 190px;
 }
 
-/*
-.couponWrapper .PRINCIPAL {
-    background: url(/ccc/newAccount/img/coupon/orange-bg.png );
-    width: 310px;
-    height: 170px;
-    border-radius: 10px;
-}*/
-
-.couponWrapper-left {
-    /*	float: left;*/
-    /*	border-right: 1px dashed #fff;*/
-    font-size: 20px;
-    /*	width: 85px;*/
-    /*	height: 144px;*/
-    padding: 20px 12px 0 20px;
-    word-break: break-all;
+.couponWrapper .header{
+    line-height: 46px;
+    margin-left: 20px;
+}
+.couponWrapper .header span{
+    font-size: 12px;
+}
+.couponWrapper .valueText {
+    font-size: 44px;
+    text-align: center;
+    color: #bb9f6a;
+    padding: 20px 0;
+    border-bottom: 1px solid #d8d8d8;
+    margin-left: 1px;
 }
 
-.couponWrapper-right {
-    width: 230px;
+.CASH .valueText{
+    background: url(/ccc/newAccount/img/coupon/icon_cash.png) no-repeat center;
+}
+.INTEREST .valueText{
+    background: url(/ccc/newAccount/img/coupon/icon_interest.png) no-repeat center;
+}
+.PRINCIPAL .valueText{
+    background: url(/ccc/newAccount/img/coupon/icon_interest.png) no-repeat center;
+}
+.couponWrapper .valueText .exchange {
+    background: #5bc0de;
+    color: #fff;
+    cursor: pointer;
+    padding: 4px 6px;
+    font-size: 12px;
+    position: absolute;
+    top: 110px;
+    right: 10px;
+}
+
+.couponWrapper-bottom{
+    margin: 10px;
+}
+.couponWrapper-bottom .description{
     color: #666;
-    border: 1px solid #e0d9d1;
-    border-left: none;
-    margin-left: -7px;
-    margin-top: 2px;
-    border-radius: 5px;
-    min-height: 121px;
+    font-size: 12px;
+    overflow: hidden;
 }
+
 
 .couponWrapper .couponTitle {
     position: absolute;
@@ -206,50 +222,7 @@
     /*	float: right;*/
 }
 
-.couponWrapper .valueText {
-    font-size: 20px;
-    width: 150px;
-    text-align: center;
-    letter-spacing: 1px;
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-}
 
-.couponWrapper .valueText .big {
-    font-size: 30px;
-    margin: 0 0 10px 0;
-}
-.couponWrapper .valueText .big span{
-    font-size: 14px;
-}
-.description{
-    margin-left: 20px;
-    margin-top: 5px;
-    font-size: 12px;
-    letter-spacing: 2px;
-    padding: 10px 0;
-}
-.couponWrapper .couponDescription {
-    margin-top: 10px;
-}
-.couponWrapper-right .couponTitle-right{
-    font-size: 12px;
-    color: #bebfc4;
-    border-top: 1px solid #bebfc4;
-    margin: 0 20px;
-    padding-top: 10px;
-    
-}
-.exchange {
-    background: #5bc0de;
-    color: #fff;
-    cursor: pointer;
-    border-radius: 3px;
-    padding: 4px 6px;
-    float: right;
-}
 
 .clear {
     clear: both;
@@ -317,53 +290,6 @@
     left: -5px;
 }
 
-.couponWrapper .CASH .couponTitle-left {
-    transform: rotate(-45deg);
-    position: absolute;
-    bottom: 16px;
-    right: 0px;
-}
-
-.label-success {
-    background: none;
-}
-
-.INTEREST .couponTitle .incline {
-    transform: rotate(-45deg);
-    position: absolute;
-    bottom: 16px;
-    right: 0px;
-}
-
-.REBATE .couponTitle .incline {
-    transform: rotate(-45deg);
-    position: absolute;
-    bottom: 16px;
-    right: 0px;
-}
-
-.CASH .couponTitle .incline {
-    transform: rotate(-45deg);
-    position: absolute;
-    bottom: 16px;
-    right: 0px;
-}
-
-.PRINCIPAL .couponTitle .incline {
-    transform: rotate(-45deg);
-    position: absolute;
-    bottom: 16px;
-    right: 0px;
-}
-
-.label-warning {
-    background: none;
-}
-
-.CASH .needChange {
-    float: right;
-    margin-right: 20px;
-}
 
 .no-coupon {
     margin: 0 auto;
@@ -379,7 +305,7 @@
 
 .invest-pager li a:hover {
     color: #fff;
-    background: #ef9c2c;
+    background: #bb9f6a;
 }
 
 .invest-pager li a {
@@ -394,14 +320,15 @@
 }
 
 .invest-pager .current-page a {
-    background-color: #ef9c2c;
+    background-color: #bb9f6a;
     color: #fff;
-    border: 1px #ef9c2c solid;
+    border: 1px #bb9f6a solid;
 }
 
 #coupon-pager{
     text-align: center;
     margin-top: 20px;
+    margin-right: 45px;
 }
 .coupon-used{
     background: url(/ccc/newAccount/img/coupon/coupon-used.png) no-repeat;
