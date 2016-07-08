@@ -31,6 +31,11 @@ if (new RegExp("^/$")
     $(".u-nolist-ul li a#invest")
         .addClass("navactive");
 
+}  else if (new RegExp("^/credit")
+        .test(path)) {
+    $(".u-nolist-ul li a#credit")
+        .addClass("navactive");
+
 } else if (new RegExp("^/newAccount/*")
     .test(path)) {
     $(".u-nolist-ul li a#account")
