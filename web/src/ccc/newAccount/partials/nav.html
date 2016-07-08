@@ -20,7 +20,7 @@
 		<ul class="nav-toggle-menu">
 			<!--<li class="{{#if userInfo}}active{{/if}}"><a href="/newAccount/settings/userInfo">个人信息</a></li>-->
 			<li class="{{#if fixed}}active{{/if}}"><a href="/newAccount/settings/fixed">固定收益</a></li>
-			<li class="{{#if bankCards}}active{{/if}}"><a href="/newAccount/settings/bankCards">浮动收益</a></li>
+			<li class="{{#if float}}active{{/if}}"><a href="/newAccount/settings/float">浮动收益</a></li>
 			<li class="{{#if password}}active{{/if}}"><a href="/newAccount/settings/password">精选基金</a></li>
 			<!--<li class="{{#if password}}active{{/if}}"><a href="/newAccount/settings/password">高端理财</a></li>-->
 		</ul>
@@ -36,12 +36,12 @@
 		<!--<span class="nav-text {{#if home}}nav-text-active{{/if}}"><a href="/newAccount/home">理财账户</a></span>-->
 	<!--</li>-->
     <li class="nav-li">
-		{{#if userInfo}}
+		{{#if userInfo || bankCards}}
 			<span class="icon-active"></span>
 		{{else}}
 			<span class="icon-common"></span>
 		{{/if}}
-		<span class="nav-text {{#if userInfo}}nav-text-active{{/if}}"><a href="/newAccount/userInfo">个人中心</a></span>
+		<span class="nav-text {{#if userInfo || bankCards}}nav-text-active{{/if}}"><a href="/newAccount/userInfo">个人中心</a></span>
 	</li>
     <!--<li class="nav-li">-->
 		<!--{{#if showbank||bankCards}}-->

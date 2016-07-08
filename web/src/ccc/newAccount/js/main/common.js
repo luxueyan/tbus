@@ -67,6 +67,13 @@ var infoRactive = new Ractive({
 	},
 
 	oninit: function () {
+		var location = window.location.pathname.split('/');
+		var tab = location[location.length -2];
+		var menu = location[location.length -1];
+		console.log('tab111'+tab);
+		console.log(menu);
+		this.set(tab, true);
+		this.set(menu, true);
 		// 问候语
 		var now = new Date();
 		var hours = now.getHours();

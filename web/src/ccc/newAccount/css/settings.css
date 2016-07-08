@@ -53,21 +53,6 @@ p.tips {
     top: 20px;
 }
 
-.sendCode {
-    font-size: 14px;
-    width: 110px;
-    cursor: pointer;
-    display: inline-block;
-    text-align: center;
-    line-height: 46px;
-    height: 46px;
-    background: #fcfcfc;
-    color: #4c91e2;
-    border-bottom: 1px solid #cdcdcd;
-    border-top: 1px solid #cdcdcd;
-    border-right: 1px solid #cdcdcd;
-}
-
 .isAu {
     margin-left: 180px;
 }
@@ -127,17 +112,7 @@ p.tips {
     text-align: left;
 }
 
-#main-container .row .card-brame {
-    margin-left: 0px;
-    margin-right: 0px;
-    border: 1px solid #ccc;
-    width: 380px;
-    overflow: hidden;
-}
 
-#main-container .row .card-brame input {
-    border: 0;
-}
 
 #main-container .row {
     margin-bottom: 23px;
@@ -146,19 +121,7 @@ p.tips {
     margin-left: 186px;
 }
 
-.row .payInp {
-    float: left;
-    display: inline-block;
-    width: 336px;
-    height: 48px;
-    font-size: 14px;
-    color: #000;
-    text-indent: 16px;
-    border: none;
-    border-right: 1px solid #cdcdcd;
-    border-top: 1px solid #cdcdcd;
-    border-bottom: 1px solid #cdcdcd;
-}
+
 
 .row .tipss {
     float: left;
@@ -278,13 +241,7 @@ p.tips {
     padding: 2px 0;
 }
 
-.select {
-    width: 330px;
-    font-size: 14px;
-    height: 48px;
-    border: none;
-    float: left;
-}
+
 
 .ABC {
     background-image: url(/ccc/global/img/banks/ABC.png);
@@ -676,22 +633,91 @@ p.tips {
 }
 
 
-/*银行卡管理新加*/
-
-.bankcard-nav {
-    line-height: 66px;
-    border-bottom: 1px dashed #dbdbdb;
-    font-size: 24px;
-    padding-left: 46px;
-    color: #000;
+/*添加银行卡*/
+.bind-card-wrapper{
+    margin: 60px;
+}
+#main-container .bind-card-wrapper .row{
+    margin-bottom: 23px;
+    margin-left: 0;
+    margin-right: 0;
+    float: left;
+    margin-right: 51px;
+}
+#main-container .row .card-brame {
+    margin-left: 0px;
+    margin-right: 0px;
+    border: 1px solid #ccc;
+    width: 380px;
+    overflow: hidden;
 }
 
-.bankcard-nav .shuline {
-    color: #ccc;
-    font-size: 30px;
-    margin: 0px 10px;
+.img-box {
+    width: 42px;
+    display: inline-block;
+    border-right: 1px solid #ccc;
+    height: 46px;
+    line-height: 46px;
+    float: left;
 }
-
+.select {
+    width: 330px;
+    font-size: 16px;
+    height: 46px;
+    border: none;
+    float: left;
+    color: #999;
+    text-indent: 8px;
+}
+#main-container .row .card-brame input {
+    border: 0;
+}
+.row .payInp {
+    float: left;
+    display: inline-block;
+    width: 336px;
+    height: 46px;
+    font-size: 16px;
+    color: #bbbbbb;
+    text-indent: 16px;
+}
+#main-container .row .card-brame input.payCodeInp{
+    width: 218px;
+    border-right: 1px solid #ccc;
+    height: 46px;
+}
+.sendCode {
+    font-size: 14px;
+    width: 110px;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    line-height: 46px;
+    height: 46px;
+    background: #fcfcfc;
+    color: #ae8a45;
+}
+.bind-card-wrapper .agree-box{
+    clear: both;
+    margin: 20px 0;
+    padding-top: 50px;
+}
+.bind-card-wrapper .agree-box input{
+    margin-right: 10px;
+}
+.bind-card-wrapper .agree-box a{
+    color:#bd9760;
+}
+.bind-card-wrapper .btn-box button{
+    width: 200px;
+    background: #e4262b;
+    line-height: 45px;
+    letter-spacing: 3px;
+    font-size: 18px;
+    color: #fff;
+    border: none;
+}
+/*添加银行卡 结束*/
 .row img {
     width: 23px;
     margin-left: 8px;
@@ -710,10 +736,6 @@ p.tips {
     cursor: pointer;
 }
 
-.banks-container .row {
-    margin-left: 276px!important;
-}
-
 .addcard-info {
     line-height: 60px;
     color: #666;
@@ -728,14 +750,7 @@ p.tips {
     background: #fff;
 }
 
-.img-box {
-    width: 42px;
-    display: inline-block;
-    border-right: 1px solid #ccc;
-    height: 48px;
-    line-height: 48px;
-    float: left;
-}
+
 
 
 /*showbank*/
@@ -769,10 +784,6 @@ p.tips {
     padding-bottom: 60px;
 }
 
-.bind-card-wrapper,
-.bankcard-nav {
-    background: #fff;
-}
 .bind-card-wrapper .error{
     color: #d2252c;
     margin-left: 276px;
