@@ -74,7 +74,7 @@ input:-webkit-autofill {
 .s-input-wrapper .lineUser .mdi {
     position: absolute;
     border-right: 1px solid #c0c8bd;
-    height: 40px;
+    height: 47px;
     width: 38px;
 }
 
@@ -94,15 +94,15 @@ input:-webkit-autofill {
 }
 
 .s-input-wrapper .lineUser input {
-    height: 40px;
+    height: 47px;
     padding-left: 50px;
-    width: 320px;
+    width: 380px;
     font-size: 16px;
     border: 1px solid #c0c8bd;
 }
 
 .s-input-wrapper .lineUser a {
-    color: #e60012;
+    color: #ae8a45;
     text-decoration: underline;
     padding-left: 15px;
 }
@@ -131,7 +131,7 @@ input:-webkit-autofill {
     color: #fff;
     font-size: 24px;
     border: none;
-    width: 320px;
+    width: 380px;
     height: 44px;
     margin-top: 44px;
     letter-spacing: 8px;
