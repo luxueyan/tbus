@@ -7,10 +7,10 @@ module.exports = function (router) {
         }
 
         res.expose(user, 'user');
-        res.locals.title = '理财产品_自金网平台';
-        res.locals.keywords = '网络投资|P2P理财|个人理财|奇乐融投资理财|';
+        res.locals.title = '太合汇';
+        res.locals.keywords = '网络投资|P2P理财|个人理财|投资理财|';
         res.locals.description =
-            '718金融·理财平台为您提供了多种理财产品，每种理财产品都有不同的特点，满足您的投资需求。理财产品有：新手专享、活动专享、新能宝等。';
+            '理财平台为您提供了多种理财产品，每种理财产品都有不同的特点，满足您的投资需求。理财产品有：新手专享、活动专享、新能宝等。';
 
 //        var productKey = ['XSZX', 'HDZX', 'LCZQ'];
 //        res.locals.products = [];

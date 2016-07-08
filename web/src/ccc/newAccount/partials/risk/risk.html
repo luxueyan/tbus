@@ -1,4 +1,23 @@
-<div class = "account-userInfo-wrapper">
-    等待开发...
+<div class = "account-risk-wrapper">
+    <div class="risk-nav">
+        <span>风险测评</span>
+        <p>上次测评时间:{{}}</p>
+    </div>
+    {{#if question}}
+    问题列表
+    {{/if}}
+
+    {{#if result}}
+    <div class="result-box">
+        <div class="header">
+            <div class="type">
+                您的风险承受能力: <span>进取型{{}}</span>
+            </div>
+            <div class="btn">
+                <button>重新测评</button>
+            </div>
+        </div>
+    </div>
+    {{/if}}
 </div>
 
