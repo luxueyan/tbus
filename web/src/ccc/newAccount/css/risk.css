@@ -31,6 +31,7 @@
     font-size: 18px;
     background: url("/ccc/newAccount/img/icon_risk.png") no-repeat left 8px;
     padding-left: 33px;
+    margin-top: 11px;
 }
 .result-box .header .type span{
     color:#e70202;
@@ -38,4 +39,33 @@
 }
 .result-box .header .btn{
     float: right;
+    margin-right: 14px;
+}
+.result-box .header button{
+    width: 144px;
+    height: 35px;
+    background: #e4262b;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    line-height: 35px;
+    text-align: center;
+}
+.img-box{
+    text-align: center;
+    margin: 50px 22px 60px 0px;
+}
+.img-box img{
+
+}
+.tip{
+    margin-left: 10px;
+    font-size: 12px;
+}
+.tip h5{
+    color: #666;
+    font-weight: bold;
+}
+.tip p{
+    line-height: 30px;
 }

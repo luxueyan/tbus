@@ -9,7 +9,9 @@ var ractive = new Ractive({
         result:true
     },
     init: function() {
-
+        accountService.getQuestion(function (res) {
+            console.log(res);
+        })
     },
 });
 
