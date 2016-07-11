@@ -3,7 +3,7 @@
 "use strict";
 var i18n = require('@ds/i18n')['zh-cn'];
 
-var InvestListService = require('ccc/investCredit/js/main/service/list')
+var InvestListService = require('ccc/creditList/js/main/service/list')
     .InvestListService;
 var utils = require('ccc/global/js/lib/utils');
 require('ccc/global/js/lib/jquery.easy-pie-chart.js')
@@ -129,7 +129,7 @@ function replaceStr(str){
 InvestListService.getCreditassignData(function (res) {
     var investRactive = new Ractive({
         el:".invest-list-wrapper",
-        template: require('ccc/investCredit/partials/singleInvest.html'),
+        template: require('ccc/creditList/partials/singleInvest.html'),
         data: {
             list: parseLoanList(res.results),
            // RepaymentMethod: i18n.enums.RepaymentMethod, // 还款方式
@@ -160,7 +160,7 @@ InvestListService.getCreditassignData(function (res) {
         }
         var pagerRactive = new Ractive({
             el: '#invest-pager',
-            template: require('ccc/investCredit/partials/pager.html'),
+            template: require('ccc/creditList/partials/pager.html'),
             data: {
                 totalPage: createList(res.totalSize, current),
                 current: current
