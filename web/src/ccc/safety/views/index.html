@@ -1,0 +1,154 @@
+<dsBody layout={{dsLayoutPath}}>
+    <link rel="stylesheet" href="/ccc/safety/css/style.css">
+
+    <!-- 轮播组件 -->
+
+    <div class="carousel-wrapper">
+
+        <div id="my-carousel" class="carousel slide" data-ride="carousel" data-interval="5000">
+            <!-- Indicators -->
+            <ol class="carousel-indicators" style="display: none">
+                <!--{{JSON.stringify(carousel)}}-&#45;&#45;&#45;&#45;-->
+                {{#carousel}}
+                <li data-target="#my-carousel" data-slide-to="{{@index}}" class="{{#if @index === 0 }}active{{/if}}">
+                </li>
+                {{/}}
+            </ol>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                {{#carousel}}
+                <div class="item {{#if @index === 0}}active{{/if}}" style="background: {{this.bgc}}">
+                    <a href="{{this.link}}" target="_blank">
+                        <div style="background-image:url({{this.content}}); background-repeat:no-repeat; background-position:center;background-size: 100% 350px;padding-top:350px;">
+                        </div>
+                    </a>
+                </div>
+                {{/carousel}}
+            </div>
+
+            <div class="banner-account－box">
+                <div class="banner-account">
+
+                    {{#picture[1]}}
+                    <div class="ad">
+                        <a href="{{this.link}}" target="_blank">
+                            <div style="background-image:url({{this.content}});
+                            background-repeat:no-repeat; background-position:center;
+                            background-size: 100% 200px;padding-top:200px;">
+                            </div>
+                        </a>
+                    </div>
+                    {{/}}
+
+                    <div class="free-register">
+                        {{#if user}}
+                        <a href="/newAccount/settings/home"><div class="btn-index">我的账户</div></a>
+                        {{else}}
+                        <a href="/register"><div class="btn-index">立即注册</div></a>
+                        {{/if}}
+                    </div>
+                    {{#if user}}
+                    <h3 class="bannerLogin">{{#if userInfo.user.name}}您当前的登录账户是{{else}}{{shangwuxiawu}}好{{/if}}：<span >{{#if !userInfo.user.name}}{{user.mobile}}{{else}}{{userInfo.user.name}}{{/if}}</span></h3>
+                    {{else}}
+                    <h3 class="bannerLogin">已有账号? <a class="underline" href="/login">立即登录</a></h3>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="safety-box safety-box1">
+        <div class="step step-first">
+            <span class="step-title">资金管理</span>
+            <span class="step-content">
+                严格信用评估精细流程管控<br/>
+                第三方合作模式确保平台纯净运营
+            </span>
+            <img class="step-icon"src="/ccc/safety/img/tips1.png" />
+        </div>
+    </div>
+    <div class="safety-box safety-box2">
+        <div class="step step-second">
+            <span class="step-title">数据管理</span>
+            <span class="step-content">
+                现代化管理技术,数字化运营模式<br/>
+                网络运营工程师实时监控,确保网络无忧运行
+            </span>
+            <img class="step-icon"src="/ccc/safety/img/tips2.png" />
+        </div>
+    </div>
+    <div class="safety-box safety-box3">
+        <div class="step step-third">
+            <span class="step-title">法律条款</span>
+            <span class="step-content">
+                符合法律法规,履行监管政策<br/>
+                脚踏实地规范经营,严格自律守底线
+            </span>
+            <img class="step-icon"src="/ccc/safety/img/tips3.png" />
+        </div>
+    </div>
+    <div class="safety-box safety-box4">
+        <div class="step step-four">
+            <span class="step-title">隐私保护</span>
+            <span class="step-content">
+                严格操作规范,定立保密协议,<br/>
+                专人专岗保管客户信息,用户隐私可放心
+            </span>
+            <img class="step-icon"src="/ccc/safety/img/tips4.png" />
+        </div>
+    </div>
+    <div class="safety-mechanism-box">
+        <h1 class="mechanism-header">保障机制</h1>
+        <div class="safety-mechanism clearfix">
+            <div class="mechanism-wrap-left">
+                <ul class="mechanism-detail">
+                    <li>
+                        <img src="/ccc/safety/img/machine1.png">
+                        <div class="detail">
+                            <h2>信用评估</h2>
+                            <p>独有的信用审核机制对每一位贷款主体进行</p>
+                            <p>严格的信用评估,并为其建立终身信用档案。</p>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="/ccc/safety/img/machine3.png">
+                        <div class="detail">
+                            <h2>第三方资金托管</h2>
+                            <p>用户资金只存在于第三方资金托管平台中的</p>
+                            <p>托管账户里,平台无法擅自动用客户的资金,</p>
+                            <p>保障投资资金流向的透明化。</p>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="/ccc/safety/img/machine5.png">
+                        <div class="detail">
+                            <h2>第三方保险机制</h2>
+                            <p>与保险公司达成合作,为每一位贷款人投保意外险</p>
+                            <p>确保贷款人具备还款能力,防范资金意外风险。</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="mechanism-wrap-right">
+                <ul class="mechanism-detail">
+                    <li>
+                        <img src="/ccc/safety/img/machine2.png">
+                        <div class="detail">
+                            <h2>流程管控</h2>
+                            <p>对每一位贷款主体实施贷前,贷中,贷后全流程跟踪,</p>
+                            <p>将信用风险控制分解到贷款业务各个环节</p>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="/ccc/safety/img/machine4.png">
+                        <div class="detail">
+                            <h2>第三方担保机制</h2>
+                            <p>由第三方征信公司严格把信审关,最大程度保障用户资金安全。</p>
+                        </div>
+                    </li>
+                    <li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="/ccc/safety/js/main/index.js"></script>
+</dsBody>

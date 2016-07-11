@@ -1,0 +1,206 @@
+.safety-banner-box{
+    height: 310px;
+    background: url(/ccc/safety/img/banner.png) 50% no-repeat;
+    background-size: cover;
+}
+.safety-box{
+    height: 301px;
+}
+.safety-box1{
+    background: url(/ccc/safety/img/tips-bg-1.png) no-repeat center;
+}
+.safety-box2{
+    background: url(/ccc/safety/img/tips-bg-2.png) no-repeat center;
+}
+.safety-box3{
+    background: url(/ccc/safety/img/tips-bg-3.png) no-repeat center;
+}
+.safety-box4{
+    background: url(/ccc/safety/img/tips-bg-4.png) no-repeat center;
+ }
+.step{
+    width: 1200px;
+    height: 301px;
+    margin: 0 auto;
+    position: relative;
+
+}
+/*标题*/
+.step .step-title{
+    font-size: 48px;
+    color: #fff;
+    position: absolute;
+}
+.step-first .step-title{
+     top:190px;
+     right: 220px;
+ }
+.step-second .step-title{
+    top:190px;
+    left: 220px;
+}
+.step-third .step-title{
+    top:190px;
+    right: 220px;
+}
+.step-four .step-title{
+    top:190px;
+    left: 220px;
+}
+/*内容*/
+.step .step-content{
+    font-size: 24px;
+    color: #666666;
+    position: absolute;
+
+}
+.step-first .step-content{
+    top:116px;
+    left: 110px;
+    text-align: right;
+}
+.step-second .step-content{
+    top:116px;
+    right: 14px;
+    text-align: left;
+}
+.step-third .step-content{
+    top:116px;
+    left: 105px;
+    text-align: right;
+}
+.step-four .step-content{
+    top:116px;
+    right: 67px;
+    text-align: left;
+}
+/*图标*/
+.step .step-icon{
+    position: absolute;
+}
+.step-first .step-icon{
+    background: url(/ccc/safety/img/tips1.png) no-repeat center;;
+    top: 27px;
+    right: 272px;
+}
+.step-second .step-icon{
+    background: url(/ccc/safety/img/tips2.png) no-repeat center;
+    top:27px;
+    left: 270px;
+}
+.step-third .step-icon{
+    background: url(/ccc/safety/img/tips3.png) no-repeat center;
+    top:27px;
+    right: 255px;
+}
+.step-four .step-icon{
+    background: url(/ccc/safety/img/tips4.png) no-repeat center;
+    top:50px;
+    left: 260px;
+}
+/*机制*/
+.safety-mechanism-box{
+    box-shadow:2px 5px 10px #d8d8d7 inset;
+}
+.safety-mechanism-box .mechanism-header{
+    font-size: 36px;
+    color: #666;
+    text-space: 50;
+    text-align: center;
+    height: 120px;
+    line-height: 130px;
+    -moz-box-shadow:2px -5px 10px #d8d8d7 inset;
+    -webkit-box-shadow:2px -5px 10px #d8d8d7 inset;
+    box-shadow:2px -5px 10px #d8d8d7 inset;
+}
+.safety-mechanism{
+    width: 1200px;
+    margin: 0 auto;
+}
+.mechanism-wrap-left{
+    width: 515px;
+    float: left;
+    margin-left: 70px;
+}
+.mechanism-wrap-right {
+    width: 550px;
+    float: left;
+    margin-left: 64px;
+}
+.mechanism-detail{
+
+}
+.mechanism-detail li{
+    overflow: hidden;
+}
+.mechanism-detail li img{
+    margin-top: 42px;
+}
+.mechanism-wrap-left .detail{
+    width: 400px;
+    padding: 32px 0 48px 0;
+    float: right;
+    border-bottom: 2px solid #dcdcdc;
+}
+.mechanism-wrap-right .detail{
+    width: 440px;
+    padding: 32px 0 48px 0;
+    float: right;
+    border-bottom: 2px solid #dcdcdc;
+}
+.detail h2{
+    font-size: 24px;
+    color: #666;
+    padding-left: 10px;
+    border-left: 3px solid #666;
+    margin-bottom: 10px;
+}
+.detail p{
+    font-size: 18px;
+    font-family: "微软雅黑";
+    font-weight: 100;
+}
+
+/**/
+.banner-account－box{
+    position: absolute;
+    top:50%;
+    margin-top: -160px;
+    left:50%;
+    margin-left:251px;
+}
+.banner-account {
+    width: 300px;
+    height: 320px;
+    padding: 10px 16px;
+    background: #eceef1;
+}
+.free-register {
+    width: 250px;
+    height: 42px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+.bannerLogin{
+    font-size: 14px;
+    text-align: right;
+    margin-top: 28px;
+    padding-right: 22px;
+
+}
+
+.bannerLogin .underline{
+    text-decoration:underline;
+    color: #2d7dec;
+}
+
+.banner-account .btn-index{
+    width: 250px;
+    height: 42px;
+    font-size: 18px;
+    color: #ffffff;
+    background: #e60012;
+    text-align: center;
+    line-height: 42px;
+    border-radius: 4px;
+}
