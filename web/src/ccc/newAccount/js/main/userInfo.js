@@ -125,10 +125,10 @@ function formatNumber(number, left, right) {
 }
 
 $(function (){
-    $(".goRz").click(function (e){
-        e.preventDefault();
-        $('.rzz').toggle();
-    });
+    //$(".goRz").click(function (e){
+    //    e.preventDefault();
+    //    $('.rzz').toggle();
+    //});
 
     $(".rzE_button").click(function (){
         var email = $('.rZemail').val();

@@ -234,12 +234,16 @@ module.exports = function(router) {
         });
     });
 
+    router.get('/bindingEmail', function(req, res) {
+        res.render('newAccount/bindingEmail', {
+            title: '太合汇'
+        });
+    });
     router.get('/invest/*', function(req, res) {
         res.render('newAccount/invest', {
             title: '太合汇'
         });
     });
-
     router.get('/loanRequest/*', function(req, res) {
         res.render('newAccount/loan', {
             title: '太合汇'
