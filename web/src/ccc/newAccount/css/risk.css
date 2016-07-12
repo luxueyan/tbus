@@ -1,3 +1,14 @@
+
+.account-risk-wrapper{
+    margin-right: 27px;
+}
+h3{
+    font-size: 24px;
+    color: #666;
+    text-align: center;
+    border-bottom: 1px solid #c8c8c8;
+    padding: 35px 0;
+}
 .risk-content {
     background: #fff;
     min-height: 748px;
@@ -10,7 +21,7 @@
     padding-bottom: 15px;
     padding-left: 10px;
     border-bottom: 1px solid #dcdcdc;
-    margin-right: 27px;
+    /*margin-right: 27px;*/
 }
 .risk-content .risk-nav p{
     color: #666;
@@ -20,16 +31,68 @@
     margin-top: 8px;
 }
 
+
+.question-box .tip p{
+    margin-left: 10px;
+    margin-right: 10px;
+    line-height: 22px;
+}
+.question-box .tip .red{
+    color: #da0000;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.question-content{
+    border: 1px solid #d2d2d2;
+    margin-top: 25px;
+    padding: 25px;
+}
+.question-content .title{
+    font-size: 15px;
+    padding: 10px 0;
+    padding-left: 4px;
+    margin-top: 5px;
+}
+.question-content ul{
+    overflow: hidden;
+    padding-left: 4px;
+}
+.question-content ul li {
+    float: left;
+    padding-right: 120px;
+    margin: 5px 0;
+}
+.question-content ul li input{
+    margin-right: 5px;
+}
+.submit_btn{
+    width: 145px;
+    margin: auto;
+    margin-top: 26px;
+}
+.submit_btn button{
+    width: 145px;
+    height: 45px;
+    background: #e4262b;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+}
+
+
+
+
 .result-box{
     margin-top: 50px;
 }
 .result-box .header{
     overflow: hidden;
+    margin-left: 20px;
 }
 .result-box .header .type{
     float: left;
     font-size: 18px;
-    background: url("/ccc/newAccount/img/icon_risk.png") no-repeat left 8px;
+    background: url("/ccc/newAccount/img/icon_risk.png") no-repeat left 2px;
     padding-left: 33px;
     margin-top: 11px;
 }
@@ -53,11 +116,65 @@
 }
 .img-box{
     text-align: center;
-    margin: 50px 22px 60px 0px;
-}
-.img-box img{
+    margin: 50px 0px 60px 10px;
 
 }
+.img-box .type{
+    width: 260px;
+    margin-right: 10px;
+}
+.img-box .declare{
+    width: 668px;
+}
+
+.img-box .title{
+    color: #fff;
+    overflow: hidden;
+    font-size: 20px;
+}
+.img-box .title .common{
+    float: left;
+    background: #999;
+    padding: 10px 0;
+}
+.img-box .detail{
+    overflow: hidden;
+}
+.img-box .detail .common{
+    float: left;
+    background: #eeeeee;
+    height: 130px;
+    margin-top: 7px;
+}
+.img-box .detail .type{
+    font-size: 25px;
+    padding: 30px;
+    margin-right: 6px;
+}
+.img-box .detail .declare{
+    font-size: 15px;
+    text-align: left;
+    padding: 24px;
+    line-height: 26px;
+    width: 672px;
+}
+.img-box .detail .red{
+    border-left: 24px solid #e6474a;
+}
+.img-box .detail .orange{
+    border-left: 24px solid #e65e2e;
+}
+.img-box .detail .yellow{
+    border-left: 24px solid #f7a633;
+}
+.img-box .detail .green{
+    border-left: 24px solid #69b15d;
+}
+.img-box .detail .blue{
+    border-left: 24px solid #006b9e;
+}
+
+
 .tip{
     margin-left: 10px;
     font-size: 12px;
