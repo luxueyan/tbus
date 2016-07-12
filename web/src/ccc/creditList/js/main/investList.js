@@ -136,9 +136,70 @@ InvestListService.getCreditassignData(function (res) {
             user:CC.user
         }
     });
-//    initailEasyPieChart();
-//    ininconut();
+    //initailEasyPieChart();
+    //ininconut();
     renderPager(res);
+
+
+    $('.sTitou li').click(function () {
+        if (!$(this).hasClass("selectTitle")) {
+            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
+            var minamount = $(this)
+                .data('min-amount');
+            var maxamount = $(this)
+                .data('max-amount');
+
+            params.currentPage = 1;
+            params.minInvestAmount = minamount;
+            params.maxInvestAmount = maxamount;
+            render(params);
+        }
+    });
+
+    $('.sDuration li').click(function () {
+        if (!$(this).hasClass("selectTitle")) {
+            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
+            var minDuration = $(this)
+                .data('min-duration');
+            var maxDuration = $(this)
+                .data('max-duration');
+
+            params.currentPage = 1;
+            params.minDuration = minDuration;
+            params.maxDuration = maxDuration;
+            render(params);
+        }
+    });
+
+    $('.orderbyrules li').click(function () {
+        var rules = $(this).data('rules');
+        if (rules != 'normal') {
+            if ($(this).hasClass('activeLi01')) {
+                params.asc = false;
+                console.log($(this).hasClass('activeLi01'));
+                $(this).addClass('activeLi02').removeClass('activeLi01');
+                $(this).siblings().removeClass('activeLi01');
+                $(this).siblings().removeClass('activeLi02');
+            } else {
+                params.asc = true;
+                console.log($(this).hasClass('activeLi01'))
+                $(this).addClass('activeLi01').removeClass('activeLi02');
+                $(this).siblings().removeClass('activeLi01');
+                $(this).siblings().removeClass('activeLi02');
+            }
+            params.currentPage = 1;
+            params.orderBy = rules;
+        } else {
+            params.currentPage = 1;
+            delete params.orderBy;
+            delete params.asc;
+            $(this).addClass('activeLi01');
+            $(this).siblings().removeClass('activeLi01');
+            $(this).siblings().removeClass('activeLi02');
+        }
+        render(params);
+    });
+
     function render(params) {
         InvestListService.getLoanListWithCondition(jsonToParams(params),
             function (
@@ -147,8 +208,8 @@ InvestListService.getCreditassignData(function (res) {
                 setTimeout(function () {
                     investRactive.set('list', parseLoanList(res.results));
 					console.log(investRactive.get('list'));
-                    initailEasyPieChart();
-                    ininconut();
+                    //initailEasyPieChart();
+                    //ininconut();
                     renderPager(res, params.currentPage);
                 }, 1);
             });
