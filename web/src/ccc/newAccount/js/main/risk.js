@@ -5,14 +5,47 @@ var ractive = new Ractive({
     template: require('ccc/newAccount/partials/risk/risk.html'),
 
     data: {
-        question:false,
-        result:true
+        question:true,
+        result:false,
+        list:'',
+        type:'',
     },
     init: function() {
+        var self = this;
+
         accountService.getQuestion(function (res) {
-            console.log(res);
-        })
+            self.set("list",res.questions);
+        });
+
     },
+    oncomplete:function(){
+        var self = this;
+
+        self.on('getScore',function(){
+            var sum =0;
+            var len = $('input:radio:checked').length;
+            if(len<10){
+                alert("请确保每个选项都已选择!");
+                return;
+            }
+            $('input:radio:checked').each(function(i){
+                var score = parseInt($(this).val());
+                sum+=score;
+            });
+
+            self.set('question','false');
+            self.set('result','true');
+
+            //判断类型
+            if(sum>0&&sum<=30){
+                self.set('type','保守型');
+            }else if(sum>30&&sum<=60){
+                self.set('type','稳定型');
+            };
+
+        });
+
+    }
 });
 
 ractive.on('submit',function() {

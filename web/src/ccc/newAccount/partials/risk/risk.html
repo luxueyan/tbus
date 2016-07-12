@@ -4,21 +4,82 @@
         <p>上次测评时间:{{}}</p>
     </div>
     {{#if question}}
-    问题列表
+    <div class="question-box">
+        <h3>客户风险承受能力评估问卷</h3>
+        <div class="tip">
+            <p class="red">重要提示：请先仔细阅读然后填写《客户投资风险承受能力评估问卷》</p>
+            <p>1、向本司第一次申请购买任何投资产品前，请填写本问卷，并于每年进行重新评估。本问卷旨在了解您的财务状况、投资经验及风险承受能力等，借此协助您选择合适的理财产品类别，以达到您的投资目标；</p>
+            <p>2、风险提示：投资需承担各类风险， 可能遭受资金损失。同时， 投资时还应考虑本金兑付风险、市场风险、流动性风险、汇率风险、信用风险、利率风险、赋税风险、产品复杂度风险等各类风险。</p>
+        </div>
+        <div class="question-content">
+            {{#list:i}}
+            <p class="title">{{ordinal}}.{{content}}</p>
+            <ul>
+                {{#choices}}
+                <li><input type="radio" name="question{{i+1}}" value="{{score}}"/>{{value}}.{{content}}</li>
+                {{/choices}}
+            </ul>
+            {{/list}}
+        </div>
+        <div class="submit_btn">
+            <button on-click="getScore">提交</button>
+        </div>
+
+    </div>
     {{/if}}
 
     {{#if result}}
     <div class="result-box">
+        <h3>测评结果</h3>
         <div class="header">
             <div class="type">
-                您的风险承受能力: <span>进取型{{}}</span>
+                您的风险承受能力: <span>{{type}}</span>
             </div>
             <div class="btn">
                 <button>重新测评</button>
             </div>
         </div>
         <div class="img-box">
-            <img src="/ccc/newAccount/img/risk_result.png">
+            <!--<img src="/ccc/newAccount/img/risk_result.png">-->
+            <div class="title">
+                <div class="common type">投资者类型</div>
+                <div class="common declare">说明</div>
+            </div>
+            <div class="detail">
+                <div class="red type common">
+                    <p>激进型</p>
+                    <p>(81-100分)</p>
+                </div>
+                <div class="red declare common">您属于可以承受高风险类型的投资者。您适合投资于能够为您提供高升值能力而投资价值波动大的投资工具。最坏的情况下， 您可能失去全部投资本金并需对您投资所导致的任何亏损承担责任。</div>
+            </div>
+            <div class="detail">
+                <div class="orange type common">
+                    <p>进取型</p>
+                    <p>(61-80分)</p>
+                </div>
+                <div class="orange declare common">您属于可以承担中等风险类型的投资者。您适合投资于能够为您提供温和升值能力，而投资价值有温和波动的投资工具。</div>
+            </div>
+            <div class="detail">
+                <div class="yellow type common">
+                    <p>平衡型</p>
+                    <p>(41-60分)</p>
+                </div>
+                <div class="yellow declare common">您属于可以承担中等风险类型的投资者。您适合投资于能够为您提供温和升值能力，而投资价值有温和波动的投资工具。</div>
+            </div>
+            <div class="detail">
+                <div class="green type common">
+                    <p>稳健型</p>
+                    <p>(21-40分)</p>
+                </div>
+                <div class="green declare common">您属于可以承担低至中等风险类型的投资者。您适合投资于能够权衡保本而亦有若干升值能力的投资工具。</div>
+            </div>
+            <div class="detail">
+                <div class="blue type common">
+                    <p>谨慎型</p>
+                    <p>(20分或以下)</p>
+                </div>
+                <div class="blue declare common">您属于可以承担低风险而作风谨慎类型的投资者。您适合投资于以保本为住的投资工具，但您因此会牺牲资本升值的机会。</div>
+            </div>
         </div>
         <div class="tip">
             <h5>特别提示:</h5>
