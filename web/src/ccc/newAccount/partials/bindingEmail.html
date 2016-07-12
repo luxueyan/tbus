@@ -1,0 +1,39 @@
+<div class="account-email-wrapper account-email-set">
+    {{#if step==1}}
+    <div class="payemail-wp clearfix">
+        <div class="emailinput">
+            <h3>完成邮箱认证后,您可以通过该邮箱接收电子合同、最新优惠活动信息等。</h3>
+            <div class="lineEmail">
+                <span class="mdi"></span>
+                <input type="text" value="{{email}}" placeholder="输入邮箱地址" />
+            </div>
+            <div class="errorMessage errorPass">
+                {{errorMessage}}
+            </div>
+            <div class="btn-set" on-click="setEmail">发送邮件</div>
+        </div>
+        <div class="emailtips">
+            <h4>温馨提示</h4>
+            <h4>没有收到邮件?</h4>
+            <p>1.验证邮件可能在垃圾邮箱中,请仔细查找。</p>
+            <p>2.如果超过10分钟仍未收到验证邮件,请重新进行邮箱绑定。</p>
+        </div>
+    </div>
+    {{/if}}
+    {{#if step==2}}
+        {{#if status==1}}
+        <div class="step2 success">
+            <img src="/ccc/newAccount/img/band-success.png">
+            <p>恭喜您,邮箱绑定成功!</p>
+        </div>
+        {{else}}
+        <div class="step2 fail">
+            <img src="/ccc/newAccount/img/band-fail.png"/>
+            <h2>绑定邮箱失败</h2>
+            <p>激活链接已失效</p>
+            <div class="btn-reset" on-click="resetEmail">重新绑定</div>
+        </div>
+        {{/if}}
+    {{/if}}
+
+</div>

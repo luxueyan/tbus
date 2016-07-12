@@ -1,0 +1,118 @@
+.user-header{
+    height: 103px;
+    background: #fff;
+    width: 1200px;
+    margin: auto;
+}
+.infoContent{
+    margin: 0 auto;
+    position: relative;
+    height: 96px;
+    overflow: hidden;
+}
+.infoContent h2{
+    margin-top: 40px;
+    padding-left: 35px;
+    font-size: 18px;
+    color: #999999;
+}
+.infoContent h2 span{
+    color: #e4262b;
+
+}
+/**/
+.account-email-wrapper{
+    margin-left: 40px;
+}
+.payemail-wp{
+    margin-top: 68px;
+}
+.emailinput{
+    width: 520px;
+    float: left;
+    margin-right: 47px;
+    border-right: 1px solid #d2d2d2;
+}
+.emailinput h3{
+    font-size: 14px;
+    color: #666666;
+}
+.emailinput .btn-set{
+    width: 200px;
+    height:45px;
+    background-color: #e4262b;
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+    line-height: 45px;
+    font-size: 18px;
+}
+.lineEmail{
+    margin-top: 42px;
+}
+.errorMessage{
+    height: 65px;
+    font-size: 14px;
+    color: #e4262b;
+    line-height: 30px;
+}
+.mdi{
+    position: absolute;
+    border-right: 1px solid #c0c8bd;
+    height: 47px;
+    width: 50px;
+    background: url(/ccc/newAccount/img/email.png) no-repeat 12px;
+    background-size: 26px;
+}
+.lineEmail input{
+    height: 47px;
+    padding-left: 70px;
+    width: 380px;
+    font-size: 16px;
+    border: 1px solid #c0c8bd;
+}
+.emailtips{
+    float: left;
+    font-size: 14px;
+    line-height: 30px;
+    color: #666;
+}
+.emailtips h4{
+    font-weight: bolder;
+    color: #666;
+}
+/**/
+.step2{
+    text-align: center;
+}
+.success{
+    margin-top: 60px;
+}
+.success p{
+    margin-top: 30px;
+    font-size: 30px;
+    color: #dc0101;
+}
+.fail{
+    margin-top: 68px;
+}
+.fail h2{
+    font-size: 30px;
+    color: #666;
+    margin-top: 40px;
+}
+.fail p{
+    font-size: 14px;
+    line-height: 26px;
+    color: #666;
+}
+.btn-reset{
+    width: 200px;
+    height: 45px;
+    line-height: 45px;
+    background-color: #e4262b;
+    color:#fff;
+    text-align: center;
+    margin: 36px auto;
+    cursor: pointer;
+}
