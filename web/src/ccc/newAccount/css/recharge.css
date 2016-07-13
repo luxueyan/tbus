@@ -23,14 +23,14 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
 
 .tipss,
 .ava {
-    color: #4a4a4a;
-    font-size: 17px;
+    color: #666;
+    font-size: 18px;
     height: 50px;
     line-height: 50px;
 }
 
 .ava {
-    color: #ef9c2c;
+    color: #e4262b;
     font-size: 18px;
     margin-right: 5px;
 }
@@ -318,17 +318,16 @@ table.tinfo tbody tr {
 }
 
 
-/*华瑞金科*/
+/*太合汇*/
 .ccc-banks-wrap{
     background: #fff;
-    margin: 0 auto;
-    width: 990px;
     min-height: 748px;
+    margin: 50px 0 0 40px;
 }
 
 .recharge-wrap{
-    width: 520px;
-    margin: auto;
+    /*width: 520px;*/
+    /*margin: auto;*/
 }
 .bankcard-nav{
     line-height: 66px;
@@ -342,32 +341,56 @@ table.tinfo tbody tr {
     font-size: 30px;
     margin: 0px 10px;
 }
-.recharge-input {
-    width: 400px;
+.rows{
+    margin-bottom: 36px;
+}
+.card-brame {
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 500px;
+    overflow: hidden;
+}
+.img-box {
+    width: 46px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-right: 0;
     height: 46px;
     line-height: 46px;
-    border: 1px #cccccc solid;
-    color: #999999;
-    text-indent: 10px;
-    margin-top: 25px;
+    float: left;
+}
+.img-box img {
+    margin-left: 10px;
+}
+.img-box img.recharge_pwd{
+    margin-left: 14px;
+}
+.recharge-input {
+    border: 1px solid #ccc;
+    float: left;
+    display: inline-block;
+    width: 336px;
+    height: 46px;
+    font-size: 16px;
+    color: #bbbbbb;
+    text-indent: 16px;
 }
 .submit_btn{
-    width: 400px;
+    width: 384px;
     height: 46px;
     line-height: 46px;
-    border: 1px #ef9c2c solid;
+    border: 1px #e4262b solid;
     color: #fff;
-    text-indent: 10px;
-    margin-top: 32px;
-    background: #ef9c2c;
-    font-size: 16px;
-    border-radius: 2px;
+    margin-top: 10px;
+    background: #e4262b;
+    font-size: 18px;
+    margin-bottom: 15px;
 }
 .bankcards-wrap{
     margin-top: 30px;
     position: relative;
     left: 20px;
-    
+    margin-bottom: 25px;
 }
 .bankcard-box {
     height: 70px;
@@ -380,19 +403,20 @@ table.tinfo tbody tr {
 }
 
 .warm-tip{
-    color: #9b9b9b;
+    color: #666;
     padding-top: 8px;
     margin-bottom: 5px;
 }
 .warm-tip span{
-   padding-left: 20px;
+    color: #bbb;
 }
 
 .forgot-pwd,
 .forgot-pwd:hover{
-    color: #4a90e2;
+    color: #b68b4c;
     padding-left: 15px;
     text-decoration: none;
+    line-height: 46px;
 }
 .bring-in input {
     width: 262px;
@@ -428,33 +452,36 @@ textarea::-webkit-input-placeholder {
 
 /*操作成功*/
 .recharge-success {
-    width: 700px;
-    height: 420px;
-    margin: auto;
+    /*width: 700px;*/
+    /*height: 420px;*/
+    /*margin: auto;*/
 }
-
 
 .recharge-success .content {
     margin-top: 60px;
 }
 
 .recharge-success .success-img {
-    float: left;
-    margin-left: 80px;
+    /*float: left;*/
+    /*margin-left: 80px;*/
+    text-align: center;
+    margin-right: 70px;
 }
 
 .recharge-success .success-img img {
-    width: 200px;
+    /*width: 200px;*/
 }
 
 .recharge-success .success-content {
-    float: left;
-    margin: 60px 45px;
+    /*float: left;*/
+    margin: 60px 0;
+    text-align: center;
+    margin-right: 70px;
 }
 
 .recharge-success .success-content p {
-    font-size: 18px;
-    color: #777;
+    font-size: 30px;
+    color: #db0101;
 }
 
 .recharge-success .success-content .bolder {
@@ -469,9 +496,9 @@ textarea::-webkit-input-placeholder {
 .recharge-success .success-content .btn-after {
     width: 140px;
     height: 45px;
-    border: 1px solid #ef9c2c;
+    border: 1px solid #db0101;
     line-height: 45px;
-    color: #ef9c2c;
+    color: #db0101;
     background: #fff;
     border-radius: 3px;
     margin-right: 20px;
@@ -483,5 +510,5 @@ textarea::-webkit-input-placeholder {
 
 .recharge-success .success-content .btn-bank {
     color: #fff;
-    background: #ef9c2c;
+    background: #db0101;
 }

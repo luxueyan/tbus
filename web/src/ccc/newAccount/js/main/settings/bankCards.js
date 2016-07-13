@@ -100,34 +100,37 @@ ractive.on("bind-card-submit", function (e) {
     var cardPhone = this.get('mobile');
     var smsCaptcha = this.get('smsCaptcha');
     //校验表单
-//    if(cardNo==''){
-//        this.set("errMessgaeBank", '银行账户不能为空');
-//    }  
-//    if (!/^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/.test(idNo)) {
-//        this.set("idNoError", true);
-//    } else {
-//        this.set("idNoError", false);
-//    };
-//    
-//    if(personal == ''){
-//        this.set("personalError", true);
-//    }else{
-//        this.set("personalError", false);
-//    };
-//    
-//    if (smsCaptcha === '') {
-//        this.set('SMS_NULL', true);
-//        return;
-//    } else {
-//        this.set('SMS_NULL', false);
-//    };
-//    
-//    if (!/^\d*$/.test(cardPhone)) {
-//        this.set("phoneNoError", true);
-//    } else {
-//        this.set("phoneNoError", false);
-//    }
-//    
+    if(personal == ''){
+        this.set("personalError", '请输入您的姓名');
+    }else{
+        this.set("personalError", false);
+    };
+
+    if (!/^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/.test(idNo)) {
+        this.set("idNoError", '请输入正确的身份证号');
+    } else {
+        this.set("idNoError", false);
+    };
+
+    if(cardNo==''){
+        this.set("errMessgaeBank", '请输入您的银行卡号');
+    }else{
+        this.set("errMessgaeBank", false);
+    }
+
+    if (smsCaptcha === '') {
+        this.set('SMS_NULL', '请输入手机验证码');
+        return;
+    } else {
+        this.set('SMS_NULL', false);
+    };
+
+    //if (!/^\d*$/.test(cardPhone)) {
+    //    this.set("phoneNoError", true);
+    //} else {
+    //    this.set("phoneNoError", false);
+    //}
+
     var sendObj = {
         bankCode: bankName,
         cardNo: cardNo,
@@ -139,11 +142,10 @@ ractive.on("bind-card-submit", function (e) {
       name:personal
     }
     var sendCard={
-       bankCode:bankName,
-       cardNo:cardNo,
-       cardPhone:cardPhone,
-       idNumber:idNo,
-       name:personal
+        accountNumber:cardNo,
+        mobile:cardPhone,
+        idCardNumber:idNo,
+        name:personal
     }
     var msg = {
         SEND_CAPTCHA_FAILED: '验证码发送失败',
@@ -158,58 +160,58 @@ ractive.on("bind-card-submit", function (e) {
         SUCCEED: '银行卡绑定成功'
     };
     
-    $.get('/api/v2/user/MYSELF',function(r){
-      if(!r.priv){
-        $.post('/api/v2/hundsun/register/MYSELF',sendName,function(r){ //实名认证
-            //校验身份证
-            if(r.error[0].type == 'idNumber'){
-                if(r.error[0].message == 'INVALID_PARAMS'){
-                    CccOk.create({
-                        msg: '请正确填写您的身份证号码',
-                        okText: '确定',
-                        ok: function () {
-                            $('.ccc-box-overlay').remove();
-                            $('.ccc-box-wrap').remove();
-                        }
-                    });
-                }else{
-                    CccOk.create({
-                        msg: msg[r.error[0].message],
-                        okText: '确定',
-                        ok: function () {
-                            $('.ccc-box-overlay').remove();
-                            $('.ccc-box-wrap').remove();
-                        }
-                    });
-                };
-            };
-            //校验姓名
-            if(r.error[0].type == 'name'){
-                if(r.error[0].message == 'INVALID_PARAMS'){
-                    CccOk.create({
-                        msg: '请正确填写您的姓名',
-                        okText: '确定',
-                        ok: function () {
-                            $('.ccc-box-overlay').remove();
-                            $('.ccc-box-wrap').remove();
-                        }
-                    });
-                }else{
-                    CccOk.create({
-                        msg: msg[r.error[0].message],
-                        okText: '确定',
-                        ok: function () {
-                            $('.ccc-box-overlay').remove();
-                            $('.ccc-box-wrap').remove();
-                        }
-                    });
-                };
-            };
-        })
-      }else{
-        $.post('/api/v2/hundsun/checkCard/MYSELF',sendCard,function(r){ //checkCard
-          if(r.success){
-            $.post('/api/v2/hundsun/bindCard/MYSELF', sendObj, function (r) { //bindCard
+    //$.get('/api/v2/user/MYSELF',function(r){
+    //  if(!r.priv){
+    //    $.post('/api/v2/hundsun/register/MYSELF',sendName,function(r){ //实名认证
+    //        //校验身份证
+    //        if(r.error[0].type == 'idNumber'){
+    //            if(r.error[0].message == 'INVALID_PARAMS'){
+    //                CccOk.create({
+    //                    msg: '请正确填写您的身份证号码',
+    //                    okText: '确定',
+    //                    ok: function () {
+    //                        $('.ccc-box-overlay').remove();
+    //                        $('.ccc-box-wrap').remove();
+    //                    }
+    //                });
+    //            }else{
+    //                CccOk.create({
+    //                    msg: msg[r.error[0].message],
+    //                    okText: '确定',
+    //                    ok: function () {
+    //                        $('.ccc-box-overlay').remove();
+    //                        $('.ccc-box-wrap').remove();
+    //                    }
+    //                });
+    //            };
+    //        };
+    //        //校验姓名
+    //        if(r.error[0].type == 'name'){
+    //            if(r.error[0].message == 'INVALID_PARAMS'){
+    //                CccOk.create({
+    //                    msg: '请正确填写您的姓名',
+    //                    okText: '确定',
+    //                    ok: function () {
+    //                        $('.ccc-box-overlay').remove();
+    //                        $('.ccc-box-wrap').remove();
+    //                    }
+    //                });
+    //            }else{
+    //                CccOk.create({
+    //                    msg: msg[r.error[0].message],
+    //                    okText: '确定',
+    //                    ok: function () {
+    //                        $('.ccc-box-overlay').remove();
+    //                        $('.ccc-box-wrap').remove();
+    //                    }
+    //                });
+    //            };
+    //        };
+    //    })
+    //  }else{
+    //    $.post('/api/v2/hundsun/checkCard/MYSELF',sendCard,function(r){ //checkCard
+    //      if(r.success){
+            $.post('/api/v2/users/checkBankcard', sendCard, function (r) { //bindCard
                 if(r.success){
                     window.location.reload();
                 }else{
@@ -224,19 +226,19 @@ ractive.on("bind-card-submit", function (e) {
                 }
        
             });
-          }else{
-              CccOk.create({
-                msg: r.error[0].value,
-                okText: '确定',
-                ok: function () {
-                    $('.ccc-box-overlay').remove();
-                    $('.ccc-box-wrap').remove();
-                }
-            });
-          };
-        })
-      }
-    })
+          //}else{
+          //    CccOk.create({
+          //      msg: r.error[0].value,
+          //      okText: '确定',
+          //      ok: function () {
+          //          $('.ccc-box-overlay').remove();
+          //          $('.ccc-box-wrap').remove();
+          //      }
+          //  });
+          //};
+        //})
+      //}
+    //});
 
 });
 

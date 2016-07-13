@@ -90,7 +90,7 @@ ractive.on("register-account-submit", function () {
 
                 var user = {
                     name: $.trim(name),
-                    idNumber: $.trim(idNumber)
+                    idCardNumber: $.trim(idNumber)
                 };
                 var msg,link;
                 if (that.get('bank') && that.get('paymentPasswordHasSet')) {
@@ -102,7 +102,7 @@ ractive.on("register-account-submit", function () {
                     msg = "认证成功，请开通交易密码";
                     link = '/newAccount/settings/password';
                 }
-                accountService.authenticateUser(user,
+                accountService.checkId(user,
                     function (res) {
                         if (res.success) {
                             CccOk.create({

@@ -2,7 +2,7 @@
 {{#if status === 0}}
 <div class="bind-card-wrapper">
     <form action="" method="POST" on-submit="bind-card-submit">
-      <!--<p class="addcard-info">请先绑定银行卡才能进行充值、提现、投资等操作！</p>-->
+      <p class="addcard-info">请先绑定银行卡才能进行充值、提现、投资等操作！</p>
         <div class="row">
             <div class="card-brame">
                 <div class="img-box">
@@ -10,6 +10,7 @@
                 </div>
                 <input type="text" name="personal" {{hasCardO?'disabled':''}} value="{{personal}}" class="payInp" placeholder="持卡人姓名">
             </div>
+            <p class="error">{{#if personalError}} {{personalError}} {{/if}}</p>
             <div class="clearfix"></div>
         </div>
 
@@ -20,6 +21,7 @@
                 </div>
                 <input on-keyup="validateIdNo" type="text" name="idNo" {{hasCardO?'disabled':''}} value="{{idNo}}" class="payInp" placeholder="输入身份证号">
             </div>
+            <p class="error">{{#if idNoError}} {{idNoError}} {{/if}}</p>
             <div class="clearfix"></div>
         </div>
 
@@ -44,18 +46,19 @@
                 </div>
                 <input on-keyup="validateCardNo" type="text" name="cardNo" value="{{cardNo}}" class="payInp" placeholder="输入银行卡号">
             </div>
+            <p class="error">{{#if errMessgaeBank}} {{errMessgaeBank}} {{/if}}</p>
             <div class="clearfix"></div>
         </div>
 
-        <div class="row">
-            <div class="card-brame">
-                <div class="img-box">
-                    <img class="" src="/ccc/newAccount/img/card-mobile.png"/>
-                </div>
-                <input on-keyup="validatePhoneNo" type="text" name="cardPhone" value="{{mobile}}" class="payInp" placeholder="银行预留手机号">
-            </div>
-            <div class="clearfix"></div>
-        </div>
+        <!--<div class="row">-->
+            <!--<div class="card-brame">-->
+                <!--<div class="img-box">-->
+                    <!--<img class="" src="/ccc/newAccount/img/card-mobile.png"/>-->
+                <!--</div>-->
+                <!--<input on-keyup="validatePhoneNo" type="text" name="cardPhone" value="{{mobile}}" class="payInp" placeholder="银行预留手机号">-->
+            <!--</div>-->
+            <!--<div class="clearfix"></div>-->
+        <!--</div>-->
 
         <div class="row">
             <div class="card-brame">
@@ -65,15 +68,16 @@
                 <input on-keyup="validateCaptcha" type="text" name="smsCaptcha" class="payInp payCodeInp"  value="{{smsCaptcha}}" placeholder="输入验证码">
                 <span class="sendCode" on-click="sendCode" style="border:0;">发送验证码</span>
             </div>
+            <p class="error">{{#if SMS_NULL}} {{SMS_NULL}} {{/if}}</p>
             <div class="clearfix"></div>
         </div>
 
         <div class="agree-box">
-            <input type="checkbox" checked>我阅读并同意<a href="#">《用户委托支付协议》</a>
+            <!--<input type="checkbox" checked>我阅读并同意<a href="#">《用户委托支付协议》</a>-->
         </div>
 
         <div class="btn-box">
-            <button type="submit">确定</button>
+            <button type="submit">绑定</button>
         </div>
     </form>
 </div>
@@ -90,8 +94,8 @@
           </div>
         </div>
         <div class="success-next">
-            <a href="/invest"><button style="background: #ef9c2c;color:#fff;">马上去投资</button></a>
-            <a href="/newAccount/settings/showbank"><button style="background: #fff;color: #ef9c2c;border:1px solid #ef9c2c">以后再说</button></a>
+            <a href="/invest"><button style="background: #ef9c2c;color:#fff;">马上投资</button></a>
+            <!--<a href="/newAccount/settings/showbank"><button style="background: #fff;color: #ef9c2c;border:1px solid #ef9c2c">以后再说</button></a>-->
         </div>
     </div>
     {{else}}
@@ -104,8 +108,8 @@
           </div>
         </div>
         <div class="success-next">
-          <a href="/newAccount/settings/showbank"><button style="background: #fff;color: #ef9c2c;border:1px solid #ef9c2c">以后再说</button></a>
-          <a href="/newAccount/settings/password"><button style="background: #ef9c2c;color:#fff;">马上去设置</button></a>
+          <!--<a href="/newAccount/settings/showbank"><button style="background: #fff;color: #ef9c2c;border:1px solid #ef9c2c">以后再说</button></a>-->
+          <a href="/newAccount/settings/password"><button style="background: #ef9c2c;color:#fff;">马上设置</button></a>
         </div>
     </div>
     {{/if}}

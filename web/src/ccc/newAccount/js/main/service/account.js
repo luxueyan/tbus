@@ -48,6 +48,15 @@ exports.accountService = {
                 next(r.body);
             });
     },
+    checkId: function(user, next) {
+        request('POST', '/api/v2/users/checkId')
+            .type('form')
+            .send(user)
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
+    },
     checkAuthenticate: function (next) {
         request('GET', '/api/v2/user/MYSELF/authenticates')
             .end()

@@ -3,6 +3,10 @@
 	<div class="infoContent">
 		{{#if bankCards}}
 		<div class="info_title">我的账户 > 个人中心 > <span>添加银行卡</span></div>
+		{{elseif recharge}}
+		<div class="info_title">我的账户 > <span>充值</span></div>
+		{{elseif authentication}}
+		<div class="info_title">我的账户 > 个人中心 > <span>实名认证</span></div>
 		{{else}}
 		<div class="info">
 			<div class="tx"></div>

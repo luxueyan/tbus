@@ -6,17 +6,17 @@ var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account')
     .accountService;
 
-var banksabled = _.filter(CC.user.bankCards, function (r) {
-    return r.deleted === false;
-});
-var Faccount = CC.user.bankCards[0].account.account.slice(-4);
+//var banksabled = _.filter(CC.user.bankCards, function (r) {
+//    return r.deleted === false;
+//});
+//var Faccount = CC.user.bankCards[0].account.account.slice(-4);
 
 var ractive = new Ractive({
     el: '#ractive-container',
     template: require('ccc/newAccount/partials/withdraw.html'),
     data: {
-        bankcards: banksabled || [],
-        Faccount: Faccount,
+        //bankcards: banksabled || [],
+        //Faccount: Faccount,
         availableAmount: CC.user.availableAmount || 0,
         msg: {
             AMOUNT_NULL: false,

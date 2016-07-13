@@ -184,38 +184,39 @@ module.exports = function(router) {
         });
     });
     router.get('/recharge', async function(req, res) {
-        var paymentPasswordHasSet = await req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
-            .end().get('body');
-        var banks = _.filter(res.locals.user.bankCards, r => r.deleted === false);
-        if (!banks.length) {
-            res.redirect(
-                '/newAccount/settings/bankCards');
-        };
-        if(!paymentPasswordHasSet){
-            res.redirect(
-                '/newAccount/settings/password');
-        };
+        //var paymentPasswordHasSet = await req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
+        //    .end().get('body');
+        //var banks = _.filter(res.locals.user.bankCards, r => r.deleted === false);
+        //if (!banks.length) {
+        //    res.redirect(
+        //        '/newAccount/settings/bankCards');
+        //};
+        //if(!paymentPasswordHasSet){
+        //    res.redirect(
+        //        '/newAccount/settings/password');
+        //};
       
         res.render('newAccount/recharge', {
             title: '太合汇'
         });
         return false;
 
-    });
+    })
+
     router.get('/withdraw', async function(req, res) {
-        var paymentPasswordHasSet = await req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
-            .end().get('body');
-        res.locals.user.paymentPasswordHasSet =
-            paymentPasswordHasSet;
-        var banks = _.filter(res.locals.user.bankCards, r => r.deleted === false);
-        if (!banks.length) {
-            res.redirect(
-                '/newAccount/settings/bankCards');
-        };
-        if(!paymentPasswordHasSet){
-            res.redirect(
-                '/newAccount/settings/password');
-        };
+        //var paymentPasswordHasSet = await req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
+        //    .end().get('body');
+        //res.locals.user.paymentPasswordHasSet =
+        //    paymentPasswordHasSet;
+        //var banks = _.filter(res.locals.user.bankCards, r => r.deleted === false);
+        //if (!banks.length) {
+        //    res.redirect(
+        //        '/newAccount/settings/bankCards');
+        //};
+        //if(!paymentPasswordHasSet){
+        //    res.redirect(
+        //        '/newAccount/settings/password');
+        //};
       
         res.render('newAccount/withdraw', {
             title: '太合汇'

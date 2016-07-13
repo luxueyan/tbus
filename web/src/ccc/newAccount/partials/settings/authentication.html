@@ -1,26 +1,24 @@
-<div class="space-30"></div>
-<div class="space-20"></div>
+
 {{#if !authenticateInfo.idNumber}}
 <div class="open-account-wrapper">
 
-    <div class="errorNotOpenedYet" style="text-align:center">
-        <span class="glyphicon glyphicon-exclamation-sign exclamation" style="color:#ff7200"></span> 重要提示：实名认证操作关系到您的切身利益，请保护好帐号安全
-    </div>
-
     <div class="account-form-wrapper">
-        <form action="#" class="form-horizontal" style="text-align:center;">
-            <div class="">
-                <div class="" style="height:40px">
-                    {{#if showErrorMessage}}
-                    <div class="error-message">
-                        {{ errorMessage }}
-                    </div>
-                    {{/if}}
+        <form class="form-horizontal">
+            <!--<div class="">-->
+                <!--<div class="" style="height:40px">-->
+                    <!--{{#if showErrorMessage}}-->
+                    <!--<div class="error-message">-->
+                        <!--{{ errorMessage }}-->
+                    <!--</div>-->
+                    <!--{{/if}}-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div class="card-brame">
+                <div class="img-box">
+                    <img class="" src="/ccc/newAccount/img/card-man.png">
                 </div>
-            </div>
-            <div class="trueName">
-                <label for="trueName" class="">真实姓名</label>
-                <input type="text" class="check-name" name="name" id="trueName" value="{{ name }}" on-blur="checkName"/>
+                <input type="text" class="check-name" name="name" id="trueName" value="{{ name }}" placeholder="输入姓名" on-blur="checkName"/>
                 {{#if showErrorMessageName}}
                 <div class="error-message nameAndId">
                     {{ errorMessageName }}
@@ -28,21 +26,20 @@
                 {{/if}}
             </div>
 
-            <div class="userIdNumber">
-                <label for="userIdNumber" class="">身份证号</label>
-                 <input type="text" class="check-name" id="userIdNumber" name="idNumber" value="{{idNumber}}" on-blur="checkIdNumber"/>
-                 {{#if showErrorMessageId}}
-                 <div class="error-message nameAndId">
-                     {{ errorMessageId }}
-                 </div>
-                 {{/if}}
+            <div class="card-brame">
+                <div class="img-box">
+                    <img class="" src="/ccc/newAccount/img/card-id.png" class="id-img">
+                </div>
+                <input type="text" class="check-name" id="userIdNumber" name="idNumber" value="{{idNumber}}" placeholder="输入身份证号码" on-blur="checkIdNumber"/>
+                {{#if showErrorMessageId}}
+                <div class="error-message nameAndId">
+                    {{ errorMessageId }}
+                </div>
+                {{/if}}
             </div>
+
             <div class="account-submit">
-                <input type="button" value="立即认证" on-click="register-account-submit" class="btn info-submit" style="width:200px;height:40px;background:#009ada;border-color:#009ada;color:white;check-name"  />
-            </div>
-            <div style="background-color: #f4fcff;padding: 10px;width:700px;margin: 0 auto;text-align: left;margin-top: 50px;">
-                <p class="tips" style="color:#f58220">温馨提示：</p>
-                <p class="tips">1、 请正确输入您的身份证信息，一经绑定不可修改。</p>
+                <input type="button" value="实名认证" on-click="register-account-submit" class="info-submit" />
             </div>
         </form>
     </div>
