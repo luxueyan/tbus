@@ -30,4 +30,9 @@ module.exports = function (router, auth) {
     //根据用户ID获取可用奖券列表
     router.get('/api/v2/rebateCounpon/listUserCouponPlacement/:userId', auth.pass());
 
+    //实名认证
+    router.post('/api/v2/users/checkId', auth.owner());
+    //银行卡验证
+    router.post('/api/v2/users/checkBankcard', auth.owner());
+
 };
