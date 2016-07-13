@@ -1,61 +1,44 @@
 'use strict';
 module.exports = function (router) {
+    router.get('/', function (req, res, next) {
+        res.redirect('/help/account');
+        next();
+    });
+
     var pageSize = 10;
     router.get('/:tab', function (req, res) {
         var cateMap = {
-//            invest: 'HELP',
-
-            // safety: 'HELP',
-             login: 'HELP',
-             cash:'HELP',
-             product: 'HELP',
-             member:'HELP',
-             explain: 'HELP'
-            // money: 'HELP',
-            // law:'HELP',
+            account:'HELP',
+            invest: 'HELP',
+            transfer: 'HELP',
+            protection: 'HELP'
         };
         var nameMap = {
-//            invest: '我要投资',
-            // safety: '风控安全',
-             login: '注册/登录',
-             cash:'充值/提现',
-             product: '产品介绍',
-             member:'会员/积分',
-             explain: '名词解释'
-            // money: '投资理财',
-            // law: '法律安全',
+            account: '账户管理',
+            invest: '投资操作',
+            transfer: '产品转让',
+            protection: '收益保障'
         };
-        
-            var indexMap={
-//                invest: '我要投资',
-            // safety: '风控安全',
-             login: '注册/登录',
-             cash:'充值/提现',
-             product: '产品介绍',
-             member:'会员/积分',
-             explain: '名词解释'
-            // money:'投资理财',
-            // law:'法律安全',
-
-
+        var indexMap={
+            account: '账户管理',
+            invest: '投资操作',
+            transfer: '产品转让',
+            protection: '收益保障'
         };
 
         var tabs = [{
-             text: '注册/登录',
-             url: '/help/login'
-         }, {
-             text: '充值/提现',
-             url: '/help/cash'
-         }, {
-             text: '产品介绍',
-             url: '/help/product'
-         }, {
-             text: '会员/积分',
-             url: '/help/member'
-         }, {
-             text: '名词解释',
-             url: '/help/explain'
-         } ];
+             text: '账户管理',
+             url: '/help/account'
+         },{
+            text: '投资操作',
+            url: '/help/invest'
+        },{
+            text: '产品转让',
+            url: '/help/transfer'
+        },{
+            text: '收益保障',
+            url: '/help/protection'
+        }];
 
             var tabIndex;
             for (var index = 0, length = tabs.length; index < length; index++) {
@@ -67,7 +50,7 @@ module.exports = function (router) {
             }
         
             var user = res.locals.user;
-            res.locals.title='帮助中心_自金网平台';
+            res.locals.title='帮助中心_太和会';
 
             req.uest('/api/v2/cms/category/' + cateMap[req.params.tab] + '/name/' + encodeURIComponent(nameMap[req.params.tab])).end().then(function (r) {
                 if (r.body.length > 1) {
@@ -80,24 +63,14 @@ module.exports = function (router) {
 
                             res.render('help/index', {
                                 totalPage: createList(
-                                    Math
-                                    .ceil(r.body
-                                        .totalSize /
-                                        10)),
-                                current: parseInt(
-                                    current,
-                                    10),
+                                    Math.ceil(r.body.totalSize / 10)),
+                                current: parseInt(current,10),
                                 tabs: tabs,
-                                currentTab: nameMap[
-                                    req.params.tab
-                                    ],
+                                currentTab: nameMap[req.params.tab],
                                 tabIndex: tabIndex,
                                 tab: {
-                                    name: req.params
-                                        .tab,
-                                    text: nameMap[
-                                        req.params
-                                        .tab]
+                                    name: req.params.tab,
+                                    text: nameMap[req.paramstab]
                                 },
                                 contents: contents
                             });
@@ -111,16 +84,11 @@ module.exports = function (router) {
                         0 ? r.body : null;
                     res.render('help/index', {
                         tabs: tabs,
-                        currentTab: nameMap[
-                            req.params.tab
-                            ],
+                        currentTab: nameMap[req.params.tab],
                         tabIndex: tabIndex,
                         tab: {
-                            name: req.params
-                                .tab,
-                            text: nameMap[
-                                req.params
-                                .tab]
+                            name: req.params.tab,text:
+                                nameMap[req.params.tab]
                         },
                         contents: contents
                     });

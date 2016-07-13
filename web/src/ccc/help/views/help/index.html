@@ -2,38 +2,29 @@
 <link rel="stylesheet" href="/ccc/help/css/help.css">
 
 <div class="page-guide">
-    <p id="aboutus-title"><a href="/">首页</a> >帮助中心</p>
-    <div id="help-left" class="pull-left">
+    <div class="help-header">
+        <div class="infoContent">
+            <p id="aboutus-title">帮助中心</p>
+        </div>
+        <img src="/ccc/newAccount/img/usernav_line.png">
+    </div>
 
+    <div id="help-left" class="pull-left">
         {{>list}}
     </div>
 
     <div id="help-right" class="pull-right">
         <div class="invest-container">
-            <div class="invest-wrapper invest-wrapper-box">
-                <div class="help-title">
-                <h1>{{tab.text}}</h1>
-                <div class="line"></div>
+            <div class="invest-wrapper">
+                {{#each contents:i}}
+                <div class="article-wp">
+                    <div class="ar-title-wp">
+                        <span class="open"></span>
+                        <h2 class="ar-title">{{i+1}}、{{title}}</h2>
+                    </div>
+                    <div class="article-content">{{& content}}</div>
                 </div>
-                    <div class="invest-wrapper">
-                    {{#each contents}}
-                       {{{content}}}
-                    {{/each}}
-                    </div>
-<!--
-                {{else}}
-                    {{#each contents}}
-                    <div class="article-wp">
-                        <div class="ar-title-wp">
-                            <h2 class="ar-title">{{title}}</h2>
-                           <span  class="ticon show"></span>
-                            <p>{{title}}</p>
-                        </div>
-                        <div class="ar-content-wp">{{& content}}</div>
-                    </div>
-                    {{/each}}
-                 {{/if}}
--->
+                {{/each}}
             </div>
         </div>
     </div>
