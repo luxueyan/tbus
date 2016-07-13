@@ -1,7 +1,7 @@
 <div class="ccc-banks-wrap">
-     <div class="bankcard-nav"><span>理财账户</span><span class="shuline">｜</span><span>取现</span></div>
+     <!--<div class="bankcard-nav"><span>理财账户</span><span class="shuline">｜</span><span>取现</span></div>-->
     
-    {{#if paymentPasswordHasSet}}
+    {{#if !paymentPasswordHasSet}}
     {{#if step1}}
     <div class="recharge-wrap">
         <div class="bankcards-wrap">
@@ -22,21 +22,33 @@
                     </div>
            
                     <div class="rows">
-                        <input type="text" name="amount" id="withdraw" on-blur="changeValue" class="recharge-input" value="{{amount}}" autocomplete="off" placeholder="输入取现余额">
-                        <input style="display:none;">
+                        <div class="card-brame">
+                            <div class="img-box">
+                                <img class="" src="/ccc/newAccount/img/recharge_num.png">
+                            </div>
+                            <input type="text" name="amount" id="withdraw" on-blur="changeValue" class="recharge-input" value="{{amount}}" autocomplete="off" placeholder="请输入提现金额">
+                            <input style="display:none;">
+                        </div>
+
                         <p class="text-danger" style="color:red;">
                              {{#msg.AMOUNT_NULL}}请输入提现金额{{/msg.AMOUNT_NULL}}
                              {{#msg.AMOUNT_INVALID}}输入的金额有误{{/msg.AMOUNT_INVALID}}
                              {{#msg.AMOUNT_POOR}}您的可用余额不足{{/msg.AMOUNT_POOR}}
                             
                         </p>
-                        <p class="warm-tip">工作日取现无上限，非工作日取现单笔不超过5万元<span>手续费2元</span></p>
+                        <p class="warm-tip"><span>手续费2.00元/笔</span></p>
 
                     </div>
                 
                     <div class="rows">
-                        <input type="password" name="paymentPassword" class="inputsMs" placeholder="输入交易密码" on-blur="checkPassword" autocomplete="off"  value="{{paymentPassword}}" class="recharge-input">
-                        <a href="/newAccount/settings/resetPassword" class="forgot-pwd">忘记密码？</a>
+                        <div class="card-brame">
+                            <div class="img-box">
+                                <img class="recharge_pwd" src="/ccc/newAccount/img/recharge_pwd.png">
+                            </div>
+                            <input type="password" name="paymentPassword" class="inputsMs" placeholder="请输入交易密码" on-blur="checkPassword" autocomplete="off"  value="{{paymentPassword}}" class="recharge-input">
+                            <a href="/newAccount/settings/resetPassword" class="forgot-pwd">忘记密码？</a>
+                        </div>
+
                          <p class="text-danger" style="color:red;">
                             {{#msg.CODE_NULL}}请输入交易密码{{/msg.CODE_NULL}}
                             {{#msg.CODE_INVALID}}输入的密码有误{{/msg.CODE_INVALID}}
@@ -46,7 +58,7 @@
                 </div>
                 <div class="row">
                     <button type="button" class="submit_btn post-btn {{#if disabled}}disabled{{/if}}"  on-click="withDrawSubmit">{{submitText}}</button>
-                    <p class="warm-tip">预计一到两个工作日内到账，以实际到账时间为准</p>
+                    <!--<p class="warm-tip">预计一到两个工作日内到账，以实际到账时间为准</p>-->
                 </div>
           
             </form>

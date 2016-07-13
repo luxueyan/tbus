@@ -337,15 +337,6 @@ p.tips {
     right: 20px;
     width: 200px;
 }
-
-.img-wrapperau {
-    margin: 0 auto;
-    width: 840px;
-    height: 240px;
-    margin-top: 40px;
-    background: url(/ccc/newAccount/img/sm.png) no-repeat center right;
-}
-
 .img-wrapperbn {
     margin: 0 auto;
     width: 840px;
@@ -589,33 +580,6 @@ p.tips {
     border: none;
 }
 
-.userIdNumber,
-.trueName {
-    margin-bottom: 10px;
-    width: 550px;
-    text-align: left;
-    margin-left: 264px;
-}
-
-.account-submit {
-    margin-top: 20px;
-}
-
-.check-name {
-    height: 30px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    margin-left: 10px;
-    font-size: 12px;
-    width: 200px;
-    color: black;
-    padding-left: 10px;
-}
-
-.info-submit:hover {
-    background-color: #015989 !important;
-}
-
 .btn-success:hover {
     font-size: 16px;
 }
@@ -635,13 +599,15 @@ p.tips {
 
 /*添加银行卡*/
 .bind-card-wrapper{
-    margin: 60px;
+    margin: 40px;
+}
+.addcard-info {
+    margin-bottom: 40px;
 }
 #main-container .bind-card-wrapper .row{
     margin-bottom: 23px;
     margin-left: 0;
     margin-right: 0;
-    float: left;
     margin-right: 51px;
 }
 #main-container .row .card-brame {
@@ -717,6 +683,10 @@ p.tips {
     color: #fff;
     border: none;
 }
+.bind-card-wrapper .error{
+    color: #d2252c;
+    text-align: left;
+}
 /*添加银行卡 结束*/
 .row img {
     width: 23px;
@@ -736,11 +706,7 @@ p.tips {
     cursor: pointer;
 }
 
-.addcard-info {
-    line-height: 60px;
-    color: #666;
-    margin-left: 276px;
-}
+
 .setpwd-info {
     line-height: 60px;
     color: #666;
@@ -784,10 +750,7 @@ p.tips {
     padding-bottom: 60px;
 }
 
-.bind-card-wrapper .error{
-    color: #d2252c;
-    margin-left: 276px;
-}
+
 .bank-success h2 {
     font-weight: bold;
     font-size: 24px;
@@ -957,3 +920,59 @@ p.tips {
     background: url("/ccc/newAccount/img/icon_clear.png") no-repeat left center;
 }
 
+
+/*实名认证*/
+.open-account-wrapper{
+    margin-left: 50px;
+    margin-top: 60px;
+}
+.open-account-wrapper .card-brame {
+    margin-left: 0px;
+    margin-right: 0px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+.open-account-wrapper .img-box {
+    width: 46px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-right: 0;
+    height: 46px;
+    line-height: 46px;
+    float: left;
+}
+.open-account-wrapper .img-box img {
+    margin-left: 11px;
+}
+.img-box img.id-img{
+    margin-left: 8px;
+}
+.open-account-wrapper .check-name {
+    border: 1px solid #ccc;
+    float: left;
+    display: inline-block;
+    width: 336px;
+    height: 46px;
+    font-size: 16px;
+    color: #bbbbbb;
+    text-indent: 16px;
+}
+.open-account-wrappe .account-submit {
+    margin-top: 20px;
+}
+.open-account-wrapper .account-submit .info-submit{
+    width: 200px;
+    height: 45px;
+    background: #e4262b;
+    border: none;
+    color: white;
+    font-size: 18px;
+}
+.open-account-wrapper .error-message {
+    text-align: center;
+    color: red;
+    line-height: 45px;
+    margin-left: 5px;
+}
+
+/*实名认证 结束*/
