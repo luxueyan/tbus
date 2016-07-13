@@ -36,12 +36,14 @@
 		<!--<span class="nav-text {{#if home}}nav-text-active{{/if}}"><a href="/newAccount/home">理财账户</a></span>-->
 	<!--</li>-->
     <li class="nav-li">
-		{{#if userInfo || bankCards || authentication}}
+
+		{{#if userInfo || bankCards || bindingEmail ||authentication}}
 			<span class="icon-active"></span>
 		{{else}}
 			<span class="icon-common"></span>
 		{{/if}}
-		<span class="nav-text {{#if userInfo || bankCards || authentication}}nav-text-active{{/if}}"><a href="/newAccount/userInfo">个人中心</a></span>
+		<span class="nav-text {{#if userInfo || bankCards || bindingEmail || authentication}}nav-text-active{{/if}}"><a href="/newAccount/userInfo">个人中心</a></span>
+
 	</li>
     <!--<li class="nav-li">-->
 		<!--{{#if showbank||bankCards}}-->
