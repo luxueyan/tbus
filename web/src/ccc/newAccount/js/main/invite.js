@@ -102,8 +102,8 @@ new Ractive({
         // 初始化二维码
         var qrcode = qr(this.buildImgUrl(), {
             render: !!window.CanvasRenderingContext2D ? 'canvas' : 'table',
-            width:120,
-            height:120
+            width:168,
+            height:168
         });
         $('#inviteCodeImg').append(qrcode);
         
