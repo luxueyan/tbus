@@ -31,8 +31,8 @@ module.exports = function (router, auth) {
     router.get('/api/v2/rebateCounpon/listUserCouponPlacement/:userId', auth.pass());
 
     //实名认证
-    router.post('/api/v2/users/checkId', auth.owner());
+    router.post('/api/v2/users/checkId', auth.pass());
     //银行卡验证
-    router.post('/api/v2/users/checkBankcard', auth.owner());
+    router.post('/api/v2/users/checkBankcard', auth.pass());
 
 };
