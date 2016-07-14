@@ -135,28 +135,32 @@
 }
 /*返现*/
 .couponWrapper .REBATE{
-    background: url(/ccc/newAccount/img/coupon/rebate-bg.png ) no-repeat;
+    /*background: url(/ccc/newAccount/img/coupon/rebate-bg.png ) no-repeat;*/
+    background: url(/ccc/newAccount/img/coupon/coupon-bg.png ) no-repeat;
     position: relative;
     width: 306px;
     height: 190px;
 }
 /*增值券*/
 .couponWrapper .PRINCIPAL{
-    background: url(/ccc/newAccount/img/coupon/principal-bg.png ) no-repeat;
+    /*background: url(/ccc/newAccount/img/coupon/principal-bg.png ) no-repeat;*/
+    background: url(/ccc/newAccount/img/coupon/coupon-bg.png ) no-repeat;
     position: relative;
     width: 306px;
     height: 190px;
 }
 /*现金券*/
 .couponWrapper .CASH{
-    background: url(/ccc/newAccount/img/coupon/cash-bg.png ) no-repeat;
+    /*background: url(/ccc/newAccount/img/coupon/cash-bg.png ) no-repeat;*/
+    background: url(/ccc/newAccount/img/coupon/coupon-bg.png ) no-repeat;
     position: relative;
     width: 306px;
     height: 190px;
 }
 /*加息券*/
 .couponWrapper .INTEREST{
-    background: url(/ccc/newAccount/img/coupon/interest-bg.png ) no-repeat;
+    /*background: url(/ccc/newAccount/img/coupon/interest-bg.png ) no-repeat;*/
+    background: url(/ccc/newAccount/img/coupon/coupon-bg.png ) no-repeat;
     position: relative;
     width: 306px;
     height: 190px;
@@ -165,6 +169,8 @@
 .couponWrapper .header{
     line-height: 46px;
     margin-left: 20px;
+    color: #bb9f6a;
+    font-size: 24px;
 }
 .couponWrapper .header span{
     font-size: 12px;
@@ -172,8 +178,8 @@
 .couponWrapper .valueText {
     font-size: 44px;
     text-align: center;
-    color: #bb9f6a;
-    padding: 20px 0;
+    color: #e4262b;
+    padding: 12px 0;
     border-bottom: 1px solid #d8d8d8;
     margin-left: 1px;
 }
@@ -194,7 +200,7 @@
     padding: 4px 6px;
     font-size: 12px;
     position: absolute;
-    top: 110px;
+    top: 100px;
     right: 10px;
 }
 

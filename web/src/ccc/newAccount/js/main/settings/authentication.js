@@ -20,8 +20,8 @@ var ractive = new Ractive({
             name: CC.user.name || '',
             idNumber: ''
         },
-        bank: banksabled.length? true:false,
-        paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false,
+        bank: banksabled.length ? true : false,
+        paymentPasswordHasSet: CC.user.paymentPasswordHasSet || false,
         format: format
     },
     oninit: function () {
@@ -41,9 +41,9 @@ ractive.on('maskDepositAgreement', function (e) {
 });
 
 // 要认证
-ractive.on('checkName',function(){
+ractive.on('checkName', function () {
     var name = this.get("name");
-    this.set('showErrorMessageName',false);
+    this.set('showErrorMessageName', false);
     utils.formValidator.checkName(name, function (bool, error) {
         if (!bool) {
             ractive.set({
@@ -53,9 +53,9 @@ ractive.on('checkName',function(){
         }
     });
 });
-ractive.on('checkIdNumber',function(){
+ractive.on('checkIdNumber', function () {
     var idNumber = this.get("idNumber");
-    this.set('showErrorMessageId',false);
+    this.set('showErrorMessageId', false);
     utils.formValidator.checkIdNumber(idNumber, function (bool, error) {
         if (!bool) {
             ractive.set({
@@ -68,7 +68,7 @@ ractive.on('checkIdNumber',function(){
 ractive.on("register-account-submit", function () {
     var name = this.get("name");
     var idNumber = this.get("idNumber");
-    var that=this;
+    var that = this;
     this.fire('checkName');
     this.fire('checkIdNumber');
     utils.formValidator.checkName(name, function (bool, error) {
@@ -92,7 +92,7 @@ ractive.on("register-account-submit", function () {
                     name: $.trim(name),
                     idCardNumber: $.trim(idNumber)
                 };
-                var msg,link;
+                var msg, link;
                 if (that.get('bank') && that.get('paymentPasswordHasSet')) {
                     msg = "恭喜您，认证成功！";
                 } else if (!that.get('bank') && that.get('paymentPasswordHasSet')) {
@@ -120,14 +120,14 @@ ractive.on("register-account-submit", function () {
                                 cancel: function () {
                                     window.location.reload();
                                 },
-                                close:function(){
+                                close: function () {
                                     window.location.reload();
                                 }
                             });
                         } else {
-                          setTimeout(function(){
-                            window.location.reload();
-                          },5000);
+                            //setTimeout(function(){
+                            //  window.location.reload();
+                            //},5000);
                             if (res.error[0].message == '认证失败') {
                                 res.error[0].message = "";
                             }
@@ -141,8 +141,8 @@ ractive.on("register-account-submit", function () {
                                 cancel: function () {
                                     window.location.reload();
                                 },
-                                close:function(){
-                                  window.location.reload();
+                                close: function () {
+                                    window.location.reload();
                                 },
                             });
                         }

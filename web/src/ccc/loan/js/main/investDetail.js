@@ -251,11 +251,11 @@ setTimeout((function () {
             showErrors('请输入交易密码!');
             return false;
         } else {
-            accountService.checkPassword(paymentPassword, function (r) {
-                if (!r) {
-                    showErrors('请输入正确的交易密码!');
-                } else {
-                    disableErrors();
+            //accountService.checkPassword(paymentPassword, function (r) {
+            //    if (!r) {
+            //        showErrors('请输入正确的交易密码!');
+            //    } else {
+            //        disableErrors();
 
                     if (document.getElementById('agree').checked == true) {
                         $('.agree-error').css('visibility', 'hidden');
@@ -312,9 +312,8 @@ setTimeout((function () {
                         $('.agree-error').html('请先同意用户投资服务协议');
                     }
                 }
-            });
-        }
-        ;
+            //});
+        //};
     });
 
     //显示返现金额
@@ -760,3 +759,4 @@ request.get(encodeURI('/api/v2/cms/category/IMAGE/name/信息披露测试用'))
             }
         });
     });
+

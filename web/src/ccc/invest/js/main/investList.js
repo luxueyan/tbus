@@ -136,9 +136,9 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
     parseLoanList(res.results);
   var listFixed = [],listFloat = [];
   for(var i=0;i<res.results.length;i++){
-    if(res.results[i].loanRequest.productKey == 'XELC'){
+    if(res.results[i].loanRequest.productKey == 'GDSY'){
       listFixed.push(res.results[i]);
-    }else if(res.results[i].loanRequest.productKey == ''){
+    }else if(res.results[i].loanRequest.productKey == 'XELC'){
         listFloat.push(res.results[i]);
     }
   }
@@ -156,7 +156,7 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
     el:".floatPro",
     template:require('ccc/invest/partials/floatPro.html'),
     data:{
-      list: (listFixed.slice(0,1)),
+      list: (listFloat.slice(0,1)),
       RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
     }
   });

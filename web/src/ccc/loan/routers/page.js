@@ -4,6 +4,16 @@ var ccBody = require('cc-body');
 var format = require('@ds/format')
 
 var requestId = '';
+
+
+router.get('/payment', function (req,res) {
+    var user = res.locals.user;
+    res.expose(user, 'user');
+    res.locals.title = '';
+    res.render('payment');
+});
+
+
 // TODO 对id进行正则匹配
 router.get('/:id',
    async function (req, res) {
@@ -310,3 +320,4 @@ function mask (str, s, l) {
     str = str.substring(0, len);
     return str;
 }
+

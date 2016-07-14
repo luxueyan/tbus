@@ -790,3 +790,99 @@ select::-ms-expand { display: none; }
     color: #6baaf5;
     margin-left: 128px;
 }
+
+/*支付页面*/
+.payment-box{
+    width: 1200px;
+    margin: auto;
+    background: #fff;
+    margin-top: 23px;
+}
+.payment-box .detailTitle{
+    margin: 0;
+    padding: 27px 0;
+    border-bottom: 2px solid #f1f1f1;
+    padding-left: 35px;
+}
+.payment-content .title{
+    font-size: 24px;
+    padding: 35px 0;
+    border-bottom: 1px solid #d2d2d2;
+    padding-left: 15px;
+    margin: 0 20px;
+}
+.payment-content .num{
+    height: auto;
+    line-height: 30px;
+    font-size: 18px;
+    color: #666;
+    overflow: hidden;
+    padding: 50px 0 40px 35px;
+}
+.payment-content .num .num1{
+    float: left;
+}
+.payment-content .num .num2{
+    float: left;
+}
+.payment-content .bank{
+    padding-left: 35px;
+    font-size: 18px;
+}
+.payment-content .invest-input{
+    padding: 40px 0 20px 35px;
+    font-size: 16px;
+    color: #bbb;
+}
+.card-brame {
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 500px;
+    overflow: hidden;
+}
+.card-brame .img-box {
+    width: 46px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-right: 0;
+    height: 46px;
+    line-height: 46px;
+    float: left;
+}
+.img-box img {
+    margin-left: 14px;
+}
+.card-brame input{
+    border: 1px solid #ccc;
+    float: left;
+    display: inline-block;
+    width: 336px;
+    height: 46px;
+    font-size: 16px;
+    color: #bbbbbb;
+    text-indent: 16px;
+}
+.forgot-pwd, .forgot-pwd:hover {
+    color: #b68b4c;
+    padding-left: 15px;
+    text-decoration: none;
+    line-height: 46px;
+}
+.payment-content .agree-box{
+    padding-left: 35px;
+    font-size: 12px;
+}
+.payment-content .agree-box a{
+    color: #b68b4c;
+}
+.payment-content button{
+    width: 200px;
+    height: 45px;
+    line-height: 45px;
+    border: 1px #e4262b solid;
+    color: #fff;
+    margin-top: 10px;
+    background: #e4262b;
+    font-size: 18px;
+    margin: 50px 0 50px 35px;
+}
