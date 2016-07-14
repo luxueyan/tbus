@@ -8,8 +8,8 @@
 }
 
 .current-container {
-    width: 1100px;
-    margin: 0 auto;
+    width: 1200px;
+    margin: 23px auto;
     /*  margin-top: 30px;*/
 }
 
@@ -75,7 +75,7 @@
 
 .invest-data-wrapper .investContainer {
     width: 730px;
-    height: 344px;
+    height: 303px;
     /*	border: 1px solid #eee;*/
     /*  margin: 0 25px;*/
 }
@@ -148,8 +148,10 @@
 }
 
 .invest-data-wrapper .investContainer .content .inner {
-    height: 130px;
+    height: 160px;
     border-top: 1px solid #eeeeee;
+    margin-left: 10px;
+    margin-right: 10px;
     padding-top: 33px;
     padding-bottom: 13px;
     /*  margin-top: 20px;*/
@@ -165,7 +167,6 @@
 
 .invest-data-wrapper .investContainer .content .inner .item.itemFirst {
     width: 240px;
-    border-left: 1px solid #eee;
 }
 
 .invest-data-wrapper .investContainer .content .inner .item.itemFirst .value {
@@ -174,7 +175,6 @@
 
 .invest-data-wrapper .investContainer .content .inner .item.itemSecond {
     width: 240px;
-    border-right: 1px solid #eee;
 }
 
 .invest-data-wrapper .investContainer .content .inner .item.itemSecond .name img {
@@ -182,7 +182,7 @@
 }
 
 .invest-data-wrapper .investContainer .content .inner .item.itemSecond .value {
-    margin-left: 66px;
+    margin-left: 40px;
     /*	color: #fe8008;*/
 }
 
@@ -199,6 +199,7 @@
     color: #999;
     font-size: 14px;
     margin-left: 40px;
+    margin-top: 28px;
 }
 
 .invest-data-wrapper .investContainer .content .inner .item .name img {
@@ -209,10 +210,10 @@
     margin-top: 5px;
     width: 100%;
     height: 30px;
-    line-height: 30px;
+    line-height: 24px;
     margin-left: 34px;
-    color: #999;
-    font-size: 30px;
+    color: #666;
+    font-size: 24px;
     font-weight: bold;
     font-family: sans-serif, Hiragino Sans GB;
 }
@@ -220,15 +221,33 @@
 .invest-data-wrapper .investContainer .content .inner .item .value span {
     position: relative;
     font-size: 18px;
-    top: -1px;
     color: #999;
+    margin-left: -5px;
 }
-
+.invest-data-wrapper .investContainer .content .inner .itemRed .value {
+    color: red;
+    font-size: 31px;
+}
+.invest-data-wrapper .investContainer .content .inner .itemRed .value span {
+    color: red;
+    margin-left: -5px;
+}
 .invest-data-wrapper .investContainer .content .innerBottom {
     /*  margin-top: 25px;*/
     overflow: hidden;
+    height: 71px;
+    line-height: 71px;
+    font-size: 24px;
+    padding-left: 35px;
 }
+.invest-data-wrapper .investContainer .content .innerBottom span{
+    background:  url(../img/icon1.png) no-repeat;
+    width: 19px;
+    height: 19px;
+    display: inline-block;
+    margin-left: 20px ;
 
+}
 .invest-data-wrapper .investContainer .content .innerBottom .process {
     /*	float: right;*/
 }
@@ -434,52 +453,40 @@
     /*	position: relative;*/
     border: 1px solid #eee;
     float: right;
-    width: 350px;
-    height: 346px;
+    width: 450px;
+    height: 303px;
     background-color: #fff;
     border-radius: 3px;
     text-align: center;
     border-left: solid #eee 1px;
     /*background-image: url(/assets/img/box_bj.jpg);*/
     /*	min-height: 350px;*/
+    padding-top: 60px;
 }
 
-.do-invest-wrapper .tooltip {
-    top: 10px;
-    left: 29px;
-    opacity: 1;
-    display: block;
+.do-invest-wrapper div{
+    color: #999;
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: left;
+    margin-left: 85px ;
 }
-
-.do-invest-wrapper .tooltip .tooltip-arrow {
-    position: absolute;
-    border-width: 5px 5px 0;
-    border-top-color: #fdf8e4;
-    bottom: -5px;
-    left: 10%;
+.do-invest-wrapper div span{
+    color: #e60012;
+    font-size: 30px;
 }
-
-.do-invest-wrapper .tooltip .tooltip-inner {
-    padding: 5px 10px;
-    background-color: #fdf8e4;
-    max-width: 330px;
-    color: #c09956;
+.do-invest-wrapper button {
+    width: 270px;
+    height: 45px;
+    background: #e60012;
+    color: white;
 }
-
-.do-invest-wrapper .tooltip .tooltip-inner .icon {
-    color: #fe0002;
-    margin-right: 5px;
+.do-invest-wrapper button:hover {
+    color: white;
 }
-
-.do-invest-wrapper .status {
-    background: #f5f5f5;
+.do-invest-wrapper button:focus {
+    color: white;
 }
-
-.do-invest-wrapper .status .info {
-    background-color: #fff;
-    border-radius: 3px;
-}
-
 .firstLine {
     overflow: hidden;
     padding: 0px 30px;
@@ -1177,7 +1184,6 @@
     min-height: 800px;
     background: #fff;
     /*	margin-top: 20px;*/
-    width: 730px;
     margin-left: 0;
     float: left;
     border: 1px solid #eee;
@@ -1193,7 +1199,7 @@
 }
 
 .invest-detail-wrapper {
-    width: 1100px;
+    width: 1200px;
     margin: auto;
     overflow: hidden;
     /*	border: 1px solid #ccc;*/
@@ -1202,35 +1208,36 @@
 }
 
 .invest-detail-wrapper .nav-tabs li {
-    border-right: 1px solid #eee;
+    border-right: 3px solid #eee;
 }
 
 .invest-detail-wrapper .nav-tabs li a {
     display: block;
     border-radius: 0;
     margin-right: 0;
-    color: #4a4a4a;
-    width: 132px;
-    height: 52px;
-    line-height: 40px;
+    color: white;
+    width: 300px;
+    height: 75px;
+    line-height: 55px;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 24px;
     border: none;
     border-bottom: 1px solid #eee;
     text-align: center;
-    background: #fff;
     /*	font-size: 18px;*/
     font-family: '微软雅黑';
+    background: #cfa972;
+
 }
 
 .invest-detail-wrapper .nav-tabs .active a,
 .invest-detail-wrapper .nav-tabs .active a:focus {
-    font-size: 18px;
+    font-size: 24px;
     border: none;
     text-align: center;
     color: #4a4a4a;
     background: #fff;
-    border-top: 2px solid #0d7cd5;
+    width: 588px;
 }
 
 .invest-detail-wrapper .tab-panels {
@@ -1566,12 +1573,21 @@
 /*添加*/
 
 .detailTitle a {
-    font-size: 14px;
-    color: #4a4a4a;
-}
 
+    color: #999;
+}
 .detailTitle {
-    line-height: 50px;
+    line-height: 67px;
+    padding-left: 35px;
+    height: 67px;
+    font-size: 18px;
+    border-bottom: 5px;
+}
+.detailTitle div{
+    display: inline;
+    float: right;
+    font-size: 15px;
+    margin-right: 40px;
 }
 
 .detailBanner {
@@ -1865,7 +1881,6 @@
 }
 
 .time-left {
-    color: #f58220;
 }
 
 .box-large {
@@ -1990,4 +2005,11 @@
 }
 .money-brame-box{
     text-align: left;
+}
+.h5{
+    background: -webkit-linear-gradient(#e0e0e0, #fff); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(#e0e0e0, #fff); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(#e0e0e0, #fff); /* Firefox 3.6 - 15 */
+    background: linear-gradient(#e0e0e0, #fff); /* 标准的语法 */
+    height: 5px;
 }

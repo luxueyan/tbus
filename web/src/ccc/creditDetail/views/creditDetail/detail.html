@@ -6,15 +6,21 @@
 <link rel="stylesheet" href="/ccc/creditDetail/css/detail.css">
 
 
+
 <div class="">
     <div class="current-container">
-        <p class="detailTitle"><a href="/">首页</a> > <a href="/creditList">债转列表 </a>> {{creditassign.creditassign.title}}产品详情</p>
+
 		<div class="box-large">
-        <div class="invest-data-wrapper">
+            <div class="invest-data-wrapper">
             <div class="investContainer">
+                <div class="detailTitle">
+                    <!--<a href="/">首页</a> > -->
+                    <a href="/creditList">债转列表 </a>> <sapn style="color: #e4262b">产品详情</sapn>
+                    <div class="time">发布时间：<span class="time-left">2015-10-10</span>
+                </div>
+
                 <div class="investTitle">
                      <div class="time">
-                         <div class="time">剩余时间：<span class="time-left">{{loans.timeLeft.dd}}日{{loans.timeLeft.hh}}小时{{loans.timeLeft.mm}}分{{loans.timeLeft.ss}}</span>
                          </div>
                          <!--{{#if creditassign.creditassign.timeOpen}}-->
                         <!--开标时间:{{creditassign.creditassign.timeOpen}}-->
@@ -31,19 +37,47 @@
 
                     {{/if}}
 -->
-                    <div class="title" style="height:50px;line-height:50px;"><img src="/ccc/loan/img/money.png" />{{creditassign.creditassign.title}}</div>
-
                 </div>
+                <div class="h5"></div>
                 <div class="content">
-                    <div class="inner">
-                        <div class="item itemSecond">
-                            <div class="value">{{creditassign.creditassign.creditDealAmount||loan.amount}}<span>元</span>
+                    <div class="innerBottom">
+                        <div>月月赚-20150808<span class="icon1"></span></div>
+
+                        <!--
+                                                 <div class="itemt pic">
+                                                        <span class="processFont">项目余额</span>
+                                                        <div class="process">
+                                <div class="rate-chart">
+                                    <div class="easy-pie-chart pie " data-percent="{{ loans.investPercent }}" >
+                                        <span class="percentageNum"></span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="name" style="margin-left: 70px;">转让价格</div>
+                                                    </div>
+                        -->
+                        <!--<ul class="loanMethod interestMethod">-->
+                            <!--&lt;!&ndash;							<li>已投人数：<span style="font-size:24px;color:#009ada;">{{loans.bidNumber}}</span>人</li>&ndash;&gt;-->
+                            <!--<li>待收本金：{{creditassign.creditassign.creditAmount||0}}</li>-->
+                            <!--<li>保障方式：本息保障</li>-->
+                            <!--<li>起投金额：{{ loan.loanRequest.investRule.minAmount}}元</li>-->
+                        <!--</ul>-->
+                        <!--<ul class="loanMethod">-->
+                            <!--&lt;!&ndash;							<li>已投人数：<span style="font-size:24px;color:#009ada;">{{loans.bidNumber}}</span>人</li>&ndash;&gt;-->
+                            <!--<li>还款方式：{{loan.method}}</li>-->
+                            <!--<li>投资限额：{{loan.loanRequest.investRule.maxAmount}}元</li>-->
+                            <!--<li>起息日期：满标日后的第1个工作日</li>-->
+                        <!--</ul>-->
+                    </div>
+                    <div class="inner">
+                        <div class="item itemSecond itemRed">
+                            <div class="value">
+                                5.4 <span>%</span>
+                            </div>
+                            <div class="name" >预期收益率</div>
                         </div>
                         <div class="item itemThird" style="border-right:none">
-                            <div class="value">{{loan.rate}}%</div>
-                               <div class="name">年化收益率</div>
+                            <div class="value">144 <span>天</span></div>
+                               <div class="name">预期到期日 <span style="color: #666">2016-02-27</span></div>
                         </div>
                         <!--<div class="item itemFirst">-->
                              <!--<div class="value">{{creditassign.creditassign.timeOut||0}}<span>小时</span>-->
@@ -52,43 +86,13 @@
                         <!--</div>-->
                         <div class="item itemFirst">
                             <div class="value">
-                                {{#if creditassign.creditassign.timeOpen1}}
-                                {{creditassign.creditassign.timeOpen1}}
-                                {{else}}
-                                转让已满,已结束
-                                {{/if}}
+                                2015-08-09
                             </div>
-                            <div class="name">开标时间</div>
+                            <div class="name">起息日</div>
                         </div>
 
                     </div>
-                    <div class="innerBottom">
 
-<!--
-						 <div class="itemt pic">
-                                <span class="processFont">项目余额</span>
-                                <div class="process">
-        <div class="rate-chart">
-            <div class="easy-pie-chart pie " data-percent="{{ loans.investPercent }}" >
-                <span class="percentageNum"></span>
-            </div>
-        </div>
-    </div>
-                            </div>
--->
-				       <ul class="loanMethod interestMethod">
-<!--							<li>已投人数：<span style="font-size:24px;color:#009ada;">{{loans.bidNumber}}</span>人</li>-->
-                            <li>待收本金：{{creditassign.creditassign.creditAmount||0}}</li>
-                            <li>保障方式：本息保障</li>
-                             <li>起投金额：{{ loan.loanRequest.investRule.minAmount}}元</li>
-                        </ul>
-                        <ul class="loanMethod">
-<!--							<li>已投人数：<span style="font-size:24px;color:#009ada;">{{loans.bidNumber}}</span>人</li>-->
-                            <li>还款方式：{{loan.method}}</li>
-                            <li>投资限额：{{loan.loanRequest.investRule.maxAmount}}元</li>
-                            <li>起息日期：满标日后的第1个工作日</li>
-                        </ul>
-                    </div>
                                           <div class="progress-wp">
                                 <div class="progress-num">
                                 </div>
@@ -109,9 +113,11 @@
             </div>
         </div>
 
-        <div class="do-invest-wrapper">
-
-        </div>
+            <div class="do-invest-wrapper">
+                <div>转让价格(元): <span>54350.00</span></div>
+                <div>预期收益(元): <span>2667.00</span></div>
+                <button class="btn">确认购买</button>
+            </div>
 		</div>
 
         <div class="clearfix"></div>

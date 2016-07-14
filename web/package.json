@@ -77,6 +77,7 @@
   },
   "scripts": {
     "browserify": "browserify",
+    "env":"source ~/.nvm/nvm.sh; nvm use 4; nvm alias default 4",
     "build": "gulp build",
     "build-config": "gulp build-config",
     "dev": "PORT=`next-port 4000` gulp dev",
