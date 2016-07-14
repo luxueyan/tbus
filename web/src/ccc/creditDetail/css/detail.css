@@ -9,7 +9,7 @@
 
 .current-container {
     width: 1100px;
-    margin: 0 auto;
+    margin: 23px auto;
     /*  margin-top: 30px;*/
 }
 
@@ -1566,12 +1566,19 @@
 /*添加*/
 
 .detailTitle a {
-    font-size: 14px;
+
     color: #4a4a4a;
 }
-
 .detailTitle {
-    line-height: 50px;
+    line-height: 67px;
+    padding-left: 35px;
+    height: 67px;
+    font-size: 18px;
+    border-bottom: 5px;
+}
+.detailTitle div{
+    display: inline;
+    float: right;
 }
 
 .detailBanner {
@@ -1990,4 +1997,11 @@
 }
 .money-brame-box{
     text-align: left;
+}
+.h5{
+    background: -webkit-linear-gradient(#e0e0e0, #fff); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(#e0e0e0, #fff); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(#e0e0e0, #fff); /* Firefox 3.6 - 15 */
+    background: linear-gradient(#e0e0e0, #fff); /* 标准的语法 */
+    height: 5px;
 }
