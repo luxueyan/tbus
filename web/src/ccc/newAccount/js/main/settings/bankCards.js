@@ -18,6 +18,8 @@ var ractive = new Ractive({
     template: require('ccc/newAccount/partials/settings/bankCards.html'),
 
     data: {
+        step1: true,
+        step2: false,
         status: banksabled.length ? 1 : 0,
         payment: CC.user.name ? true : false,
         // banks: banks,
@@ -212,12 +214,17 @@ ractive.on("bind-card-submit", function (e) {
     //  }else{
     //    $.post('/api/v2/hundsun/checkCard/MYSELF',sendCard,function(r){ //checkCard
     //      if(r.success){
-            $.post('/api/v2/user/checkBankcard', sendCard, function (r) { //bindCard
-                if(r.success){
-                    window.location.reload();
+            $.post('/api/v2/user/checkBankcard', sendCard, function (res) { //bindCard
+                if(res){
+                    console.log(res)
+                    ractive.set('step1',false);
+                    ractive.set('step2',true);
+                    ractive.on('close',function(){
+                        window.location.href = "/newAccount/home";
+                    });
                 }else{
                     CccOk.create({
-                        msg: msg[r.error[0].message],
+                        msg: '绑卡失败!',
                         okText: '确定',
                         ok: function () {
                             $('.ccc-box-overlay').remove();

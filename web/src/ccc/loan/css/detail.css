@@ -329,14 +329,42 @@ select::-ms-expand { display: none; }
     width: 176px;
     height: 118px;
 }
+/*产品亮点*/
+.lightspot-box{
+    margin: 10px 58px;
+}
+.lightspot-box .single{
+    margin-bottom: 48px;
+}
+.lightspot-box .single .title{
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+.lightspot-box .single .content{
+    color: #999;
+}
+/*常见问题*/
+.invest-detail-wrapper .question-box{
+    font-size: 18px;
+    margin: 10px 58px;
+    line-height: 46px;
+}
+.invest-detail-wrapper .question-box .single{
+    margin-bottom: 50px;
+}
+.invest-detail-wrapper .question-box .single .question{
+    color: #cfa972;
+}
+
 
 /*投资记录*/
 .invest-record{
-    width: 900px;
+    width: 1160px;
     margin: auto;
 }
 .invest-record table thead tr th {
     text-align: center;
+    font-size: 18px;
 }
 
 /*投资框*/

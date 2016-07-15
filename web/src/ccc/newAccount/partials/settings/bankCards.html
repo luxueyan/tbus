@@ -1,6 +1,7 @@
 
 {{#if status === 0}}
 <div class="bind-card-wrapper">
+    {{#if step1}}
     <form action="" method="POST" on-submit="bind-card-submit">
       <p class="addcard-info">请先绑定银行卡才能进行充值、提现、投资等操作！</p>
         <div class="row">
@@ -80,6 +81,23 @@
             <button type="submit">绑定</button>
         </div>
     </form>
+    {{/if}}
+    {{#if step2}}
+    <div class="recharge-success">
+        <div class="content">
+            <div class="success-img">
+                <img src="/ccc/newAccount/img/band-success.png"/>
+            </div>
+            <div class="success-content">
+                <p>银行卡绑定成功！</p>
+                <div class="button">
+                    <!--<button class="close-img btn-after" on-click="close">以后再说</button>-->
+                    <a href="/invest"><button class="btn-after btn-bank">马上投资</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
 </div>
 {{/if}}
 

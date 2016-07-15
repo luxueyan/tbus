@@ -296,17 +296,6 @@ hr {
 
 /*外包*/
 
-
-
-
-
-
-.s-content p {
-    color: #B8B8B8;
-    line-height: 48px;
-    font-size: 0.8em;
-}
-
 .s-content table {
     width: 1200px;
     border-collapse: collapse;
@@ -397,15 +386,116 @@ hr {
     font-size: 0.8em;
 }
 
+
+
+/*太合汇*/
 .loanItemWrapper {
-    border-bottom: 1px solid #eeeeee;
+    border: 1px solid #c9c9c9;
+    margin: 0 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
 }
 
 .loanItemWrapper:hover {
-    background-color: #FAFAFA;
+    border-color: #e4262b;
+}
+.loanItemWrapper .loan_left{
+    float: left;
 }
 
-.loanItemWrapper .loanPartOne {}
+.loanItemWrapper .loan_title{
+    margin: 0 16px;
+    border-bottom: 1px solid #c9c9c9;
+    width: 424px;
+    overflow: hidden;
+}
+.loan_title .title_info{
+    float: left;
+    padding-left: 10px;
+    margin: 10px 0;
+}
+.loan_title .title_info h2{
+    font-size: 24px;
+    color: #e4262b;
+}
+.loan_title .title_info p{
+    font-size: 14px;
+    color: #999;
+}
+.loan_info{
+    margin-top: 18px;
+    margin-bottom: 14px;
+    overflow: hidden;
+}
+.loan_info .info_box{
+    border-right: 1px solid #c9c9c9;
+    float: left;
+    height: 80px;
+    padding: 12px 100px 0 50px;
+}
+.loan_info .rate_box{
+    padding: 5px 100px 0 50px;
+}
+.loan_info .info_box:last-child{
+    border-right:none;
+}
+.loan_info .info_box .title{
+    color: #666;
+    font-size: 14px;
+    margin-top: 10px;
+}
+.loan_info .info_box div{
+    font-size: 14px;
+    color: #666;
+}
+.loan_info .info_box div span{
+    font-size: 24px;
+}
+.loan_info .info_box .rate{
+    color: #e60012;
+    font-size: 16px;
+}
+.loan_info .info_box .rate span{
+    font-size: 30px;
+}
+.loanItemWrapper .loan_right{
+    float: right;
+    border-left: 1px solid #c9c9c9;
+    margin: 30px 0;
+    width: 350px;
+    color: #666;
+}
+.leftAmount{
+    padding-top: 10px;
+    text-align: center;
+}
+.loanItemWrapper .amount {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 10px;
+}
+.leftAmount p{
+    font-size: 24px;
+    color: #e4262b;
+}
+.investBtn a{
+    width: 250px;
+    height: 36px;
+    display: block;
+    background: #c9c9c9;
+    line-height: 36px;
+    text-align: center;
+    color: #fff;
+    margin-top: 20px;
+    text-decoration:none;
+    margin-left: 53px;
+}
+.investBtn .open{
+    background: #e4262b;
+}
+
+
+
 
 .loanItemWrapper .floatdiv {
     overflow: hidden;
@@ -506,15 +596,7 @@ hr {
     width: 176px;
 }
 
-.loanItemWrapper .amount {
-    float: left;
-    height: 100%;
-    width: 146px;
-    text-align: left;
-    line-height: 72px;
-    font-size: 20px;
-    color: #4a4a4a;
-}
+
 
 .loanItemWrapper .amount span {
     font-size: 14px;
