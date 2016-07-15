@@ -540,3 +540,32 @@ input[type=button]{
     z-index: 1;
     width: 120px;
 }
+
+/*分页*/
+.pages {
+    overflow: hidden;
+    float: right;
+}
+.pages p {
+    font-size: 14px;
+    float: left;
+    line-height: 18px;
+}
+.pages span, .pages a {
+    display: block;
+    float: left;
+    width: 62px;
+    font-size: 12px;
+    height: 26px;
+    border-radius: 4px;
+    background-color: #e5e5e5;
+    margin: 10px 0 10px 10px;
+    text-align: center;
+    line-height: 24px;
+    cursor: pointer;
+}
+.pages .current,
+.pages span:hover {
+    background-color: #3f7bc6;
+    color: #fff;
+}
