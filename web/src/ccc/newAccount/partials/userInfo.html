@@ -74,6 +74,22 @@
         <h3>我的银行卡</h3>
         <div class="card_box">
             <ul>
+                {{#each bankCards}}
+                <li>
+                    <div class="card_add">
+                        <!--<p class="{{account.bank}}" style="background-size: 180px;background-repeat: no-repeat;"></p>-->
+                        <div class="bankcard-box {{account.bank}}" style="position:relative;">
+                            <!--<span>尾号{{Faccount}}</span>-->
+                        </div>
+                        <p class="card_num">{{account.account.substr(0,4)}}************{{account.account.substr(-4,4)}}</p>
+                        <p class="card_status">已绑定</p>
+                        <!--<td>-->
+                            <!--<button on-click="deleted-card" lala="{{account.account}}">解绑</button>-->
+                        <!--</td>-->
+                    </div>
+                </li>
+                {{/each}}
+
                 <li>
                     <div class="card_add">
                         <a href="/newAccount/settings/bankCards">
@@ -84,6 +100,7 @@
                     </div>
                 </li>
             </ul>
+
         </div>
         <!--<div class="showbank-box" style="margin-bottom:24px;">-->
             <!--{{#if bankCards.length>0}}-->

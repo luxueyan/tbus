@@ -1,37 +1,13 @@
 <!--&lt;!&ndash;{{JSON.stringify(imgs)}}===&ndash;&gt;-->
 <!--&lt;!&ndash;detail页面的 相关资料部分&ndash;&gt;-->
-<!--{{#if imgLen}}-->
-<!--<div class="big-box">-->
-    <!--<div id="left-arrow"><img src="/ccc/loan/img/left-arrow.png"></div>-->
-    <!--<div class="pic-box" style="position:relative;left:0">-->
-        <!--{{#each imgs:i}}-->
-        <!--<div class="show-pic-box" style="position:absolute;left:{{i*200}}px;">-->
-            <!--<div class="show-pic">-->
-                <!--<img src="{{uri}}" on-click="begin-big-pic">-->
-            <!--</div>-->
-            <!--<p>{{ proof.description }}</p>-->
-        <!--</div>-->
-        <!--{{/each}}-->
-    <!--</div>-->
-    <!--<div id="right-arrow"><img src="/ccc/loan/img/right-arrow.png"></div>-->
-<!--</div>-->
-<!--{{else}}-->
-<!--<div>-->
-    <!--暂无相关资料-->
-<!--</div>-->
-<!--{{/if}}-->
-
-
-<!--{{JSON.stringify(imgs)}}===-->
-<!--detail页面的 相关资料部分-->
-<!--{{#if imgLen}}-->
+{{#if imgLen}}
 <div class="big-box">
     <div id="left-arrow"><img src="/ccc/loan/img/left-arrow.png"></div>
     <div class="pic-box" style="position:relative;left:0">
         {{#each imgs:i}}
         <div class="show-pic-box" style="position:absolute;left:{{i*200}}px;">
             <div class="show-pic">
-                <img src="{{content}}" on-click="begin-big-pic">
+                <img src="{{uri}}" on-click="begin-big-pic">
             </div>
             <p>{{ proof.description }}</p>
         </div>
@@ -39,8 +15,8 @@
     </div>
     <div id="right-arrow"><img src="/ccc/loan/img/right-arrow.png"></div>
 </div>
-<!--{{else}}-->
-<!--<div>-->
-    <!--暂无相关资料-->
-<!--</div>-->
-<!--{{/if}}-->
+{{else}}
+<div>
+    暂无相关资料
+</div>
+{{/if}}

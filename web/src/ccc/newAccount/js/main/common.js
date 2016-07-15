@@ -63,7 +63,7 @@ var infoRactive = new Ractive({
 		vip:'普通用户',
 		showVip: true,
 		greetingText:'',
-		avaAmount : avaAmount
+		avaAmount : avaAmount,
 	},
 
 	oninit: function () {
