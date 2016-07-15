@@ -38,6 +38,7 @@
 
 .list_content{
   padding: 30px;
+  overflow: hidden;
 }
 
 .invest-list-wrapper {
