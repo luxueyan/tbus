@@ -133,121 +133,52 @@ ractive.on("bind-card-submit", function (e) {
     //    this.set("phoneNoError", false);
     //}
 
-    var sendObj = {
-        bankCode: bankName,
-        cardNo: cardNo,
-        cardPhone: cardPhone,
-        smsCaptcha: smsCaptcha
-    }
-    var sendName={
-      idNumber:idNo,
-      name:personal
-    }
     var sendCard={
         userId:CC.user.id,
         accountNumber:cardNo,
         mobile:cardPhone,
         idCardNumber:idNo,
-        name:personal
+        name:personal,
+        smsCaptcha:smsCaptcha
     }
     var msg = {
         SEND_CAPTCHA_FAILED: '验证码发送失败',
-        SMSCAPTCHA_IS_NOT_CORRECT: '手机验证码为空或不匹配',
+        SMSCAPTCHA_IS_NOT_CORRECT: '手机验证码不匹配',
         IDNUMBER_ALREADY_EXISTED: '此身份证号已被注册',
         REGISTER_FAILED: '开户失败',
         CHECK_CARD_FAILED: '验卡失败',
         BIND_CARD_FAILED: '绑卡失败',
         UNKNOWN: '系统繁忙，请稍后重试！',
         ACCESS_DENIED: '登录超时',
-
         SUCCEED: '银行卡绑定成功'
     };
-    
-    //$.get('/api/v2/user/MYSELF',function(r){
-    //  if(!r.priv){
-    //    $.post('/api/v2/hundsun/register/MYSELF',sendName,function(r){ //实名认证
-    //        //校验身份证
-    //        if(r.error[0].type == 'idNumber'){
-    //            if(r.error[0].message == 'INVALID_PARAMS'){
-    //                CccOk.create({
-    //                    msg: '请正确填写您的身份证号码',
-    //                    okText: '确定',
-    //                    ok: function () {
-    //                        $('.ccc-box-overlay').remove();
-    //                        $('.ccc-box-wrap').remove();
-    //                    }
-    //                });
-    //            }else{
-    //                CccOk.create({
-    //                    msg: msg[r.error[0].message],
-    //                    okText: '确定',
-    //                    ok: function () {
-    //                        $('.ccc-box-overlay').remove();
-    //                        $('.ccc-box-wrap').remove();
-    //                    }
-    //                });
-    //            };
-    //        };
-    //        //校验姓名
-    //        if(r.error[0].type == 'name'){
-    //            if(r.error[0].message == 'INVALID_PARAMS'){
-    //                CccOk.create({
-    //                    msg: '请正确填写您的姓名',
-    //                    okText: '确定',
-    //                    ok: function () {
-    //                        $('.ccc-box-overlay').remove();
-    //                        $('.ccc-box-wrap').remove();
-    //                    }
-    //                });
-    //            }else{
-    //                CccOk.create({
-    //                    msg: msg[r.error[0].message],
-    //                    okText: '确定',
-    //                    ok: function () {
-    //                        $('.ccc-box-overlay').remove();
-    //                        $('.ccc-box-wrap').remove();
-    //                    }
-    //                });
-    //            };
-    //        };
-    //    })
-    //  }else{
-    //    $.post('/api/v2/hundsun/checkCard/MYSELF',sendCard,function(r){ //checkCard
-    //      if(r.success){
-            $.post('/api/v2/user/checkBankcard', sendCard, function (res) { //bindCard
-                if(res){
-                    console.log(res)
-                    ractive.set('step1',false);
-                    ractive.set('step2',true);
-                    ractive.on('close',function(){
-                        window.location.href = "/newAccount/home";
-                    });
-                }else{
-                    CccOk.create({
-                        msg: '绑卡失败!',
-                        okText: '确定',
-                        ok: function () {
-                            $('.ccc-box-overlay').remove();
-                            $('.ccc-box-wrap').remove();  
-                        }
-                    });
-                }
-       
-            });
-          //}else{
-          //    CccOk.create({
-          //      msg: r.error[0].value,
-          //      okText: '确定',
-          //      ok: function () {
-          //          $('.ccc-box-overlay').remove();
-          //          $('.ccc-box-wrap').remove();
-          //      }
-          //  });
-          //};
-        //})
-      //}
-    //});
 
+    $('.btn-box button').text('绑卡中,请稍等...');
+    $.post('/api/v2/user/checkBankcard', sendCard, function (res) { //bindCard
+        if(res.success){
+            //console.log(res);
+
+            ractive.set('step1',false);
+            ractive.set('step2',true);
+            ractive.on('close',function(){
+                window.location.href = "/newAccount/home";
+            });
+        }else{
+            $('.btn-box button').text('绑定');
+            if(res.error[0].message === 'Something is wrong'){
+                msg[res.error[0].message] = '请再次确认您的信息'
+            }
+            CccOk.create({
+                msg: '绑卡失败, '+msg[res.error[0].message],
+                okText: '确定',
+                ok: function () {
+                    $('.ccc-box-overlay').remove();
+                    $('.ccc-box-wrap').remove();
+                }
+            });
+        }
+
+    });
 });
 
 ractive.on('sendCode', function (){
