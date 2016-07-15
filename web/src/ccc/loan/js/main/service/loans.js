@@ -48,5 +48,13 @@ exports.loanService = {
             .then(function (r) {
                 next(r.body);
             })
+    },
+    getLoanDetail: function (loanId, next) {
+        request
+            .get('/api/v2/loan/' + loanId + '/detail')
+            .end()
+            .then(function (res) {
+                next(res.body);
+            });
     }
 };

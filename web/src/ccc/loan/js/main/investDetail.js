@@ -636,9 +636,12 @@ function mask(str, s, l) {
 
 
 
-
 //产品介绍图片
-loanService.getLoanProof(CC.loan.requestId, function (imgs) {
+//loanService.getLoanProof(CC.loan.requestId, function (imgs) {
+loanService.getLoanDetail(CC.loan.id, function (res) {
+    var imgs = res.data.proof.proofImages;
+    //console.log(imgs);
+
     var relateDataRactive = new Ractive({
         // insurance 担保
         el: ".insurance-wrapper",
@@ -668,7 +671,7 @@ loanService.getLoanProof(CC.loan.requestId, function (imgs) {
             imgLen: imgLen
         };
         popupBigPic.show(options);
-        init();
+        //init();
         return false;
     });
 
@@ -694,69 +697,3 @@ loanService.getLoanProof(CC.loan.requestId, function (imgs) {
         }
     });
 });
-
-
-//产品介绍图片测试
-
-
-request.get(encodeURI('/api/v2/cms/category/IMAGE/name/信息披露测试用'))
-    .end()
-    .then(function (res) {
-        var imgs = res.body;
-        //console.log('https://creditmanager.b0.upaiyun.com/82d732be36f577c6c873598bb84e737f')
-        //console.log(res.body)
-        var relateDataRactive = new Ractive({
-            // insurance 担保
-            el: ".insurance-wrapper",
-            template: require('ccc/loan/partials/relateDataOnDetail.html'),
-            data: {
-                imgs: imgs,
-                currentIndex: 0,
-                selectorsMarginLeft: 0,
-                stageLen: 5,
-            }
-        });
-
-        var i = 1;
-        var imgLen = $('.pic-box .show-pic-box').length;
-        var lf = [], zs = [];
-
-        // 开始大图浏览
-        relateDataRactive.on('begin-big-pic', function (e) {
-            //console.log(e.index.i)
-            relateDataRactive.set('currentIndex', e.index.i);
-            var options = {
-                imgs: imgs,
-                currentIndex: e.index.i,
-                selectorsMarginLeft: 0,
-                stageLen: 1,
-                imgLen: imgLen
-            };
-            popupBigPic.show(options);
-            //init();
-            return false;
-        });
-
-        $("#left-arrow").click(function () {
-            if (i > 1) {
-                for (var j = 0; j < imgLen; j++) {
-                    zs[j] = zs[j] + 200;
-                    $(".show-pic-box").eq(j).css("left", zs[j]);
-                }
-                i--;
-            }
-        });
-
-        $("#right-arrow").click(function () {
-            if (i < imgLen) {
-                for (var j = 0; j < imgLen; j++) {
-                    lf[j] = $(".show-pic-box").eq(j).css("left");
-                    zs[j] = lf[j].slice(0, -2) - 200;
-
-                    $(".show-pic-box").eq(j).css("left", zs[j]);
-                }
-                i++;
-            }
-        });
-    });
-

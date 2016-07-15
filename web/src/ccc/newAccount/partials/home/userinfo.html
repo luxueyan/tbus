@@ -85,8 +85,9 @@
 				<span class="info-title">可用余额（元）</span>
 				<span class="home-tab-amount">{{avaAmount}}<span>.{{morAmount}}</span></span>
 			</div>
+			<!--{{JSON.stringify(user)}}===-->
 			<div class="home-bottomBar">
-				{{#if !user.bankCards.length}}
+				{{#if !banksabled}}
 				<a href="/newAccount/settings/bankCards"><div class="home-withdraw-btn">提现</div></a>
 				<a href="/newAccount/settings/bankCards"><div class="home-recharge-btn">充值</div></a>
 				{{elseif !user.paymentPasswordHasSet}}

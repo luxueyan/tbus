@@ -18,7 +18,8 @@ var ractive = new Ractive({
         email: false,
         percent: 25,
         levelText:'弱',
-        isEnterprise: CC.user.enterprise
+        isEnterprise: CC.user.enterprise,
+        bankCards:CC.user.bankCards,
     },
     init: function() {
         var percent = 25;
@@ -166,7 +167,7 @@ ractive.on('submit',function() {
     accountService.updatePersonalInfo(male,educationLevel,maritalStatus,function(r) {
         if (!r.error) {
             accountService.updateCareerInfo(companyIndustry,salary,function(r) {
-                console.log(r);
+                //console.log(r);
                 if (!r.error) {
                     alert('信息编辑成功');
                     window.location.reload();
