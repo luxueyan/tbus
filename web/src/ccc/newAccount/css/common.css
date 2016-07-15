@@ -784,3 +784,67 @@ table tbody tr td {
     background: #C71E23;
     color: #fff;
 }
+
+
+/*操作成功*/
+.recharge-success {
+    /*width: 700px;*/
+    /*height: 420px;*/
+    /*margin: auto;*/
+}
+
+.recharge-success .content {
+    margin-top: 60px;
+}
+
+.recharge-success .success-img {
+    /*float: left;*/
+    /*margin-left: 80px;*/
+    text-align: center;
+    margin-right: 70px;
+}
+
+.recharge-success .success-img img {
+    /*width: 200px;*/
+}
+
+.recharge-success .success-content {
+    /*float: left;*/
+    margin: 60px 0;
+    text-align: center;
+    margin-right: 70px;
+}
+
+.recharge-success .success-content p {
+    font-size: 30px;
+    color: #db0101;
+}
+
+.recharge-success .success-content .bolder {
+    font-size: 24px;
+    font-weight: 600;
+    padding: 10px 0;
+    color: #4a4a4a;
+}
+.recharge-success .success-content .bolder span{
+    color: #ff5451;
+}
+.recharge-success .success-content .btn-after {
+    width: 140px;
+    height: 45px;
+    border: 1px solid #db0101;
+    line-height: 45px;
+    color: #db0101;
+    background: #fff;
+    border-radius: 3px;
+    margin-right: 20px;
+}
+
+.recharge-success .success-content .button {
+    margin-top: 60px;
+}
+
+.recharge-success .success-content .btn-bank {
+    color: #fff;
+    background: #db0101;
+}
