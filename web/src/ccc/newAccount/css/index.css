@@ -317,3 +317,10 @@
 	position: relative;
 	text-align: center;
 }
+.advertisement{
+	float: right;
+	margin-top: 30px;
+	width: 100%;
+	height: 158px;
+	background-image: url("/ccc/newAccount/img/advertisement.png");
+}
