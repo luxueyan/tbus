@@ -142,6 +142,7 @@ ractive.on("bind-card-submit", function (e) {
       name:personal
     }
     var sendCard={
+        userId:CC.user.id,
         accountNumber:cardNo,
         mobile:cardPhone,
         idCardNumber:idNo,
@@ -211,7 +212,7 @@ ractive.on("bind-card-submit", function (e) {
     //  }else{
     //    $.post('/api/v2/hundsun/checkCard/MYSELF',sendCard,function(r){ //checkCard
     //      if(r.success){
-            $.post('/api/v2/users/checkBankcard', sendCard, function (r) { //bindCard
+            $.post('/api/v2/user/checkBankcard', sendCard, function (r) { //bindCard
                 if(r.success){
                     window.location.reload();
                 }else{
