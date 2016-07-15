@@ -33,6 +33,6 @@ module.exports = function (router, auth) {
     //实名认证
     router.post('/api/v2/user/checkId', auth.user());
     //银行卡验证
-    router.post('api/v2/user/checkBankcard', auth.user());
+    router.post('/api/v2/user/checkBankcard', auth.user());
 
 };

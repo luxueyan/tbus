@@ -968,6 +968,10 @@ p.tips {
     color: white;
     font-size: 18px;
 }
+.open-account-wrapper .account-submit .checked-id{
+    background: #ccc;
+    cursor: default !important;
+}
 .open-account-wrapper .error-message {
     text-align: center;
     color: red;
