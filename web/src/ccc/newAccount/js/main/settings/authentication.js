@@ -15,6 +15,8 @@ var ractive = new Ractive({
     template: require('ccc/newAccount/partials/settings/authentication.html'),
 
     data: {
+        step1: true,
+        step2: false,
         isQuickCheck: true,
         authenticateInfo: {
             name: CC.user.name || '',
@@ -89,6 +91,7 @@ ractive.on("register-account-submit", function () {
                 }
 
                 var user = {
+                    userId: CC.user.id,
                     name: $.trim(name),
                     idCardNumber: $.trim(idNumber)
                 };
@@ -104,25 +107,12 @@ ractive.on("register-account-submit", function () {
                 }
                 accountService.checkId(user,
                     function (res) {
-                        if (res.success) {
-                            CccOk.create({
-                                msg: msg,
-                                okText: '现在开通',
-                                cancelText: '稍后再说',
-                                ok: function () {
-                                    if (link) {
-                                        window.location.href = link;
-                                    } else {
-                                        window.location.reload();
-                                    }
-
-                                },
-                                cancel: function () {
-                                    window.location.reload();
-                                },
-                                close: function () {
-                                    window.location.reload();
-                                }
+                        //console.log(res);
+                        if (res) {
+                            ractive.set('step1',false);
+                            ractive.set('step2',true);
+                            ractive.on('close',function(){
+                                window.location.href = "/newAccount/home";
                             });
                         } else {
                             //setTimeout(function(){

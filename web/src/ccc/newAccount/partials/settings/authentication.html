@@ -1,7 +1,8 @@
 
 {{#if !authenticateInfo.idNumber}}
-<div class="open-account-wrapper">
 
+<div class="open-account-wrapper">
+    {{#if step1}}
     <div class="account-form-wrapper">
         <form class="form-horizontal">
             <!--<div class="">-->
@@ -43,33 +44,48 @@
             </div>
         </form>
     </div>
+    {{/if}}
+    {{#if step2}}
+    <div class="recharge-success">
+        <div class="content">
+            <div class="success-img">
+                <img src="/ccc/newAccount/img/band-success.png"/>
+            </div>
+            <div class="success-content">
+                <p>实名认证成功！</p>
+                <div class="button">
+                    <!--<button class="close-img btn-after" on-click="close">以后再说</button>-->
+                    <a href="/newAccount/settings/bankCards"><button class="btn-after btn-bank">添加银行卡</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
 </div>
 {{else}}
 <!-- 已绑定 -->
-<div class="account-opened-notice">
-    <div class="ftips">
-        <span class="glyphicon glyphicon-exclamation-sign exclamation" style="color:#ff7200"></span> 重要提示：实名认证操作关系到您的切身利益，请保护好帐号安全
-    </div>
-</div>
-<div class="space-20"></div>
-<div class="account-opened-wrapper">
+<div class="open-account-wrapper">
+    <div class="account-form-wrapper">
+        <form class="form-horizontal">
+            <div class="card-brame">
+                <div class="img-box">
+                    <img class="" src="/ccc/newAccount/img/card-man.png">
+                </div>
+                <input type="text" class="check-name" placeholder="{{authenticateInfo.name}}" disabled/>
+            </div>
 
-    <div class="account-info-row">
-        <label for="" class="text">真实姓名：</label>
-        <span class="value">{{format.mask(authenticateInfo.name)}}</span>
+            <div class="card-brame">
+                <div class="img-box">
+                    <img class="" src="/ccc/newAccount/img/card-id.png" class="id-img">
+                </div>
+                <input type="text" class="check-name"  placeholder="{{authenticateInfo.idNumber.substr(0,5)}}**********{{authenticateInfo.idNumber.substr(-3)}}" disabled/>
+            </div>
+
+            <div class="account-submit">
+                <input type="button" value="已实名" class="info-submit checked-id" />
+            </div>
+        </form>
     </div>
-    <div class="account-info-row">
-        <label for="" class="text">身份证号：</label>
-        <span class="value">{{authenticateInfo.idNumber.substr(0,5)}}**********{{authenticateInfo.idNumber.substr(-3)}}</span>
-    </div>
-</div>
-<div class="space-30"></div>
-<div style="background-color: #f4fcff;padding: 10px; margin: 0 auto;">
-    <p class="tips" style="color:#f58220">温馨提示：</p>
-    <p class="tips">1、718金融用户须是年满18周岁的具有完全民事行为能力的自然人。</p>
-    <p class="tips">2、填写的姓名和身份证号码须与您用于提现的银行卡信息一致。</p>
-    <p class="tips">3、实名认证过程中遇到问题请联系客服：4001-718-718。
-</p>
 </div>
 {{/if}}
 <div id="deposit-agreement-wraper">
