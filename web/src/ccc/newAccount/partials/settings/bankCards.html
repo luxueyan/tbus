@@ -1,5 +1,5 @@
 
-{{#if status === 0}}
+<!--{{#if status === 0}}-->
 <div class="bind-card-wrapper">
     {{#if step1}}
     <form action="" method="POST" on-submit="bind-card-submit">
@@ -99,37 +99,37 @@
     </div>
     {{/if}}
 </div>
-{{/if}}
+<!--{{/if}}-->
 
 <!--已绑-->
-{{#if status === 1}}
-    {{#if paymentPasswordHasSet}}
-    <div class="binded-card-wrapper">
-        <div class="bank-success">
-          <img src="/ccc/newAccount/img/band-success.png"/>
-          <div>
-            <h2>绑卡成功！</h2>
-          </div>
-        </div>
-        <div class="success-next">
-            <a href="/invest"><button style="background: #ef9c2c;color:#fff;">马上投资</button></a>
-            <!--<a href="/newAccount/settings/showbank"><button style="background: #fff;color: #ef9c2c;border:1px solid #ef9c2c">以后再说</button></a>-->
-        </div>
-    </div>
-    {{else}}
-    <div class="binded-card-wrapper">
-        <div class="bank-success">
-          <img src="/ccc/newAccount/img/band-success.png"/>
-          <div>
-            <p>绑卡成功</p>
-            <h2>请设置交易密码</h2>
-          </div>
-        </div>
-        <div class="success-next">
-          <!--<a href="/newAccount/settings/showbank"><button style="background: #fff;color: #ef9c2c;border:1px solid #ef9c2c">以后再说</button></a>-->
-          <a href="/newAccount/settings/password"><button style="background: #ef9c2c;color:#fff;">马上设置</button></a>
-        </div>
-    </div>
-    {{/if}}
-{{/if}}
+<!--{{#if status === 1}}-->
+    <!--{{#if paymentPasswordHasSet}}-->
+    <!--<div class="binded-card-wrapper">-->
+        <!--<div class="bank-success">-->
+          <!--<img src="/ccc/newAccount/img/band-success.png"/>-->
+          <!--<div>-->
+            <!--<h2>绑卡成功！</h2>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="success-next">-->
+            <!--<a href="/invest"><button style="background: #ef9c2c;color:#fff;">马上投资</button></a>-->
+            <!--&lt;!&ndash;<a href="/newAccount/settings/showbank"><button style="background: #fff;color: #ef9c2c;border:1px solid #ef9c2c">以后再说</button></a>&ndash;&gt;-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--{{else}}-->
+    <!--<div class="binded-card-wrapper">-->
+        <!--<div class="bank-success">-->
+          <!--<img src="/ccc/newAccount/img/band-success.png"/>-->
+          <!--<div>-->
+            <!--<p>绑卡成功</p>-->
+            <!--<h2>请设置交易密码</h2>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="success-next">-->
+          <!--&lt;!&ndash;<a href="/newAccount/settings/showbank"><button style="background: #fff;color: #ef9c2c;border:1px solid #ef9c2c">以后再说</button></a>&ndash;&gt;-->
+          <!--<a href="/newAccount/settings/password"><button style="background: #ef9c2c;color:#fff;">马上设置</button></a>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--{{/if}}-->
+<!--{{/if}}-->
 
