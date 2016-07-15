@@ -133,33 +133,35 @@ function replaceStr(str) {
 }
 
 InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) {
+    console.log(res)
+
     parseLoanList(res.results);
-  var listFixed = [],listFloat = [];
-  for(var i=0;i<res.results.length;i++){
-    if(res.results[i].loanRequest.productKey == 'GDSY'){
-      listFixed.push(res.results[i]);
-    }else if(res.results[i].loanRequest.productKey == 'XELC'){
-        listFloat.push(res.results[i]);
+    var listFixed = [], listFloat = [];
+    for (var i = 0; i < res.results.length; i++) {
+        if (res.results[i].loanRequest.productKey == 'GDSY') {
+            listFixed.push(res.results[i]);
+        } else if (res.results[i].loanRequest.productKey == 'XELC') {
+            listFloat.push(res.results[i]);
+        }
     }
-  }
-  // 固定收益
-  var listRactive = new Ractive({
-    el:".fixedPro",
-    template:require('ccc/invest/partials/fixedPro.html'),
-    data:{
-      list: (listFixed.slice(0,3)),
-      RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
-    }
-  });
-  // 浮动收益
-  var listRactive = new Ractive({
-    el:".floatPro",
-    template:require('ccc/invest/partials/floatPro.html'),
-    data:{
-      list: (listFloat.slice(0,1)),
-      RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
-    }
-  });
+    // 固定收益
+    var listRactive = new Ractive({
+        el: ".fixedPro",
+        template: require('ccc/invest/partials/fixedPro.html'),
+        data: {
+            list: (listFixed.slice(0, 3)),
+            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+        }
+    });
+    // 浮动收益
+    var listRactive = new Ractive({
+        el: ".floatPro",
+        template: require('ccc/invest/partials/floatPro.html'),
+        data: {
+            list: (listFloat.slice(0, 1)),
+            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+        }
+    });
 
     var investRactive = new Ractive({
         el: ".invest-list-wrapper",
@@ -172,7 +174,11 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
     });
     initailEasyPieChart();
     ininconut();
-    renderPager(res);
+
+
+    pageChange(res);
+
+
     investRactive.on("mouseover mouseleave", function (e) {
         var hovering = e.name === "mouseover";
         this.set(e.keypath + ".hovering", hovering);
@@ -229,72 +235,24 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
                     investRactive.set('list', parseLoanList(res.results));
                     initailEasyPieChart();
                     ininconut();
-                    renderPager(res, params.currentPage);
                 }, 1);
+                pageChange(res)
             });
-    }
-
-    function renderPager(res, current) {
-        if (!current) {
-            current = 1;
-        }
-        var pagerRactive = new Ractive({
-            el: '.invest-pager',
-            template: require('ccc/invest/partials/pager.html'),
-            data: {
-                totalPage: createList(res.totalSize, current),
-                current: current,
-                totalSize:res.totalSize
-            }
-        });
-
-        pagerRactive.on('previous', function (e) {
-            e.original.preventDefault();
-            var current = this.get('current');
-            if (current > 1) {
-                current -= 1;
-                this.set('current', current);
-                params.currentPage = current;
-                render(params);
-            }
-        });
-
-        pagerRactive.on('page', function (e, page) {
-            e.original.preventDefault();
-            if (page) {
-                current = page;
-            } else {
-                current = e.context;
-            }
-            this.set('current', current);
-            params.currentPage = current;
-            render(params);
-        });
-        pagerRactive.on('next', function (e) {
-            e.original.preventDefault();
-            var current = this.get('current');
-            if (current < this.get('totalPage')[this.get('totalPage')
-                    .length - 1]) {
-                current += 1;
-                this.set('current', current);
-                params.currentPage = current;
-                render(params);
-            }
-        });
     }
 });
 
-function createList(len, current) {
-    var arr = [];
-    var i = parseInt(len / params.pageSize);
-    if (len % params.pageSize > 0) {
-        i++;
-    }
-    for (var m = 0; m < i; m++) {
-        arr[m] = m + 1;
-    }
-    return arr;
-};
+
+
+function pageChange(res){
+    $('.pages').createPage({
+        pageCount: Math.ceil(res.totalSize / params.pageSize),//总页数
+        current: params.currentPage,
+        backFn: function (p) {
+            params.currentPage = p;
+            render(params);
+        }
+    });
+}
 
 function ininconut() {
     $(".investbtn-time").each(function () {
