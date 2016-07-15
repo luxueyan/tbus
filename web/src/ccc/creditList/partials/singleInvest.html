@@ -1,26 +1,47 @@
 <!--{{JSON.stringify(list)}}-->
 {{#list}}
 
-<div class="loanItemWrapper" {{#if status === 'SCHEDULED' }}{{/if}}>
-    <div class="loanPartOne">
-        <div class="loantitle">
-			{{#if titleLength>20}}
-			<p>{{title}}</p>
-			{{/if}}
+<div class="loanItemWrapper">
+    <div class="loan_left">
+        <div class="loan_title">
+
+            <div class="title_info">
+                <!--{{#if titleLength>20}}-->
+                <h2>{{title}}月月赚</h2>
+                <!--{{/if}}-->
+                <p>销售满8亿，全员加息0.2%！</p>
+            </div>
+
             <a href="/creditDetail/{{id}}/{{loanId}}" class="invest-title">
-				{{#if titleLength>20}}
+                {{#if titleLength>20}}
                 {{title.substr(0,12)}}...
-				{{else}}
-				{{title}}
-				{{/if}}
+                {{else}}
+                {{title}}
+                {{/if}}
             </a>
+
+        </div>
+        <div class="loan_info">
+            <div class="info_box rate_box">
+                <div class="rate"><span>{{creditDealRate*100}}</span>%</div>
+                <p class="title">预期收益率</p>
+            </div>
+            <div class="info_box">
+                <div><span>{{timeOut}}</span>小时</div>
+                <p class="title">预期到期日</p>
+            </div>
         </div>
     </div>
-    <div class="loanRate">{{creditDealRate*100}}<em>%</em>
+    <div class="loan_right">
+        <div class="leftAmount">
+            <p class="amount">转让价格(元)</p>
+            <p>{{creditAmount}}100</p>
+        </div>
+        <div class="investBtn">
+            <a class="open" href="/creditDetail/{{id}}/{{loanId}}">立即抢购</a>
+        </div>
     </div>
-    <div class="duration">{{creditAmount}}<em>元</em>
-    </div>
-    <div class="backmoney">{{timeOut}}<em>小时</em></div>
+
 <!--
     <div class="process">
         <div class="rate-chart">
@@ -31,11 +52,6 @@
     </div>
 -->
 
-    <div class="investBtn">
-
-        <a href="/creditDetail/{{id}}/{{loanId}}" style="text-decoration:none" class="investbtn">我要认购</a>
-
-    </div>
 </div>
 <script type="text/javascript">
 	$('.loantitle a').mouseenter(function(){

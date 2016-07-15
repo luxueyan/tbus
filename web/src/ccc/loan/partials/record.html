@@ -4,16 +4,16 @@
    <table class="table repay-record">
         <thead>
             <tr>
-                <th style="border-top-left-radius: 3px;">投标人</th>
-                <th>投标金额(元)</th>
-                <th style="border-top-right-radius: 3px;">投标时间</th>
+                <th>手机号</th>
+                <th>投资时间</th>
+                <th>投资金额</th>
             </tr>
         </thead>
         {{#list}}
         <tr>
             <th style="text-align: center;font-size: 14px;line-height: 60px;color: #666;border-bottom: 1px solid #ddd;">{{userLoginName}}</th>
-            <th style="text-align: center;font-size: 14px;line-height: 60px;color: #666;border-bottom: 1px solid #ddd;">{{amount}}</th>
             <th style="text-align: center;font-size: 14px;line-height: 60px;color: #666;border-bottom: 1px solid #ddd;">{{submitTime}}</th>
+            <th style="text-align: center;font-size: 14px;line-height: 60px;color: #666;border-bottom: 1px solid #ddd;">{{amount}}元</th>
         </tr>
         {{/list}}
     </table>

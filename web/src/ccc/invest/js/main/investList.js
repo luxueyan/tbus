@@ -20,9 +20,11 @@ var params = {
     minAmount: 0,
     maxAmount: 100000000,
     minInvestAmount: 1,
-    maxInvestAmount: 100000000
+    maxInvestAmount: 100000000,
+    //productKey:'GDSY'
 };
-
+//var indexnum = location.search.indexOf('=');
+//var currentUrl = location.search.substring(indexnum+1);
 
 function jsonToParams(params) {
     var str = '';
@@ -161,6 +163,7 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
     }
   });
 
+
     var investRactive = new Ractive({
         el: ".invest-list-wrapper",
         template: require('ccc/invest/partials/list.html'),
@@ -179,6 +182,15 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
     });
 
     //标的类型
+    //alert(currentUrl)
+    //if(currentUrl == 'GDSY'){
+    //    params.productKey = currentUrl;
+    //    params.currentPage = 1;
+    //    render(params);
+    //}
+
+
+    //标的状态
     $('.sStatus li').click(function () {
         $(this).addClass("selected").siblings().removeClass("selected");
         var status = $(this).data("status");
