@@ -14,6 +14,7 @@ var ractive = new Ractive({
         var self = this;
 
         accountService.getQuestion(function (res) {
+
             self.set("list",res.questions);
         });
 
@@ -33,8 +34,8 @@ var ractive = new Ractive({
                 sum+=score;
             });
 
-            self.set('question','false');
-            self.set('result','true');
+            self.set('question',false);
+            self.set('result',true);
 
             //判断类型
             if(sum>0&&sum<=30){

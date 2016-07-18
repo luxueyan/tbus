@@ -1,158 +1,153 @@
 
-.home-topnav .home-title{
-	border-bottom: 2px dashed #dedede;
-	height: 76px;
-	line-height: 76px;
-	font-size: 18px;
-	padding-left: 45px;
+.home-topnav .home-title {
+    border-bottom: 2px dashed #dedede;
+    height: 76px;
+    line-height: 76px;
+    font-size: 18px;
+    padding-left: 45px;
 }
-.home-topnav .home-title span{
-	font-size: 16px;
-	color: #9b9b9b;
+.home-topnav .home-title span {
+    font-size: 16px;
+    color: #9b9b9b;
 }
-
 .home-invest-top-wrapper {
-	height: 36px;
+    height: 36px;
 }
 .home-invest-top {
-	width: 130px;
-	height: 36px;
-	text-align: center;
-	line-height: 36px;
-	color: #4a4a4a;
-	font-size: 18px;
-	border-bottom: 3px #009ada solid;
+    width: 130px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    color: #4a4a4a;
+    font-size: 18px;
+    border-bottom: 3px #009ada solid;
 }
 .repay-plan-wp {
-	display: none;
+    display: none;
 }
-.home-invest-container table thead tr{
-	height: 50px;
-	background-color: #f5f4f9;
+.home-invest-container table thead tr {
+    height: 50px;
+    background-color: #f5f4f9;
 }
 .home-invest-container table thead tr th {
-	color: #4a4a4a;
-	border: none!important;
-	font-size: 14px;
+    color: #4a4a4a;
+    border: none !important;
+    font-size: 14px;
 }
 .home-invest-container table tbody tr {
-	height: 72px;
-	border-top: none;
+    height: 72px;
+    border-top: none;
 }
 .home-invest-container table tbody tr td {
-	border-top: none;
-	font-size: 14px;
-	color: #4a4a4a;
-	border-bottom: 1px #eeeeee solid;
+    border-top: none;
+    font-size: 14px;
+    color: #4a4a4a;
+    border-bottom: 1px #eeeeee solid;
 }
 .loan-tit {
-	display: block;
-	color: #7e838e;
-	font-size: 16px;
+    display: block;
+    color: #7e838e;
+    font-size: 16px;
 }
-
-
 .level {
-	float: left;
-	line-height: 60px;
-	/*width: 170px;*/
-	font-size: 14px;
-	color: #4a4a4a;
-	margin-right: 20px;
+    float: left;
+    line-height: 60px;
+    /*width: 170px;*/
+    font-size: 14px;
+    color: #4a4a4a;
+    margin-right: 20px;
 }
 .lev {
-	color: #f58220;
-	font-size: 17px;
-	font-weight: normal;
-	/*font-style: oblique;*/
-	cursor: pointer;
+    color: #f58220;
+    font-size: 17px;
+    font-weight: normal;
+    /*font-style: oblique;*/
+    cursor: pointer;
 }
 .safe {
-	float: left;
-	line-height: 60px;
-	width: 180px;
+    float: left;
+    line-height: 60px;
+    width: 180px;
 }
 .safety {
-	color: #4a4a4a;
-	font-size: 14px;
+    color: #4a4a4a;
+    font-size: 14px;
 }
 .progress {
-	display: inline-block;
-	height: 10px;
-	width: 80px;
-	border-radius: 5px;
-	margin-bottom: 0;
-	margin-right: 5px;
+    display: inline-block;
+    height: 10px;
+    width: 80px;
+    border-radius: 5px;
+    margin-bottom: 0;
+    margin-right: 5px;
 }
 .progress-bar {
-	background: #f58220;
+    background: #f58220;
 }
 .risk {
-	display: inline-block;
+    display: inline-block;
 }
 .wh {
-	display: inline-block;
-	width: 19px;
-	height: 19px;
-	background: url(/ccc/newAccount/img/wh.png) no-repeat center;
-	position: relative;
-	top: 5px;
-	left: 2px;
-	cursor: pointer;
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    background: url(/ccc/newAccount/img/wh.png) no-repeat center;
+    position: relative;
+    top: 5px;
+    left: 2px;
+    cursor: pointer;
 }
 .money {
-	font-size: 24px;
+    font-size: 24px;
 }
-
 .tooltip {
-	width: 300px!important;
+    width: 300px !important;
 }
-
 /*太合汇*/
-.home-count{
-	margin-top: 13px;
-	overflow: hidden;
-	border-bottom: 1px solid #d2d2d2;
-	margin-right: 27px;
-	padding-bottom: 15px;
+.home-count {
+    margin-top: 13px;
+    overflow: hidden;
+    border-bottom: 1px solid #d2d2d2;
+    margin-right: 27px;
+    padding-bottom: 15px;
 }
-.home-count .home-num{
-	float: left;
+.home-count .home-num {
+    float: left;
 }
-.home-count .home-risk{
-	float: right;
-	margin-right: 25px;
-	margin-top: 25px;
+.home-count .home-risk {
+    float: right;
+    margin-right: 25px;
+    margin-top: 25px;
 }
-.home-count .home-risk span{
-	color: #b5925f;
+.home-count .home-risk span {
+    color: #b5925f;
 }
-.home-count .common{
-	float: left;
+.home-count .common {
+    float: left;
     background-color: #fff;
-	margin-right: 75px;
+    margin-right: 75px;
 }
 .home-count .home-tab-info {
-	padding-left: 10px;
+    padding-left: 10px;
     font-size: 18px;
     color: #666;
     margin-top: 26px;
 }
-.home-count .home-tab-info span{
-	font-size: 12px;
+.home-count .home-tab-info span {
+    font-size: 12px;
 }
 .home-count .home-tab-amount {
-	font-size: 30px;
-	color: #666;
-	padding-left: 10px;
+    font-size: 30px;
+    color: #666;
+    padding-left: 10px;
 }
-.home-count .home-tab-amount span{
-	font-size: 20px;
+.home-count .home-tab-amount span {
+    font-size: 20px;
 }
-.home-total .home-tab-amount{
-	color: #e60012;
+.home-total .home-tab-amount {
+    color: #e60012;
 }
-.invest_status{
+.invest_status {
     height: 105px;
     width: 990px;
     background: #fff;
@@ -160,16 +155,16 @@
     padding: 0 30px;
     border-bottom: 1px solid #d3d3d3;
 }
-.invest_status .title{ 
+.invest_status .title {
     font-size: 20px;
     color: #a4a4a4;
     height: 54px;
-    line-height: 60px;    
+    line-height: 60px;
 }
-.ccc-tab > ul.tabs{
+.ccc-tab > ul.tabs {
     margin-left: -9px;
 }
-.ccc-tab > ul.tabs > li a{
+.ccc-tab > ul.tabs > li a {
     color: #7e838e;
     text-decoration: none;
     display: inline-block;
@@ -179,148 +174,147 @@
     line-height: 28px;
     border-radius: 2px;
 }
-.ccc-tab > ul.tabs > li a:hover, .ccc-tab > ul.tabs > li a:focus{
+.ccc-tab > ul.tabs > li a:hover, .ccc-tab > ul.tabs > li a:focus {
     color: #fff;
     background: #ef9c2c;
     width: 85px;
 }
-.ccc-tab > ul.tabs .active{
+.ccc-tab > ul.tabs .active {
     border: none;
 }
-.ccc-tab > ul.tabs > li.active a{
+.ccc-tab > ul.tabs > li.active a {
     color: #fff;
     background: #ef9c2c;
 }
-.index-invest{
+.index-invest {
     width: 990px;
     height: 310px;
     background: #fff;
     padding: 0 30px;
 }
-.index-invest table{
+.index-invest table {
     padding: 30px;
 }
-
 /*资产配置*/
 .asset_mod {
-	margin: 27px auto 0;
+    margin: 27px auto 0;
 }
 .asset_mod .asset_title {
-	font-size: 24px;
-	color: #ad8a58;
-	padding-bottom: 10px;
-	padding-left: 10px;
+    font-size: 24px;
+    color: #ad8a58;
+    padding-bottom: 10px;
+    padding-left: 10px;
 }
 .asset_mod .asset_cont {
-	padding: 30px 15px 10px;
-	clear: both;
-	overflow: hidden;
- }
+    padding: 30px 15px 10px;
+    clear: both;
+    overflow: hidden;
+}
 .asset_mod .asset_cont .asset_left_cont {
-	float: left;
-	width: 515px;
+    float: left;
+    width: 515px;
 }
 .asset_mod .asset_cont .asset_left_cont .asset_box {
-	display: block;
-	margin-bottom: 20px;
-	cursor: pointer;
+    display: block;
+    margin-bottom: 20px;
+    cursor: pointer;
 }
 .asset_mod .asset_cont .asset_left_cont .asset_box .box {
-	width: 510px;
-	height: 86px;
-	clear: both;
+    width: 510px;
+    height: 86px;
+    clear: both;
 }
 .asset_mod .asset_cont .asset_left_cont .asset_box .label {
-	float: left;
-	width: 90px;
-	height: 86px;
-	font-size: 14px;
-	line-height: 86px;
-	text-align: center;
-	border-radius:0;
+    float: left;
+    width: 90px;
+    height: 86px;
+    font-size: 14px;
+    line-height: 86px;
+    text-align: center;
+    border-radius: 0;
 }
-.asset_mod .asset_cont .asset_left_cont .box_1 .label{
-	background: #e4262b;
+.asset_mod .asset_cont .asset_left_cont .box_1 .label {
+    background: #e4262b;
 }
-.asset_mod .asset_cont .asset_left_cont .box_2 .label{
-	background: #a6937c;
+.asset_mod .asset_cont .asset_left_cont .box_2 .label {
+    background: #a6937c;
 }
-.asset_mod .asset_cont .asset_left_cont .box_3 .label{
-	background: #cfa972;
+.asset_mod .asset_cont .asset_left_cont .box_3 .label {
+    background: #cfa972;
 }
-.asset_mod .asset_cont .asset_left_cont .box_4 .label{
-	background: #a40000;
+.asset_mod .asset_cont .asset_left_cont .box_4 .label {
+    background: #a40000;
 }
 .asset_mod .asset_cont .asset_left_cont .asset_box .total {
-	float: left;
-	width: 141px;
-	height: 86px;
-	padding: 10px 0;
-	border-top: #d9d9d9 1px solid;
-	border-bottom: #d9d9d9 1px solid;
+    float: left;
+    width: 141px;
+    height: 86px;
+    padding: 10px 0;
+    border-top: #d9d9d9 1px solid;
+    border-bottom: #d9d9d9 1px solid;
 }
 .asset_mod .asset_cont .asset_left_cont .asset_box .total .t_box {
-	border-right: #d9d9d9 1px solid;
-	height: 60px;
-	padding: 9px 0 9px 20px;
+    border-right: #d9d9d9 1px solid;
+    height: 60px;
+    padding: 9px 0 9px 20px;
 }
 .asset_mod .asset_cont .asset_left_cont .asset_box .total .t_box p {
-	color: #666;
-	height: 24px;
-	line-height: 24px;
-	font-size: 18px;
+    color: #666;
+    height: 24px;
+    line-height: 24px;
+    font-size: 18px;
 }
-.asset_mod .asset_cont .asset_left_cont .asset_box .total .t_box p span{
-	font-size: 12px;
+.asset_mod .asset_cont .asset_left_cont .asset_box .total .t_box p span {
+    font-size: 12px;
 }
 .asset_mod .asset_cont .asset_left_cont .asset_box .total .t_box span {
-	font-size: 14px;
-	height: 24px;
-	line-height: 24px;
-	color: #999;
+    font-size: 14px;
+    height: 24px;
+    line-height: 24px;
+    color: #999;
 }
 .asset_mod .asset_cont .asset_left_cont .asset_box .detail {
-	float: left;
-	width: 279px;
-	height: 86px;
-	overflow: hidden;
-	padding: 19px 20px;
-	border-radius: 0 1px 1px 0;
-	border: #d9d9d9 1px solid;
-	border-left: none;
+    float: left;
+    width: 279px;
+    height: 86px;
+    overflow: hidden;
+    padding: 19px 20px;
+    border-radius: 0 1px 1px 0;
+    border: #d9d9d9 1px solid;
+    border-left: none;
 }
 .asset_mod .asset_cont .asset_left_cont .asset_box .detail p {
-	padding-top: 12px;
-	clear: both;
+    padding-top: 12px;
+    clear: both;
 }
 .asset_mod .asset_cont .asset_left_cont .asset_box .detail .d_lab {
-	float: left;
-	color: #999;
-	font-size: 14px;
-	line-height: 24px;
+    float: left;
+    color: #999;
+    font-size: 14px;
+    line-height: 24px;
 }
 .asset_mod .asset_cont .asset_left_cont .asset_box .detail .d_num {
-	float: right;
-	font-size: 18px;
-	color: #666;
-	line-height: 24px;
-	margin-right: 40px;
+    float: right;
+    font-size: 18px;
+    color: #666;
+    line-height: 24px;
+    margin-right: 40px;
 }
 .asset_mod .asset_cont .asset_left_cont .asset_box .detail .d_num em {
-	font-style: normal;
-	font-size: 12px;
+    font-style: normal;
+    font-size: 12px;
 }
 .asset_mod .asset_cont .svg_cont {
-	float: right;
-	width: 420px;
-	height: 420px;
-	position: relative;
-	text-align: center;
+    float: right;
+    width: 420px;
+    height: 420px;
+    position: relative;
+    text-align: center;
 }
-.advertisement{
-	float: right;
-	margin-top: 30px;
-	width: 100%;
-	height: 158px;
-	background-image: url("/ccc/newAccount/img/advertisement.png");
+.advertisement {
+    width: 100%;
+    padding-right: 27px;
+}
+.advertisement img {
+    width: 100%;
 }
