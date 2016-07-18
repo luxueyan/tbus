@@ -65,6 +65,13 @@ var homeRactive = new Ractive({
             self.set('outstandingInterest', parseInt(amoutArray[0]));
             self.set('moreiAmount', amoutArray[1]);
         }
+
+        $.get('/api/v2/cms/category/IMAGE/name/' + encodeURIComponent('我的账户页广告栏'), function (data) {
+            console.log(data[0].content)
+            self.set('advertisement',data[0].content)
+        })
+
+
     }
 });
 homeRactive.parseData();
@@ -180,7 +187,7 @@ $('#svg_cont').highcharts({
         pie: {
             allowPointSelect: true,
             cursor: 'pointer',
-            colors:["#cea784","#9b8579","#a40000","#db0716"],
+            colors: ["#cea784", "#9b8579", "#a40000", "#db0716"],
             dataLabels: {
                 enabled: true,
                 style: {

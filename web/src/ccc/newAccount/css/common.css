@@ -2,25 +2,22 @@
     position: relative;
     border-top: 1px solid #e2e2e2;
 }
-
 .account-wrapper {
     width: 100%;
     height: 100%;
     padding-top: 23px;
 }
-
 .account-container {
     width: 1200px;
     margin: 0 auto;
+    background: #fff;
 }
-
 .account-nav {
     width: 190px;
     min-height: 748px;
     float: left;
     background: #eee;
 }
-
 .account-content-wrapper {
     height: 100%;
     float: left;
@@ -28,13 +25,10 @@
     padding-left: 27px;
     background: #fff;
 }
-
 .account-content {
     width: 983px;
-    margin: 0 auto;
-    margin-bottom: 30px;
+    margin: 0 auto 30px;
 }
-
 .nav-title {
     font-size: 18px;
     height: 45px;
@@ -43,7 +37,6 @@
     color: #ababab;
     padding-left: 23px;
 }
-
 .nav-wrapper .nav-li {
     width: 100%;
     line-height: 79px;
@@ -51,17 +44,14 @@
     /*margin-top: 35px;*/
     clear: both;
 }
-
 .nav-wrapper .nav-li a {
     text-decoration: none;
     font-size: 18px;
     color: #666;
 }
-
 .nav-recharge {
     height: 80px;
 }
-
 .nav-recharge .nav-recharge-btn {
     margin: 0 auto;
     width: 100px;
@@ -74,166 +64,138 @@
     font-size: 20px;
     font-family: '微软雅黑';
 }
-
 .nav-recharge .nav-recharge-btn:hover {
     background: #df6502;
 }
-
 .nav-li span {
     display: block;
     float: left;
     height: 79px;
 }
-
 .nav-li .icon-home {
     width: 52px;
     margin-right: 8px;
     /*background: url(/ccc/newAccount/img/icon-home.png) no-repeat center right;*/
 }
-
 .nav-li .icon-loanDeal {
     width: 52px;
     margin-right: 8px;
     /*background: url(/ccc/newAccount/img/icon-loanDeal.png) no-repeat center right;*/
 }
-
 .nav-li .icon-bankCards {
     width: 52px;
     margin-right: 8px;
     /*background: url(/ccc/newAccount/img/icon-bankCards.png) no-repeat center right;*/
 }
-
 .nav-li .icon-password {
     width: 52px;
     margin-right: 8px;
     /*background: url(/ccc/newAccount/img/icon-password.png) no-repeat center right;*/
 }
-
 .nav-li .icon-invest {
     width: 52px;
     margin-right: 8px;
     /*background: url(/ccc/newAccount/img/invest.png) no-repeat center right;*/
 }
-
 .nav-li .icon-my-invest {
     /*background: url(/ccc/newAccount/img/my-invest.png) no-repeat center right;*/
 }
-
 .nav-li .icon-fund {
     width: 52px;
     margin-right: 8px;
     /*background: url(/ccc/newAccount/img/icon-fund.png) no-repeat center right;*/
 }
-
 .nav-li .icon-account {
     width: 52px;
     margin-right: 8px;
     /*background: url(/ccc/newAccount/img/icon-account.png) no-repeat center right;*/
 }
-
 .nav-li .icon-coupon {
     width: 52px;
     margin-right: 8px;
     /*background: url(/ccc/newAccount/img/icon-coupon.png) no-repeat center right;*/
 }
-
 .nav-li .icon-friend {
     width: 52px;
     margin-right: 8px;
     /*background: url(/ccc/newAccount/img/icon-friend.png) no-repeat center right;*/
 }
-
 .nav-li .icon-message {
     width: 52px;
     margin-right: 8px;
     /*background: url(/ccc/newAccount/img/icon-message.png) no-repeat center right;*/
 }
-
 .nav-li .nav-text {
     width: 75px;
     text-align: left;
 }
-
 .nav-li .nav-toggle-btn {
     cursor: pointer;
     width: 16px;
     /*background: url(/ccc/newAccount/img/toggle.png) no-repeat center left;*/
 }
-
 .nav-li .icon-home-active {
     width: 52px;
     margin-right: 8px;
     /*background: url(/ccc/newAccount/img/icon-home-active.png) no-repeat center right;*/
     border-left: 4px #ef9c2c solid;
 }
-
 .nav-li .icon-loanDeal-active {
     width: 52px;
     margin-right: 8px;
     /*background: url(/ccc/newAccount/img/icon-loanDeal-active.png) no-repeat center right;*/
     border-left: 4px #ef9c2c solid;
 }
-
 .nav-li .icon-bankCards-active {
     width: 52px;
     margin-right: 8px;
     /*background: url(/ccc/newAccount/img/icon-bankCards-active.png) no-repeat center right;*/
     border-left: 4px #ef9c2c solid;
 }
-
 .nav-li .icon-password-active {
     width: 52px;
     margin-right: 8px;
     /*background: url(/ccc/newAccount/img/icon-password-active.png) no-repeat center right;*/
     border-left: 4px #ef9c2c solid;
 }
-
 .nav-li .icon-invest-active {
     width: 52px;
     margin-right: 8px;
     /*background: url(/ccc/newAccount/img/invest_active.png) no-repeat center right;*/
 }
-
 .nav-li .icon-my-invest-active {
     /*background: url(/ccc/newAccount/img/icon-my-invest-active.png) no-repeat center right;*/
 }
-
 .nav-li .icon-fund-active {
     width: 52px;
     margin-right: 8px;
     /*background: url(/ccc/newAccount/img/icon-fund-active.png) no-repeat center right;*/
 }
-
 .nav-li .icon-account-active {
     width: 52px;
     margin-right: 8px;
     /*background: url(/ccc/newAccount/img/icon-account-acitve.png) no-repeat center right;*/
 }
-
 .nav-li .icon-coupon-active {
     width: 52px;
     margin-right: 8px;
     /*background: url(/ccc/newAccount/img/icon-coupon-active.png) no-repeat center right;*/
     border-left: 4px #ef9c2c solid;
 }
-
 .nav-li .icon-friend-active {
     width: 52px;
     margin-right: 8px;
     /*background: url(/ccc/newAccount/img/icon-friend-active.png) no-repeat center right;*/
     border-left: 4px #ef9c2c solid;
 }
-
 .nav-li .icon-message-active {
     width: 52px;
     margin-right: 8px;
     /*background: url(/ccc/newAccount/img/icon-message-active.png) no-repeat center right;*/
 }
-
 .nav-li .nav-text {
     width: 75px;
-    text-align: left;
-    ;
+    text-align: left;;
 }
 .nav-li .icon-common {
     width: 52px;
@@ -255,24 +217,21 @@
     background: #fff;
     box-shadow: 9px 6px 10px -2px #ccc;
 }
-
 .nav-li .nav-toggle-btn {
     cursor: pointer;
     width: 16px;
     /*	background: url(/ccc/newAccount/img/toggle-up.png) no-repeat center left;*/
 }
-
 .nav-li .nav-toggle-btn-up {
     /*background: url(/ccc/newAccount/img/toggle-up.png) no-repeat center left;*/
 }
-
 .nav-li .nav-toggle-btn-down {
     /*background: url(/ccc/newAccount/img/toggle.png) no-repeat center left;*/
 }
-.nav-li .nav-toggle-menu{
+.nav-li .nav-toggle-menu {
     /*margin-top: 34px;*/
 }
-.nav-li .nav-toggle-menu li{
+.nav-li .nav-toggle-menu li {
     margin: 10px 0;
     line-height: 50px;
 }
@@ -286,44 +245,38 @@
     border-left: 3px #e4262b solid;
     background: #fff;
 }
-.nav-li .nav-toggle-menu .active a{
+.nav-li .nav-toggle-menu .active a {
     padding-left: 72px;
     color: #e4262b;
 }
 .space-40 {
     height: 40px;
 }
-
 .space-30 {
     height: 30px;
 }
-
 .space-20 {
     height: 20px;
 }
-
 .space-10 {
     height: 10px;
 }
-
 table thead tr {
     height: 40px;
     background: #f5f4f9;
 }
-
 table thead tr th {
-    border: 0!important;
-    font-size: 14px!important;
+    border: 0 !important;
+    font-size: 14px !important;
 }
-
 table tbody tr td {
     padding: 0;
     height: 76px;
     border-bottom: 1px #eeeeee solid;
-    font-size: 14px!important;
+    font-size: 14px !important;
     color: #4a4a4a;
 }
-.total_invest_num{
+.total_invest_num {
     float: right;
     color: #7e838e;
     padding-left: 20px;
@@ -331,7 +284,6 @@ table tbody tr td {
 .ccc-paging {
     float: right;
 }
-
 .ccc-paging a {
     padding: 8px 15px;
     border: 1px #eeeeee solid;
@@ -342,13 +294,11 @@ table tbody tr td {
     cursor: pointer;
     border-collapse: collapse;
 }
-
 .ccc-paging a:hover {
     background: #f1f1f1;
     color: #9d9d9d;
     padding: 8px 15px;
 }
-
 .ccc-paging span {
     padding: 8px 15px;
     border: 1px #eeeeee solid;
@@ -359,8 +309,6 @@ table tbody tr td {
     cursor: pointer;
     border-collapse: collapse;
 }
-
-
 .null {
     margin: 0 auto;
     width: 220px;
@@ -373,35 +321,30 @@ table tbody tr td {
     letter-spacing: 2px;
     padding-top: 200px;
 }
-
 .no-back-data {
     margin: 0 auto;
     width: 250px;
     height: 250px;
     background: url(/ccc/newAccount/img/no-back-data.png) no-repeat center;
 }
-
 .no-fund-data {
     margin: 0 auto;
     width: 250px;
     height: 250px;
     background: url(/ccc/newAccount/img/no-fund.png) no-repeat center;
 }
-
 .no-loan {
     margin: 0 auto;
     width: 250px;
     height: 250px;
     background: url(/ccc/newAccount/img/no-loan.png) no-repeat center;
 }
-
 .nomsg {
     margin: 0 auto;
     width: 250px;
     height: 250px;
     background: url(/ccc/newAccount/img/msg.png) no-repeat center;
 }
-
 .account-bg {
     background: #4a4a4a;
     opacity: 0.7;
@@ -412,13 +355,11 @@ table tbody tr td {
     top: 0;
     left: 0;
 }
-
 .box-main {
     position: relative;
     width: 100%;
     height: 100%;
 }
-
 .bankcard-gray {
     background-image: url(/ccc/newAccount/img/true-name.png);
     background-repeat: no-repeat;
@@ -430,30 +371,25 @@ table tbody tr td {
     left: 159px;
     top: 21px;
 }
-
 .rightnow {
     position: absolute;
     right: -20px;
     bottom: 0;
 }
-
 .bankcard-gray a {
     display: block;
     position: absolute;
     right: 0;
     bottom: 0;
 }
-
 .password-png {
     background-image: url(/ccc/newAccount/img/password.png);
     left: 227px;
 }
-
 .backcard-png {
     background-image: url(/ccc/newAccount/img/bankcard.png);
     left: 291px;
 }
-
 .know {
     background-color: #009ada;
     color: white;
@@ -466,20 +402,15 @@ table tbody tr td {
     right: 119px;
     bottom: 0;
 }
-
 .know:hover {
     background-color: #015989;
 }
-
 .hide {
     display: none;
 }
-
 .btn-success:hover {
     font-size: 13px;
 }
-
-
 /*注册成功弹框*/
 
 .pop-box {
@@ -491,7 +422,6 @@ table tbody tr td {
     display: none;
     z-index: 1;
 }
-
 .register-success {
     border: 1px solid #ccc;
     width: 700px;
@@ -506,7 +436,6 @@ table tbody tr td {
     display: none;
     background: #fff;
 }
-
 .register-success .header {
     height: 55px;
     background: #f2f2f2;
@@ -516,46 +445,37 @@ table tbody tr td {
     color: #000;
     padding-right: 20px;
 }
-
 .register-success .header .title {
     margin-left: 20px;
 }
-
 .register-success .header img {
     float: right;
     margin-top: 17px;
     width: 20px;
     cursor: pointer;
 }
-
 .register-success .content {
     margin-top: 60px;
 }
-
 .register-success .success-img {
     float: left;
     margin-left: 80px;
 }
-
 .register-success .success-img img {
     width: 200px;
 }
-
 .register-success .success-content {
     float: left;
     margin: 60px 45px;
 }
-
 .register-success .success-content p {
     font-size: 18px;
 }
-
 .register-success .success-content .bolder {
     font-size: 24px;
     font-weight: 600;
     padding: 10px 0;
 }
-
 .register-success .success-content .btn-after {
     width: 140px;
     height: 45px;
@@ -566,39 +486,32 @@ table tbody tr td {
     border-radius: 3px;
     margin-right: 20px;
 }
-
 .register-success .success-content .button {
     margin-top: 60px;
 }
-
 .register-success .success-content .btn-bank {
     color: #fff;
     background: #ef9c2c;
 }
-
-
 /*表格*/
 
 .table-title {
     color: #7e838e;
     line-height: 30px;
 }
-
-.table-invest-time{
+.table-invest-time {
     font-size: 16px;
     color: #9d9d9d;
 }
-.table-invest-num{
+.table-invest-num {
     font-size: 16px;
     color: #f4ab4a;
 }
-.table-invest-expect{
+.table-invest-expect {
     color: #f4ab4a;
     font-size: 16px;
     font-weight: bold;
 }
-
-
 /*公共用户信息*/
 .userinfowra {
     width: 100%;
@@ -614,13 +527,13 @@ table tbody tr td {
     height: 96px;
     overflow: hidden;
 }
-.infoContent .info_title{
+.infoContent .info_title {
     font-size: 18px;
     color: #999;
     line-height: 103px;
     margin-left: 35px;
 }
-.infoContent .info_title span{
+.infoContent .info_title span {
     color: #e4262b;
 }
 .info {
@@ -647,7 +560,7 @@ table tbody tr td {
     margin-left: 17px;
     margin-top: 28px;
 }
-.info .name p{
+.info .name p {
     line-height: 28px;
 }
 .credit {
@@ -655,13 +568,12 @@ table tbody tr td {
     width: 400px;
     margin-left: 20px;
 }
-
 .credit .doCredit {
     padding-top: 37px;
     position: relative;
     overflow: hidden;
 }
-.credit .doCredit .info-tip{
+.credit .doCredit .info-tip {
     display: none;
     position: absolute;
     left: 0;
@@ -673,16 +585,15 @@ table tbody tr td {
     border-radius: 5px;
     opacity: 0.7;
 }
-.credit .doCredit li{
+.credit .doCredit li {
     float: left;
     margin-right: 40px;
 }
-
-.fix-mobile{
+.fix-mobile {
     margin-left: -12px;
     margin-top: 6px;
 }
-.fix-mobile a{
+.fix-mobile a {
     font-size: 12px;
     color: #999;
 }
@@ -710,7 +621,6 @@ table tbody tr td {
 .ccr-active {
     background: url(/ccc/newAccount/img/card-active.png) no-repeat center;
 }
-
 .rzpa {
     display: block;
     width: 30px;
@@ -719,7 +629,6 @@ table tbody tr td {
     border-radius: 50%;
 }
 /*充值提现*/
-
 
 .home-topnav {
     float: right;
@@ -736,18 +645,16 @@ table tbody tr td {
     color: #666;
     float: left;
 }
-
 .home-avaliable .home-tab-amount {
     float: left;
     font-size: 32px;
     color: #e60012;
     padding-left: 20px;
 }
-.home-avaliable .home-tab-amount span{
+.home-avaliable .home-tab-amount span {
     font-size: 23px;
 }
-
-.home-topnav .home-bottomBar{
+.home-topnav .home-bottomBar {
     float: right;
     margin-top: 38px;
 }
@@ -763,8 +670,8 @@ table tbody tr td {
     background-color: #e4262b;
     border: 1px #e4262b solid;
 }
-.home-recharge-btn:hover{
-    background:#C71E23;
+.home-recharge-btn:hover {
+    background: #C71E23;
 }
 .home-withdraw-btn {
     float: right;
@@ -780,53 +687,45 @@ table tbody tr td {
     border: 1px #e4262b solid;
     background-color: #fff;
 }
-.home-withdraw-btn:hover{
+.home-withdraw-btn:hover {
     background: #C71E23;
     color: #fff;
 }
-
-
 /*操作成功*/
 .recharge-success {
     /*width: 700px;*/
     /*height: 420px;*/
     /*margin: auto;*/
 }
-
 .recharge-success .content {
     margin-top: 60px;
 }
-
 .recharge-success .success-img {
     /*float: left;*/
     /*margin-left: 80px;*/
     text-align: center;
     margin-right: 70px;
 }
-
 .recharge-success .success-img img {
     /*width: 200px;*/
 }
-
 .recharge-success .success-content {
     /*float: left;*/
     margin: 60px 0;
     text-align: center;
     margin-right: 70px;
 }
-
 .recharge-success .success-content p {
     font-size: 30px;
     color: #db0101;
 }
-
 .recharge-success .success-content .bolder {
     font-size: 24px;
     font-weight: 600;
     padding: 10px 0;
     color: #4a4a4a;
 }
-.recharge-success .success-content .bolder span{
+.recharge-success .success-content .bolder span {
     color: #ff5451;
 }
 .recharge-success .success-content .btn-after {
@@ -839,11 +738,9 @@ table tbody tr td {
     border-radius: 3px;
     margin-right: 20px;
 }
-
 .recharge-success .success-content .button {
     margin-top: 60px;
 }
-
 .recharge-success .success-content .btn-bank {
     color: #fff;
     background: #db0101;
