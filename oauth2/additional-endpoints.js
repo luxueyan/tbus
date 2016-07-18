@@ -16,8 +16,6 @@ module.exports = function (router, auth) {
     router.post('/api/v2/hundsun/bindCard/:userId', auth.owner());
     router.post('/api/v2/hundsun/cancelCard/:userId', auth.owner());
     router.post('/api/v2/hundsun/setDefaultAccount/:userId', auth.owner());
-    router.post('/api/v2/hundsun/recharge/:userId', auth.owner());
-    router.post('/api/v2/hundsun/withdraw/:userId', auth.owner());
 
     router.post('/api/v2/coupon/:userId/redeemCouponIgnoreApproval', auth.owner());
     
@@ -34,5 +32,8 @@ module.exports = function (router, auth) {
     router.post('/api/v2/user/checkId', auth.user());
     //银行卡验证
     router.post('/api/v2/user/checkBankcard', auth.user());
-
+    //充值
+    router.post('/api/v2/baofoo/recharge/:userId', auth.owner());
+    //取现
+    router.post('/api/v2/baofoo/withdraw/:userId', auth.owner());
 };
