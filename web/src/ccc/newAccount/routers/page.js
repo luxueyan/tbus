@@ -183,9 +183,12 @@ module.exports = function(router) {
             title: '太合汇'
         });
     });
+
     router.get('/recharge', async function(req, res) {
         var paymentPasswordHasSet = await req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
             .end().get('body');
+        res.locals.user.paymentPasswordHasSet =
+            paymentPasswordHasSet;
         var banks = _.filter(res.locals.user.bankCards, r => r.deleted === false);
         if (!banks.length) {
             res.redirect(
@@ -195,13 +198,12 @@ module.exports = function(router) {
             res.redirect(
                 '/newAccount/settings/password');
         };
-      
+
         res.render('newAccount/recharge', {
             title: '太合汇'
         });
         return false;
-
-    })
+    });
 
     router.get('/withdraw', async function(req, res) {
         var paymentPasswordHasSet = await req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
@@ -230,9 +232,15 @@ module.exports = function(router) {
     });
 
     router.get('/userInfo', function(req, res) {
+        var paymentPasswordHasSet = req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
+            .end().get('body');
+        res.locals.user.paymentPasswordHasSet =
+            paymentPasswordHasSet;
+
         res.render('newAccount/userInfo', {
             title: '太合汇'
         });
+        return false;
     });
 
     router.get('/bindingEmail', function(req, res) {

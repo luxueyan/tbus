@@ -719,35 +719,31 @@ p.tips {
 
 
 /*showbank*/
-
-.showbank-title {
-    line-height: 76px;
-    font-size: 24px;
-    border-bottom: 1px dashed #ccc;
-    padding-left: 40px;
+.card_add {
+    border: #dcdcdc 1px solid;
+    width: 310px;
+    height: 185px;
+    margin: 50px 0 0 50px;
 }
-
-.showbank-box .showbank-img {
-    margin: 43px auto 26px auto;
-    display: block;
-    width: 66px;
+.card_add .bankcard-box{
+    height: 120px;
+    font-size: 18px;
+    color: #4a4a4a;
+    background-repeat: no-repeat;
+    background-position: center;
 }
-
-.showbank-word p {
-    font-size: 30px;
-    color: #eb8400;
-    line-height: 30px;
+.card_add .card_num {
     text-align: center;
+    font-size: 18px;
+    color: #999;
+}
+.card_add .card_status{
+    text-align: center;
+    font-size: 14px;
+    color: #999;
 }
 
-.showbank-box a {
-    text-decoration: none;
-}
 
-.showbank-box {
-    background: #fff;
-    padding-bottom: 60px;
-}
 
 
 .bank-success h2 {

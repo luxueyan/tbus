@@ -100,10 +100,27 @@
                 </div>
                 <div class="success-content">
                     <p>充值成功！</p>
-                    <p class="bolder">充值<span>{{amount}}元</span></p>
+                    <!--<p class="bolder">充值<span>{{amount}}元</span></p>-->
                     <div class="button">
-                        <button class="close-img btn-after" on-click="close">以后再说</button>
+                        <!--<button class="close-img btn-after" on-click="close">以后再说</button>-->
                         <a href="/invest"><button class="btn-after btn-bank">马上去投资</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+        {{#if step3}}
+        <div class="recharge-success">
+            <div class="content">
+                <div class="success-img">
+                    <img src="/ccc/newAccount/img/band-fail.png"/>
+                </div>
+                <div class="success-content">
+                    <p>充值失败！</p>
+                    <!--<p class="bolder">充值<span>{{amount}}元</span></p>-->
+                    <div class="button">
+                        <!--<button class="close-img btn-after" on-click="close">以后再说</button>-->
+                        <a href="/newAccount/recharge"><button class="btn-after btn-bank">重新充值</button></a>
                     </div>
                 </div>
             </div>

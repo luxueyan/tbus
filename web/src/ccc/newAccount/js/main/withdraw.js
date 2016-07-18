@@ -6,17 +6,17 @@ var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account')
     .accountService;
 
-//var banksabled = _.filter(CC.user.bankCards, function (r) {
-//    return r.deleted === false;
-//});
-//var Faccount = CC.user.bankCards[0].account.account.slice(-4);
+var banksabled = _.filter(CC.user.bankCards, function (r) {
+    return r.deleted === false;
+});
+var Faccount = CC.user.bankCards[0].account.account.slice(-4);
 
 var ractive = new Ractive({
     el: '#ractive-container',
     template: require('ccc/newAccount/partials/withdraw.html'),
     data: {
-        //bankcards: banksabled || [],
-        //Faccount: Faccount,
+        bankcards: banksabled || [],
+        Faccount: Faccount,
         availableAmount: CC.user.availableAmount || 0,
         msg: {
             AMOUNT_NULL: false,
@@ -36,7 +36,8 @@ var ractive = new Ractive({
         error: false,
         paymentPasswordHasSet: CC.user.paymentPasswordHasSet || false,
         step1: true,
-        step2: false
+        step2: false,
+        step3: false
     },
     parseDataNum: function () {
         var self = this;
@@ -231,19 +232,23 @@ ractive.on('withDrawSubmit', function () {
                 //					isAcess = true;
                 //				}
 
-                $.post('/api/v2/hundsun/withdraw/MYSELF', {
+                $.post('/api/v2/baofoo/withdraw/MYSELF', {
                     paymentPassword: pass,
                     amount: amount,
                     cardNo: cardNo
 
                 }, function (res) {
-                    if (res.success) {
+                    if (!res.success) {
                         ractive.set('step1', false);
                         ractive.set('step2', true);
+                        ractive.set('step3', false);
                         ractive.on('close', function () {
-                            window.location.href = "/newAccount/home";
+                            window.location.href = "/newAccount/settings/home";
                         });
                     } else {
+                        ractive.set('step1', false);
+                        ractive.set('step2', false);
+                        ractive.set('step3', true);
                         ractive.set('submitText', '确认提现');
                     }
                 });
