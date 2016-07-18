@@ -26,12 +26,12 @@
 				<!--邮箱-->
 				{{#if emailAuthenticated}}
 				<li>
-					<a href="/newAccount/settings/userInfo" class="mouse-enter rzpa cem-active" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
-					<p class="info-tip" style="top:5px;left:56px;">点击设置邮箱</p>
+					<a href="/newAccount/bindingEmail" class="mouse-enter rzpa cem-active" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
+					<p class="info-tip" style="top:5px;left:56px;">点击修改邮箱</p>
 				</li>
 				{{else}}
 				<li>
-					<a href="/newAccount/settings/userInfo" class="mouse-enter rzpa cem" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
+					<a href="/newAccount/bindingEmail" class="mouse-enter rzpa cem" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
 					<p class="info-tip" style="top:5px;left:56px;">点击设置邮箱</p>
 				</li>
 				{{/if}}
@@ -52,7 +52,7 @@
 				{{#if paymentPasswordHasSet}}
 				<li>
 					<a href="/newAccount/settings/password" class="mouse-enter rzpa cpass-active" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
-					<p class="info-tip" style="top:5px;left:125px;">点击设置交易密码</p>
+					<p class="info-tip" style="top:5px;left:125px;">点击修改交易密码</p>
 				</li>
 				{{else}}
 
@@ -65,7 +65,7 @@
 				{{#if banksabled}}
 				<li>
 					<a href="/newAccount/settings/bankCards" class="mouse-enter rzpa ccr-active" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
-					<p class="info-tip" style="top:5px;left:210px;">点击设置银行卡</p>
+					<p class="info-tip" style="top:5px;left:210px;">点击查看银行卡</p>
 				</li>
 				{{else}}
 				<li>

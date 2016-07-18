@@ -74,6 +74,17 @@
         <h3>我的银行卡</h3>
         <div class="card_box">
             <ul>
+                {{#if !bankCards.length}}
+                <li>
+                    <div class="card_add">
+                        <a href="/newAccount/settings/bankCards">
+                            <div class="add_bank_icon"></div>
+                            <h5>添加银行卡</h5>
+                            <!--<p>最多添加5张银行卡</p>-->
+                        </a>
+                    </div>
+                </li>
+                {{else}}
                 {{#each bankCards}}
                 <li>
                     <div class="card_add">
@@ -89,48 +100,10 @@
                     </div>
                 </li>
                 {{/each}}
-
-                <li>
-                    <div class="card_add">
-                        <a href="/newAccount/settings/bankCards">
-                            <div class="add_bank_icon"></div>
-                            <h5>添加银行卡</h5>
-                            <p>最多添加5张银行卡</p>
-                        </a>
-                    </div>
-                </li>
+                {{/if}}
             </ul>
 
         </div>
-        <!--<div class="showbank-box" style="margin-bottom:24px;">-->
-            <!--{{#if bankCards.length>0}}-->
-            <!--<table style="margin: 18px 40px;" class="has-card-box">-->
-                <!--<thead>-->
-                <!--<tr class="has-card">-->
-                    <!--<th style="width:184px;">银行名称</th>-->
-                    <!--<th style="width:280px;">卡号</th>-->
-                    <!--<th style="width:170px;">状态</th>-->
-                    <!--<th style="width:272px;">操作</th>-->
-                <!--</tr>-->
-                <!--</thead>-->
-                <!--<tbody>-->
-                <!--{{#each bankCards}}-->
-                <!--<tr>-->
-                    <!--<td class="{{account.bank}}" style="background-size: 180px;background-repeat: no-repeat;"></td>-->
-                    <!--<td>{{account.account.substr(0,4)}}************{{account.account.substr(-4,4)}}</td>-->
-                    <!--<td>已认证</td>-->
-                    <!--<td>-->
-                        <!--<button on-click="deleted-card" lala="{{account.account}}">解绑</button>-->
-                    <!--</td>-->
-                <!--</tr>-->
-                <!--{{/each}}-->
-                <!--</tbody>-->
-            <!--</table>-->
-            <!--{{else}}-->
-            <!--<a href="/newAccount/settings/bankCards" class="showbank-img"><img src="/ccc/newAccount/img/showbank.png"/></a>-->
-            <!--<a href="/newAccount/settings/bankCards" class="showbank-word"><p>添加银行卡</p></a>-->
-            <!--{{/if}}-->
-        <!--</div>-->
     </div>
     {{else}}
         {{#if !isSave}}

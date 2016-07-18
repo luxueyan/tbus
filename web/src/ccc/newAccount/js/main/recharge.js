@@ -42,7 +42,8 @@ var ractive = new Ractive({
         showNum: 9,
         minAmount: 100,
         step1: true,
-        step2: false
+        step2: false,
+        step3: false
     },
     oninit: function () {
         var self = this;
@@ -191,9 +192,10 @@ ractive.on('recharge_submit', function (e) {
         accountService.checkPassword(password, function (res) {
             if(res){
                 $('.submit_btn').text('正在充值中，请稍等...');
-                request.post('/api/v2/hundsun/recharge/MYSELF')
+                request.post('/api/v2/baofoo/recharge/MYSELF')
                 .type("form")
                 .send({
+                    //userId:CC.user.id,
                     amount: amount,
                     paymentPassword: password,
                     cardNo: cardNo
@@ -204,11 +206,15 @@ ractive.on('recharge_submit', function (e) {
                     if (r.body.success) {
                         ractive.set('step1',false);
                         ractive.set('step2',true);
+                        ractive.set('step3',false);
                         ractive.on('close',function(){
                             window.location.href = "/newAccount/home";
                         });
                     } else {
-                        alert('充值失败');   
+                        ractive.set('step1',false);
+                        ractive.set('step2',false);
+                        ractive.set('step3',true);
+                        //alert('充值失败');
                         $('.submit_btn').text('确认充值');
                     }
                 });
