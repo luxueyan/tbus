@@ -36,4 +36,6 @@ module.exports = function (router, auth) {
     router.post('/api/v2/baofoo/recharge/:userId', auth.owner());
     //取现
     router.post('/api/v2/baofoo/withdraw/:userId', auth.owner());
+    //好友数目与红包数量
+    router.get('/api/v2/getReferUserCountAndReward/:userId', auth.user());
 };
