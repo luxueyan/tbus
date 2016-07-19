@@ -64,7 +64,7 @@ ractive.on('submit',function() {
                     window.location.reload();
                 } else {
                    alert('信息编辑失败,请稍后重试！'); 
-                }   
+                }
             });
         } else {
              alert('信息编辑失败,请稍后重试！'); 
