@@ -278,6 +278,7 @@ module.exports = function(router) {
         "bankCards",
         "authentication",
         "password",
+        "setpassword",
         "resetPassword",
         "showbank",
         "fixed",

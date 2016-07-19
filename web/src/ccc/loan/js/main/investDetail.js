@@ -251,11 +251,11 @@ setTimeout((function () {
             showErrors('请输入交易密码!');
             return false;
         } else {
-            //accountService.checkPassword(paymentPassword, function (r) {
-            //    if (!r) {
-            //        showErrors('请输入正确的交易密码!');
-            //    } else {
-            //        disableErrors();
+            accountService.checkPassword(paymentPassword, function (r) {
+                if (!r) {
+                    showErrors('请输入正确的交易密码!');
+                } else {
+                    disableErrors();
 
                     if (document.getElementById('agree').checked == true) {
                         $('.agree-error').css('visibility', 'hidden');
@@ -265,7 +265,7 @@ setTimeout((function () {
                             cancelText: '取消',
 
                             ok: function () {
-                                $.post('/lianlianpay/tender', {
+                                $.post('/api/v2/invest/tender/MYSELF', {
                                     amount: num,
                                     loanId: investRactive.get('loan.id'),
                                     placementId: $('#couponSelection').find("option:selected").val(),
@@ -312,8 +312,8 @@ setTimeout((function () {
                         $('.agree-error').html('请先同意用户投资服务协议');
                     }
                 }
-            //});
-        //};
+            });
+        };
     });
 
     //显示返现金额

@@ -124,6 +124,27 @@ p.tips {
     text-align: center;
     color: red;
 }
+/*重置登录密码*/
+.modify-password-wrapper{
+    margin: 50px;
+}
+.resetfundpass {
+    margin-top: 110px;
+    display: none;
+    font-size: 24px;
+    color: #4a4a4a;
+    font-weight: bold;
+    background: url(/ccc/newAccount/img/band-success.png) no-repeat center;
+    height: 170px;
+    background-size: 188px;
+    line-height: 170px;
+    text-align: center;
+    color: #dc0101;
+    font-size: 30px;
+    padding-top: 153px;
+}
+/*重置登录密码结束*/
+
 /*重置支付密码*/
 .resetWra {
     margin: 50px 0 0 50px;
@@ -153,6 +174,7 @@ p.tips {
     line-height: 45px;
     cursor: pointer;
     text-align: center;
+    border: none;
 }
 
 .btn-update:hover {
@@ -815,19 +837,7 @@ p.tips {
     margin: auto 8px;
 }
 
-.resetfundpass {
-    margin-top: 110px;
-    display: none;
-    font-size: 24px;
-    color: #4a4a4a;
-    font-weight: bold;
-    background: url(/ccc/newAccount/img/band-success.png) no-repeat left center;
-    height: 170px;
-    padding-left: 235px;
-    margin-left: 230px;
-    background-size: 188px;
-    line-height: 170px;
-}
+
 .disabled{
     cursor: default;
 }
@@ -865,6 +875,29 @@ p.tips {
 .home-intrest .home-tab-amount{
     color: #e60012;
 }
+.fixed-invest{
+    margin-left: 10px;
+    margin-right: 32px;
+    margin-top: 10px;
+}
+.fixed-invest .table > thead > tr > th{
+    padding: 20px 0;
+    padding-left: 20px;
+    color: #666;
+}
+.fixed-invest .table > tbody > tr > td{
+    padding-left: 20px;
+}
+.fixed-invest button{
+    background: #e60012;
+    border: none;
+    color: #fff;
+    padding: 5px 14px;
+}
+.fixed-invest .look_contact{
+    margin-left: 5px;
+}
+
 /*重置ccc-tab*/
 .ccc-tab > ul.tabs > li {
     float: left;

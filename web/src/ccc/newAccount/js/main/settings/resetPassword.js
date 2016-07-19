@@ -49,7 +49,7 @@ resetPasswordRactive.on('resetPassword', function () {
     var pwd = this.get('password');
     var repwd = this.get('repassword');
     var smsCaptcha = this.get('smsCaptcha');
-		var isAcess=this.get('isAcessa')&&this.get('isAcessb')&&this.get('isAcessc');
+
     resetPasswordRactive.fire('checkpwd');
     resetPasswordRactive.fire('checkrepwd');
 		resetPasswordRactive.fire('checksms');
@@ -74,6 +74,7 @@ resetPasswordRactive.on('resetPassword', function () {
         //         isAcess = false;
         //     }
         // }
+    var isAcess=this.get('isAcessa')&&this.get('isAcessb')&&this.get('isAcessc');
 
         if(isAcess) {
 					accountService.checkPassword(pwd,function(r){

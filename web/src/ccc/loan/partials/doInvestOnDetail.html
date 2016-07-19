@@ -120,7 +120,7 @@
                     <!--<button>充值</button>-->
                 <!--</a>-->
             </div>
-            <form action="/lianlianpay/tender" name="investForm" method="POST" class="invest-form"
+            <form name="investForm" method="POST" class="invest-form"
                   target="_blank" on-submit="invest-submit">
                 <div class="calculatorBox">
                     <div class="calculator">
@@ -155,14 +155,14 @@
                             {{/if}}
                         </select>
                     </div>
-                    <!--<div class="password-box">-->
-                        <!--<div class="password">-->
-                            <!--<input class="trade-password" type="password" placeholder="请输入交易密码"-->
-                                   <!--name="paymentPassword"-->
-                                   <!--value="{{paymentPassword}}" autocomplete="off"/>-->
-                        <!--</div>-->
-                        <!--<p><a href="/newAccount/settings/password" style="font-size:12px">忘记交易密码？</a></p>-->
-                    <!--</div>-->
+                    <div class="password-box">
+                        <div class="password">
+                            <input class="trade-password" type="password" placeholder="请输入交易密码"
+                                   name="paymentPassword"
+                                   value="{{paymentPassword}}" autocomplete="off"/>
+                        </div>
+                        <p><a href="/newAccount/settings/password" style="font-size:12px">忘记交易密码？</a></p>
+                    </div>
                     <p class="agree-box">
                         <input type="checkbox" class="agree" checked id="agree"/>
                             <span>我同意
