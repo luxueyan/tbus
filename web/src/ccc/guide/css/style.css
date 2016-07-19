@@ -9,362 +9,168 @@
     overflow: hidden;
 }
 
-.guide-model {
-    width: 1000px;
-    margin: 0px auto 40px;
-    text-align: center;
-}
-
-.guide-model * {
-    font-family: '微软雅黑';
-}
-
-.model-title {
-    text-align: center;
-    color: #4a4a4a;
-    font-size: 36px;
-    /*line-height: 116px;
-    font-weight: bold;*/
-    margin-bottom: 50px;
-    margin-top: 40px;
-}
-
-.model-title-second {
-    margin-top: 80px;
-    display: block;
-    margin: auto;
-}
-
-
-.model-pic img {
-    float: left;
-    margin-left: 84px;
-}
-
-.model-pic {
-    width: 1000px;
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-.model-pic-title {
-    float: right;
-    width: 200px;
-    text-align: center;
-    margin-right: 94px;
-    margin-top: 82px;
-}
-
-.model-pic-title p {
-    color: #4a4a4a;
-    font-size: 24px;
-}
-
-.model-pic-title h3 {
-    color: #777777;
-    font-size: 14px;
-}
-
-.line {
-    width: 850px;
-    height: 1px;
-    background: #e6e6e6;
-    margin: 0 auto;
-    margin-top: 66px;
-    margin-bottom: 48px;
-}
-
-.model-pic-next img {
-    float: right;
-    margin-right: 70px;
-    margin-bottom: 50px;
-}
-
-.model-pic-next {
-    width: 1000px;
-    margin: 0 auto;
-    /*    overflow: hidden;*/
-}
-
-.model-pic-title-next {
-    float: left;
-    width: 230px;
-    text-align: center;
-    margin-top: 200px;
-    margin-left: 60px;
-}
-
-.model-pic-title-next p {
-    color: #4a4a4a;
-    font-size: 24px;
-}
-
-.model-pic-title-next h3 {
-    color: #777777;
-    font-size: 14px;
-}
-
-.guide-product-box {
-    color: #f8f8f8;
-}
-
-.guide-product {
-    width: 1000px;
-    margin: 0 auto;
-}
-
-.process {
-    width: 1000px;
-    margin: 0 auto;
-}
-
-.guide-product img {
-    margin-left: 70px;
-    margin-bottom: 66px;
-}
-
-.process-box {
-    background: #fff;
-}
-
-.process img {
-    margin-left: 150px;
-    margin-bottom: 66px;
-}
-
-.process button {
-    width: 280px;
-    height: 50px;
-    background: #ff7f00;
-    color: #fff;
-    font-size: 20px;
-    margin-left: 360px;
-    margin-bottom: 70px;
-}
-
-/*
-.step-title {
-    margin: auto;
-     margin-top: 40px; 
-    margin-bottom: 40px;
-    text-align: center;
-    width: 400px;
-    display: block;
-}
-*/
-
-.steps-pic {
-    margin-bottom: 40px;
-    margin-top: -20px;
-}
-
-.process-pic {
-    /* margin-left: 10px; */
-    clear: both;
-    width: 1030px;
-    height: 392px;
-}
-
-.ltb {
-    background: #f2fbff;
-    border: 2px solid #98defe;
-    border-radius: 5px;
-    width: 340px;
-    height: 300px;
-    float: left;
-    margin-left: 110px;
-}
-
-.ltb-title {
-    color: #ffce06;
-    font-size: 36px;
-    text-align: center;
-    line-height: 36px;
-    margin-top: 20px;
-    margin-bottom: 12px;
-}
-
-.lxy-title {
-    color: #009ada;
-}
-
-.ltb img {
-    margin-top: 40px;
-    margin-left: 130px;
-}
-
-.ltb-content {
-    width: 260px;
-    margin: 0 auto;
-    color: #999;
-    font-size: 14px;
-    line-height: 24px;
-}
-
-.earn-pic img {
-    margin-left: 124px;
-}
-
-.for-parents-title {
-    color: #4a4a4a;
-    font-size: 18px;
-    text-align: center;
-    line-height: 45px;
-    font-family: '微软雅黑';
-}
-
-.for-parents-content {
-    font-size: 14px;
-    color: #4A4A4A;
-    line-height: 18px;
-    font-family: '微软雅黑';
-}
-
-.for-parents {
-    width: 170px;
-    float: left;
-    /* margin-right: 33px; */
-    /* margin-left: 33px; */
-    margin-top: 40px;
-    margin-right: 80px;
-}
-
-.for-parents:last-child {
-    margin-right: 0;
-}
-
-.for-wife {
-    margin-top: 100px;
-}
-
-.for-parents img {
-    /* margin-left: 7px; */
-}
-
-.guide-register-rightnow {
-    width: 320px;
-    height: 60px;
-    background: #f58200;
-    border: none;
-    color: white;
-    font-size: 24px;
-    border-radius: 5px;
-}
-
-.guide-register-rightnow:hover {
-    background-color: #df6502;
+.step-box1{
+    background: url("/ccc/guide/img/step1.png") no-repeat center;
 }
 .step-first{
-    background-color: #f1faf9;
+    width: 1200px;
+    margin: 0 auto;
+    height: 474px;
+    padding-left: 578px;
 }
 .step-title {
     text-align: center;
-    background-image: url(/ccc/guide/img/title_bg.png);
-    background-repeat: no-repeat;
-    background-position: center 40px;
-    line-height: 190px;
-    font-size: 50px;
-    color: #fff;
+    font-size: 48px;
+    color: #d90202;
+    line-height: 140px;
 }
 
 .model-content {
-    width: 1200px;
-    margin: auto;
-    line-height: 38px;
+    width: 100%;
+    line-height: 48px;
     font-family: "微软雅黑";
     text-align: left;
     font-size: 24px;
-    padding-bottom: 30px;
+    color: #666666;
 }
+
+.model-content > span {
+    color:#d10010;
+}
+
 
 .model-content b {
     color: #c69e5f;
     font-size: 42px;
     font-family: '微软雅黑';
 }
-
+.step-box2{
+    background: url("/ccc/guide/img/step2.png") no-repeat center;
+}
 .step-second {
-    background-color: white;
-    width: 100%;
-}
-.step-second-bg{
-    background: #eddec9;
-    border-radius: 32px;
     width: 1200px;
-    height: 120px;
-    margin: auto;
-    margin-bottom: 50px;
-    line-height: 120px;
-    font-size: 24px;
-    font-family: "微软雅黑";
+    height: 630px;
+    margin: 0 auto;
+    position: relative;
 }
-.step-second-bg h2{
-    color: #fff;
-    border-radius: 32px;
-    line-height: 120px;
-    font-size: 26px;
-    letter-spacing: 3px;
-    height: 120px;
-    width: 200px;
-    float: left;  
-    text-align: center;
-    margin-right: 20px;
-    font-family: "微软雅黑";
+.step-second >span {
+    font-size: 30px;
+    color: #e61100;
+    position: absolute;
 }
-.step2-1{
-    background: #e5b5ae;
+.step-tips1{
+    top:280px;
+    left: 520px;
 }
-.step2-2{
-    background: #e3e5ae;
+.step-tips2{
+    top:400px;
+    left: 520px;
 }
-.step2-3{
-    background: #aecde5;
+.step-tips3{
+    top:520px;
+    left: 520px;
+}
+
+.step-box3{
+    background-color: #e5e5e5;
+    width: 100%;
 }
 .step-third {
-    background-color: #f1faf9;
-    width: 100%;
-    padding-bottom: 130px;
+    background-color: #e5e5e5;
+    width: 1200px;
+    height: 628px;
+    margin: 0 auto;
+    overflow: hidden;
 }
 .step-third ul{
-    width: 1200px;
-    margin: auto;
+    width: 100%;
+    margin-left: -1px;
     overflow: hidden;
-    padding-top: 30px;
 }
 .step-third ul li{
     float: left;
-    width: 190px;
-    height: 190px;
-    line-height: 190px;
+    width: 400px;
+    padding: 0 46px;
     text-align: center;
     font-size: 26px;
+    border-left: 1px solid #cacaca;
 }
-.step-third ul li.step3-arrow{
-    width: 146px;
-    background-image: url(/ccc/guide/img/arrow.png);
-    background-repeat: no-repeat;
-    background-position: center center;
+.step-third ul li p{
+    margin-top: 42px;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: left;
 }
-.step3-register{
-    background-image: url(/ccc/guide/img/circle1.png);
-    background-repeat: no-repeat;
-    background-position: center center;
+.tips-title{
+    color: #b08b56;
+    font-size: 36px;
+    text-align: center;
+    line-height: 136px;
 }
-.step3-auth{
-    background-image: url(/ccc/guide/img/circle2.png);
-    background-repeat: no-repeat;
-    background-position: center center;
+.tips-title span{
+    color: #d70500;
 }
-.step3-recharge{
-    background-image: url(/ccc/guide/img/circle3.png);
-    background-repeat: no-repeat;
-    background-position: center center;
+.step-box4{
+    background: url("/ccc/guide/img/step4.png") no-repeat center;
 }
-.step3-invest{
-    background-image: url(/ccc/guide/img/circle4.png);
-    background-repeat: no-repeat;
-    background-position: center center;
+.step-four{
+    width: 1200px;
+    height: 628px;
+    margin: 0 auto;
+}
+.guide-btn{
+    margin: 75px auto 60px;
+    display: block;
+    width: 451px;
+    height: 75px;
+    background-color: #e60012;
+    font-size: 36px;
+    color: #fff;
+    line-height: 75px;
+    text-align: center;
+    letter-spacing: 2px;
 }
 
+/*轮播注册*/
+.banner-account－box{
+    position: absolute;
+    top:50%;
+    margin-top: -160px;
+    left:50%;
+    margin-left:251px;
+}
+.banner-account {
+    width: 300px;
+    height: 320px;
+    padding: 10px 16px;
+    background: #eceef1;
+}
+.free-register {
+    width: 250px;
+    height: 42px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+.bannerLogin{
+    font-size: 14px;
+    text-align: right;
+    margin-top: 28px;
+    padding-right: 22px;
 
+}
 
+.bannerLogin .underline{
+    text-decoration:underline;
+    color: #2d7dec;
+}
+
+.banner-account .btn-index{
+    width: 250px;
+    height: 42px;
+    font-size: 18px;
+    color: #ffffff;
+    background: #e60012;
+    text-align: center;
+    line-height: 42px;
+    border-radius: 4px;
+}

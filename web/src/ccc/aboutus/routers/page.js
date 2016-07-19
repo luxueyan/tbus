@@ -15,7 +15,7 @@ module.exports = function (router) {
             console.log(data)
                 return data;
             });
-        res.locals.title = '关于我们_自金网平台';
+        res.locals.title = '关于我们_太合汇平台';
         res.render('aboutus');
     });
 }

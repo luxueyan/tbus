@@ -21,7 +21,7 @@ require('./node-global')
 var port = Number(process.env.PORT || config.port) || 4000;
 app.locals.dsLayoutPath = 'ccc/global/views/layouts/default';
 
-app.locals.title = '自金网平台';
+app.locals.title = '太合汇平台';
 app.locals.keywords = '华瑞金控';
 app.locals.description = '华瑞金控';
 
