@@ -41,7 +41,7 @@
             <td>
                 <!--<p class="table-title">操作</p>-->
                 <p class="table-invest-common">
-                    <button>转让</button>
+                    <button class="operation" data-invest="{{id}}" data-amount="{{amount}}" data-title="{{loanTitle}}">转让</button>
                     <button class="look_contact">查看合同</button>
                 </p>
             </td>
@@ -68,3 +68,26 @@
     还没投资，赶紧投资吧！
 </div>
 {{/if}}
+
+<div id="#mask-layer-wraper"></div>
+<div id="popup" style="display:none">
+    <div id="popup-close"></div>
+    <h1 id="form-data-title"></h1>
+    <img src="/ccc/newAccount/img/pop_line.png">
+    <div class="formWrapper">
+        <p>标的估值(元)<span class="form-data assignAmount"></span></p>
+        <p>转让折价率
+            <input type="text" name="creditDealRate" id="creditDealRate" />
+            <span class="tip">（支持溢价，折价率必须大于等于0.95；小于等于1.05）</span>
+            <span class="tip error"></span>
+        </p>
+        <p>转让价格(元)<span class="form-data" id="form-num"></span></p>
+        <p>转让期限
+            <span class="form-time">24小时</span>
+            <span class="tip">（如果到期无人购买，申请将自动撤销）</span>
+        </p>
+
+
+        <button id="btn-confirm">确认转让</button>
+    </div>
+</div>

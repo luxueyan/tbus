@@ -5,7 +5,7 @@ select {
   -webkit-appearance:none;
 
   /*在选择框的最右侧中间显示小箭头图片*/
-  background: url(/ccc/loan/img/arrow_down.png) no-repeat scroll right center transparent;
+  background: url(/ccc/loan/img/down_icon.png) no-repeat scroll right center transparent;
   background-size: 14px;
 }
 
@@ -486,6 +486,7 @@ select::-ms-expand { display: none; }
     height: 47px;
     border-left: none;
     margin-top: -1px;
+    cursor: pointer;
 }
 #userBlock .totalInterest {
     font-size: 24px;
@@ -498,6 +499,7 @@ select::-ms-expand { display: none; }
 }
 .do-invest-wrapper .status .userBlock  .selectOption {
     clear: both;
+    width: 302px
 }
 .do-invest-wrapper .status .userBlock  .selectOption select {
     width: 255px;
@@ -507,7 +509,17 @@ select::-ms-expand { display: none; }
     padding-left: 10px;
     color: #999;
 }
-
+#userBlock span.down {
+    width: 47px;
+    border: 1px solid #ccc;
+    background: #cfa972 url(/ccc/loan/img/down_icon.png) no-repeat center;
+    display: block;
+    float: right;
+    height: 47px;
+    border-left: none;
+    margin-top: -1px;
+    cursor: pointer;
+}
 
 .do-invest-wrapper .status .userBlock .left-money {
     color: #999;
@@ -589,7 +601,7 @@ select::-ms-expand { display: none; }
     background-color: #C71E23;
 }
 .do-invest-wrapper .status .userBlock .invest-button {
-    /*margin-top: 50px;*/
+    margin-top: 50px;
     margin-left: 0px;
     cursor: pointer;
 }
@@ -832,12 +844,18 @@ select::-ms-expand { display: none; }
     border-bottom: 2px solid #f1f1f1;
     padding-left: 35px;
 }
+.payment-box .payment-content{
+    padding-bottom: 100px;
+}
 .payment-content .title{
     font-size: 24px;
     padding: 35px 0;
     border-bottom: 1px solid #d2d2d2;
     padding-left: 15px;
     margin: 0 20px;
+}
+.payment-content .title span{
+    padding-right: 100px;
 }
 .payment-content .num{
     height: auto;
@@ -847,20 +865,51 @@ select::-ms-expand { display: none; }
     overflow: hidden;
     padding: 50px 0 40px 35px;
 }
+.payment-content .num span{
+    color: #e30107;
+    font-size: 30px;
+    padding-left: 90px;
+}
 .payment-content .num .num1{
     float: left;
+    margin-right: 180px;
 }
 .payment-content .num .num2{
     float: left;
+}
+.payment-content .num .num2 input{
+    margin-left: 60px;
+    margin-right: 15px;
 }
 .payment-content .bank{
     padding-left: 35px;
     font-size: 18px;
 }
+.payment-content .bank p{
+    float: left;
+    margin-top: 30px;
+}
+.payment-content .bank .bank-box {
+    float: left;
+    width: 804px;
+    padding: 30px;
+    border: 1px solid #c9c9c9;
+    background-position: 50px center;
+    margin-left: 20px;
+}
+.payment-content .bank .bank-box span{
+    padding-left: 280px;
+}
+.payment-content .bank .bank-box span.limit{
+    padding-left: 120px;
+    font-size: 14px;
+}
 .payment-content .invest-input{
     padding: 40px 0 20px 35px;
     font-size: 16px;
     color: #bbb;
+    clear: both;
+    margin-left: 146px;
 }
 .card-brame {
     margin-left: 0px;
@@ -899,6 +948,10 @@ select::-ms-expand { display: none; }
 .payment-content .agree-box{
     padding-left: 35px;
     font-size: 12px;
+    margin-left: 146px;
+}
+.payment-content .agree-box input{
+    margin-right: 10px;
 }
 .payment-content .agree-box a{
     color: #b68b4c;
@@ -912,5 +965,26 @@ select::-ms-expand { display: none; }
     margin-top: 10px;
     background: #e4262b;
     font-size: 18px;
-    margin: 50px 0 50px 35px;
+    margin: 50px 0 50px 183px;
+}
+.payment-content .tooltip {
+    opacity: 1;
+    display: block;
+}
+.payment-content .tooltip .tooltip-inner {
+    background: #fff;
+    color: red;
+    padding: 0;
+    font-family: "微软雅黑", 'Microsoft Yahei', '幼圆', 'YouYuan SimYou?', SimSun, '宋体', Helvetica, Arial, sans-serif;
+}
+.payment-content .agree-error{
+    color: red;
+}
+.payment-content .recharge-success .success-content  .fail_reason{
+    font-size: 14px;
+    color: #666;
+    margin-top: 10px;
+}
+.payment-content .recharge-success .success-content .btn-after{
+    margin: 0;
 }
