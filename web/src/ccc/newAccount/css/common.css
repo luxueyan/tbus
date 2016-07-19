@@ -266,15 +266,16 @@ table thead tr {
     background: #f5f4f9;
 }
 table thead tr th {
-    border: 0 !important;
+    border-bottom: 1px solid #c9c9c9;
     font-size: 14px !important;
+    background: #fff;
+    color: #666;
 }
 table tbody tr td {
     padding: 0;
     height: 76px;
-    border-bottom: 1px #eeeeee solid;
+    border-bottom: 1px #c9c9c9 solid;
     font-size: 14px !important;
-    color: #4a4a4a;
 }
 .total_invest_num {
     float: right;
@@ -494,23 +495,15 @@ table tbody tr td {
     background: #ef9c2c;
 }
 /*表格*/
-
 .table-title {
-    color: #7e838e;
-    line-height: 30px;
+    color: #666;
 }
-.table-invest-time {
-    font-size: 16px;
-    color: #9d9d9d;
+.table-invest-rate {
+    font-size: 14px;
+    color: #e60012;
 }
-.table-invest-num {
-    font-size: 16px;
-    color: #f4ab4a;
-}
-.table-invest-expect {
-    color: #f4ab4a;
-    font-size: 16px;
-    font-weight: bold;
+.table-invest-common {
+    color: #666;
 }
 /*公共用户信息*/
 .userinfowra {
