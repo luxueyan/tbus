@@ -589,7 +589,7 @@ select::-ms-expand { display: none; }
     background-color: #C71E23;
 }
 .do-invest-wrapper .status .userBlock .invest-button {
-    margin-top: 50px;
+    /*margin-top: 50px;*/
     margin-left: 0px;
     cursor: pointer;
 }
