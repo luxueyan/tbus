@@ -4,6 +4,7 @@ var utils = require('ccc/global/js/lib/utils');
 require('ccc/global/js/modules/cccTab');
 require('ccc/global/js/modules/tooltip');
 require('ccc/global/js/modules/cccPaging');
+var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 
 var fixedRactive = new Ractive({
     el: "#ractive-container",
@@ -176,6 +177,7 @@ function init(type) {
       },
       renderPager: function () {
         var self = this;
+        self.bindActions();
         this.tooltip();
         $(this.el).find(".ccc-paging").cccPaging({
           total: this.get('total'),
@@ -241,7 +243,131 @@ function init(type) {
           }
         }
         return repay;
-      }
+      },
+      bindActions: function () {
+        $('.operation').on('click', function () {
+          var returnMap = {
+            "CREDIT_ASSIGN_DISABLED": "没有开启债权转让功能",
+            "REASSIGN_DISABLED": "二次转让功能关闭",
+            "INVEST_NOT_FOUND": "原始投标找不到",
+            "SUCCESSFUL": "成功",
+            "EXCEED_DISCOUNT_LIMIT": "超过债权转让折让率允许范围",
+            "REPEATED_ASSIGN_REQUEST": "债权转让已存在,不能重复转让",
+            "INSUFFICIENT": "没有本金可转让",
+            "ILLEGAL_INVEST": "投标状态不可转让",
+            "ILLEGAL_INVEST_USER": "只能转让自己的投标",
+            "ILLEGAL_REPAYMENT": "投标有逾期违约还款",
+            "ILLEGAL_DATE": "不在可转让时间范围",
+            "NEXT_REPAY_DATE_LIMIT": "下次回款到期日前一定天数内不允许转让",
+            "INVEST_DATE_LIMIT": "投资持有一定天数后才允许转让",
+            "DAILY_LIMIT": "超过每日债权转让次数上限",
+            "DISCOUNT_LIMIT": "超过债权转让折让率允许范围",
+            "ASSIGN_AMOUNT_LIMIT": "低于最低转让金额限制"
+          };
+
+          var investId = $(this).data("invest");
+          var amount = $(this).data("amount");
+          var title = $(this).data("title");
+
+          $(".assignAmount").text(amount.toFixed(2));
+          $("#form-data-title").text("转让 - " + title);
+
+          $("#creditDealRate").blur(function () {
+            if ($(this).val() == "") {
+              $(this).siblings("span.error").text("");
+            } else if ($(this).val() > 1.05) {
+              $("#creditDealRate").siblings("span.error").text("折价率必须小于等于1.05!");
+            } else if ($(this).val().length > 4) {
+              $("#creditDealRate").siblings("span.error").text("折价率最多保留两位小数");
+            } else if ($(this).val() < 0.95) {
+              $("#creditDealRate").siblings("span.error").text("折价率必须大于等于0.95!");
+            }else {
+              $(this).siblings("span.error").text("");
+            };
+
+            var creditDealRate = $("#creditDealRate").val();
+            $("#form-num").text((amount*creditDealRate).toFixed(2));
+          });
+
+          $("#mask-layer-wraper").show();
+          $('#popup').show();
+
+          //提交
+
+          $("#btn-confirm").click(function () {
+            $(this).addClass('disabled').html('处理中');
+            var assignTitle = title + " - 债权转让";
+            var creditDealRate = $("#creditDealRate").val();
+            if (creditDealRate > 1.05) {
+              $("#creditDealRate").siblings("span.error").text("折价率必须小于等于1.05!");
+              $(this).removeClass('disabled').html('确认转让')
+              return false;
+            } else if (creditDealRate < 0.95 && creditDealRate != '') {
+              $("#creditDealRate").siblings("span.error").text("折价率必须大于等于0.95!");
+              $(this).removeClass('disabled').html('确认转让');
+              return false;
+            } else if (creditDealRate.length > 4) {
+              $("#creditDealRate").siblings("span.error").text("折价率最多保留两位小数");
+              $(this).removeClass('disabled').html('确认转让');
+              return false;
+            } else if (creditDealRate == '') {
+              $("#creditDealRate").siblings("span.error").text("请输入您的折价率");
+              $(this).removeClass('disabled').html('确认转让');
+              return false;
+            } else if(isNaN(creditDealRate)){
+              $("#creditDealRate").siblings("span.error").text("只能输入数字和小数点");
+              $(this).removeClass('disabled').html('确认转让');
+              return false;
+            }
+            else {
+              $("#creditDealRate").siblings("span.error").text("");
+              if (investId && creditDealRate && assignTitle) {
+                accountService.createCreditAssign(investId, creditDealRate, assignTitle, function (o) {
+
+                  if (o == "SUCCESSFUL") {
+
+                    alert("债转创建成功!");
+
+                    $('#mask-layer-wraper').hide();
+                    $('#popup').hide();
+                    window.location.reload();
+                  } else {
+                    alert("债转创建失败，" + returnMap[o]);
+                    window.location.reload();
+
+                    $('#mask-layer-wraper').hide();
+                    $('#popup').hide();
+
+                  }
+
+                });
+              }
+            }
+          });
+        });
+        //关闭浮层
+        $('#popup-close').click(function () {
+          $('#mask-layer-wraper').hide();
+          $('#popup').hide();
+        });
+
+        $(".cancel").click(function () {
+          var creditassignId = $(this).data('creditassign');
+          if (!creditassignId) {
+            return false;
+          } else {
+            accountService.cancelCreditassign(creditassignId, function (o) {
+              if (o) {
+                alert('取消转让成功！');
+                window.location.reload();
+              } else {
+                alert('取消转让失败！');
+                window.location.reload();
+              }
+            });
+          }
+        });
+      },
     });
   }
   //else {}

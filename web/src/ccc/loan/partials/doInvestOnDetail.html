@@ -120,14 +120,13 @@
                     <!--<button>充值</button>-->
                 <!--</a>-->
             </div>
-            <form action="/lianlianpay/tender" name="investForm" method="POST" class="invest-form"
-                  target="_blank" on-submit="invest-submit">
+            <form name="investForm"  class="invest-form">
                 <div class="calculatorBox">
                     <div class="calculator">
                         <input type="hidden" name="loanId" value="{{loan.id}}">
                         <input placeholder="请输入投资金额" name="amount" type="text" value="{{ inputNum }}"
                                autocomplete="off" on-keyup="tenNum"/>
-                        <span class="plus"></span>
+                        <span class="plus" on-click="addNum"></span>
                     </div>
                     <div class="clearfix"></div>
                     <p class="totalInterest">预计收益
@@ -154,6 +153,7 @@
                             <option value="">暂无可用券</option>
                             {{/if}}
                         </select>
+                        <span class="down"></span>
                     </div>
                     <!--<div class="password-box">-->
                         <!--<div class="password">-->
@@ -163,22 +163,15 @@
                         <!--</div>-->
                         <!--<p><a href="/newAccount/settings/password" style="font-size:12px">忘记交易密码？</a></p>-->
                     <!--</div>-->
-                    <p class="agree-box">
-                        <input type="checkbox" class="agree" checked id="agree"/>
-                            <span>我同意
-                                 {{#if loan.productKey==="FB"}}
-                                 <a href="/agreement/mobile/protocolltb" target="_blank">《新抵宝用户投资服务协议》</a>
-                                 {{elseif loan.productKey==="XNB"}}
-                                 <a href="/agreement/mobile/protocolxnb" target="_blank">《新能宝用户投资服务协议》</a>
-                                 {{else}}
-                                 <a href="/agreement/mobile/protocol" target="_blank">《用户投资服务协议》</a>
-                                 {{/if}}
-                            </span>
-                    </p>
-
-                    <p class="agree-error"></p>
-                    <input type="submit" class="loginBtn invest-button" value="确认购买"/>
-                    <!--<a href="/loan/payment?num={{inputNum}}" target="_blank">确认购买</a>-->
+                    <!--<p class="agree-box">-->
+                        <!--<input type="checkbox" class="agree" checked id="agree"/>-->
+                            <!--<span>我同意-->
+                                <!--<a href="/agreement/mobile/protocolltb" target="_blank">《新抵宝用户投资服务协议》</a>-->
+                            <!--</span>-->
+                    <!--</p>-->
+                    <!--<p class="agree-error"></p>-->
+                    <!--<input type="submit" class="loginBtn invest-button" value="确认购买"/>-->
+                    <a href="" class="loginBtn invest-button" on-click="invest-submit">确认购买</a>
 
                 </div>
 

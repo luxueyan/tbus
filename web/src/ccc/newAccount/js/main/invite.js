@@ -36,7 +36,8 @@ new Ractive({
     onrender: function () {
         var self = this;
         this.api = '/api/v2/user/MYSELF/invite';
-        var rewardApi='/api/v2/reward/getReferralUsers/'+CC.user.id;
+        //var rewardApi='/api/v2/getReferUserCountAndReward/'+CC.user.id;
+        var rewardApi='/api/v2/getReferUserCountAndReward/MYSELF';
         $.get(this.api, function (o) {
             o = o.success ? o.data : {
                 results: [],
@@ -46,9 +47,12 @@ new Ractive({
             self.set('list', self.parseData(o));
             self.set('loading', false);
         });
-        // $.get(rewardApi, function (o) {
-        // self.set('rewardlist', self.parseRewardListData(o));
-        //});
+
+         $.get(rewardApi, function (o) {
+             console.log(o)
+             //self.set('totalSize', o.totalSize);
+             //self.set('list', self.parseData(o));
+        });
     },
     getFmobile: function(){
         var self = this;
