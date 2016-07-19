@@ -91,9 +91,7 @@ p.tips {
     color: #fff;
 }
 
-.resetWra {
-    text-align: center;
-}
+
 
 #main-container .updateWra .row {
     margin-left: 270px;
@@ -101,7 +99,7 @@ p.tips {
 }
 
 #main-container .formwra .row {
-    margin-left: 186px;
+    /*margin-left: 186px;*/
     margin-right: 0px;
     font-size: 0;
     overflow: hidden;
@@ -118,11 +116,18 @@ p.tips {
     margin-bottom: 23px;
     margin-left: 0;
     margin-right: 0;
-    margin-left: 186px;
+    /*margin-left: 186px;*/
 }
 
 
-
+.row .error {
+    text-align: center;
+    color: red;
+}
+/*重置支付密码*/
+.resetWra {
+    margin: 50px 0 0 50px;
+}
 .row .tipss {
     float: left;
     display: inline-block;
@@ -131,24 +136,21 @@ p.tips {
     width: 46px;
     border: 1px solid #cdcdcd;
     color: #4a4a4a;
-    background: url(/ccc/newAccount/img/lock2.png) no-repeat center center #fcfcfc;
+    background: url(/ccc/newAccount/img/recharge_pwd.png) no-repeat center center #fcfcfc;
 }
+.row .tipss_code{
+    background: url(/ccc/newAccount/img/card-yanzheng.png) no-repeat center center #fcfcfc;
 
-.row .error {
-    text-align: center;
-    color: red;
 }
-
 .btn-update {
-    width: 380px;
-    background-color: #ef9c2c;
+    width: 200px;
+    background-color: #e4262b;
     display: inline-block;
     font-size: 18px;
-    height: 48px;
+    height: 45px;
     color: #fff;
     font-weight: normal;
-    line-height: 48px;
-    border-radius: 3px;
+    line-height: 45px;
     cursor: pointer;
     text-align: center;
 }
@@ -156,7 +158,7 @@ p.tips {
 .btn-update:hover {
     color: #fff;
 }
-
+/*重置支付密码 结束*/
 .wenanjiaoyi {
     font-size: 15px!important;
     color: #a3a3a3;

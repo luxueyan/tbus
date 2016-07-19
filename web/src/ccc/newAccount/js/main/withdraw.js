@@ -238,7 +238,7 @@ ractive.on('withDrawSubmit', function () {
                     cardNo: cardNo
 
                 }, function (res) {
-                    if (!res.success) {
+                    if (res.success) {
                         ractive.set('step1', false);
                         ractive.set('step2', true);
                         ractive.set('step3', false);

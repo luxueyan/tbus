@@ -153,6 +153,11 @@ module.exports = function(router) {
             });
     });
     router.get('/coupon', function(req, res) {
+        var paymentPasswordHasSet = req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
+            .end().get('body');
+        res.locals.user.paymentPasswordHasSet =
+            paymentPasswordHasSet;
+
         res.render('newAccount/coupon', {
             title: '太合汇'
         });
@@ -174,11 +179,21 @@ module.exports = function(router) {
         });
     });
     router.get('/invite', function(req, res) {
+        var paymentPasswordHasSet = req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
+            .end().get('body');
+        res.locals.user.paymentPasswordHasSet =
+            paymentPasswordHasSet;
+
         res.render('newAccount/invite', {
             title: '太合汇'
         });
     });
     router.get('/risk', function(req, res) {
+        var paymentPasswordHasSet = req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
+            .end().get('body');
+        res.locals.user.paymentPasswordHasSet =
+            paymentPasswordHasSet;
+
         res.render('newAccount/risk', {
             title: '太合汇'
         });
