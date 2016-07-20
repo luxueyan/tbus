@@ -33,7 +33,7 @@ var payRactive = new Ractive({
         var loanId = location.search.substring(j+7);
 
         $.get('/api/v2/loan/' + loanId, function(list){
-            console.log(list);
+            //console.log(list);
             self.set('loan',list);
         });
         var investNum2 = parseInt(investNum).toFixed(2);
@@ -63,7 +63,7 @@ payRactive.on("invest-submit", function (e) {
                         placementId: $('#couponSelection').find("option:selected").val(),
                         paymentPassword: paymentPassword
                     }, function (res) {
-                        alert(11)
+                        //alert(11);
                         if (res.success) {
                             var loanId = payRactive.get('loan.id');
                             payRactive.set('step1',false);
