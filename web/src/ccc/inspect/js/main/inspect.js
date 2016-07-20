@@ -5,7 +5,7 @@
     //$('body').append($cccInspect);
     var inspectRactive = new Ractive({
         el: '#cccInspect',
-        template: getRactiveTemplate('ccc/inspect/partials/inspect.html'),
+        template: require('ccc/inspect/partials/inspect.html'),
         data: {
             currentEnv: CC.NODE_ENV === 'development'
                 ? 'dev' : CC.NODE_APP_INSTANCE === 'uat'
