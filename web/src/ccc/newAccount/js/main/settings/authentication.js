@@ -17,6 +17,7 @@ var ractive = new Ractive({
     data: {
         step1: true,
         step2: false,
+        step3: false,
         isQuickCheck: true,
         authenticateInfo: {
             name: CC.user.name || '',
@@ -111,30 +112,33 @@ ractive.on("register-account-submit", function () {
                         if (res) {
                             ractive.set('step1',false);
                             ractive.set('step2',true);
-                            ractive.on('close',function(){
-                                window.location.href = "/newAccount/home";
-                            });
+                            ractive.set('step3',false);
+                            //ractive.on('close',function(){
+                            //    window.location.href = "/newAccount/settings/home";
+                            //});
                         } else {
-                            //setTimeout(function(){
-                            //  window.location.reload();
-                            //},5000);
-                            if (res.error[0].message == '认证失败') {
-                                res.error[0].message = "";
-                            }
-                            CccOk.create({
-                                msg: '实名认证失败，' + res.error[0].message,
-                                okText: '确定',
-                                cancelText: '',
-                                ok: function () {
-                                    window.location.reload();
-                                },
-                                cancel: function () {
-                                    window.location.reload();
-                                },
-                                close: function () {
-                                    window.location.reload();
-                                },
-                            });
+                            ractive.set('step1',false);
+                            ractive.set('step2',false);
+                            ractive.set('step3',true);
+                            ractive.set('error',res.error[0].message);
+
+                            //if (res.error[0].message == '认证失败') {
+                            //    res.error[0].message = "";
+                            //}
+                            //CccOk.create({
+                            //    msg: '实名认证失败，' + res.error[0].message,
+                            //    okText: '确定',
+                            //    cancelText: '',
+                            //    ok: function () {
+                            //        window.location.reload();
+                            //    },
+                            //    cancel: function () {
+                            //        window.location.reload();
+                            //    },
+                            //    close: function () {
+                            //        window.location.reload();
+                            //    },
+                            //});
                         }
                     });
             });
