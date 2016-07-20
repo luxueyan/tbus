@@ -7,7 +7,7 @@ var i18n = require('@ds/i18n')['zh-cn'];
 var InvestListService = require('ccc/invest/js/main/service/list')
     .InvestListService;
 var utils = require('ccc/global/js/lib/utils');
-require('ccc/global/js/lib/jquery.easy-pie-chart.js');
+require('ccc/global/js/lib/jquery.easy-pie-chart.js')
 require('ccc/global/js/jquery.page.js');
 
 var params = {
