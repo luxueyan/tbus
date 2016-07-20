@@ -7,7 +7,8 @@ var i18n = require('@ds/i18n')['zh-cn'];
 var InvestListService = require('ccc/invest/js/main/service/list')
     .InvestListService;
 var utils = require('ccc/global/js/lib/utils');
-require('ccc/global/js/lib/jquery.easy-pie-chart.js')
+require('ccc/global/js/lib/jquery.easy-pie-chart.js');
+require('ccc/global/js/jquery.page.js');
 
 var params = {
     pageSize: 8,
@@ -134,6 +135,9 @@ function replaceStr(str) {
     return str.replace(/[^\x00-xff]/g, 'xx').length;
 }
 
+
+var that;
+
 InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) {
     console.log(res)
 
@@ -173,8 +177,24 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
             list: (res.results),
             RepaymentMethod: i18n.enums.RepaymentMethod, // 还款方式
             user: CC.user
-        }
+        },
+        oncomplete:function(){
+            $('.sStatus li').click(function () {
+                $(this).addClass("selected").siblings().removeClass("selected");
+                var status = $(this).data("status");
+                if (status == 'SCHEDULED') {
+                    params.minDuration = 0;
+                    params.maxDuration = 100;
+                }
+                params.status = status;
+                params.currentPage = 1;
+                render(that,params);
+
+            });
+        },
     });
+    that = investRactive;
+
     initailEasyPieChart();
     ininconut();
 
@@ -187,73 +207,23 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
         this.set(e.keypath + ".hovering", hovering);
     });
 
-    //标的类型
-    //alert(currentUrl)
-    //if(currentUrl == 'GDSY'){
-    //    params.productKey = currentUrl;
-    //    params.currentPage = 1;
-    //    render(params);
-    //}
 
-
-    //标的状态
-    $('.sStatus li').click(function () {
-        $(this).addClass("selected").siblings().removeClass("selected");
-        var status = $(this).data("status");
-        if (status == 'SCHEDULED') {
-            params.minDuration = 0;
-            params.maxDuration = 100;
-        }
-        params.status = status;
-        params.currentPage = 1;
-        render(params);
-
-    });
-
-    $('.orderbyrules li').click(function () {
-        var rules = $(this).data('rules');
-        if (rules != 'normal') {
-            if ($(this).hasClass('activeLi01')) {
-                params.asc = false;
-                console.log($(this).hasClass('activeLi01'));
-                $(this).addClass('activeLi02').removeClass('activeLi01');
-                $(this).siblings().removeClass('activeLi01');
-                $(this).siblings().removeClass('activeLi02');
-            } else {
-                params.asc = true;
-                console.log($(this).hasClass('activeLi01'))
-                $(this).addClass('activeLi01').removeClass('activeLi02');
-                $(this).siblings().removeClass('activeLi01');
-                $(this).siblings().removeClass('activeLi02');
-            }
-            params.currentPage = 1;
-            params.orderBy = rules;
-        } else {
-            params.currentPage = 1;
-            delete params.orderBy;
-            delete params.asc;
-            $(this).addClass('activeLi01');
-            $(this).siblings().removeClass('activeLi01');
-            $(this).siblings().removeClass('activeLi02');
-        }
-        render(params);
-    });
-
-    function render(params) {
-        InvestListService.getLoanListWithCondition(jsonToParams(params),
-            function (res) {
-                investRactive.set('list', []);
-                setTimeout(function () {
-                    investRactive.set('list', parseLoanList(res.results));
-                    initailEasyPieChart();
-                    ininconut();
-                }, 1);
-                pageChange(res)
-            });
-    }
 });
 
 
+function render(obj,params) {
+    console.log(obj)
+    InvestListService.getLoanListWithCondition(jsonToParams(params),
+        function (res) {
+            obj.set('list', []);
+            setTimeout(function () {
+                obj.set('list', parseLoanList(res.results));
+                initailEasyPieChart();
+                ininconut();
+            }, 1);
+            pageChange(res)
+        });
+}
 
 function pageChange(res){
     $('.pages').createPage({
@@ -261,7 +231,7 @@ function pageChange(res){
         current: params.currentPage,
         backFn: function (p) {
             params.currentPage = p;
-            render(params);
+            render(that,params);
         }
     });
 }
@@ -328,24 +298,6 @@ function initailEasyPieChart() {
     });
 };
 
-
-//InvestListService.getProductHot(function (list) {
-//
-//    var listHOT = [];
-//    for (var i = 0; i < list.length; i++) {
-//        if (list[i].loanRequest.productKey == 'HOT') {
-//            listHOT.push(list[i]);
-//        }
-//    }
-//
-//    var investRactive = new Ractive({
-//        el: "#s-contentR03",
-//        template: require('ccc/invest/partials/hotproduct.html'),
-//        data: {
-//            list: listHOT,
-//        }
-//    });
-//})
 
 InvestListService.getstatusNum(function (res) {
     var getstatusNum = new Ractive({
