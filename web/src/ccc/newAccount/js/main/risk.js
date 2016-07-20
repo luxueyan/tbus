@@ -8,16 +8,22 @@ var ractive = new Ractive({
         question:true,
         result:false,
         list:'',
-        type:'',
+        timeLastUpdated:'',
+        id:'',
+        rank:'',
     },
     init: function() {
         var self = this;
-
         accountService.getQuestion(function (res) {
-
             self.set("list",res.questions);
+            self.set("id",res.id);
         });
-
+        request('GET', '/api/v2/user/MYSELF/userinfo')
+            .end()
+            .then(function (r) {
+                self.set("timeLastUpdated", moment(r.body.surveyFilling.timeLastUpdated).format('YYYY-MM-DD HH:mm:ss'));
+                self.set("rank",r.body.surveyFilling.rank);
+            });
     },
     oncomplete:function(){
         var self = this;
@@ -34,16 +40,31 @@ var ractive = new Ractive({
                 sum+=score;
             });
 
-            self.set('question',false);
-            self.set('result',true);
-
-            //判断类型
-            if(sum>0&&sum<=30){
-                self.set('type','保守型');
-            }else if(sum>30&&sum<=60){
-                self.set('type','稳定型');
-            };
-
+            var riskId=self.get('id');
+            request.post('/api/v2/user/MYSELF/surveyFilling')
+                .query({
+                    userId: CC.user.id,
+                    surveyId: riskId,
+                    fillingStatus:'FINISHED',
+                    score:sum,
+                    rank:self.get('rank'),
+                    content:''
+                })
+                .end()
+                .then(function (r) {
+                    var res = r.body;
+                    if (!res) {
+                        return alert("获取数据失败...");
+                    }
+                    console.log(res.error);
+                    if (res.success) {
+                        self.set('question',false);
+                        self.set('result',true);
+                        self.set('timeLastUpdated',moment(res.data.timeLastUpdated).format('YYYY-MM-DD HH:mm:ss'));
+                        return;
+                    }
+                    alert(res.error.toString() + '\n');
+                });
         });
 
     }
