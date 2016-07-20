@@ -3,7 +3,6 @@
     min-height: 748px;
     padding-top: 20px;
 }
-
 .coupon-content .coupon-nav {
     font-size: 24px;
     color: #ad8a58;
@@ -12,25 +11,23 @@
     border-bottom: 1px solid #dcdcdc;
     margin-right: 27px;
 }
-.coupon-content .coupon-nav p{
+.coupon-content .coupon-nav p {
     color: #4a90e2;
     font-size: 14px;
     float: right;
     margin-right: 20px;
     cursor: pointer;
 }
-.coupon-content .coupon-nav img{
+.coupon-content .coupon-nav img {
     padding-right: 8px;
     margin-top: -2px;
 }
 .coupon-content .coupon-nav-view {
     margin: 30px 0;
 }
-
 .coupon-content .coupon-nav-view ul {
     /*margin: 0 60px;*/
 }
-
 .coupon-content .coupon-nav-view .selectTitle {
     width: 100px;
     color: #4a4a4a;
@@ -38,7 +35,6 @@
     padding-top: 12px;
     font-size: 14px;
 }
-
 .coupon-content .coupon-nav-view ul li {
     /*width: 230px;*/
     text-align: center;
@@ -48,23 +44,19 @@
     background: #bb9f6a;
     height: 40px;
 }
-
 .coupon-content .coupon-nav-view ul li:hover,
 .coupon-content .coupon-nav-view ul li.active {
     box-shadow: 0px 7px 6px -4px #ccc;
     background: #fff;
 }
-
 .coupon-content .coupon-nav-view ul li:hover a {
     color: #d60303;
     /*padding: 0 24px;*/
 }
-
 .coupon-content-detail {
     clear: both;
     /*margin-left: 60px;*/
 }
-
 .ccc-tab > ul.ttabs > li a {
     text-decoration: none;
     color: #fff;
@@ -73,28 +65,23 @@
     margin: 10px 0;
     padding: 0 100px;
 }
-
 .ccc-tab > ul.ttabs > li a:hover,
 .ccc-tab > ul.ttabs > li a:focus {
     /*	color: #fff;*/
 }
-
 .ccc-tab > ul.ttabs .active {
     border-bottom: none;
     margin-bottom: 0px;
 }
-
 .ccc-tab > ul.ttabs .active a {
     color: #d60303;
     padding: 0 100px;
 }
-
 .ccc-tab > ul.stabs > li a {
     text-decoration: none;
     margin: 0;
     color: #999;
 }
-
 .ccc-tab > ul.stabs > li a:hover,
 .ccc-tab > ul.stabs > li a:focus {
     /*	color: #fff;*/
@@ -103,12 +90,10 @@
     border-radius: 2px;
     margin: 0;
 }
-
 .ccc-tab > ul.stabs .active {
     border-bottom: none;
     margin-bottom: 0px;
 }
-
 .ccc-tab > ul.stabs .active a {
     background-color: #009ada;
     /*	color: white;*/
@@ -117,8 +102,6 @@
     margin-bottom: 0px;
     text-decoration: none;
 }
-
-
 /*jo*/
 
 .couponWrapper {
@@ -130,49 +113,48 @@
     margin-left: 0;
     box-shadow: 0px 4px 4px -3px #999;
 }
-.couponWrapper:last-child{
+.couponWrapper:last-child {
     margin-right: 0px;
 }
 /*返现*/
-.couponWrapper .REBATE{
+.couponWrapper .REBATE {
     /*background: url(/ccc/newAccount/img/coupon/rebate-bg.png ) no-repeat;*/
-    background: url(/ccc/newAccount/img/coupon/coupon-bg.png ) no-repeat;
+    background: url(/ccc/newAccount/img/coupon/coupon-bg.png) no-repeat;
     position: relative;
     width: 306px;
     height: 190px;
 }
 /*增值券*/
-.couponWrapper .PRINCIPAL{
+.couponWrapper .PRINCIPAL {
     /*background: url(/ccc/newAccount/img/coupon/principal-bg.png ) no-repeat;*/
-    background: url(/ccc/newAccount/img/coupon/coupon-bg.png ) no-repeat;
+    background: url(/ccc/newAccount/img/coupon/coupon-bg.png) no-repeat;
     position: relative;
     width: 306px;
     height: 190px;
 }
 /*现金券*/
-.couponWrapper .CASH{
+.couponWrapper .CASH {
     /*background: url(/ccc/newAccount/img/coupon/cash-bg.png ) no-repeat;*/
-    background: url(/ccc/newAccount/img/coupon/coupon-bg.png ) no-repeat;
+    background: url(/ccc/newAccount/img/coupon/coupon-bg.png) no-repeat;
     position: relative;
     width: 306px;
     height: 190px;
 }
 /*加息券*/
-.couponWrapper .INTEREST{
+.couponWrapper .INTEREST {
     /*background: url(/ccc/newAccount/img/coupon/interest-bg.png ) no-repeat;*/
-    background: url(/ccc/newAccount/img/coupon/coupon-bg.png ) no-repeat;
+    background: url(/ccc/newAccount/img/coupon/coupon-bg.png) no-repeat;
     position: relative;
     width: 306px;
     height: 190px;
 }
-
-.couponWrapper .header{
+.couponWrapper .header {
     line-height: 46px;
     margin-left: 20px;
     color: #bb9f6a;
     font-size: 24px;
 }
-.couponWrapper .header span{
+.couponWrapper .header span {
     font-size: 12px;
 }
 .couponWrapper .valueText {
@@ -183,14 +165,13 @@
     border-bottom: 1px solid #d8d8d8;
     margin-left: 1px;
 }
-
-.CASH .valueText{
+.CASH .valueText {
     background: url(/ccc/newAccount/img/coupon/icon_cash.png) no-repeat center;
 }
-.INTEREST .valueText{
+.INTEREST .valueText {
     background: url(/ccc/newAccount/img/coupon/icon_interest.png) no-repeat center;
 }
-.PRINCIPAL .valueText{
+.PRINCIPAL .valueText {
     background: url(/ccc/newAccount/img/coupon/icon_interest.png) no-repeat center;
 }
 .couponWrapper .valueText .exchange {
@@ -203,42 +184,32 @@
     top: 100px;
     right: 10px;
 }
-
-.couponWrapper-bottom{
+.couponWrapper-bottom {
     margin: 10px;
 }
-.couponWrapper-bottom .description{
+.couponWrapper-bottom .description {
     color: #666;
     font-size: 12px;
     overflow: hidden;
 }
-
-
 .couponWrapper .couponTitle {
     position: absolute;
     left: 113px;
     top: 27px;
 }
-
 .couponWrapper .couponTitle .couponTitle-left {
     float: left;
 }
-
 .couponWrapper .couponTitle .couponTitle-right {
     /*	float: right;*/
 }
-
-
-
 .clear {
     clear: both;
 }
-
 .ccc-paging {
     margin: 20px auto;
     width: 300px;
 }
-
 .ccc-paging > div {
     float: left;
     min-width: 25px;
@@ -251,14 +222,12 @@
     padding: 5px 10px;
     border: 1px solid #ddd;
 }
-
 .ccc-paging > div:hover {
     border: 1px #eeeeee solid;
     background-image: none;
     background-color: #009ada;
     color: #fff;
 }
-
 .ccc-paging .currentPagewra {
     width: 31px;
     height: 32px;
@@ -267,21 +236,17 @@
     /*    margin: 0;*/
     position: relative;
 }
-
 .ccc-paging .currentPagewra .currentPage:hover {
     color: #fff;
 }
-
 .ccc-paging .active {
     border: 1px solid #e5e5e5;
     background-image: none;
     background-color: #2A375F;
 }
-
 .ccc-paging .clear {
     border: none;
 }
-
 .ccc-paging span {
     display: inline-block;
     text-align: center;
@@ -295,32 +260,34 @@
     top: 0px;
     left: -5px;
 }
-
-
 .no-coupon {
     margin: 0 auto;
     width: 250px;
     height: 250px;
-    background: url(/ccc/newAccount/img/no-coupon.png) no-repeat center;
+    background: url(/ccc/newAccount/img/icon_none.png) center 75px no-repeat;
 }
-
-.panel-EXPIRED .no-coupon {
-    margin: 0 auto;
-    width: 250px;
-    height: 250px;
-    background: url(/ccc/newAccount/img/icon_none.png) no-repeat center;
+.no-coupon p {
+    display: none;
+    text-align: center;
+    padding-top: 155px;
 }
-
+.panel-PLACED .placedNo {
+    display: block;
+}
+.panel-REDEEMED .redeemedNo {
+    display: block;
+}
+.panel-EXPIRED .expiredNo {
+    display: block;
+}
 .invest-pager li {
     display: inline-block;
     margin: 0 3px;
 }
-
 .invest-pager li a:hover {
     color: #fff;
     background: #bb9f6a;
 }
-
 .invest-pager li a {
     padding: 5px 11px;
     border: 1px #eeeeee solid;
@@ -331,62 +298,60 @@
     cursor: pointer;
     display: inline-block;
 }
-
 .invest-pager .current-page a {
     background-color: #bb9f6a;
     color: #fff;
     border: 1px #bb9f6a solid;
 }
-
-#coupon-pager{
+#coupon-pager {
     text-align: center;
     margin-top: 20px;
     margin-right: 45px;
 }
-.coupon-used{
+.coupon-used {
     background: url(/ccc/newAccount/img/coupon/coupon-used.png) no-repeat;
     width: 80px;
     height: 80px;
 }
-.coupon-expired{
+.coupon-expired {
     background: url(/ccc/newAccount/img/coupon/coupon-expired.png) no-repeat;
     width: 80px;
     height: 80px;
 }
 /*红包规则*/
-.coupon_rule{
+.coupon_rule {
     display: none;
     width: 850px;
     margin: 30px auto;
 }
-.coupon_rule_nav{
+.coupon_rule_nav {
     background: #eee;
     padding: 0 20px;
     line-height: 45px;
 }
-.coupon_rule_nav span{
+.coupon_rule_nav span {
     font-size: 18px;
     color: #000;
 }
-.coupon_rule_nav .back{
+.coupon_rule_nav .back {
     float: right;
     color: #4a90e2;
     font-size: 14px;
     cursor: pointer;
 }
-.coupon_rule_nav .back img{
+.coupon_rule_nav .back img {
     padding-right: 8px;
     margin-top: -2px;
 }
-.coupon_rule ul{
+.coupon_rule ul {
     margin: 30px;
     color: #999;
 }
-.coupon_rule ul li{
+.coupon_rule ul li {
     letter-spacing: 1px;
     margin-bottom: 20px;
 }
-.coupon_rule ul li span{
+.coupon_rule ul li span {
     color: #f8b62b;
     letter-spacing: 2px;
 }

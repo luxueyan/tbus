@@ -1,108 +1,101 @@
-
 {{#if list}}
-	{{#each list}}
-	<div class="couponWrapper">
-        {{#if type==='CASH'}}
-        <div class="CASH">
-            <div class="header">
-                {{Ftype}}
-                <span>(过期时间：{{timeExpire}})</span>
-            </div>
-             <div class="valueText">
-                 ¥{{displayValue}}
-                 {{#if canuse}}
-                 <span class="exchange" data-id="{{ id }}" onclick="redeemCoupon(this);">兑现奖卷</span>
-                 {{/if}}
-             </div>
-
-            <div class="couponWrapper-bottom">
-                <div class="description">
-                    说明: {{description}}
-                    <!--<p class="couponDescription">现金券可以直接兑换</p>-->
-                </div>
-            </div>
-            
-            <!--<div class="couponTitle">-->
-                <!--{{#if USED}}-->
-                    <!--<div class="coupon-used"></div>-->
-                <!--{{/if}}-->
-
-                <!--{{#if EXPIRED}}-->
-                   <!--<div class="coupon-expired"></div>-->
-                <!--{{/if}}-->
-            <!--</div>-->
+{{#each list}}
+<div class="couponWrapper">
+    {{#if type==='CASH'}}
+    <div class="CASH">
+        <div class="header">
+            {{Ftype}}
+            <span>(过期时间：{{timeExpire}})</span>
         </div>
-        {{/if}}
-        {{#if type==='INTEREST'}}
-        <div class="INTEREST">
-            <div class="header">
-                {{Ftype}}
-                <span>(过期时间：{{timeExpire}})</span>
-            </div>
-            <div class="valueText">
-                {{displayValue}}%
-            </div>
+        <div class="valueText">
+            ¥{{displayValue}}
+            {{#if canuse}}
+            <span class="exchange" data-id="{{ id }}" onclick="redeemCoupon(this);">兑现奖卷</span>
+            {{/if}}
+        </div>
 
-            <div class="couponWrapper-bottom">
-                <div class="description">
-                    说明: {{description}}
-                    <!--<p class="couponDescription">现金券可以直接兑换</p>-->
-                </div>
+        <div class="couponWrapper-bottom">
+            <div class="description">
+                说明: {{description}}
+                <!--<p class="couponDescription">现金券可以直接兑换</p>-->
             </div>
         </div>
-        {{/if}}
-        {{#if type==='PRINCIPAL'}}
-        <div class="PRINCIPAL">
-            <div class="header">
-                {{Ftype}}
-                <span>(过期时间：{{timeExpire}})</span>
-            </div>
-            <div class="valueText">
-                {{displayValue}}%
-            </div>
 
-            <div class="couponWrapper-bottom">
-                <div class="description">
-                    说明: {{description}}
-                    <!--<p class="couponDescription">现金券可以直接兑换</p>-->
-                </div>
+        <!--<div class="couponTitle">-->
+        <!--{{#if USED}}-->
+        <!--<div class="coupon-used"></div>-->
+        <!--{{/if}}-->
+
+        <!--{{#if EXPIRED}}-->
+        <!--<div class="coupon-expired"></div>-->
+        <!--{{/if}}-->
+        <!--</div>-->
+    </div>
+    {{/if}}
+    {{#if type==='INTEREST'}}
+    <div class="INTEREST">
+        <div class="header">
+            {{Ftype}}
+            <span>(过期时间：{{timeExpire}})</span>
+        </div>
+        <div class="valueText">
+            {{displayValue}}%
+        </div>
+
+        <div class="couponWrapper-bottom">
+            <div class="description">
+                说明: {{description}}
+                <!--<p class="couponDescription">现金券可以直接兑换</p>-->
             </div>
         </div>
-        {{/if}}
+    </div>
+    {{/if}}
+    {{#if type==='PRINCIPAL'}}
+    <div class="PRINCIPAL">
+        <div class="header">
+            {{Ftype}}
+            <span>(过期时间：{{timeExpire}})</span>
+        </div>
+        <div class="valueText">
+            {{displayValue}}%
+        </div>
 
-        {{#if type==='REBATE'}}
-        <div class="REBATE">
-            <div class="header">
-                {{Ftype}}
-                <span>(过期时间：{{timeExpire}})</span>
-            </div>
-            <div class="valueText">
-                {{displayValue}}%
-            </div>
-
-            <div class="couponWrapper-bottom">
-                <div class="description">
-                    说明: {{description}}
-                    <!--<p class="couponDescription">现金券可以直接兑换</p>-->
-                </div>
+        <div class="couponWrapper-bottom">
+            <div class="description">
+                说明: {{description}}
+                <!--<p class="couponDescription">现金券可以直接兑换</p>-->
             </div>
         </div>
-        {{/if}}
+    </div>
+    {{/if}}
 
-	</div>
-	{{/each}}
+    {{#if type==='REBATE'}}
+    <div class="REBATE">
+        <div class="header">
+            {{Ftype}}
+            <span>(过期时间：{{timeExpire}})</span>
+        </div>
+        <div class="valueText">
+            {{displayValue}}%
+        </div>
+
+        <div class="couponWrapper-bottom">
+            <div class="description">
+                说明: {{description}}
+                <!--<p class="couponDescription">现金券可以直接兑换</p>-->
+            </div>
+        </div>
+    </div>
+    {{/if}}
+
+</div>
+{{/each}}
 {{else}}
-	<div class="no-coupon"></div>
-<!--	<div class="no-coupon－data">暂无数据</div>-->
+<div class="no-coupon">
+    <p class="placedNo">您目前暂无未使用红包</p>
+    <p class="redeemedNo">您目前暂无已使用红包</p>
+    <p class="expiredNo">您目前暂无已过期红包</p>
+</div>
 {{/if}}
 <div class="clear"></div>
-<!--
-<div class="ccc-paging">
-	<div class="prev">上一页</div>
-	<div class="currentPagewra"><span class="currentPage  current"></span></div>
-	<div class="totalPagewra totalPage"></div>
-	<div class="next">下一页</div>
-	<div class="clear"></div>
-</div>
--->
 
