@@ -21,6 +21,7 @@
     "@ccc/login": "^2.3.3",
     "@ccc/payment": "^1.1.11",
     "@ccc/register": "^2.4.0",
+    "@ccc/template-watch": "^2.0.2",
     "@ccc/validation": "^1.0.0",
     "husky": "^0.8.1"
   }
