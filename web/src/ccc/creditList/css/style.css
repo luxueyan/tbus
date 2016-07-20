@@ -670,3 +670,17 @@ hr {
     margin-top: 50px;
 }
 
+/*常见问题*/
+.question-box{
+    padding-left: 30px;
+}
+.question-box ul{
+
+}
+.question-box ul li{
+    line-height: 32px;
+}
+.question-box ul li a{
+    color: #666666;
+    font-size: 14px;
+}

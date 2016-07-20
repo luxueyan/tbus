@@ -42,5 +42,5 @@ module.exports = function (router, auth) {
     router.post('/api/v2/user/bindEmail', auth.user());
 
     //问卷调查
-    router.post('/api/v2/user/:userId/surveyFilling/:id', auth.user());
+    router.post('/api/v2/user/:userId/surveyFilling', auth.user());
 };
