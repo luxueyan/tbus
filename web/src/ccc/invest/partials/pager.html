@@ -5,14 +5,14 @@
         <a href="" >首页</a>
     </li>
 -->
-    <!--<li class="page-last" on-click="previous"><a href="#" >&lt;上一页</a>-->
-    <!--</li>-->
+    <li class="page-last" on-click="previous"><a href="#" >&lt;</a></li>
     {{#totalPage}}
+    {{#if current-5< totalPage[@key] && current+5 > totalPage[@key]}}
     <li class="current-page-now {{#if current == totalPage[@key]}} current-page {{/if}}" on-click="page:{{this}}"><a href="#" >{{totalPage[@key]}}</a>
     </li>
+    {{/if}}
     {{/totalPage}}
-    <li class="page-next"  on-click="next"><a href="#">&gt;</a>
-    </li>
+    <li class="page-next"  on-click="next"><a href="#">&gt;</a></li>
     <!--<li class="alljilv">共{{totalSize}}条记录</li>-->
 </ul>
 {{/if}}

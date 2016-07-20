@@ -19,7 +19,26 @@ module.exports = function (router) {
             });
         res.render('index');
     });
-
+    
+        
+    router.get('/list/:key',function(req,res,next){
+        if(req.params.key == 'GDSY'){
+            res.expose('GDSY','key');
+            res.locals.key = 'GDSY';
+        }else if(req.params.key == 'XELC'){
+            res.expose('XELC','key');
+            res.locals.key = 'XELC';
+        }
+        req.uest.get('/api/v2/loan/summaryTotal')
+            .end()
+            .then(function(r){
+            console.log('@@@@@@@@@@@!!!!!!!!!!!!')
+            console.log(r.body)
+            console.log('@@@@@@@@@@@!!!!!!!!!!!!')
+            res.locals.num = r.body;
+        })
+        res.render('list');
+    })
 
 
     router.get('/list', async function (req, res) {

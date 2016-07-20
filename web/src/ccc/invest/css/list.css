@@ -80,25 +80,25 @@
   background: #e4262b;
 }
 /*分页*/
-.invest-pager{
+invest-pager{
   overflow: hidden;
   font-size: 18px;
   margin: 50px 40px 20px 0;
 }
-.invest-pager ul {
+#invest-pager ul {
   float: right;
 }
-.invest-pager ul li{
+#invest-pager ul li{
   float: left;
   padding: 0 10px;
 }
-.invest-pager ul li a{
+#invest-pager ul li a{
   color: #666;
 }
-.invest-pager ul .current-page a{
+#invest-pager ul .current-page a{
   color: #e4262b;
 }
-.invest-pager ul li a:hover{
+#invest-pager ul li a:hover{
   color: #e4262b;
 }
 
