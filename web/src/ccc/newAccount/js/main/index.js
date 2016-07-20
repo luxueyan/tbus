@@ -181,7 +181,8 @@ $('#svg_cont').highcharts({
         enabled: false,
     },
     tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        headerFormat: '',
+        pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
     },
     plotOptions: {
         pie: {
@@ -199,20 +200,12 @@ $('#svg_cont').highcharts({
         }
     },
     series: [{
-        name: 'Browser share',
         innerSize: '60%',
         data: [
             ['精选收益', 10.38],
             ['固定收益', 56.33],
             ['高端理财', 24.03],
             ['浮动收益', 4.77],
-            {
-                name: 'Proprietary or Undetectable',
-                y: 0.2,
-                dataLabels: {
-                    enabled: false
-                }
-            }
         ]
     }]
 });

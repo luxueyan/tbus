@@ -17,7 +17,8 @@ var getCurrentType = function () {
 $('ul.ttabs li a').on('click', function () {
     var type = $(this).parent().data('type');
     init(type);
-
+    console.log(type);
+    console.log(typeof type);
 });
 
 Date.prototype.Format = function (fmt) { //author: meizz
@@ -56,7 +57,6 @@ function init(type) {
             },
             bindTime: 0,
             status: {
-
                 'INITIATED': '未使用',
                 'PLACED': '未使用',
                 'USED': '审核中',
@@ -70,30 +70,21 @@ function init(type) {
                 'PRINCIPAL': '增值券',
                 'REBATE': '返现券'
             },
-
             onrender: function () {
                 var self = this;
                 self.getCouponData(function (o) {
                     self.set('total', o.totalSize);
                     var parseResult = self.parseData(o.results);
-                    //					self.setData(self.parseData(o.results));
-                    //console.log('parseResult-----', parseResult);
                     self.setData(parseResult);
                 });
-                if (self.bindTime == 0) {
-                    self.initClick();
-                    self.bindTime++;
-                };
             },
             getCouponData: function (callback) {
                 var self = this;
-
                 $.get(self.api, {
                     status: type,
                     pageNo: self.page,
                     pageSize: self.size
                 }, function (o) {
-
                     //console.log(o.data);
                     if (o.success) {
                         self.pageOneData = o.data.results;
@@ -105,7 +96,6 @@ function init(type) {
                 var self = this;
                 self.set('loading', false);
                 self.set('list', o);
-                self.renderPager();
             },
 
             parseData: function (o) {
@@ -116,11 +106,11 @@ function init(type) {
                     'REBATE': '返现券'
                 };
                 for (var i = 0; i < o.length; i++) {
-                    
+
                     o[i].displayName = o[i].couponPackage.displayName;
                     o[i].parValue = o[i].couponPackage.parValue;
                     o[i].type = o[i].couponPackage.type;
-                    o[i].Ftype = typeMap[o[i].type];                    
+                    o[i].Ftype = typeMap[o[i].type];
                     o[i].typeKey = o[i].couponPackage.displayName;
                     o[i].canuse = false;
                     o[i].USED = false;
@@ -139,7 +129,7 @@ function init(type) {
                     } else if (o[i].type === 'REBATE') {
                         o[i].displayValue = parseInt(o[i].parValue);
                     }
-                    
+
                     if (o[i].status === 'INITIATED' || o[i].status === 'PLACED') {
                         o[i].notUse = true;
                         o[i].displayStatus = '未使用';
@@ -149,8 +139,8 @@ function init(type) {
                     } else if (o[i].status === 'EXPIRED' || o[i].status === 'CANCELLED') {
                         o[i].EXPIRED = true;
                         o[i].displayStatus = '已过期';
-                    } 
-                    
+                    }
+
                     //	                o[i].status = this.status[o[i].status];
                     o[i].timePlaced = (new Date(o[i].timePlaced)).Format("yyyy-MM-dd"); //分发时间
                     o[i].timeRedeemed = o[i].timeRedeemed; //兑换时间
@@ -172,107 +162,14 @@ function init(type) {
                                 o[i].displayStatus = '已过期';
                             }
                         }
-
                     }
-
                     if (o[i].description === "") {
                         o[i].description = "暂无描述";
-                    };
+                    }
                 }
                 return o;
-
             },
-            initClick: function () {
-                var self = this;
-                var currentPage = $(".currentPage").text();
-                $(".prev").click(function () {
-                    if (self.page == 1) {
-                        return false
-                    } else {
-                        self.page = self.page - 1;
-                        self.onrender();
-                    }
-                });
-
-                $(".next").click(function () {
-                    if (self.page == self.totalPage) {
-                        return false
-                    } else {
-                        self.page = self.page + 1;
-                        self.onrender();
-                    }
-                });
-            },
-            renderPager: function () {
-
-                var self = this;
-                var totalSize = self.get('total');
-
-                if (totalSize != 0) {
-                    self.totalPage = Math.ceil(totalSize / self.size);
-                }
-
-                var totalPage = [];
-                //console.log("===>> totalPage = " + self.totalPage);
-                for (var i = 0; i < self.totalPage; i++) {
-                    totalPage.push(i + 1);
-                }
-
-                renderPager(totalPage, self.page);
-            }
         });
-
-        function renderPager(totalPage, current) {
-            //console.log("===>render")
-            if (!current) {
-                current = 1;
-            }
-            var pagerRactive = new Ractive({
-                el: '#coupon-pager',
-                template: require('ccc/loan/partials/pager.html'),
-                data: {
-                    totalPage: totalPage,
-                    current: current
-                }
-            });
-
-            pagerRactive.on('previous', function (e) {
-                e.original.preventDefault();
-                var current = this.get('current');
-                if (current > 1) {
-                    current -= 1;
-                    this.set('current', current);
-                    couponRactive.page = current;
-                    couponRactive.onrender();
-
-                }
-            });
-
-            pagerRactive.on('page', function (e, page) {
-                e.original.preventDefault();
-                if (page) {
-                    current = page;
-                } else {
-                    current = e.context;
-                }
-                this.set('current', current);
-                couponRactive.page = current;
-                couponRactive.onrender();
-
-            });
-            pagerRactive.on('next', function (e) {
-                e.original.preventDefault();
-                var current = this.get('current');
-                if (current < this.get('totalPage')[this.get('totalPage')
-                        .length - 1]) {
-                    current += 1;
-                    this.set('current', current);
-                    couponRactive.page = current;
-                    couponRactive.onrender();
-
-                }
-            });
-        }
     }
 }
 
@@ -282,9 +179,7 @@ init(getCurrentType());
 
 window.redeemCoupon = function (btn) {
     var id = $(btn).data("id");
-    $.post("/api/v2/coupon/MYSELF/redeemCouponIgnoreApproval", {
-        placementId: id
-    }, function (res) {
+    $.post("/api/v2/coupon/MYSELF/redeemCouponIgnoreApproval", {placementId: id}, function (res) {
         if (res) {
             alert("兑现成功!");
             location.reload();
@@ -294,15 +189,15 @@ window.redeemCoupon = function (btn) {
     });
 }
 
-$('.rule').click(function(){
+$('.rule').click(function () {
     $('.coupon-nav-view').hide();
     $('.coupon-content-detail').hide();
     $('#coupon-pager').hide();
     $('.coupon_rule').show();
 });
-$('.back').click(function(){
+$('.back').click(function () {
     $('.coupon_rule').hide();
     $('.coupon-nav-view').show();
     $('.coupon-content-detail').show();
-    $('#coupon-pager').show();  
+    $('#coupon-pager').show();
 });
