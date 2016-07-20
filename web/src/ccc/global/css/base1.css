@@ -554,18 +554,20 @@ input[type=button]{
 .pages span, .pages a {
     display: block;
     float: left;
-    width: 62px;
+    /*width: 62px;*/
     font-size: 12px;
-    height: 26px;
-    border-radius: 4px;
-    background-color: #e5e5e5;
-    margin: 10px 0 10px 10px;
+    /*height: 26px;*/
+    /*border-radius: 4px;*/
+    /*background-color: #e5e5e5;*/
+    margin: 55px 0 10px 7px;
     text-align: center;
     line-height: 24px;
     cursor: pointer;
+    color:#b3b3b3;
+    text-decoration:none
 }
 .pages .current,
 .pages span:hover {
-    background-color: #3f7bc6;
-    color: #fff;
+    /*background-color: #3f7bc6;*/
+    color: #cfa972;
 }
