@@ -68,7 +68,7 @@
     font-weight: normal;
 }
 #help-left .active a{
-    color:#4a4a4a;
+    color:#e4262b;
     text-decoration: none;
     
 }
@@ -138,7 +138,7 @@
     background-color: #fff;
 }
 .invest-wrapper{
-    margin:56px 45px 0;
+    margin:37px 45px 0;
  }
 .article-wp {
 
@@ -147,7 +147,7 @@
     font-size: 16px;
     line-height: 30px;
     display: inline-block;
-    padding: 13px 20px;
+    padding: 5px 20px;
     border-radius: 4px;
     background: #fff;
     cursor: pointer;
