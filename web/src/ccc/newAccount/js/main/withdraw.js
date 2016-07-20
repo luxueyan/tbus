@@ -2,14 +2,13 @@
 
 var utils = require('ccc/global/js/lib/utils');
 var CommonService = require('ccc/global/js/modules/common').CommonService;
-var Confirm = require('ccc/global/js/modules/cccConfirm');
-var accountService = require('ccc/newAccount/js/main/service/account')
-    .accountService;
+//var Confirm = require('ccc/global/js/modules/cccConfirm');
+var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 
 var banksabled = _.filter(CC.user.bankCards, function (r) {
     return r.deleted === false;
 });
-var Faccount = CC.user.bankCards[0].account.account.slice(-4);
+var Faccount = CC.user.bankCards[0].account.account.slice(-3);
 
 var ractive = new Ractive({
     el: '#ractive-container',
@@ -143,34 +142,35 @@ var ractive = new Ractive({
     confirm: function (amount) {
         var self = this;
 
-        if (this.$form.find('.post-btn').hasClass('disabled')) {
-            return false;
-        }
-
-        this.set('submitText', '操作中...');
-        this.set('disabled', true);
+        //if (this.$form.find('.post-btn').hasClass('disabled')) {
+        //    return false;
+        //}
+        //
+        //this.set('submitText', '操作中...');
+        //this.set('disabled', true);
 
         var _FEE = null;
-        // var url = '/api/v2/user/MYSELF/calculateWithdrawFee/'+amount;
-        // $.ajax({
-        // 	type: 'GET',
-        // 	async: false,
-        // 	url: url,
-        // 	success: function(o){
-        // 		_FEE = o;
-        // 		self.set('submitText', '确认提现');
-        // 		self.set('disabled', false);
-        // 	},
-        // 	error: function(o){
-        // 		console.info('请求出现错误，' + o.statusText);
-        // 		self.set('error', true);
-        // 		self.set('submitText', '确认提现');
-        // 		self.set('disabled', false);
-        // 	}
-        // });
-        _FEE = {
-            withdrawAmount: amount
-        }
+         var url = '/api/v2/user/MYSELF/calculateWithdrawFee/'+amount;
+         $.ajax({
+         	type: 'GET',
+         	async: false,
+         	url: url,
+         	success: function(o){
+                alert(1111);
+         		_FEE = o;
+         		self.set('submitText', '确认提现');
+         		self.set('disabled', false);
+         	},
+         	error: function(o){
+         		console.info('请求出现错误，' + o.statusText);
+         		self.set('error', true);
+         		self.set('submitText', '确认提现');
+         		self.set('disabled', false);
+         	}
+         });
+        //_FEE = {
+        //    withdrawAmount: amount
+        //}
         if (_FEE === null) {
             return false;
         }
@@ -183,8 +183,8 @@ var ractive = new Ractive({
         }
 
         return confirm(
-            // '实际到账' + _FEE.withdrawAmount + '元 (收取' + _FEE.totalFee + '元提现手续费)\n确认提现吗？'
-            '实际到账' + _FEE.withdrawAmount + '元 (平台代付手续费)\n确认提现吗？'
+             '实际到账' + _FEE.withdrawAmount + '元 (收取' + _FEE.totalFee + '元提现手续费)\n确认提现吗？'
+            //'实际到账' + _FEE.withdrawAmount + '元 \n确认提现吗？'
         );
     },
 
@@ -228,9 +228,9 @@ ractive.on('withDrawSubmit', function () {
                 });
                 ractive.set('submitText', '正在提现中，请稍等...');
 
-                //				if (ractive.confirm(amount)) {
-                //					isAcess = true;
-                //				}
+                				if (ractive.confirm(amount)) {
+                					//isAcess = true;
+
 
                 $.post('/api/v2/baofoo/withdraw/MYSELF', {
                     paymentPassword: pass,
@@ -249,10 +249,11 @@ ractive.on('withDrawSubmit', function () {
                         ractive.set('step1', false);
                         ractive.set('step2', false);
                         ractive.set('step3', true);
+                        ractive.set('failError', res.error[0].message);
                         ractive.set('submitText', '确认提现');
                     }
                 });
-
+                                };
             }
         });
     }

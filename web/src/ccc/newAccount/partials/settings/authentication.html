@@ -52,10 +52,27 @@
                 <img src="/ccc/newAccount/img/band-success.png"/>
             </div>
             <div class="success-content">
-                <p>实名认证成功！</p>
+                <p>实名认证成功</p>
                 <div class="button">
                     <!--<button class="close-img btn-after" on-click="close">以后再说</button>-->
                     <a href="/newAccount/settings/bankCards"><button class="btn-after btn-bank">添加银行卡</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+    {{#if step3}}
+    <div class="recharge-success">
+        <div class="content">
+            <div class="fail-img">
+                <img src="/ccc/newAccount/img/band-fail.png"/>
+            </div>
+            <div class="success-content">
+                <p class="fail-msg">实名认证失败</p>
+                <div class="fail-reason">{{error}}</div>
+                <div class="button">
+                    <!--<button class="close-img btn-after" on-click="close">以后再说</button>-->
+                    <a href="/newAccount/settings/authentication"><button class="btn-after btn-bank">重新认证</button></a>
                 </div>
             </div>
         </div>

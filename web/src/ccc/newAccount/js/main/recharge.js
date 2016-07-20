@@ -83,7 +83,7 @@ var ractive = new Ractive({
         for (var i = 0; i < datas.length; i++) {
             var o = datas[i];
             datas[i].account.imgPos = BANKS[o.account.bank][0].imgPos;
-            datas[i].Faccount = o.account.account.slice(-4);
+            datas[i].Faccount = o.account.account.slice(-3);
         }
         return datas;
     },
@@ -215,6 +215,7 @@ ractive.on('recharge_submit', function (e) {
                         ractive.set('step2',false);
                         ractive.set('step3',true);
                         //alert('充值失败');
+                        ractive.set('failError', r.error[0].message);
                         $('.submit_btn').text('确认充值');
                     }
                 });
