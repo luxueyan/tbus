@@ -43,15 +43,19 @@ new Ractive({
                 results: [],
                 totalSize: 0
             };
+
             self.set('totalSize', o.totalSize);
             self.set('list', self.parseData(o));
             self.set('loading', false);
+
         });
 
          $.get(rewardApi, function (o) {
              console.log(o)
              //self.set('totalSize', o.totalSize);
              //self.set('list', self.parseData(o));
+             self.set('count', o.count);
+             self.set('totalCoupons', o.totalCoupons);
         });
     },
     getFmobile: function(){
