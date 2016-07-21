@@ -10,7 +10,6 @@ var emailRactive = new Ractive({
     }
 });
 
-console.log(CC);
 emailRactive.on("setEmail", function (event) {
     var email = this.get('email');
     if (!email || !email.length) {
@@ -35,12 +34,13 @@ emailRactive.on("setEmail", function (event) {
                 userId: CC.user.id,
                 emailAddress: email
             }, function (o) {
+                console.log(o);
                 if (o.success) {
-                    alert('认证邮件已发送至您的账号为' + o.data + '的邮箱，快去认证吧！');
-                    window.location.reload();
+                    emailRactive.set("step",2);
+                    setTimeout(function(){alert('认证邮件已发送至您的账号为' + o.data + '的邮箱，快去认证吧！');},600);
                 } else {
-                    alert(o.error[0].message);
-                    window.location.reload();
+                    emailRactive.set("step",3);
+                    setTimeout(function(){alert(o.error[0].message);},600);
                 }
             });
         }
