@@ -36,13 +36,15 @@
             </td>
             <td>
                 <!--<p class="table-title">状态</p>-->
-                <p class="table-invest-common">已投资</p>
+                <p class="table-invest-common">{{Fstatus}}</p>
             </td>
             <td>
                 <!--<p class="table-title">操作</p>-->
                 <p class="table-invest-common">
+                    {{#if assignAble}}
                     <button class="operation" data-invest="{{id}}" data-amount="{{amount}}" data-title="{{loanTitle}}">转让</button>
                     <button class="look_contact">查看合同</button>
+                    {{/if}}
                 </p>
             </td>
             <!--<td>-->

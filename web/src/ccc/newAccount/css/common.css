@@ -314,13 +314,11 @@ table tbody tr td {
     margin: 0 auto;
     width: 220px;
     height: 220px;
-    background: url(/ccc/newAccount/img/null.png) no-repeat center;
-    background-size: 150px;
+    background: url(/ccc/newAccount/img/icon_none.png) no-repeat center;
     font-size: 18px;
-    color: #e5e5e5;
+    color: #666;
     text-align: center;
-    letter-spacing: 2px;
-    padding-top: 200px;
+    padding-top: 174px;
 }
 .no-back-data {
     margin: 0 auto;
