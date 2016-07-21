@@ -13,15 +13,15 @@ require('ccc/global/js/jquery.page.js');
 var params = {
     pageSize: 8,
     status: '',
-    minDuration: 0,
-    maxDuration: 100,
-    minRate: 0,
-    maxRate: 100,
+    //minDuration: 0,
+    //maxDuration: 100,
+    //minRate: 0,
+    //maxRate: 100,
     currentPage: 1,
-    minAmount: 0,
-    maxAmount: 100000000,
-    minInvestAmount: 1,
-    maxInvestAmount: 100000000,
+    //minAmount: 0,
+    //maxAmount: 100000000,
+    //minInvestAmount: 1,
+    //maxInvestAmount: 100000000,
 };
 
 function jsonToParams(params) {

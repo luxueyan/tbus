@@ -20,6 +20,9 @@ var dueInAmount = CC.user.dueInAmount || 0;
 // 冻结金额
 var frozenAmount = CC.user.frozenAmount || 0;
 
+// 在投资金
+var investAmount = parseFloat(dueInAmount + frozenAmount).toFixed(2);
+
 // 总资产
 var totalAmount = parseFloat(CC.user.availableAmount + dueInAmount + frozenAmount).toFixed(2);
 
@@ -33,6 +36,7 @@ var homeRactive = new Ractive({
         investInterestAmount: investInterestAmount,
         outstandingInterest: outstandingInterest,
         totalAmount: totalAmount,
+        investAmount: investAmount,
         cTotalAmount: parseFloat(CC.user.availableAmount + dueInAmount + frozenAmount).toFixed(2),
         dueInAmount: parseFloat(dueInAmount).toFixed(2),
         frozenAmount: parseFloat(frozenAmount).toFixed(2),
@@ -51,10 +55,14 @@ var homeRactive = new Ractive({
             self.set('avaAmount', parseInt(avaAmount));
             self.set('investInterestAmount', parseInt(investInterestAmount));
             self.set('outstandingInterest', parseInt(outstandingInterest));
+            self.set('investAmount', parseInt(investAmount));
         } else {
             var amoutArray = totalAmount.split('.');
             self.set('totalAmount', parseInt(amoutArray[0]));
             self.set('moreAmount', amoutArray[1]);
+            var amoutArray = investAmount.split('.');
+            self.set('investAmount', parseInt(amoutArray[0]));
+            self.set('mAmount', amoutArray[1]);
             var amoutArray = avaAmount.split('.');
             self.set('avaAmount', parseInt(amoutArray[0]));
             self.set('morAmount', amoutArray[1]);
@@ -70,7 +78,9 @@ var homeRactive = new Ractive({
             console.log(data[0].content)
             self.set('advertisement',data[0].content)
         })
-
+        accountService.getUserInfo(function (res) {
+            self.set('riskBear', res.surveyScore.name);
+        });
 
     }
 });
