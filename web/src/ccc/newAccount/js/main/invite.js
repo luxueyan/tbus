@@ -37,21 +37,25 @@ new Ractive({
         var self = this;
         this.api = '/api/v2/user/MYSELF/invite';
         //var rewardApi='/api/v2/getReferUserCountAndReward/'+CC.user.id;
-        var rewardApi='/api/v2/getReferUserCountAndReward/MYSELF';
+        var rewardApi='/api/v2/reward/getReferUserCountAndReward/MYSELF';
         $.get(this.api, function (o) {
             o = o.success ? o.data : {
                 results: [],
                 totalSize: 0
             };
+
             self.set('totalSize', o.totalSize);
             self.set('list', self.parseData(o));
             self.set('loading', false);
+
         });
 
          $.get(rewardApi, function (o) {
              console.log(o)
              //self.set('totalSize', o.totalSize);
              //self.set('list', self.parseData(o));
+             self.set('count', o.count);
+             self.set('totalCoupons', o.totalCoupons);
         });
     },
     getFmobile: function(){
@@ -60,7 +64,7 @@ new Ractive({
         
         $.get(this.api, function(r) {
              if (r.success) {
-                self.set('Fmobile', r.data);
+                self.set('Fmobile', CC.user.mobile);
             }
             self.bindActions();  
         }).error(function(){
