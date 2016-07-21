@@ -156,7 +156,7 @@ var ractive = new Ractive({
          	async: false,
          	url: url,
          	success: function(o){
-                alert(1111);
+                //alert(1111);
          		_FEE = o;
          		self.set('submitText', '确认提现');
          		self.set('disabled', false);

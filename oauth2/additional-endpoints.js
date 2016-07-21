@@ -43,4 +43,8 @@ module.exports = function (router, auth) {
 
     //问卷调查
     router.post('/api/v2/user/:userId/surveyFilling', auth.user());
+    //转让总金额和总笔数
+    router.get('/api/v2/creditassign/stat/total', auth.pass());
+    //转让成交记录
+    router.get('/api/v2/creditassign/stat/list', auth.pass());
 };
