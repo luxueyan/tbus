@@ -37,7 +37,7 @@ new Ractive({
         var self = this;
         this.api = '/api/v2/user/MYSELF/invite';
         //var rewardApi='/api/v2/getReferUserCountAndReward/'+CC.user.id;
-        var rewardApi='/api/v2/getReferUserCountAndReward/MYSELF';
+        var rewardApi='/api/v2/reward/getReferUserCountAndReward/MYSELF';
         $.get(this.api, function (o) {
             o = o.success ? o.data : {
                 results: [],
@@ -60,7 +60,7 @@ new Ractive({
         
         $.get(this.api, function(r) {
              if (r.success) {
-                self.set('Fmobile', r.data);
+                self.set('Fmobile', CC.user.mobile);
             }
             self.bindActions();  
         }).error(function(){
