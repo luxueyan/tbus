@@ -91,15 +91,16 @@ invest-pager{
 #invest-pager ul li{
   float: left;
   padding: 0 10px;
+  margin-top: 55px;
 }
 #invest-pager ul li a{
   color: #666;
 }
 #invest-pager ul .current-page a{
-  color: #e4262b;
+  color: #cfa972;
 }
 #invest-pager ul li a:hover{
-  color: #e4262b;
+  color: #cfa972;
 }
 
 .bottom_ad{

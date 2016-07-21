@@ -182,17 +182,17 @@ select::-ms-expand { display: none; }
 .invest-status .start_date{
     position: absolute;
     top: 85px;
-    left: 420px;
+    left: 435px;
 }
 .invest-status .end_date{
     position: absolute;
     top: 85px;
-    right: 333px;
+    right: 340px;
 }
 .invest-status .expected_date{
     position: absolute;
     top: 85px;
-    right: 190px;
+    right: 175px;
 }
 /*信息详情*/
 .invest-detail-wrapper {
