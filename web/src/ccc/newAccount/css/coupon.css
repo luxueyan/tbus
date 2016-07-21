@@ -148,10 +148,25 @@
     width: 306px;
     height: 190px;
 }
+/*用过的券*/
+.couponWrapper .used {
+    /*background: url(/ccc/newAccount/img/coupon/cash-bg.png ) no-repeat;*/
+    background: url(/ccc/newAccount/img/coupon/coupon-ug.png) no-repeat;
+    position: relative;
+    width: 306px;
+    height: 190px;
+}
 .couponWrapper .header {
     line-height: 46px;
     margin-left: 20px;
     color: #bb9f6a;
+    font-size: 24px;
+}
+/*用过的劵的样式*/
+.couponWrapper .used .header {
+    line-height: 46px;
+    margin-left: 20px;
+    color: white;
     font-size: 24px;
 }
 .couponWrapper .header span {
@@ -161,6 +176,15 @@
     font-size: 44px;
     text-align: center;
     color: #e4262b;
+    padding: 12px 0;
+    border-bottom: 1px solid #d8d8d8;
+    margin-left: 1px;
+}
+/*用过的劵的样式*/
+.couponWrapper .used .valueText {
+    font-size: 44px;
+    text-align: center;
+    color: #bfbfbf;
     padding: 12px 0;
     border-bottom: 1px solid #d8d8d8;
     margin-left: 1px;

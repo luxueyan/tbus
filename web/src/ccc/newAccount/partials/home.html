@@ -7,6 +7,10 @@
 
         </div>
         <div class="home-expect common">
+            <div class="home-tab-info">在投资金(元)</div>
+            <div class="home-tab-amount">{{investAmount}}<span>.{{mAmount}}</span></div>
+        </div>
+        <div class="home-expect common">
             <div class="home-tab-info">当前收益(元)</div>
             <div class="home-tab-amount">{{outstandingInterest}}<span>.{{moreiAmount}}</span></div>
         </div>
@@ -18,7 +22,7 @@
         </div>
     </div>
     <div class="home-risk">
-        您的风险承受能力: <span>(系统默认)</span>
+        我的风险承受能力: <span>{{riskBear}}</span>
     </div>
 </div>
 

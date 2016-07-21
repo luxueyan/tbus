@@ -15,7 +15,7 @@ var ractive = new Ractive({
         mobile: formatNumber(CC.user.mobile),
         idNumber: false,
         paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false,
-        email: false,
+        email: CC.user.email,
         percent: 25,
         levelText:'弱',
         isEnterprise: CC.user.enterprise,
@@ -26,47 +26,8 @@ var ractive = new Ractive({
         var isEnterprise  = this.get('isEnterprise');
 
         accountService.getUserInfo(function (userinfo) {
-            //基本信息
-            if (isEnterprise) {
-               
-                if (CC.user.paymentPasswordHasSet) {
-                    percent = 100;
-                    ractive.set('percent',percent);
-                    ractive.set('levelText','高');
-                } else {
-                    percent = 50;
-                    ractive.set('percent',percent);
-                    ractive.set('levelText','中');
-                }
-            } else {
-                if (userinfo.user.idNumber) {
-                    var idNumber = formatNumber(userinfo.user.idNumber, 4, 4);
-                    ractive.set('idNumber', idNumber);
-                    percent += 25;
-                }
-                if (CC.user.paymentPasswordHasSet) {
-                    percent += 25;
-                }
-                if (userinfo.user.email && userinfo.user.email != 'notavailable@qilerong.com' && userinfo.user.email != 'notavailable@creditcloud.com') {
-                    var arr = userinfo.user.email.split('@');
-                    var length = arr[0].length;
-                    if (length > 4) {
-                        var email = arr[0].substring(0,4) + (new Array(length-3)).join('*') + "@" + arr[1];
-                    } else if (length == 1) {
-                        var email = "*" + "@" + arr[1];
-                    } else {
-                        var email = arr[0].substring(0,1) + (new Array(length)).join('*') + "@" + arr[1];
-                    }
-                    ractive.set('email', email);
-                    percent += 25;
-                }
-                ractive.set('percent',percent);
-                if (percent > 25 && percent <= 75) {
-                    ractive.set('levelText','中');
-                } else if (percent > 75) {
-                    ractive.set('levelText','高');
-                }
-            }
+            ractive.set('email', userinfo.userInfo.user.email);
+
             //更多信息
             if (userinfo.career) {
                 ractive.set('isSave',true);

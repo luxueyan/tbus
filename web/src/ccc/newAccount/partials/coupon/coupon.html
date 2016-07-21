@@ -2,7 +2,7 @@
 {{#each list}}
 <div class="couponWrapper">
     {{#if type==='CASH'}}
-    <div class="CASH">
+    <div class="{{#if status==='PLACED'}}CASH{{else}}CASH used{{/if}}">
         <div class="header">
             {{Ftype}}
             <span>(过期时间：{{timeExpire}})</span>
@@ -33,7 +33,7 @@
     </div>
     {{/if}}
     {{#if type==='INTEREST'}}
-    <div class="INTEREST">
+    <div class="{{#if status==='PLACED'}}INTEREST{{else}}INTEREST used{{/if}}">
         <div class="header">
             {{Ftype}}
             <span>(过期时间：{{timeExpire}})</span>
@@ -51,7 +51,7 @@
     </div>
     {{/if}}
     {{#if type==='PRINCIPAL'}}
-    <div class="PRINCIPAL">
+    <div class="{{#if status==='PLACED'}}PRINCIPAL{{else}}PRINCIPAL used{{/if}}">
         <div class="header">
             {{Ftype}}
             <span>(过期时间：{{timeExpire}})</span>
@@ -70,7 +70,7 @@
     {{/if}}
 
     {{#if type==='REBATE'}}
-    <div class="REBATE">
+    <div class="{{#if status==='PLACED'}}REBATE{{else}}REBATE used{{/if}}">
         <div class="header">
             {{Ftype}}
             <span>(过期时间：{{timeExpire}})</span>
