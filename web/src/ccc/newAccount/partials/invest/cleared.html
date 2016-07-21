@@ -1,51 +1,59 @@
 <table class="table has-padding">
-<!--
     <thead>
-        <tr>
-            <th class="p-tit" style="text-indent:20px;">项目信息</th>
-            <th class="p-amount">利率</th>
-            <th class="p-rate">期限(月)</th>
-            <th class="p-duration">投资总额(元)</th>
-            <th>还款方式</th>
-            <th>状态</th>
-            <th class="w-100 align-center">操作</th>
-        </tr>
+    <tr>
+        <th>产品名称</th>
+        <th>年收益率</th>
+        <th>投资金额(元)</th>
+        <th>起息日</th>
+        <th>到息日</th>
+        <th>实际收益(元)</th>
+        <th>状态</th>
+    </tr>
     </thead>
--->
     {{#if list}}
     <tbody>
-        {{#each list}}
-        <tr>
-            <td>
-                <p class="table-title">项目名称</p>
-                <p><a class="loan-tit" href="/loan/{{loanId}}" target="_blank" rel="nofollow">{{loanTitle}}</a></p>  
-            </td>
-             <td>
-                <p class="table-title">投资日期</p>
-                <p class="table-invest-time">{{submitTime}}</p>
-            </td> 
-            <td>
-                <p class="table-title">年化收益率</p>
-                <p class="table-invest-num">{{Frate}}%</p>
-            </td>  
-    		<td>
-                <p class="table-title">投资金额（元）</p>
-                <p class="table-invest-num">{{Famount}}</p>
-            </td>
-            <td>
-                <p class="table-title">收益（元）</p>
-                <p class="table-invest-expect">{{expectYield}}</p>
-            </td>
-        </tr>
-        {{/each}}
+    {{#each list}}
+    <tr>
+        <td>
+            <!--<p class="table-title">产品名称</p>-->
+            <p><a class="table-title" href="/loan/{{loanId}}" target="_blank" rel="nofollow">{{loanTitle}}</a></p>
+        </td>
+        <td>
+            <!--<p class="table-title">年收益率</p>-->
+            <p class="table-invest-rate">{{Frate}}%</p>
+        </td>
+        <td>
+            <!--<p class="table-title">投资金额（元）</p>-->
+            <p class="table-invest-common">{{Famount}}</p>
+        </td>
+        <td>
+            <!--<p class="table-title">起息日</p>-->
+            <p class="table-invest-common">{{}}</p>
+        </td>
+        <td>
+            <!--<p class="table-title">到息日</p>-->
+            <p class="table-invest-common">{{}}</p>
+        </td>
+        <td>
+            <!--<p class="table-title">实际收益（元）</p>-->
+            <p class="table-invest-common">{{Famount}}</p>
+        </td>
+        <td>
+            <!--<p class="table-title">状态</p>-->
+            <p class="table-invest-common">已兑付</p>
+        </td>
+    </tr>
+    {{/each}}
     </tbody>
     {{/if}}
 </table>
 {{#if list}}
 <div class="space-40"></div>
-<div class="ccc-paging"></div>
+<div class="total_invest_num">共{{total}}条记录</div>
+<div class="ccc-paging">
+</div>
 {{else}}
 <div class="null">
-    暂无数据！
+    您目前暂无安全兑付产品
 </div>
 {{/if}}

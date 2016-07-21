@@ -18,16 +18,16 @@ var fixedRactive = new Ractive({
 
 var Tab = {
 
-  // 持有中 (SETTLED/OVERDUE/BREACH)
-  HOLDING: {
+  // 转让
+  ASSIGN: {
     ractive: null,
-    api: '/api/v2/user/MYSELF/invest/list/$page/$size?status=SETTLED&status=OVERDUE&status=BREACH',
-    template: require('ccc/newAccount/partials/invest/holding.html')
+    api: '/api/v2/creditassign/list/user/MYSELF?status=OPEN&page=$page&pageSize=$size',
+    template: require('ccc/newAccount/partials/invest/assign.html')
   },
-  // 进行中/申请中 (FINISHED/PROPOSED/FROZEN)
+  // 进行中/申请中 (FINISHED/PROPOSED/FROZEN) 全部 (SETTLED/OVERDUE/BREACH/FINISHED/PROPOSED/FROZEN/CLEARED)
   INHAND: {
     ractive: null,
-    api: '/api/v2/user/MYSELF/invest/list/$page/$size?status=FINISHED&status=PROPOSED&status=FROZEN',
+    api: '/api/v2/user/MYSELF/invest/list/$page/$size?status=SETTLED&status=OVERDUE&status=BREACH&status=FINISHED&status=PROPOSED&status=FROZEN&status=CLEARED',
     template: require('ccc/newAccount/partials/invest/inhand.html')
   },
   // 已结清 (CLEARED)
@@ -72,8 +72,14 @@ function init(type) {
         pageOne: null // 第一次加载的数据
       },
       getData: function (callback) {
-        var api = tab.api.replace('$page', 0).replace('$size', this.size);
+        if(type == 'ASSIGN'){
+          var api = tab.api.replace('$page', 1).replace('$size', this.size);
+        }else{
+          var api = tab.api.replace('$page', 0).replace('$size', this.size);
+        }
+
         $.get(api, function (o) {
+          console.log(o)
           callback(o);
         }).error(function (o) {
           console.info('请求出现错误，' + o.statusText);
@@ -91,43 +97,26 @@ function init(type) {
         for (var i = 0; i < datas.length; i++) {
           var o = datas[i];
           switch (type) {
-            case 'ALL':
-              datas[i].Fduration = utils.format.duration(o.duration);
-              datas[i].Frate = utils.format.percent(o.rate / 100, 2);
-              datas[i].Famount = utils.format.amount(o.amount, 2);
-              datas[i].Fstatus = utils.i18n.InvestStatus[o.status];
-              datas[i].submitTime = moment(o.submitTime).format('YYYY-MM-DD');
-              //获取最后还款日期
-              if (o.repayments.length) {
-                datas[i].endDate = o.repayments[o.repayments.length - 1].repayment.dueDate;
-                //获取未到期的个数
-                var notodays = 0;
-                for (var j = 0; j < o.repayments.length; j++) {
-                  if (o.repayments[j].status == 'UNDUE') {
-                    notodays++;
-                  }
-                }
-                datas[i].notodays = notodays;
-              }
-
-              break;
-            case 'HOLDING':
-              datas[i].Fduration = utils.format.duration(o.duration);
-              datas[i].Frate = utils.format.percent(o.rate / 100, 2);
-              datas[i].Famount = utils.format.amount(o.amount, 2);
-              datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true : false;
-              datas[i].submitTime = moment(o.submitTime).format('YYYY-MM-DD');
-              datas[i].endDate = o.repayments[o.repayments.length - 1].repayment.dueDate;
-              //获取未到期的个数
-              var endAmount = 0;
-              for (var j = 0; j < o.repayments.length; j++) {
-                endAmount = endAmount +  o.repayments[j].repayment.amountInterest;
-              }
-              datas[i].endAmount = utils.format.amount(endAmount, 2);
+            case 'ASSIGN':
+              var assignStatus = {
+                "PROPOSED": "已申请",
+                "SCHEDULED": "已安排",
+                "FINISHED": "转让已满",
+                "OPEN": "转让中",
+                "FAILED": "转让未满",
+                "CANCELED": "已取消"
+              };
+              datas[i].id = o.id;
+              datas[i].creditDealRate = o.creditDealRate * 100;
+              datas[i].timeOpen = moment(o.timeOpen).format('YYYY-MM-DD HH:mm:ss');
+              datas[i].timeFinished = moment(o.timeOpen).add(o.timeOut, 'hours').format('YYYY-MM-DD HH:mm:ss');
+              datas[i].status = assignStatus[o.status];
+              datas[i].investId = o.investId;
               break;
             case 'INHAND':
               datas[i].submitTime = moment(o.submitTime).format('YYYY-MM-DD');
               datas[i].Fduration = utils.format.duration(o.duration);
+              datas[i].Fstatus = utils.i18n.InvestStatus[o.status];
               datas[i].Frate = utils.format.percent(o.rate / 100, 2);
               datas[i].Famount = utils.format.amount(o.amount, 2);
               datas[i].expectYield = utils.format.amount(o.repayments[0].repayment.amountInterest, 2);
@@ -153,18 +142,18 @@ function init(type) {
               datas[i].notodays = notodays;
               break;
           }
-          //申请中
-          if (o.status === 'FINISHED' || o.status === 'PROPOSED' || o.status === 'FROZEN') {
-            datas[i].Fstatus = '申请中';
-          }
-          //持有中
-          if (o.status === 'SETTLED' || o.status === 'OVERDUE' || o.status === 'BREACH') {
-            datas[i].Fstatus = '持有中';
-          }
-          //已结束
-          if (o.status === 'CLEARED') {
-            datas[i].Fstatus = '已结束';
-          }
+          ////申请中
+          //if (o.status === 'FINISHED' || o.status === 'PROPOSED' || o.status === 'FROZEN') {
+          //  datas[i].Fstatus = '申请中';
+          //}
+          ////持有中
+          //if (o.status === 'SETTLED' || o.status === 'OVERDUE' || o.status === 'BREACH') {
+          //  datas[i].Fstatus = '持有中';
+          //}
+          ////已结束
+          //if (o.status === 'CLEARED') {
+          //  datas[i].Fstatus = '已结束';
+          //}
 
 
           if (datas[i].hasContract) {

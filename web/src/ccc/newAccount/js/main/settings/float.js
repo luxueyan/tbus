@@ -20,13 +20,13 @@ var Tab = {
   // 持有中 (SETTLED/OVERDUE/BREACH)
   HOLDING: {
     ractive: null,
-    api: '/api/v2/user/MYSELF/invest/list/$page/$size?status=SETTLED&status=OVERDUE&status=BREACH',
+    //api: '/api/v2/user/MYSELF/invest/list/$page/$size?status=SETTLED&status=OVERDUE&status=BREACH',
     template: require('ccc/newAccount/partials/float/holding.html')
   },
   // 进行中/申请中 (FINISHED/PROPOSED/FROZEN)
   INHAND: {
     ractive: null,
-    api: '/api/v2/user/MYSELF/invest/list/$page/$size?status=FINISHED&status=PROPOSED&status=FROZEN',
+    //api: '/api/v2/user/MYSELF/invest/list/$page/$size?status=FINISHED&status=PROPOSED&status=FROZEN',
     template: require('ccc/newAccount/partials/float/inhand.html')
   }
 };

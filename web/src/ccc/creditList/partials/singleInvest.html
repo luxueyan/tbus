@@ -6,19 +6,18 @@
         <div class="loan_title">
 
             <div class="title_info">
-                <!--{{#if titleLength>20}}-->
-                <h2>{{title}}月月赚</h2>
-                <!--{{/if}}-->
+                <h2>
+                    <a href="/creditDetail/{{id}}/{{loanId}}" class="invest-title">
+                        {{#if titleLength>30}}
+                        {{title.substr(0,30)}}...
+                        {{else}}
+                        {{title}}
+                        {{/if}}
+                    </a>
+                </h2>
                 <p>销售满8亿，全员加息0.2%！</p>
             </div>
 
-            <a href="/creditDetail/{{id}}/{{loanId}}" class="invest-title">
-                {{#if titleLength>20}}
-                {{title.substr(0,12)}}...
-                {{else}}
-                {{title}}
-                {{/if}}
-            </a>
 
         </div>
         <div class="loan_info">
@@ -35,7 +34,7 @@
     <div class="loan_right">
         <div class="leftAmount">
             <p class="amount">转让价格(元)</p>
-            <p>{{creditAmount}}100</p>
+            <p>{{creditAmount}}</p>
         </div>
         <div class="investBtn">
             <a class="open" href="/creditDetail/{{id}}/{{loanId}}">立即抢购</a>
