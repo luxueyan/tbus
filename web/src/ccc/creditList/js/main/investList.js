@@ -117,8 +117,8 @@ function parseLoanList(list) {
         //list[i].methodFmt = methodFmt;
 		list[i].titleLength = replaceStr(list[i].title);
     }
-    console.log("######");
-    console.log(list);
+    //console.log("######");
+    //console.log(list);
     return list;
 }
 	
@@ -176,13 +176,13 @@ InvestListService.getCreditassignData(function (res) {
         if (rules != 'normal') {
             if ($(this).hasClass('activeLi01')) {
                 params.asc = false;
-                console.log($(this).hasClass('activeLi01'));
+                //console.log($(this).hasClass('activeLi01'));
                 $(this).addClass('activeLi02').removeClass('activeLi01');
                 $(this).siblings().removeClass('activeLi01');
                 $(this).siblings().removeClass('activeLi02');
             } else {
                 params.asc = true;
-                console.log($(this).hasClass('activeLi01'))
+                //console.log($(this).hasClass('activeLi01'))
                 $(this).addClass('activeLi01').removeClass('activeLi02');
                 $(this).siblings().removeClass('activeLi01');
                 $(this).siblings().removeClass('activeLi02');
@@ -207,7 +207,7 @@ InvestListService.getCreditassignData(function (res) {
                 investRactive.set('list', []);
                 setTimeout(function () {
                     investRactive.set('list', parseLoanList(res.results));
-					console.log(investRactive.get('list'));
+					//console.log(investRactive.get('list'));
                     //initailEasyPieChart();
                     //ininconut();
                     renderPager(res, params.currentPage);
@@ -276,7 +276,7 @@ function createList(len, current) {
 
 //常见问题
 request.get(encodeURI('/api/v2/cms/category/HELP/name/常见问题')).end().then(function(res) {
-    console.log(res.body);
+    //console.log(res.body);
     var count = new Ractive({
         el: '.question-box',
         template: '{{#each items:i}}<ul>{{#if i<5}}<li><a href="/help">{{title}}</a></li>{{/if}}</ul>{{/each}}',
