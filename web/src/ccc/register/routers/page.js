@@ -19,5 +19,5 @@ module.exports = function (router) {
 		res.expose(req.query.UID, 'channelRel');
         next();
     }, middlewares.registerPage);
-    
+
 };
