@@ -3,21 +3,21 @@
     <div class="home-num">
         <div class="home-total common">
             <div class="home-tab-info">我的资产(元)</div>
-            <div class="home-tab-amount">{{totalAmount}}<span>.{{moreAmount}}</span></div>
+            <div class="home-tab-amount">{{totalAmount}}<span>.{{tAmount}}</span></div>
 
         </div>
         <div class="home-expect common">
             <div class="home-tab-info">在投资金(元)</div>
-            <div class="home-tab-amount">{{investAmount}}<span>.{{mAmount}}</span></div>
+            <div class="home-tab-amount">{{investAmount}}<span>.{{iAmount}}</span></div>
         </div>
         <div class="home-expect common">
             <div class="home-tab-info">当前收益(元)</div>
-            <div class="home-tab-amount">{{outstandingInterest}}<span>.{{moreiAmount}}</span></div>
+            <div class="home-tab-amount">{{currentIncome}}<span>.{{cMore}}</span></div>
         </div>
 
         <div class="home-interest common">
             <div class="home-tab-info">累计收益(元)</div>
-            <div class="home-tab-amount">{{investInterestAmount}}<span>.{{moAmount}}</span></div>
+            <div class="home-tab-amount">{{investInterestAmount}}<span>.{{iMore}}</span></div>
 
         </div>
     </div>
@@ -31,7 +31,7 @@
     <img src="/ccc/newAccount/img/title_line.png">
     <div class="asset_cont">
         <div class="asset_left_cont">
-            <a class="asset_box" href="/newAccount/settigns/fixed">
+            <a class="asset_box" href="/newAccount/settings/fixed">
                 <div class="box box_1">
                     <div class="label">固定收益</div>
                     <div class="total">
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="detail">
-                        <p><span class="d_lab">预计当前收益(元)</span><span class="d_num">0.<em>00</em></span></p>
+                        <p><span class="d_lab">预计当前收益(元)</span><span class="d_num">{{outstandingInterest}}.<em>{{oMore}}</em></span></p>
                     </div>
                 </div>
             </a>

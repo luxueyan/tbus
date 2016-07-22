@@ -14,6 +14,8 @@ var avaAmount = parseFloat(CC.user.availableAmount).toFixed(2);
 var investInterestAmount = parseFloat(CC.user.investStatistics.investInterestAmount || 0).toFixed(2);
 // 预计收益
 var outstandingInterest = parseFloat(CC.user.investStatistics.outstandingInterest || 0).toFixed(2);
+// 当前收益
+var currentIncome = parseFloat(CC.user.investStatistics.currentIncome || 0).toFixed(2);
 // 待收金额
 var dueInAmount = CC.user.dueInAmount || 0;
 
@@ -33,45 +35,48 @@ var homeRactive = new Ractive({
         user: CC.user,
         avaAmount: avaAmount,
         cAmount: parseFloat(CC.user.availableAmount).toFixed(2),
+        currentIncome: currentIncome,
         investInterestAmount: investInterestAmount,
         outstandingInterest: outstandingInterest,
         totalAmount: totalAmount,
         investAmount: investAmount,
-        cTotalAmount: parseFloat(CC.user.availableAmount + dueInAmount + frozenAmount).toFixed(2),
         dueInAmount: parseFloat(dueInAmount).toFixed(2),
         frozenAmount: parseFloat(frozenAmount).toFixed(2),
-        isEnterprise: CC.user.enterprise
+
     },
     parseData: function () {
         var self = this;
         var investInterestAmount = self.get('investInterestAmount') + '';
         var avaAmount = self.get('avaAmount') + '';
-        var totalAmount = self.get('totalAmount') + '';
-        var check = totalAmount.indexOf('.');
-        var check = avaAmount.indexOf('.');
+        var totalAmount = self.get('totalAmount') + '';;
         var check = investInterestAmount.indexOf('.');
         if (check == -1) {
+            self.set('currentIncome', parseInt(currentIncome));
             self.set('totalAmount', parseInt(totalAmount));
             self.set('avaAmount', parseInt(avaAmount));
             self.set('investInterestAmount', parseInt(investInterestAmount));
             self.set('outstandingInterest', parseInt(outstandingInterest));
             self.set('investAmount', parseInt(investAmount));
         } else {
+            var amoutArray = currentIncome.split('.');
+            self.set('currentIncome', parseInt(amoutArray[0]));
+            self.set('cMore', amoutArray[1]);
+
             var amoutArray = totalAmount.split('.');
             self.set('totalAmount', parseInt(amoutArray[0]));
-            self.set('moreAmount', amoutArray[1]);
+            self.set('tAmount', amoutArray[1]);
             var amoutArray = investAmount.split('.');
             self.set('investAmount', parseInt(amoutArray[0]));
-            self.set('mAmount', amoutArray[1]);
+            self.set('iAmount', amoutArray[1]);
             var amoutArray = avaAmount.split('.');
             self.set('avaAmount', parseInt(amoutArray[0]));
             self.set('morAmount', amoutArray[1]);
             var amoutArray = investInterestAmount.split('.');
             self.set('investInterestAmount', parseInt(amoutArray[0]));
-            self.set('moAmount', amoutArray[1]);
+            self.set('iMore', amoutArray[1]);
             var amoutArray = outstandingInterest.split('.');
             self.set('outstandingInterest', parseInt(amoutArray[0]));
-            self.set('moreiAmount', amoutArray[1]);
+            self.set('oMore', amoutArray[1]);
         }
 
         $.get('/api/v2/cms/category/IMAGE/name/' + encodeURIComponent('我的账户页广告栏'), function (data) {

@@ -615,6 +615,15 @@ loanService.getLoanDetail(CC.loan.id, function (res) {
             selectorsMarginLeft: 0,
             stageLen: 5,
             imgLen: imgs.length
+        },
+        onrender:function(){
+            this.set('imgs',this.parseData(res.data.proof.proofImages));
+        },
+        parseData:function(res){
+            for(var i = 0;i<res.length;i++){
+                res[i].proof.content =res[i].proof.content.split('.')[0];
+            };
+            return res;
         }
     });
 
