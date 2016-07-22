@@ -1,5 +1,7 @@
 "use strict";
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
+
+var riskId='',rank='';
 var ractive = new Ractive({
     el: "#ractive-container",
     template: require('ccc/newAccount/partials/risk/risk.html'),
@@ -9,25 +11,25 @@ var ractive = new Ractive({
         result:false,
         list:'',
         timeLastUpdated:'',
-        id:'',
-        rank:'',
+        type:'',
     },
     init: function() {
         var self = this;
         accountService.getQuestion(function (res) {
             self.set("list",res.questions);
-            self.set("id",res.id);
+            riskId=res.id;
         });
         request('GET', '/api/v2/user/MYSELF/userinfo')
             .end()
             .then(function (r) {
+                console.log(r.body);
                 self.set("timeLastUpdated", moment(r.body.surveyFilling.timeLastUpdated).format('YYYY-MM-DD HH:mm:ss'));
-                self.set("rank",r.body.surveyFilling.rank);
+                rank=r.body.surveyScore.rank;
+                self.set('type',r.body.surveyScore.name);
             });
     },
     oncomplete:function(){
         var self = this;
-
         self.on('getScore',function(){
             var sum =0;
             var len = $('input:radio:checked').length;
@@ -39,15 +41,13 @@ var ractive = new Ractive({
                 var score = parseInt($(this).val());
                 sum+=score;
             });
-
-            var riskId=self.get('id');
             request.post('/api/v2/user/MYSELF/surveyFilling')
                 .query({
                     userId: CC.user.id,
                     surveyId: riskId,
                     fillingStatus:'FINISHED',
                     score:sum,
-                    rank:self.get('rank'),
+                    rank:rank,
                     content:''
                 })
                 .end()
@@ -58,6 +58,7 @@ var ractive = new Ractive({
                     }
                     console.log(res.error);
                     if (res.success) {
+                        console.log(res.data);
                         self.set('question',false);
                         self.set('result',true);
                         self.set('timeLastUpdated',moment(res.data.timeLastUpdated).format('YYYY-MM-DD HH:mm:ss'));
@@ -68,6 +69,11 @@ var ractive = new Ractive({
         });
 
     }
+});
+
+ractive.on('reEvaluation',function(){
+    this.set('question',true);
+    this.set('result',false);
 });
 
 ractive.on('submit',function() {

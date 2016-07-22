@@ -65,9 +65,9 @@
         </div>
         <div class="step-box2">
             <div class="step-second">
-                <span class="step-tips1">操作便捷</span>
-                <span class="step-tips2">经验丰富</span>
-                <span class="step-tips3">实力强大</span>
+                <!--<span class="step-tips1">操作便捷</span>-->
+                <!--<span class="step-tips2">经验丰富</span>-->
+                <!--<span class="step-tips3">实力强大</span>-->
             </div>
         </div>
         <div class="step-box3">
@@ -97,8 +97,17 @@
                 <div class="step-title">如何投资太合汇？</div>
             </div>
         </div>
-        <a class="guide-btn" href="#">立即开启财富之旅</a>
+        <a class="guide-btn" onclick="ChooseLink()">立即开启财富之旅</a>
 
     </div>
     <script src="/ccc/safety/js/main/index.js"></script>
+    <script>
+        function ChooseLink(){
+            if(CC.user){
+                window.location.href="/invest";
+            }else{
+                window.location.href="/login";
+            }
+        }
+    </script>
 </dsBody>
