@@ -1,0 +1,74 @@
+<!--{{#if status === 0}}-->
+<div class="bind-card-wrapper">
+    {{#if step1}}
+    <form action="" method="POST" on-submit="bind-card-submit">
+        <div class="row">
+            <div class="card-brame">
+                <div class="img-box">
+                    <img src="/ccc/newAccount/img/bankcode.png"/>
+                </div>
+                <select name="bankName" class="select" value="{{bankName}}">
+                    {{#each newbanks}}
+                    <option value="{{bankCode}}">{{bankName}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="row">
+            <div class="card-brame">
+                <div class="img-box">
+                    <img class="" src="/ccc/newAccount/img/card-card.png"/>
+                </div>
+                <input on-keyup="validateCardNo" type="text" name="cardNo" value="{{cardNo}}" class="payInp"
+                       placeholder="输入银行卡号">
+            </div>
+            <p class="error">{{#if errMessgaeBank}} {{errMessgaeBank}} {{/if}}</p>
+
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="row">
+            <div class="card-brame">
+                <div class="img-box">
+                    <img class="" src="/ccc/newAccount/img/card-yanzheng.png"/>
+                </div>
+                <input on-keyup="validateCaptcha" type="text" name="smsCaptcha" class="payInp payCodeInp"
+                       value="{{smsCaptcha}}" placeholder="输入验证码">
+                <span class="sendCode" on-click="sendCode" style="border:0;">发送验证码</span>
+            </div>
+            <p class="error">{{#if SMS_NULL}} {{SMS_NULL}} {{/if}}</p>
+
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="agree-box">
+            <!--<input type="checkbox" checked>我阅读并同意<a href="#">《用户委托支付协议》</a>-->
+        </div>
+
+        <div class="btn-box">
+            <button type="submit">更换</button>
+        </div>
+    </form>
+    {{/if}}
+    {{#if step2}}
+    <div class="recharge-success">
+        <div class="content">
+            <div class="success-img">
+                <img src="/ccc/newAccount/img/band-success.png"/>
+            </div>
+            <div class="success-content">
+                <p>银行卡更换成功！</p>
+
+                <div class="button">
+                    <!--<button class="close-img btn-after" on-click="close">以后再说</button>-->
+                    <a href="/invest">
+                        <button class="btn-after btn-bank">马上投资</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+</div>
