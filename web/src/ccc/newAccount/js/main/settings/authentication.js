@@ -30,8 +30,8 @@ var ractive = new Ractive({
     oninit: function () {
         accountService.getUserInfo(function (res) {
             ractive.set('authenticateInfo', {
-                name: res.user.name,
-                idNumber: res.user.idNumber
+                name: res.userInfo.user.name,
+                idNumber: res.userInfo.user.idNumber
             });
         });
     }

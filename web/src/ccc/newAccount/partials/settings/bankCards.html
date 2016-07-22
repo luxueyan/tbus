@@ -1,4 +1,4 @@
-{{#if status === 0}}
+{{#if status === 1}}
 <div class="bind-card-wrapper">
     {{#if step1}}
     <form action="" method="POST" on-submit="bind-card-submit">
@@ -77,6 +77,32 @@
                 <span class="sendCode" on-click="sendCode" style="border:0;">发送验证码</span>
             </div>
             <p class="error">{{#if SMS_NULL}} {{SMS_NULL}} {{/if}}</p>
+
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="row">
+            <div class="card-brame">
+                <div class="img-box">
+                    <img class="" src="/ccc/newAccount/img/recharge_pwd.png"/>
+                </div>
+                <input on-keyup="validatePwd" type="password" name="password" value="{{password}}" class="payInp"
+                       placeholder="设定支付密码">
+            </div>
+            <p class="error">{{#if errMessgaePwd}} {{errMessgaePwd}} {{/if}}</p>
+
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="row">
+            <div class="card-brame">
+                <div class="img-box">
+                    <img class="" src="/ccc/newAccount/img/recharge_pwd.png"/>
+                </div>
+                <input on-keyup="validateRePwd" type="password" name="repassword" value="{{repassword}}" class="payInp"
+                       placeholder="确认支付密码">
+            </div>
+            <p class="error">{{#if errMessgaeRePwd}} {{errMessgaeRePwd}} {{/if}}</p>
 
             <div class="clearfix"></div>
         </div>

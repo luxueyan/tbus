@@ -27,6 +27,7 @@ var ractive = new Ractive({
 
         accountService.getUserInfo(function (userinfo) {
             ractive.set('email', userinfo.userInfo.user.email);
+            ractive.set('idNumber', formatNumber(userinfo.userInfo.user.idNumber));
 
             //更多信息
             if (userinfo.career) {
