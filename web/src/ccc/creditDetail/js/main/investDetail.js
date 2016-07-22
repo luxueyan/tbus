@@ -4,25 +4,18 @@ var loanService = require('./service/loans.js')
 var utils = require('ccc/global/js/lib/utils');
 var accountService = require('ccc/account/js/main/service/account')
     .accountService;
-var CommonService = require('ccc/global/js/modules/common')
-    .CommonService;
-var CccOk = require('ccc/global/js/modules/cccOk');
-var i18n = require('@ds/i18n')['zh-cn'];
-var format = require('@ds/format')
-require('bootstrap/js/tab');
 
+require('bootstrap/js/tab');
 require('ccc/global/js/modules/tooltip');
 require('ccc/global/js/lib/jquery.easy-pie-chart.js');
 require('bootstrap/js/carousel');
-
 require('bootstrap/js/transition');
 require('bootstrap/js/tooltip');
-var Cal = require('ccc/global/js/modules/cccCalculator');
-// cccConfirm
-var Confirm = require('ccc/global/js/modules/cccConfirm');
 
-var popupBigPic = require('ccc/creditDetail/js/main/bigPic')
-    .popupBigPic;
+var format = require('@ds/format')
+var Box = require('ccc/global/js/modules/cccBox');
+
+
 var statusMap = {
     SCHEDULED: '开标时间:{{timeOpen}}',
     SETTLED: '结标时间:{{timeSettled}}',
@@ -30,6 +23,13 @@ var statusMap = {
     FINISHED: '',
     CLEARED: ''
 };
+
+$('#myTabs a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+})
+
+
 var assignStatus={
            CREDIT_ASSIGN_DISABLED:"没有开启债权转让功能",
            NOT_FOUND:"债转不存在",
@@ -60,19 +60,41 @@ var investRactive = new Ractive({
         user: CC.user,
         loan: {},
         timeOpen:moment(CC.creditassign.creditassign.timeOpen).format('YYYY-MM-DD'),
-        estimateTime:moment(CC.creditassign.creditassign.serverDate).add(24).format('YYYY-MM-DD'),
-        workTime:moment(CC.creditassign.creditassign.serverDate).add(24).format('YYYY-MM-DD'),
+        timeFinished:moment(CC.creditassign.creditassign.timeFinished).format('YYYY-MM-DD'),
+        workTime:'',
     },
     oninit: function () {
         console.log(CC.creditassign);
         request.get('/api/v2/loan/'+loanId).end().then(function (r) {
-            investRactive.set('loan',JSON.parse(r.text));
+            CC.loan=JSON.parse(r.text);
+            investRactive.set('workTime', moment(CC.loan.loanRequest.valueDate).format('YYYY-MM-DD'));
+            investRactive.set('loan', CC.loan);
         });
     }
 });
 
-$('#myTabs a').click(function (e) {
-    e.preventDefault()
-    $(this).tab('show')
-})
+investRactive.on("assign-submit", function (e) {
+    var tpl = require('ccc/creditDetail/partials/confirm.html');
+    tpl = tpl.replace('$title', CC.creditassign.title);
+    new Box({
+        title: '投标提示',
+        value: tpl,
+        width: 500,
+        height: 200,
+        cla: 'invest-confirm-wrap',
+        showed: function (ele, box) {
+            $(ele).find('.btn-confirm-ok').on('click', function () {
+                box.hide();
+            });
+            $(ele).find('.btn-confirm-cancel').on('click', function () {
+                box.hide();
+            });
+        }
+    });
+    $('form').submit();
+    return false;
+});
 
+window.reopen = function () {
+    window.location.reload();
+}

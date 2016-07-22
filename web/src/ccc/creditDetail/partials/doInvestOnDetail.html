@@ -24,8 +24,8 @@
                                 <div class="name" >预期收益率</div>
                             </div>
                             <div class="item itemThird" style="border-right:none">
-                                <div class="value">{{creditassign.creditassign.timeOut}} <span>天</span></div>
-                                <div class="name">预期到期日 <span style="color: #666">{{creditassign.creditassign.timeFinished}}</span></div>
+                                <div class="value">{{creditassign.creditassign.timeOut}} <span>小时</span></div>
+                                <div class="name">预期到期日 <span style="color: #666">{{timeFinished}}</span></div>
                             </div>
                             <div class="item itemFirst">
                                 <div class="value">
@@ -47,12 +47,20 @@
                     <div class="h20"></div>
                 </div>
             </div>
-
+            <form  action="/payment/creditAssign" name="assignForm"  method="POST" class="invest-form assignForm" on-submit="assign-submit" target="_blank">
+            {{#if user}}
             <div class="do-invest-wrapper">
                 <div>转让价格(元): <span>{{creditassign.creditassign.balance}}</span></div>
+                <input type="hidden" value="{{creditassign.creditassign.balance}}" />
                 <div>预期收益(元): <span>{{creditassign.creditassign.amountInterest}}</span></div>
-                <button class="btn">确认购买</button>
+                <button type="submit" class="btn">确认购买</button>
             </div>
+            {{else}}
+            <div class="do-invest-wrapper">
+                <a class="btn-login" href="/login">立即登录</a>
+            </div>
+            {{/if}}
+            </form>
         </div>
     </div>
 </div>

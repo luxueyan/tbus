@@ -22,6 +22,10 @@ function Fpercent(percent, offset) {
 
 module.exports = function (router) {
     router.get('/:id/:loanId', async function (req, res) {
+        var user = res.locals.user;
+        if (user && user.idNumber) {
+            delete user.idNumber;
+        }
 
         var creditassignId = req.params.id;
         var loanId = req.params.loanId;

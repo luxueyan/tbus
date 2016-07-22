@@ -487,6 +487,26 @@
 .do-invest-wrapper button:focus {
     color: white;
 }
+.do-invest-wrapper btn-login{
+    width: 270px;
+    height: 45px;
+    background: #e60012;
+    color: white;
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
 .firstLine {
     overflow: hidden;
     padding: 0px 30px;
@@ -2012,4 +2032,62 @@
     background: -moz-linear-gradient(#e0e0e0, #fff); /* Firefox 3.6 - 15 */
     background: linear-gradient(#e0e0e0, #fff); /* 标准的语法 */
     height: 5px;
+}
+
+/*弹框*/
+.invest-confirm-wrap .bar {
+    border-bottom: 1px solid #d5d5d5;
+}
+
+.invest-confirm-inner p {
+    border-bottom: 1px solid #dddddd;
+    color: #8a8a8a;
+    padding: 25px 0 10px 0;
+    margin: 0 25px 0 25px;
+}
+
+.invest-confirm-wrap ul.text-line {
+    padding: 20px 0 0 40px;
+    float: left;
+}
+
+.invest-confirm-wrap ul.text-line li {
+    list-style: none;
+    margin-bottom: 3px;
+    margin-left: 0;
+    float: left;
+}
+
+.invest-confirm-wrap ul.text-line li div {
+    float: left;
+    width: 100px;
+    text-align: center;
+    padding: 5px 0;
+    color: white;
+    background-color: #be463a;
+    cursor: pointer;
+}
+
+.invest-confirm-wrap ul.text-line li div i {
+    margin-right: 5px;
+}
+
+.invest-confirm-wrap ul.text-line li span {
+    margin-left: 20px;
+    line-height: 30px;
+}
+
+.first-child {
+    background-color: #73a15d !important;
+}
+
+.invest-confirm-wrap ul.text-line li span a {
+    color: #676767;
+}
+
+.align-right {
+    text-align: right;
+    margin-right: 15px;
+    line-height: 0;
+    float: right;
 }
