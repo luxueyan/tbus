@@ -182,7 +182,7 @@ setTimeout((function () {
 
     if (CC.user) {
         accountService.getUserInfo(function (res) {
-            investRactive.set('name', res.user.name);
+            investRactive.set('name', res.userInfo.user.name);
         });
     }
 
@@ -502,6 +502,7 @@ var recordRactive = new Ractive({
         for (var i = 0, l = list.length; i < l; i++) {
             list[i].submitTime = moment(list[i].submitTime)
                 .format('YYYY-MM-DD HH:mm:ss');
+            list[i].mobile = list[i].mobile.replace(/(\d{3})\d{4}(\d{4})/,'$1****$2');
         }
         return list;
     },

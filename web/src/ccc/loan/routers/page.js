@@ -208,7 +208,7 @@ function parseLoan(loan) {
     loan.loanRequest.timeSubmit = moment(loan.loanRequest.timeSubmit)
         .format('YYYY-MM-DD');
 
-    loan.valueDate = moment(loan.loanRequest.valueDate).format('YYYY-MM-DD');
+    loan.valueDate = moment(loan.timeOpen+86400000).format('YYYY-MM-DD');
     loan.dueDate = moment(loan.loanRequest.dueDate).format('YYYY-MM-DD');
     
     loan.method = methodZh[loan.method];

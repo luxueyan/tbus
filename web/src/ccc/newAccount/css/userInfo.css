@@ -438,7 +438,7 @@ p.tips {
     background: url(/ccc/newAccount/img/tick_gray.png) no-repeat left center;
 }
 .myinfo .myinfo_valgroup .valgroup .value_name {
-    width: 150px;
+    width: 120px;
     float: left;
     text-align: left;
 }
@@ -505,6 +505,14 @@ p.tips {
     margin-top: 40px;
     background: url(/ccc/newAccount/img/plus-card.png) no-repeat center 0;
 }
+.card_box .trade_bank_icon{
+    width: 203px;
+    height: 45px;
+    background: #e60012;
+    color: white;
+    line-height: 45px;
+    margin-top: 30px;
+}
 .card_box .card_add a h5 {
     font-size: 18px;
     color: #666;
@@ -515,6 +523,25 @@ p.tips {
     color: #bbbbbb;
     text-align: center;
 }
+
+
+/*提示信息样式*/
+.card_trade{
+    margin-top: 28px;
+    margin-left: -15px;
+}
+.card_trade li:first-child{
+    width: 600px;
+}
+.card_trade li{
+    margin-left: 0px;
+    color: #a7a7a7;
+}
+.card_trade li a {
+    color: #cfa972;
+    font-size: 14px;
+}
+
 
 .rzz {
     width: 350px;
