@@ -10,7 +10,13 @@ var fixedRactive = new Ractive({
     el: "#ractive-container",
     template: require('ccc/newAccount/partials/settings/fixed.html'),
     data:{
-      bankCards:CC.user.bankCards,
+      bankCards:CC.user.bankCards
+    },
+    onrender:function(){
+      var outstandingInterest = parseFloat(CC.user.outstandingInterest || 0).toFixed(2);
+      var amoutArray = outstandingInterest.split('.');
+      this.set('outstandingInterest', parseInt(amoutArray[0]));
+      this.set('oMore', amoutArray[1]);
     }
 });
 
@@ -79,7 +85,7 @@ function init(type) {
         }
 
         $.get(api, function (o) {
-          console.log(o)
+          //console.log(o)
           callback(o);
         }).error(function (o) {
           console.info('请求出现错误，' + o.statusText);

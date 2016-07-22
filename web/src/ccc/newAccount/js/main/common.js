@@ -96,7 +96,7 @@ var infoRactive = new Ractive({
 		});
 		accountService.checkAuthenticate(function (r) {
 			accountService.getUserInfo(function (res) {
-				console.log(res)
+				//console.log(res)
 				//infoRactive.set('user', res.user);
 				infoRactive.set('emailAuthenticated', r.emailAuthenticated);
 

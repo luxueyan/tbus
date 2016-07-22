@@ -39,7 +39,7 @@ var ractive = new Ractive({
     },
     oninit: function () {
         accountService.getUserInfo(function (o) {
-            ractive.set('realName', o.user.name);
+            ractive.set('realName', o.userInfo.user.name);
         });
         $.get('/api/v2/hundsun/banks',function(r){
           ractive.set('newbanks',r);
@@ -101,15 +101,20 @@ ractive.on("bind-card-submit", function (e) {
     var personal=this.get('personal');
     var cardPhone = this.get('mobile');
     var smsCaptcha = this.get('smsCaptcha');
+    var pwd = this.get('password');
+    var rePwd = this.get('repassword');
+
     //校验表单
     if(personal == ''){
         this.set("personalError", '请输入您的姓名');
+        return;
     }else{
         this.set("personalError", false);
     };
 
     if (!/^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/.test(idNo)) {
         this.set("idNoError", '请输入正确的身份证号');
+        return;
     } else {
         this.set("idNoError", false);
     };
@@ -118,20 +123,32 @@ ractive.on("bind-card-submit", function (e) {
         this.set("errMessgaeBank", '请输入您的银行卡号');
     }else{
         this.set("errMessgaeBank", false);
-    }
+    };
 
     if (smsCaptcha === '') {
         this.set('SMS_NULL', '请输入手机验证码');
-        return;
     } else {
         this.set('SMS_NULL', false);
     };
 
-    //if (!/^\d*$/.test(cardPhone)) {
-    //    this.set("phoneNoError", true);
-    //} else {
-    //    this.set("phoneNoError", false);
-    //}
+    if (pwd === '') {
+        this.set('errMessgaePwd', '请输入支付密码');
+    } else if(pwd.length < 6 || !/^[0-9]*$/g.test(pwd)){
+        this.set('errMessgaePwd', '交易密码为6位纯数字');
+        return;
+    }else{
+        this.set('errMessgaePwd', false);
+    };
+
+    if (rePwd === '') {
+        this.set('errMessgaeRePwd', '请再次输入支付密码');
+        return;
+    } else if (pwd !== rePwd) {
+        this.set('errMessgaeRePwd', '两次密码输入不一致');
+        return;
+    } else {
+        this.set('errMessgaeRePwd', false);
+    }
 
     var sendCard={
         userId:CC.user.id,
@@ -152,24 +169,37 @@ ractive.on("bind-card-submit", function (e) {
         ACCESS_DENIED: '登录超时',
         SUCCEED: '银行卡绑定成功'
     };
+    accountService.initialPassword(pwd, function (r) {
+        if(r.success){
+            $('.btn-box button').text('绑卡中,请稍等...');
+            $.post('/api/v2/user/checkBankcard', sendCard, function (res) { //bindCard
+                if(res.success){
+                    //console.log(res);
 
-    $('.btn-box button').text('绑卡中,请稍等...');
-    $.post('/api/v2/user/checkBankcard', sendCard, function (res) { //bindCard
-        if(res.success){
-            //console.log(res);
+                    ractive.set('step1',false);
+                    ractive.set('step2',true);
+                    ractive.on('close',function(){
+                        window.location.href = "/newAccount/home";
+                    });
+                }else{
+                    $('.btn-box button').text('绑定');
+                    if(res.error[0].message === 'Something is wrong'){
+                        msg[res.error[0].message] = '请再次确认您的信息'
+                    }
+                    CccOk.create({
+                        msg: '绑卡失败, '+msg[res.error[0].message],
+                        okText: '确定',
+                        ok: function () {
+                            $('.ccc-box-overlay').remove();
+                            $('.ccc-box-wrap').remove();
+                        }
+                    });
+                }
 
-            ractive.set('step1',false);
-            ractive.set('step2',true);
-            ractive.on('close',function(){
-                window.location.href = "/newAccount/home";
             });
         }else{
-            $('.btn-box button').text('绑定');
-            if(res.error[0].message === 'Something is wrong'){
-                msg[res.error[0].message] = '请再次确认您的信息'
-            }
             CccOk.create({
-                msg: '绑卡失败, '+msg[res.error[0].message],
+                msg: r.error[0].message,
                 okText: '确定',
                 ok: function () {
                     $('.ccc-box-overlay').remove();
@@ -177,8 +207,9 @@ ractive.on("bind-card-submit", function (e) {
                 }
             });
         }
-
     });
+
+
 });
 
 ractive.on('sendCode', function (){
