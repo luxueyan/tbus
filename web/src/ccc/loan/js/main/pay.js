@@ -22,28 +22,33 @@ var payRactive = new Ractive({
         step2: false,
         step3: false,
         user: CC.user,
+        useBankCard:true,
         bankcards: banksabled || [],
         Faccount: Faccount,
+        investNum:parseInt(CC.investNum),
+        loanId:CC.loanId,
     },
-    init:function(){
+    oninit:function(){
         var self = this;
-        var i = location.search.indexOf('num');
-        var j = location.search.indexOf('loanId');
-        var investNum = location.search.substring(i+4,j-1);
-        var loanId = location.search.substring(j+7);
-
-        $.get('/api/v2/loan/' + loanId, function(list){
+//        var i = location.search.indexOf('num');
+//        var j = location.search.indexOf('loanId');
+//        var investNum = location.search.substring(i+4,j-1);
+//        var loanId = location.search.substring(j+7);
+//
+        $.get('/api/v2/loan/' + CC.loanId, function(res){
             //console.log(list);
-            self.set('loan',list);
+            self.set('loan',res);
         });
-        var investNum2 = parseInt(investNum).toFixed(2);
-        self.set('amount',investNum2);
+//        var investNum2 = parseInt(investNum).toFixed(2);
+//        self.set('amount',investNum2);
     }
 });
 
 payRactive.on("invest-submit", function (e) {
+    var that = this;
     e.original.preventDefault();
-    var num = parseInt(this.get('amount'), 10); // 输入的值
+    var availableAmount = CC.user.availableAmount;
+    var num = this.get('investNum'); // 输入的值
     var paymentPassword = this.get('paymentPassword');
     if (paymentPassword === '') {
         showErrors('请输入交易密码!');
@@ -59,18 +64,17 @@ payRactive.on("invest-submit", function (e) {
                     $('.agree-error').css('visibility', 'hidden');
                     $.post('/api/v2/invest/tender/MYSELF', {
                         amount: num,
-                        loanId: payRactive.get('loan.id'),
-                        placementId: $('#couponSelection').find("option:selected").val(),
+                        loanId: CC.loanId,
+                        placementId:CC.placementId,
                         paymentPassword: paymentPassword
                     }, function (res) {
                         //alert(11);
                         if (res.success) {
-                            var loanId = payRactive.get('loan.id');
                             payRactive.set('step1',false);
                             payRactive.set('step2',true);
                             payRactive.set('step3',false);
                             setTimeout(function(){
-                              window.location.href = '/loan/'+loanId;
+                              window.location.href = '/loan/'+CC.loanId;
                             },5000);
                         } else {
                             payRactive.set('step1',false);

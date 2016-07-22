@@ -4,11 +4,11 @@
 </div>
 <div class="num">
     <div class="num1">
-        投资金额(元)<span class="invest-num">{{amount}}</span>
+        投资金额(元)<span class="invest-num">{{parseInt(investNum).toFixed(2)}}</span>
     </div>
     <div class="num2">
         可用余额(元)<span class="">{{user.availableAmount}}</span>
-        <input type="checkbox">使用
+        <input type="checkbox" id="useBankCard" checked={{useBankCard}}>使用
     </div>
 </div>
 <div class="bank">
