@@ -1,99 +1,105 @@
-<!--{{JSON.stringify(creditassign)}}-->
-
-{{#if !user}}
-<p class="left-money-credit">账户余额：<a href="/login">登录</a>后可见</p>
-<div class="money-brame-box" style="margin-left:30px;">
-    <span class="money-brame-title">投资金额：</span>
-    <input type="text" class="money-brame" value="{{ inputNum }}" />
-    <span class="totalInterest">预估收益：{{planEarning}}元</span>
-</div>
-<a href="/login" style="text-decoration: none;">
-    <button class="loginBtn">立即登录</button>
-</a>
-{{/if}}
-{{#if creditassign.creditassign.status == 'FINISHED'||creditassign==null}}
-<div style="width: 200px; font-size:15px; margin: 50px auto; text-align: center;">
-    转让已满,请选择其它<a href="/creditList" style="color: #4183c4;">项目</a>!
-</div>
-{{/if}}
-{{#if creditassign.creditassign.status == 'OPEN'}}
-
-<div class="status">
-    <div class="info">
-
-        <div class="userBlock" id="userBlock">
-            {{#if user}} {{! 已登录,但是没开第三方支付 }} {{#if !name}}
-            <div class="calculatorBox" style="margin-top:25px;">
-                <div class="calculator">
-                    <span class="glyphicon glyphicon-minus" style="top:0;" on-click="reduce"></span>
-                    <input type="hidden" name="loanId" value="{{loan.id}}">
-                    <input placeholder="{{loan.rule.min}}" name="amount" type="text" value="{{ inputNum }}"
-                    on-blur="getCoupon" />
-                    <span class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></span>
-                </div>
-
-            </div>
-
-            <div class="clearfix"></div>
-            <div class="prompt-open-3rdpay">
-                <p class="shiming">您的账户尚未实名认证，认证后可投资</p>
-            </div>
-            <div class="invest-button-wrapper">
-                <a class="btn btn-warning open-button loginBtn" href="/newAccount/settings/authentication">立即认证</a>
-            </div>
-            {{else}} {{! 已登录 }} {{! 未签订无密投资}}
-
-            <div class="leftMoney-open">账户余额：¥&nbsp;<i class="red">{{user.availableAmount}}</i>
-                <a href="/newAccount/recharge" class="recharge">
-                    <button>充值</button>
-                </a>
-            </div>
-            <div class="input">
-
-                    <div class="calculatorBox">
-                        <div class="money-brame-box">
-                            <span class="money-brame-title">投资金额：</span>
-                            <input type="text" class="money-brame" value="{{inputNum}}" readonly/>
-                            <span class="totalInterest">预估收益：{{planEarning}}元</span>
+<div class="">
+    <div class="current-container clearfix">
+        <div class="box-large">
+            <div class="invest-data-wrapper">
+                <div class="investContainer">
+                    <div class="detailTitle">
+                        <a href="/creditList">债转列表 </a>> <sapn style="color: #e4262b">产品详情</sapn>
+                        <div class="time">发布时间：<span class="time-left">{{timeOpen}}</span>
                         </div>
 
-                        <div class="clearfix"></div>
-
-                        <div class="password-box">
-                            <span class="password-box-title">交易密码：</span>
-                            <div class="password">
-                                <input class="trade-password" type="password" placeholder=" " name="paymentPassword"
-                                value="{{paymentPassword}}" autocomplete="off" />
+                        <div class="investTitle">
+                            <div class="time">
                             </div>
-                            <p><a href="/newAccount/settings/resetPassword" style="font-size:12px">忘记交易密码？</a></p>
-                        </div>
-                        <input style="display:none" type="password" placeholder="请输入交易密码" />
-                        <p class="agree-box">
-                            <input type="checkbox" class="agree" checked id="agree" />
-                            <span>我同意
-                                <a href="/agreement/mobile/protocol" target="_blank">《华瑞金控投资协议》</a>
-
-                            </span>
-                        </p>
-                        <p class="agree-error"></p>
-                        <input type="button" class="btn btn-warning invest-button" value="确认投资" on-click="invest-submit"/>
-
-                    </div>
-
-                    {{#if errors.visible}}
-                    <div class="tooltip">
-                        <div class="tooltip-arrow"></div>
-                        <div class="tooltip-inner">
-                            <span class="glyphicon glyphicon-exclamation-sign icon"></span>
-                            <span class="text">{{ errors.msg }}</span>
                         </div>
                     </div>
-                    {{/if}}
+                    <div class="h5"></div>
+                    <div class="content">
+                        <div class="innerBottom">
+                            <div>{{creditassign.creditassign.title}}<span class="icon1"></span></div>
+                        </div>
+                        <div class="inner">
+                            <div class="item itemSecond itemRed">
+                                <div class="value">{{creditassign.creditassign.creditDealRate*100}}<span>%</span></div>
+                                <div class="name" >预期收益率</div>
+                            </div>
+                            <div class="item itemThird" style="border-right:none">
+                                <div class="value">{{creditassign.creditassign.timeOut}} <span>天</span></div>
+                                <div class="name">预期到期日 <span style="color: #666">{{creditassign.creditassign.timeFinished}}</span></div>
+                            </div>
+                            <div class="item itemFirst">
+                                <div class="value">
+                                    {{workTime}}
+                                </div>
+                                <div class="name">起息日</div>
+                            </div>
 
+                        </div>
+
+                        <div class="progress-wp">
+                            <div class="progress-num">
+                            </div>
+                        </div>
+                        <div class="protocol">
+                            <a target="_blank" href="/loan/loanRequest/{{loan.loanRequest.id}}/contract/template">协议范本</a>
+                        </div>
+                    </div>
+                    <div class="h20"></div>
+                </div>
             </div>
 
-            {{/if}} {{/if}}
+            <div class="do-invest-wrapper">
+                <div>转让价格(元): <span>{{creditassign.creditassign.balance}}</span></div>
+                <div>预期收益(元): <span>{{creditassign.creditassign.amountInterest}}</span></div>
+                <button class="btn">确认购买</button>
+            </div>
         </div>
     </div>
 </div>
-{{/if}}
+
+<div class="invest-detail-wrapper">
+    <div class="current-container scontent">
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+            <li role="presentation" class="active" data-step='0'>
+                <a href="#detail" aria-controls="detail" role="tab" data-toggle="tab">项目详情</a>
+            </li>
+            <li role="presentation"  data-step='1'>
+                <a href="#info" aria-controls="info" role="tab" data-toggle="tab">风控信息</a>
+            </li>
+            <li role="presentation" data-step='2'>
+                <a href="#check" aria-controls="check" role="tab" data-toggle="tab">认证审核</a>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+
+        <div class="tab-panels">
+            <div class="tab-panel active fade in" role="tabpanel" id="detail">
+                <div class="loanInfoWrapper">
+                    <div class="loanInfo">
+                        {{{loan.loanRequest.description}}}
+                    </div>
+
+                </div>
+            </div>
+            <div class="tab-panel fade" role="tabpanel" id="info">
+                <div class="loanInfoWrapper">
+                    <div class="loanInfo">
+                        {{{loan.loanRequest.guaranteeInfo}}}
+                    </div>
+                </div>
+            </div>
+            <div class="tab-panel fade" role="tabpanel" id="check">
+                <div class="loanInfoWrapper">
+                    <div class="loanInfo">
+                        {{{loan.loanRequest.riskInfo}}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=""></div>
+    </div>
+
+
+    <div class="insurance-wrapper">
+    </div>
+</div>
