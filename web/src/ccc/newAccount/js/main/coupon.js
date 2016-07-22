@@ -6,7 +6,7 @@ require('ccc/global/js/modules/cccTab');
 
 var couponTpl = require('ccc/newAccount/partials/coupon/coupon.html');
 
-var pagesize = 3;
+var pagesize = 999;
 var page = 1;
 var totalPage = 1;
 

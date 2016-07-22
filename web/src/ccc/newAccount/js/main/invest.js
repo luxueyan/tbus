@@ -13,7 +13,7 @@ var Tab = {
 	HOLDING: {
 		ractive: null,
 		api: '/api/v2/user/MYSELF/invest/list/$page/$size?status=SETTLED&status=OVERDUE&status=BREACH',
-		template: require('ccc/newAccount/partials/invest/holding.html')
+		template: require('ccc/newAccount/partials/invest/assign.html')
 	},
 	// 投资中 (FINISHED/PROPOSED/FROZEN) 
 	INHAND: {

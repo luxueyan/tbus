@@ -9,6 +9,8 @@
 		<div class="info_title">我的账户 > <span>提现</span></div>
 		{{elseif authentication}}
 		<div class="info_title">我的账户 > 个人中心 > <span>实名认证</span></div>
+		{{elseif tradeCards}}
+		<div class="info_title">我的账户 > 个人中心 > <span>更换银行卡</span></div>
 		{{else}}
 		<div class="info">
 			<div class="tx"></div>
@@ -54,7 +56,7 @@
 				{{#if paymentPasswordHasSet}}
 				<li>
 					<a href="/newAccount/settings/resetPassword" class="mouse-enter rzpa cpass-active" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
-					<p class="info-tip" style="top:5px;left:125px;">点击重置支付密码</p>
+					<p class="info-tip" style="top:5px;left:125px;">点击修改支付密码</p>
 				</li>
 				{{else}}
 

@@ -39,12 +39,12 @@
 	<!--</li>-->
     <li class="nav-li">
 
-		{{#if userInfo || bankCards || bindingEmail ||authentication}}
+		{{#if userInfo || bankCards || bindingEmail ||authentication || tradeCards}}
 			<span class="icon-active"></span>
 		{{else}}
 			<span class="icon-common"></span>
 		{{/if}}
-		<span class="nav-text {{#if userInfo || bankCards || bindingEmail || authentication}}nav-text-active{{/if}}"><a href="/newAccount/userInfo">个人中心</a></span>
+		<span class="nav-text {{#if userInfo || bankCards || bindingEmail || authentication || tradeCards}}nav-text-active{{/if}}"><a href="/newAccount/userInfo">个人中心</a></span>
 
 	</li>
     <!--<li class="nav-li">-->
