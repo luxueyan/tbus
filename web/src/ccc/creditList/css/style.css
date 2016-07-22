@@ -684,3 +684,7 @@ hr {
     color: #666666;
     font-size: 14px;
 }
+
+.no-data{
+    margin: 50px 14px;
+}
