@@ -56,7 +56,6 @@ var infoRactive = new Ractive({
 	data: {
 		user: CC.user,
 		paymentPasswordHasSet : CC.user.paymentPasswordHasSet,
-		isEnterprise : CC.user.enterprise,
 		banksabled : banksabled.length? true : false,
 		safetyProgress: 25,
 		riskText: '中',
@@ -97,10 +96,11 @@ var infoRactive = new Ractive({
 		});
 		accountService.checkAuthenticate(function (r) {
 			accountService.getUserInfo(function (res) {
-				infoRactive.set('user', res.user);
+				console.log(res)
+				//infoRactive.set('user', res.user);
 				infoRactive.set('emailAuthenticated', r.emailAuthenticated);
 
-				if (res.user.name) {
+				if (res.userInfo.user.name) {
 					safetyProgress += 25;
 				}
 				if (r.emailAuthenticated) {
