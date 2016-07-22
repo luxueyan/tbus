@@ -282,7 +282,8 @@ module.exports = function(router) {
         "resetPassword",
         "showbank",
         "fixed",
-        "float"
+        "float",
+        "tradeCards"
     ].forEach(function(tabName) {
         router.get('/settings/' + tabName, function(req, res) {
             if(tabName == 'bankCards' || tabName == 'showbank'){
