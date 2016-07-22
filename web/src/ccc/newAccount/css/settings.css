@@ -888,11 +888,9 @@ p.tips {
 .fixed-invest .table > tbody > tr > td{
     padding-left: 20px;
 }
-.fixed-invest button{
-    background: #e60012;
-    border: none;
-    color: #fff;
-    padding: 5px 14px;
+.fixed-invest .table-invest-common a{
+    color: #e60012;
+    padding: 5px;
 }
 .fixed-invest .look_contact{
     margin-left: 5px;

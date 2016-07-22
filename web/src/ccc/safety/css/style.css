@@ -49,30 +49,34 @@
 }
 /*内容*/
 .step .step-content{
-    font-size: 24px;
+    font-size: 18px;
     color: #666666;
     position: absolute;
 
 }
 .step-first .step-content{
-    top:116px;
+    top:22px;
     left: 110px;
     text-align: right;
+    line-height: 38px;
 }
 .step-second .step-content{
-    top:116px;
-    right: 14px;
+    top:35px;
+    right: 60px;
     text-align: left;
+    line-height: 38px;
 }
 .step-third .step-content{
-    top:116px;
-    left: 105px;
+    top: 75px;
+    left: 55px;
     text-align: right;
+    line-height: 38px;
 }
 .step-four .step-content{
-    top:116px;
-    right: 67px;
+    top: 74px;
+    right: 235px;
     text-align: left;
+    line-height: 38px;
 }
 /*图标*/
 .step .step-icon{
@@ -156,9 +160,10 @@
     margin-bottom: 10px;
 }
 .detail p{
-    font-size: 18px;
+    font-size: 16px;
     font-family: "微软雅黑";
     font-weight: 100;
+    line-height: 26px;
 }
 
 /**/

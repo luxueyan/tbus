@@ -531,9 +531,10 @@ p.tips {
     margin-left: -15px;
 }
 .card_trade li:first-child{
-    width: 600px;
+    width: 100%;
 }
 .card_trade li{
+    width: 100%;
     margin-left: 0px;
     color: #a7a7a7;
 }
