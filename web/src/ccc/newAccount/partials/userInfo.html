@@ -29,7 +29,7 @@
                 <div class="check_state"></div>
                 <div class="value_name">手机号码</div>
                 <div class="val_detail">{{mobile}}</div>
-                <!--<a class="change" href="#">修改</a>-->
+                <a class="change" href="#">修改</a>
             </div>
             <div class="valgroup">
                 <div class="check_state"></div>
@@ -42,7 +42,7 @@
                 <div class="check_state"></div>
                 <div class="value_name">支付密码</div>
                 <div class="val_detail">********</div>
-                <a href="/newAccount/settings/resetPassword">修改</a>
+                <a href="/newAccount/settings/resetPassword">重置</a>
                 {{else}}
                 <div class="check_state_error"></div>
                 <div class="value_name">支付密码</div>
@@ -98,9 +98,21 @@
                             <!--<button on-click="deleted-card" lala="{{account.account}}">解绑</button>-->
                         <!--</td>-->
                     </div>
+                    <a class="trade_bank_icon" href="/newAccount/settings/tradeCards">更换银行卡</a>
+
                 </li>
+
+
                 {{/each}}
                 {{/if}}
+                <li>
+                    <ul class="card_trade">
+                        <li>温馨提示：</li>
+                        <li>1、为了保障您的账户安全，投资与收益都进入同一银行卡账户；</li>
+                        <li>2、请谨慎换卡，提示换卡信息后，客服人员会与您联系，确认您换卡自愿性，1-2个工作日内审核完成；</li>
+                        <li>3、若银行卡遗失，则需补办并澄清。具体流程见：<a href="/help/account">帮助中心-银行卡遗失。</a></li>
+                    </ul>
+                </li>
             </ul>
 
         </div>

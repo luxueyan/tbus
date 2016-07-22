@@ -7,10 +7,20 @@ var requestId = '';
 
 
 router.get('/payment', function (req,res) {
+    console.log('#########%%%%%%%%%%%%%%%%')
+    console.log(req.query)
+    console.log('#########%%%%%%%%%%%%%%%%')
     var user = res.locals.user;
+    res.expose(req.query.num,'investNum')
+    res.expose(req.query.loanId,'loanId')
+    res.expose(req.query.placementId,'placementId')
     res.expose(user, 'user');
     res.locals.title = '';
-    res.render('payment');
+    res.render('payment',{
+        investNum:req.query.num,
+        loanId:req.query.loanId,
+        placementId:req.query.placementId
+    });
 });
 
 
@@ -198,7 +208,7 @@ function parseLoan(loan) {
     loan.loanRequest.timeSubmit = moment(loan.loanRequest.timeSubmit)
         .format('YYYY-MM-DD');
 
-    loan.valueDate = moment(loan.loanRequest.valueDate).format('YYYY-MM-DD');
+    loan.valueDate = moment(loan.timeOpen+86400000).format('YYYY-MM-DD');
     loan.dueDate = moment(loan.loanRequest.dueDate).format('YYYY-MM-DD');
     
     loan.method = methodZh[loan.method];

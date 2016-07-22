@@ -4,6 +4,11 @@ var ccBody = require('cc-body');
 
 module.exports = function (router) {
     router.get('/', function (req, res, next) {
+        var user = res.locals.user;
+        if (user) {
+            res.redirect('/newAccount/settings/home');
+        };
+
         _.assign(res.locals, {
             title : '注册_太合汇平台'
         });
@@ -14,4 +19,5 @@ module.exports = function (router) {
 		res.expose(req.query.UID, 'channelRel');
         next();
     }, middlewares.registerPage);
+    
 };
