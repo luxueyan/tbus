@@ -246,7 +246,7 @@ setTimeout((function () {
             return false;
         }
 
-        window.location.href = '/loan/payment?num='+num+'&loanId='+CC.loan.id;
+        window.location.href = '/loan/payment?num='+num+'&loanId='+CC.loan.id+'&placementId='+$('#couponSelection').val()
         //window.open('/loan/payment?num='+num+'&loanId='+CC.loan.id);
 
         //if (paymentPassword === '') {

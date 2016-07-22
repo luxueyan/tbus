@@ -7,10 +7,20 @@ var requestId = '';
 
 
 router.get('/payment', function (req,res) {
+    console.log('#########%%%%%%%%%%%%%%%%')
+    console.log(req.query)
+    console.log('#########%%%%%%%%%%%%%%%%')
     var user = res.locals.user;
+    res.expose(req.query.num,'investNum')
+    res.expose(req.query.loanId,'loanId')
+    res.expose(req.query.placementId,'placementId')
     res.expose(user, 'user');
     res.locals.title = '';
-    res.render('payment');
+    res.render('payment',{
+        investNum:req.query.num,
+        loanId:req.query.loanId,
+        placementId:req.query.placementId
+    });
 });
 
 
