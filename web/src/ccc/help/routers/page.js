@@ -11,19 +11,22 @@ module.exports = function (router) {
             account:'HELP',
             invest: 'HELP',
             transfer: 'HELP',
-            protection: 'HELP'
+            protection: 'HELP',
+            question: 'HELP',
         };
         var nameMap = {
             account: '账户管理',
             invest: '投资操作',
             transfer: '产品转让',
-            protection: '收益保障'
+            protection: '收益保障',
+            question:'其他问题'
         };
         var indexMap={
             account: '账户管理',
             invest: '投资操作',
             transfer: '产品转让',
-            protection: '收益保障'
+            protection: '收益保障',
+            question:'其他问题'
         };
 
         var tabs = [{
@@ -38,6 +41,9 @@ module.exports = function (router) {
         },{
             text: '收益保障',
             url: '/help/protection'
+        },{
+            text: '其他问题',
+            url: '/help/question'
         }];
 
             var tabIndex;
