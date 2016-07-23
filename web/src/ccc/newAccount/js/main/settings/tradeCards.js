@@ -39,7 +39,7 @@ var ractive = new Ractive({
     },
     oninit: function () {
         accountService.getUserInfo(function (o) {
-            ractive.set('realName', o.user.name);
+            ractive.set('realName', o.userInfo.user.name);
         });
         $.get('/api/v2/hundsun/banks',function(r){
           ractive.set('newbanks',r);
@@ -52,11 +52,32 @@ var ractive = new Ractive({
             }else{
                 ractive.set('hasCardO',false);
             }
-        })
+        });
+
+
+    },
+    oncomplete: function () {
+        //去除chrome浏览器里的自动填充
+        if(navigator.userAgent.toLowerCase().indexOf("chrome") != -1 || navigator.userAgent.toLowerCase().indexOf("Safari") == -1){
+            var selectors = document.getElementsByTagName("input");
+            for(var i=0;i<selectors.length;i++){
+                if((selectors[i].type !== "submit") && (selectors[i].type !== "password")){
+                    var input = selectors[i];
+                    var inputName = selectors[i].name;
+                    var inputid = selectors[i].id;
+                    selectors[i].removeAttribute("name");
+                    selectors[i].removeAttribute("id");
+                    //setTimeout(function(){
+                    //    input.setAttribute("name",inputName);
+                    //    input.setAttribute("id",inputid);
+                    //},10000)
+                }
+            }
+        };
+        //alert("1");
+
     }
 });
-
-
 
 ractive.on("bind-card-submit", function (e) {
     e.original.preventDefault();
@@ -67,23 +88,44 @@ ractive.on("bind-card-submit", function (e) {
     var personal=this.get('personal');
     var cardPhone = this.get('mobile');
     var smsCaptcha = this.get('smsCaptcha');
+    var pwd = this.get('pwd');
     //校验表单
 
 
-
-
-    if(cardNo==''){
+    if(cardNo===''){
         this.set("errMessgaeBank", '请输入您的银行卡号');
+
     }else{
         this.set("errMessgaeBank", false);
     }
 
     if (smsCaptcha === '') {
         this.set('SMS_NULL', '请输入手机验证码');
-        return;
+
     } else {
         this.set('SMS_NULL', false);
+    }
+
+    if (pwd === '') {
+        this.set('errPwd', '请输入支付密码');
+        return;
+    }else if(!(pwd).match(/^\d{6}$/)) {
+        this.set('errPwd', '请输入6位数字');
+        return;
+    } else {
+        this.set('errPwd', false);
     };
+
+    //if (anpwd === '') {
+    //    this.set('errAnpwd', '请输入确认支付密码');
+    //    return;
+    //}else if(anpwd!=pwd){
+    //    this.set('errAnpwd', '两次输入不一致');
+    //    return;
+    //} else {
+    //    this.set('errAnpwd', false);
+    //
+    //};
 
     //if (!/^\d*$/.test(cardPhone)) {
     //    this.set("phoneNoError", true);
@@ -97,7 +139,8 @@ ractive.on("bind-card-submit", function (e) {
         mobile:cardPhone,
         idCardNumber:idNo,
         name:personal,
-        smsCaptcha:smsCaptcha
+        smsCaptcha:smsCaptcha,
+        pwd : pwd
     }
     var msg = {
         SEND_CAPTCHA_FAILED: '验证码发送失败',
@@ -162,6 +205,8 @@ ractive.on('sendCode', function (){
         });
     };
 });
+
+
 
 function countDown() {
     $('.sendCode')
