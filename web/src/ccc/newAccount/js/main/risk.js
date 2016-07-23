@@ -25,6 +25,10 @@ var ractive = new Ractive({
                 console.log(r.body);
                 self.set("timeLastUpdated", moment(r.body.surveyFilling.timeLastUpdated).format('YYYY-MM-DD HH:mm:ss'));
                 rank=r.body.surveyScore.rank;
+                if(rank){
+                    self.set('question',false);
+                    self.set('result',true);
+                }
                 self.set('type',r.body.surveyScore.name);
             });
     },

@@ -15,8 +15,9 @@
             <form role="form" name="withdrawForm" action="/yeepay/withdraw" method="POST" target="_blank" on-submit="withdrawForm">
                 <div class="row">
                     <div class="rows">
-                        <div class="tipss">账户可用余额：
-                             <span class="ava">{{intNum}}.<span style="">{{pointNum}}</span>元</span>
+                        <div class="tipss">账户可用余额(元)：
+                             <span class="ava">{{intNum}}.<span style="">{{pointNum}}
+                             <!--</span>元</span>-->
                         </div>
                        
                     </div>
@@ -36,7 +37,10 @@
                              {{#msg.AMOUNT_POOR}}您的可用余额不足{{/msg.AMOUNT_POOR}}
                             
                         </p>
-                        <p class="warm-tip"><span>手续费2.00元/笔</span></p>
+                        <!--<p class="warm-tip"><span>手续费2.00元/笔</span></p>-->
+                        <p class="fee-tip">提现费用(元): <span>{{totalFee}}</span></p>
+                        <p class="fee-tip">实际到账金额(元): <span>{{withdrawAmount}}</span></p>
+                        <p class="warm-tip"><span>预计到账时间: 1-2个工作日(双休日和法定节假日除外)之内到账</span></p>
 
                     </div>
                 
@@ -45,8 +49,8 @@
                             <div class="img-box">
                                 <img class="recharge_pwd" src="/ccc/newAccount/img/recharge_pwd.png">
                             </div>
-                            <input type="password" name="paymentPassword" class="inputsMs" placeholder="请输入交易密码" on-blur="checkPassword" autocomplete="off"  value="{{paymentPassword}}" class="recharge-input">
-                            <a href="/newAccount/settings/resetPassword" class="forgot-pwd">忘记密码？</a>
+                            <input type="password" name="paymentPassword" class="inputsMs" placeholder="请输入支付密码" on-blur="checkPassword" autocomplete="off"  value="{{paymentPassword}}" class="recharge-input">
+                            <a href="/newAccount/settings/resetPassword" target="_blank" class="forgot-pwd">忘记密码？</a>
                         </div>
 
                          <p class="text-danger" style="color:red;">
@@ -58,6 +62,7 @@
                 </div>
                 <div class="row">
                     <button type="button" class="submit_btn post-btn {{#if disabled}}disabled{{/if}}"  on-click="withDrawSubmit">{{submitText}}</button>
+                    <a href="/help" target="_blank" class="gohelp">帮助中心</a>
                     <!--<p class="warm-tip">预计一到两个工作日内到账，以实际到账时间为准</p>-->
                 </div>
           
