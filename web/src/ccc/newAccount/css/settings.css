@@ -163,6 +163,10 @@ p.tips {
     background: url(/ccc/newAccount/img/card-yanzheng.png) no-repeat center center #fcfcfc;
 
 }
+.row .tipss_mobile{
+    background: url(/ccc/newAccount/img/card_mobile.png) no-repeat center center #fcfcfc;
+
+}
 .btn-update {
     width: 200px;
     background-color: #e4262b;
@@ -181,6 +185,15 @@ p.tips {
     color: #fff;
 }
 /*重置支付密码 结束*/
+/*修改手机号*/
+.origin_mobile{
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+.origin_mobile span{
+    margin-left: 15px;
+}
+/*修改手机号 结束*/
 .wenanjiaoyi {
     font-size: 15px!important;
     color: #a3a3a3;
@@ -686,6 +699,8 @@ p.tips {
     height: 46px;
     background: #fcfcfc;
     color: #ae8a45;
+    border: 1px solid #cdcdcd;
+    border-left: none;
 }
 .bind-card-wrapper .agree-box{
     clear: both;
@@ -980,6 +995,8 @@ p.tips {
     cursor: pointer;
     padding: 0;
     margin-left: 74px;
+    border: none;
+    color: #fff;
 }
 /*固定收益 结束*/
 
