@@ -410,6 +410,14 @@ table.tinfo tbody tr {
 .warm-tip span{
     color: #bbb;
 }
+.fee-tip{
+    color: #666;
+    font-size: 18px;
+    padding-top: 10px;
+}
+.fee-tip span{
+    color: #e4262b;
+}
 
 .forgot-pwd,
 .forgot-pwd:hover{
@@ -417,6 +425,12 @@ table.tinfo tbody tr {
     padding-left: 15px;
     text-decoration: none;
     line-height: 46px;
+}
+.gohelp,
+.gohelp:hover{
+    color: #b68b4c;
+    padding-left: 12px;
+    text-decoration: underline;
 }
 .bring-in input {
     width: 262px;
