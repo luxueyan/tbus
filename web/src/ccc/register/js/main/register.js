@@ -33,7 +33,7 @@ baconflux.store('register', 'success').onValue(function(data) {
         }
     }).end()
     
-    window.location.href = "/newAccount/home?register";
+    window.location.href = "/newAccount/settings/home?register";
     
 //    var left = 3;
 //    var interval = setInterval((function() {
