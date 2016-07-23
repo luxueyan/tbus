@@ -5,8 +5,9 @@ select {
   -webkit-appearance:none;
 
   /*在选择框的最右侧中间显示小箭头图片*/
-  background: url(/ccc/loan/img/down_icon.png) no-repeat scroll right center transparent;
-  background-size: 14px;
+  background: url(/ccc/loan/img/down_icon_bg.png) no-repeat scroll right center transparent;
+  /*background-size: 14px;*/
+    cursor: pointer;
 }
 
 /*清除ie的默认选择框样式清除，隐藏下拉箭头*/
@@ -502,7 +503,7 @@ select::-ms-expand { display: none; }
     width: 302px
 }
 .do-invest-wrapper .status .userBlock  .selectOption select {
-    width: 255px;
+    width: 302px;
     height: 45px;
     border: 1px solid #ccc;
     border-radius: 0;
