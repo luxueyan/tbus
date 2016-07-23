@@ -283,7 +283,8 @@ module.exports = function(router) {
         "showbank",
         "fixed",
         "float",
-        "tradeCards"
+        "tradeCards",
+        "fixMobile",
     ].forEach(function(tabName) {
         router.get('/settings/' + tabName, function(req, res) {
             if(tabName == 'bankCards' || tabName == 'showbank'){

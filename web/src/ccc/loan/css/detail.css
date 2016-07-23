@@ -145,7 +145,8 @@ select::-ms-expand { display: none; }
     position: absolute;
     top: 2px;
     font-size: 32px;
-    left: 40px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .process p{
     text-align: center;
@@ -691,7 +692,7 @@ select::-ms-expand { display: none; }
     background: #b5a16b;
 }
 .do-invest-wrapper .unlogin_img{
-    margin: 60px auto;
+    margin: 100px auto;
     width: 75px;
 }
 
@@ -988,4 +989,19 @@ select::-ms-expand { display: none; }
 }
 .payment-content .recharge-success .success-content .btn-after{
     margin: 0;
+}
+
+
+.finished-btn {
+    width: 318px;
+    height: 44px;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    letter-spacing: 5px;
+    cursor: default;
+    margin-left: 51px;
 }
