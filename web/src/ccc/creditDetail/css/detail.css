@@ -487,7 +487,14 @@
 .do-invest-wrapper button:focus {
     color: white;
 }
-.do-invest-wrapper btn-login{
+.do-invest-wrapper .shiming{
+    text-align: center;
+    color: #d4242f;
+    font-size: 16px;
+    margin: 20px auto 50px;
+}
+.do-invest-wrapper .btn-login{
+    margin: 0 auto;
     width: 270px;
     height: 45px;
     background: #e60012;
@@ -497,10 +504,8 @@
     vertical-align: middle;
     touch-action: manipulation;
     border: 1px solid transparent;
-    white-space: nowrap;
-    padding: 6px 12px;
     font-size: 14px;
-    line-height: 1.42857143;
+    line-height: 45px;
     border-radius: 4px;
     -webkit-user-select: none;
     -moz-user-select: none;
