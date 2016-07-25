@@ -1,0 +1,74 @@
+{{#if step1}}
+<div class="title">
+    <span>产品名称</span>{{creditassign.title}}
+</div>
+<div class="num">
+    <div class="num1">
+        支付金额(元)<span class="invest-num">{{investNum}}</span>
+    </div>
+    <div class="num2">
+        可用余额(元)<span class="">{{user.availableAmount}}</span>
+        <input type="checkbox" id="useBankCard" checked={{useBankCard}}>使用
+    </div>
+</div>
+<div class="bank">
+    <p>我的绑定银行卡</p>
+    {{#each bankcards}}
+    <div class="bank-box {{account.bank}}">
+        <span>******** {{Faccount}}</span>
+        <span class="limit">单笔限额10万</span>
+    </div>
+    {{/each}}
+
+</div>
+<div class="invest-input">
+    <div class="card-brame">
+        <div class="img-box">
+            <img class="" src="/ccc/register/img/psw_icon.png">
+        </div>
+        <input type="password" placeholder="输入支付密码" name="paymentPassword" value="{{paymentPassword}}" autocomplete="off"/>
+        <a href="/newAccount/settings/resetPassword" class="forgot-pwd">忘记密码？</a>
+    </div>
+    {{#if errors.visible}}
+    <div class="tooltip">
+        <div class="tooltip-inner">
+            <span class="text">{{ errors.msg }}</span>
+        </div>
+    </div>
+    {{/if}}
+</div>
+<div class="agree-box">
+    <input type="checkbox" checked id="agree">我阅读并同意<a href="#">《风险提示书》</a>，充分了解相应权利和义务，并愿意承担相关风险。
+    <p class="agree-error"></p>
+</div>
+<button on-click="invest-submit">确认支付</button>
+{{/if}}
+{{#if step2}}
+<div class="recharge-success">
+    <div class="content">
+        <div class="success-img">
+            <img src="/ccc/newAccount/img/band-success.png"/>
+        </div>
+        <div class="success-content">
+            <p>支付成功！</p>
+        </div>
+    </div>
+</div>
+{{/if}}
+{{#if step3}}
+<div class="recharge-success">
+    <div class="content">
+        <div class="success-img">
+            <img src="/ccc/newAccount/img/band-fail.png"/>
+        </div>
+        <div class="success-content">
+            <p>支付失败</p>
+            <p class="fail_reason">投资者过多您被挤掉了，请重试</p>
+            <div class="button">
+            <!--<button class="close-img btn-after" on-click="close">以后再说</button>-->
+            <a href="/loan/{{loan.id}}"><button class="btn-after btn-bank">重新购买</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}}

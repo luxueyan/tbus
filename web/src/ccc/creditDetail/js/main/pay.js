@@ -14,9 +14,10 @@ var banksabled = _.filter(CC.user.bankCards, function (r) {
 });
 var Faccount = CC.user.bankCards[0].account.account.slice(-3);
 //支付
+var creditassignId='';
 var payRactive = new Ractive({
     el:'.payment-content',
-    template: require('ccc/loan/partials/pay.html'),
+    template: require('ccc/creditDetail/partials/pay.html'),
     data:{
         step1: true,
         step2: false,
@@ -25,30 +26,27 @@ var payRactive = new Ractive({
         useBankCard:true,
         bankcards: banksabled || [],
         Faccount: Faccount,
-        investNum:parseInt(CC.investNum),
-        loanId:CC.loanId,
+        investNum:0,
     },
     oninit:function(){
         var self = this;
-//        var i = location.search.indexOf('num');
-//        var j = location.search.indexOf('loanId');
-//        var investNum = location.search.substring(i+4,j-1);
-//        var loanId = location.search.substring(j+7);
-//
-        $.get('/api/v2/loan/' + CC.loanId, function(res){
-            //console.log(list);
-            self.set('creditassign',res);
+        var j = location.search.indexOf('id');
+        creditassignId = location.search.substring(j+3);
+
+        $.get('/api/v2/creditassign/creditAssignDetail/' + creditassignId, function(res){
+            self.set('creditassign',res.creditassign);
+            self.set('investNum',res.creditassign.balance);
         });
-//        var investNum2 = parseInt(investNum).toFixed(2);
-//        self.set('amount',investNum2);
     }
 });
 
 payRactive.on("invest-submit", function (e) {
     var that = this;
     e.original.preventDefault();
-    var availableAmount = CC.user.availableAmount;
-    var num = this.get('investNum'); // 输入的值
+    if(!this.get('useBankCard')){
+        return;
+    }
+    var num = this.get('investNum'); //
     var paymentPassword = this.get('paymentPassword');
     if (paymentPassword === '') {
         showErrors('请输入交易密码!');
@@ -62,13 +60,10 @@ payRactive.on("invest-submit", function (e) {
 
                 if (document.getElementById('agree').checked == true) {
                     $('.agree-error').css('visibility', 'hidden');
-                    $.post('/api/v2/invest/tender/MYSELF', {
-                        amount: num,
-                        loanId: CC.loanId,
-                        placementId:CC.placementId,
-                        paymentPassword: paymentPassword
+                    $.post('/api/v2/autoAssign/MYSELF', {
+                        creditAssignId:creditassignId,
+                        principalAmount: num
                     }, function (res) {
-                        //alert(11);
                         if (res.success) {
                             payRactive.set('step1',false);
                             payRactive.set('step2',true);

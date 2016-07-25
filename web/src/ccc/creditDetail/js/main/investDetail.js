@@ -59,9 +59,10 @@ var investRactive = new Ractive({
         creditassign: CC.creditassign,
         user: CC.user,
         loan: {},
-        timeOpen:moment(CC.creditassign.creditassign.timeOpen).format('YYYY-MM-DD'),
+        timeOpen:CC.creditassign.creditassign.timeOpen1,
         timeFinished:moment(CC.creditassign.creditassign.timeFinished).format('YYYY-MM-DD'),
         workTime:'',
+        profit:CC.creditassign.creditassign.creditDealRate*CC.creditassign.creditassign.balance
     },
     oninit: function () {
         console.log(CC.creditassign);
@@ -72,27 +73,21 @@ var investRactive = new Ractive({
         });
     }
 });
+investRactive.on("invest-submit", function (e) {
+    e.original.preventDefault();
 
-investRactive.on("assign-submit", function (e) {
-    var tpl = require('ccc/creditDetail/partials/confirm.html');
-    tpl = tpl.replace('$title', CC.creditassign.title);
-    new Box({
-        title: '投标提示',
-        value: tpl,
-        width: 500,
-        height: 200,
-        cla: 'invest-confirm-wrap',
-        showed: function (ele, box) {
-            $(ele).find('.btn-confirm-ok').on('click', function () {
-                box.hide();
-            });
-            $(ele).find('.btn-confirm-cancel').on('click', function () {
-                box.hide();
-            });
-        }
-    });
-    $('form').submit();
-    return false;
+    var num = CC.creditassign.creditassign.balance;
+    var paymentPassword = this.get('paymentPassword');
+    var couponSelection = $("#couponSelection").find("option:selected").text();
+    if (CC.loan.userId === CC.user.userId) {
+        showErrors('该标为您本人借款，无法投标 ');
+        return false;
+    }
+    if (num > CC.user.availableAmount) {
+        showErrors('账户余额不足，请先充值 !');
+        return false;
+    }
+    window.location.href = '/creditDetail/payment?id='+CC.creditassign.creditassign.id;
 });
 
 window.reopen = function () {
