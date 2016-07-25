@@ -20,7 +20,7 @@
 @color-theme-info: #31B0D5;
 
 @color-theme-emphasize: #E18A13;
-@color-theme-main: #EF9C2C;
+@color-theme-main: #D7000F;
 @color-theme-link: #64A7F5;
 
 
@@ -451,12 +451,11 @@ a {
     top: 0;
     left: 0;
     right: 0;
-    height: 44px;
-    max-height: 44px;
-    line-height: 1;
-    background-color: #FFF;
-    color: #BE8B41;
-    box-shadow: inset 0 -1px rgba(0, 0, 0, 0.19);
+    height: 40px;
+    max-height: 40px;
+    line-height: 20px;
+    background-color: @color-theme-main;
+    color: #FFF;
 
     a {
         &, &:hover, &:visited {
@@ -483,7 +482,7 @@ a {
     & + *:before {
         display: block;
         content: "";
-        height: 44px;
+        height: 40px;
     }
 
     &:not(.omit-margin) + *:before {
@@ -495,8 +494,8 @@ a {
     }
 
     *[class*="col-"] {
-        padding: 12px 0;
-        font-size: 18px;
+        padding: 10px 0;
+        font-size: 14px;
 
         &:first-child {
             padding-left: 15px;
@@ -532,7 +531,7 @@ a {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #FFF;
+    background-color: #231815;
     padding: 6px 0;
     line-height: 1;
     font-size: 12px;
@@ -540,10 +539,10 @@ a {
     box-shadow: inset 0 1px @color-gray-light;
 
     li {
-        color: @color-gray-dark;
+        color: #DBDCDC;
 
         &.active {
-            color: @color-theme-main;
+            color: #C79F62;
         }
 
         a {
@@ -558,9 +557,9 @@ a {
             display: block;
             margin: 5px auto 6px;
             background: url("@{path-image}/nav-icons.png") no-repeat;
-            background-size: 208px/2 84px/2;
-            width: 52px/2;
-            height: 42px/2;
+            background-size: 128px/2 64px/2;
+            width: 32px/2;
+            height: 32px/2;
             overflow: hidden;
 
             &-home {
@@ -568,34 +567,34 @@ a {
             }
 
             &-path {
-                background-position: -52px/2 0;
+                background-position: -32px/2 0;
             }
 
             &-user {
-                background-position: -104px/2 0;
+                background-position: -64px/2 0;
             }
 
             &-option-horizontal {
-                background-position: -158px/2 0;
+                background-position: -96px/2 0;
             }
         }
 
         &.active {
             .icon {
                 &-home {
-                    background-position: 0 -42px/2;
+                    background-position: 0 -32px/2;
                 }
 
                 &-path {
-                    background-position: -52px/2 -42px/2;
+                    background-position: -32px/2 -32px/2;
                 }
 
                 &-user {
-                    background-position: -104px/2 -42px/2;
+                    background-position: -64px/2 -32px/2;
                 }
 
                 &-option-horizontal {
-                    background-position: -158px/2 -42px/2;
+                    background-position: -96px/2 -32px/2;
                 }
             }
         }
