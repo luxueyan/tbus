@@ -17,6 +17,11 @@ var fixedRactive = new Ractive({
       var amoutArray = outstandingInterest.split('.');
       this.set('outstandingInterest', parseInt(amoutArray[0]));
       this.set('oMore', amoutArray[1]);
+
+      var holdTotalAmount = parseFloat(CC.user.investStatistics.investStatistics.dueAmount.totalAmount|| 0).toFixed(2);
+      var amoutArray = holdTotalAmount.split('.');
+      this.set('holdTotalAmount', parseInt(amoutArray[0]));
+      this.set('hMore', amoutArray[1]);
     }
 });
 
