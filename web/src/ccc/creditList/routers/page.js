@@ -23,9 +23,9 @@ module.exports = function (router) {
         req.uest('/api/v2/creditassign/stat/list').end().then(function(r){
             console.log('====r.body')
             console.log(r.body)
-            //res.locals.total = r.body.data;
-            //var total = res.locals.total;
-            //res.expose(total, 'total');
+            res.locals.record = r.body.data;
+            var record = res.locals.record;
+            res.expose(record, 'record');
         });
 
 
