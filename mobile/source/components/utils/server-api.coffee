@@ -197,7 +197,7 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
-            get_loan_list_by_config: (query_set = {}, cache = true) ->
+            get_loan_list_by_config: (query_set = {}, cache = false) ->
 
                 _.defaults query_set, {
                     status: ''
