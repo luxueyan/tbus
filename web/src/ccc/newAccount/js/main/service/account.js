@@ -157,13 +157,6 @@ exports.accountService = {
                 next(r.body);
             });
     },
-//    checkPassword: function (password, next) {
-//        request('GET', '/api/v2/user/MYSELF/validatePaymentPassword?password=' + password)
-//            .end()
-//            .then(function (r) {
-//                next(r.body);
-//            });
-//    },
     getGroupMedal: function (next) {
         request('GET', '/api/v2/users/MYSELF/groupMedal')
                 .end()
@@ -245,6 +238,15 @@ exports.accountService = {
         request('POST', '/api/v2/user/MYSELF/validatePaymentPassword')
             .type('form')
             .send({password : password})
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
+    },
+    fixMobile: function (mobile, next) {
+        request('POST', '/api/v2/user/MYSELF/resetMobile')
+            .type('form')
+            .send({newMobile : mobile})
             .end()
             .then(function (r) {
                 next(r.body);

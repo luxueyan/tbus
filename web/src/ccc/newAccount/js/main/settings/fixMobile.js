@@ -20,16 +20,16 @@ fixMobileRactive.on('checkold', function () {
         this.set('isAcessa', true);
     }
 });
+
+
 fixMobileRactive.on('checkmobile', function () {
     var mobile = this.get('newMobile');
     this.set('isAcessb', false);
     if (mobile === '') {
         showErrorIndex('showErrorMessageb', 'errorMessageb', '手机号码不能为空');
-    }
-    //else if (pwd !== rePwd) {
-    //    showErrorIndex('showErrorMessageb', 'errorMessageb', '两次密码输入不一致');
-    //}
-    else {
+    } else if (!/^[1][3|5|7|8][0-9]{9}$/.test(mobile)) {
+        showErrorIndex('showErrorMessageb', 'errorMessageb', '请输入正确的手机号码');
+    } else {
         clearErrorIndex('showErrorMessageb', 'errorMessageb');
         this.set('isAcessb', true);
     }
@@ -56,34 +56,25 @@ fixMobileRactive.on('fixMobile', function () {
     var isAcess = this.get('isAcessa') && this.get('isAcessb') && this.get('isAcessc');
 
     if (isAcess) {
-        accountService.checkPassword(pwd, function (r) {
-            if (r) {
-                showErrorIndex('showErrorMessagea', 'errorMessagea', '与原密码相同');
-            } else {
-                accountService.resetPassword(pwd, smsCaptcha, function (r) {
-                    if (r) {
-                        CccOk.create({
-                            msg: '交易密码重置成功！',
-                            okText: '确定',
-                            // cancelText: '重新登录',
-                            ok: function () {
-                                window.location.href = "/newAccount/settings/home";
-                            },
-                            cancel: function () {
-                                window.location.reload();
-                            }
-                        });
-                        return;
-                    }
-                    else {
-                        showErrorIndex('showErrorMessagec', 'errorMessagec', '短信验证码错误');
+        accountService.fixMobile(mobile, function (r) {
+            if (r.success) {
+                CccOk.create({
+                    msg: '手机号修改成功！',
+                    okText: '确定',
+                    ok: function () {
+                        window.location.href = "/newAccount/settings/home";
+                    },
+                    cancel: function () {
+                        window.location.reload();
                     }
                 });
+                return;
+            }
+            else {
+                showErrorIndex('showErrorMessagec', 'errorMessagec', '短信验证码错误');
             }
         });
     }
-
-    // }
 });
 
 fixMobileRactive.on('sendOldCode', function () {
@@ -97,7 +88,7 @@ fixMobileRactive.on('sendOldCode', function () {
         var smsType = 'CONFIRM_CREDITMARKET_RESET_PAYMENTPASSWORD';
         CommonService.getMessage(smsType, function (r) {
             if (r.success) {
-                countDown();
+                countDown(sendOldCode);
             }
         });
     }
@@ -114,13 +105,36 @@ fixMobileRactive.on('sendNewCode', function () {
         var smsType = 'CONFIRM_CREDITMARKET_RESET_PAYMENTPASSWORD';
         CommonService.getMessage(smsType, function (r) {
             if (r.success) {
-                countDown();
+                countDown1();
             }
         });
     }
 });
 
-function countDown() {
+function countDown(className) {
+    $('.'+className)
+        .addClass('disabled');
+    var previousText = '获取验证码';
+    var msg = '$秒后重新发送';
+
+    var left = 60;
+    var interval = setInterval((function () {
+        if (left > 0) {
+            $('.'+className)
+                .html(msg.replace('$', left--));
+        } else {
+            fixMobileRactive.set('isSend', true);
+            $('.'+className)
+                .html(previousText);
+            $('.'+className)
+                .removeClass('disabled');
+            fixMobileRactive.set('isSend', false);
+            clearInterval(interval);
+        }
+    }), 1000);
+}
+
+function countDown1() {
     $('.sendCode')
         .addClass('disabled');
     var previousText = '获取验证码';

@@ -293,21 +293,22 @@ module.exports = function(router) {
                 res.locals.title = '太合汇';
             }
             Promise.join(
+                req.uest('/api/v2/user/MYSELF/statistics/invest')
+                    .end().get('body'),
                 req.uest(
-                    '/api/v2/user/MYSELF/authenticates'
-                )
-                .end().get('body'),
+                    '/api/v2/user/MYSELF/authenticates')
+                    .end().get('body'),
                 req.uest(
-                    '/api/v2/user/MYSELF/paymentPasswordHasSet'
-                )
-                .end().get('body'),
+                    '/api/v2/user/MYSELF/paymentPasswordHasSet')
+                    .end().get('body'),
                 req.uest(
-                    '/api/v2/user/MYSELF/fundaccountsMap'
-                )
-                .end().get('body'),
-                function(authenticates,
+                    '/api/v2/user/MYSELF/fundaccountsMap')
+                    .end().get('body'),
+                function(investStatistics,authenticates,
                     paymentPasswordHasSet,
                     fundaccountsMap) {
+                    res.locals.user.investStatistics =
+                        investStatistics;
                     res.locals.user.authenticates =
                         authenticates;
                     res.locals.user.paymentPasswordHasSet =
