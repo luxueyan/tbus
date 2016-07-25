@@ -57,7 +57,26 @@
             <div class="header">
                 <h2>成交数据</h2>
             </div>
-            <div class="deal-data-box"></div>
+            <div class="deal-data-box">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>投资人</th>
+                        <th>投资金额(元)</th>
+                        <th>成交时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        {{#record}}
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        {{/record}}
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="s-contentR-box">
             <div class="header">
