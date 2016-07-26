@@ -243,10 +243,10 @@ exports.accountService = {
                 next(r.body);
             });
     },
-    fixMobile: function (mobile, next) {
+    fixMobile: function (params, next) {
         request('POST', '/api/v2/user/MYSELF/resetMobile')
             .type('form')
-            .send({newMobile : mobile})
+            .send(params)
             .end()
             .then(function (r) {
                 next(r.body);
