@@ -14,7 +14,7 @@ var ractive = new Ractive({
         accountId: CC.user.agreement ? CC.user.agreement : false,
         mobile: formatNumber(CC.user.mobile),
         idNumber: false,
-        paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false,
+        //paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false,
         email: CC.user.email,
         percent: 25,
         levelText:'弱',
@@ -22,38 +22,13 @@ var ractive = new Ractive({
         bankCards:CC.user.bankCards,
     },
     init: function() {
-        var percent = 25;
-        var isEnterprise  = this.get('isEnterprise');
-
-        accountService.getUserInfo(function (userinfo) {
-            ractive.set('email', userinfo.userInfo.user.email);
-            ractive.set('idNumber', formatNumber(userinfo.userInfo.user.idNumber));
-
-            //更多信息
-            if (userinfo.career) {
-                ractive.set('isSave',true);
-            }
-            if (userinfo.personal) {
-                if(userinfo.personal.male){
-                     ractive.set('male', '男');
-                }else{
-                    ractive.set('male','女');
-                }
-               
-            }
-            if (userinfo.personal && userinfo.personal.education && userinfo.personal.education.educationLevel) {
-                ractive.set('educationLevel', userinfo.personal.education.educationLevel)
-            }
-            if (userinfo.career && userinfo.career.company && userinfo.career.company.industry) {
-                ractive.set('companyIndustry', userinfo.career.company.industry);
-            }
-            if (userinfo.career && userinfo.career.salary) {
-                ractive.set('salary', userinfo.career.salary)
-            }
-            if (userinfo.personal && userinfo.personal.maritalStatus) {
-                ractive.set('maritalStatus', userinfo.personal.maritalStatus)
-            }
-        });   
+        accountService.checkAuthenticate(function (r) {
+            ractive.set('paymentPasswordHasSet', r.paymentAuthenticated);
+            accountService.getUserInfo(function (userinfo) {
+                ractive.set('email', userinfo.userInfo.user.email);
+                ractive.set('idNumber', formatNumber(userinfo.userInfo.user.idNumber));
+            });
+        });
     },
 });
 

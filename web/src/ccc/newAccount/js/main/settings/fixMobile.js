@@ -48,6 +48,11 @@ fixMobileRactive.on('fixMobile', function () {
     var oldSms = this.get('oldSmsCaptcha');
     var mobile = this.get('newMobile');
     var newSms = this.get('newSmsCaptcha');
+    var params = {
+        newMobile: mobile,
+        smsCaptcha: newSms,
+        newSmsCaptcha: oldSms
+    }
 
     fixMobileRactive.fire('checkold');
     fixMobileRactive.fire('checkmobile');
@@ -56,7 +61,7 @@ fixMobileRactive.on('fixMobile', function () {
     var isAcess = this.get('isAcessa') && this.get('isAcessb') && this.get('isAcessc');
 
     if (isAcess) {
-        accountService.fixMobile(mobile, function (r) {
+        accountService.fixMobile(params, function (r) {
             if (r.success) {
                 CccOk.create({
                     msg: '手机号修改成功！',
@@ -78,42 +83,46 @@ fixMobileRactive.on('fixMobile', function () {
 });
 
 fixMobileRactive.on('sendOldCode', function () {
-    var pwd = this.get('password');
-    var repwd = this.get('repassword');
-    if (pwd === "" || repwd === "") {
-        return showErrorIndex('showErrorMessagec', 'errorMessagec', '交易密码不能为空');
-    }
-    if (!this.get('isSend')) {
-        this.set('isSend', true);
-        var smsType = 'CONFIRM_CREDITMARKET_RESET_PAYMENTPASSWORD';
+    //var pwd = this.get('password');
+    //var repwd = this.get('repassword');
+    //if (pwd === "" || repwd === "") {
+    //    return showErrorIndex('showErrorMessagec', 'errorMessagec', '交易密码不能为空');
+    //}
+    //if (!this.get('isSend')) {
+    //    this.set('isSend', true);
+        var smsType = 'CREDITMARKET_RESET_MOBILE';
         CommonService.getMessage(smsType, function (r) {
             if (r.success) {
-                countDown(sendOldCode);
+                //alert('111');
+                countDown('sendOldCode');
+                //alert('222');
             }
         });
-    }
+    //}
 });
 
 fixMobileRactive.on('sendNewCode', function () {
-    var pwd = this.get('password');
-    var repwd = this.get('repassword');
-    if (pwd === "" || repwd === "") {
-        return showErrorIndex('showErrorMessagec', 'errorMessagec', '交易密码不能为空');
+    var mobile = this.get('newMobile');
+    //var repwd = this.get('repassword');
+    if (mobile === "") {
+        return showErrorIndex('showErrorMessagec', 'errorMessagec', '请先输入手机号');
+    }else{
+        clearErrorIndex('showErrorMessagec', 'errorMessagec');
     }
-    if (!this.get('isSend')) {
-        this.set('isSend', true);
-        var smsType = 'CONFIRM_CREDITMARKET_RESET_PAYMENTPASSWORD';
+    //if (!this.get('isSend')) {
+    //    this.set('isSend', true);
+        var smsType = 'CREDITMARKET_RESET_MOBILE';
         CommonService.getMessage(smsType, function (r) {
             if (r.success) {
-                countDown1();
+                //alert("333");
+                countDown('sendNewCode');
             }
         });
-    }
+    //}
 });
 
 function countDown(className) {
-    $('.'+className)
-        .addClass('disabled');
+    $('.'+className).addClass('disabled');
     var previousText = '获取验证码';
     var msg = '$秒后重新发送';
 
@@ -123,39 +132,17 @@ function countDown(className) {
             $('.'+className)
                 .html(msg.replace('$', left--));
         } else {
-            fixMobileRactive.set('isSend', true);
+            //fixMobileRactive.set('isSend', true);
             $('.'+className)
                 .html(previousText);
             $('.'+className)
                 .removeClass('disabled');
-            fixMobileRactive.set('isSend', false);
+            //fixMobileRactive.set('isSend', false);
             clearInterval(interval);
         }
     }), 1000);
 }
 
-function countDown1() {
-    $('.sendCode')
-        .addClass('disabled');
-    var previousText = '获取验证码';
-    var msg = '$秒后重新发送';
-
-    var left = 60;
-    var interval = setInterval((function () {
-        if (left > 0) {
-            $('.sendCode')
-                .html(msg.replace('$', left--));
-        } else {
-            fixMobileRactive.set('isSend', true);
-            $('.sendCode')
-                .html(previousText);
-            $('.sendCode')
-                .removeClass('disabled');
-            fixMobileRactive.set('isSend', false);
-            clearInterval(interval);
-        }
-    }), 1000);
-}
 function clearErrorIndex(key, msgkey) {
     fixMobileRactive.set(key, false);
     fixMobileRactive.set(msgkey, '');

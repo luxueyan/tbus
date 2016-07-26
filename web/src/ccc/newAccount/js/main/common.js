@@ -55,7 +55,7 @@ var infoRactive = new Ractive({
 	template: require('ccc/newAccount/partials/home/userinfo.html'),
 	data: {
 		user: CC.user,
-		paymentPasswordHasSet : CC.user.paymentPasswordHasSet,
+		//paymentPasswordHasSet : CC.user.paymentPasswordHasSet,
 		banksabled : banksabled.length? true : false,
 		safetyProgress: 25,
 		riskText: '中',
@@ -95,10 +95,12 @@ var infoRactive = new Ractive({
 			}
 		});
 		accountService.checkAuthenticate(function (r) {
+			infoRactive.set('paymentPasswordHasSet', r.paymentAuthenticated);
+			infoRactive.set('emailAuthenticated', r.emailAuthenticated);
+
 			accountService.getUserInfo(function (res) {
 				//console.log(res)
 				//infoRactive.set('user', res.user);
-				infoRactive.set('emailAuthenticated', r.emailAuthenticated);
 
 				if (res.userInfo.user.name) {
 					safetyProgress += 25;
