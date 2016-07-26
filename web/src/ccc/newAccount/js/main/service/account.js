@@ -252,6 +252,15 @@ exports.accountService = {
                 next(r.body);
             });
     },
+    sendSmsCaptcha: function (params, next) {
+        request('POST', '/api/v2/smsCaptcha')
+            .type('form')
+            .send(params)
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
+    },
     getQuestion: function (next) {
         request('GET','/api/v2/survey/99F6776A-DE40-4030-9C64-481CDD3E15BA')
             .end()

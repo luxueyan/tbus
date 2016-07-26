@@ -153,7 +153,7 @@ module.exports = function(router) {
             });
     });
     router.get('/coupon', function(req, res) {
-        var paymentPasswordHasSet = await req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
+        var paymentPasswordHasSet = req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
             .end().get('body');
         res.locals.user.paymentPasswordHasSet =
             paymentPasswordHasSet;

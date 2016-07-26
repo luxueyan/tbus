@@ -103,7 +103,10 @@ fixMobileRactive.on('sendOldCode', function () {
 
 fixMobileRactive.on('sendNewCode', function () {
     var mobile = this.get('newMobile');
-    //var repwd = this.get('repassword');
+    var params = {
+        mobile: mobile,
+        smsType: 'CREDITMARKET_RESET_MOBILE'
+    }
     if (mobile === "") {
         return showErrorIndex('showErrorMessagec', 'errorMessagec', '请先输入手机号');
     }else{
@@ -111,8 +114,8 @@ fixMobileRactive.on('sendNewCode', function () {
     }
     //if (!this.get('isSend')) {
     //    this.set('isSend', true);
-        var smsType = 'CREDITMARKET_RESET_MOBILE';
-        CommonService.getMessage(smsType, function (r) {
+    //    var smsType = 'CREDITMARKET_RESET_MOBILE';
+        accountService.sendSmsCaptcha(params, function (r) {
             if (r.success) {
                 //alert("333");
                 countDown('sendNewCode');
