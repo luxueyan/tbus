@@ -3,251 +3,63 @@
 
     <nav class="omit-margin container page-nav">
     <div class="row">
-        <a class="col-xs-2 back" x-go-back ng-if="filter_type">
-            <param class="glyphicon glyphicon-menu-left">
-        </a>
-        <span class="col-xs-2" ng-if="!filter_type">&nbsp;</span>
-        <span class="col-xs-8 text-center btn-group-wrap">
+        <span class="col-xs-12 text-center btn-group-wrap">
             <div class="btn-group">
-                <a href="list" class="btn btn-tab selected">理财</a>
-                <a href="" class="btn btn-tab">基金</a>
+                <a href="list?tab=loan" class="btn btn-tab"
+                   ng-class="{ selected: current_tab === 'loan' }"
+                >理财</a>
+                <a href="list?tab=fund" class="btn btn-tab"
+                   ng-class="{ selected: current_tab === 'fund' }"
+                >基金</a>
+                <a href="list?tab=assignment" class="btn btn-tab"
+                   ng-class="{ selected: current_tab === 'assignment' }"
+                >转让</a>
             </div>
         </span>
-        <span class="col-xs-2">&nbsp;</span>
     </div>
     </nav>
 
-    <div ng-if="filter_type">
-        <div class="container text-center loan-filter">
-            <div class="row">
-                <div class="col-xs-4" x-uib-dropdown is-open="open_dropdown_rate">
-                    <div x-uib-dropdown-toggle>
-                        <span ng-show="query_set.minRate === 0 && query_set.maxRate === 100">全部利率</span>
-                        <span ng-show="query_set.minRate === 0 && query_set.maxRate === 5">5%以下</span>
-                        <span ng-show="query_set.minRate === 5 && query_set.maxRate === 6">5%~6%</span>
-                        <span ng-show="query_set.minRate === 6 && query_set.maxRate === 7">6%~7%</span>
-                        <span ng-show="query_set.minRate === 7 && query_set.maxRate === 8">7%~8%</span>
-                        <span ng-show="query_set.minRate === 8 && query_set.maxRate === 100">8%以上</span>
-                        <param class="glyphicon glyphicon-menu-down">
-                    </div>
-
-                    <ul x-uib-dropdown-menu ng-click="self.query(query_set); open_dropdown_rate = false">
-                        <li ng-class="{ active: query_set.minRate === 0 && query_set.maxRate === 100 }"
-                            ng-click="query_set.minRate = 0; query_set.maxRate = 100"
-                        >全部利率</li>
-                        <li ng-class="{ active: query_set.minRate === 0 && query_set.maxRate === 5 }"
-                            ng-click="query_set.minRate = 0; query_set.maxRate = 5"
-                        >5%以下</li>
-                        <li ng-class="{ active: query_set.minRate === 5 && query_set.maxRate === 6 }"
-                            ng-click="query_set.minRate = 5; query_set.maxRate = 6"
-                        >5%~6%</li>
-                        <li ng-class="{ active: query_set.minRate === 6 && query_set.maxRate === 7 }"
-                            ng-click="query_set.minRate = 6; query_set.maxRate = 7"
-                        >6%~7%</li>
-                        <li ng-class="{ active: query_set.minRate === 7 && query_set.maxRate === 8 }"
-                            ng-click="query_set.minRate = 7; query_set.maxRate = 8"
-                        >7%~8%</li>
-                        <li ng-class="{ active: query_set.minRate === 8 && query_set.maxRate === 100 }"
-                            ng-click="query_set.minRate = 8; query_set.maxRate = 100"
-                        >8%以上</li>
-                    </ul>
-                </div>
-
-                <div class="col-xs-4" x-uib-dropdown is-open="open_dropdown_duration">
-                    <div x-uib-dropdown-toggle>
-                        <span ng-show="query_set.minDuration === 0 && query_set.maxDuration === 100">全部期限</span>
-                        <span ng-show="query_set.minDuration === 0 && query_set.maxDuration === 1">1个月内</span>
-                        <span ng-show="query_set.minDuration === 1 && query_set.maxDuration === 3">1~3个月</span>
-                        <span ng-show="query_set.minDuration === 3 && query_set.maxDuration === 6">3~6个月</span>
-                        <span ng-show="query_set.minDuration === 6 && query_set.maxDuration === 12">6~12个月</span>
-                        <span ng-show="query_set.minDuration === 12 && query_set.maxDuration === 100">1年以上</span>
-                        <param class="glyphicon glyphicon-menu-down">
-                    </div>
-
-                    <ul x-uib-dropdown-menu ng-click="self.query(query_set); open_dropdown_duration = false">
-                        <li ng-class="{ active: query_set.minDuration === 0 && query_set.maxDuration === 100 }"
-                            ng-click="query_set.minDuration = 0; query_set.maxDuration = 100"
-                        >全部期限</li>
-                        <li ng-class="{ active: query_set.minDuration === 0 && query_set.maxDuration === 1 }"
-                            ng-click="query_set.minDuration = 0; query_set.maxDuration = 1"
-                        >1个月内</li>
-                        <li ng-class="{ active: query_set.minDuration === 1 && query_set.maxDuration === 3 }"
-                            ng-click="query_set.minDuration = 1; query_set.maxDuration = 3"
-                        >1~3个月</li>
-                        <li ng-class="{ active: query_set.minDuration === 3 && query_set.maxDuration === 6 }"
-                            ng-click="query_set.minDuration = 3; query_set.maxDuration = 6"
-                        >3~6个月</li>
-                        <li ng-class="{ active: query_set.minDuration === 6 && query_set.maxDuration === 12 }"
-                            ng-click="query_set.minDuration = 6; query_set.maxDuration = 12"
-                        >6~12个月</li>
-                        <li ng-class="{ active: query_set.minDuration === 12 && query_set.maxDuration === 100 }"
-                            ng-click="query_set.minDuration = 12; query_set.maxDuration = 100"
-                        >1年以上</li>
-                    </ul>
-                </div>
-
-                <div class="col-xs-4 dropdown" x-uib-dropdown is-open="open_dropdown_status">
-                    <div x-uib-dropdown-toggle>
-                        <span ng-show="query_set.status === ''">全部状态</span>
-                        <span ng-show="query_set.status === 'OPENED'">进行中</span>
-                        <span ng-show="query_set.status === 'SCHEDULED'">即将开始</span>
-                        <span ng-show="query_set.status === 'FINISHED'">已满额</span>
-                        <span ng-show="query_set.status === 'SETTLED'">计息中</span>
-                        <span ng-show="query_set.status === 'CLEARED'">已结息</span>
-                        <param class="glyphicon glyphicon-menu-down">
-                    </div>
-
-                    <ul x-uib-dropdown-menu ng-click="self.query(query_set); open_dropdown_status = false">
-                        <li ng-class="{ active: query_set.status === '' }"
-                            ng-click="query_set.status = ''"
-                        >全部状态</li>
-                        <li ng-class="{ active: query_set.status === 'OPENED' }"
-                            ng-click="query_set.status = 'OPENED'"
-                        >进行中</li>
-                        <li ng-class="{ active: query_set.status === 'SCHEDULED' }"
-                            ng-click="query_set.status = 'SCHEDULED'"
-                        >即将开始</li>
-                        <li ng-class="{ active: query_set.status === 'FINISHED' }"
-                            ng-click="query_set.status = 'FINISHED'"
-                        >已满额</li>
-                        <li ng-class="{ active: query_set.status === 'SETTLED' }"
-                            ng-click="query_set.status = 'SETTLED'"
-                        >计息中</li>
-                        <li ng-class="{ active: query_set.status === 'CLEARED' }"
-                            ng-click="query_set.status = 'CLEARED'"
-                        >已结息</li>
-                    </ul>
-                </div>
-            </div>
+    <section class="subject omit-margin shadow" ng-switch="current_tab">
+        <div class="content" ng-switch-when="loan">
+            <h3 class="title">固定收益</h3>
+            <span class="desc">稳健投资 乐享收益</span>
         </div>
+        <div class="content" ng-switch-when="fund">
+            <h3 class="title"></h3>
+            <span class="desc"></span>
+        </div>
+        <div class="content" ng-switch-when="assignment">
+            <h3 class="title">转让专区</h3>
+            <span class="desc">稳健投资 乐享收益</span>
+        </div>
+    </section>
 
-        <section class="loan-panel"
-                 ng-class="'loan-panel-' + filter_type | lowercase"
+    <section class="list-wrap container">
+        <ul class="list-unstyled u-off-margin-bottom list"
+            ui-scrollpoint
+            ui-scrollpoint-edge="bottom"
+            ui-scrollpoint-action="self.infinite_scroll"
+            ui-scrollpoint-enabled="{{
+                   !loading
+                && list.length >= query_set.pageSize
+                && list.length < list.totalSize
+            }}"
         >
-            <div ng-switch="filter_type">
-                <div class="heading container" ng-switch-when="LHB">
-                    <h3 class="title">灵活宝</h3>
-                    <span class="desc">1元起投 随时提取</span>
-                </div>
+            <li ng-repeat="item in list">
+                <a ng-href="loan/{{ item.id }}"
+                   x-loan-summary
+                   data-loan="item"
+                ></a>
+            </li>
+        </ul>
 
-                <div class="heading container" ng-switch-when="DCB">
-                    <h3 class="title">定存宝</h3>
-                    <span class="desc">稳定收入最低风险</span>
-                </div>
+        <p class="text-center loading" ng-show="loading">
+            <img src="assets/image/spinner.gif">
+        </p>
 
-                <div class="heading container" ng-switch-when="SBTZ">
-                    <h3 class="title">散标理财</h3>
-                    <span class="desc">稳定收入最低风险</span>
-                </div>
-            </div>
-
-            <ul class="list-unstyled u-off-margin-bottom loan-list"
-                ui-scrollpoint
-                ui-scrollpoint-edge="bottom"
-                ui-scrollpoint-action="self.infinite_scroll"
-                ui-scrollpoint-enabled="{{
-                       !loading
-                    && list.length >= query_set.pageSize
-                    && list.length < list.totalSize
-                }}"
-            >
-                <li ng-repeat="item in list track by $index">
-                    <a ng-href="loan/{{ item.id }}"
-                       x-loan-summary
-                       data-loan="item"
-                       data-layout="'has-chart'"
-                    ></a>
-                </li>
-            </ul>
-
-            <p class="text-center loading" ng-show="loading">
-                <img src="assets/image/spinner.gif">
-            </p>
-
-            <div class="container" ng-if="!list.length" ng-hide="loading">
-                <h4 class="alert alert-info text-center">暂无数据</h4>
-            </div>
-        </section>
-    </div>
-
-    <div ng-if="!filter_type">
-        <section class="loan-panel loan-panel-lhb">
-            <a href="list/LHB">
-                <div class="heading container">
-                    <h3 class="title">灵活宝</h3>
-                    <span class="desc">
-                        1元起投 随时提取
-                        <param class="glyphicon glyphicon-menu-right">
-                    </span>
-                </div>
-            </a>
-
-            <ul class="list-unstyled u-off-margin-bottom loan-list">
-                <li ng-repeat="item in list_lhb">
-                    <a ng-href="loan/{{ item.id }}"
-                       x-loan-summary
-                       data-loan="item"
-                       data-layout="'has-chart'"
-                    ></a>
-                </li>
-            </ul>
-
-            <p class="text-center loading" ng-show="loading_lhb">
-                <img src="assets/image/spinner.gif">
-            </p>
-        </section>
-
-        <section class="loan-panel loan-panel-dcb">
-            <a href="list/DCB">
-                <div class="heading container">
-                    <h3 class="title">定存宝</h3>
-                    <span class="desc">
-                        稳定收入最低风险
-                        <param class="glyphicon glyphicon-menu-right">
-                    </span>
-                </div>
-            </a>
-
-            <ul class="list-unstyled u-off-margin-bottom loan-list">
-                <li ng-repeat="item in list_dcb">
-                    <a ng-href="loan/{{ item.id }}"
-                       x-loan-summary
-                       data-loan="item"
-                       data-layout="'has-chart'"
-                    ></a>
-                </li>
-            </ul>
-
-            <p class="text-center loading" ng-show="loading_dcb">
-                <img src="assets/image/spinner.gif">
-            </p>
-        </section>
-
-        <section class="loan-panel loan-panel-sbtz">
-            <a href="list/SBTZ">
-                <div class="heading container">
-                    <h3 class="title">散标理财</h3>
-                    <span class="desc">
-                        稳定收入最低风险
-                        <param class="glyphicon glyphicon-menu-right">
-                    </span>
-                </div>
-            </a>
-
-            <ul class="list-unstyled u-off-margin-bottom loan-list">
-                <li ng-repeat="item in list_sbtz">
-                    <a ng-href="loan/{{ item.id }}"
-                       x-loan-summary
-                       data-loan="item"
-                       data-layout="'has-chart'"
-                    ></a>
-                </li>
-            </ul>
-
-            <p class="text-center loading" ng-show="loading_sbtz">
-                <img src="assets/image/spinner.gif">
-            </p>
-        </section>
-    </div>
+        <div class="container" ng-if="!list.length" ng-hide="loading">
+            <h4 class="alert alert-info text-center">暂无数据</h4>
+        </div>
+    </section>
 
 </div>
