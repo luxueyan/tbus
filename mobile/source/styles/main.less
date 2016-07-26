@@ -434,6 +434,36 @@ a {
     }
 }
 
+.marquee {
+    overflow: hidden;
+
+    .content {
+        display: table;
+        min-width: 100%;
+        -webkit-transform: translateX(100%);
+        transform: translateX(100%);
+        -webkit-animation: marquee 15s linear infinite;
+        animation: marquee 15s linear infinite;
+    }
+}
+
+.shadow {
+    position: relative;
+
+    &:after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        bottom: 0;
+        left: 10%;
+        right: 10%;
+        width: 80%;
+        height: 20%;
+        border-radius: 100%;
+        box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+    }
+}
+
 /*=============================================================================
                                                                     Page Header
 ----*/
@@ -638,22 +668,17 @@ a {
     }
 
     .announcement {
-        overflow: hidden;
-        padding-top: 3px;
-        padding-bottom: 3px;
+        padding: 3px 15px;
         height: 23px;
         background-color: @color-theme-main;
         color: #FFF;
         font-size: 12px;
+        text-align: center;
 
         .content {
-            position: absolute;
-            min-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
             white-space: nowrap;
-            -webkit-transform: translateX(100%);
-            transform: translateX(100%);
-            -webkit-animation: marquee 15s linear infinite;
-            animation: marquee 15s linear infinite;
         }
     }
 
@@ -729,8 +754,7 @@ a {
     .feature {
         margin-left: 8px;
         margin-right: 8px;
-        padding-top: 10px;
-        padding-bottom: 10px;
+        padding: 10px 15px;
         background-color: #FFF;
         font-size: 12px;
         color: #B28146;
