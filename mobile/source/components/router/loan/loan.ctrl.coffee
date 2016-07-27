@@ -136,6 +136,8 @@ do (_, angular, moment, Math, Date) ->
             product_type: loanRequest.productKey?.trim().match(/^\w+/)?[0] or 'UNKNOWN'
             value_date: loanRequest.valueDate
 
+            due_date: loanRequest.dueDate || new Date( +moment(finished_date).add(1 + item.duration.totalDays, 'd'))
+
             balance
             balance_myriad
 

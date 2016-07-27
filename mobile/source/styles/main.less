@@ -51,6 +51,10 @@ a {
     }
 }
 
+.container {
+    width: auto;
+}
+
 .modal {
     &.center {
         .modal-dialog {
@@ -460,7 +464,7 @@ a {
         width: 80%;
         height: 20%;
         border-radius: 100%;
-        box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     }
 }
 
@@ -529,10 +533,14 @@ a {
         }
     }
 
-    & + *:before {
-        display: block;
-        content: "";
-        height: 40px;
+    // & + *:before {
+    //     display: block;
+    //     content: "";
+    //     height: 40px;
+    // }
+
+    & + * {
+        margin-top: 40px;
     }
 
     &:not(.omit-margin) + *:before {
@@ -956,6 +964,10 @@ a {
             }
         }
     }
+
+    .loading {
+        padding: 10px;
+    }
 }
 
 /*=============================================================================
@@ -1342,217 +1354,288 @@ a {
 ----*/
 
 #loan {
-    padding-bottom: 70px;
+    padding-bottom: 50px;
 
     section:not(.omit-margin) {
-        margin-top: 8px;
-        margin-bottom: 8px;
+        margin-top: 6px;
+        margin-bottom: 6px;
     }
 
-    .loan-summary {
-        position: relative;
-        padding-top: 14px;
-        background: #F3BF77 url("@{path-image}/graph.png") no-repeat 0 0;
+    .loan-summary-1 {
+        border-bottom: 1px solid #B8B8B8;
+        padding: 25px 30px 13px;
+        background: #FFF url("@{path-image}/graph-lg.png") no-repeat 0 0;
         background-size: cover;
-        height: 296px/2;
+        height: 184px/2;
         overflow: hidden;
+        font-size: 12px;
+        color: #717071;
 
         .rate {
-            color: #FFF;
-
             .value {
-                text-shadow: 0 1px 3px rgba(156, 133, 99, 0.66);
-                font-size: 34px;
+                font-size: 64px/2;
+                line-height: 1;
+                color: @color-theme-main;
+
+                small {
+                    font-size: 38px/2;
+                }
             }
         }
 
-        .footer {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            padding: 15px 30px;
-            background-color: rgba(255, 255, 255, 0.4);
-            color: #B37C37;
+        .duration {
+            .value {
+                line-height: 64px/2;
+            }
+        }
+    }
 
-            .inner {
-                .flex-display(center; space-between);
+    .loan-summary-2 {
+        .flex-display(center; space-between);
+        margin-bottom: 10px;
+        padding: 8px 15px;
+        background-color: #FFF;
+        font-size: 12px;
+        color: #717071;
 
-                > :last-child {
-                    .flex(1);
+        .num {
+            color: @color-theme-main;
+        }
+
+        .date {
+            .flex(1);
+        }
+
+        .balance {
+            .num {
+                margin-left: 5px;
+                font-size: 14px;
+                vertical-align: -1px;
+            }
+        }
+    }
+
+    .loan-date {
+        padding: 10px;
+        background-color: #FFF;
+
+        .list {
+            display: table;
+            width: 100%;
+
+            > li {
+                display: table-cell;
+                position: relative;
+                text-align: center;
+                font-size: 12px;
+
+                .name {
+                    color: #666;
+
+                    &:before, &:after {
+                        .transform(translateY(-50%));
+                        content: "";
+                        position: absolute;
+                        top: 50%;
+                        width: 50%;
+                        height: 2px;
+                        background-color: #CFA972;
+                    }
+
+                    &:before {
+                        left: 0;
+                    }
+
+                    &:after {
+                        right: 0;
+                    }
+                }
+
+                .value {
+                    margin-top: 15px;
+                    color: #828282;
+
+                    &:before, &:after {
+                        .transform(translateX(-50%) translateY(-50%));
+                        content: "";
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        border-radius: 50%;
+                    }
+
+                    &:before {
+                        width: 11px;
+                        height: 11px;
+                        background-color: #CFA972;
+                    }
+
+                    &:after {
+                        width: 5px;
+                        height: 5px;
+                        background-color: #F4F4F4;
+                        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+                    }
+                }
+
+                &:nth-child(2) {
+                    .name:after,
+                    .value:before {
+                        background-color: #E60012;
+                    }
+                }
+
+                &:nth-child(3) {
+                    .name:before,
+                    .value:before {
+                        background-color: #E60012;
+                    }
                 }
             }
         }
     }
 
     .loan-info {
-        border-top: 1px solid @color-gray-light;
-        border-bottom: 1px solid @color-gray-light;
-        padding-top: 15px;
-        padding-bottom: 15px;
+        padding: 5px 20px;
         background-color: #FFF;
+        font-size: 12px;
+        color: #717071;
 
-        .link-list {
-            > li {
-                text-align: center;
-                color: @color-gray-dark;
-
-                + li {
-                    border-left: 1px solid #EAEBED;
-                }
-
-                a {
-                    position: relative;
-                    display: block;
-                    height: 58px;
-                    padding-top: 38px;
-
-                    &, &:hover, &:visited {
-                        color: inherit;
-                    }
-                }
-
-                img {
-                    .transform(translateX(-50%));
-
-                    position: absolute;
-                    left: 50%;
-                    top: 0;
-                }
-            }
-        }
-    }
-
-    .loan-panel {
-        border-top: 1px solid @color-gray-light;
-        border-bottom: 1px solid @color-gray-light;
-        padding-bottom: 20px;
-        background-color: #FFF;
-
-        .heading {
-            border-bottom: 1px solid #EAEBED;
-            padding-top: 15px;
-            padding-bottom: 9px;
-
-            .title {
-                position: relative;
-                margin: 0;
-                padding-left: 16px;
-                font-size: 16px;
-
-                &:before {
-                    content: "";
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    bottom: 0;
-                    width: 4px;
-                    background-color: #BE8B41;
-                }
-            }
-        }
-
-        .info-list {
-            margin-left: 16px;
-            margin-right: 16px;
-
+        .list {
             > li {
                 .flex-display(center; space-between);
-
-                padding-top: 10px;
-                padding-bottom: 10px;
+                padding: 6px 4px;
 
                 + li {
-                    border-top: 1px solid #EAEBED;
+                    border-top: 1px dashed #DCDCDC;
                 }
 
                 .value {
                     .flex(1);
-
+                    margin-left: 15px;
                     text-align: right;
-                    color: @color-gray-dark;
-                }
-            }
-        }
 
-        .content {
-            padding: 16px;
-
-            img {
-                max-width: 100% !important;
-                height: auto !important;
-            }
-        }
-
-        .table {
-            border-top: 1px solid #EAEBED;
-            border-bottom: 1px solid #EAEBED;
-
-            &.off-border-top {
-                border-top: 0;
-            }
-
-            > thead > tr {
-                &:nth-of-type(odd) {
-                    background-color: #F4F4F6;
-                }
-
-                > th {
-                    border-bottom: 1px solid #EAEBED;
-                    font-weight: normal;
-                    text-align: center;
-
-                    &.text-right {
-                        text-align: right;
-                    }
-
-                    + th {
-                        border-left: 1px solid #EAEAEA;
+                    p {
+                        margin: 0;
                     }
                 }
             }
-
-            > tbody > tr {
-                &:nth-of-type(even) {
-                    background-color: #F4F4F6;
-                }
-
-                > td {
-                    border-top: 0;
-                    color: @color-gray-dark;
-                    text-align: center;
-
-                    &.text-right {
-                        text-align: right;
-                    }
-
-                    + td {
-                        border-left: 1px solid #EAEAEA;
-                    }
-                }
-            }
-        }
-
-        .btn-more {
-            .button-variant(@color-gray; @color-gray-light; @color-gray-light);
-            .button-size(8px; 12px; 14px; 1; 999px);
-
-            min-width: 208px;
         }
     }
 
-    .loan-status {
+    .loan-detail {
+        .panel {
+            + .panel {
+                margin-top: 0;
+            }
+
+            &-group {
+                margin-bottom: 0;
+            }
+
+            &-default {
+                border: 0;
+                border-bottom: 1px solid #DEDEDF;
+                border-radius: 0;
+                -webkit-box-shadow: none;
+                        box-shadow: none;
+
+                &.panel-open {
+                    margin-bottom: 6px;
+                    border-bottom: 0;
+                }
+            }
+
+            &-heading {
+                padding: 8px 20px 8px 15px;
+                background-color: #FFF;
+            }
+
+            &-title {
+                border-left: 1px solid #D7000F;
+                padding-left: 5px;
+                font-size: 12px;
+                color: @color-theme-main;
+
+                a {
+                    display: block;
+                    color: inherit;
+
+                    &:hover,
+                    &:focus {
+                        outline: 0;
+                        text-decoration: none;
+                    }
+                }
+
+                .glyphicon {
+                    color: #C79F62;
+                }
+            }
+
+            &-body {
+                border-top-color: #DEDEDF;
+
+                .content {
+                    text-align: justify;
+                    font-size: 12px;
+                    color: #999;
+                    word-break: break-word;
+
+                    img {
+                        max-width: 100% !important;
+                        height: auto !important;
+                    }
+
+                    ul {
+                        padding-left: 0;
+                        list-style: none;
+                    }
+
+                    .table {
+                        margin-top: -10px;
+                    }
+
+                    .table > thead > tr > th {
+                        border-bottom: 1px dashed #DADADA;
+                        font-weight: normal;
+                    }
+
+                    .table > tbody > tr > td {
+                        border-top: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .loan-fixed {
+        display: table;
+        width: 100%;
+        height: 44px;
         position: fixed;
         z-index: 11;
         bottom: 0;
         left: 0;
         right: 0;
-        background-color: #FFF;
+
+        .rule {
+            display: table-cell;
+            vertical-align: middle;
+            padding-left: 17px;
+            width: 60%;
+            background-color: #000;
+            color: #FFF;
+            font-size: 12px;
+        }
+
+        .status {
+            display: table-cell;
+            width: 40%;
+        }
 
         .btn {
-            border-radius: 0;
-            padding-top: 15px;
-            padding-bottom: 15px;
+            .button-size(14px; 14px; 14px; 1; 0);
         }
     }
 }
@@ -1568,7 +1651,7 @@ a {
     }
 
     .loan-panel {
-        #loan .loan-panel;
+        // #loan .loan-panel;
     }
 }
 
@@ -1612,7 +1695,7 @@ a {
     }
 
     .loan-panel {
-        #loan .loan-panel;
+        // #loan .loan-panel;
     }
 
     .loading {
@@ -1632,7 +1715,7 @@ a {
     }
 
     .loan-panel {
-        #loan .loan-panel;
+        // #loan .loan-panel;
     }
 }
 
@@ -1713,7 +1796,7 @@ a {
     }
 
     .loan-summary {
-        #loan .loan-summary;
+        //#loan .loan-summary;
     }
 
     .form-flatten {
@@ -2518,7 +2601,7 @@ a {
     }
 
     .repayment-summary {
-        #loan .loan-summary;
+        //#loan .loan-summary;
 
         margin-bottom: 23px !important;
 
@@ -2548,7 +2631,7 @@ a {
     }
 
     .repayment-panel {
-        #loan .loan-panel;
+        // #loan .loan-panel;
     }
 
     .dynamic {
