@@ -134,7 +134,7 @@ function replaceStr(str) {
 
 
 InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) {
-    console.log(res)
+    res.results = res.data.results;
 
     parseLoanList(res.results);
     var listFixed = [], listFloat = [];
@@ -169,17 +169,22 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
 if(CC.key){
     params.product = CC.key;
     var investRactive = new Ractive({
-        el: ".invest-list-wrapper",
+        el: ".list_box",
         template: require('ccc/invest/partials/list.html'),
         data: {
             list: [],
             RepaymentMethod: i18n.enums.RepaymentMethod, // 还款方式
-            user: CC.user
+            user: CC.user,
+            key: CC.key
         },
         onrender:function(){
             var that = this;
             InvestListService.getLoanListWithCondition(jsonToParams(params),function(res){
-                that.set('list',parseLoanList(res.results));
+                that.set('list',parseLoanList(res.data.results));
+                that.set('total',res.total);
+                that.set('opened',res.opened);
+                that.set('settled',res.settled);
+                that.set('cleared',res.cleared);
                 that.renderPager(res,params.currentPage,that)
             });
             
