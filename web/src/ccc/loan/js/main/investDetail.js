@@ -485,6 +485,8 @@ var recordRactive = new Ractive({
             .end()
             .get('body')
             .then(function (r) {
+                console.log('rrrrrrrr')
+                console.log(r)
                 self.setData(r);
 
             });

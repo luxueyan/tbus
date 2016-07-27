@@ -7,6 +7,8 @@ var fixMobileRactive = new Ractive({
     template: require('ccc/newAccount/partials/settings/fixMobile.html'),
     data: {
         user:CC.user,
+        step1:true,
+        step2:false
     }
 });
 fixMobileRactive.on('checkold', function () {
@@ -50,8 +52,8 @@ fixMobileRactive.on('fixMobile', function () {
     var newSms = this.get('newSmsCaptcha');
     var params = {
         newMobile: mobile,
-        smsCaptcha: newSms,
-        newSmsCaptcha: oldSms
+        smsCaptcha: oldSms,
+        newSmsCaptcha:newSms
     }
 
     fixMobileRactive.fire('checkold');
@@ -63,20 +65,21 @@ fixMobileRactive.on('fixMobile', function () {
     if (isAcess) {
         accountService.fixMobile(params, function (r) {
             if (r.success) {
-                CccOk.create({
-                    msg: '手机号修改成功！',
-                    okText: '确定',
-                    ok: function () {
-                        window.location.href = "/newAccount/settings/home";
-                    },
-                    cancel: function () {
-                        window.location.reload();
-                    }
-                });
-                return;
+                fixMobileRactive.set('step1',false);
+                fixMobileRactive.set('step2',true);
+                setTimeout(function(){
+                    window.location.href = '/newAccount/settings/home';
+                },5000);
             }
             else {
-                showErrorIndex('showErrorMessagec', 'errorMessagec', '短信验证码错误');
+                if(r.error[0].type === 'newSmsCaptcha'&&r.error[0].message === 'INVALID_MOBILE_CAPTCHA'){
+                    showErrorIndex('showErrorMessagec', 'errorMessagec', '短信验证码错误');
+                }else if(r.error[0].type === 'smsCaptcha'&&r.error[0].message === 'INVALID_MOBILE_CAPTCHA'){
+                    showErrorIndex('showErrorMessagea', 'errorMessagea', '短信验证码错误');
+                }else{
+                    clearErrorIndex('showErrorMessagea', 'errorMessagea');
+                    clearErrorIndex('showErrorMessagec', 'errorMessagec');
+                }
             }
         });
     }
