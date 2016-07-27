@@ -87,7 +87,7 @@
                     <img class="" src="/ccc/newAccount/img/recharge_pwd.png"/>
                 </div>
                 <input on-keyup="validatePwd" type="password" name="password" value="{{password}}" class="payInp"
-                       placeholder="设定支付密码">
+                       placeholder="{{pwdText}}">
             </div>
             <p class="error">{{#if errMessgaePwd}} {{errMessgaePwd}} {{/if}}</p>
 
@@ -130,6 +130,23 @@
                     <a href="/invest">
                         <button class="btn-after btn-bank">马上投资</button>
                     </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+    {{#if step3}}
+    <div class="recharge-success">
+        <div class="content">
+            <div class="fail-img">
+                <img src="/ccc/newAccount/img/band-fail.png"/>
+            </div>
+            <div class="success-content">
+                <p class="fail-msg">绑卡失败</p>
+                <div class="fail-reason">{{failError}}</div>
+                <div class="button">
+                    <!--<button class="close-img btn-after" on-click="close">以后再说</button>-->
+                    <a href="/newAccount/recharge"><button class="btn-after btn-bank">重新绑定</button></a>
                 </div>
             </div>
         </div>

@@ -8,8 +8,7 @@ var navRactive = new Ractive({
 	data: {
 		showInvestToggleMenu : false,
 		showAccountToggleMenu : false,
-        showFundToggleMenu:false,
-		isEnterprise: CC.user.enterprise
+        showFundToggleMenu:false
 	},
 	oninit: function () {
 		var location = window.location.pathname.split('/');

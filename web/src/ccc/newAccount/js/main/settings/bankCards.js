@@ -20,6 +20,7 @@ var ractive = new Ractive({
     data: {
         step1: true,
         step2: false,
+        step3: false,
         status: banksabled.length ? 1 : 0,
         payment: CC.user.name ? true : false,
         // banks: banks,
@@ -34,8 +35,7 @@ var ractive = new Ractive({
         province: '',
         city: '',
         mobile: CC.user.mobile,
-        realName: CC.user.name,
-        paymentPasswordHasSet: CC.user.paymentPasswordHasSet
+        realName: CC.user.name
     },
     oninit: function () {
         accountService.getUserInfo(function (o) {
@@ -43,6 +43,14 @@ var ractive = new Ractive({
         });
         $.get('/api/v2/hundsun/banks',function(r){
           ractive.set('newbanks',r);
+        });
+        $.get('/api/v2/user/MYSELF/authenticates',function(r){
+            ractive.set('authenticates',r);
+            if(r.paymentAuthenticated){
+                ractive.set('pwdText','输入支付密码');
+            }else{
+                ractive.set('pwdText','设定支付密码');
+            }
         });
         $.get('/api/v2/user/MYSELF', function (m) {
             if (m.idNumber) {
@@ -94,7 +102,11 @@ var ractive = new Ractive({
 
 ractive.on("bind-card-submit", function (e) {
     e.original.preventDefault();
-    
+
+    var authenticates = this.get('authenticates');
+    var paymentAuthenticated = authenticates.paymentAuthenticated;
+    //console.log(paymentAuthenticated);
+
     var bankName = this.get('bankName');
     var cardNo = this.get('cardNo');
     var idNo = this.get('idNo');
@@ -169,45 +181,72 @@ ractive.on("bind-card-submit", function (e) {
         ACCESS_DENIED: '登录超时',
         SUCCEED: '银行卡绑定成功'
     };
-    accountService.initialPassword(pwd, function (r) {
-        if(r.success){
-            $('.btn-box button').text('绑卡中,请稍等...');
-            $.post('/api/v2/user/checkBankcard', sendCard, function (res) { //bindCard
-                if(res.success){
-                    //console.log(res);
 
-                    ractive.set('step1',false);
-                    ractive.set('step2',true);
-                    ractive.on('close',function(){
-                        window.location.href = "/newAccount/home";
-                    });
-                }else{
-                    $('.btn-box button').text('绑定');
-                    if(res.error[0].message === 'Something is wrong'){
-                        msg[res.error[0].message] = '请再次确认您的信息'
-                    }
-                    CccOk.create({
-                        msg: '绑卡失败, '+msg[res.error[0].message],
-                        okText: '确定',
-                        ok: function () {
-                            $('.ccc-box-overlay').remove();
-                            $('.ccc-box-wrap').remove();
+    if(!paymentAuthenticated){
+        accountService.initialPassword(pwd, function (r) {
+            if(r.success){
+                $('.btn-box button').text('绑卡中,请稍等...');
+                $.post('/api/v2/user/checkBankcard', sendCard, function (res) { //bindCard
+                    if(res.success){
+                        ractive.set('step1',false);
+                        ractive.set('step2',true);
+                        ractive.set('step3',false);
+                    }else{
+                        $('.btn-box button').text('绑定');
+                        ractive.set('step1',false);
+                        ractive.set('step2',false);
+                        ractive.set('step3',true);
+                        if(res.error[0].message === 'Something is wrong'){
+                            msg[res.error[0].message] = '请再次确认您的信息'
                         }
-                    });
-                }
+                        ractive.set('failError', msg[res.error[0].message]);
+                    }
 
-            });
-        }else{
-            CccOk.create({
-                msg: r.error[0].message,
-                okText: '确定',
-                ok: function () {
-                    $('.ccc-box-overlay').remove();
-                    $('.ccc-box-wrap').remove();
-                }
-            });
-        }
-    });
+                });
+            }else{
+                ractive.set('errMessgaePwd', '支付密码设定失败');
+            }
+        });
+    }else{
+        accountService.checkPassword(pwd,function(r){
+            if(r){
+                $('.btn-box button').text('绑卡中,请稍等...');
+                $.post('/api/v2/user/checkBankcard', sendCard, function (res) { //bindCard
+                    if(res.success){
+                        //console.log(res);
+
+                        ractive.set('step1',false);
+                        ractive.set('step2',true);
+                        ractive.set('step3',false);
+                        ractive.on('close',function(){
+                            window.location.href = "/newAccount/home";
+                        });
+                    }else{
+                        $('.btn-box button').text('绑定');
+                        ractive.set('step1',false);
+                        ractive.set('step2',false);
+                        ractive.set('step3',true);
+                        if(res.error[0].message === 'Something is wrong'){
+                            msg[res.error[0].message] = '请再次确认您的信息'
+                        }
+                        ractive.set('failError', msg[res.error[0].message])
+
+                        //CccOk.create({
+                        //    msg: '绑卡失败, '+msg[res.error[0].message],
+                        //    okText: '确定',
+                        //    ok: function () {
+                        //        $('.ccc-box-overlay').remove();
+                        //        $('.ccc-box-wrap').remove();
+                        //    }
+                        //});
+                    }
+
+                });
+            }else{
+                ractive.set('errMessgaePwd', '交易密码错误');
+            }
+        });
+    }
 
 
 });
