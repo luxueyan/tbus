@@ -268,7 +268,8 @@ ractive.on('sendCode', function (){
     
     if (!this.get('isSend')) {
         this.set('isSend', true);
-        $.get('/api/v2/hundsun/checkCard/sendSmsCaptcha/'+cardPhone,function(r){
+        //$.get('/api/v2/hundsun/checkCard/sendSmsCaptcha/'+cardPhone,function(r){
+        $.post('/api/v2/smsCaptcha',{mobile:cardPhone,smsType:'CONFIRM_CREDITMARKET_BINDCARD'},function(r){
             if (r.success) {
                 countDown();
             }
