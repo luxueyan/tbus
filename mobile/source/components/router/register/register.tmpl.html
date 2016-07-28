@@ -1,12 +1,13 @@
 
 <div id="register">
+    <style> body { background-color: #FFF; } </style>
 
-    <nav class="container page-nav">
+    <nav class="omit-margin container page-nav">
     <div class="row">
         <a class="col-xs-3 back" x-go-back>
             <param class="glyphicon glyphicon-menu-left">
         </a>
-        <span class="col-xs-6 title">{{ is_register_successful ? '注册成功' : '设置密码' }}</span>
+        <span class="col-xs-6 title">{{ is_register_successful ? '注册成功' : '注册' }}</span>
         <span class="col-xs-3">&nbsp;</span>
     </div>
     </nav>
@@ -35,7 +36,7 @@
 
     <div class="page-content">
 
-    <div class="logo"><img width="104" ng-src="assets/image/logo.png"></div>
+    <div class="logo shadow"><img height="60" ng-src="assets/image/logo.png"></div>
 
     <form class="form form-flatten form-horizontal" name="form"
           autocapitalize="none"
@@ -44,8 +45,6 @@
           novalidate
           ng-submit="self.signup(store)"
     >
-        <p class="container hint">您还没有注册过，请设置登录密码完成注册</p>
-
         <div class="inputs container">
             <div class="form-group merge"
                  ng-class="{'has-error': form.loginName.$invalid && form.loginName.$dirty}"
@@ -73,26 +72,31 @@
                  ng-class="{
                     'has-error': form.mobile.$invalid && form.mobile.$dirty,
                  }"
-                 x-gyro-comment
             >
-                <label for="mobile"></label>
-                <div class="form-control-wrap">
-                    <input class="form-control input-target input-lg cell" type="tel"
-                           id="mobile"
-                           name="mobile"
-                           ng-model="store.mobile"
-                           ng-pattern="/^1\d{10}$/"
-                           placeholder="填写手机号"
-                           maxlength="11"
-                           required
-                    >
-
-                    <div class="help-block"
-                         ng-show="form.mobile.$invalid && form.mobile.$dirty"
-                    >
-                        <span ng-show="form.mobile.$error.required">必须填写</span>
-                        <span ng-show="form.mobile.$error.pattern">填写中国大陆正确的 11 位手机号</span>
+                <div class="form-group-inner">
+                    <label for="mobile">手机号</label>
+                    <div class="form-control-wrap">
+                        <input class="form-control input-target input-lg cell" type="tel"
+                               id="mobile"
+                               name="mobile"
+                               ng-model="store.mobile"
+                               ng-model-options="{
+                                   updateOn: 'blur default',
+                                   debounce: {blur: 0, default: 1000}
+                               }"
+                               ng-pattern="/^1\d{10}$/"
+                               placeholder="请输入手机号码"
+                               maxlength="11"
+                               required
+                        >
                     </div>
+                </div>
+
+                <div class="help-block"
+                     ng-show="form.mobile.$invalid && form.mobile.$dirty"
+                >
+                    <span ng-show="form.mobile.$error.required">必须填写</span>
+                    <span ng-show="form.mobile.$error.pattern">填写中国大陆正确的 11 位手机号</span>
                 </div>
             </div>
 
@@ -151,11 +155,15 @@
                                name="mobile_captcha"
                                x-focus-on="self.captcha.buffering"
                                ng-model="store.mobile_captcha"
+                               ng-model-options="{
+                                   updateOn: 'blur default',
+                                   debounce: {blur: 0, default: 1000}
+                               }"
                                pattern="^\d{6}$"
                                autocapitalize="none"
                                autocomplete="off"
                                autocorrect="off"
-                               placeholder=""
+                               placeholder="请输入验证码"
                                maxlength="6"
                                required
                         >
@@ -176,7 +184,8 @@
                 <div class="help-block"
                      ng-show="form.mobile_captcha.$invalid && form.mobile_captcha.$dirty"
                 >
-                    <span ng-show="form.mobile_captcha.$invalid">必须填写</span>
+                    <span ng-show="form.mobile_captcha.$error.required">必须填写</span>
+                    <span ng-show="form.mobile_captcha.$error.pattern">请输入6位数字</span>
                 </div>
             </div>
 
@@ -185,17 +194,21 @@
                  ng-init="is_password_visible = false"
             >
                 <div class="form-group-inner">
-                    <label for="password">密&#x3000;码</label>
+                    <label for="password">密码</label>
                     <div class="form-control-wrap">
                         <input class="form-control input-target input-lg"
                                type="{{ is_password_visible ? 'text' : 'password' }}"
                                id="password"
                                name="password"
                                ng-model="store.password"
+                               ng-model-options="{
+                                   updateOn: 'blur default',
+                                   debounce: {blur: 0, default: 1000}
+                               }"
                                ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,}$/"
                                minlength="8"
                                ng-maxlength="20"
-                               placeholder="至少8位数字字母组合"
+                               placeholder="请设置登录密码"
                                required
                         >
 
@@ -263,15 +276,15 @@
         <p class="container hint hint-captcha"
            ng-if="store.mobile"
            ng-show="self.captcha.buffering"
+           x-gyro-comment
         >
             已将验证码发送至手机<span class="u-color-main">{{ store.mobile | string_replace: '^(\\d{3})(\\d{4})(\\d{4})$' : '$1-$2-$3' }}</span>
         </p>
 
-        <p class="container">
-
-            <button type="submit" class="btn btn-theme btn-block btn-lg"
+        <p class="btn-sumbmit-wrap">
+            <button type="submit" class="btn btn-theme btn-block"
                     ng-disabled="form.$invalid || self.submit_sending"
-            >下一步</button>
+            >注册</button>
         </p>
     </form>
     </div>

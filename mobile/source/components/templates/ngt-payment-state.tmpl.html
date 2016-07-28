@@ -1,52 +1,44 @@
 
 <div ng-switch="page">
     <div class="modal-header" ng-switch-when="register">
-        <img class="icon" width="39" ng-src="assets/image/register-icon.png">
+        <img class="icon" height="60" ng-src="assets/image/register-icon.png">
         <h4>您已成功注册账户</h4>
     </div>
     <div class="modal-header" ng-switch-when="login">
-        <img class="icon" width="44" ng-src="assets/image/user-icon.png">
+        <img class="icon" height="53" ng-src="assets/image/user-icon-lg.png">
         <h4>您已成功登录账户</h4>
     </div>
     <div class="modal-header" ng-switch-when="bind-card">
-        <img class="icon" width="44" ng-src="assets/image/user-icon.png">
+        <img class="icon" height="53" ng-src="assets/image/user-icon-lg.png">
         <h4>欢迎回来，{{ user.info.name || user.info.mobile }}</h4>
     </div>
 </div>
 
 <div class="modal-body">
-    <h5 ng-if="!user.has_bank_card">为顺利投资<br>还需进行以下认证</h5>
-    <h5 ng-if="user.has_bank_card && !user.has_payment_password">您已经在我们平台上进行过注册认证<br>为了能顺利投资还需设置交易密码</h5>
+    <h5 ng-if="!user.has_bank_card">为顺利投资，还需进行一下认证</h5>
+    <h5 ng-if="user.has_bank_card && !user.has_payment_password">您已经在我们平台上进行过注册认证<br>为了能顺利投资还需设定支付密码</h5>
 
     <ul class="list-unstyled state-list">
         <li ng-class="{ gray: user.has_bank_card }">
             <div class="state">
-                <param class="icon icon-bank-card">银行卡绑定
+                <param class="icon icon-bank-card">绑定银行卡
             </div>
         </li>
         <li ng-class="{ gray: user.has_payment_password }">
             <div class="state">
-                <param class="icon icon-payment-password">交易密码
+                <param class="icon icon-payment-password">设定支付密码
             </div>
         </li>
     </ul>
 </div>
 
 <div class="modal-footer">
-    <a class="btn btn-theme btn-block btn-lg btn-action"
+    <a class="btn btn-theme btn-block btn-action"
        href="dashboard/payment/bind-card"
        ng-if="!user.has_bank_card"
     >立即认证</a>
-    <a class="btn btn-theme btn-block btn-lg btn-action"
+    <a class="btn btn-theme btn-block btn-action"
        href="dashboard/payment/password"
        ng-if="user.has_bank_card && !user.has_payment_password"
     >去设置</a>
-    <a class="btn btn-link btn-block"
-       ng-href="{{ next_path }}"
-       ng-if="next_path"
-    >以后再说</a>
-    <a class="btn btn-link btn-block"
-       x-go-back
-       ng-if="!next_path"
-    >以后再说</a>
 </div>
