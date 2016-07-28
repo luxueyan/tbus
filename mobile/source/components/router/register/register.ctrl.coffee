@@ -6,22 +6,18 @@ do (_, angular) ->
         _.ai '            @api, @$scope, @$rootScope, @$interval, @$location, @$routeParams, @$window, @$q, @$uibModal, @popup_payment_state', class
             constructor: (@api, @$scope, @$rootScope, @$interval, @$location, @$routeParams, @$window, @$q, @$uibModal, @popup_payment_state) ->
 
-                {mobile, next} = @$routeParams
+                @$window.scrollTo 0, 0
+
+                @$rootScope.state = 'dashboard'
+
+                {next} = @$routeParams
 
                 @next_path = next
 
                 referral = do ({ref, rel, refm, reftf, referral} = @$routeParams) ->
                     _.first _.compact [ref, rel, refm, reftf, referral]
 
-                unless mobile
-                    @$location
-                        .replace()
-                        .path 'login'
-                        .search if referral then {referral} else {}
-                    return
-
                 @$scope.store = {
-                    mobile
                     referral
                 }
 
@@ -37,9 +33,8 @@ do (_, angular) ->
 
                     .then @api.process_response
 
-                    .catch (data) =>
-                        @$q.reject error: [message: 'MOBILE_EXISTS']
-
+                    # .catch (data) =>
+                    #     @$q.reject error: [message: 'MOBILE_EXISTS']
 
                     .then => @api.send_verification_code(mobile, captcha, @captcha?.token)
 
@@ -109,15 +104,14 @@ do (_, angular) ->
                     .then (data) =>
                         @$scope.is_register_successful = true
 
-                        @$rootScope.$on '$locationChangeSuccess', =>
-                            @$window.location.reload()
+                        # @$rootScope.$on '$locationChangeSuccess', =>
+                        #     @$window.location.reload()
 
                         @api.fetch_current_user()
                             .then (user) =>
                                 @popup_payment_state {
                                     user
                                     page: 'register'
-                                    next_path: @next_path || 'dashboard'
                                 }
 
                         return
@@ -168,24 +162,18 @@ do (_, angular) ->
 
             prompt = $uibModal.open {
                 size: 'lg'
-                animation: true
+                animation: false
                 backdrop: 'static'
                 templateUrl: 'components/templates/ngt-payment-state.tmpl.html'
-
-                windowClass: "
-                    center
-                    modal-payment-state
-                    modal-payment-state-page-#{ options.page }
-                "
+                windowClass: 'modal-payment-state'
 
                 controller: _.ai '$scope',
                     (             $scope) ->
                         angular.extend $scope, options
             }
 
-            if options.page isnt 'register' and options.page isnt 'login'
-                once = @$scope.$on '$locationChangeStart', ->
-                    prompt?.dismiss()
-                    do once
+            once = @$scope.$on '$locationChangeStart', ->
+                prompt?.dismiss()
+                do once
 
             return prompt.result

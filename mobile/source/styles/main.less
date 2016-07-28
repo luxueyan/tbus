@@ -956,18 +956,8 @@ a {
 ----*/
 
 #register {
-
     .logo {
         #login .logo;
-    }
-
-    .head-image {
-        padding: 16px;
-        display: block;
-    }
-
-    .icon-doll {
-        #login .icon-doll;
     }
 
     .form-flatten {
@@ -975,9 +965,7 @@ a {
     }
 
     .form {
-
         .form-group {
-
             .help-block {
                 margin: 0;
                 text-align: right;
@@ -998,15 +986,13 @@ a {
 
             &.mobile-captcha {
                 .btn-action {
+                    .transform(translateY(-50%));
                     position: absolute;
-                    top: 9px;
-                    right: 9px;
-                    line-height: 1;
-                    padding: 8px 8px;
-                    border: 1px solid @color-gray-light;
-                    border-color: transparent;
-                    border-radius: 4px;
+                    top: 50%;
+                    right: 15px;
                     min-width: 78px;
+
+                    .button-size(4px; 8px; 12px; 1; 6px);
 
                     &.btn-plain {
                         .button-variant(@color-theme-main; #FFF; @color-theme-main);
@@ -1047,53 +1033,6 @@ a {
             a {
                 color: @color-theme-link;
             }
-        }
-    }
-
-    footer {
-        margin-top: 20px;
-
-        .title {
-            font-size: 16px;
-            padding-left: 20px;
-            margin-bottom: 10px;
-        }
-        .list {
-            list-style-type: decimal;
-            padding-left: 20px;
-            line-height: 1.5;
-        }
-        .list li {
-            font-size: 14px;
-        }
-    }
-
-    .register-coupon {
-        margin: 0 auto;
-        padding-top: 16px/2;
-        width: 500px/2;
-        height: 184px/2;
-        background: url("@{path-image}/register-coupon-bg.png") no-repeat 0 0;
-        background-size: 500px/2 184px/2;
-        color: @color-theme-main;
-        text-align: center;
-
-        .amount {
-            display: inline-block;
-            vertical-align: middle;
-            margin-bottom: 10px/2;
-            border-bottom: 1px solid #FEDEDC;
-            padding: 10px/2;
-            font-size: 60px/2 + 2;
-            line-height: 1;
-
-            .unit {
-                font-size: 40%;
-            }
-        }
-
-        .type {
-            font-size: 26px/2 + 2;
         }
     }
 }
