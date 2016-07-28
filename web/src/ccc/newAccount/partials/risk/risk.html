@@ -1,7 +1,7 @@
 <div class = "account-risk-wrapper">
     <div class="risk-nav">
         <span>风险测评</span>
-        <p>上次测评时间:{{timeLastUpdated}}</p>
+        <p>上次测评时间:{{#if timeLastUpdated}}{{timeLastUpdated}}{{else}}无{{/if}}</p>
     </div>
     {{#if question}}
     <div class="question-box">

@@ -134,7 +134,7 @@ function replaceStr(str) {
 
 
 InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) {
-    res.results = res.data.results;
+    //res.results = res.data.results;
 
     parseLoanList(res.results);
     var listFixed = [], listFloat = [];
@@ -175,16 +175,13 @@ if(CC.key){
             list: [],
             RepaymentMethod: i18n.enums.RepaymentMethod, // 还款方式
             user: CC.user,
-            key: CC.key
+            key: CC.key,
+            num: CC.user.num
         },
         onrender:function(){
             var that = this;
             InvestListService.getLoanListWithCondition(jsonToParams(params),function(res){
-                that.set('list',parseLoanList(res.data.results));
-                that.set('total',res.total);
-                that.set('opened',res.opened);
-                that.set('settled',res.settled);
-                that.set('cleared',res.cleared);
+                that.set('list',parseLoanList(res.results));
                 that.renderPager(res,params.currentPage,that)
             });
             

@@ -22,7 +22,7 @@ var ractive = new Ractive({
         request('GET', '/api/v2/user/MYSELF/userinfo')
             .end()
             .then(function (r) {
-                console.log(r.body);
+                //console.log(r.body);
                 self.set("timeLastUpdated", moment(r.body.surveyFilling.timeLastUpdated).format('YYYY-MM-DD HH:mm:ss'));
                 rank=r.body.surveyScore.rank;
                 if(rank){
@@ -56,16 +56,18 @@ var ractive = new Ractive({
                 })
                 .end()
                 .then(function (r) {
+                    window.location.reload();
                     var res = r.body;
                     if (!res) {
                         return alert("获取数据失败...");
                     }
-                    console.log(res.error);
+                    //console.log(res.error);
                     if (res.success) {
-                        console.log(res.data);
+                        //console.log(res.data);
+                        self.set('timeLastUpdated',moment(res.data.timeLastUpdated).format('YYYY-MM-DD HH:mm:ss'));
+
                         self.set('question',false);
                         self.set('result',true);
-                        self.set('timeLastUpdated',moment(res.data.timeLastUpdated).format('YYYY-MM-DD HH:mm:ss'));
                         return;
                     }
                     alert(res.error.toString() + '\n');
@@ -89,7 +91,7 @@ ractive.on('submit',function() {
     accountService.updatePersonalInfo(male,educationLevel,maritalStatus,function(r) {
         if (!r.error) {
             accountService.updateCareerInfo(companyIndustry,salary,function(r) {
-                console.log(r);
+                //console.log(r);
                 if (!r.error) {
                     alert('信息编辑成功');
                     window.location.reload();
