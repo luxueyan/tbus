@@ -31,7 +31,7 @@ body {
     color: @color-gray-dark-double;
     font-family: "Helvetica", "Arial", "Verdana", "Hiragino Sans GB", "STHeiti", "sans-serif";
     font-size: 14px;
-    background-color: #F4F4F6;
+    background-color: #EEEEEF;
     // -webkit-tap-highlight-color: rgba(26, 26, 26, 0.5);
 
     input[type=number]::-webkit-inner-spin-button,
@@ -42,11 +42,11 @@ body {
 }
 
 a {
-    color: @color-theme-main;
+    color: #B28146;
     text-decoration: none;
 
     &:hover {
-        color: @color-theme-main;
+        color: #B28146;
         text-decoration: none;
     }
 }
@@ -131,45 +131,30 @@ a {
     }
 
     &-payment-state {
-        &-page {
-            &-invest,
-            &-recharge,
-            &-withdraw {
-                + .modal-backdrop {
-                    background-color: #2D3440;
+        + .modal-backdrop {
+            background-color: #FFF;
 
-                    &.in {
-                        .opacity(0.59);
-                    }
-                }
-            }
+            top: 40px;
+            bottom: 50px;
 
-            &-register,
-            &-login,
-            &-bind-card {
-                + .modal-backdrop {
-                    #gradient .vertical(#F7D3A2; #EEAB4B);
-
-                    top: 44px;
-
-                    &.in {
-                        .opacity(1);
-                    }
-                }
-
-                ~ * .page-nav {
-                    z-index: 9999
-                }
+            &.in {
+                .opacity(1);
             }
         }
 
-        &.center {
-            .modal-dialog {
-                left: 16px;
-                right: 16px;
-                max-height: 100%;
-                overflow-y: auto;
-            }
+        ~ * .page-nav,
+        ~ * #page-tab-nav {
+            z-index: 9999;
+        }
+
+        .modal-dialog {
+            position: absolute;
+            top: 54px;
+            bottom: 64px;
+            left: 10px;
+            right: 10px;
+            margin: 0;
+            overflow-y: auto;
         }
 
         .modal-content {
@@ -179,11 +164,12 @@ a {
         }
 
         .modal-header {
-            margin-left: 15px;
-            margin-right: 15px;
-            border-bottom: 2px solid #F2F2F2;
+            border-bottom: 0;
+            border-radius: 8px;
             padding-top: 28px;
+            background-color: @color-theme-main;
             text-align: center;
+            color: #FFF;
 
             .icon {
                 display: block;
@@ -193,8 +179,8 @@ a {
             }
 
             h4 {
-                font-size: 18px;
-                color: @color-theme-main;
+                margin: 15px 0 5px;
+                font-size: 16px;
             }
         }
 
@@ -203,8 +189,10 @@ a {
             text-align: center;
 
             h5 {
+                margin-top: 15px;
+                margin-bottom: 20px;
                 line-height: 1.5;
-                color: @color-gray-dark;
+                color: #717071;
             }
 
             .state-list {
@@ -213,24 +201,24 @@ a {
                 > li {
                     display: inline-block;
                     vertical-align: middle;
-                    color: @color-gray;
+                    color: #717071;
 
                     .icon {
                         display: block;
-                        margin: 0 auto 5px;
-                        border: 2px solid @color-theme-main;
-                        border-radius: 50%;
-                        width: 62px;
-                        height: 62px;
+                        margin: 0 auto 10px;
+                        border: 1px solid @color-theme-main;
+                        border-radius: 10px;
+                        width: 114px/2;
+                        height: 114px/2;
 
                         &-bank-card {
                             background: url("@{path-image}/bank-card-icon.png") no-repeat center center;
-                            background-size: 60px/2 42px/2;
+                            background-size: 70px/2 48px/2;
                         }
 
                         &-payment-password {
                             background: url("@{path-image}/payment-password-icon.png") no-repeat center center;
-                            background-size: 70px/2 46px/2;
+                            background-size: 44px/2 60px/2;
                         }
                     }
 
@@ -240,22 +228,15 @@ a {
 
                     + li {
                         position: relative;
-                        padding-left: 60px;
+                        padding-left: 40px;
 
                         &:before {
                             content: "";
                             position: absolute;
-                            left: 25px;
-                            top: 31px;
-                            overflow: hidden;
-                            border-radius: 50%;
-                            width: 3px;
-                            height: 3px;
-                            background-color: @color-theme-main;
-                            box-shadow: 8px 0 @color-theme-main,
-                                       -8px 0 @color-theme-main,
-                                       16px 0 @color-theme-main,
-                                      -16px 0 @color-theme-main;
+                            top: 27px;
+                            left: 0;
+                            width: 40px;
+                            border-top: 2px dotted #E18691;
                         }
                     }
                 }
@@ -264,10 +245,10 @@ a {
 
         .modal-footer {
             border-top: 0;
-            padding: 10px 30px;
+            padding: 5px 50px;
 
             .btn-action {
-                .button-size(10px; 10px; 18px; 1; 999px);
+                .button-size(9px; 9px; 14px; 1; 8px);
             }
 
             .btn-link {
@@ -1122,18 +1103,14 @@ a {
 ----*/
 
 #login {
-
     .logo {
-        margin: 30px auto;
+        margin-bottom: 40px;
+        padding: 30px 0 20px;
+        background-color: #FFF;
         text-align: center;
     }
 
-    .page-nav {
-        margin-bottom: 0;
-    }
-
     .page-content {
-
         .form {
             input.form-control {
                 padding-left: 6px;
@@ -1162,7 +1139,6 @@ a {
 
         input.form-control {
             padding-left: 4px;
-            height: 52px;
             -webkit-box-shadow: none !important;
             -webkit-appearance: none !important;
             box-shadow: none !important;
@@ -1170,6 +1146,10 @@ a {
             border: none;
             font-size: 14px;
             color: @color-gray-dark-double;
+
+            &::-webkit-input-placeholder {
+              color: #B3B3B3;
+            }
         }
 
         .form-group.merge {
@@ -1188,11 +1168,11 @@ a {
             }
 
             label {
-                margin: 0 15px;
-                font-size: 16px;
+                margin: 0 25px;
+                font-size: 14px;
                 font-weight: normal;
-                line-height: 52px;
-                color: @color-gray-dark-double;
+                line-height: 46px;
+                color: #585757;
                 min-width: 3em;
                 text-align: right;
 
@@ -1204,27 +1184,23 @@ a {
 
         .inputs {
             overflow: hidden;
-            margin-bottom: 32px;
-
-            + .inputs {
-                margin-top: -24px;
-            }
+            margin-bottom: 45px;
 
             .form-group {
                 .form-group-inner {
-                    border-top: 1px solid #EAEBED;
-                    border-bottom: 1px solid #EAEBED;
+                    border-top: 1px solid #B6B6B6;
+                    border-bottom: 1px solid #B6B6B6;
                 }
 
                 &:first-child {
                     .form-group-inner {
-                        border-top: 1px solid @color-gray-light;
+                        border-top: 1px solid #B6B6B6;
                     }
                 }
 
                 &:last-child {
                     .form-group-inner {
-                        border-bottom: 1px solid @color-gray-light;
+                        border-bottom: 1px solid #B6B6B6;
                     }
                 }
 
@@ -1245,12 +1221,17 @@ a {
         }
 
         button[type="submit"] {
-            .button-size(12px; 12px; 18px; 1; 999px);
+            .button-size(9px; 9px; 14px; 1; 8px);
+        }
+
+        .btn-sumbmit-wrap {
+            margin-left: 60px;
+            margin-right: 60px;
         }
 
         .btn-link {
             margin-top: 8px;
-            color: @color-theme-link;
+            color: #B28146;
             text-decoration: none;
         }
 
@@ -1269,18 +1250,22 @@ a {
             margin-bottom: 6px;
         }
 
-        .password-toggle {
+        .password-forgot-link {
+            .transform(translateY(-50%));
             position: absolute;
-            top: 9px;
-            right: 9px;
+            right: 10px;
+            top: 50%;
+            font-size: 12px;
+        }
+
+        .password-toggle {
+            .transform(translateY(-50%));
+            position: absolute;
+            top: 50%;
+            right: 5px;
             margin-top: 0;
             outline: none;
         }
-    }
-
-    .icon-doll {
-        margin: 10px auto 20px;
-        text-align: center;
     }
 
     .flash-message {
@@ -1297,19 +1282,12 @@ a {
     }
 
     .links {
-        // .flex-display(center; space-between);
-
-        margin-top: 20px;
-        color: @color-theme-link;
+        margin: 20px 60px;
+        font-size: 12px;
+        color: #7E7D7D;
 
         a {
-            &, &:hover, &:visited {
-                color: inherit;
-            }
-        }
-
-        .left {
-            .flex(1);
+            text-decoration: underline;
         }
     }
 }

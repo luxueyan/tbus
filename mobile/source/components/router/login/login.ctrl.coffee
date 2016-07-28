@@ -6,11 +6,13 @@ do (_, angular) ->
         _.ai '            @api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @$q, @popup_payment_state', class
             constructor: (@api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @$q, @popup_payment_state) ->
 
+                @$window.scrollTo 0, 0
+
+                @$rootScope.state = 'dashboard'
+
                 {next, mobile, bind_social_weixin} = @$routeParams
 
                 @next_path = next
-                @step = if mobile then 'two' else 'one'
-
                 @submit_sending = false
                 @flashing_error_message = false
 
@@ -19,7 +21,6 @@ do (_, angular) ->
 
                 angular.extend @$scope, {
                     store: {mobile}
-                    page_path: @$location.path()[1..]
                 }
 
 
@@ -37,36 +38,6 @@ do (_, angular) ->
                 @submit_sending = true
                 @flashing_error_message = false
 
-                if @step is 'one'
-
-                    (@api.check_mobile(mobile)
-
-                        .then @api.process_response
-
-                        .then (data) =>
-                            {next, referral} = @$routeParams
-
-                            @$location
-                                .path 'register'
-                                .search _.compact {mobile, next, referral}
-
-                        .catch (data) =>
-                            key = _.get data, 'error[0].message'
-
-                            unless key in _.split 'MOBILE_EXISTS MOBILE_USED'
-                                @$window.alert @$scope.msg.UNKNOWN
-                                @submit_sending = false
-                                return
-
-                            {next, bind_social_weixin} = @$routeParams
-
-                            @$location
-                                .path 'login'
-                                .search _.compact {mobile, next, bind_social_weixin}
-                    )
-
-                    return
-
                 (@api.login(mobile, password)
 
                     .then @api.process_response
@@ -80,8 +51,8 @@ do (_, angular) ->
                     .then (data) =>
                         @$scope.is_login_successful = true
 
-                        @$rootScope.$on '$locationChangeSuccess', =>
-                            @$window.location.reload()
+                        # @$rootScope.$on '$locationChangeSuccess', =>
+                        #     @$window.location.reload()
 
                         @api.fetch_current_user()
 
@@ -103,7 +74,6 @@ do (_, angular) ->
                                 @popup_payment_state {
                                     user
                                     page: 'login'
-                                    next_path: @next_path || 'dashboard'
                                 }
 
                         return
