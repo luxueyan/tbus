@@ -60,7 +60,7 @@ payRactive.on("invest-submit", function (e) {
 
                 if (document.getElementById('agree').checked == true) {
                     $('.agree-error').css('visibility', 'hidden');
-                    $.post('/api/v2/autoAssign/MYSELF', {
+                    $.post('/api/v2/creditassign/autoAssign/MYSELF', {
                         creditAssignId:creditassignId,
                         principalAmount: num
                     }, function (res) {

@@ -65,7 +65,7 @@ var investRactive = new Ractive({
         profit:CC.creditassign.creditassign.creditDealRate*CC.creditassign.creditassign.balance
     },
     oninit: function () {
-        console.log(CC.creditassign);
+        //console.log(CC.creditassign);
         request.get('/api/v2/loan/'+loanId).end().then(function (r) {
             CC.loan=JSON.parse(r.text);
             investRactive.set('workTime', moment(CC.loan.loanRequest.valueDate).format('YYYY-MM-DD'));
@@ -83,6 +83,10 @@ investRactive.on("invest-submit", function (e) {
         showErrors('该标为您本人借款，无法投标 ');
         return false;
     }
+    if (CC.user.userId === CC.creditassign.creditassign.userId) {
+        showErrors('不能投自己债转的标的');
+        return false;
+    }
     if (num > CC.user.availableAmount) {
         showErrors('账户余额不足，请先充值 !');
         return false;
@@ -92,4 +96,21 @@ investRactive.on("invest-submit", function (e) {
 
 window.reopen = function () {
     window.location.reload();
+}
+
+
+function showErrors(error) {
+    investRactive
+        .set('errors', {
+            visible: true,
+            msg: error
+        });
+}
+
+function disableErrors() {
+    investRactive
+        .set('errors', {
+            visible: false,
+            msg: ''
+        });
 }

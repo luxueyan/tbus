@@ -49,6 +49,10 @@
             </div>
             {{#if user}}
             <div class="do-invest-wrapper">
+                {{#if errors.visible}}
+                <div class="tooltip">{{ errors.msg }}</div>
+                {{/if}}
+
                 <div>转让价格(元): <span>{{creditassign.creditassign.balance}}</span></div>
                 <input type="hidden" value="{{creditassign.creditassign.balance}}" />
                 <div>预期收益(元): <span>{{profit}}</span></div>
