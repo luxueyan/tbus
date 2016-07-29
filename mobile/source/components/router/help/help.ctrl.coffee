@@ -1,7 +1,7 @@
 
 do (_, angular) ->
 
-    angular.module('controller').controller 'AboutCtrl',
+    angular.module('controller').controller 'HelpCtrl',
 
         _.ai '            @$scope, @$rootScope, @$window', class
             constructor: (@$scope, @$rootScope, @$window) ->

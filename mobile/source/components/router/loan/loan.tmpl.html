@@ -187,7 +187,7 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="item in investors">
-                                    <td class="mobile">{{ (item.mobile || '') | string_replace: '^(\\d{3})(\\d{5})(\\d{3})$' : '$1****$3' }}</td>
+                                    <td class="mobile">{{ (item.mobile || '') | string_replace: '^(\\d{3})(\\d{5})(\\d{3})$' : '$1*****$3' }}</td>
                                     <td class="date text-center">{{ item.submitTime | date: 'yyyy-MM-dd' }}</td>
                                     <td class="amount text-right">{{ item.amount }}元</td>
                                 </tr>
