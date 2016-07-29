@@ -146,7 +146,7 @@ ractive.on("bind-card-submit", function (e) {
     if (pwd === '') {
         this.set('errMessgaePwd', '请输入支付密码');
     } else if(pwd.length < 6 || !/^[0-9]*$/g.test(pwd)){
-        this.set('errMessgaePwd', '交易密码为6位纯数字');
+        this.set('errMessgaePwd', '交易密码为不小于6位纯数字');
         return;
     }else{
         this.set('errMessgaePwd', false);
@@ -223,6 +223,12 @@ ractive.on("bind-card-submit", function (e) {
                         });
                     }else{
                         $('.btn-box button').text('绑定');
+                        if(res.error[0].message === 'SMSCAPTCHA_IS_NOT_CORRECT'){
+                            ractive.set('SMS_NULL', '手机验证码错误');
+                            return;
+                        }else {
+                            ractive.set('SMS_NULL', false);
+                        };
                         ractive.set('step1',false);
                         ractive.set('step2',false);
                         ractive.set('step3',true);
