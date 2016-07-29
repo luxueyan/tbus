@@ -50,7 +50,7 @@ module.exports = function (router, auth) {
     //修改手机号
     router.post('/api/v2/user/:userId/resetMobile', auth.user());
     //债转列表
-    router.get('/api/v2/list/filter', auth.pass());
+    router.get('/api/v2/creditassign/list/filter', auth.pass());
     //债转购买接口
     router.post('/api/v2/creditassign/autoAssign/:userId', auth.user());
     //发送短信验证码
