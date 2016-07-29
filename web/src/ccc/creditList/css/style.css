@@ -9,6 +9,7 @@
     width: 860px;
     float: left;
     background: #fff;
+    padding-bottom: 30px;
 }
 .s-contentR{
     width: 320px;
@@ -546,4 +547,43 @@
 
 .no-data{
     margin: 50px 14px;
+}
+
+
+/*分页*/
+#invest-pager{
+    overflow: hidden;
+    margin-top: 55px;
+}
+#invest-pager ul {
+    float: right;
+}
+#invest-pager ul li{
+    float: left;
+    padding: 0 10px;
+}
+
+
+#invest-pager ul{
+
+    overflow: hidden;
+}
+
+#invest-pager ul li a{
+    color: #666;
+    cursor: pointer;
+}
+#invest-pager ul .current-page a{
+    color: #cfa972;
+}
+#invest-pager ul li a:hover{
+    color: #cfa972;
+}
+
+.bottom_ad{
+    width: 1200px;
+    margin: 30px auto 80px;
+}
+.bottom_ad img{
+    width: 100%;
 }

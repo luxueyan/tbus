@@ -176,7 +176,7 @@ if(CC.key){
             RepaymentMethod: i18n.enums.RepaymentMethod, // 还款方式
             user: CC.user,
             key: CC.key,
-            num: CC.user.num
+            num: CC.num
         },
         onrender:function(){
             var that = this;
