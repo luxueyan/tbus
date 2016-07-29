@@ -9,7 +9,11 @@
         <h3>帐户信息</h3>
         <div class="myinfo_valgroup">
             <div class="valgroup">
+                {{#if idNumber}}
                 <div class="check_state"></div>
+                {{else}}
+                <div class="check_state_error"></div>
+                {{/if}}
                 <div class="value_name">身份认证</div>
                 <div class="val_detail"></div>
             </div>
