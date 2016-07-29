@@ -422,6 +422,11 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                         templateUrl: 'components/router/about/about-coupon.tmpl.html'
                     }
 
+                    .when '/contact', {
+                        controller: 'ContactCtrl as self'
+                        templateUrl: 'components/router/contact/contact.tmpl.html'
+                    }
+
                     .otherwise redirectTo: '/'
 
 

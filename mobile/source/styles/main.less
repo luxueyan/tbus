@@ -3360,6 +3360,54 @@ a {
 }
 
 /*=============================================================================
+                                                               [Router] Contact
+----*/
+
+#contact {
+    section:not(.omit-margin) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .list {
+        > li {
+            + li {
+                border-top: 1px solid #BCBCBC;
+            }
+
+            .inner {
+                .flex-display(center; space-between);
+                padding: 10px 25px 10px 20px;
+
+                > .name {
+                }
+
+                > .value {
+                    .flex(1);
+                    text-align: right;
+                    color: #B4B4B5;
+                }
+            }
+        }
+    }
+
+    .info {
+        background-color: #FFF;
+        color: #585757;
+
+        a {
+            &, &:hover, &:visited {
+                color: inherit;
+            }
+        }
+
+        .text-underline {
+            text-decoration: underline;
+        }
+    }
+}
+
+/*=============================================================================
                                                                     Page Footer
 ----*/
 
