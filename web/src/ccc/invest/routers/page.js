@@ -32,8 +32,10 @@ module.exports = function (router) {
                     console.log('11@@@@@@@@@@@!!!!!!!!!!!!')
                     console.log(r.body)
                     console.log('11@@@@@@@@@@@!!!!!!!!!!!!')
-                    res.locals.user.num = r.body;
+                    res.locals.num = r.body;
+                    res.expose(res.locals.num,'num');
                 });
+
 
         }else if(req.params.key == 'XELC'){
             res.expose('XELC','key');
@@ -44,7 +46,8 @@ module.exports = function (router) {
                     console.log('221@@@@@@@@@@@!!!!!!!!!!!!')
                     console.log(r.body)
                     console.log('22211@@@@@@@@@@@!!!!!!!!!!!!')
-                    res.locals.user.num = r.body;
+                    res.locals.num = r.body;
+                    res.expose(res.locals.num,'num');
                 });
 
         }
