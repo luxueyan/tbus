@@ -3286,31 +3286,37 @@ a {
 ----*/
 
 #about {
-    .logo {
-        #login .logo;
+    section:not(.omit-margin) {
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+
+    .banner {
     }
 
     .detail {
-        color: @color-gray-dark;
+        background-color: #FFF;
 
-        .content {
-            margin-bottom: 40px;
-            text-indent: 2em;
-            text-align: justify;
+        .title {
+            margin: 0;
+            border-bottom: 1px solid #BCBCBC;
+            padding: 12px 24px;
+            font-size: 14px;
+            color: #585757;
         }
 
-        .version {
-            .flex-display(center; space-between);
+        .content {
+            padding: 10px 18px;
 
-            .name {
-                font-size: 16px;
+            .img-wrap {
+                margin-bottom: 10px;
             }
 
-            .value {
-                .flex(1);
-
-                text-align: right;
-                color: @color-gray;
+            .text {
+                font-size: 12px;
+                line-height: 20px;
+                color: #717071;
+                text-indent: 2em;
             }
         }
     }
