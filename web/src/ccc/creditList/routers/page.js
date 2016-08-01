@@ -1,5 +1,7 @@
 'use strict';
 module.exports = function (router) {
+    var utils = require('ccc/global/js/lib/utils');
+
     router.get('/', function (req, res) {
         var user = res.locals.user;
         if (user && user.idNumber) {
@@ -14,15 +16,19 @@ module.exports = function (router) {
 
         //转让总金额和总笔数
         req.uest('/api/v2/creditassign/stat/total').end().then(function(r){
+            console.log('====r.body')
+
             res.locals.total = r.body.data;
             var total = res.locals.total;
+            console.log(total)
+            total.totalDealAmount = utils.format.amount(1000000+total.totalDealAmount,2);
+            total.totalNumber =  utils.format.amount(100+total.totalNumber,2);
+            //list[i].balance = utils.format.amount(list[i].balance, 2);
             res.expose(total, 'total');
         });
 
         //转让成交记录
         req.uest('/api/v2/creditassign/stat/list').end().then(function(r){
-            console.log('====r.body')
-            console.log(r.body)
             res.locals.record = r.body.data;
             var record = res.locals.record;
             res.expose(record, 'record');
