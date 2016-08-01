@@ -3,8 +3,12 @@ do (_, angular) ->
 
     angular.module('controller').controller 'PasswordForgotCtrl',
 
-        _.ai '            @api, @$scope, @$location, @$window, @$interval, @$routeParams, @$q', class
-            constructor: (@api, @$scope, @$location, @$window, @$interval, @$routeParams, @$q) ->
+        _.ai '            @api, @$scope, @$rootScope, @$location, @$window, @$interval, @$routeParams, @$q', class
+            constructor: (@api, @$scope, @$rootScope, @$location, @$window, @$interval, @$routeParams, @$q) ->
+
+                @$window.scrollTo 0, 0
+
+                @$rootScope.state = 'dashboard'
 
                 @captcha = {timer: null, count: 60, count_default: 60, has_sent: false, buffering: false}
 
@@ -25,11 +29,11 @@ do (_, angular) ->
                 (@api.check_mobile(mobile)
 
                     .then (data) =>
-                        return @$q.reject(data) if data.success is true
+                        return @$q.reject({error: [message: 'MOBILE_NOT_EXISTS']}) if data.success is true
                         return data
 
-                    .catch (data) =>
-                        @$q.reject error: [message: 'MOBILE_NOT_EXISTS']
+                    # .catch (data) =>
+                    #     @$q.reject error: [message: 'MOBILE_NOT_EXISTS']
 
                     .then => @api.send_captcha_for_reset_password(mobile)
 
@@ -67,11 +71,13 @@ do (_, angular) ->
                         return data
 
                     .then (data) =>
-                        @$window.alert @$scope.msg.SUCCEED
-                        @$location.path '/login'
+                        @$scope.is_show_action_result = true
 
-                        @$scope.$on '$locationChangeSuccess', =>
-                            @$window.location.reload()
+                        # @$window.alert @$scope.msg.SUCCEED
+                        # @$location.path '/login'
+
+                        # @$scope.$on '$locationChangeSuccess', =>
+                        #     @$window.location.reload()
 
                     .catch (data) =>
                         error = _.get data, 'error[0].message', 'UNKNOWN'

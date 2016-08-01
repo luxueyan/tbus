@@ -1,5 +1,5 @@
 
-<div id="more">
+<div id="more" ng-if="!is_show_action_result">
 
     <nav class="omit-margin container page-nav">
     <div class="row">
@@ -7,73 +7,106 @@
     </div>
     </nav>
 
-    <section class="container text-center masthead">
-        <div class="row password-list" ng-if="self.user.has_logged_in">
-            <div class="col-xs-6 item">
-                <a href="dashboard/payment/password">
-                    <div class="icon">
-                        <img width="44" ng-src="assets/image/icon-password-payment.png">
-                    </div>
-                    <div class="title">交易密码</div>
-                </a>
-            </div>
-            <div class="col-xs-6 item">
-                <a href="password/change">
-                    <div class="icon">
-                        <img width="44" ng-src="assets/image/icon-password-login.png">
-                    </div>
-                    <div class="title">登录密码</div>
-                </a>
-            </div>
-        </div>
-
-        <div class="hint-login" ng-if="!self.user.has_logged_in">
-            <p class="hint">您还没有登录哦～</p>
-            <a class="btn btn-lg btn-theme" href="login">一键登录/注册</a>
-        </div>
+    <section class="omit-margin shadow info" ng-if="self.user.has_logged_in">
+        <ul class="list-unstyled u-off-margin-bottom list">
+            <li>
+                <div class="inner">
+                    <span class="left">
+                        <param class="icon icon-user">
+                        太合汇账号
+                    </span>
+                    <span class="right text-muted">
+                        {{ self.user.info.mobile | string_replace: '^(\\d{3})(\\d{5})(\\d{3})$' : '$1*****$3' }}
+                    </span>
+                </div>
+            </li>
+        </ul>
     </section>
 
-    <section class="links">
-        <ul class="list-unstyled u-off-margin-bottom link-list">
-            <li>
-                <a href="">
-                    <div class="inner">
-                        <span class="title">个人风险偏好</span>
-                        <param class="glyphicon glyphicon-menu-right">
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="tel:4007566888">
-                    <div class="inner">
-                        <span class="title">客服</span>
-                        <span>400-756-6888</span>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="dashboard/feedback">
-                    <div class="inner">
-                        <span class="title">反馈</span>
-                        <param class="glyphicon glyphicon-menu-right">
-                    </div>
-                </a>
-            </li>
+    <section class="shadow links">
+        <ul class="list-unstyled u-off-margin-bottom list">
             <li>
                 <a href="about">
                     <div class="inner">
-                        <span class="title">关于</span>
-                        <param class="glyphicon glyphicon-menu-right">
+                        <span class="left">
+                            <param class="icon icon-logo">
+                            关于我们
+                        </span>
+                        <span class="right">
+                            <param class="glyphicon glyphicon-menu-right">
+                        </span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="contact">
+                    <div class="inner">
+                        <span class="left">
+                            <param class="icon icon-contact">
+                            客服中心
+                        </span>
+                        <span class="right">
+                            <param class="glyphicon glyphicon-menu-right">
+                        </span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="help">
+                    <div class="inner">
+                        <span class="left">
+                            <param class="icon icon-help">
+                            帮助中心
+                        </span>
+                        <span class="right">
+                            <param class="glyphicon glyphicon-menu-right">
+                        </span>
                     </div>
                 </a>
             </li>
         </ul>
     </section>
 
-    <section class="container action" ng-if="self.user.has_logged_in">
-        <button class="btn btn-block btn-lg btn-theme"
-                ng-click="self.logout()"
-        >退出登录</button>
+    <section class="action" ng-if="self.user.has_logged_in">
+        <ul class="list-unstyled u-off-margin-bottom list">
+            <li>
+                <div class="inner" ng-click="self.logout()">
+                    <span class="left">
+                        <param class="icon icon-logout">
+                        退出登录
+                    </span>
+                </div>
+            </li>
+        </ul>
     </section>
 
 </div>
+
+
+
+
+<div id="more" ng-if="is_show_action_result">
+    <style> body { background-color: #FFF; } </style>
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <span class="col-xs-12 title">更多</span>
+    </div>
+    </nav>
+
+    <section class="action-result">
+        <div class="content text-center shadow">
+            <div class="icon-wrap">
+                <img class="icon" width="66" ng-src="assets/image/smile-icon.png">
+            </div>
+
+            <p class="desc">您已安全退出</p>
+        </div>
+
+        <div class="action">
+            <a class="btn btn-theme btn-block" href="login">登录</a>
+        </div>
+    </section>
+
+</div>
+

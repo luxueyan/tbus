@@ -11,88 +11,97 @@
     </div>
     </nav>
 
-    <div></div>
-
-    <section class="omit-margin loan-summary">
-        <div class="rate text-center">
-            <div class="value" ng-if="!loan.deduction_rate">{{ loan.rate }}%</div>
-            <div class="value" ng-if="loan.deduction_rate">{{ loan.basic_rate | number: 1 }}+{{ loan.deduction_rate | number: 1 }}%</div>
-            <div class="name">预期年化</div>
-        </div>
-        <div class="footer">
-            <div class="inner" ng-if="loan.status !== 'SCHEDULED'">
-                <span class="percent">已完成{{ loan.invest_percent_int }}%</span>
-                <span class="balance text-right">剩余{{ loan.balance | number }}元</span>
+    <section class="omit-margin container loan-summary-1">
+        <div class="row text-center">
+            <div class="col-xs-6 rate">
+                <div class="value">{{ loan.rate }}<small>%</small></div>
+                <div class="name">预期年收益率</div>
             </div>
 
-            <div ng-if="loan.status === 'SCHEDULED'">
-                距离开标时间:
-                <timer interval="1000" end-time="loan.time_open">
-                    {{ days }}天{{ hhours }}小时{{ mminutes }}分{{ sseconds }}秒
-                </timer>
+            <div class="col-xs-6 duration">
+                <div class="value">
+                    <span ng-if="loan.raw.duration.days">
+                        {{ loan.total_days }}天
+                    </span>
+                    <span ng-if="!loan.raw.duration.days">
+                        {{ loan.total_months }}个月
+                    </span>
+                </div>
+                <div class="name">投资期限</div>
             </div>
         </div>
     </section>
 
-    <section class="omit-margin container loan-info">
-        <ul class="row list-unstyled u-off-margin-bottom link-list">
-            <li class="col-xs-4">
-                <a ng-href="loan/{{ loan.id }}/info?tab=security">
-                    <img width="26" ng-src="assets/image/loan/shield.png">
-                    安全保障
-                </a>
-            </li>
+    <section class="omit-margin shadow loan-summary-2">
+        <span class="date" ng-switch="loan.status">
+            <span ng-switch-when="SCHEDULED">
+                距离开标时间:<br>
+                <timer interval="1000" end-time="loan.time_open">
+                    <span class="num">{{ days }}</span> 天
+                    <span class="num">{{ hhours }}</span> 小时
+                    <span class="num">{{ mminutes }}</span> 分
+                    <span class="num">{{ sseconds }}</span> 秒
+                </timer>
+            </span>
+            <span ng-switch-when="OPENED">
+                距离结束购买还有：<br>
+                <timer interval="1000" end-time="loan.time_close">
+                    <span class="num">{{ days }}</span> 天
+                    <span class="num">{{ hhours }}</span> 小时
+                    <span class="num">{{ mminutes }}</span> 分
+                    <span class="num">{{ sseconds }}</span> 秒
+                </timer>
+            </span>
+            <span ng-switch-default>已结束</span>
+        </span>
+        <span class="balance">剩余可投资(元)<span class="num">{{ loan.balance }}</span></span>
+    </section>
 
-            <li class="col-xs-4">
-                <a ng-href="loan/{{ loan.id }}/info?tab=profit">
-                    <img width="24" ng-src="assets/image/loan/list.png">
-                    收益方式
-                </a>
+    <section class="loan-date">
+        <ul class="list-unstyled u-off-margin-bottom list">
+            <li>
+                <div class="name">开售时间</div>
+                <div class="value">{{ loan.time_open | date: 'yyyy-MM-dd' }}</div>
             </li>
-
-            <li class="col-xs-4">
-                <a ng-href="loan/{{ loan.id }}/info?tab=faq">
-                    <img width="28" ng-src="assets/image/loan/faq.png">
-                    常见问题
-                </a>
+            <li>
+                <div class="name">起息日</div>
+                <div class="value">购买成功后第二天</div>
+            </li>
+            <li>
+                <div class="name">结息日</div>
+                <div class="value">{{ loan.due_date | date: 'yyyy-MM-dd' }}</div>
+            </li>
+            <li>
+                <div class="name">预计到账日</div>
+                <div class="value">{{ loan.due_date | date: 'yyyy-MM-dd' }}</div>
             </li>
         </ul>
     </section>
 
-    <section class="loan-panel">
-        <div class="heading">
-            <h3 class="title">项目概览</h3>
-        </div>
-        <ul class="list-unstyled info-list">
+    <section class="loan-info">
+        <ul class="list-unstyled u-off-margin-bottom list">
             <li>
-                <span class="name">募资规模</span>
+                <span class="name">产品总额</span>
                 <span class="value">
-                    {{ (loan.amount_myriad || loan.amount) | number }}<!--
+                    {{ loan.amount_myriad || loan.amount }}<!--
                     --><span ng-if="loan.amount_myriad">万</span><!--
                     --><span ng-if="!loan.amount_myriad">元</span>
                 </span>
             </li>
             <li>
-                <span class="name">募集截止日</span>
-                <span class="value">{{ loan.finished_date | date: 'yyyy-MM-dd' }}</span>
-            </li>
-            <li>
-                <span class="name">项目期限</span>
-                <span class="value">
-                    <span ng-if="loan.raw.duration.days">
-                        {{ loan.total_days }}<small>天</small>
-                    </span>
-                    <span ng-if="!loan.raw.duration.days">
-                        {{ loan.total_months }}<small>个月</small>
-                    </span>
-                </span>
+                <span class="name">可否转让</span>
+                <span class="value">30天之后可转让</span>
             </li>
             <li>
                 <span class="name">起投金额</span>
-                <span class="value">{{ loan.raw.loanRequest.investRule.minAmount | number }}元</span>
+                <span class="value">{{ loan.raw.loanRequest.investRule.minAmount }}元</span>
             </li>
             <li>
-                <span class="name">还款方式</span>
+                <span class="name">递增金额</span>
+                <span class="value">{{ loan.raw.loanRequest.investRule.stepAmount }}元</span>
+            </li>
+            <li>
+                <span class="name">收益分配</span>
                 <span class="value" ng-switch="loan.method">
                     <span ng-switch-when="MonthlyInterest">按月付息到期还本</span>
                     <span ng-switch-when="EqualInstallment">按月等额本息</span>
@@ -102,64 +111,128 @@
                     <span ng-switch-when="YearlyInterest">按年付息到期还本</span>
                 </span>
             </li>
+            <li>
+                <span class="name">产品风险等级</span>
+                <span class="value"
+                      ng-bind-html="loan.raw.loanRequest.mortgageInfo | sanitize"
+                ></span>
+            </li>
+            <li>
+                <span class="name">资金用途</span>
+                <span class="value"
+                      ng-bind-html="loan.raw.loanRequest.guaranteeInfo | sanitize"
+                ></span>
+            </li>
         </ul>
-        <div class="container text-center">
-            <a class="btn btn-more"
-               ng-href="loan/{{ loan.id }}/detail"
-            >点击查看项目详情</a>
-        </div>
     </section>
 
-    <section class="loan-panel">
-        <div class="heading">
-            <h3 class="title">参投记录</h3>
-        </div>
+    <section class="loan-detail">
+        <uib-accordion close-others="true">
+            <uib-accordion-group is-open="open" ng-if="true">
+                <uib-accordion-heading>
+                    <param class="pull-right glyphicon"
+                           ng-class="open ? 'glyphicon-menu-up' : 'glyphicon-menu-down'"
+                    >
+                    产品亮点
+                </uib-accordion-heading>
 
-        <div ng-hide="loading_investors">
-            <ul class="list-unstyled info-list" ng-if="investors.length">
-                <li ng-repeat="item in investors | limitTo: 3">
-                    <span class="name">{{ item.submitTime | date: 'yy-MM-dd HH:mm' }}</span>
-                    <span class="value">用户{{ item.mobile | string_replace: '^\\d+(\\d{4})$' : '****$1' }}投资{{ item.amount }}元</span>
-                </li>
-            </ul>
+                <div class="content"
+                     ng-bind-html="loan.raw.loanRequest.guaranteeInfo | sanitize"
+                ></div>
+            </uib-accordion-group>
 
-            <div class="container" ng-if="!investors.length">
-                <h4 class="alert alert-info text-center">暂无记录</h4>
-            </div>
+            <uib-accordion-group is-open="open" ng-if="true">
+                <uib-accordion-heading>
+                    <param class="pull-right glyphicon"
+                           ng-class="open ? 'glyphicon-menu-up' : 'glyphicon-menu-down'"
+                    >
+                    风控措施
+                </uib-accordion-heading>
 
-            <div class="container text-center" ng-if="investors.length > 3">
-                <a class="btn btn-more"
-                   ng-href="loan/{{ loan.id }}/investors"
-                >点击查看更多</a>
-            </div>
-        </div>
+                <div class="content"
+                     ng-bind-html="loan.raw.loanRequest.riskInfo | sanitize"
+                ></div>
+            </uib-accordion-group>
 
-        <p class="text-center loading" ng-show="loading_investors">
-            <img src="assets/image/spinner.gif">
-        </p>
+            <uib-accordion-group is-open="open" ng-if="true">
+                <uib-accordion-heading>
+                    <param class="pull-right glyphicon"
+                           ng-class="open ? 'glyphicon-menu-up' : 'glyphicon-menu-down'"
+                    >
+                    常见问题
+                </uib-accordion-heading>
+
+                <div class="content"
+                     ng-bind-html="loan.raw.loanRequest.description | sanitize"
+                ></div>
+            </uib-accordion-group>
+
+            <uib-accordion-group is-open="open" ng-if="true">
+                <uib-accordion-heading>
+                    <param class="pull-right glyphicon"
+                           ng-class="open ? 'glyphicon-menu-up' : 'glyphicon-menu-down'"
+                    >
+                    投资记录
+                </uib-accordion-heading>
+
+                <div class="content">
+                    <div ng-hide="loading_investors">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>手机号</th>
+                                    <th class="text-center">投资时间</th>
+                                    <th class="text-right">投资金额</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in investors">
+                                    <td class="mobile">{{ (item.mobile || '') | string_replace: '^(\\d{3})(\\d{5})(\\d{3})$' : '$1*****$3' }}</td>
+                                    <td class="date text-center">{{ item.submitTime | date: 'yyyy-MM-dd' }}</td>
+                                    <td class="amount text-right">{{ item.amount }}元</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="container" ng-if="!investors.length">
+                            <h4 class="alert alert-info text-center">暂无记录</h4>
+                        </div>
+                    </div>
+
+                    <p class="text-center loading" ng-show="loading_investors">
+                        <img src="assets/image/spinner.gif">
+                    </p>
+                </div>
+            </uib-accordion-group>
+        <uib-accordion>
     </section>
 
-    <section class="omit-margin loan-status" ng-switch="loan.status">
-        <div class="btn btn-block btn-default btn-lg disabled"
-             ng-switch-when="SCHEDULED"
-        >即将开始</div>
+    <section class="omit-margin loan-fixed">
+        <div class="rule">
+            起投金额(元) {{ loan.raw.loanRequest.investRule.minAmount | number: 2 }}
+        </div>
+        <div class="status" ng-switch="loan.status">
+            <div class="btn btn-block btn-default disabled"
+                 ng-switch-when="SCHEDULED"
+            >即将开始</div>
 
-        <a class="btn btn-block btn-theme btn-lg"
-           ng-switch-when="OPENED"
-           ng-href="loan/{{ loan.id }}/invest"
-        >立即投资</a>
+            <a class="btn btn-block btn-theme"
+               ng-switch-when="OPENED"
+               ng-href="loan/{{ loan.id }}/invest"
+            >马上投资</a>
 
-        <div class="btn btn-block btn-default btn-lg disabled"
-             ng-switch-when="FINISHED"
-        >已满标</div>
+            <div class="btn btn-block btn-default disabled"
+                 ng-switch-when="FINISHED"
+            >已满标</div>
 
-        <div class="btn btn-block btn-default btn-lg disabled"
-             ng-switch-when="SETTLED"
-        >计息中</div>
+            <div class="btn btn-block btn-default disabled"
+                 ng-switch-when="SETTLED"
+            >计息中</div>
 
-        <div class="btn btn-block btn-default btn-lg disabled"
-             ng-switch-when="CLEARED"
-        >已结息</div>
+            <div class="btn btn-block btn-default disabled"
+                 ng-switch-when="CLEARED"
+            >已结息</div>
+        </div>
     </section>
 
 </div>

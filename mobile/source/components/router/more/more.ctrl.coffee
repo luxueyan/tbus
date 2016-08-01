@@ -15,9 +15,13 @@ do (_, angular) ->
 
                 @api.logout().then =>
 
-                    @$scope.$on '$locationChangeSuccess', =>
-                        @$window.location.reload()
+                    @api.user_fetching_promise = null
+                    @user.has_logged_in = false
+                    @$scope.is_show_action_result = true
 
-                    @$location
-                        .path '/'
-                        .search t: _.now()
+                    # @$scope.$on '$locationChangeSuccess', =>
+                    #     @$window.location.reload()
+
+                    # @$location
+                    #     .path '/'
+                    #     .search t: _.now()

@@ -1,7 +1,7 @@
 
 do (_, angular) ->
 
-    angular.module('controller').controller 'AboutCtrl',
+    angular.module('controller').controller 'ContactCtrl',
 
         _.ai '            @$scope, @$rootScope, @$window', class
             constructor: (@$scope, @$rootScope, @$window) ->
@@ -9,6 +9,5 @@ do (_, angular) ->
                 @$window.scrollTo 0, 0
 
                 @$rootScope.state = 'more'
-
 
 
