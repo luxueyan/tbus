@@ -174,35 +174,29 @@ function init(type) {
                     var datas = res.result.results;
                     for (var i = 0; i < datas.length; i++) {
                         var o = datas[i];
-                        datas[i].timeOpen = moment(res.dates[datas[i].loanId].timeOpen).format('YYYY-MM-DD');
-                        datas[i].timeout = res.dates[datas[i].loanId].timeout/24;
-                        datas[i].timeEnd = moment(res.dates[datas[i].loanId].timeOpen).add(res.dates[datas[i].loanId].timeout, 'days').format('YYYY-MM-DD');
-                        //    起息日
-                        datas[i].start1 = moment(res.dates[datas[i].loanId].timeFinished).add(1, 'days').format('YYYY-MM-DD');
-                        datas[i].start2 =  moment(res.dates[datas[i].loanId].timeEnd).add(1, 'days').format('YYYY-MM-DD');
-                        //    到息日
-                        datas[i].end1 =  moment(datas[i].start1).add(res.dates[datas[i].loanId].duration.days, 'days').format('YYYY-MM-DD');
-                        datas[i].end2 =  moment(datas[i].start2).add(res.dates[datas[i].loanId].duration.days, 'days').format('YYYY-MM-DD');
-
+                        o.timeOpen = moment(res.dates[o.loanId].timeOpen).format('YYYY-MM-DD');
+                        o.timeout = res.dates[o.loanId].timeout/24;
+                        o.timeEnd = moment(res.dates[o.loanId].timeOpen).add(o.timeout, 'days').format('YYYY-MM-DD');
                         //起息日
-                        if(res.dates[datas[i].loanId].loanRequest.valueDate == null){
-                            if(res.dates[datas[i].loanId].timeFinished ==null){
-                                datas[i].valueDate = datas[i].start2;
-                            }else{
-                                datas[i].valueDate = datas[i].start1;
-                            }
+                        if(res.dates[o.loanId].timeFinished){
+                            o.start = moment(res.dates[o.loanId].timeFinished).add(1, 'days').format('YYYY-MM-DD');
                         }else{
-                            datas[i].valueDate = moment(res.dates[datas[i].loanId].loanRequest.valueDate).format('YYYY-MM-DD');
+                            o.start =  moment(o.timeEnd).add(1, 'days').format('YYYY-MM-DD');
                         }
                         //到息日
-                        if(res.dates[datas[i].loanId].loanRequest.dueDate == null){
-                            if(res.dates[datas[i].loanId].timeFinished ==null){
-                                datas[i].valueDate = datas[i].end2;
-                            }else{
-                                datas[i].valueDate = datas[i].end1;
-                            }
+                        o.end =  moment(o.start).add(res.dates[o.loanId].duration.days, 'days').format('YYYY-MM-DD');
+
+                        //起息日
+                        if(res.dates[datas[i].loanId].loanRequest.valueDate){
+                            o.valueDate = moment(res.dates[o.loanId].loanRequest.valueDate).format('YYYY-MM-DD');
                         }else{
-                            datas[i].dueDate = moment(res.dates[datas[i].loanId].loanRequest.dueDate).format('YYYY-MM-DD');
+                            o.valueDate = o.start;
+                        }
+                        //到息日
+                        if(res.dates[datas[i].loanId].loanRequest.dueDate){
+                            o.dueDate = moment(res.dates[o.loanId].loanRequest.dueDate).format('YYYY-MM-DD');
+                        }else{
+                            o.dueDate = o.end;
                         }
 
                         switch (type) {

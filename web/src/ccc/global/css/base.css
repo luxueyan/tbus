@@ -10233,8 +10233,8 @@ body {
 .s-header-menu {
   width: 1200px;
   margin: auto;
-  height: 72px;
-    line-height: 72px;
+  height: 101px;
+    line-height: 101px;
 }
 .s-header-menu.floating {
   width: 100%;
