@@ -103,6 +103,11 @@
 }
 .record table tr{
     border-bottom: 1px solid #dcdcdc;
+    font-size: 18px;
+}
+.record table tr td{
+    font-size: 15px;
+    height: 52px;
 }
 th , td {
     text-align: center;

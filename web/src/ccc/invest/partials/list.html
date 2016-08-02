@@ -28,10 +28,10 @@
       <tbody>
       {{#list}}
       <tr>
-        <td><a href="/loan/{{ id }}" class="invest-title">{{title}}</a></td>
+        <td class="title"><a href="/loan/{{ id }}" class="invest-title">{{title}}</a></td>
         <td class="rate"><span>{{rate}}</span>%</td>
-        <td><span>{{fduration}}</span>{{fdurunit}}</td>
-        <td><span>{{loanRequest.investRule.minAmount}}</span>元</td>
+        <td class="fdurunit"><span>{{fduration}}</span>{{fdurunit}}</td>
+        <td class="minAmount"><span>{{loanRequest.investRule.minAmount}}</span>元</td>
         <td class="status">
           {{#if status === 'OPENED'}}
           <div class="rate">在售中</div>
@@ -47,7 +47,7 @@
           <div>还款结束</div>
           {{/if}}
         </td>
-        <td>
+        <td class="operate">
           {{#if status === 'OPENED'}}
           <a href="/loan/{{id}}" class="investbtn investbtn-open">查看详情</a>
           {{else}}
