@@ -13,6 +13,7 @@ var fixedRactive = new Ractive({
         bankCards: CC.user.bankCards
     },
     onrender: function () {
+        var that = this ;
         var outstandingInterest = parseFloat(CC.user.outstandingInterest || 0).toFixed(2);
         var amoutArray = outstandingInterest.split('.');
         this.set('outstandingInterest', parseInt(amoutArray[0]));
@@ -22,6 +23,16 @@ var fixedRactive = new Ractive({
         var amoutArray = holdTotalAmount.split('.');
         this.set('holdTotalAmount', parseInt(amoutArray[0]));
         this.set('hMore', amoutArray[1]);
+
+        $.get('/api/v2/user/MYSELF/invest/list/0/4?status=SETTLED&status=OVERDUE&status=BREACH&status=FINISHED&status=PROPOSED&status=FROZEN&status=CLEARED', function (o) {
+            that.set('ASSIGN', o.result.totalSize);
+        });
+        $.get('/api/v2/creditassign/list/user/MYSELF?status=OPEN&page=1&pageSize=4', function (o) {
+            that.set('INHAND', o.totalSize);
+        });
+        $.get('/api/v2/user/MYSELF/invest/list/0/4?status=CLEARED', function (o) {
+            that.set('CLEARED', o.result.totalSize);
+        });
     }
 });
 
