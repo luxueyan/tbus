@@ -277,12 +277,12 @@ function ininconut() {
         var id = t.data("id");
         var openTime = t.data("open");
         var serverDate = t.data("serv");
-        var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-        var textDay = leftTime.day ? leftTime.day + '天' : '';
+        //var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
+        //var textDay = leftTime.day ? leftTime.day + '天' : '';
         var interval = setInterval((function () {
             serverDate += 1000;
             var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-            var textDay = leftTime.day ? leftTime.day + '天' : '';
+            //var textDay = leftTime.day ? leftTime.day + '天' : '';
             if (!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
                 clearInterval(interval);
                 t.prev().hide();

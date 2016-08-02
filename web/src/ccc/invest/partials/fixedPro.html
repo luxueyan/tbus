@@ -28,19 +28,24 @@
     <div class="leftTime">
       <img src="/ccc/invest/img/clock_icon.png" alt="" />
       <div class="time">
+          {{#if status === 'SCHEDULED'}}
+          <div class="investbtn-time" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}" data-serv="{{ serverDate }}">
+          </div>
+          {{else}}
           <div class="investbtn-time" data-status="{{ status }}" data-id="{{id}}" data-open="{{ timeLeft }}" data-serv="0" style=""></div>
-      </div>
-    </div>
-    <div class="leftAmount">
-      剩余可投资 (元)：<span>{{balance}}</span>
-    </div>
-    <!-- <div class="process">
-        <div class="rate-chart">
-            <div class="easy-pie-chart pie" data-percent="{{ investPercent }}" data-status='{{status}}'>
-                <span class="percentageNum">{{ investPercent }} </span>
-            </div>
-        </div>
-    </div> -->
+          {{/if}}
+     </div>
+   </div>
+   <div class="leftAmount">
+     剩余可投资 (元)：<span>{{balance}}</span>
+   </div>
+   <!-- <div class="process">
+       <div class="rate-chart">
+           <div class="easy-pie-chart pie" data-percent="{{ investPercent }}" data-status='{{status}}'>
+               <span class="percentageNum">{{ investPercent }} </span>
+           </div>
+       </div>
+   </div> -->
     <div class="percentage">
         <p class="word">进度</p>
         <div class="progress">
@@ -54,7 +59,7 @@
         <a class="open" href="/loan/{{id}}">立即投资</a>
         {{/if}} {{#if status === 'SCHEDULED'}}
         <a href="/loan/{{id}}">即将开始</a>
-        <div class="investbtn-time" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}" data-serv="{{ serverDate }}" style="margin-top:5px;color: black;width: 180px;text-align: center;"></div>
+        <!--<div class="investbtn-time" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}" data-serv="{{ serverDate }}" style="margin-top:5px;color: black;width: 180px;text-align: center;"></div>-->
         {{/if}} {{#if status === 'FINISHED'}}
         <a href="/loan/{{id}}">已满标</a>
         {{/if}} {{#if status === 'FAILED'}}
