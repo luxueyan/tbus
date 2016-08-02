@@ -168,17 +168,17 @@ setTimeout((function () {
     var serverDate = CC.serverDate;
     var openTime = CC.loan.timeOpen;
     serverDate += 1000;
-    if (CC.loan.status === 'SCHEDULED') {
-        var interval = setInterval((function () {
-            var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-            var textDay = leftTime.day ? leftTime.day : '';
-            if (!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
-                clearInterval(interval);
-            } else {
-                $('.left-time-start').html('<span class="text">距离开标时间还有<span style="color:#009ada">' + textDay + '</span>天<span style="color:#009ada;">' + leftTime.hour + '</span>时<span style="color:#009ada">' + leftTime.min + '</span>分<span style="color:#009ada">' + leftTime.sec + '</span>秒</span>')
-            }
-        }), 1000);
-    }
+    //if (CC.loan.status === 'SCHEDULED') {
+    //    var interval = setInterval((function () {
+    //        var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
+    //        var textDay = leftTime.day ? leftTime.day : '';
+    //        if (!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
+    //            clearInterval(interval);
+    //        } else {
+    //            $('.left-time-start').html('<span class="text">距离开标时间还有<span style="color:#009ada">' + textDay + '</span>天<span style="color:#009ada;">' + leftTime.hour + '</span>时<span style="color:#009ada">' + leftTime.min + '</span>分<span style="color:#009ada">' + leftTime.sec + '</span>秒</span>')
+    //        }
+    //    }), 1000);
+    //}
 
     if (CC.user) {
         accountService.getUserInfo(function (res) {
@@ -485,8 +485,8 @@ var recordRactive = new Ractive({
             .end()
             .get('body')
             .then(function (r) {
-                console.log('rrrrrrrr')
-                console.log(r)
+                //console.log('rrrrrrrr')
+                //console.log(r)
                 self.setData(r);
 
             });

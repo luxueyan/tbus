@@ -236,7 +236,7 @@ function parseLoan(loan) {
     console.log( "=====loan.timeFinished" + loan.timeFinished);
     console.log( "=====loan.timeEnd" + loan.timeEnd);
 
-    loan.valueDate = moment(loan.timeOpen+86400000).format('YYYY-MM-DD');
+    loan.valueDate = moment(loan.loanRequest.valueDate).format('YYYY-MM-DD');
     loan.dueDate = moment(loan.loanRequest.dueDate).format('YYYY-MM-DD');
 //    起息日
     loan.start1 = moment(loan.timeFinished).add(1, 'days').format('YYYY-MM-DD');

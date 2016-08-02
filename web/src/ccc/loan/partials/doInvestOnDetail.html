@@ -1,22 +1,24 @@
 {{#if loan.status == "FINISHED"||loan.status == "SETTLED"||loan.status == "CLEARED"||loan.status == "SCHEDULED"}}
     {{#if hasID}}
         <img src="/ccc/loan/img/unlogin.png" class="unlogin_img" style="display: block;">
+        {{#if loan.status == "FINISHED"}}
+        <button class="finished-btn">已满标</button>
+        {{/if}}
+        {{#if loan.status == "SETTLED"}}
+        <button class="finished-btn">已抢完</button>
+        {{/if}}
+        {{#if loan.status == "CLEARED"}}
+        <button class="finished-btn">还款结束</button>
+        {{/if}}
+        {{#if loan.status == "SCHEDULED"}}
+        <button class="finished-btn">即将开始</button>
+        {{/if}}
     {{else}}
         <div class="login-see">我要投资</div>
         <p class="shiming">请先登录</p>
-    {{/if}}
-
-    {{#if loan.status == "FINISHED"}}
-        <button class="finished-btn">已满标</button>
-    {{/if}}
-    {{#if loan.status == "SETTLED"}}
-        <button class="finished-btn">已抢完</button>
-    {{/if}}
-    {{#if loan.status == "CLEARED"}}
-        <button class="finished-btn">还款结束</button>
-    {{/if}}
-    {{#if loan.status == "SCHEDULED"}}
-        <button class="finished-btn">即将开始</button>
+        <a href="/login?url={{backUrl}}" class="loginBtn">
+            登录投资
+        </a>
     {{/if}}
 {{/if}}
 
