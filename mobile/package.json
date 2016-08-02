@@ -1,5 +1,5 @@
 {
-    "name": "hrjk-mobile",
+    "name": "theh-mobile",
     "os": ["!win32"],
     "scripts": {
         "start": "cd dist/ && ecstatic",

@@ -2,7 +2,7 @@
 <div class="home-count">
     <div class="home-num">
         <div class="home-total common">
-            <div class="home-tab-info">我的资产(元)</div>
+            <div class="home-tab-info total">总资产(元)</div>
             <div class="home-tab-amount">{{totalAmount}}<span>.{{tAmount}}</span></div>
 
         </div>
@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="home-risk">
-        我的风险承受能力: <span>{{riskBear}}</span>
+        我的风险承受能力: <span>{{#if riskBear}}{{riskBear}}{{else}}系统默认{{/if}}</span>
     </div>
 </div>
 
@@ -36,7 +36,7 @@
                     <div class="label">固定收益</div>
                     <div class="total">
                         <div class="t_box">
-                            <p>0.<span>00</span></p>
+                            <p>{{holdTotalAmount}}.<span>{{hAmount}}</span></p>
                             <span>持有本息(元)</span>
                         </div>
                     </div>

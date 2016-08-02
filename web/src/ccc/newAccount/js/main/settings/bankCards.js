@@ -20,10 +20,11 @@ var ractive = new Ractive({
     data: {
         step1: true,
         step2: false,
+        step3: false,
         status: banksabled.length ? 1 : 0,
         payment: CC.user.name ? true : false,
         // banks: banks,
-        newbanks:[],
+        newbanks: [],
         msg: {
             BANK_NULL: false,
             CARD_NULL: false,
@@ -34,23 +35,30 @@ var ractive = new Ractive({
         province: '',
         city: '',
         mobile: CC.user.mobile,
-        realName: CC.user.name,
-        paymentPasswordHasSet: CC.user.paymentPasswordHasSet
+        realName: CC.user.name
     },
     oninit: function () {
         accountService.getUserInfo(function (o) {
             ractive.set('realName', o.userInfo.user.name);
         });
-        $.get('/api/v2/hundsun/banks',function(r){
-          ractive.set('newbanks',r);
+        $.get('/api/v2/hundsun/banks', function (r) {
+            ractive.set('newbanks', r);
+        });
+        $.get('/api/v2/user/MYSELF/authenticates', function (r) {
+            ractive.set('authenticates', r);
+            if (r.paymentAuthenticated) {
+                ractive.set('pwdText', '输入支付密码');
+            } else {
+                ractive.set('pwdText', '设定支付密码');
+            }
         });
         $.get('/api/v2/user/MYSELF', function (m) {
             if (m.idNumber) {
-                ractive.set('hasCardO',true);
-                ractive.set('idNo',m.idNumber);
-                ractive.set('personal',m.name);
-            }else{
-                ractive.set('hasCardO',false);
+                ractive.set('hasCardO', true);
+                ractive.set('idNo', m.idNumber);
+                ractive.set('personal', m.name);
+            } else {
+                ractive.set('hasCardO', false);
             }
         })
     }
@@ -94,51 +102,55 @@ var ractive = new Ractive({
 
 ractive.on("bind-card-submit", function (e) {
     e.original.preventDefault();
-    
+
+    var authenticates = this.get('authenticates');
+    var paymentAuthenticated = authenticates.paymentAuthenticated;
+    //console.log(paymentAuthenticated);
+
     var bankName = this.get('bankName');
     var cardNo = this.get('cardNo');
     var idNo = this.get('idNo');
-    var personal=this.get('personal');
+    var personal = this.get('personal');
     var cardPhone = this.get('mobile');
     var smsCaptcha = this.get('smsCaptcha');
     var pwd = this.get('password');
     var rePwd = this.get('repassword');
 
     //校验表单
-    if(personal == ''){
+    if (personal == '') {
         this.set("personalError", '请输入您的姓名');
         return;
-    }else{
+    } else {
         this.set("personalError", false);
-    };
+    }
 
     if (!/^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/.test(idNo)) {
         this.set("idNoError", '请输入正确的身份证号');
         return;
     } else {
         this.set("idNoError", false);
-    };
+    }
 
-    if(cardNo==''){
+    if (cardNo == '') {
         this.set("errMessgaeBank", '请输入您的银行卡号');
-    }else{
+    } else {
         this.set("errMessgaeBank", false);
-    };
+    }
 
     if (smsCaptcha === '') {
         this.set('SMS_NULL', '请输入手机验证码');
     } else {
         this.set('SMS_NULL', false);
-    };
+    }
 
     if (pwd === '') {
         this.set('errMessgaePwd', '请输入支付密码');
-    } else if(pwd.length < 6 || !/^[0-9]*$/g.test(pwd)){
-        this.set('errMessgaePwd', '交易密码为6位纯数字');
+    } else if (pwd.length < 6 || !/^[0-9]*$/g.test(pwd)) {
+        this.set('errMessgaePwd', '交易密码为不小于6位纯数字');
         return;
-    }else{
+    } else {
         this.set('errMessgaePwd', false);
-    };
+    }
 
     if (rePwd === '') {
         this.set('errMessgaeRePwd', '请再次输入支付密码');
@@ -150,13 +162,13 @@ ractive.on("bind-card-submit", function (e) {
         this.set('errMessgaeRePwd', false);
     }
 
-    var sendCard={
-        userId:CC.user.id,
-        accountNumber:cardNo,
-        mobile:cardPhone,
-        idCardNumber:idNo,
-        name:personal,
-        smsCaptcha:smsCaptcha
+    var sendCard = {
+        userId: CC.user.id,
+        accountNumber: cardNo,
+        mobile: cardPhone,
+        idCardNumber: idNo,
+        name: personal,
+        smsCaptcha: smsCaptcha
     }
     var msg = {
         SEND_CAPTCHA_FAILED: '验证码发送失败',
@@ -169,72 +181,86 @@ ractive.on("bind-card-submit", function (e) {
         ACCESS_DENIED: '登录超时',
         SUCCEED: '银行卡绑定成功'
     };
-    accountService.initialPassword(pwd, function (r) {
-        if(r.success){
-            $('.btn-box button').text('绑卡中,请稍等...');
-            $.post('/api/v2/user/checkBankcard', sendCard, function (res) { //bindCard
-                if(res.success){
-                    //console.log(res);
 
-                    ractive.set('step1',false);
-                    ractive.set('step2',true);
-                    ractive.on('close',function(){
-                        window.location.href = "/newAccount/home";
-                    });
-                }else{
-                    $('.btn-box button').text('绑定');
-                    if(res.error[0].message === 'Something is wrong'){
-                        msg[res.error[0].message] = '请再次确认您的信息'
-                    }
-                    CccOk.create({
-                        msg: '绑卡失败, '+msg[res.error[0].message],
-                        okText: '确定',
-                        ok: function () {
-                            $('.ccc-box-overlay').remove();
-                            $('.ccc-box-wrap').remove();
+    if (!paymentAuthenticated) {
+        accountService.initialPassword(pwd, function (r) {
+            if (r.success) {
+                $('.btn-box button').text('绑卡中,请稍等...');
+                $.post('/api/v2/user/checkBankcard', sendCard, function (res) { //bindCard
+                    if (res.success) {
+                        ractive.set('step1', false);
+                        ractive.set('step2', true);
+                        ractive.set('step3', false);
+                    } else {
+                        $('.btn-box button').text('绑定');
+                        ractive.set('step1', false);
+                        ractive.set('step2', false);
+                        ractive.set('step3', true);
+                        if (res.error[0].message === 'Something is wrong') {
+                            msg[res.error[0].message] = '请再次确认您的信息'
                         }
-                    });
-                }
+                        ractive.set('failError', msg[res.error[0].message]);
+                    }
 
-            });
-        }else{
-            CccOk.create({
-                msg: r.error[0].message,
-                okText: '确定',
-                ok: function () {
-                    $('.ccc-box-overlay').remove();
-                    $('.ccc-box-wrap').remove();
-                }
-            });
-        }
-    });
+                });
+            } else {
+                ractive.set('errMessgaePwd', '支付密码设定失败');
+            }
+        });
+    } else {
+        accountService.checkPassword(pwd, function (r) {
+            if (r) {
+                $('.btn-box button').text('绑卡中,请稍等...');
+                $.post('/api/v2/user/checkBankcard', sendCard, function (res) { //bindCard
+                    if (res.success) {
+                        //console.log(res);
+
+                        ractive.set('step1', false);
+                        ractive.set('step2', true);
+                        ractive.set('step3', false);
+                        ractive.on('close', function () {
+                            window.location.href = "/newAccount/home";
+                        });
+                    } else {
+                        $('.btn-box button').text('绑定');
+                        if (res.error[0].message === 'SMSCAPTCHA_IS_NOT_CORRECT') {
+                            ractive.set('SMS_NULL', '手机验证码错误');
+                            return;
+                        } else {
+                            ractive.set('SMS_NULL', false);
+                        }
+                        ractive.set('step1', false);
+                        ractive.set('step2', false);
+                        ractive.set('step3', true);
+                        if (res.error[0].message === 'Something is wrong') {
+                            msg[res.error[0].message] = '请再次确认您的信息'
+                        }
+                        ractive.set('failError', msg[res.error[0].message])
+
+                    }
+
+                });
+            } else {
+                ractive.set('errMessgaePwd', '交易密码错误');
+            }
+        });
+    }
 
 
 });
 
-ractive.on('sendCode', function (){
+ractive.on('sendCode', function () {
     var cardPhone = this.get('mobile');
-
-    if (!('' + cardPhone).match(/^1\d{10}$/) || cardPhone=='') {
-        CccOk.create({
-            msg: '请填写正确的手机号',
-            okText: '确定',
-            ok: function () {
-                $('.ccc-box-overlay').remove();
-                $('.ccc-box-wrap').remove();
-            }
-        });
-        return false;
-    }
-    
     if (!this.get('isSend')) {
         this.set('isSend', true);
-        $.get('/api/v2/hundsun/checkCard/sendSmsCaptcha/'+cardPhone,function(r){
+        //$.get('/api/v2/hundsun/checkCard/sendSmsCaptcha/'+cardPhone,function(r){
+        //$.post('/api/v2/smsCaptcha',{mobile:cardPhone,smsType:'CONFIRM_CREDITMARKET_BINDCARD'},function(r){
+        $.post('/api/v2/smsCaptcha', {mobile: cardPhone, smsType: 'CREDITMARKET_CAPTCHA'}, function (r) {
             if (r.success) {
                 countDown();
             }
         });
-    };
+    }
 });
 
 function countDown() {

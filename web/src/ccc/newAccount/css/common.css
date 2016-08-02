@@ -210,8 +210,11 @@
     text-align: left;
     padding-left: 7px;
     box-shadow: 5px 6px 10px -2px #ccc;
+    height: 60px;
+    line-height: 60px;
 }
 .nav-li .icon-active {
+    height: 60px;
     width: 52px;
     border-left: 3px #e4262b solid;
     background: #fff;
@@ -232,7 +235,7 @@
     /*margin-top: 34px;*/
 }
 .nav-li .nav-toggle-menu li {
-    margin: 10px 0;
+    /*margin: 10px 0;*/
     line-height: 50px;
 }
 .nav-li .nav-toggle-menu li a {
@@ -539,6 +542,9 @@ table tbody tr td {
     margin-left: 25px;
     float: left;
     margin-top: 22px;
+    -webkit-box-shadow: -2px 3px 7px #c9c7c8;
+    -moz-box-shadow: -2px 3px 7px #c9c7c8;
+    box-shadow: -2px 3px 7px #c9c7c8;
 }
 .info .name {
     height: 55px;

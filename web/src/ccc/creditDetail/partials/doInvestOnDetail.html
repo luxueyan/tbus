@@ -47,20 +47,23 @@
                     <div class="h20"></div>
                 </div>
             </div>
-            <form  action="/payment/creditAssign" name="assignForm"  method="POST" class="invest-form assignForm" on-submit="assign-submit" target="_blank">
             {{#if user}}
             <div class="do-invest-wrapper">
+                {{#if errors.visible}}
+                <div class="tooltip">{{ errors.msg }}</div>
+                {{/if}}
+
                 <div>转让价格(元): <span>{{creditassign.creditassign.balance}}</span></div>
                 <input type="hidden" value="{{creditassign.creditassign.balance}}" />
-                <div>预期收益(元): <span>{{creditassign.creditassign.amountInterest}}</span></div>
-                <button type="submit" class="btn">确认购买</button>
+                <div>预期收益(元): <span>{{profit}}</span></div>
+                <button class="btn" on-click="invest-submit">确认购买</button>
             </div>
             {{else}}
             <div class="do-invest-wrapper">
+                <p class="shiming">请先登录</p>
                 <a class="btn-login" href="/login">立即登录</a>
             </div>
             {{/if}}
-            </form>
         </div>
     </div>
 </div>

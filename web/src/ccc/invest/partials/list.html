@@ -1,48 +1,67 @@
 <!--{{JSON.stringify(list)}}-->
-<table>
-  <thead>
-    <tr>
-      <th>产品名称</th>
-      <th>年收益率</th>
-      <th>投资期限</th>
-      <th>起投金额</th>
-      <th>状态</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#list}}
-    <tr>
-      <td><a href="/loan/{{ id }}" class="invest-title">{{title}}</a></td>
-      <td class="rate"><span>{{rate}}</span>%</td>
-      <td><span>{{fduration}}</span>{{fdurunit}}</td>
-      <td><span>{{loanRequest.investRule.minAmount}}</span>元</td>
-      <td class="status">
-        {{#if status === 'OPENED'}}
-        <div class="rate">在售中</div>
-        {{/if}} {{#if status === 'SCHEDULED'}}
-        <div>预售中</div>
-        {{/if}} {{#if status === 'FINISHED'}}
-        <div>已满标</div>
-        {{/if}} {{#if status === 'FAILED'}}
-        <div>流标</div>
-        {{/if}} {{#if status === 'SETTLED'}}
-        <div>已抢完</div>
-        {{/if}} {{#if status === 'CLEARED'}}
-        <div>还款结束</div>
-        {{/if}}
-      </td>
-      <td>
-        {{#if status === 'OPENED'}}
-        <a href="/loan/{{id}}" class="investbtn investbtn-open">查看详情</a>
-        {{else}}
-        <a href="/loan/{{id}}" class="investbtn">查看详情</a>
-        {{/if}}
-      </td>
-    </tr>
-    {{/list}}
-  </tbody>
-</table>
-{{#if list}}
-<div class="invest-pager-wrapper" id="invest-pager"></div>
-{{/if}}
+<div class="list_header">
+  <div class="list_title">
+    <a href="/invest">我要理财</a> > <span>{{#if key === 'GDSY'}}固定收益{{elseif key=== 'XELC'}}浮动收益{{/if}}</span>
+  </div>
+  <div class="getstatusNum">
+    <ul class="sStatus">
+      <li class="selected" data-status="">全部产品（{{num.total}}）</li>
+      <li data-status="OPENED">在售中（{{num.opened}}）</li>
+      <li data-status="SETTLED">计息中（{{num.settled}}）</li>
+      <li data-status="CLEARED">已结息（{{num.cleared}}）</li>
+    </ul>
+  </div>
+</div>
+<div class="list_content">
+  <div class="invest-list-wrapper">
+    <table>
+      <thead>
+      <tr>
+        <th>产品名称</th>
+        <th>预期收益率</th>
+        <th>投资期限</th>
+        <th>起投金额</th>
+        <th>状态</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      {{#list}}
+      <tr>
+        <td class="title"><a href="/loan/{{ id }}" class="invest-title">{{title}}</a></td>
+        <td class="rate"><span>{{rate}}</span>%</td>
+        <td class="fdurunit"><span>{{fduration}}</span>{{fdurunit}}</td>
+        <td class="minAmount"><span>{{loanRequest.investRule.minAmount}}</span>元</td>
+        <td class="status">
+          {{#if status === 'OPENED'}}
+          <div class="rate">在售中</div>
+          {{/if}} {{#if status === 'SCHEDULED'}}
+          <div>预售中</div>
+          {{/if}} {{#if status === 'FINISHED'}}
+          <div>已满标</div>
+          {{/if}} {{#if status === 'FAILED'}}
+          <div>流标</div>
+          {{/if}} {{#if status === 'SETTLED'}}
+          <div>已抢完</div>
+          {{/if}} {{#if status === 'CLEARED'}}
+          <div>还款结束</div>
+          {{/if}}
+        </td>
+        <td class="operate">
+          {{#if status === 'OPENED'}}
+          <a href="/loan/{{id}}" class="investbtn investbtn-open">查看详情</a>
+          {{else}}
+          <a href="/loan/{{id}}" class="investbtn">查看详情</a>
+          {{/if}}
+        </td>
+      </tr>
+      {{/list}}
+      </tbody>
+    </table>
+    {{#if list}}
+    <div class="invest-pager-wrapper" id="invest-pager"></div>
+    {{/if}}
+  </div>
+</div>
+
+

@@ -1,0 +1,52 @@
+<div class="account-password-wrapper">
+    <div class="space-30"></div>
+    <div class="paypwd-wp">
+        {{#if step1}}
+        <div class="formwra">
+            <div class="resetWra" style="text-align:left;">
+                <p class="origin_mobile">原手机号码 <span>{{user.mobile}}</span></p>
+                <div class="row">
+                    <span class="tipss tipss_code">短信验证码</span>
+                    <input type="text" name="oldSmsCaptcha" value="{{oldSmsCaptcha}}" class="payInp" style="width:230px" on-blur='checkold' placeholder="输入短信验证码">
+                    <span on-click="sendOldCode" class="sendOldCode sendCode">发送验证码</span>
+                    <div class="errorMessage errorPass">
+                        {{ errorMessagea }}
+                    </div>
+                </div>
+                <div class="row">
+                    <span class="tipss tipss_mobile">新手机号</span>
+                    <input type="text" name="newMobile" value="{{newMobile}}" class="payInp" on-blur='checkmobile' placeholder="输入新手机号码">
+                    <div class="errorMessage errorPass">
+                        {{ errorMessageb }}
+                    </div>
+                </div>
+                <div class="row">
+                    <span class="tipss tipss_code">短信验证码</span>
+                    <input type="text" name="newSmsCaptcha" class="payInp" value="{{newSmsCaptcha}}" style="width:230px" on-blur='checknew' placeholder="输入新手机短信验证码">
+                    <span on-click="sendNewCode" class="sendNewCode sendCode">发送验证码</span>
+                    <div class="errorMessage errorPass">
+                        {{ errorMessagec }}
+                    </div>
+                </div>
+                <div class="space space-30"></div>
+                <div class="row">
+                    <div class="btn-update" on-click="fixMobile">确定</div>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+
+        {{#if step2}}
+        <div class="recharge-success">
+            <div class="content">
+                <div class="success-img">
+                    <img src="/ccc/newAccount/img/band-success.png"/>
+                </div>
+                <div class="success-content">
+                    <p>手机号修改成功</p>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+    </div>
+</div>

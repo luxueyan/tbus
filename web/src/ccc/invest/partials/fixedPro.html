@@ -12,15 +12,15 @@
     <div class="loan_info">
       <div class="info_box rate_box">
         <div class="rate"><span>{{rate}}</span>%</div>
-        <p class="title">年收益率</p>
+        <p class="title">预期收益率</p>
       </div>
       <div class="info_box">
         <div><span>{{fduration}}</span>{{fdurunit}}</div>
         <p class="title">投资期限</p>
       </div>
       <div class="info_box">
-        <div><span>{{loanRequest.investRule.minAmount}}</span>元</div>
-        <p class="title">起投金额</p>
+        <div><span>{{FminAmount}}</span></div>
+        <p class="title">起投金额 (元)</p>
       </div>
     </div>
   </div>
@@ -32,7 +32,7 @@
       </div>
     </div>
     <div class="leftAmount">
-      剩余可投资：<span>{{balance}}</span>元
+      剩余可投资 (元)：<span>{{balance}}</span>
     </div>
     <!-- <div class="process">
         <div class="rate-chart">

@@ -16,7 +16,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                         # redirectTo: '/list'
                     }
 
-                    .when '/list/:type?', {
+                    .when '/list', {
                         controller: 'ListCtrl as self'
                         templateUrl: 'components/router/list/list.tmpl.html'
                     }
@@ -420,6 +420,16 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                     .when '/about-coupon', {
                         controller: 'AboutCouponCtrl as self'
                         templateUrl: 'components/router/about/about-coupon.tmpl.html'
+                    }
+
+                    .when '/contact', {
+                        controller: 'ContactCtrl as self'
+                        templateUrl: 'components/router/contact/contact.tmpl.html'
+                    }
+
+                    .when '/help', {
+                        controller: 'HelpCtrl as self'
+                        templateUrl: 'components/router/help/help.tmpl.html'
                     }
 
                     .otherwise redirectTo: '/'

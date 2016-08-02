@@ -1,7 +1,7 @@
 <div class = "account-risk-wrapper">
     <div class="risk-nav">
         <span>风险测评</span>
-        <p>上次测评时间:{{timeLastUpdated}}</p>
+        <p>上次测评时间:{{#if timeLastUpdated}}{{timeLastUpdated}}{{else}}无{{/if}}</p>
     </div>
     {{#if question}}
     <div class="question-box">
@@ -12,7 +12,51 @@
             <p>2、风险提示：投资需承担各类风险， 可能遭受资金损失。同时， 投资时还应考虑本金兑付风险、市场风险、流动性风险、汇率风险、信用风险、利率风险、赋税风险、产品复杂度风险等各类风险。</p>
         </div>
         <div class="question-content">
-            {{#list:i}}
+            <div>
+                <span class="left"></span>
+                <span class="headline">个人及财务状况</span>
+                <span class="right"></span>
+            </div>
+            {{#listA}}
+            <p class="title">{{ordinal}}.{{content}}</p>
+            <ul>
+                {{#choices}}
+                <li><input type="radio" name="question{{i+1}}" value="{{score}}"/>{{value}}.{{content}}</li>
+                {{/choices}}
+            </ul>
+            {{/list}}
+            <div>
+                <span class="left"></span>
+                <span class="headline headlineTop">投资风险</span>
+                <span class="right"></span>
+            </div>
+            {{#listB}}
+            <p class="title">{{ordinal}}.{{content}}</p>
+            <ul>
+                {{#choices}}
+                <li><input type="radio" name="question{{i+1}}" value="{{score}}"/>{{value}}.{{content}}</li>
+                {{/choices}}
+            </ul>
+            {{/list}}
+            <div>
+                <span class="left"></span>
+                <span class="headline headlineTop">投资目的</span>
+                <span class="right"></span>
+            </div>
+            {{#listC}}
+            <p class="title">{{ordinal}}.{{content}}</p>
+            <ul>
+                {{#choices}}
+                <li><input type="radio" name="question{{i+1}}" value="{{score}}"/>{{value}}.{{content}}</li>
+                {{/choices}}
+            </ul>
+            {{/list}}
+            <div>
+                <span class="left"></span>
+                <span class="headline headlineTop">风险承受能力</span>
+                <span class="right"></span>
+            </div>
+            {{#listD}}
             <p class="title">{{ordinal}}.{{content}}</p>
             <ul>
                 {{#choices}}

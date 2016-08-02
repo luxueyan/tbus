@@ -10,12 +10,14 @@ require('ccc/global/js/lib/jquery.easy-pie-chart.js')
 
 var params = {
     pageSize: 10,
-    status: 'SCHEDULED',
-    minDuration: 0,
-    maxDuration: 100,
-    minRate: 0,
-    maxRate: 100,
-    currentPage: 1
+    currentPage: 0,
+    //status: '',
+    minDealAmount: 0,
+    maxDealAmount: 100000000, //转让价格
+    minRemainPeriod: 0,      //剩余期限
+    maxRemainPeriod: 100,
+    orderBy:'',
+    asc:''   //是否升序
 };
 
 function jsonToParams(params) {
@@ -125,154 +127,302 @@ function parseLoanList(list) {
 function replaceStr(str){
 	return str.replace(/[^\x00-xff]/g,'xx').length;
 }
-	
-InvestListService.getCreditassignData(function (res) {
-    var investRactive = new Ractive({
-        el:".invest-list-wrapper",
-        template: require('ccc/creditList/partials/singleInvest.html'),
-        data: {
-            list: parseLoanList(res.results),
-           // RepaymentMethod: i18n.enums.RepaymentMethod, // 还款方式
-            user:CC.user
-        }
-    });
-    //initailEasyPieChart();
-    //ininconut();
-    renderPager(res);
 
 
-    $('.sTitou li').click(function () {
-        if (!$(this).hasClass("selectTitle")) {
-            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
-            var minamount = $(this)
-                .data('min-amount');
-            var maxamount = $(this)
-                .data('max-amount');
+var investRactive = new Ractive({
+    el: ".invest-list-wrapper",
+    template: require('ccc/creditList/partials/singleInvest.html'),
+    data: {
+        list: [],
+        RepaymentMethod: i18n.enums.RepaymentMethod, // 还款方式
+        user: CC.user
+    },
+    onrender:function(){
+        var that = this;
+        InvestListService.getCreditassignData(jsonToParams(params),function(res){
+            that.set('list',parseLoanList(res.results));
+            that.renderPager(res,params.currentPage,that)
+        });
 
-            params.currentPage = 1;
-            params.minInvestAmount = minamount;
-            params.maxInvestAmount = maxamount;
-            render(params);
-        }
-    });
-
-    $('.sDuration li').click(function () {
-        if (!$(this).hasClass("selectTitle")) {
-            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
-            var minDuration = $(this)
-                .data('min-duration');
-            var maxDuration = $(this)
-                .data('max-duration');
-
-            params.currentPage = 1;
-            params.minDuration = minDuration;
-            params.maxDuration = maxDuration;
-            render(params);
-        }
-    });
-
-    $('.orderbyrules li').click(function () {
-        var rules = $(this).data('rules');
-        if (rules != 'normal') {
-            if ($(this).hasClass('activeLi01')) {
-                params.asc = false;
-                //console.log($(this).hasClass('activeLi01'));
-                $(this).addClass('activeLi02').removeClass('activeLi01');
-                $(this).siblings().removeClass('activeLi01');
-                $(this).siblings().removeClass('activeLi02');
-            } else {
-                params.asc = true;
-                //console.log($(this).hasClass('activeLi01'))
-                $(this).addClass('activeLi01').removeClass('activeLi02');
-                $(this).siblings().removeClass('activeLi01');
-                $(this).siblings().removeClass('activeLi02');
+    },
+    oncomplete:function(){
+        var that = this;
+        $('.sStatus li').click(function () {
+            $(this).addClass("selected").siblings().removeClass("selected");
+            var status = $(this).data("status");
+            if (status == 'SCHEDULED') {
+                params.minDuration = 0;
+                params.maxDuration = 100;
             }
+            params.status = status;
             params.currentPage = 1;
-            params.orderBy = rules;
-        } else {
-            params.currentPage = 1;
-            delete params.orderBy;
-            delete params.asc;
-            $(this).addClass('activeLi01');
-            $(this).siblings().removeClass('activeLi01');
-            $(this).siblings().removeClass('activeLi02');
-        }
-        render(params);
-    });
+            that.onrender();
+        });
 
-    function render(params) {
-        InvestListService.getLoanListWithCondition(jsonToParams(params),
-            function (
-                res) {
-                investRactive.set('list', []);
-                setTimeout(function () {
-                    investRactive.set('list', parseLoanList(res.results));
-					//console.log(investRactive.get('list'));
-                    //initailEasyPieChart();
-                    //ininconut();
-                    renderPager(res, params.currentPage);
-                }, 1);
-            });
-    }
+        $('.sTitou li').click(function () {
+            if (!$(this).hasClass("selectTitle")) {
+                $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
+                var minamount = $(this).data('min-amount');
+                var maxamount = $(this).data('max-amount');
 
-    function renderPager(res, current) {
-        if (!current) {
-            current = 1;
-        }
-        var pagerRactive = new Ractive({
-            el: '#invest-pager',
-            template: require('ccc/creditList/partials/pager.html'),
-            data: {
-                totalPage: createList(res.totalSize, current),
-                current: current
+                params.currentPage = 0;
+                params.minDealAmount = minamount;
+                params.maxDealAmount = maxamount;
+                that.onrender();
             }
         });
 
+        $('.sDuration li').click(function () {
+            if (!$(this).hasClass("selectTitle")) {
+                $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
+                var minDuration = $(this)
+                    .data('min-duration');
+                var maxDuration = $(this)
+                    .data('max-duration');
+
+                params.currentPage = 0;
+                params.minRemainPeriod = minDuration;
+                params.maxRemainPeriod = maxDuration;
+                that.onrender();
+            }
+        });
+
+        $('.orderbyrules li').click(function () {
+            var rules = $(this).data('rules');
+            if (rules != 'normal') {
+                if ($(this).hasClass('activeLi01')) {
+                    params.asc = false;
+                    //console.log($(this).hasClass('activeLi01'));
+                    $(this).addClass('activeLi02').removeClass('activeLi01');
+                    $(this).siblings().removeClass('activeLi01');
+                    $(this).siblings().removeClass('activeLi02');
+                } else {
+                    params.asc = true;
+                    //console.log($(this).hasClass('activeLi01'))
+                    $(this).addClass('activeLi01').removeClass('activeLi02');
+                    $(this).siblings().removeClass('activeLi01');
+                    $(this).siblings().removeClass('activeLi02');
+                }
+                params.currentPage = 0;
+                params.orderBy = rules;
+            } else {
+                params.currentPage = 0;
+                delete params.orderBy;
+                delete params.asc;
+                $(this).addClass('activeLi01');
+                $(this).siblings().removeClass('activeLi01');
+                $(this).siblings().removeClass('activeLi02');
+            }
+            that.onrender();
+        });
+    },
+    renderPager:function(res, currentPage,obj){
+        if (!currentPage) {
+            currentPage = 1;
+        }
+
+        function createList(len) {
+            var arr = [];
+            var i=parseInt(len/params.pageSize);
+            if(len%params.pageSize>0){i++;}
+            for(var m=0;m<i;m++){
+                arr[m] =  m + 1;
+            }
+            return arr;
+        };
+
+        var pagerRactive = new Ractive({
+            el: '#invest-pager',
+            template: require('ccc/invest/partials/pager.html'),
+            data: {
+                totalPage: createList(res.totalSize),
+                current: currentPage
+            }
+        });
         pagerRactive.on('previous', function (e) {
             e.original.preventDefault();
             var current = this.get('current');
+            currentPage=current-1;
             if (current > 1) {
                 current -= 1;
                 this.set('current', current);
                 params.currentPage = current;
-                render(params);
+                obj.onrender();
             }
-        });
 
-        pagerRactive.on('page', function (e, page) {
-            e.original.preventDefault();
-            if (page) {
-                current = page;
-            } else {
-                current = e.context;
-            }
-            this.set('current', current);
-            params.currentPage = current;
-            render(params);
         });
         pagerRactive.on('next', function (e) {
             e.original.preventDefault();
             var current = this.get('current');
-            if (current < this.get('totalPage')[this.get('totalPage')
-                .length - 1]) {
+            currentPage=current+1;
+            if (current < this.get('totalPage')[this.get('totalPage').length - 1]) {
                 current += 1;
                 this.set('current', current);
                 params.currentPage = current;
-                render(params);
+                obj.onrender();
             }
         });
-    }
+        pagerRactive.on('page', function (e, page) {
+            e.original.preventDefault();
+            if (page) {
+                currentPage = page;
+            } else {
+                currentPage = e.context;
+            }
+            this.set('current', currentPage);
+            params.currentPage = currentPage;
+            obj.onrender();
+        });
+    },
 });
-
-function createList(len, current) {
-    var arr = [];
-    var i=parseInt(len/params.pageSize);
-    if(len%params.pageSize>0){i++;}
-    for(var m=0;m<i;m++){
-         arr[m] =  m + 1;
-    }
-    return arr;
-};
+//
+//InvestListService.getCreditassignData(function (res) {
+//    var investRactive = new Ractive({
+//        el:".invest-list-wrapper",
+//        template: require('ccc/creditList/partials/singleInvest.html'),
+//        data: {
+//            list: parseLoanList(res.results),
+//           // RepaymentMethod: i18n.enums.RepaymentMethod, // 还款方式
+//            user:CC.user
+//        }
+//    });
+//    //initailEasyPieChart();
+//    //ininconut();
+//    renderPager(res);
+//
+//
+//    $('.sTitou li').click(function () {
+//        if (!$(this).hasClass("selectTitle")) {
+//            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
+//            var minamount = $(this)
+//                .data('min-amount');
+//            var maxamount = $(this)
+//                .data('max-amount');
+//
+//            params.currentPage = 1;
+//            params.minInvestAmount = minamount;
+//            params.maxInvestAmount = maxamount;
+//            render(params);
+//        }
+//    });
+//
+//    $('.sDuration li').click(function () {
+//        if (!$(this).hasClass("selectTitle")) {
+//            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
+//            var minDuration = $(this)
+//                .data('min-duration');
+//            var maxDuration = $(this)
+//                .data('max-duration');
+//
+//            params.currentPage = 1;
+//            params.minDuration = minDuration;
+//            params.maxDuration = maxDuration;
+//            render(params);
+//        }
+//    });
+//
+//    $('.orderbyrules li').click(function () {
+//        var rules = $(this).data('rules');
+//        if (rules != 'normal') {
+//            if ($(this).hasClass('activeLi01')) {
+//                params.asc = false;
+//                //console.log($(this).hasClass('activeLi01'));
+//                $(this).addClass('activeLi02').removeClass('activeLi01');
+//                $(this).siblings().removeClass('activeLi01');
+//                $(this).siblings().removeClass('activeLi02');
+//            } else {
+//                params.asc = true;
+//                //console.log($(this).hasClass('activeLi01'))
+//                $(this).addClass('activeLi01').removeClass('activeLi02');
+//                $(this).siblings().removeClass('activeLi01');
+//                $(this).siblings().removeClass('activeLi02');
+//            }
+//            params.currentPage = 1;
+//            params.orderBy = rules;
+//        } else {
+//            params.currentPage = 1;
+//            delete params.orderBy;
+//            delete params.asc;
+//            $(this).addClass('activeLi01');
+//            $(this).siblings().removeClass('activeLi01');
+//            $(this).siblings().removeClass('activeLi02');
+//        }
+//        render(params);
+//    });
+//
+//    function render(params) {
+//        InvestListService.getLoanListWithCondition(jsonToParams(params),
+//            function (
+//                res) {
+//                investRactive.set('list', []);
+//                setTimeout(function () {
+//                    investRactive.set('list', parseLoanList(res.results));
+//					//console.log(investRactive.get('list'));
+//                    //initailEasyPieChart();
+//                    //ininconut();
+//                    renderPager(res, params.currentPage);
+//                }, 1);
+//            });
+//    }
+//
+//    function renderPager(res, current) {
+//        if (!current) {
+//            current = 1;
+//        }
+//        var pagerRactive = new Ractive({
+//            el: '#invest-pager',
+//            template: require('ccc/creditList/partials/pager.html'),
+//            data: {
+//                totalPage: createList(res.totalSize, current),
+//                current: current
+//            }
+//        });
+//
+//        pagerRactive.on('previous', function (e) {
+//            e.original.preventDefault();
+//            var current = this.get('current');
+//            if (current > 1) {
+//                current -= 1;
+//                this.set('current', current);
+//                params.currentPage = current;
+//                render(params);
+//            }
+//        });
+//
+//        pagerRactive.on('page', function (e, page) {
+//            e.original.preventDefault();
+//            if (page) {
+//                current = page;
+//            } else {
+//                current = e.context;
+//            }
+//            this.set('current', current);
+//            params.currentPage = current;
+//            render(params);
+//        });
+//        pagerRactive.on('next', function (e) {
+//            e.original.preventDefault();
+//            var current = this.get('current');
+//            if (current < this.get('totalPage')[this.get('totalPage')
+//                .length - 1]) {
+//                current += 1;
+//                this.set('current', current);
+//                params.currentPage = current;
+//                render(params);
+//            }
+//        });
+//    }
+//});
+//
+//function createList(len, current) {
+//    var arr = [];
+//    var i=parseInt(len/params.pageSize);
+//    if(len%params.pageSize>0){i++;}
+//    for(var m=0;m<i;m++){
+//         arr[m] =  m + 1;
+//    }
+//    return arr;
+//};
 
 //常见问题
 request.get(encodeURI('/api/v2/cms/category/HELP/name/常见问题')).end().then(function(res) {

@@ -27,7 +27,8 @@ var investAmount = parseFloat(dueInAmount + frozenAmount).toFixed(2);
 
 // 总资产
 var totalAmount = parseFloat(CC.user.availableAmount + dueInAmount + frozenAmount).toFixed(2);
-
+//持有本息
+var holdTotalAmount = parseFloat(CC.user.investStatistics.investStatistics.dueAmount.totalAmount|| 0).toFixed(2);
 var homeRactive = new Ractive({
     el: '.account-home-wrapper',
     template: require('ccc/newAccount/partials/home.html'),
@@ -42,6 +43,7 @@ var homeRactive = new Ractive({
         investAmount: investAmount,
         dueInAmount: parseFloat(dueInAmount).toFixed(2),
         frozenAmount: parseFloat(frozenAmount).toFixed(2),
+        holdTotalAmount: holdTotalAmount
 
     },
     parseData: function () {
@@ -58,6 +60,10 @@ var homeRactive = new Ractive({
             self.set('outstandingInterest', parseInt(outstandingInterest));
             self.set('investAmount', parseInt(investAmount));
         } else {
+            var amoutArray = holdTotalAmount.split('.');
+            self.set('holdTotalAmount', parseInt(amoutArray[0]));
+            self.set('hAmount', amoutArray[1]);
+
             var amoutArray = currentIncome.split('.');
             self.set('currentIncome', parseInt(amoutArray[0]));
             self.set('cMore', amoutArray[1]);

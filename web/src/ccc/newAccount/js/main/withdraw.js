@@ -69,6 +69,7 @@ var ractive = new Ractive({
                 self.set('error', false);
                 return;
             } else if (amount == 0) {
+
                 self.set('msg', {
                     AMOUNT_NULL: false,
                     AMOUNT_INVALID: true,
@@ -76,6 +77,7 @@ var ractive = new Ractive({
                 });
                 return;
             } else if (!self.match(amount)) {
+                //alert(111)
                 self.set('msg', {
                     AMOUNT_NULL: false,
                     AMOUNT_INVALID: true,
@@ -96,6 +98,27 @@ var ractive = new Ractive({
                     AMOUNT_POOR: false
                 });
             }
+
+
+            var url = '/api/v2/user/MYSELF/calculateWithdrawFee/'+amount;
+            $.ajax({
+                type: 'GET',
+                async: false,
+                url: url,
+                success: function(o){
+                    //alert(1111);
+                    self.set('submitText', '确认提现');
+                    self.set('totalFee', o.totalFee);
+                    self.set('withdrawAmount', o.withdrawAmount);
+                    if(o.withdrawAmount<0){
+                        self.set('withdrawAmount', '到账金额小于0,请调整取现金额');
+                    }
+                },
+                error: function(o){
+                    console.info('请求出现错误，' + o.statusText);
+                    self.set('error', true);
+                }
+            });
         });
 
         this.on('checkPassword', function () {
@@ -137,6 +160,10 @@ var ractive = new Ractive({
                 }
             }
         }
+
+
+
+
     },
 
     confirm: function (amount) {
@@ -149,43 +176,43 @@ var ractive = new Ractive({
         //this.set('submitText', '操作中...');
         //this.set('disabled', true);
 
-        var _FEE = null;
-         var url = '/api/v2/user/MYSELF/calculateWithdrawFee/'+amount;
-         $.ajax({
-         	type: 'GET',
-         	async: false,
-         	url: url,
-         	success: function(o){
-                //alert(1111);
-         		_FEE = o;
-         		self.set('submitText', '确认提现');
-         		self.set('disabled', false);
-         	},
-         	error: function(o){
-         		console.info('请求出现错误，' + o.statusText);
-         		self.set('error', true);
-         		self.set('submitText', '确认提现');
-         		self.set('disabled', false);
-         	}
-         });
+        //var _FEE = null;
+         //var url = '/api/v2/user/MYSELF/calculateWithdrawFee/'+amount;
+         //$.ajax({
+         //	type: 'GET',
+         //	async: false,
+         //	url: url,
+         //	success: function(o){
+         //       //alert(1111);
+         //		_FEE = o;
+         //		self.set('submitText', '确认提现');
+         //		self.set('disabled', false);
+         //	},
+         //	error: function(o){
+         //		console.info('请求出现错误，' + o.statusText);
+         //		self.set('error', true);
+         //		self.set('submitText', '确认提现');
+         //		self.set('disabled', false);
+         //	}
+         //});
         //_FEE = {
         //    withdrawAmount: amount
         //}
-        if (_FEE === null) {
-            return false;
-        }
+        //if (_FEE === null) {
+        //    return false;
+        //}
 
         // 实际到账<=0的情况
-        if (_FEE.withdrawAmount <= 0) {
-            var text = '实际到账金额为' + _FEE.withdrawAmount + '元，请调整取现金额';
-            self.set('submitMessage', text);
-            return false;
-        }
+        //if (_FEE.withdrawAmount <= 0) {
+        //    var text = '实际到账金额为' + _FEE.withdrawAmount + '元，请调整取现金额';
+        //    self.set('submitMessage', text);
+        //    return false;
+        //}
 
-        return confirm(
-             '实际到账' + _FEE.withdrawAmount + '元 (收取' + _FEE.totalFee + '元提现手续费)\n确认提现吗？'
-            //'实际到账' + _FEE.withdrawAmount + '元 \n确认提现吗？'
-        );
+        //return confirm(
+        //     '实际到账' + _FEE.withdrawAmount + '元 (收取' + _FEE.totalFee + '元提现手续费)\n确认提现吗？'
+        //    //'实际到账' + _FEE.withdrawAmount + '元 \n确认提现吗？'
+        //);
     },
 
     match: function (v) {
@@ -228,7 +255,7 @@ ractive.on('withDrawSubmit', function () {
                 });
                 ractive.set('submitText', '正在提现中，请稍等...');
 
-                				if (ractive.confirm(amount)) {
+                				//if (ractive.confirm(amount)) {
                 					//isAcess = true;
 
 
@@ -253,7 +280,7 @@ ractive.on('withDrawSubmit', function () {
                         ractive.set('submitText', '确认提现');
                     }
                 });
-                                };
+                                //};
             }
         });
     }

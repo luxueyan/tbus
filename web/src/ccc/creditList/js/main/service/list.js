@@ -30,8 +30,13 @@ exports.InvestListService = {
             });
         }
     },
-    getCreditassignData: function(next) {
-        request.get('/api/v2/creditassign/list').end().then(function(res){next(res.body)});
+    getCreditassignData: function(params,next) {
+        //request.get('/api/v2/creditassign/list')
+        request.get('/api/v2/creditassign/list/filter?'+params)
+            .end()
+            .then(function(res){
+                next(res.body)
+            });
     },
 //    getProductKey:function(next,params){
 //         request

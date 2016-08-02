@@ -3,107 +3,79 @@
 
     <nav class="omit-margin container page-nav">
     <div class="row">
-        <span class="col-xs-12 text-center logo">
-            <img width="64" ng-src="assets/image/nav-logo.png">
+        <a class="col-xs-4" href="login">
+            <img height="19" ng-src="assets/image/user-icon.png">
+            <small>登录</small>
+        </a>
+        <span class="col-xs-4 text-center logo">
+            <img height="12" ng-src="assets/image/nav-logo.png">
         </span>
+        <span class="col-xs-4">&nbsp;</span>
     </div>
     </nav>
 
-    <div class="banner"
-         x-carousel-banner
-         data-delay-in-seconds="4"
-         ng-style="{ height: carousel_height + 'px' }"
-    ></div>
+    <div class="banner" x-carousel-banner data-delay-in-seconds="4"></div>
 
-    <section class="loan-type">
-        <ul class="list-unstyled u-off-margin-bottom loan-type-list">
-            <li class="u-off-margin-top">
-                <a href="list/DCB">
-                    <div class="media media-dcb">
-                        <div class="media-left">
-                            <img width="38" class="media-object" ng-src="assets/image/loan-icons/dcb.png">
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">定存宝</h4>
-                            <p class="desc">稳定安全理财计划</p>
-                            <img width="80" class="bg-icon" ng-src="assets/image/loan-icons/dcb-lg.png">
-                        </div>
-                    </div>
-                </a>
-            </li>
-
-            <li>
-                <a href="list/LHB">
-                    <div class="media media-lhb">
-                        <div class="media-left">
-                            <img width="36" class="media-object" ng-src="assets/image/loan-icons/lhb.png">
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">灵活宝</h4>
-                            <p class="desc">灵活理财更自由</p>
-                            <img width="74" class="bg-icon" ng-src="assets/image/loan-icons/lhb-lg.png">
-                        </div>
-                    </div>
-                </a>
-            </li>
-
-            <li class="u-off-margin-bottom">
-                <a href="list/SBTZ">
-                    <div class="media media-sbtz">
-                        <div class="media-left">
-                            <img width="38" class="media-object" ng-src="assets/image/loan-icons/sbtz.png">
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">散标投资</h4>
-                            <p class="desc">灵活理财更自由</p>
-                            <img width="75" class="bg-icon" ng-src="assets/image/loan-icons/sbtz-lg.png">
-                        </div>
-                    </div>
-                </a>
-            </li>
-        </ul>
+    <section class="announcement omit-margin marquee">
+        <div class="content">我们为您选择最安全，最适合的理财产品</div>
     </section>
 
-    <section class="loan-panel loan-panel-new">
-        <div class="heading container">
-            <h3 class="title">新手专享</h3>
-            <span class="desc">现金红包＋超高收益</span>
-        </div>
-
+    <section class="loan">
         <ul class="list-unstyled u-off-margin-bottom loan-list text-center">
-            <li ng-repeat="item in list_new">
-                <a ng-href="loan/{{ item.id }}"
-                   x-loan-summary
-                   data-loan="item"
-                   data-layout="'without-chart'"
-                ></a>
+            <li ng-repeat="item in list">
+                <a ng-href="loan/{{ item.id }}">
+                    <div class="inner">
+                        <h4 class="title">{{ item.title }}</h4>
+                        <div class="rate">
+                            <span class="value">
+                                <span class="num">{{ item.rate }}</span>
+                                <span class="unit">%</span>
+                            </span>
+                            <span class="name">预期年化</span>
+                        </div>
+                        <div class="clearfix">
+                            <span class="duration pull-left">
+                                <span class="name">投资期限</span>
+                                <span class="value" ng-if="item.raw.duration.days">
+                                    {{ item.total_days }}天
+                                </span>
+                                <span class="value" ng-if="!item.raw.duration.days">
+                                    {{ item.total_months }}个月
+                                </span>
+                            </span>
+                            <span class="min-amount pull-right">
+                                <span class="name">起投金额(元)</span>
+                                <span class="value">{{ item.raw.loanRequest.investRule.minAmount | number: 2 }}</span>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+                <a class="btn btn-theme btn-sm btn-invest"
+                   ng-href="loan/{{ item.id }}/invest"
+                >立即投资</a>
             </li>
         </ul>
 
-        <p class="text-center loading" ng-show="loading_new">
+        <p class="text-center loading" ng-show="loading">
             <img src="assets/image/spinner.gif">
         </p>
     </section>
 
-    <section class="loan-panel loan-panel-hot">
-        <div class="heading container">
-            <h3 class="title">热门推荐</h3>
-            <span class="desc">1元起投 随时提取</span>
-        </div>
-
-        <ul class="list-unstyled u-off-margin-bottom loan-list">
-            <li ng-repeat="item in list_hot">
-                <a ng-href="loan/{{ item.id }}"
-                   x-loan-summary
-                   data-loan="item"
-                   data-layout="'has-chart'"
-                ></a>
+    <section class="feature shadow">
+        <ul class="row list-unstyled u-off-margin-bottom feature-list text-center">
+            <li class="col-xs-4">
+                <div class="icon icon-1"></div>
+                <p class="desc">银行级风控<br>专款专项专用</p>
+            </li>
+            <li class="col-xs-4">
+                <div class="icon icon-2"></div>
+                <p class="desc">360°项目审核<br>优中选优</p>
+            </li>
+            <li class="col-xs-4">
+                <div class="icon icon-3"></div>
+                <p class="desc">历史到期<br>100%兑付</p>
             </li>
         </ul>
-
-        <p class="text-center loading" ng-show="loading_hot">
-            <img src="assets/image/spinner.gif">
-        </p>
     </section>
 
 </div>

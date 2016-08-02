@@ -47,4 +47,12 @@ module.exports = function (router, auth) {
     router.get('/api/v2/creditassign/stat/total', auth.pass());
     //转让成交记录
     router.get('/api/v2/creditassign/stat/list', auth.pass());
+    //修改手机号
+    router.post('/api/v2/user/:userId/resetMobile', auth.user());
+    //债转列表
+    router.get('/api/v2/creditassign/list/filter', auth.pass());
+    //债转购买接口
+    router.post('/api/v2/creditassign/autoAssign/:userId', auth.user());
+    //发送短信验证码
+    router.post('/api/v2/smsCaptcha', auth.user());
 };

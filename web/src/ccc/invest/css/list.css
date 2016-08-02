@@ -17,6 +17,7 @@
 }
 .list_title a{
   color: #999;
+  margin-left: 20px;
 }
 .list_title span{
   color: #e4262b;
@@ -52,7 +53,6 @@
   }
 .invest-list-wrapper table tr td{
   padding: 20px 15px;
-  padding-right: 80px;
 }
 .invest-list-wrapper table tr td a{
   color: #666;
@@ -60,10 +60,26 @@
 .invest-list-wrapper table tr{
   border-bottom: 1px solid #c9c9c9;
 }
+/*.invest-list-wrapper .title{*/
+  /*width: 230px;*/
+/*}*/
 .invest-list-wrapper .rate{
+  /*width: 200px;*/
   color: #e60012;
 }
+
+/*.invest-list-wrapper .fdurunit{*/
+  /*width: 200px;*/
+/*}*/
+/*.invest-list-wrapper .minAmount{*/
+  /*width: 210px;*/
+/*}*/
 .invest-list-wrapper .status{
+  /*width: 180px;*/
+  color: #999;
+}
+.invest-list-wrapper .operate{
+  width: 122px;
   color: #999;
 }
 .invest-list-wrapper .investbtn{

@@ -41,15 +41,6 @@
     color: #7ea9c9;
 }
 
-.after-header .risk-level .tooltip-container .tooltip-arrow {
-    border-right-color: #f3f8fc;
-}
-
-.after-header .risk-level .tooltip-container .tooltip-inner {
-    background-color: #f3f8fc;
-    color: #568398;
-    max-width: 330px;
-}
 
 .after-header .name {
     float: right;
@@ -487,7 +478,14 @@
 .do-invest-wrapper button:focus {
     color: white;
 }
-.do-invest-wrapper btn-login{
+.do-invest-wrapper .shiming{
+    text-align: center;
+    color: #d4242f;
+    font-size: 16px;
+    margin: 20px auto 50px;
+}
+.do-invest-wrapper .btn-login{
+    margin: 0 auto;
     width: 270px;
     height: 45px;
     background: #e60012;
@@ -497,10 +495,8 @@
     vertical-align: middle;
     touch-action: manipulation;
     border: 1px solid transparent;
-    white-space: nowrap;
-    padding: 6px 12px;
     font-size: 14px;
-    line-height: 1.42857143;
+    line-height: 45px;
     border-radius: 4px;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -951,32 +947,13 @@
     padding-left: 25px;
 }
 
-.do-invest-wrapper .invest-input-wrapper .tooltip {
-    top: 27px;
-    left: 214px;
+.do-invest-wrapper .tooltip {
+    top: 38px;
     opacity: 1;
-    display: block;
+    font-size: 14px;
+    color: #e60012;
 }
 
-.do-invest-wrapper .invest-input-wrapper .tooltip .tooltip-arrow {
-    position: absolute;
-    border-width: 5px 5px 0;
-    border-top-color: #fdf8e4;
-    bottom: -5px;
-    left: 10%;
-}
-
-.do-invest-wrapper .invest-input-wrapper .tooltip .tooltip-inner {
-    padding: 5px 10px;
-    background-color: #fdf8e4;
-    max-width: 200px;
-    color: #c09956;
-}
-
-.do-invest-wrapper .invest-input-wrapper .tooltip .tooltip-inner .icon {
-    color: #fe0002;
-    margin-right: 5px;
-}
 
 .do-invest-wrapper .para3 .rest-money {
     float: left;

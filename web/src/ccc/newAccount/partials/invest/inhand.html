@@ -28,11 +28,11 @@
             </td>
             <td>
                 <!--<p class="table-title">起息日</p>-->
-                <p class="table-invest-common">{{}}</p>
+                <p class="table-invest-common">{{valueDate}}</p>
             </td>
             <td>
                 <!--<p class="table-title">到息日</p>-->
-                <p class="table-invest-common">{{}}</p>
+                <p class="table-invest-common">{{dueDate}}</p>
             </td>
             <td>
                 <!--<p class="table-title">状态</p>-->
@@ -42,7 +42,7 @@
                 <!--<p class="table-title">操作</p>-->
                 <p class="table-invest-common">
                     {{#if assignAble}}
-                    <a href="#" class="operation" data-invest="{{id}}" data-amount="{{amount}}" data-title="{{loanTitle}}">转让</a>
+                    <button class="operation" data-invest="{{id}}" data-amount="{{amount}}" data-title="{{loanTitle}}">转让</button>
                     <a href="#" class="look_contact">查看合同</a>
                     {{/if}}
                 </p>

@@ -52,7 +52,6 @@ do (_, angular, moment, Math, Date) ->
 
         scope:
             loan: '='
-            layout: '='
 
 
 
@@ -65,11 +64,12 @@ do (_, angular, moment, Math, Date) ->
     angular.module('factory').factory 'map_loan_summary', -> (item) ->
 
         CHART_OPTIONS = ->
-            size: 64
+            size: 50
             lineWidth: 4
             scaleColor: false
-            barColor: '#FFC777'
-            trackColor: '#EBEDF2'
+            lineCap: 'square'
+            barColor: '#D7000F'
+            trackColor: '#DBDCDC'
 
         loanRequest = item.loanRequest
 
@@ -136,6 +136,8 @@ do (_, angular, moment, Math, Date) ->
             product_type: loanRequest.productKey?.trim().match(/^\w+/)?[0] or 'UNKNOWN'
             value_date: loanRequest.valueDate
 
+            due_date: loanRequest.dueDate || new Date( +moment(finished_date).add(1 + item.duration.totalDays, 'd'))
+
             balance
             balance_myriad
 
@@ -144,6 +146,6 @@ do (_, angular, moment, Math, Date) ->
             total_months: item.duration.totalMonths
 
             chart_options: _.merge CHART_OPTIONS(), do (data = {}) ->
-                data.barColor = '#FFC777' unless item.status is 'OPENED'
+                data.barColor = '#9E9E9F' unless item.status is 'OPENED'
                 return data
         }

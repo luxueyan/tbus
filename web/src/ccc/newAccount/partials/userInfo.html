@@ -9,7 +9,11 @@
         <h3>帐户信息</h3>
         <div class="myinfo_valgroup">
             <div class="valgroup">
+                {{#if idNumber}}
                 <div class="check_state"></div>
+                {{else}}
+                <div class="check_state_error"></div>
+                {{/if}}
                 <div class="value_name">身份认证</div>
                 <div class="val_detail"></div>
             </div>
@@ -29,7 +33,7 @@
                 <div class="check_state"></div>
                 <div class="value_name">手机号码</div>
                 <div class="val_detail">{{mobile}}</div>
-                <a class="change" href="#">修改</a>
+                <a class="change" href="/newAccount/settings/fixMobile">修改</a>
             </div>
             <div class="valgroup">
                 <div class="check_state"></div>
@@ -47,7 +51,7 @@
                 <div class="check_state_error"></div>
                 <div class="value_name">支付密码</div>
                 <div class="val_detail">未设置!</div>
-                <!--<a href="/newAccount/settings/password">设置</a>-->
+                <a href="/newAccount/settings/bankCards">设置</a>
                 {{/if}}
             </div>
             <div class="valgroup">
@@ -111,7 +115,7 @@
                         <li>1、更换新银行卡后，原银行卡将会自动解除绑定。</li>
                         <li>2、为了保障资金安全，投资的本金及收益提现时需返回原银行卡。</li>
                         <li>3、请谨慎换卡，提交换卡信息后，客服人员可能会与您联系，确定换卡的自愿性。</li>
-                        <li>4、若银行卡遗失或注销，则需提交材料审核。具体流程参见：<a href="/help/account">帮助中心-银行卡遗失。</a></li>
+                        <li>4、若银行卡遗失或注销，则需提交材料审核。具体流程参见：<a href="/help/account">帮助中心-银行卡更换。</a></li>
 
                     </ul>
                 </li>

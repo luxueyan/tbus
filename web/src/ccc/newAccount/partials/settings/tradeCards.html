@@ -43,6 +43,32 @@
             <div class="clearfix"></div>
         </div>
 
+        <div class="row">
+            <div class="card-brame">
+                <div class="img-box">
+                    <img class="" src="/ccc/newAccount/img/card-pwd.png"/>
+                </div>
+                <input on-keyup="validatePwd" type="password" name="pwd" value="{{pwd}}" class="payInp"
+                       placeholder="请输入支付密码">
+            </div>
+            <p class="error">{{#if errPwd}} {{errPwd}} {{/if}}</p>
+
+            <div class="clearfix"></div>
+        </div>
+
+        <!--<div class="row">-->
+            <!--<div class="card-brame">-->
+                <!--<div class="img-box">-->
+                    <!--<img class="" src="/ccc/newAccount/img/card-pwd.png"/>-->
+                <!--</div>-->
+                <!--<input on-keyup="validateAnpwd" type="password" name="anpwd" value="{{anpwd}}" class="payInp"-->
+                       <!--placeholder="确定支付密码">-->
+            <!--</div>-->
+            <!--<p class="error">{{#if errAnpwd}} {{errAnpwd}} {{/if}}</p>-->
+
+            <!--<div class="clearfix"></div>-->
+        <!--</div>-->
+
         <div class="agree-box">
             <!--<input type="checkbox" checked>我阅读并同意<a href="#">《用户委托支付协议》</a>-->
         </div>

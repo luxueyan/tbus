@@ -11,6 +11,8 @@
 		<div class="info_title">我的账户 > 个人中心 > <span>实名认证</span></div>
 		{{elseif tradeCards}}
 		<div class="info_title">我的账户 > 个人中心 > <span>更换银行卡</span></div>
+		{{elseif fixMobile}}
+		<div class="info_title">我的账户 > 个人中心 > <span>修改手机号</span></div>
 		{{else}}
 		<div class="info">
 			<div class="tx"></div>
@@ -28,7 +30,7 @@
 				<li class="rzpa cmo"></li>
 				{{/if}}
 				<!--邮箱-->
-				{{#if emailAuthenticated}}
+				{{#if user.email}}
 				<li>
 					<a href="/newAccount/bindingEmail" class="mouse-enter rzpa cem-active" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
 					<p class="info-tip" style="top:5px;left:56px;">点击修改邮箱</p>
@@ -61,7 +63,7 @@
 				{{else}}
 
 				<li>
-					<a href="/newAccount/settings/password" class="mouse-enter rzpa cpass" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
+					<a href="/newAccount/settings/bankCards" class="mouse-enter rzpa cpass" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
 					<p class="info-tip" style="top:5px;left:125px;">点击设置支付密码</p>
 				</li>
 				{{/if}}
@@ -80,7 +82,7 @@
 
 			</ul>
 			{{#if user.mobile}}
-			<p class="fix-mobile"><a href="#">修改手机号</a></p>
+			<p class="fix-mobile"><a href="/newAccount/settings/fixMobile">修改手机号</a></p>
 			{{/if}}
 		</div>
 		{{#if home || fixed}}

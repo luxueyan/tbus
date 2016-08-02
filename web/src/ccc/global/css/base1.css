@@ -6,16 +6,17 @@
 
  #nav-color a, #nav-color div, #nav-color img{
      padding: 0;
-     color: #999;
  }
 
-#nav-color a:hover{
-	color: #009ada;
-}
+/*#nav-color a:hover{*/
+	/*color: #009ada;*/
+/*}*/
 
 #nav-color{
-  /*border-bottom:2px solid #f3f3f3;*/
-    line-height: 30px;
+    line-height: 32px;
+    background: #535353;
+    color: #fff;
+    height: 32px;
 }
 #nav-color .text img {
     margin-right: 10px;
@@ -82,12 +83,17 @@
 #nav-color .nav-fastregister{
     float: right;
 }
-#nav-color .nav-fastregister img{
-    margin:0;
-    padding: 0;
-    margin-top: 10px;
+#nav-color .nav-fastregister a{
+    background: #cfa972;
+    padding: 0px 16px;
+    height: 20px;
+    line-height: 19px;
+    margin-top: 6px;
+    margin-left: 10px;
 }
-
+#nav-color .nav-fastregister a:hover{
+    color: #fff;
+}
 .box-pic{
     position: relative;
     height: 103px;
@@ -150,29 +156,29 @@
 }
 .right-report{
     margin-top: 30px;
-    color: #888888;
+    color: #fff;
     font-size: 18px;
 }
 .right-report .report-phone{
-    background: url("/ccc/global/img/app_unactive.png") no-repeat 9px center;
-    padding: 24px 56px;
-    cursor: pointer;
-}
-.right-report .report-phone:hover{
     background: url("/ccc/global/img/app_active.png") no-repeat 9px center;
     padding: 24px 56px;
-    color: #cfa972;
+    cursor: pointer;
 }
+/*.right-report .report-phone:hover{*/
+    /*background: url("/ccc/global/img/app_active.png") no-repeat 9px center;*/
+    /*padding: 24px 56px;*/
+    /*color: #cfa972;*/
+/*}*/
 .right-report .report-email{
-    background: url("/ccc/global/img/wx_unactive.png") no-repeat left center;
+    background: url("/ccc/global/img/wx_active.png") no-repeat left center;
     padding: 20px 56px;
     cursor: pointer;
 }
-.right-report .report-email:hover{
-    background: url("/ccc/global/img/wx_active.png") no-repeat left center;
-    padding: 20px 56px;
-    color: #cfa972;
-}
+/*.right-report .report-email:hover{*/
+    /*background: url("/ccc/global/img/wx_active.png") no-repeat left center;*/
+    /*padding: 20px 56px;*/
+    /*color: #cfa972;*/
+/*}*/
 .right-report p{
     color: #686a6c;
     font-size: 14px;
@@ -215,12 +221,10 @@
 }
 .s-header-menu-content  .global_logo{
     float: left;
-    position: absolute;
-    top: -20px;
 }
 .s-header-menu-content .u-nolist-ul li a{
     padding: 0 8px;
-    height: 71px;
+    height: 85px;
 }
 
 #family{
@@ -272,7 +276,7 @@
 }
 
 #s-header-height{
-    height:102px;
+    height:133px;
     font-size: 12px;
     background: #fff;
 }
@@ -503,11 +507,11 @@ input[type=button]{
     float: right;
     position: relative;
     cursor: pointer;
-    margin-left: 12px;
+    margin-left: 28px;
 }
 
 .app{
-    background: url("/ccc/global/img/app_icon.png") no-repeat left center;
+    background: url("/ccc/global/img/app_active_icon.png") no-repeat left center;
     background-size: 8px;
 }
 /*.app:hover{*/
@@ -523,10 +527,10 @@ input[type=button]{
 }
 
 #nav-color .s-header-info-content .wx_img{
-    background: url("/ccc/global/img/wx_icon.png") no-repeat left center;
+    background: url("/ccc/global/img/wx_active_icon.png") no-repeat left center;
     background-size: 16px;
     padding-left: 12px;
-    margin-left: 5px;
+    margin-left: 8px;
 }
 /*#nav-color .s-header-info-content .wx_img:hover{*/
     /*background: url("/ccc/global/img/wx_active.png") no-repeat left center;*/

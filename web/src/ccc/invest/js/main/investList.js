@@ -123,6 +123,9 @@ function parseLoanList(list) {
         var methodFmt = i18n.enums.RepaymentMethod[method][0];
         list[i].methodFmt = methodFmt;
         list[i].titleLength = replaceStr(list[i].title);
+        list[i].FminAmount = utils.format.amount(list[i].loanRequest.investRule.minAmount, 2);
+        list[i].balance = utils.format.amount(list[i].balance, 2);
+
     }
     return list;
 }
@@ -161,29 +164,32 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
             list: (listFloat.slice(0, 1)),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
-    })
+    });
+    ininconut();
 });
 
 
-if(CC.key){
+if (CC.key) {
     params.product = CC.key;
     var investRactive = new Ractive({
-        el: ".invest-list-wrapper",
+        el: ".list_box",
         template: require('ccc/invest/partials/list.html'),
         data: {
             list: [],
             RepaymentMethod: i18n.enums.RepaymentMethod, // 还款方式
-            user: CC.user
+            user: CC.user,
+            key: CC.key,
+            num: CC.num
         },
-        onrender:function(){
+        onrender: function () {
             var that = this;
-            InvestListService.getLoanListWithCondition(jsonToParams(params),function(res){
-                that.set('list',parseLoanList(res.results));
-                that.renderPager(res,params.currentPage,that)
+            InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) {
+                that.set('list', parseLoanList(res.results));
+                that.renderPager(res, params.currentPage, that)
             });
-            
+
         },
-        oncomplete:function(){
+        oncomplete: function () {
             var that = this;
             $('.sStatus li').click(function () {
                 $(this).addClass("selected").siblings().removeClass("selected");
@@ -197,21 +203,23 @@ if(CC.key){
                 that.onrender();
             });
         },
-        renderPager:function(res, currentPage,obj){
+        renderPager: function (res, currentPage, obj) {
             if (!currentPage) {
                 currentPage = 1;
             }
-            
+
             function createList(len) {
                 var arr = [];
-                var i=parseInt(len/params.pageSize);
-                if(len%params.pageSize>0){i++;}
-                for(var m=0;m<i;m++){
-                     arr[m] =  m + 1;
+                var i = parseInt(len / params.pageSize);
+                if (len % params.pageSize > 0) {
+                    i++;
+                }
+                for (var m = 0; m < i; m++) {
+                    arr[m] = m + 1;
                 }
                 return arr;
             };
-            
+
             var pagerRactive = new Ractive({
                 el: '#invest-pager',
                 template: require('ccc/invest/partials/pager.html'),
@@ -220,10 +228,10 @@ if(CC.key){
                     current: currentPage
                 }
             });
-             pagerRactive.on('previous', function (e) {
+            pagerRactive.on('previous', function (e) {
                 e.original.preventDefault();
                 var current = this.get('current');
-                currentPage=current-1;
+                currentPage = current - 1;
                 if (current > 1) {
                     current -= 1;
                     this.set('current', current);
@@ -235,7 +243,7 @@ if(CC.key){
             pagerRactive.on('next', function (e) {
                 e.original.preventDefault();
                 var current = this.get('current');
-                currentPage=current+1;
+                currentPage = current + 1;
                 if (current < this.get('totalPage')[this.get('totalPage').length - 1]) {
                     current += 1;
                     this.set('current', current);
@@ -260,3 +268,31 @@ if(CC.key){
 }
 
 
+//剩余时间
+function ininconut() {
+
+    $(".investbtn-time").each(function () {
+        var t = $(this);
+        var id = t.data("id");
+        var openTime = t.data("open");
+        var serverDate = t.data("serv");
+        var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
+        var textDay = leftTime.day ? leftTime.day + '天' : '';
+        var interval = setInterval((function () {
+            serverDate += 1000;
+            var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
+            var textDay = leftTime.day ? leftTime.day + '天' : '';
+            if (!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
+                clearInterval(interval);
+                t.prev().hide();
+                //t.replaceWith('<a href="/loan/' + id + '" style="text-decoration:none"><div class="investbtn">立即投资</div></a>');
+            } else {
+                t.html('<span class="text" style="color:#666">距离结束：' +
+                    '<span style="color:#e4262b">' + leftTime.day + '</span>天' +
+                    '<span style="color:#e4262b">' + leftTime.hour + '</span>时' +
+                    '<span style="color:#e4262b">' + leftTime.min + '</span>分' +
+                    '<span style="color:#e4262b">' + leftTime.sec + '</span>秒</span>')
+            }
+        }), 1000);
+    });
+};

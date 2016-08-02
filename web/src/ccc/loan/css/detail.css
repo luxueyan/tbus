@@ -5,8 +5,9 @@ select {
   -webkit-appearance:none;
 
   /*在选择框的最右侧中间显示小箭头图片*/
-  background: url(/ccc/loan/img/down_icon.png) no-repeat scroll right center transparent;
-  background-size: 14px;
+  background: url(/ccc/loan/img/down_icon_bg.png) no-repeat scroll right center transparent;
+  /*background-size: 14px;*/
+    cursor: pointer;
 }
 
 /*清除ie的默认选择框样式清除，隐藏下拉箭头*/
@@ -144,7 +145,8 @@ select::-ms-expand { display: none; }
     position: absolute;
     top: 2px;
     font-size: 32px;
-    left: 40px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .process p{
     text-align: center;
@@ -326,7 +328,7 @@ select::-ms-expand { display: none; }
     border: 1px solid #ccc;
 }
 .insurance-wrapper .show-pic img {
-    width: 176px;
+    width: 174px;
     height: 118px;
 }
 /*产品亮点*/
@@ -502,7 +504,7 @@ select::-ms-expand { display: none; }
     width: 302px
 }
 .do-invest-wrapper .status .userBlock  .selectOption select {
-    width: 255px;
+    width: 302px;
     height: 45px;
     border: 1px solid #ccc;
     border-radius: 0;
@@ -690,7 +692,7 @@ select::-ms-expand { display: none; }
     background: #b5a16b;
 }
 .do-invest-wrapper .unlogin_img{
-    margin: 60px auto;
+    margin: 100px auto;
     width: 75px;
 }
 
@@ -987,4 +989,19 @@ select::-ms-expand { display: none; }
 }
 .payment-content .recharge-success .success-content .btn-after{
     margin: 0;
+}
+
+
+.finished-btn {
+    width: 318px;
+    height: 44px;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    letter-spacing: 5px;
+    cursor: default;
+    margin-left: 51px;
 }

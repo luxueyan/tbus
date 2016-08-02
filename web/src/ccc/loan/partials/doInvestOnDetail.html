@@ -1,23 +1,24 @@
 {{#if loan.status == "FINISHED"||loan.status == "SETTLED"||loan.status == "CLEARED"}}
 {{#if hasID}}
-<div class="firstLine">
-    <div class="tip">投资金额</div>
-</div>
-<p class="finished-money">可投金额&nbsp;&nbsp;&nbsp;<span style="color:#f0bf2e;font-size:14px;">0.00</span>
-    <span style="font-size:14px;">元</span>
-</p>
-<p class="finished-money">剩余时间&nbsp;&nbsp;&nbsp;<span style="font-size:14px;">已完成</span></p>
-<p class="finished-money">账户可用余额&nbsp;&nbsp;&nbsp;<span style="font-size:14px;">
-        {{#if user.availableAmount}}{{user.availableAmount}}{{else}}0{{/if}}元</span></p>
-<div class="col-sm-8"
-     style="width:300px;padding:0;margin-left:24px;line-height:38px;text-align:right;border:1px solid #ccc;border-radius:3px;background-color:#eee;color: #abb2ba;">
-    <input type="text" class="form-control col-sm-8 form_input loanmoney" {{#if loan.status=="FINISHED"
-           ||loan.status=="SETTLED" || loan.status=="CLEARED" }} disabled{{/if}} placeholder="请输入投资金额"
-    style="width:274px;border: 0;border-radius: 0;box-shadow:none;text-align:left;height:38px;"
-    /><span>元&nbsp;&nbsp;</span>
-</div>
-<p class="finished-money">预期收益&nbsp;&nbsp;&nbsp;<span style="color:#ff7200;">0.00</span><span
-        style="font-size:14px;">元</span></p>
+<img src="/ccc/loan/img/unlogin.png" class="unlogin_img" style="display: block;">
+<!--<div class="firstLine">-->
+    <!--<div class="tip">投资金额</div>-->
+<!--</div>-->
+<!--<p class="finished-money">可投金额&nbsp;&nbsp;&nbsp;<span style="color:#f0bf2e;font-size:14px;">0.00</span>-->
+    <!--<span style="font-size:14px;">元</span>-->
+<!--</p>-->
+<!--<p class="finished-money">剩余时间&nbsp;&nbsp;&nbsp;<span style="font-size:14px;">已完成</span></p>-->
+<!--<p class="finished-money">账户可用余额&nbsp;&nbsp;&nbsp;<span style="font-size:14px;">-->
+        <!--{{#if user.availableAmount}}{{user.availableAmount}}{{else}}0{{/if}}元</span></p>-->
+<!--<div class="col-sm-8"-->
+     <!--style="width:300px;padding:0;margin-left:24px;line-height:38px;text-align:right;border:1px solid #ccc;border-radius:3px;background-color:#eee;color: #abb2ba;">-->
+    <!--<input type="text" class="form-control col-sm-8 form_input loanmoney" {{#if loan.status=="FINISHED"-->
+           <!--||loan.status=="SETTLED" || loan.status=="CLEARED" }} disabled{{/if}} placeholder="请输入投资金额"-->
+    <!--style="width:274px;border: 0;border-radius: 0;box-shadow:none;text-align:left;height:38px;"-->
+    <!--/><span>元&nbsp;&nbsp;</span>-->
+<!--</div>-->
+<!--<p class="finished-money">预期收益&nbsp;&nbsp;&nbsp;<span style="color:#ff7200;">0.00</span><span-->
+        <!--style="font-size:14px;">元</span></p>-->
 {{else}}
 <div class="login-see">我要投资</div>
 <p class="shiming">请先登录</p>
@@ -153,7 +154,7 @@
                             <option value="">暂无可用券</option>
                             {{/if}}
                         </select>
-                        <span class="down"></span>
+                        <!--<span class="down"></span>-->
                     </div>
                     <!--<div class="password-box">-->
                         <!--<div class="password">-->
