@@ -16,7 +16,10 @@ var ractive = new Ractive({
     init: function() {
         var self = this;
         accountService.getQuestion(function (res) {
-            self.set("list",res.questions);
+            self.set("listA",res.questions.slice(0,3));
+            self.set("listB",res.questions.slice(3,7));
+            self.set("listC",res.questions.slice(7,9));
+            self.set("listD",res.questions.slice(9,10));
             riskId=res.id;
         });
         request('GET', '/api/v2/user/MYSELF/userinfo')

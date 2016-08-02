@@ -133,6 +133,10 @@
     color: #666;
     margin-top: 26px;
 }
+.home-count .total{
+    font-size: 24px;
+    margin-top: 20px;
+}
 .home-count .home-tab-info span {
     font-size: 12px;
 }
