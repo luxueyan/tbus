@@ -169,11 +169,12 @@ function parseLoan(loan) {
         'CORPORATION': '企业融资',
         'OTHER': '其它借款'
     };
-    if (loan.investPercent* 100 > 0 && loan.investPercent * 100 < 1) {
-        loan.investPercent = 1;
-    } else {
-      loan.investPercent = parseInt(loan.investPercent * 100, 10);
-    };
+    //if (loan.investPercent* 100 > 0 && loan.investPercent * 100 < 1) {
+    //    loan.investPercent = 1;
+    //} else {
+    //  loan.investPercent = parseInt(loan.investPercent * 100, 10);
+    //};
+    loan.investPercent = loan.investPercent * 100;
     loan.rate = loan.rate / 100;
     loan.loanRequest.deductionRate = loan.loanRequest.deductionRate / 100;
     loan.basicRate = loan.rate - loan.loanRequest.deductionRate;
@@ -208,8 +209,7 @@ function parseLoan(loan) {
     loan.loanRequest.timeSubmit = moment(loan.loanRequest.timeSubmit)
         .format('YYYY-MM-DD');
 
-    loan.valueDate = moment(loan.timeOpen+86400000).format('YYYY-MM-DD');
-    loan.dueDate = moment(loan.loanRequest.dueDate).format('YYYY-MM-DD');
+
     
     loan.method = methodZh[loan.method];
     loan.timeLeftStamp=loan.timeLeft;
@@ -235,14 +235,17 @@ function parseLoan(loan) {
     loan.timeEnd = moment(loan.timeOpen).add(loan.timeout, 'days').format('YYYY-MM-DD');
     console.log( "=====loan.timeFinished" + loan.timeFinished);
     console.log( "=====loan.timeEnd" + loan.timeEnd);
+
+    loan.valueDate = moment(loan.timeOpen+86400000).format('YYYY-MM-DD');
+    loan.dueDate = moment(loan.loanRequest.dueDate).format('YYYY-MM-DD');
 //    起息日
     loan.start1 = moment(loan.timeFinished).add(1, 'days').format('YYYY-MM-DD');
     loan.start2 =  moment(loan.timeEnd).add(1, 'days').format('YYYY-MM-DD');
 //    到息日
-    loan.end1 =  moment(loan.start1).add(loan.duration.days, 'days').format('YYYY-MM-DD');
-    loan.end2 =  moment(loan.start2).add(loan.duration.days, 'days').format('YYYY-MM-DD');
+    loan.end1 =  moment(loan.start1).add(loan.duration.totalDays, 'days').format('YYYY-MM-DD');
+    loan.end2 =  moment(loan.start2).add(loan.duration.totalDays, 'days').format('YYYY-MM-DD');
 
-    //格式化序列号 
+    //格式化序列号
     if( loan.providerProjectCode ){
         if( loan.providerProjectCode.indexOf('#') > 0 ){
             var hh_project_code = loan.providerProjectCode.split('#');
