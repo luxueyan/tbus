@@ -367,6 +367,7 @@
 
 .register-banner {
     clear: both;
+    font-size: 16px;
 }
 
 .register-banner p {
@@ -375,8 +376,8 @@
 }
 
 .register-banner a {
-    color: #e60012;
-    font-size: 16px;
+    color: #ae8a45;
+    text-decoration: underline;
 }
 
 

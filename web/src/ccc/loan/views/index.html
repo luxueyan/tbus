@@ -87,7 +87,17 @@
     <span>资金状态</span>
     <img src="/ccc/loan/img/fund_status.png">
     <div class="open_time">{{loans.timeOpen}}</div>
-    <div class="start_date">{{loans.valueDate}}</div>
+    <div class="start_date">
+        {{#if loans.valueDate !== 'Invalid date'}}
+        {{loans.valueDate}}
+        {{else}}
+        {{#if loans.timeFinished !== 'Invalid date'}}
+        {{loans.start1}}
+        {{else}}
+        {{loans.start2}}
+        {{/if}}
+        {{/if}}
+    </div>
     <div class="end_date">
         {{#if loans.dueDate !== 'Invalid date'}}
             {{loans.dueDate}}
@@ -327,7 +337,7 @@
         duration: '{{loans.months}}',
         bidNumber: {{loans.bidNumber}},
         timeOpen: {{loans.timeOpen}},
-        valueDate: {{loans.valueDate}},
+//        valueDate: {{loans.valueDate}},
         totalInterest: {{totalInterest || 0}},
         serverDate: {{loans.serverDate}},
         userId: '{{loans.userId}}',

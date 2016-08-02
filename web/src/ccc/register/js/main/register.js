@@ -32,8 +32,9 @@ baconflux.store('register', 'success').onValue(function(data) {
             password: data.postedData.password,
         }
     }).end()
+
     
-    window.location.href = "/newAccount/settings/home?register";
+    //window.location.href = "/newAccount/settings/home?register";
     
 //    var left = 3;
 //    var interval = setInterval((function() {

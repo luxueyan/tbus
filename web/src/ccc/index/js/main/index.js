@@ -48,7 +48,7 @@ IndexService.getLoanSummary(function (list) {
             list[i].title = list[i].title.substr(0,60)+'...';
         }
 
-        if(list[i].loanRequest.productKey == 'DQLC'){
+        if(list[i].loanRequest.productKey == 'GDSY'){
             listGDSY.push(list[i]);
         }else if(list[i].loanRequest.productKey == 'GDLC'){
             listGDLC.push(list[i]);

@@ -1,15 +1,18 @@
-//有色修改
+
+/*太合汇*/
 .agreement-container {
-  
-    overflow: hidden;
+    width: 1000px;
+    margin: 50px auto;
 }
-.agreement-container h3{
-     width:1004px;
+
+.agreement-container h3 {
+    width: 1000px;
     margin: auto;
     line-height: 60px;
     margin-top: 20px;
 }
-.agreement-content{
-      width:1004px;
+
+.agreement-content {
+    width: 1004px;
     margin: auto;
 }

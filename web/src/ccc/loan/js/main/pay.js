@@ -36,8 +36,8 @@ var payRactive = new Ractive({
 //        var loanId = location.search.substring(j+7);
 //
         $.get('/api/v2/loan/' + CC.loanId, function(res){
-            //console.log(list);
-            self.set('creditassign',res);
+            console.log(res);
+            self.set('loan',res);
         });
 //        var investNum2 = parseInt(investNum).toFixed(2);
 //        self.set('amount',investNum2);

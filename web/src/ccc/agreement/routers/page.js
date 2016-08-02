@@ -3,30 +3,36 @@ module.exports = function (router) {
 
     router.get('/:param', function (req, res, next) {
         var param = req.params.param;
-
+        console.log('*************');
+        console.log(param);
         var tabMap = {
             regist: '用户注册协议',
             assignInvest: '债权转让协议',
             noviceInvest: '新手专享协议',
             employeeInvest: '员工专享协议',
-            net: '网络交易资金存管协议'
+            net: '网络交易资金存管协议',
+            protocol:'风险提示书',
         };
 
         if (!tabMap[param]) {
             return next();
         }
 
-        res.locals.contents = req.uest('/api/v2/cms/category/DECLARATION/name/'+encodeURIComponent(tabMap[param])).end().get('body').then(function (r) {
-            var contents= r.length > 0 ? r : null;
-            return contents;
-        });
-        res.render('index');
+        res.locals.contents = req.uest('/api/v2/cms/category/OTHER/name/'+encodeURIComponent(tabMap[param]))
+            .end()
+            .get('body')
+            .then(function (r) {
+                var contents= r.length > 0 ? r : null;
+                return contents;
+            });
+        res.render();
     });
 
 
 
     router.get('/mobile/:param', function (req, res, next) {
         var param = req.params.param;
+
         var cateMap = {
             regist:'DECLARATION',
            protocolltb:'DECLARATION',

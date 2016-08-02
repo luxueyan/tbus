@@ -1,90 +1,31 @@
-{{#if loan.status == "FINISHED"||loan.status == "SETTLED"||loan.status == "CLEARED"}}
-{{#if hasID}}
-<img src="/ccc/loan/img/unlogin.png" class="unlogin_img" style="display: block;">
-<!--<div class="firstLine">-->
-    <!--<div class="tip">投资金额</div>-->
-<!--</div>-->
-<!--<p class="finished-money">可投金额&nbsp;&nbsp;&nbsp;<span style="color:#f0bf2e;font-size:14px;">0.00</span>-->
-    <!--<span style="font-size:14px;">元</span>-->
-<!--</p>-->
-<!--<p class="finished-money">剩余时间&nbsp;&nbsp;&nbsp;<span style="font-size:14px;">已完成</span></p>-->
-<!--<p class="finished-money">账户可用余额&nbsp;&nbsp;&nbsp;<span style="font-size:14px;">-->
-        <!--{{#if user.availableAmount}}{{user.availableAmount}}{{else}}0{{/if}}元</span></p>-->
-<!--<div class="col-sm-8"-->
-     <!--style="width:300px;padding:0;margin-left:24px;line-height:38px;text-align:right;border:1px solid #ccc;border-radius:3px;background-color:#eee;color: #abb2ba;">-->
-    <!--<input type="text" class="form-control col-sm-8 form_input loanmoney" {{#if loan.status=="FINISHED"-->
-           <!--||loan.status=="SETTLED" || loan.status=="CLEARED" }} disabled{{/if}} placeholder="请输入投资金额"-->
-    <!--style="width:274px;border: 0;border-radius: 0;box-shadow:none;text-align:left;height:38px;"-->
-    <!--/><span>元&nbsp;&nbsp;</span>-->
-<!--</div>-->
-<!--<p class="finished-money">预期收益&nbsp;&nbsp;&nbsp;<span style="color:#ff7200;">0.00</span><span-->
-        <!--style="font-size:14px;">元</span></p>-->
-{{else}}
-<div class="login-see">我要投资</div>
-<p class="shiming">请先登录</p>
-{{/if}}
-{{#if loan.status == "FINISHED"}}
-<button class="finished-btn">已满标</button>
-{{/if}}
-{{#if loan.status == "SETTLED"}}
-<button class="finished-btn">已抢完</button>
-{{/if}}
-{{#if loan.status == "CLEARED"}}
-<button class="finished-btn">还款结束</button>
-{{/if}}
+{{#if loan.status == "FINISHED"||loan.status == "SETTLED"||loan.status == "CLEARED"||loan.status == "SCHEDULED"}}
+    {{#if hasID}}
+        <img src="/ccc/loan/img/unlogin.png" class="unlogin_img" style="display: block;">
+    {{else}}
+        <div class="login-see">我要投资</div>
+        <p class="shiming">请先登录</p>
+    {{/if}}
+
+    {{#if loan.status == "FINISHED"}}
+        <button class="finished-btn">已满标</button>
+    {{/if}}
+    {{#if loan.status == "SETTLED"}}
+        <button class="finished-btn">已抢完</button>
+    {{/if}}
+    {{#if loan.status == "CLEARED"}}
+        <button class="finished-btn">还款结束</button>
+    {{/if}}
+    {{#if loan.status == "SCHEDULED"}}
+        <button class="finished-btn">即将开始</button>
+    {{/if}}
 {{/if}}
 
 
 {{#if loan.status == "ARCHIVED" }}
+<img src="/ccc/loan/img/unlogin.png" class="unlogin_img" style="display: block;">
 <div class="firstLine">
     <div class="tip">{{loan.rule.min}}元起投</div>
     <div class="highAmount">最高投资限额：{{loan.rule.max}}元</div>
-
-</div>
-<img src="/ccc/loan/img/over.png" class="cleared">
-{{/if}}
-
-
-{{#if loan.status == "SCHEDULED"}}
-<div class="status">
-    <div class="login-see">我要投资</div>
-    <div class="info">
-        <div class="leftMoney">
-            <h1 class="red"> 账户可用余额：¥<span class="left-money">
-				{{#if user.availableAmount}}
-				{{#if user.availableAmount.length>8}}
-					{{user.availableAmount.substr(0,5)}}...
-                {{else}}
-                    {{user.availableAmount}}
-				{{/if}}
-				{{else}}0{{/if}}
-                </span>
-            </h1>
-            <a href="/newAccount/recharge" class="recharge">充值</a>
-        </div>
-        <div class="userBlock" id="userBlock">
-
-            <div class="input">
-                <div class="calculatorBox calculatorBox1">
-                    <div class="calculator">
-                        <input type="hidden" name="loanId" value="{{loan.id}}">
-                        <input placeholder="请输入投资金额" type="text" value="{{ inputNum }}">
-                    </div>
-                </div>
-                {{#if user}}
-
-                <input type="submit" class="finished-btn" value="即将开始"/> {{else}}
-                <a href="/login">
-                    <input type="submit" class="btn btn-warning invest-button" value="立即登录"/>
-                </a>
-                {{/if}}
-            </div>
-            <div class="investbtn" data-id="{{ loan.id }}" data-status="{{ loan.status }}"
-                 data-open="{{ loan.timeOpen }}"
-                 data-serv="{{serverDate}}"
-                 style="color: black;width: 155px;text-align: center;background:#fff;margin-left:-25px"></div>
-        </div>
-    </div>
 </div>
 {{/if}}
 
