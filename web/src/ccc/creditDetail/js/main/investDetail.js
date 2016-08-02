@@ -59,7 +59,7 @@ var investRactive = new Ractive({
         creditassign: CC.creditassign,
         user: CC.user,
         loan: {},
-        timeOpen:CC.creditassign.creditassign.timeOpen1,
+        timeOpen:moment(CC.creditassign.creditassign.timeOpen).format('YYYY-MM-DD HH:mm'),
         timeFinished:moment(CC.creditassign.creditassign.timeFinished).format('YYYY-MM-DD'),
         workTime:'',
         profit:CC.creditassign.creditassign.creditDealRate*CC.creditassign.creditassign.balance
