@@ -71,11 +71,12 @@ function formatItem(item) {
     item.deductionRate = item.loanRequest.deductionRate / 100;
     item.basicRate = item.rate - item.deductionRate;
     item.purpose = purposeMap[item.purpose];
-    if (item.investPercent * 100 > 0 && item.investPercent * 100 < 1) {
-        item.investPercent = 1;
-    } else {
-        item.investPercent = parseInt(item.investPercent * 100, 10);
-    }
+    //if (item.investPercent * 100 > 0 && item.investPercent * 100 < 1) {
+    //    item.investPercent = 1;
+    //} else {
+    //    item.investPercent = parseInt(item.investPercent * 100, 10);
+    //}
+    item.investPercent = item.investPercent * 100;
     if (item.duration.days > 0) {
         if (typeof item.duration.totalDays === "undefined") {
             item.fduration = item.duration.days;

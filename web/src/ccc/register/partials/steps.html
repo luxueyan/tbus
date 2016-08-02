@@ -13,7 +13,7 @@
                 <RInput field="imgCaptcha">
                     <div class="rinput picnum">
                         <span class="mdi"></span>
-                        <input class="register-test" id="{{rinputId}}" value="{{value}}" placeholder="验证码">
+                        <input class="register-test" id="{{rinputId}}" value="{{value}}" placeholder="图形验证码">
                         <span class="picspan" on-click='changeImgCaptcha'>
                             <img src="{{imgCaptchaBase64}}" alt="">
                         </span>
@@ -27,7 +27,7 @@
                 <RInput field="smsCaptcha">
                     <div class="rinput bring-in">
                         <span class="mdi"></span>
-                        <input id="{{rinputId}}" value="{{value}}" placeholder="输入短信验证码" class="message">
+                        <input id="{{rinputId}}" value="{{value}}" placeholder="输入6位手机验证码" class="message">
                         {{#if !smsCaptchaReady}}
                             <button on-click='sendSmsCaptcha' id="get-message">
                                 发送验证码
@@ -82,12 +82,14 @@
 
             </div>
             <div class="register-banner">
-                <span>已有账号 <a href="/login"> -> 登录</a></span>
+                <span>已有账号 ? <a href="/login"> 请登录</a></span>
             </div>
         </div>
     </Step>
     <Step>
-        <div class="register-step-1"></div>
+        <div class="register-step-1">
+
+        </div>
     </Step>
 </div>
 
