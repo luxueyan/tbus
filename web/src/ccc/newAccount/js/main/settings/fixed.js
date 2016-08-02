@@ -104,7 +104,7 @@ function init(type) {
                 }
 
                 $.get(api, function (o) {
-                    console.log(o);
+                    //console.log(o);
                     //var res = o.result.results;
                     //for(var i=0;i< res.length;i++){
                     //    //console.log(o.dates[res[i].loanId]);
@@ -358,7 +358,8 @@ function init(type) {
                 return repay;
             },
             bindActions: function () {
-                $('.operation').on('click', function () {
+                $('.operation').on('click', function (e) {
+                    e.stopPropagation();
                     var returnMap = {
                         "CREDIT_ASSIGN_DISABLED": "没有开启债权转让功能",
                         "REASSIGN_DISABLED": "二次转让功能关闭",
@@ -408,7 +409,10 @@ function init(type) {
 
                     //提交
 
-                    $("#btn-confirm").click(function () {
+                    $("#btn-confirm").click(function (e) {
+                        //console.log(e);
+                        e.stopPropagation();
+                        e.currentTarget.disabled = true;
                         $(this).addClass('disabled').html('处理中');
                         var assignTitle = title + " - 债权转让";
                         var creditDealRate = $("#creditDealRate").val();

@@ -8,11 +8,13 @@
                     <img src="/ccc/newAccount/img/bankcode.png"/>
                 </div>
                 <select name="bankName" class="select" value="{{bankName}}">
+                    <option value="">请选择开户行</option>
                     {{#each newbanks}}
                     <option value="{{bankCode}}">{{bankName}}</option>
                     {{/each}}
                 </select>
             </div>
+             <p class="error">{{#if errMessgaeBankName}} {{errMessgaeBankName}} {{/if}}</p>
             <div class="clearfix"></div>
         </div>
 

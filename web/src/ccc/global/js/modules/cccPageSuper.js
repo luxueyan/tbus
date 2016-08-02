@@ -104,7 +104,11 @@ RenderPage.prototype = {
         var that = this;
         var queryString;
         if(this.cfg.queryString){
-            queryString ='&' + qs.stringify(this.cfg.queryString);
+            if((typeof this.cfg.queryString) === 'string'){
+                queryString = '&' + this.cfg.queryString;
+            }else{
+                queryString ='&' + qs.stringify(this.cfg.queryString);
+            }
         }else{
             queryString = '';
         }
