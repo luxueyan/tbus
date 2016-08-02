@@ -91,7 +91,11 @@ ractive.on("bind-card-submit", function (e) {
     var pwd = this.get('pwd');
     //校验表单
 
-
+    if(bankName == ''){
+        this.set("errMessgaeBankName", '请选择开户银行')
+    }else{
+        this.set("errMessgaeBankName", false)
+    }
     if(cardNo===''){
         this.set("errMessgaeBank", '请输入您的银行卡号');
 
@@ -100,7 +104,7 @@ ractive.on("bind-card-submit", function (e) {
     }
 
     if (smsCaptcha === '') {
-        this.set('SMS_NULL', '请输入手机验证码');
+         this.set('SMS_NULL', '请输入手机验证码');
 
     } else {
         this.set('SMS_NULL', false);
