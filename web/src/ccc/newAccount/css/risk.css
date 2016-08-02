@@ -186,3 +186,32 @@ h3{
 .tip p{
     line-height: 30px;
 }
+.left{
+    border: 1px solid #fff;
+    border-bottom-color: #d9ba8e;
+    width: 292px;
+    display: inline-block;
+    height: 20px;
+    margin-left: 53px;
+    position: relative;
+    top: -6px;
+}
+.headline{
+    width: 205px;
+    display: inline-block;
+    text-align: center;
+    font-size: 20px;
+    color: #d9ba8e;
+}
+.right{
+    border: 1px solid #fff;
+    border-bottom-color: #d9ba8e;
+    width: 292px;
+    display: inline-block;
+    height: 20px;
+    position: relative;
+    top: -6px;
+}
+.headlineTop{
+    margin-top: 60px;
+}
