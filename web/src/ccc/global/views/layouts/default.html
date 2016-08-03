@@ -70,9 +70,9 @@ var _hmt = _hmt || [];
             -->
             <a href="/logout" class="text" style="margin-right:5px;margin-left:5px;">退出&nbsp;&nbsp;|</a>
             {{#if user.name}}
-            <a href="/newAccount/settings/home"><div id='head-ractive-container' style="color:#009ada;position:relative;bottom:1px;" class="text"></div>{{user.name}}</a>
+            <a href="/newAccount/home/index"><div id='head-ractive-container' style="color:#009ada;position:relative;bottom:1px;" class="text"></div>{{user.name}}</a>
             {{else}}
-            <a href="/newAccount/settings/home"><div id='head-ractive-container' style="color:#f58220;position:relative;bottom:1px;" class="text"></div>{{user.mobile}}</a>
+            <a href="/newAccount/home/index"><div id='head-ractive-container' style="color:#f58220;position:relative;bottom:1px;" class="text"></div>{{user.mobile}}</a>
             {{/if}}
             {{else}}
             <div class="nav-fastregister">
@@ -106,7 +106,7 @@ var _hmt = _hmt || [];
                 <li><a id="guide" href="/guide">新手指引</a></li>
                 <li>
                     {{#if user}}
-                    <a id="account" href="/newAccount/settings/home">我的账户</a>
+                    <a id="account" href="/newAccount/home/index">我的账户</a>
                     {{else}}
                     <a id="account" href="/login">我的账户</a>
                     {{/if}}
