@@ -174,7 +174,16 @@ function parseLoan(loan) {
     //} else {
     //  loan.investPercent = parseInt(loan.investPercent * 100, 10);
     //};
-    loan.investPercent = loan.investPercent * 100;
+
+    var SinvestPercent = (loan.investPercent * 100).toFixed(2)+'';
+
+    if(SinvestPercent.slice(-2)=='00'){
+        loan.investPercent = (loan.investPercent * 100);
+    }else if(SinvestPercent.slice(-1)=='0'){
+        loan.investPercent = (loan.investPercent * 100).toFixed(1);
+    }else{
+        loan.investPercent = (loan.investPercent * 100).toFixed(2);
+    }
     loan.rate = loan.rate / 100;
     loan.loanRequest.deductionRate = loan.loanRequest.deductionRate / 100;
     loan.basicRate = loan.rate - loan.loanRequest.deductionRate;
@@ -236,7 +245,7 @@ function parseLoan(loan) {
     console.log( "=====loan.timeFinished" + loan.timeFinished);
     console.log( "=====loan.timeEnd" + loan.timeEnd);
 
-    loan.valueDate = moment(loan.timeOpen+86400000).format('YYYY-MM-DD');
+    loan.valueDate = moment(loan.loanRequest.valueDate).format('YYYY-MM-DD');
     loan.dueDate = moment(loan.loanRequest.dueDate).format('YYYY-MM-DD');
 //    起息日
     loan.start1 = moment(loan.timeFinished).add(1, 'days').format('YYYY-MM-DD');

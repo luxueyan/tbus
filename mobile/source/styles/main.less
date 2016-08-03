@@ -443,7 +443,7 @@ a {
         left: 10%;
         right: 10%;
         width: 80%;
-        height: 20%;
+        height: 10px;
         border-radius: 100%;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     }
@@ -1989,7 +1989,7 @@ a {
             top: -2px;
         }
 
-        .links {
+        .btns {
             .btn {
                 .button-size(4px; 10px; 12px; 1; 6px);
 
@@ -2137,6 +2137,127 @@ a {
                 .title {
                     background-color: #910002;
                 }
+            }
+        }
+    }
+}
+
+/*=============================================================================
+                                                   [Router] [Dashboard] Subhome
+----*/
+
+#dashboard-subhome {
+    section:not(.omit-margin) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    a {
+        &, &:hover, &:visited {
+            color: inherit;
+        }
+    }
+
+    .subject {
+        #dashboard .subject;
+    }
+
+    .summary {
+        background-color: #FFF;
+
+        .list {
+            > li {
+                padding: 10px 24px;
+
+                + li {
+                    border-top: 1px solid #D4D4D5;
+                }
+            }
+        }
+
+        .info {
+            .flex-display(center; space-between);
+
+            .status {
+                width: 30px;
+
+                .glyphicon {
+                    color: #C79F62;
+                }
+            }
+
+            .name {
+                width: 75px;
+                color: #585757;
+            }
+
+            .value {
+                .flex(1);
+                color: #B4B4B5;
+            }
+
+            .action {
+                color: #b28146;
+            }
+        }
+    }
+
+    .links-list {
+        background-color: #FFF;
+
+        .list-row {
+            > .item {
+                padding: 12px 18px;
+                height: 72px;
+
+                + .item {
+                    border-left: 1px solid #C2C2C3;
+                }
+            }
+
+            + .list-row {
+                border-top: 1px solid #B6B6B6;
+            }
+        }
+
+        .media {
+            &-left {
+            }
+
+            &-heading {
+                font-size: 14px;
+                color: #585757;
+                line-height: 1.2;
+            }
+
+            .desc {
+                font-size: 12px;
+                color: #B4B4B5;
+            }
+        }
+
+        .icon {
+            display: inline-block;
+            background: url("@{path-image}/dashboard-icons.png") no-repeat;
+            background-size: 128px/2 30px/2;
+            width: 32px/2;
+            height: 30px/2;
+            overflow: hidden;
+
+            &-doc {
+                background-position: 0 0;
+            }
+
+            &-card {
+                background-position: -32px/2 0;
+            }
+
+            &-gift {
+                background-position: -64px/2 0;
+            }
+
+            &-coupon {
+                background-position: -96px/2 0;
             }
         }
     }

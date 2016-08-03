@@ -115,45 +115,7 @@ function init(type) {
                 }
 
                 $.get(api, function (o) {
-                    console.log(o);
-                    //var res = o.result.results;
-                    //for(var i=0;i< res.length;i++){
-                    //    //console.log(o.dates[res[i].loanId]);
-                    //
-                    //    res[i].timeOpen = moment(o.dates[res[i].loanId].timeOpen).format('YYYY-MM-DD');
-                    //    res[i].timeout = o.dates[res[i].loanId].timeout/24;
-                    //    res[i].timeEnd = moment(o.dates[res[i].loanId].timeOpen).add(o.dates[res[i].loanId].timeout, 'days').format('YYYY-MM-DD');
-                    //    //    起息日
-                    //    res[i].start1 = moment(o.dates[res[i].loanId].timeFinished).add(1, 'days').format('YYYY-MM-DD');
-                    //    res[i].start2 =  moment(o.dates[res[i].loanId].timeEnd).add(1, 'days').format('YYYY-MM-DD');
-                    //    //    到息日
-                    //    res[i].end1 =  moment(o.dates[res[i].loanId].start1).add(o.dates[res[i].loanId].duration.days, 'days').format('YYYY-MM-DD');
-                    //    res[i].end2 =  moment(o.dates[res[i].loanId].start2).add(o.dates[res[i].loanId].duration.days, 'days').format('YYYY-MM-DD');
-                    //
-                    //
-                    //    //起息日
-                    //    if(o.dates[res[i].loanId].loanRequest.valueDate == null){
-                    //        if(o.dates[res[i].loanId].timeFinished ==null){
-                    //            res[i].valueDate = res[i].start2;
-                    //        }else{
-                    //            res[i].valueDate = res[i].start1;
-                    //        }
-                    //    }else{
-                    //        res[i].valueDate = moment(o.dates[res[i].loanId].loanRequest.valueDate).format('YYYY-MM-DD');
-                    //    }
-                    //    //到息日
-                    //    if(o.dates[res[i].loanId].loanRequest.dueDate == null){
-                    //        if(o.dates[res[i].loanId].timeFinished ==null){
-                    //            res[i].valueDate = res[i].end2;
-                    //        }else{
-                    //            res[i].valueDate = res[i].end1;
-                    //        }
-                    //    }else{
-                    //        res[i].dueDate = moment(o.dates[res[i].loanId].loanRequest.dueDate).format('YYYY-MM-DD');
-                    //    }
-                    //
-                    //
-                    //}
+                    //console.log(o);
                     callback(o);
                 }).error(function (o) {
                     console.info('请求出现错误，' + o.statusText);
@@ -166,6 +128,8 @@ function init(type) {
                     this.set('pageOne', o.results);
                     this.set('list', o.results);
                 }else{
+                    console.log('#####');
+                    console.log(o);
                     //this.set('valueDate', o.dates.(o.result.results.id).loanRequest.valueDate);
                     //this.set('total', o.dates.);
                     this.set('total', o.result.totalSize);
@@ -199,36 +163,17 @@ function init(type) {
                     var datas = res.result.results;
                     for (var i = 0; i < datas.length; i++) {
                         var o = datas[i];
+                        datas[i].valueDate = moment(res.dates[datas[i].loanId].loanRequest.valueDate).format('YYYY-MM-DD');
+                        datas[i].dueDate = moment(res.dates[datas[i].loanId].loanRequest.dueDate).format('YYYY-MM-DD');
+                        datas[i].timeFinished = moment(res.dates[datas[i].loanId].timeFinished).format('YYYY-MM-DD');
                         datas[i].timeOpen = moment(res.dates[datas[i].loanId].timeOpen).format('YYYY-MM-DD');
                         datas[i].timeout = res.dates[datas[i].loanId].timeout/24;
                         datas[i].timeEnd = moment(res.dates[datas[i].loanId].timeOpen).add(res.dates[datas[i].loanId].timeout, 'days').format('YYYY-MM-DD');
-                        //    起息日
-                        datas[i].start1 = moment(res.dates[datas[i].loanId].timeFinished).add(1, 'days').format('YYYY-MM-DD');
-                        datas[i].start2 =  moment(res.dates[datas[i].loanId].timeEnd).add(1, 'days').format('YYYY-MM-DD');
-                        //    到息日
-                        datas[i].end1 =  moment(datas[i].start1).add(res.dates[datas[i].loanId].duration.days, 'days').format('YYYY-MM-DD');
-                        datas[i].end2 =  moment(datas[i].start2).add(res.dates[datas[i].loanId].duration.days, 'days').format('YYYY-MM-DD');
 
-                        //起息日
-                        if(res.dates[datas[i].loanId].loanRequest.valueDate == null){
-                            if(res.dates[datas[i].loanId].timeFinished ==null){
-                                datas[i].valueDate = datas[i].start2;
-                            }else{
-                                datas[i].valueDate = datas[i].start1;
-                            }
-                        }else{
-                            datas[i].valueDate = moment(res.dates[datas[i].loanId].loanRequest.valueDate).format('YYYY-MM-DD');
-                        }
-                        //到息日
-                        if(res.dates[datas[i].loanId].loanRequest.dueDate == null){
-                            if(res.dates[datas[i].loanId].timeFinished ==null){
-                                datas[i].valueDate = datas[i].end2;
-                            }else{
-                                datas[i].valueDate = datas[i].end1;
-                            }
-                        }else{
-                            datas[i].dueDate = moment(res.dates[datas[i].loanId].loanRequest.dueDate).format('YYYY-MM-DD');
-                        }
+                        datas[i].start1 = moment(res.dates[datas[i].loanId].timeFinished).add(1, 'days').format('YYYY-MM-DD');
+                        datas[i].end1 =  moment(datas[i].start1).add(res.dates[datas[i].loanId].duration.totalDays, 'days').format('YYYY-MM-DD');
+                        datas[i].start2 =  moment(res.dates[datas[i].loanId].timeEnd).add(1, 'days').format('YYYY-MM-DD');
+                        datas[i].end2 =  moment(datas[i].start2).add(res.dates[datas[i].loanId].duration.totalDays, 'days').format('YYYY-MM-DD');
 
                         switch (type) {
                             //case 'ASSIGN':
@@ -369,7 +314,8 @@ function init(type) {
                 return repay;
             },
             bindActions: function () {
-                $('.operation').on('click', function () {
+                $('.operation').on('click', function (e) {
+                    e.stopPropagation();
                     var returnMap = {
                         "CREDIT_ASSIGN_DISABLED": "没有开启债权转让功能",
                         "REASSIGN_DISABLED": "二次转让功能关闭",
@@ -419,7 +365,10 @@ function init(type) {
 
                     //提交
 
-                    $("#btn-confirm").click(function () {
+                    $("#btn-confirm").click(function (e) {
+                        //console.log(e);
+                        e.stopPropagation();
+                        e.currentTarget.disabled = true;
                         $(this).addClass('disabled').html('处理中');
                         var assignTitle = title + " - 债权转让";
                         var creditDealRate = $("#creditDealRate").val();

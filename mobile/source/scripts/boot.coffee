@@ -90,6 +90,20 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         return $q.reject()
                     }
 
+                    .when '/dashboard/subhome', {
+                        controller: 'DashboardSubhomeCtrl as self'
+                        templateUrl: 'components/router/dashboard/subhome.tmpl.html'
+                        resolve:
+                            user: _.ai 'api, $location, $q',
+                                (       api, $location, $q) ->
+                                    api.fetch_current_user().catch ->
+                                        $location
+                                            .replace()
+                                            .path '/login'
+                                            .search next: 'dashboard/subhome'
+                                        return $q.reject()
+                    }
+
                     .when '/dashboard/bank-card', {
                         controller: 'BankCardCtrl as self'
                         templateUrl: 'components/router/dashboard/bank-card.tmpl.html'

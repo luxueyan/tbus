@@ -65,6 +65,24 @@ do (_, angular, Math) ->
                 table[type] or type
 
 
+        .filter 'greeting_time_cn', _.ai '$filter', ($filter) ->
+
+            (date) ->
+
+                hour = parseInt($filter('date')(date, 'H'))
+
+                greeting = switch
+                    when 0 <= hour < 6  then '凌晨好'
+                    when 6 <= hour < 9 then '早上好'
+                    when 9 <= hour < 12  then '上午好'
+                    when 12 <= hour < 14  then '中午好'
+                    when 14 <= hour < 18 then '下午好'
+                    when 18 <= hour < 24 then '晚上好'
+                    else '您好'
+
+                return greeting
+
+
 
 
 

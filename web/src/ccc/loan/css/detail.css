@@ -584,7 +584,7 @@ select::-ms-expand { display: none; }
     color: #999;
     line-height: 30px;
 }
-.do-invest-wrapper .status .userBlock .loginBtn {
+.do-invest-wrapper .loginBtn {
     height: 44px;
     color: #fff;
     background-color: #e4262b;
@@ -599,7 +599,7 @@ select::-ms-expand { display: none; }
     letter-spacing: 1px;
     text-align: center;
 }
-.do-invest-wrapper .status .userBlock .loginBtn:hover {
+.do-invest-wrapper .loginBtn:hover {
     background-color: #C71E23;
 }
 .do-invest-wrapper .status .userBlock .invest-button {

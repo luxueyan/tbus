@@ -372,4 +372,12 @@ module.exports = function(router) {
                     .ConfirmResult);
             });
     });
+
+
+    // 查看投资人合同
+    router.get('/account/invest/allContracts/:id',
+        function (req, res, next) {
+            res.redirect('/api/v2/user/MYSELF/invest/' + req.params.id +'/contract');
+            next();
+        });
 }

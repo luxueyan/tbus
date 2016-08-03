@@ -9,9 +9,8 @@ var InvestListService = require('ccc/invest/js/main/service/list')
 var utils = require('ccc/global/js/lib/utils');
 require('ccc/global/js/lib/jquery.easy-pie-chart.js')
 require('ccc/global/js/jquery.page.js');
-
 var params = {
-    pageSize: 8,
+    pageSize: 18,
     status: '',
     //minDuration: 0,
     //maxDuration: 100,
@@ -76,7 +75,19 @@ function formatItem(item) {
     //} else {
     //    item.investPercent = parseInt(item.investPercent * 100, 10);
     //}
-    item.investPercent = item.investPercent * 100;
+
+    var SinvestPercent = (item.investPercent * 100).toFixed(2)+'';
+    console.log(SinvestPercent);
+
+    if(SinvestPercent.slice(-2)=='00'){
+        item.investPercent = (item.investPercent * 100);
+    }else if(SinvestPercent.slice(-1)=='0'){
+        item.investPercent = (item.investPercent * 100).toFixed(1);
+    }else{
+        item.investPercent = (item.investPercent * 100).toFixed(2);
+    }
+
+
     if (item.duration.days > 0) {
         if (typeof item.duration.totalDays === "undefined") {
             item.fduration = item.duration.days;
@@ -154,7 +165,7 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
         el: ".fixedPro",
         template: require('ccc/invest/partials/fixedPro.html'),
         data: {
-            list: (listFixed.slice(0, 3)),
+            list: (listFixed.slice(0, 13)),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });
@@ -163,7 +174,7 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
         el: ".floatPro",
         template: require('ccc/invest/partials/floatPro.html'),
         data: {
-            list: (listFloat.slice(0, 1)),
+            list: (listFloat.slice(0, 13)),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });
@@ -278,12 +289,12 @@ function ininconut() {
         var id = t.data("id");
         var openTime = t.data("open");
         var serverDate = t.data("serv");
-        var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-        var textDay = leftTime.day ? leftTime.day + '天' : '';
+        //var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
+        //var textDay = leftTime.day ? leftTime.day + '天' : '';
         var interval = setInterval((function () {
             serverDate += 1000;
             var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-            var textDay = leftTime.day ? leftTime.day + '天' : '';
+            //var textDay = leftTime.day ? leftTime.day + '天' : '';
             if (!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
                 clearInterval(interval);
                 t.prev().hide();
