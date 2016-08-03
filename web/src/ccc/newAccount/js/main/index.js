@@ -31,7 +31,7 @@ var totalAmount = parseFloat(CC.user.availableAmount + dueInAmount + frozenAmoun
 var holdTotalAmount = parseFloat(CC.user.investStatistics.investStatistics.dueAmount.totalAmount|| 0).toFixed(2);
 var homeRactive = new Ractive({
     el: '.account-home-wrapper',
-    template: require('ccc/newAccount/partials/home.html'),
+    template: require('ccc/newAccount/partials/home/home.html'),
     data: {
         user: CC.user,
         avaAmount: avaAmount,
@@ -86,7 +86,7 @@ var homeRactive = new Ractive({
         }
 
         $.get('/api/v2/cms/category/IMAGE/name/' + encodeURIComponent('我的账户页广告栏'), function (data) {
-            console.log(data[0].content)
+            //console.log(data[0].content)
             self.set('advertisement',data[0].content)
         })
         accountService.getUserInfo(function (res) {

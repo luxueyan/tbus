@@ -165,31 +165,8 @@
     height: 54px;
     line-height: 60px;
 }
-.ccc-tab > ul.tabs {
-    margin-left: -9px;
-}
-.ccc-tab > ul.tabs > li a {
-    color: #7e838e;
-    text-decoration: none;
-    display: inline-block;
-    width: inherit;
-    width: 85px;
-    height: 28px;
-    line-height: 28px;
-    border-radius: 2px;
-}
-.ccc-tab > ul.tabs > li a:hover, .ccc-tab > ul.tabs > li a:focus {
-    color: #fff;
-    background: #ef9c2c;
-    width: 85px;
-}
-.ccc-tab > ul.tabs .active {
-    border: none;
-}
-.ccc-tab > ul.tabs > li.active a {
-    color: #fff;
-    background: #ef9c2c;
-}
+
+
 .index-invest {
     width: 990px;
     height: 310px;

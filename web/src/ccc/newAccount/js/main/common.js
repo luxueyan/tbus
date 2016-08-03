@@ -22,14 +22,11 @@ var navRactive = new Ractive({
 			//console.log(menu)
 			this.set(tab, true);
 			this.set(menu, true);
-			if (tab === 'invest') {
-				this.set('showInvestToggleMenu', true);
-			} else if (tab === 'loanRequest') {
-				this.set('showLoanToggleMenu', true);
-			}else if (tab === 'fund') {
+			if (tab === 'home') {
+				this.set('showHomeToggleMenu', true);
+			} else if (tab === 'fund') {
 				this.set('showFundToggleMenu', true);
-            }
-            else {
+            } else {
 				this.set('showAccountToggleMenu', true);
 			}
 		}

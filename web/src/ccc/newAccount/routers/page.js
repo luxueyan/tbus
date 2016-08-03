@@ -136,22 +136,6 @@ module.exports = function(router) {
     });
 
     // 特定页面的
-
-    router.get('/settings/home', function(req, res) {
-        Promise.join(
-            req.uest('/api/v2/user/MYSELF/statistics/invest')
-            .end().get('body'),
-            req.uest(
-                '/api/v2/user/MYSELF/paymentPasswordHasSet')
-            .end().get('body'),
-            function(investStatistics, paymentPasswordHasSet) {
-                res.locals.user.investStatistics =
-                    investStatistics;
-                res.locals.user.paymentPasswordHasSet =
-                    paymentPasswordHasSet;
-                res.render('newAccount/home');
-            });
-    });
     router.get('/coupon', function(req, res) {
         var paymentPasswordHasSet = req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
             .end().get('body');
@@ -268,30 +252,13 @@ module.exports = function(router) {
             title: '太合汇'
         });
     });
-    router.get('/loanRequest/*', function(req, res) {
-        res.render('newAccount/loan', {
-            title: '太合汇'
-        });
-    });
 
     [
-        "bankCards",
-        "authentication",
-        "password",
-        "setpassword",
-        "resetPassword",
-        "showbank",
+        "index",
         "fixed",
-        "float",
-        "tradeCards",
-        "fixMobile",
+        "float"
     ].forEach(function(tabName) {
-        router.get('/settings/' + tabName, function(req, res) {
-            if(tabName == 'bankCards' || tabName == 'showbank'){
-                res.locals.title = '太合汇';
-            }else if(tabName == 'password'){
-                res.locals.title = '太合汇';
-            }
+        router.get('/home/' + tabName, function(req, res) {
             Promise.join(
                 req.uest('/api/v2/user/MYSELF/statistics/invest')
                     .end().get('body'),
@@ -315,34 +282,52 @@ module.exports = function(router) {
                         paymentPasswordHasSet;
                     res.locals.user.fundaccountsMap =
                         fundaccountsMap;
-                    res.render('newAccount/settings', {
+                    res.render('newAccount/home', {
                         tabName: tabName,
-//                        title: tabName + '_自金网平台'
                     });
                 });
         });
 
     });
 
-    // 修改密码
-    router.post("/change_password", ccBody, function(req,
-        res) {
-        req.uest.post("/api/v2/user/MYSELF/change_password")
-            .type("form")
-            .send(req.body)
-            .end()
-            .then(function(r) {
-                var result = JSON.parse(r.text);
-                if (result.success) {
-                    res.clearCookie('ccat');
-                    res.json(result);
-                } else {
-                    res.json(result.error[0]);
-                }
-
+//个人中心
+    [
+        "bankCards",
+        "authentication",
+        "password",
+        "setpassword",
+        "resetPassword",
+        "showbank",
+        "tradeCards",
+        "fixMobile",
+    ].forEach(function(tabName) {
+            router.get('/settings/' + tabName, function(req, res) {
+                Promise.join(
+                    req.uest(
+                        '/api/v2/user/MYSELF/authenticates')
+                        .end().get('body'),
+                    req.uest(
+                        '/api/v2/user/MYSELF/paymentPasswordHasSet')
+                        .end().get('body'),
+                    req.uest(
+                        '/api/v2/user/MYSELF/fundaccountsMap')
+                        .end().get('body'),
+                    function(authenticates,
+                             paymentPasswordHasSet,
+                             fundaccountsMap) {
+                        res.locals.user.authenticates =
+                            authenticates;
+                        res.locals.user.paymentPasswordHasSet =
+                            paymentPasswordHasSet;
+                        res.locals.user.fundaccountsMap =
+                            fundaccountsMap;
+                        res.render('newAccount/settings', {
+                            tabName: tabName,
+                        });
+                    });
             });
-    });
 
+        });
 
     // 资金记录
     router.get('/fund/:name', function(req, res, next) {
@@ -352,27 +337,6 @@ module.exports = function(router) {
         });
 
     });
-
-    //邮箱验证
-    router.get('/authenticateEmail', function (req, res, next) {
-
-        var email = req.query.email;
-        var code = req.query.code;
-
-        var sendObj = {
-            code: code,
-            email: email
-        };
-        req.uest.post('/api/v2/user/authenticateEmail')
-            .type('form')
-            .send(sendObj)
-            .end()
-            .then(function (r) {
-                res.redirect('/register/renzheng?message=' + r.body
-                    .ConfirmResult);
-            });
-    });
-
 
     // 查看投资人合同
     router.get('/account/invest/allContracts/:id',
