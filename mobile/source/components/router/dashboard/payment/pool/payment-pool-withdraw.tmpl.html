@@ -22,7 +22,7 @@
         }">
     </div>
 
-    <section class="form-wrapper">
+    <section class="shadow form-wrapper" ng-hide="action_result">
         <form class="form-horizontal form-flatten"
               name="form"
               ng-submit="self.submit(store)"
@@ -35,53 +35,55 @@
 
                 <div class="form-group merge" ng-if="store.bank_account">
                     <div class="form-group-inner container">
-                        <div class="media media-bank"
-                             ng-click="self.select_bank($event, store)"
-                        >
+                        <div class="media media-bank">
                             <div class="media-left">
                                 <img width="30" ng-src="assets/image/bank-icons/{{ bank_account.account.bankCode | lowercase }}.png">
                             </div>
                             <div class="media-body media-middle">
                                 <h4 class="media-heading">
-                                    {{ bank_account.account.bankName }} ｜
-                                    {{ bank_account.account.account | string_replace: '^\\d+(\\d{4})$' : '****$1' }}
+                                    <span class="bank-name">{{ bank_account.account.bankName }}</span>
+                                    {{ bank_account.account.account | string_replace: '^(\\d{3})\\d+(\\d{4})$' : '$1****$2' }}
                                 </h4>
-                            </div>
-                            <div class="media-right media-middle">
-                                <param class="glyphicon glyphicon-menu-right">
+                                <p class="desc">
+                                    当前可提现金额(元)：{{ self.user.fund.availableAmount | number: 2 }}
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="form-group merge"
+                <div class="form-group merge form-group-amount"
                      ng-class="{'has-error': form.withdraw.$invalid && form.withdraw.$dirty}"
                 >
                     <div class="form-group-inner">
-                        <label for="withdraw">提现金额</label>
-                        <input name="withdraw"
-                               id="withdraw"
-                               ng-model="store.amount"
-                               type="number"
-                               class="form-control input-target input-lg"
-                               min="3"
-                               max="{{ available_withdraw_amount }}"
-                               placeholder="可提现金额：{{ available_withdraw_amount | number: 2 }}元"
-                               autocapitalize="none"
-                               autocomplete="off"
-                               autocorrect="off"
-                               required
-                        >
-                    </div>
+                        <label for="withdraw">请输入提现金额(元)</label>
+                        <div class="form-control-wrap">
+                            <input name="withdraw"
+                                   id="withdraw"
+                                   ng-model="store.amount"
+                                   type="number"
+                                   class="form-control input-target input-lg"
+                                   min="3"
+                                   max="{{ self.user.fund.availableAmount }}"
+                                   placeholder=""
+                                   autocapitalize="none"
+                                   autocomplete="off"
+                                   autocorrect="off"
+                                   required
+                            >
 
-                    <div class="help-block"
-                         ng-show="form.withdraw.$invalid && form.withdraw.$dirty && form.withdraw.$error.max"
-                    >
-                        <span ng-show="form.withdraw.$error.max">可提现金额不足</span>
+                            <p class="hint">取现费用3.00元/笔</p>
+
+                            <div class="help-block"
+                                 ng-show="form.withdraw.$invalid && form.withdraw.$dirty && form.withdraw.$error.max"
+                            >
+                                <span ng-show="form.withdraw.$error.max">可提现金额不足</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-group merge">
+                <div class="form-group merge" x-gyro-comment>
                     <div class="form-group-inner">
                         <label for="password">交易密码</label>
                         <input name="password"
@@ -96,12 +98,12 @@
                 </div>
             </div>
 
-            <div class="container hint">
+            <div class="container hint" x-gyro-comment>
                 <p class="fee">提示：提现费用X元/笔，由支付通道收取<br>当日充值的金额当日不能提现</p>
                 <p class="amount invisible" ng-class="{ _invisible: !form.withdraw.$valid }">实际到账: <span class="u-color-main">{{ store.amount - 3 }}元</span></p>
             </div>
 
-            <p class="container">
+            <p class="container btn-sumbmit-wrap">
                 <button class="btn btn-theme btn-block btn-lg"
                         type="submit"
                         ng-disabled="form.$invalid || self.submit_sending"
@@ -110,71 +112,45 @@
         </form>
     </section>
 
+
+
+
+    <div class="action-result" ng-show="action_result">
+        <div ng-if="action_result">
+            <style> body { background-color: #FFF; } </style>
+        </div>
+
+        <div ng-show="action_result.success">
+            <div class="content text-center shadow">
+                <div class="icon-wrap">
+                    <img class="icon" width="66" ng-src="assets/image/smile-icon.png">
+                </div>
+
+                <p class="desc">提现成功</p>
+            </div>
+
+            <div class="action">
+                <a class="btn btn-theme btn-block" href="dashboard">我的账户</a>
+            </div>
+        </div>
+
+        <div ng-hide="action_result.success">
+            <div class="content text-center shadow">
+                <div class="icon-wrap">
+                    <img class="icon" width="66" ng-src="assets/image/unhappy-icon.png">
+                </div>
+
+                <p class="desc text-muted">提现失败</p>
+
+                <p class="msg">{{ action_result.msg }}</p>
+            </div>
+
+            <div class="action">
+                <a class="btn btn-theme btn-block" href=""
+                   ng-click="action_result = null"
+                >重新提现</a>
+            </div>
+        </div>
+    </div>
 </div>
 
-
-
-
-
-<script type="text/ng-template" id="ngt-dashboard-payment-withdraw-select-bank.tmpl">
-    <div id="dashboard-payment-withdraw-select-bank">
-
-        <nav class="container page-nav">
-        <div class="row">
-            <a class="col-xs-3 back" ng-click="$close()">
-                <param class="glyphicon glyphicon-menu-left">
-            </a>
-            <span class="col-xs-6 title">选择银行卡</span>
-            <span class="col-xs-3">&nbsp;</span>
-        </div>
-        </nav>
-
-        <section class="banks">
-            <ul class="list-unstyled u-off-margin-bottom bank-list">
-                <li ng-repeat="item in bank_account_list"
-                    ng-click="select(item); $close()"
-                >
-                    <div class="media media-bank">
-                        <div class="media-left">
-                            <img width="30" ng-src="assets/image/bank-icons/{{ item.account.bankCode | lowercase }}.png">
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">
-                                {{ item.account.bankName }} ｜
-                                {{ item.account.account | string_replace: '^\\d+(\\d{4})$' : '****$1' }}
-                            </h4>
-                            <p class="desc">
-                                充值限额: <br>
-                                单笔
-                                    {{
-                                        item.account.singleQuota == -1
-                                        ? '无限额'
-                                        : (
-                                            item.account.singleQuota >= 10000
-                                            ? item.account.singleQuota / 10000 + '万'
-                                            : item.account.singleQuota
-                                          )
-                                    }}
-                                /
-                                日限额
-                                    {{
-                                        item.account.dailyQuota == -1
-                                        ? '无限额'
-                                        : (
-                                            item.account.dailyQuota >= 10000
-                                            ? item.account.dailyQuota / 10000 + '万'
-                                            : item.account.dailyQuota
-                                          )
-                                    }}
-                            </p>
-                            <span class="default-card"
-                                  ng-if="item.defaultAccount"
-                            >默认卡</span>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </section>
-
-    </div>
-</script>
