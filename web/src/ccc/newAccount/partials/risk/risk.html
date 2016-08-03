@@ -17,53 +17,53 @@
                 <span class="headline">个人及财务状况</span>
                 <span class="right"></span>
             </div>
-            {{#listA}}
+            {{#listA:i}}
             <p class="title">{{ordinal}}.{{content}}</p>
             <ul>
                 {{#choices}}
                 <li><input type="radio" name="question{{i+1}}" value="{{score}}"/>{{value}}.{{content}}</li>
                 {{/choices}}
             </ul>
-            {{/list}}
+            {{/listA}}
             <div>
                 <span class="left"></span>
                 <span class="headline headlineTop">投资风险</span>
                 <span class="right"></span>
             </div>
-            {{#listB}}
+            {{#listB:i}}
             <p class="title">{{ordinal}}.{{content}}</p>
             <ul>
                 {{#choices}}
-                <li><input type="radio" name="question{{i+1}}" value="{{score}}"/>{{value}}.{{content}}</li>
+                <li><input type="radio" name="question{{i+4}}" value="{{score}}"/>{{value}}.{{content}}</li>
                 {{/choices}}
             </ul>
-            {{/list}}
+            {{/listB}}
             <div>
                 <span class="left"></span>
                 <span class="headline headlineTop">投资目的</span>
                 <span class="right"></span>
             </div>
-            {{#listC}}
+            {{#listC:i}}
             <p class="title">{{ordinal}}.{{content}}</p>
             <ul>
                 {{#choices}}
-                <li><input type="radio" name="question{{i+1}}" value="{{score}}"/>{{value}}.{{content}}</li>
+                <li><input type="radio" name="question{{i+8}}" value="{{score}}"/>{{value}}.{{content}}</li>
                 {{/choices}}
             </ul>
-            {{/list}}
+            {{/listC}}
             <div>
                 <span class="left"></span>
                 <span class="headline headlineTop">风险承受能力</span>
                 <span class="right"></span>
             </div>
-            {{#listD}}
+            {{#listD:i}}
             <p class="title">{{ordinal}}.{{content}}</p>
             <ul>
                 {{#choices}}
-                <li><input type="radio" name="question{{i+1}}" value="{{score}}"/>{{value}}.{{content}}</li>
+                <li><input type="radio" name="question{{i+10}}" value="{{score}}"/>{{value}}.{{content}}</li>
                 {{/choices}}
             </ul>
-            {{/list}}
+            {{/listD}}
         </div>
         <div class="submit_btn">
             <button on-click="getScore">提交</button>
