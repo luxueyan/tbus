@@ -10,7 +10,7 @@ var utils = require('ccc/global/js/lib/utils');
 require('ccc/global/js/lib/jquery.easy-pie-chart.js')
 require('ccc/global/js/jquery.page.js');
 var params = {
-    pageSize: 18,
+    pageSize: 8,
     status: '',
     //minDuration: 0,
     //maxDuration: 100,
@@ -77,7 +77,6 @@ function formatItem(item) {
     //}
 
     var SinvestPercent = (item.investPercent * 100).toFixed(2)+'';
-    console.log(SinvestPercent);
 
     if(SinvestPercent.slice(-2)=='00'){
         item.investPercent = (item.investPercent * 100);
@@ -149,7 +148,7 @@ function replaceStr(str) {
 
 
 InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) {
-    console.log(res)
+    //console.log(res)
 
     parseLoanList(res.results);
     var listFixed = [], listFloat = [];
@@ -165,7 +164,7 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
         el: ".fixedPro",
         template: require('ccc/invest/partials/fixedPro.html'),
         data: {
-            list: (listFixed.slice(0, 13)),
+            list: (listFixed.slice(0, 3)),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });
@@ -174,7 +173,7 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
         el: ".floatPro",
         template: require('ccc/invest/partials/floatPro.html'),
         data: {
-            list: (listFloat.slice(0, 13)),
+            list: (listFloat.slice(0, 1)),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });
@@ -191,11 +190,18 @@ if (CC.key) {
             list: [],
             RepaymentMethod: i18n.enums.RepaymentMethod, // 还款方式
             user: CC.user,
-            key: CC.key,
-            num: CC.num
+            key: CC.key
         },
         onrender: function () {
             var that = this;
+            var key = that.get('key');
+            var api = '/api/v2/loan/summaryTotal?product=';
+            request.get(api+ key)
+                .end()
+                .then(function(r){
+                    that.set('num',r.body);
+
+                });
             InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) {
                 that.set('list', parseLoanList(res.results));
                 that.renderPager(res, params.currentPage, that)

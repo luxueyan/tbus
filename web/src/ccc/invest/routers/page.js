@@ -22,43 +22,13 @@ module.exports = function (router) {
     
         
     router.get('/list/:key',function(req,res,next){
-        var api = '/api/v2/loan/summaryTotal';
         if(req.params.key == 'GDSY'){
             res.expose('GDSY','key');
             res.locals.key = 'GDSY';
-            req.uest.get(api+'?product=GDSY')
-                .end()
-                .then(function(r){
-                    console.log('11@@@@@@@@@@@!!!!!!!!!!!!')
-                    console.log(r.body)
-                    console.log('11@@@@@@@@@@@!!!!!!!!!!!!')
-                    res.expose(r.body,'num');
-                    res.locals.num = 'num';
-                });
-
-
         }else if(req.params.key == 'XELC'){
             res.expose('XELC','key');
             res.locals.key = 'XELC';
-            req.uest.get(api+'?product=XELC')
-                .end()
-                .then(function(r){
-                    console.log('221@@@@@@@@@@@!!!!!!!!!!!!')
-                    console.log(r.body)
-                    console.log('22211@@@@@@@@@@@!!!!!!!!!!!!')
-                    res.expose(r.body,'num');
-                    res.locals.num = 'num';
-                });
-
         }
-        //req.uest.get('/api/v2/loan/summaryTotal')
-        //    .end()
-        //    .then(function(r){
-        //    console.log('@@@@@@@@@@@!!!!!!!!!!!!')
-        //    console.log(r.body)
-        //    console.log('@@@@@@@@@@@!!!!!!!!!!!!')
-        //    res.locals.num = r.body;
-        //})
         res.render('list');
     })
 
