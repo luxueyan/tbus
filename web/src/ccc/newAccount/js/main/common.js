@@ -28,8 +28,9 @@ var navRactive = new Ractive({
 				this.set('showLoanToggleMenu', true);
 			}else if (tab === 'fund') {
 				this.set('showFundToggleMenu', true);
-            }
-            else {
+            }else if(menu === 'home'){
+				this.set('showAccountToggleMenu', true);
+			}else if(menu === 'fixed'){
 				this.set('showAccountToggleMenu', true);
 			}
 		}
