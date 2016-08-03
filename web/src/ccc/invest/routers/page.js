@@ -33,6 +33,7 @@ module.exports = function (router) {
                     console.log(r.body)
                     console.log('11@@@@@@@@@@@!!!!!!!!!!!!')
                     res.expose(r.body,'num');
+                    res.locals.num = 'num';
                 });
 
 
@@ -46,7 +47,7 @@ module.exports = function (router) {
                     console.log(r.body)
                     console.log('22211@@@@@@@@@@@!!!!!!!!!!!!')
                     res.expose(r.body,'num');
-                    //res.expose(res.locals.num,'num');
+                    res.locals.num = 'num';
                 });
 
         }
