@@ -17,68 +17,70 @@
         }">
     </div>
 
-    <div class="container text-center funds-filter">
-        <div class="row">
-            <div class="col-xs-6 dropdown" x-uib-dropdown is-open="open_dropdown_type">
-                <div x-uib-dropdown-toggle>
-                    <span ng-show="query_set.type === ''">全部类型</span>
-                    <span ng-show="query_set.type === 'INVEST'">投标</span>
-                    <span ng-show="query_set.type === 'WITHDRAW'">提现</span>
-                    <span ng-show="query_set.type === 'DEPOSIT'">充值</span>
-                    <span ng-show="query_set.type === 'INVEST_REPAY'">回款</span>
-                    <span ng-show="query_set.type === 'FEE_WITHDRAW'">提现手续费</span>
-                    <span ng-show="query_set.type === 'TRANSFER'">平台奖励</span>
-                    <param class="glyphicon glyphicon-menu-down">
+    <div class="shadow text-center funds-filter-wrap">
+        <div class="container funds-filter">
+            <div class="row">
+                <div class="col-xs-6 dropdown" x-uib-dropdown is-open="open_dropdown_type">
+                    <div x-uib-dropdown-toggle>
+                        <span ng-show="query_set.type === ''">全部类型</span>
+                        <span ng-show="query_set.type === 'INVEST'">投标</span>
+                        <span ng-show="query_set.type === 'WITHDRAW'">提现</span>
+                        <span ng-show="query_set.type === 'DEPOSIT'">充值</span>
+                        <span ng-show="query_set.type === 'INVEST_REPAY'">回款</span>
+                        <span ng-show="query_set.type === 'FEE_WITHDRAW'">提现手续费</span>
+                        <span ng-show="query_set.type === 'TRANSFER'">平台奖励</span>
+                        <param class="glyphicon glyphicon-menu-down">
+                    </div>
+
+                    <ul x-uib-dropdown-menu ng-click="self.query(query_set); open_dropdown_type = false">
+                        <li ng-class="{ active: query_set.type === '' }"
+                            ng-click="query_set.type = ''"
+                        >全部类型</li>
+                        <li ng-class="{ active: query_set.type === 'INVEST' }"
+                            ng-click="query_set.type = 'INVEST'"
+                        >投标</li>
+                        <li ng-class="{ active: query_set.type === 'WITHDRAW' }"
+                            ng-click="query_set.type = 'WITHDRAW'"
+                        >提现</li>
+                        <li ng-class="{ active: query_set.type === 'DEPOSIT' }"
+                            ng-click="query_set.type = 'DEPOSIT'"
+                        >充值</li>
+                        <li ng-class="{ active: query_set.type === 'INVEST_REPAY' }"
+                            ng-click="query_set.type = 'INVEST_REPAY'"
+                        >回款</li>
+                        <li ng-class="{ active: query_set.type === 'FEE_WITHDRAW' }"
+                            ng-click="query_set.type = 'FEE_WITHDRAW'"
+                        >提现手续费</li>
+                        <li ng-class="{ active: query_set.type === 'TRANSFER' }"
+                            ng-click="query_set.type = 'TRANSFER'"
+                        >平台奖励</li>
+                    </ul>
                 </div>
 
-                <ul x-uib-dropdown-menu ng-click="self.query(query_set); open_dropdown_type = false">
-                    <li ng-class="{ active: query_set.type === '' }"
-                        ng-click="query_set.type = ''"
-                    >全部类型</li>
-                    <li ng-class="{ active: query_set.type === 'INVEST' }"
-                        ng-click="query_set.type = 'INVEST'"
-                    >投标</li>
-                    <li ng-class="{ active: query_set.type === 'WITHDRAW' }"
-                        ng-click="query_set.type = 'WITHDRAW'"
-                    >提现</li>
-                    <li ng-class="{ active: query_set.type === 'DEPOSIT' }"
-                        ng-click="query_set.type = 'DEPOSIT'"
-                    >充值</li>
-                    <li ng-class="{ active: query_set.type === 'INVEST_REPAY' }"
-                        ng-click="query_set.type = 'INVEST_REPAY'"
-                    >回款</li>
-                    <li ng-class="{ active: query_set.type === 'FEE_WITHDRAW' }"
-                        ng-click="query_set.type = 'FEE_WITHDRAW'"
-                    >提现手续费</li>
-                    <li ng-class="{ active: query_set.type === 'TRANSFER' }"
-                        ng-click="query_set.type = 'TRANSFER'"
-                    >平台奖励</li>
-                </ul>
-            </div>
+                <div class="col-xs-6" x-uib-dropdown is-open="open_dropdown_date">
+                    <div x-uib-dropdown-toggle>
+                        <span ng-show="query_set.startDate === self.convert_start_date(10, 'y')">所有时间</span>
+                        <span ng-show="query_set.startDate === self.convert_start_date(1, 'w')">最近7天</span>
+                        <span ng-show="query_set.startDate === self.convert_start_date(1, 'M')">最近一个月</span>
+                        <span ng-show="query_set.startDate === self.convert_start_date(3, 'M')">最近三个月</span>
+                        <param class="glyphicon glyphicon-menu-down">
+                    </div>
 
-            <div class="col-xs-6" x-uib-dropdown is-open="open_dropdown_date">
-                <div x-uib-dropdown-toggle>
-                    <span ng-show="query_set.startDate === self.convert_start_date(10, 'y')">所有时间</span>
-                    <span ng-show="query_set.startDate === self.convert_start_date(1, 'w')">最近7天</span>
-                    <span ng-show="query_set.startDate === self.convert_start_date(1, 'M')">最近一个月</span>
-                    <span ng-show="query_set.startDate === self.convert_start_date(3, 'M')">最近三个月</span>
-                    <param class="glyphicon glyphicon-menu-down">
+                    <ul x-uib-dropdown-menu ng-click="self.query(query_set); open_dropdown_date = false">
+                        <li ng-class="{ active: query_set.startDate === self.convert_start_date(10, 'y') }"
+                            ng-click="query_set.startDate = self.convert_start_date(10, 'y');"
+                        >所有时间</li>
+                        <li ng-class="{ active: query_set.startDate === self.convert_start_date(1, 'w') }"
+                            ng-click="query_set.startDate = self.convert_start_date(1, 'w');"
+                        >最近7天</li>
+                        <li ng-class="{ active: query_set.startDate === self.convert_start_date(1, 'M') }"
+                            ng-click="query_set.startDate = self.convert_start_date(1, 'M');"
+                        >最近一个月</li>
+                        <li ng-class="{ active: query_set.startDate === self.convert_start_date(3, 'M') }"
+                            ng-click="query_set.startDate = self.convert_start_date(3, 'M');"
+                        >最近三个月</li>
+                    </ul>
                 </div>
-
-                <ul x-uib-dropdown-menu ng-click="self.query(query_set); open_dropdown_date = false">
-                    <li ng-class="{ active: query_set.startDate === self.convert_start_date(10, 'y') }"
-                        ng-click="query_set.startDate = self.convert_start_date(10, 'y');"
-                    >所有时间</li>
-                    <li ng-class="{ active: query_set.startDate === self.convert_start_date(1, 'w') }"
-                        ng-click="query_set.startDate = self.convert_start_date(1, 'w');"
-                    >最近7天</li>
-                    <li ng-class="{ active: query_set.startDate === self.convert_start_date(1, 'M') }"
-                        ng-click="query_set.startDate = self.convert_start_date(1, 'M');"
-                    >最近一个月</li>
-                    <li ng-class="{ active: query_set.startDate === self.convert_start_date(3, 'M') }"
-                        ng-click="query_set.startDate = self.convert_start_date(3, 'M');"
-                    >最近三个月</li>
-                </ul>
             </div>
         </div>
     </div>

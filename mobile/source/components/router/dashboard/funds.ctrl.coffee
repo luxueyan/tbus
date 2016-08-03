@@ -3,10 +3,12 @@ do (_, angular, moment) ->
 
     angular.module('controller').controller 'FundsCtrl',
 
-        _.ai '            @api, @$scope, @$window, @$routeParams, @map_funds_summary', class
-            constructor: (@api, @$scope, @$window, @$routeParams, @map_funds_summary) ->
+        _.ai '            @api, @$scope, @$window, @$rootScope, @$routeParams, @map_funds_summary', class
+            constructor: (@api, @$scope, @$window, @$rootScope, @$routeParams, @map_funds_summary) ->
 
                 @$window.scrollTo 0, 0
+
+                @$rootScope.state = 'dashboard'
 
                 query_set = {}
 
@@ -111,7 +113,7 @@ do (_, angular, moment) ->
             status: item.status
 
             sign_css_class: switch sign
-                when '+' then 'green'
-                when '-' then 'red'
+                when '+' then 'red'
+                when '-' then 'brown'
                 else          'gray'
         }
