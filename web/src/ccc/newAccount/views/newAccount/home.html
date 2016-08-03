@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="/ccc/newAccount/css/common.css">
 <link rel="stylesheet" href="/ccc/newAccount/css/index.css">
 <link rel="stylesheet" href="/ccc/global/css/modules/cccTips.css">
-<link rel="stylesheet" href="/ccc/newAccount/css/loan.css">
+<link rel="stylesheet" href="/ccc/newAccount/css/settings.css">
 <div class="account-wrapper">
     <div class="user-nav"></div>
 	<div class="account-container">
@@ -16,29 +16,19 @@
 	</div>
 </div>
 <div class="space space-50">&nbsp;</div>
-    
-<div class="pop-box"></div>
-<div class="register-success">
-    <div class="header">
-        <span class="title">注册成功</span>
-        <img src="/ccc/register/img/close.png" class="close-img"/> 
-    </div>
-    <div class="content">
-        <div class="success-img">
-            <img src="/ccc/register/img/success.png"/> 
-        </div>
-        <div class="success-content">
-            <p>注册完成</p>
-            <p class="bolder">绑定银行卡后就能进行投资了</p>
-            <div class="button">
-                <button class="close-img btn-after">以后再说</button>
-                <a href="/newAccount/settings/bankCards"><button class="btn-after btn-bank">马上去绑卡</button></a>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script src="/ccc/newAccount/js/main/highcharts.js"></script>
 <script src="/ccc/newAccount/js/main/common.js"></script>
+
+
+{{#if tabName === 'index'}}
 <script src="/ccc/newAccount/js/main/index.js"></script>
+{{/if}}
+{{#if tabName === 'fixed'}}
+<script src="/ccc/newAccount/js/main/settings/fixed.js"></script>
+{{/if}}
+{{#if tabName === 'float'}}
+<script src="/ccc/newAccount/js/main/settings/float.js"></script>
+{{/if}}
+
 </dsBody>

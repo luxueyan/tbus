@@ -1,24 +1,19 @@
-<!--
-<div class="nav-recharge">
-	<div class="space-30"></div>
-	<a href="/newAccount/recharge" style="text-decoration:none" rel="nofollow" ><div class="nav-recharge-btn">充值</div></a>
-</div>
--->
+
 <!--<div class="nav-title">我的账户</div>-->
 <ul class="nav-wrapper">
 
 	<li class="nav-li">
-		{{#if home || recharge}}
+		{{#if index}}
 		<span class="icon-active"></span>
 		{{else}}
 		<span class="icon-common"></span>
 		{{/if}}
-		<span class="nav-text {{#if home || recharge}}nav-text-active{{/if}}"><a href="/newAccount/settings/home">账户总览</a></span>
+		<span class="nav-text {{#if index}}nav-text-active{{/if}}"><a href="/newAccount/home/index">账户总览</a></span>
 		<!--<span class='nav-toggle-btn {{showAccountToggleMenu?"nav-toggle-btn-up":"nav-toggle-btn-down"}}' data-toggle="showAccountToggleMenu" on-click="toggleMenu"></span>-->
 		<div class="clearfix"></div>
-		{{#if showAccountToggleMenu}}
+		{{#if showHomeToggleMenu}}
 		<ul class="nav-toggle-menu">
-			<li class="{{#if fixed}}active{{/if}}"><a href="/newAccount/settings/fixed">固定收益</a></li>
+			<li class="{{#if fixed}}active{{/if}}"><a href="/newAccount/home/fixed">固定收益</a></li>
 			<li class="{{#if float}}active{{/if}}">
 				<!--<a href="/newAccount/settings/float">浮动收益</a>-->
 				<a href="#">浮动收益</a>
@@ -29,40 +24,14 @@
 		{{/if}}
 	</li>
 
-	<!--<li class="nav-li">-->
-		<!--{{#if home}}-->
-			<!--<span class="icon-home-active"></span>-->
-		<!--{{else}}-->
-			<!--<span class="icon-home"></span>-->
-		<!--{{/if}}-->
-		<!--<span class="nav-text {{#if home}}nav-text-active{{/if}}"><a href="/newAccount/home">理财账户</a></span>-->
-	<!--</li>-->
     <li class="nav-li">
-
-		{{#if userInfo || bankCards || bindingEmail ||authentication || tradeCards || setpassword || resetPassword}}
+		{{#if userInfo || bindingEmail ||settings}}
 			<span class="icon-active"></span>
 		{{else}}
 			<span class="icon-common"></span>
 		{{/if}}
-		<span class="nav-text {{#if userInfo || bankCards || bindingEmail || authentication || tradeCards || setpassword  || resetPassword}}nav-text-active{{/if}}"><a href="/newAccount/userInfo">个人中心</a></span>
-
+		<span class="nav-text {{#if  userInfo || bindingEmail ||settings}}nav-text-active{{/if}}"><a href="/newAccount/userInfo">个人中心</a></span>
 	</li>
-    <!--<li class="nav-li">-->
-		<!--{{#if showbank||bankCards}}-->
-			<!--<span class="icon-bankCards-active"></span>-->
-		<!--{{else}}-->
-			<!--<span class="icon-bankCards"></span>-->
-		<!--{{/if}}-->
-		<!--<span class="nav-text {{#if showbank || bankCards}}nav-text-active{{/if}}"><a href="/newAccount/settings/showbank">银行卡管理</a></span>-->
-	<!--</li>-->
-    <!--<li class="nav-li">-->
-		<!--{{#if password}}-->
-			<!--<span class="icon-password-active"></span>-->
-		<!--{{else}}-->
-			<!--<span class="icon-password"></span>-->
-		<!--{{/if}}-->
-		<!--<span class="nav-text {{#if password}}nav-text-active{{/if}}"><a href="/newAccount/settings/password">密码管理</a></span>-->
-	<!--</li>-->
 
 	<li class="nav-li coupon-nav">
 		{{#if coupon}}

@@ -7,8 +7,8 @@ require('ccc/global/js/modules/cccPaging');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 
 var fixedRactive = new Ractive({
-    el: "#ractive-container",
-    template: require('ccc/newAccount/partials/settings/fixed.html'),
+    el: ".account-home-wrapper",
+    template: require('ccc/newAccount/partials/home/fixed.html'),
     data: {
         bankCards: CC.user.bankCards
     },

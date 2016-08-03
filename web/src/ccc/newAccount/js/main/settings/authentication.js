@@ -113,9 +113,6 @@ ractive.on("register-account-submit", function () {
                             ractive.set('step1',false);
                             ractive.set('step2',true);
                             ractive.set('step3',false);
-                            //ractive.on('close',function(){
-                            //    window.location.href = "/newAccount/settings/home";
-                            //});
                         } else {
                             ractive.set('step1',false);
                             ractive.set('step2',false);
