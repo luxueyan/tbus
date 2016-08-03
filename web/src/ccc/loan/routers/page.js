@@ -174,7 +174,16 @@ function parseLoan(loan) {
     //} else {
     //  loan.investPercent = parseInt(loan.investPercent * 100, 10);
     //};
-    loan.investPercent = loan.investPercent * 100;
+
+    var SinvestPercent = (loan.investPercent * 100).toFixed(2)+'';
+
+    if(SinvestPercent.slice(-2)=='00'){
+        loan.investPercent = (loan.investPercent * 100);
+    }else if(SinvestPercent.slice(-1)=='0'){
+        loan.investPercent = (loan.investPercent * 100).toFixed(1);
+    }else{
+        loan.investPercent = (loan.investPercent * 100).toFixed(2);
+    }
     loan.rate = loan.rate / 100;
     loan.loanRequest.deductionRate = loan.loanRequest.deductionRate / 100;
     loan.basicRate = loan.rate - loan.loanRequest.deductionRate;

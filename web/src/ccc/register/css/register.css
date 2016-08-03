@@ -377,6 +377,7 @@ h3 {
 .register-step-1,
 .register-step-2 {
 	display: none;
+	clear: both;
 }
 
 .agreement-div label a {
@@ -391,7 +392,7 @@ h3 {
 
 
 
-/*华瑞金科*/
+/*太合汇*/
 .register-body{
 }
 .register-body-img{
@@ -403,7 +404,7 @@ h3 {
 }
 
 #register-wrapper{
-    margin-left: 95px;
+    /*margin-left: 95px;*/
 }
 
 .agreement-div .next-step {
@@ -412,4 +413,68 @@ h3 {
     font-size: 16px;
     border: none;
     padding-right: 50px;
+}
+
+
+
+/*操作成功*/
+.recharge-success {
+	padding-left: 95px;
+}
+.recharge-success .content {
+	margin-top: 60px;
+}
+.recharge-success .success-img {
+	/*float: left;*/
+	/*margin-left: 80px;*/
+	text-align: center;
+	margin-right: 70px;
+}
+.recharge-success .fail-img {
+	/*float: left;*/
+	/*margin-left: 80px;*/
+	text-align: center;
+	margin-right: 70px;
+}
+.recharge-success .success-img img {
+	/*width: 200px;*/
+}
+.recharge-success .success-content {
+	/*float: left;*/
+	margin: 50px 0;
+	text-align: center;
+	margin-right: 70px;
+}
+.recharge-success .success-content p {
+	font-size: 30px;
+	color: #db0101;
+	margin-bottom: 30px;
+}
+.recharge-success .success-content p.fail-msg {
+	color: #666;
+	margin-bottom: 15px;
+}
+.recharge-success .success-content .bolder {
+	font-size: 24px;
+	font-weight: 600;
+	padding: 10px 0;
+	color: #4a4a4a;
+}
+.recharge-success .success-content .bolder span {
+	color: #ff5451;
+}
+.recharge-success .success-content .btn-after {
+	width: 196px;
+	height: 44px;
+	border: 1px solid #db0101;
+	line-height: 44px;
+	color: #db0101;
+	background: #fff;
+}
+.recharge-success .success-content .button {
+	margin-top: 30px;
+}
+.recharge-success .success-content .btn-bank {
+	color: #fff;
+	background: #db0101;
 }
