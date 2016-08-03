@@ -11,6 +11,10 @@
 		<div class="info_title">我的账户 > 个人中心 > <span>实名认证</span></div>
 		{{elseif tradeCards}}
 		<div class="info_title">我的账户 > 个人中心 > <span>更换银行卡</span></div>
+		{{elseif setpassword}}
+		<div class="info_title">我的账户 > 个人中心 > <span>修改登录密码</span></div>
+		{{elseif resetPassword}}
+		<div class="info_title">我的账户 > 个人中心 > <span>重置支付密码</span></div>
 		{{elseif fixMobile}}
 		<div class="info_title">我的账户 > 个人中心 > <span>修改手机号</span></div>
 		{{else}}

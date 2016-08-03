@@ -213,7 +213,7 @@
     position: relative;
     font-size: 18px;
     color: #999;
-    margin-left: -5px;
+    /*margin-left: -5px;*/
 }
 .invest-data-wrapper .investContainer .content .inner .itemRed .value {
     color: red;
@@ -221,7 +221,7 @@
 }
 .invest-data-wrapper .investContainer .content .inner .itemRed .value span {
     color: red;
-    margin-left: -5px;
+    /*margin-left: -5px;*/
 }
 .invest-data-wrapper .investContainer .content .innerBottom {
     /*  margin-top: 25px;*/
@@ -1233,7 +1233,7 @@
     border: none;
     text-align: center;
     color: #4a4a4a;
-    background: #fff;  
+    background: #fff;
 }
 
 .invest-detail-wrapper .tab-panels {
