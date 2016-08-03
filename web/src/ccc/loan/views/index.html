@@ -74,7 +74,7 @@
                   <div class="process">
                     <div class="rate-chart">
                         <div class="easy-pie-chart pie" data-percent="{{ loans.investPercent }}" data-status='{{loans.status}}'>
-                            <span class="percentageNum">{{ loans.investPercent }} </span>
+                            <span class="percentageNum">{{ loans.investPercent.toFixed(1)}} </span>
                         </div>
                     </div>
                     <p>进度</p>
@@ -356,7 +356,7 @@
         LuserId:'{{loans.loanRequest.userId}}',
         productKey:'{{loans.loanRequest.productKey}}',
         rate: {{loans.rate}},
-        durationdays: {{loans.duration.totalDays}},
+//        durationdays: {{loans.duration.totalDays}},
         enterprise:{{loans.loanRequest.user.enterprise}}
     };
     if('{{loans.timeFinished}}'){

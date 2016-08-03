@@ -137,7 +137,7 @@ function parseLoanList(list) {
         list[i].titleLength = replaceStr(list[i].title);
         list[i].FminAmount = utils.format.amount(list[i].loanRequest.investRule.minAmount, 2);
         list[i].balance = utils.format.amount(list[i].balance, 2);
-
+        list[i].investPercent = utils.format.amount(list[i].investPercent, 1);
     }
     return list;
 }
