@@ -275,17 +275,6 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                             .path '/login'
                                             .search next: 'dashboard/withdraw'
                                         return $q.reject()
-
-                            available_withdraw_amount: _.ai 'api, $location, $q',
-                                (                            api, $location, $q) ->
-                                    api.fetch_current_user()
-                                        .then -> api.get_user_available_withdraw_amount()
-                                        .catch ->
-                                            $location
-                                                .replace()
-                                                .path '/login'
-                                                .search next: 'dashboard/withdraw'
-                                            return $q.reject()
                     }
 
                     .when '/dashboard/invite', {

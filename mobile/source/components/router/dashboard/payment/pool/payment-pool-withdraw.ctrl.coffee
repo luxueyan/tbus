@@ -3,10 +3,12 @@ do (_, angular) ->
 
     angular.module('controller').controller 'WithdrawCtrl',
 
-        _.ai '            @user, @api, @$location, @$scope, @$window, @$q, @$uibModal, @popup_payment_state, @available_withdraw_amount', class
-            constructor: (@user, @api, @$location, @$scope, @$window, @$q, @$uibModal, @popup_payment_state, @available_withdraw_amount) ->
+        _.ai '            @user, @api, @$location, @$scope, @$rootScope, @$window, @$q, @$uibModal, @popup_payment_state', class
+            constructor: (@user, @api, @$location, @$scope, @$rootScope, @$window, @$q, @$uibModal, @popup_payment_state) ->
 
                 @$window.scrollTo 0, 0
+
+                @$rootScope.state = 'dashboard'
 
                 @submit_sending = false
 
@@ -17,7 +19,6 @@ do (_, angular) ->
                 angular.extend @$scope, {
                     bank_account
                     store: {bank_account}
-                    available_withdraw_amount: @available_withdraw_amount
                 }
 
                 if !@user.has_bank_card or !@user.has_payment_password
@@ -40,7 +41,7 @@ do (_, angular) ->
                     .then @api.process_response
 
                     .catch (data) =>
-                        return data if _.get(data, 'error') is 'access_denied'
+                        return @$q.reject(data) if _.get(data, 'error') is 'access_denied'
 
                         @$q.reject error: [message: 'INCORRECT_PASSWORD']
 
@@ -50,12 +51,16 @@ do (_, angular) ->
                     .then @api.process_response
 
                     .then (data) =>
-                        @$window.alert @$scope.msg.SUCCEED
+                        @api.user_fetching_promise = null
+                        @user.has_logged_in = false
+                        @$scope.action_result = { success: true }
 
-                        @$scope.$on '$locationChangeSuccess', =>
-                            @$window.location.reload()
+                        # @$window.alert @$scope.msg.SUCCEED
 
-                        @$window.history.back()
+                        # @$scope.$on '$locationChangeSuccess', =>
+                        #     @$window.location.reload()
+
+                        # @$window.history.back()
 
                     .catch (data) =>
                         if _.get(data, 'error') is 'access_denied'
@@ -70,41 +75,12 @@ do (_, angular) ->
 
                         if key in _.split 'WITHDRAW_FAILED'
                             detail = _.get data, 'error[0].value', ''
-                            msg += if detail then "，#{ detail }" else ''
+                            msg = if detail then "#{ detail }" else ''
 
-                        @$window.alert msg
+                        @$scope.action_result = { success: false, msg: msg }
+
+                        # @$window.alert msg
                 )
-
-
-            select_bank: (event, store) ->
-
-                do event.preventDefault
-
-                prompt = @$uibModal.open {
-                    size: 'lg'
-                    backdrop: 'static'
-                    windowClass: 'modal-full-page'
-                    openedClass: 'modal-full-page-wrap'
-                    animation: false
-                    templateUrl: 'ngt-dashboard-payment-withdraw-select-bank.tmpl'
-
-                    controller: _.ai '$scope',
-                        (             $scope) =>
-                            angular.extend $scope, {
-                                bank_account_list: @bank_account_list
-
-                                select: (bank_account) =>
-                                    store.bank_account = bank_account
-                                    @$scope.bank_account = bank_account
-                            }
-                }
-
-                once = @$scope.$on '$locationChangeStart', ->
-                    prompt?.dismiss()
-                    do once
-
-                return prompt.result
-
 
 
 
@@ -116,7 +92,7 @@ do (_, angular) ->
         api.__proto__.payment_pool_withdraw = (cardNo, amount, paymentPassword) ->
 
             @$http
-                .post '/api/v2/hundsun/withdraw/MYSELF',
+                .post '/api/v2/baofoo/withdraw/MYSELF',
                     {cardNo, amount, paymentPassword}
 
                 .then @TAKE_RESPONSE_DATA
