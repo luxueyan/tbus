@@ -58,7 +58,6 @@ do (_, angular, moment, Array, Date) ->
                             userfund
                             fundaccounts
                             authenticates
-                            inviteCode
                         '
 
                         api_list = api_list.map (path) =>
@@ -74,12 +73,9 @@ do (_, angular, moment, Array, Date) ->
                             @user.fund
                             @user.fund_accounts
                             @user.authenticates
-                            invite_code
                             banks
 
                         ] = _.pluck response, 'data'
-
-                        @user.info.invite_code = invite_code.data
 
                         _.each @user.fund_accounts, (item) ->
                             _.extend item.account, _.find banks, (bank) -> bank.bankCode is item.account.bank

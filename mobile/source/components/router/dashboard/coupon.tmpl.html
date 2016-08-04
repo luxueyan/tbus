@@ -6,11 +6,8 @@
         <a class="col-xs-3 back" x-go-back>
             <param class="glyphicon glyphicon-menu-left">
         </a>
-        <span class="col-xs-6 title">红包</span>
-        <a class="col-xs-3 actions" href="about-coupon">
-            <param class="glyphicon glyphicon-question-sign">
-            使用说明
-        </a>
+        <span class="col-xs-6 title">我的红包</span>
+        <span class="col-xs-3">&nbsp;</span>
     </div>
     </nav>
 
@@ -22,22 +19,24 @@
         }">
     </div>
 
-    <div class="text-center btn-group-wrap">
-        <div class="btn-group">
-            <a class="btn btn-tab"
-               ng-class="{ selected: current_tab === 'placed' }"
-               ng-click="self.goto_tab('placed')"
-            >未使用</a>
-            <a class="btn btn-tab"
-               ng-class="{ selected: current_tab === 'redeemed' }"
-               ng-click="self.goto_tab('redeemed')"
-            >已使用</a>
-            <a class="btn btn-tab"
-               ng-class="{ selected: current_tab === 'expired' }"
-               ng-click="self.goto_tab('expired')"
-            >已过期</a>
+    <section class="omit-margin shadow tab-links">
+        <div class="text-center btn-group-wrap">
+            <div class="btn-group">
+                <a class="btn btn-tab"
+                   ng-class="{ selected: current_tab === 'placed' }"
+                   ng-click="self.goto_tab('placed')"
+                >未使用</a>
+                <a class="btn btn-tab"
+                   ng-class="{ selected: current_tab === 'redeemed' }"
+                   ng-click="self.goto_tab('redeemed')"
+                >已使用</a>
+                <a class="btn btn-tab"
+                   ng-class="{ selected: current_tab === 'expired' }"
+                   ng-click="self.goto_tab('expired')"
+                >已过期</a>
+            </div>
         </div>
-    </div>
+    </section>
 
     <section class="coupons">
         <ul class="list-unstyled u-off-margin-bottom coupon-list"
@@ -50,13 +49,9 @@
                 && list.length < list.totalSize
             }}"
         >
-            <li class="item"
-                ng-repeat="item in list track by $index"
-                ng-class="[
-                    'item-status-' + (item.status | lowercase),
-                    'item-type-' + (item.couponPackage.type | lowercase)
-                ]"
-                data-mask="{{ { placed: '未使用', used: '审核中', redeemed: '已使用', expired: '已过期'}[(item.status | lowercase)] }}"
+            <li class="shadow item"
+                ng-repeat="item in list"
+                ng-class="[ 'item-status-' + (item.status | lowercase) ]"
             >
                 <div class="media">
                     <div class="media-left media-middle text-center">
@@ -86,19 +81,14 @@
                     </div>
 
                     <div class="media-body">
-                        <div class="desc">{{ item.couponPackage.description || '暂无描述' }}</div>
-
-                        <div class="desc" ng-if="item.couponPackage.type !== 'CASH'">
-                            投资满{{ item.couponPackage.minimumInvest | number }}元可使用
-                        </div>
-
-                        <div class="desc" ng-if="item.couponPackage.type === 'CASH'">
-                            现金券可以直接兑换
+                        <div class="desc">
+                            说明：<br>
+                            {{ item.couponPackage.description || '暂无描述' }}
                         </div>
 
                         <div class="expire">
                             <span ng-if="item.couponPackage.timeExpire">
-                                有效期至 {{ item.couponPackage.timeExpire | date: "yyyy-MM-dd" }}
+                                过期时间：{{ item.couponPackage.timeExpire | date: "yyyy-MM-dd" }}
                             </span>
                             <span ng-if="!item.couponPackage.timeExpire">永不过期</span>
                         </div>
