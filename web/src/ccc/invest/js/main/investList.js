@@ -294,6 +294,7 @@ function ininconut() {
         var id = t.data("id");
         var openTime = t.data("open");
         var serverDate = t.data("serv");
+        var tip= t.data("status")=="SCHEDULED"?"开始":"结束";
         //var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
         //var textDay = leftTime.day ? leftTime.day + '天' : '';
         var interval = setInterval((function () {
@@ -305,7 +306,7 @@ function ininconut() {
                 t.prev().hide();
                 //t.replaceWith('<a href="/loan/' + id + '" style="text-decoration:none"><div class="investbtn">立即投资</div></a>');
             } else {
-                t.html('<span class="text" style="color:#666">距离结束：' +
+                t.html('<span class="text" style="color:#666">距离'+tip+'：' +
                     '<span style="color:#e4262b">' + leftTime.day + '</span>天' +
                     '<span style="color:#e4262b">' + leftTime.hour + '</span>时' +
                     '<span style="color:#e4262b">' + leftTime.min + '</span>分' +
