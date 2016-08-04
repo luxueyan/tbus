@@ -38,7 +38,7 @@
     {{/if}}
 </div>
 <div class="agree-box">
-    <input type="checkbox" checked id="agree">我阅读并同意<a href="#">《风险提示书》</a>，充分了解相应权利和义务，并愿意承担相关风险。
+    <input type="checkbox" checked id="agree">我阅读并同意<a href="/agreement/risk">《风险提示书》</a>，充分了解相应权利和义务，并愿意承担相关风险。
     <p class="agree-error"></p>
 </div>
 <button on-click="invest-submit">确认支付</button>
@@ -63,10 +63,10 @@
         </div>
         <div class="success-content">
             <p>支付失败</p>
-            <p class="fail_reason">投资者过多您被挤掉了，请重试</p>
+            <p class="fail_reason">{{failerror}}</p>
             <div class="button">
             <!--<button class="close-img btn-after" on-click="close">以后再说</button>-->
-            <a href="/loan/{{loan.id}}"><button class="btn-after btn-bank">重新购买</button></a>
+            <a href="/creditDetail/{{creditassign.id}}/{{creditassign.loanId}}"><button class="btn-after btn-bank">重新购买</button></a>
             </div>
         </div>
     </div>
