@@ -34,14 +34,17 @@ var payRactive = new Ractive({
         creditassignId = location.search.substring(j+3);
 
         $.get('/api/v2/creditassign/creditAssignDetail/' + creditassignId, function(res){
+            //console.log(res)
             self.set('creditassign',res.creditassign);
-            self.set('investNum',res.creditassign.balance);
+            self.set('investNum',res.creditassign.creditDealAmount);
         });
     }
 });
 
 payRactive.on("invest-submit", function (e) {
     var that = this;
+    var creditassign = that.get('creditassign');
+    //console.log(creditassign);
     e.original.preventDefault();
     if(!this.get('useBankCard')){
         return;
@@ -68,13 +71,15 @@ payRactive.on("invest-submit", function (e) {
                             payRactive.set('step1',false);
                             payRactive.set('step2',true);
                             payRactive.set('step3',false);
+                            ///creditDetail/{{id}}/{{loanId}}
                             setTimeout(function(){
-                              window.location.href = '/loan/'+CC.loanId;
+                              window.location.href = '/creditDetail/'+creditassign.id+'/'+creditassign.loanId;
                             },5000);
                         } else {
                             payRactive.set('step1',false);
                             payRactive.set('step2',false);
                             payRactive.set('step3',true);
+                            payRactive.set('failerror',res);
                         }
                     });
 
