@@ -21,9 +21,10 @@ var dueInAmount = CC.user.dueInAmount || 0;
 
 // 冻结金额
 var frozenAmount = CC.user.frozenAmount || 0;
-
+// 冻结金额
+var investFrozenAmount = CC.user.investStatistics.investFrozenAmount || 0;
 // 在投资金
-var investAmount = parseFloat(dueInAmount + frozenAmount).toFixed(2);
+var investAmount = parseFloat(dueInAmount + investFrozenAmount).toFixed(2);
 
 // 总资产
 var totalAmount = parseFloat(CC.user.availableAmount + dueInAmount + frozenAmount).toFixed(2);
