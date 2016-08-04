@@ -1262,6 +1262,14 @@ a {
             .desc {
                 font-size: 16px;
                 color: @color-theme-main;
+
+                &.text-muted {
+                    color: #717071;
+                }
+            }
+
+            .msg {
+                color: #B4B4B5;
             }
         }
 
@@ -1271,6 +1279,14 @@ a {
 
             .btn {
                 .button-size(9px; 9px; 14px; 1; 8px);
+
+                &-plain {
+                    .button-variant(@color-theme-main; #FFF; @color-theme-main);
+                }
+
+                + .btn {
+                    margin-top: 18px;
+                }
             }
         }
     }
@@ -2900,45 +2916,90 @@ a {
 #dashboard-payment-recharge {
 
     .media-bank {
-        margin-top: 15px;
+        margin-top: 20px;
         margin-bottom: 15px;
+
+        .media-left {
+            padding-left: 5px;
+            padding-right: 15px;
+        }
 
         .media-heading {
             margin-bottom: 0;
             font-size: 16px;
+            color: #717071;
+
+            .bank-name {
+                margin-right: 17px;
+            }
         }
 
         .desc {
             margin-top: 5px;
             margin-bottom: 0;
-            color: @color-gray;
-        }
-
-        .glyphicon-menu-right {
-            color: #CBCCD0;
+            color: #B4B4B5;
         }
     }
 
     > .form-wrapper {
+        padding-bottom: 22px;
+        background-color: #FFF;
+
         .form-flatten {
             #login > .form-flatten;
         }
 
-        input.blank {
-            background-color: #FFF;
+        .form-group {
+            &-inner {
+                border: 0 !important;
+            }
+
+            &:first-child {
+                .form-group-inner {
+                    border-bottom: 2px solid #C2C2C3 !important;
+                }
+            }
+
+            label {
+                margin: 0 0 0 20px !important;
+                min-width: 9.5em !important;
+                text-align: left !important;
+                color: #717071 !important;
+            }
+
+            &-amount {
+                label {
+                    color: @color-theme-main !important;
+                }
+
+                .form-control-wrap {
+                    margin-right: 50px;
+                }
+
+                input.form-control {
+                    margin: 7px 0;
+                    border: 1px solid #808080 !important;
+                    border-radius: 5px !important;
+                    padding: 5px 10px !important;
+                    height: 32px !important;
+                }
+            }
         }
     }
 
-}
+    .action-result {
+        #password-forgot .action-result;
 
-/*=============================================================================
-                              [Router] [Dashboard] Payment Recharge Select Bank
-----*/
+        .detail {
+            margin: -40px 0 50px;
+            color: #717071;
 
-#dashboard-payment-recharge-select-bank {
-    .banks .bank-list {
-        #dashboard-bank-card .banks .bank-list;
+            .num {
+                margin-left: 10px;
+            }
+        }
     }
+
 }
 
 /*=============================================================================
@@ -2949,34 +3010,23 @@ a {
 
     #dashboard-payment-recharge;
 
+    .form-group-amount {
+        .form-group-inner {
+            padding-top: 13px;
+        }
+    }
+
     .hint {
-        margin-top: -20px;
-
-        .fee {
-            margin-bottom: 5px;
-            font-size: 14px;
-            color: @color-gray;
-            padding-left: 3em;
-            text-indent: -3em;
-        }
-
-        .amount {
-            text-align: right;
-            font-size: 16px;
-            color: @color-gray-dark;
-        }
+        margin-bottom: 0;
+        font-size: 12px;
+        color: #B4B4B5;
     }
 
-}
-
-/*=============================================================================
-                              [Router] [Dashboard] Payment Withdraw Select Bank
-----*/
-
-#dashboard-payment-withdraw-select-bank {
-    .banks .bank-list {
-        #dashboard-bank-card .banks .bank-list;
+    .help-block {
+        text-align: left !important;
+        padding-left: 0 !important;
     }
+
 }
 
 /*=============================================================================
@@ -3064,12 +3114,101 @@ a {
 
 #dashboard-funds {
     section:not(.omit-margin) {
-        margin-top: 8px;
-        margin-bottom: 8px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
     .funds-filter {
-        // #list .loan-filter;
+        position: fixed;
+        z-index: 11;
+        top: 40px;
+        left: 0;
+        right: 0;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        background-color: #FFF;
+
+        &-wrap {
+            height: 50px;
+        }
+
+        .dropdown {
+            position: static;
+            color: #717071;
+
+            + .dropdown {
+                border-left: 1px solid #D2D2D2;
+            }
+
+            &-toggle {
+                .glyphicon {
+                    margin-left: 5px;
+                    font-size: 12px;
+                    color: #C79F62;
+                    letter-spacing: 0;
+                }
+            }
+
+            &-menu {
+                position: fixed;
+                top: 90px;
+                margin: 0;
+                border: 0;
+                padding: 0;
+                width: 100%;
+                float: none;
+                border-radius: 0;
+                text-align: center;
+                -webkit-box-shadow: none;
+                        box-shadow: none;
+
+                > li {
+                    border-top: 1px solid @color-gray-light-double;
+                    padding-top: 12px;
+                    padding-bottom: 12px;
+
+                    &.active {
+                        position: relative;
+                        color: @color-theme-main;
+
+                        &:after {
+                            content: "\e013";
+                            position: absolute;
+                            top: 15px;
+                            margin-left: 10px;
+                            display: inline-block;
+                            font-family: 'Glyphicons Halflings';
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 12px;
+                            line-height: 1;
+                            -webkit-font-smoothing: antialiased;
+                        }
+                    }
+                }
+            }
+
+            &.open {
+                .dropdown-toggle {
+                    color: @color-theme-main;
+
+                    .glyphicon {
+                        .transform(rotate(180deg));
+                    }
+
+                    &:before {
+                        content: "";
+                        position: fixed;
+                        z-index: 12;
+                        top: 90px;
+                        bottom: 50px;
+                        left: 0;
+                        right: 0;
+                        background-color: rgba(0, 0, 0, 0.21)
+                    }
+                }
+            }
+        }
     }
 
     .loading {
@@ -3080,20 +3219,19 @@ a {
     > .funds-list {
         > .list {
             margin: 0;
-            border-top: 1px solid @color-gray-light;
-            border-bottom: 1px solid @color-gray-light;
+            border: 0;
             padding: 0;
             background-color: #FFF;
         }
 
         > .list > .item {
             border: 0;
-            padding: 16px;
+            padding: 10px 18px 10px 20px;
             font-size: 14px;
-            color: @color-gray-dark-double;
+            color: #717071;
 
             + .item {
-                border-top: 1px solid #EAEBED;
+                border-top: 1px solid #BCBCBC;
             }
 
             .info {
@@ -3127,20 +3265,25 @@ a {
             }
 
             .date {
-                color: @color-gray;
+                font-size: 12px;
+                color: #B4B4B5;
             }
 
             .amount {
-                margin-bottom: 5px;
+                margin-bottom: 8px;
+                font-size: 12px;
 
                 &.red {
-                    color: #F16051;
+                    color: @color-theme-main;
+                }
+                &.brown {
+                    color: #B28146;
                 }
                 &.green {
                     color: #5AA3E8;
                 }
                 &.gray {
-                    color: @color-gray;
+                    color: #B4B4B5;
                 }
             }
 
