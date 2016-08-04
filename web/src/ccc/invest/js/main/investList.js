@@ -154,7 +154,7 @@ IndexService.getLoanSummary(function (res) {
     for (var i = 0; i < res.length; i++) {
         if (res[i].loanRequest.productKey == 'GDSY') {
             listFixed.push(res[i]);
-        } else if (res[i].loanRequest.productKey == 'XELC') {
+        } else if (res[i].loanRequest.productKey == 'FDSY') {
             listFloat.push(res[i]);
         }
     }
