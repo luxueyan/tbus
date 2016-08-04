@@ -25,9 +25,9 @@ module.exports = function (router) {
         if(req.params.key == 'GDSY'){
             res.expose('GDSY','key');
             res.locals.key = 'GDSY';
-        }else if(req.params.key == 'XELC'){
-            res.expose('XELC','key');
-            res.locals.key = 'XELC';
+        }else if(req.params.key == 'FDSY'){
+            res.expose('FDSY','key');
+            res.locals.key = 'FDSY';
         }
         res.render('list');
     })

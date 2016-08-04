@@ -5,6 +5,8 @@
 
 'use strict';
 
+var utils = require('ccc/global/js/lib/utils');
+
 exports.IndexService = {
     getSummaryData: function (next) {
          request.get('/api/web/index/loans').then(function (res) {
@@ -47,34 +49,10 @@ exports.IndexService = {
 };
 
 function parseLoanList(loans) {
-//    var max = 6;
     var loanList = [];
-//    var openLoanLen = loans.open.length;
-//    loans.open.sort(function compare(a, b) {
-//            return b.timeOpen - a.timeOpen;
-//        });
-//    var scheduledLoanLen = loans.scheduled.length;
-//    var finishedLoanLen = loans.finished.length;
-//    
-//    if (scheduledLoanLen >= max) {
-//        addItem(loans.scheduled.slice(0, max));
-//    } else {
-//        addItem(loans.scheduled.slice(0, scheduledLoanLen));
-//        if ((max - openLoanLen) <= scheduledLoanLen) {
-//            addItem(loans.open.slice(0, max - scheduledLoanLen));
-//        } else {
-//            addItem(loans.open.slice(0, openLoanLen));
-//            addItem(loans.finished.slice(0, max - openLoanLen -
-//                scheduledLoanLen));
-//            addItem(loans.settled.slice(0, max - openLoanLen -
-//                scheduledLoanLen - finishedLoanLen));
-//        }
-//    }
-
     for(var p in loans){
         addItem(loans[p]);
     }
-
     function addItem(items) {
         if (!items.length) {
             return;
@@ -83,12 +61,24 @@ function parseLoanList(loans) {
             loanList.push(formatItem(items[i]));
         }
     }
-
     function formatItem(item) {
         item.rate = item.rate / 100;
         item.deductionRate = item.loanRequest.deductionRate / 100;
         item.basicRate = item.rate - item.deductionRate;
-        item.investPercent =parseInt(item.investPercent * 100, 10);
+
+        //格式化百分比
+        //item.investPercent =parseInt(item.investPercent * 100, 10);
+        var SinvestPercent = (item.investPercent * 100).toFixed(2)+'';
+
+        if(SinvestPercent.slice(-2)=='00'){
+            item.investPercent = (item.investPercent * 100);
+        }else if(SinvestPercent.slice(-1)=='0'){
+            item.investPercent = (item.investPercent * 100).toFixed(1);
+        }else{
+            item.investPercent = (item.investPercent * 100).toFixed(2);
+        }
+        item.FminAmount = utils.format.amount(item.loanRequest.investRule.minAmount, 2);
+        item.Fbalance = utils.format.amount(item.balance, 2);
 
         //格式化期限
         if (item.duration.days > 0) {

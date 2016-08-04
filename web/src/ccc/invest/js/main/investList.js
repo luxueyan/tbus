@@ -4,8 +4,8 @@
 
 var i18n = require('@ds/i18n')['zh-cn'];
 
-var InvestListService = require('ccc/invest/js/main/service/list')
-    .InvestListService;
+var InvestListService = require('ccc/invest/js/main/service/list').InvestListService;
+var IndexService = require('ccc/index/js/main/service/index').IndexService;
 var utils = require('ccc/global/js/lib/utils');
 require('ccc/global/js/lib/jquery.easy-pie-chart.js')
 require('ccc/global/js/jquery.page.js');
@@ -147,16 +147,15 @@ function replaceStr(str) {
 }
 
 
-InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) {
+IndexService.getLoanSummary(function (res) {
     //console.log(res)
 
-    parseLoanList(res.results);
     var listFixed = [], listFloat = [];
-    for (var i = 0; i < res.results.length; i++) {
-        if (res.results[i].loanRequest.productKey == 'GDSY') {
-            listFixed.push(res.results[i]);
-        } else if (res.results[i].loanRequest.productKey == 'XELC') {
-            listFloat.push(res.results[i]);
+    for (var i = 0; i < res.length; i++) {
+        if (res[i].loanRequest.productKey == 'GDSY') {
+            listFixed.push(res[i]);
+        } else if (res[i].loanRequest.productKey == 'FDSY') {
+            listFloat.push(res[i]);
         }
     }
     // 固定收益
