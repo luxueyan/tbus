@@ -7,7 +7,7 @@ require('ccc/global/js/modules/cccPaging');
 
 var floatRactive = new Ractive({
     el: "#ractive-container",
-    template: require('ccc/newAccount/partials/settings/float.html'),
+    template: require('ccc/newAccount/partials/home/float.html'),
     data:{
       bankCards:CC.user.bankCards,
     }
