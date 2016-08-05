@@ -162,35 +162,18 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                             banks: _.ai 'api', (api) -> api.get_available_bank_list()
                     }
 
-                    .when '/dashboard/payment/password/:type?', {
+                    .when '/dashboard/payment/password', {
                         controller: 'PaymentPoolPasswordCtrl as self'
                         templateUrl: 'components/router/dashboard/payment/pool/payment-pool-password.tmpl.html'
                         resolve:
-                            user: _.ai 'api, $location, $q, $route',
-                                (       api, $location, $q, $route) ->
-                                    {type, next} = $route.current.params
-
-                                    api.fetch_current_user()
-                                        .then (user) ->
-                                            return user if type in _.split 'set change reset'
-
-                                            type = if user.has_payment_password then 'reset' else 'set'
-
-                                            $location
-                                                .replace()
-                                                .path "/dashboard/payment/password/#{ type }"
-                                                .search {next}
-
-                                            return $q.reject(user)
-
-                                        .catch (user) ->
-                                            unless user
-                                                $location
-                                                    .replace()
-                                                    .path '/login'
-                                                    .search next: 'dashboard/payment/password'
-
-                                            return $q.reject()
+                            user: _.ai 'api, $location, $q',
+                                (       api, $location, $q) ->
+                                    api.fetch_current_user().catch ->
+                                        $location
+                                            .replace()
+                                            .path '/login'
+                                            .search next: 'dashboard/payment/password'
+                                        do $q.reject
                     }
 
                     .when '/dashboard/invest', {

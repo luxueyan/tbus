@@ -64,7 +64,7 @@
                         {{ self.user.info.mobile | string_replace: '^(\\d{3})(\\d{4})(\\d{4})$' : '$1****$3' }}
                     </span>
                     <span class="action">
-                        <a href="dashboard/change-mobile">修改</a>
+                        <a href="dashboard/mobile-change">修改</a>
                     </span>
                 </div>
             </li>
@@ -96,7 +96,7 @@
                         <span ng-if="self.user.has_payment_password">********</span>
                     </span>
                     <span class="action">
-                        <a href="dashboard/payment/password">
+                        <a ng-href="dashboard/payment/{{ self.user.has_payment_password ? 'password' : 'bind-card' }}">
                             {{ self.user.has_payment_password ? '重置' : '设置' }}
                         </a>
                     </span>

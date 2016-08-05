@@ -273,14 +273,6 @@
             </label>
         </div>
 
-        <p class="container hint hint-captcha"
-           ng-if="store.mobile"
-           ng-show="self.captcha.buffering"
-           x-gyro-comment
-        >
-            已将验证码发送至手机<span class="u-color-main">{{ store.mobile | string_replace: '^(\\d{3})(\\d{4})(\\d{4})$' : '$1-$2-$3' }}</span>
-        </p>
-
         <p class="btn-sumbmit-wrap">
             <button type="submit" class="btn btn-theme btn-block"
                     ng-disabled="form.$invalid || self.submit_sending"

@@ -3,14 +3,17 @@ do (_, angular) ->
 
     angular.module('controller').controller 'PasswordChangeCtrl',
 
-        _.ai '            @user, @api, @$scope, @$location, @$window, @$interval, @$q', class
-            constructor: (@user, @api, @$scope, @$location, @$window, @$interval, @$q) ->
+        _.ai '            @user, @api, @$scope, @$rootScope, @$location, @$window, @$interval, @$q', class
+            constructor: (@user, @api, @$scope, @$rootScope, @$location, @$window, @$interval, @$q) ->
+
+                @$window.scrollTo 0, 0
+
+                @$rootScope.state = 'dashboard'
 
                 angular.extend @$scope, {
                     store: {
                         mobile: @user.info.mobile
                     }
-                    page_path: @$location.path()[1..]
                 }
 
 
@@ -23,7 +26,7 @@ do (_, angular) ->
                     .then @api.process_response
 
                     .then (data) =>
-                        @$window.alert @$scope.msg.SUCCEED
+                        # @$window.alert @$scope.msg.SUCCEED
 
                     # .then => @api.login(mobile, password)
 
@@ -32,8 +35,9 @@ do (_, angular) ->
 
                         @api.user_fetching_promise = null
                         @user.has_logged_in = false
+                        @$scope.action_result = { success: true }
 
-                        @$location.path '/login'
+                        # @$location.path '/login'
 
                     .catch (data) =>
                         if _.get(data, 'error') is 'access_denied'

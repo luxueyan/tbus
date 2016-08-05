@@ -71,7 +71,7 @@ do (_, angular) ->
                         return data
 
                     .then (data) =>
-                        @$scope.is_show_action_result = true
+                        @$scope.action_result = { success: true }
 
                         # @$window.alert @$scope.msg.SUCCEED
                         # @$location.path '/login'

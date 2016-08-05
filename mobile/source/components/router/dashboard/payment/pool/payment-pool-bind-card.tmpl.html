@@ -221,12 +221,6 @@
                 </div>
             </div>
 
-            <p class="container hint hint-captcha"
-               ng-if="store.cardPhone && self.captcha.buffering"
-            >
-                已将验证码发送至手机<span class="u-color-main">{{ store.cardPhone | string_replace: '^(\\d{3})(\\d{4})(\\d{4})$' : '$1-$2-$3' }}</span>
-            </p>
-
             <div class="container">
                 <div class="form-group container">
                     <button type="submit" class="btn btn-theme btn-block btn-lg"

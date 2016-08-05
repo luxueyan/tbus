@@ -3,10 +3,12 @@ do (_, angular) ->
 
     angular.module('controller').controller 'PaymentPoolPasswordCtrl',
 
-        _.ai '            @user, @api, @$scope, @$window, @$q, @$location, @$interval, @$routeParams', class
-            constructor: (@user, @api, @$scope, @$window, @$q, @$location, @$interval, @$routeParams) ->
+        _.ai '            @user, @api, @$scope, @$rootScope, @$window, @$q, @$location, @$interval, @$routeParams', class
+            constructor: (@user, @api, @$scope, @$rootScope, @$window, @$q, @$location, @$interval, @$routeParams) ->
 
                 @$window.scrollTo 0, 0
+
+                @$rootScope.state = 'dashboard'
 
                 @next_path = @$routeParams.next or 'dashboard'
 
@@ -14,7 +16,6 @@ do (_, angular) ->
                 @submit_sending = false
 
                 angular.extend @$scope, {
-                    type: @$routeParams.type
                     store: {}
                 }
 
@@ -62,8 +63,9 @@ do (_, angular) ->
 
                     .then (data) =>
                         @user.has_payment_password = true
-                        @$window.alert @$scope.msg.SUCCEED
-                        @$location.path @next_path
+                        @$scope.action_result = { success: true }
+                        # @$window.alert @$scope.msg.SUCCEED
+                        # @$location.path @next_path
 
                     .catch (data) =>
                         if _.get(data, 'error') is 'access_denied'
