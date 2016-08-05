@@ -6,19 +6,20 @@ module.exports = function (router) {
         console.log('*************');
         console.log(param);
         var tabMap = {
-            regist: '用户注册协议',
+            regist: '注册协议',
             assignInvest: '债权转让协议',
             noviceInvest: '新手专享协议',
             employeeInvest: '员工专享协议',
             net: '网络交易资金存管协议',
-            protocol:'风险提示书',
+            risk:'风险提示书',
+            protocol:'太合汇服务协议',
         };
 
         if (!tabMap[param]) {
             return next();
         }
 
-        res.locals.contents = req.uest('/api/v2/cms/category/OTHER/name/'+encodeURIComponent(tabMap[param]))
+        res.locals.contents = req.uest('/api/v2/cms/category/DECLARATION/name/'+encodeURIComponent(tabMap[param]))
             .end()
             .get('body')
             .then(function (r) {

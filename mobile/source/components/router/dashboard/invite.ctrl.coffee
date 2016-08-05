@@ -3,16 +3,18 @@ do (_, angular, Math) ->
 
     angular.module('controller').controller 'InviteCtrl',
 
-        _.ai '            wx, @user, @api, @$location, @$scope, @$window, @baseURI, @$routeParams', class
-            constructor: (wx, @user, @api, @$location, @$scope, @$window, @baseURI, @$routeParams) ->
+        _.ai '            wx, @user, @api, @$location, @$scope, @$rootScope, @$window, @baseURI, @$routeParams', class
+            constructor: (wx, @user, @api, @$location, @$scope, @$rootScope, @$window, @baseURI, @$routeParams) ->
 
                 @$window.scrollTo 0, 0
+
+                @$rootScope.state = 'dashboard'
 
                 Object.defineProperties @$scope,
                     share_link: {
                         get: =>
                             result = @$location.absUrl().split('/')[0..2]
-                            result.push 'register?refm=' + @user.info.invite_code
+                            result.push 'register?refm=' + @user.info?.mobile or ''
                             return result.join '/'
                     }
 

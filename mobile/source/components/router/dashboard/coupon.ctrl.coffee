@@ -3,10 +3,12 @@ do (_, angular) ->
 
     angular.module('controller').controller 'CouponCtrl',
 
-        _.ai '            @api, @$q, @$scope, @$window, @$routeParams, @$location', class
-            constructor: (@api, @$q, @$scope, @$window, @$routeParams, @$location) ->
+        _.ai '            @api, @$q, @$scope, @$rootScope, @$window, @$routeParams, @$location', class
+            constructor: (@api, @$q, @$scope, @$rootScope, @$window, @$routeParams, @$location) ->
 
                 @$window.scrollTo 0, 0
+
+                @$rootScope.state = 'dashboard'
 
                 @submit_sending = false
 
@@ -74,6 +76,8 @@ do (_, angular) ->
 
 
             redeem: (id) ->
+
+                return if @submit_sending
 
                 @submit_sending = true
 
