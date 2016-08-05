@@ -548,7 +548,7 @@ table tbody tr td {
 }
 .info .name {
     height: 55px;
-    width: 145px;
+    width: 100px;
     line-height: 55px;
     color: #999;
     font-size: 18px;
@@ -562,7 +562,7 @@ table tbody tr td {
 }
 .credit {
     float: left;
-    width: 400px;
+    width: 300px;
     margin-left: 20px;
 }
 .credit .doCredit {
@@ -629,7 +629,7 @@ table tbody tr td {
 
 .home-topnav {
     float: right;
-    width: 500px;
+    /*width: 600px;*/
     line-height: 104px;
     margin-right: 23px;
 }
@@ -652,8 +652,9 @@ table tbody tr td {
     font-size: 23px;
 }
 .home-topnav .home-bottomBar {
-    float: right;
+    float: left;
     margin-top: 38px;
+    margin-left: 30px;
 }
 .home-recharge-btn {
     float: right;
@@ -687,6 +688,11 @@ table tbody tr td {
 .home-withdraw-btn:hover {
     background: #C71E23;
     color: #fff;
+}
+.fund_detail{
+    font-size: 18px;
+    color: #666;
+    text-decoration: underline;
 }
 /*操作成功*/
 .recharge-success {

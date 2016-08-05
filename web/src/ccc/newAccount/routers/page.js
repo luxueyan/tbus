@@ -330,8 +330,8 @@ module.exports = function(router) {
         });
 
     // 资金记录
-    router.get('/fund/:name', function(req, res, next) {
-        res.expose(req.params.name, 'loanl.urlname');
+    router.get('/fund', function(req, res, next) {
+        //res.expose(req.params.name, 'loanl.urlname');
         res.render('/newAccount/fund', {
             title: '太合汇'
         });
