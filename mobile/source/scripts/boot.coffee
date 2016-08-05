@@ -302,6 +302,20 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         return $q.reject()
                     }
 
+                    .when '/dashboard/mobile-change', {
+                        controller: 'MobileChangeCtrl as self'
+                        templateUrl: 'components/router/dashboard/mobile-change.tmpl.html'
+                        resolve:
+                            user: _.ai 'api, $location, $q',
+                                (       api, $location, $q) ->
+                                    api.fetch_current_user().catch ->
+                                        $location
+                                            .replace()
+                                            .path '/login'
+                                            .search next: 'dashboard/mobile-change'
+                                        return $q.reject()
+                    }
+
                     .when '/loan/:id', {
                         controller: 'LoanCtrl as self'
                         templateUrl: 'components/router/loan/loan.tmpl.html'

@@ -1,0 +1,202 @@
+
+<div id="dashboard-mobile-change">
+    <style> body { background-color: #FFF; } </style>
+
+    <nav class="container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" x-go-back>
+            <param class="glyphicon glyphicon-menu-left">
+        </a>
+        <span class="col-xs-6 title">修改手机号码</span>
+        <span class="col-xs-3">&nbsp;</span>
+    </div>
+    </nav>
+
+    <div>
+        <param ng-model="msg" ng-init="msg = {
+            MOBILE_EXISTS: '手机号已被占用',
+            MOBILE_USED: '手机号已被占用',
+            CAPTCHA_INVALID: '手机验证码不匹配',
+            SMS_LOGIN_ERROR: '手机验证码不匹配',
+            MOBILE_CAPTCHA_INVALID: '手机验证码不匹配',
+            MOBILE_CAPTCHA_ALREADY_SENT: '验证码已发送',
+            MOBILE_SMS_CAPTCHA_ALREADY_SEND: '验证码已发送',
+            SEND_SMS_CAPTCHA_FAILED: '验证码发送失败',
+            UNKNOWN: '系统繁忙，请稍后重试！',
+        }">
+    </div>
+
+    <div class="page-content" ng-hide="action_result">
+        <form class="form form-flatten form-horizontal"
+              name="form"
+              ng-submit="self.change_mobile(store)"
+              novalidate
+        >
+            <div class="inputs container">
+                <div class="form-group merge">
+                    <div class="form-group-inner">
+                        <label for="mobile">原手机号码</label>
+                        <div class="form-control-wrap">
+                            <input class="form-control input-target input-lg cell" type="tel"
+                                   id="mobile"
+                                   name="mobile"
+                                   value="{{ self.user.info.mobile | string_replace: '^(\\d{3})(\\d{4})(\\d{4})$' : '$1****$3' }}"
+                                   readonly
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group merge mobile-captcha"
+                     ng-class="{
+                        'has-error': form.mobile_captcha.$invalid && form.mobile_captcha.$dirty,
+                        init: !self.captcha.has_sent,
+                     }"
+                >
+                    <div class="form-group-inner">
+                        <label for="mobile_captcha">原手机验证码</label>
+                        <div class="form-control-wrap">
+                            <input class="form-control input-target input-lg captcha" type="tel"
+                                   id="mobile_captcha"
+                                   name="mobile_captcha"
+                                   x-focus-on="self.captcha.buffering"
+                                   ng-model="store.mobile_captcha"
+                                   ng-model-options="{
+                                       updateOn: 'blur default',
+                                       debounce: {blur: 0, default: 1000}
+                                   }"
+                                   pattern="^\d{6}$"
+                                   autocapitalize="none"
+                                   autocomplete="off"
+                                   autocorrect="off"
+                                   placeholder="请输入验证码"
+                                   maxlength="6"
+                                   required
+                            >
+
+                            <button class="btn btn-sm btn-action btn-plain" type="button"
+                                    ng-click="self.send_mobile_captcha()"
+                                    ng-disabled="self.captcha.buffering"
+                            >
+                                <span class="text">获取验证码</span>
+                                <span class="count" ng-show="self.captcha.buffering">
+                                    {{ self.captcha.count | number: 0 }}秒
+                                </span>
+                                <span class="icon" ng-hide="self.captcha.buffering">重发</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="help-block"
+                         ng-show="form.mobile_captcha.$invalid && form.mobile_captcha.$dirty"
+                    >
+                        <span ng-show="form.mobile_captcha.$error.required">必须填写</span>
+                        <span ng-show="form.mobile_captcha.$error.pattern">请输入6位数字</span>
+                    </div>
+                </div>
+
+                <div class="form-group merge"
+                     ng-class="{
+                        'has-error': form.mobile_new.$invalid && form.mobile_new.$dirty,
+                     }"
+                >
+                    <div class="form-group-inner">
+                        <label for="mobile">新手机号码</label>
+                        <div class="form-control-wrap">
+                            <input class="form-control input-target input-lg cell" type="tel"
+                                   id="mobile_new"
+                                   name="mobile_new"
+                                   ng-model="store.mobile_new"
+                                   ng-model-options="{
+                                       updateOn: 'blur default',
+                                       debounce: {blur: 0, default: 1000}
+                                   }"
+                                   ng-pattern="/^1\d{10}$/"
+                                   placeholder="请输入新手机号码"
+                                   maxlength="11"
+                                   required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="help-block"
+                         ng-show="form.mobile_new.$invalid && form.mobile_new.$dirty"
+                    >
+                        <span ng-show="form.mobile_new.$error.required">必须填写</span>
+                        <span ng-show="form.mobile_new.$error.pattern">填写中国大陆正确的 11 位手机号</span>
+                    </div>
+                </div>
+
+                <div class="form-group merge mobile-captcha"
+                     ng-class="{
+                        'has-error': form.mobile_captcha_new.$invalid && form.mobile_captcha_new.$dirty,
+                        init: !self.captcha_new.has_sent,
+                     }"
+                >
+                    <div class="form-group-inner">
+                        <label for="mobile_captcha_new">新手机验证码</label>
+                        <div class="form-control-wrap">
+                            <input class="form-control input-target input-lg captcha" type="tel"
+                                   id="mobile_captcha_new"
+                                   name="mobile_captcha_new"
+                                   x-focus-on="self.captcha_new.buffering"
+                                   ng-model="store.mobile_captcha_new"
+                                   ng-model-options="{
+                                       updateOn: 'blur default',
+                                       debounce: {blur: 0, default: 1000}
+                                   }"
+                                   pattern="^\d{6}$"
+                                   autocapitalize="none"
+                                   autocomplete="off"
+                                   autocorrect="off"
+                                   placeholder="请输入验证码"
+                                   maxlength="6"
+                                   required
+                            >
+
+                            <button class="btn btn-sm btn-action btn-plain" type="button"
+                                    ng-click="self.send_mobile_captcha_new(store.mobile_new)"
+                                    ng-disabled="!store.mobile_new || self.captcha_new.buffering"
+                            >
+                                <span class="text">获取验证码</span>
+                                <span class="count" ng-show="self.captcha_new.buffering">
+                                    {{ self.captcha_new.count | number: 0 }}秒
+                                </span>
+                                <span class="icon" ng-hide="self.captcha_new.buffering">重发</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="help-block"
+                         ng-show="form.mobile_captcha_new.$invalid && form.mobile_captcha_new.$dirty"
+                    >
+                        <span ng-show="form.mobile_captcha_new.$error.required">必须填写</span>
+                        <span ng-show="form.mobile_captcha_new.$error.pattern">请输入6位数字</span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="btn-sumbmit-wrap">
+                <button type="submit" class="btn btn-theme btn-block"
+                        ng-disabled="form.$invalid || self.submit_sending"
+                >确认修改</button>
+            </p>
+        </form>
+    </div>
+
+    <div class="action-result" ng-show="action_result">
+        <div ng-show="action_result.success">
+            <div class="content text-center shadow">
+                <div class="icon-wrap">
+                    <img class="icon" width="66" ng-src="assets/image/smile-icon.png">
+                </div>
+
+                <p class="desc">手机号码修改成功</p>
+            </div>
+
+            <div class="action">
+                <a class="btn btn-theme btn-block" href="login">登录</a>
+            </div>
+        </div>
+    </div>
+</div>
