@@ -15,7 +15,11 @@
         <p class="title">预期收益率</p>
       </div>
       <div class="info_box">
-        <div><span>{{fduration}}</span>{{fdurunit}}</div>
+        <div>
+            {{#if duration.years!=0}}<span>{{duration.years}}</span>年{{/if}}
+            {{#if duration.months!=0}}<span>{{duration.months}}</span>个月{{/if}}
+            {{#if duration.days!=0}}<span>{{duration.days}}</span>天{{/if}}
+        </div>
         <p class="title">投资期限</p>
       </div>
       <div class="info_box">
