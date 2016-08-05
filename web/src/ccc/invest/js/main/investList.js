@@ -87,24 +87,46 @@ function formatItem(item) {
     }
 
 
-    if (item.duration.days > 0) {
-        if (typeof item.duration.totalDays === "undefined") {
-            item.fduration = item.duration.days;
-        } else {
-            item.fduration = item.duration.totalDays;
-        }
-        item.fdurunit = "天";
-    } else {
-        item.fduration = item.duration.totalMonths;
-        item.fdurunit = "个月";
-    }
-
-    if (item.amount >= 10000) {
-        item.amountUnit = '万';
-        item.amount = (item.amount / 10000);
-    } else {
-        item.amountUnit = '元';
-    }
+    //if (item.duration.days > 0) {
+    //    if (typeof item.duration.totalDays === "undefined") {
+    //        item.fduration = item.duration.days;
+    //    } else {
+    //        item.fduration = item.duration.totalDays;
+    //    }
+    //    item.fdurunit = "天";
+    //} else {
+    //    item.fduration = item.duration.totalMonths;
+    //    item.fdurunit = "个月";
+    //}
+    //if (item.duration.days === 0) {
+    //    item.fdurationDay = "";
+    //    item.fdurunitDay = " ";
+    //} else {
+    //    item.fdurationDay = item.duration.days;
+    //    item.fdurunitDay = "天";
+    //}
+    //if (item.duration.months > 0) {
+    //    item.fdurationMonth = item.duration.months;
+    //    item.fdurunitMonth = "个月";
+    //} else {
+    //    item.fdurationMonth = "";
+    //    item.fdurunitMonth = "";
+    //}
+    //if (item.duration.years > 0) {
+    //    item.fdurationYear = item.duration.years;
+    //    item.fdurunitYear = "年";
+    //} else {
+    //    item.fdurationYear = "";
+    //    item.fdurunitYear = "";
+    //}
+    //
+    //
+    //if (item.amount >= 10000) {
+    //    item.amountUnit = '万';
+    //    item.amount = (item.amount / 10000);
+    //} else {
+    //    item.amountUnit = '元';
+    //}
 
     if (item.status == "OPENED") {
         item.leftTime = formateLeftTime(item.timeLeft);
@@ -148,7 +170,6 @@ function replaceStr(str) {
 
 
 IndexService.getLoanSummary(function (res) {
-    //console.log(res)
 
     var listFixed = [], listFloat = [];
     for (var i = 0; i < res.length; i++) {
@@ -158,6 +179,19 @@ IndexService.getLoanSummary(function (res) {
             listFloat.push(res[i]);
         }
     }
+
+    var compare = function (obj1, obj2) {
+        var val1 = obj1.loanRequest.timeSubmit;
+        var val2 = obj2.loanRequest.timeSubmit;
+        if (val1 < val2) {
+            return 1;
+        } else if (val1 > val2) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+    listFixed.sort(compare);
     // 固定收益
     var listRactive = new Ractive({
         el: ".fixedPro",
@@ -165,7 +199,7 @@ IndexService.getLoanSummary(function (res) {
         data: {
             list: (listFixed.slice(0, 3)),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
-        }
+        },
     });
     // 浮动收益
     var listRactive = new Ractive({
