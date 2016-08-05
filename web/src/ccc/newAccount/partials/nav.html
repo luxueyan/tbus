@@ -25,12 +25,12 @@
 	</li>
 
     <li class="nav-li">
-		{{#if userInfo || bindingEmail ||settings}}
+		{{#if userInfo || bindingEmail ||settings ||fund}}
 			<span class="icon-active"></span>
 		{{else}}
 			<span class="icon-common"></span>
 		{{/if}}
-		<span class="nav-text {{#if  userInfo || bindingEmail ||settings}}nav-text-active{{/if}}"><a href="/newAccount/userInfo">个人中心</a></span>
+		<span class="nav-text {{#if  userInfo || bindingEmail ||settings||fund}}nav-text-active{{/if}}"><a href="/newAccount/userInfo">个人中心</a></span>
 	</li>
 
 	<li class="nav-li coupon-nav">

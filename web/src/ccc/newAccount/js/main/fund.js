@@ -8,71 +8,61 @@ require('bootstrap/js/dropdown');
 require('eonasdan-bootstrap-datetimepicker');
 require('ccc/global/js/modules/cccTab');
 require('ccc/global/js/modules/cccPaging');
-
+var utils = require('ccc/global/js/lib/utils');
 var template = require('ccc/newAccount/partials/fund/fund.html');
 
-//var template = {
-//	 fund:require('ccc/newAccount/partials/fund/fund.html'),
-//	invest: require('ccc/newAccount/partials/fund/invest.html')
-//};
-
-
-var utils = require('ccc/global/js/lib/utils');
-
 var typeLists = [];
-var size = 8; // pageSize;
+var size = 10; // pageSize;
 typeLists[0] = [{
     type: 'ALL',
     text: '全部'
 }];
-var nameMap={
-    INVEST:'投标',
-    WITHDRAW:'提现',
-    DEPOSIT:'充值',
-    INVEST_REPAY:'回款',
-    FEE_WITHDRAW:'提现手续费',
-    TRANSFER:'平台奖励',
-    LOAN:'放款',
-    FEE_LOAN_SERVICE:'借款服务费',
-    LOAN_REPAY:'贷款还款',
-    DISBURSE:'垫付还款',
-    CREDIT_ASSIGN:'债权转让',
-    REWARD_REGISTER:'注册奖励',
-    REWARD_INVEST:'投标奖励',
-    REWARD_DEPOSIT:'充值奖励',
-    FEE_AUTHENTICATE:'身份验证手续费',
-    FEE_INVEST_INTEREST:'回款利息管理费',
-    FEE_LOAN_MANAGE:'借款管理费',
-    FEE_LOAN_INTEREST:'还款利息管理费',
-    FEE_LOAN_VISIT:'实地考察费',
-    FEE_LOAN_GUARANTEE:'担保费',
-    FEE_LOAN_RISK:'风险管理费',
-    FEE_LOAN_OVERDUE:'逾期管理费',
-    FEE_LOAN_PENALTY:'逾期罚息(给商户)',
-    FEE_LOAN_PENALTY_INVEST:'逾期罚息(给投资人)',
-    FEE_DEPOSIT:'充值手续费',
-    FEE_ADVANCE_REPAY:'提前还款违约金(给商户)',
-    FEE_ADVANCE_REPAY_INVEST:'提前还款违约金(给投资人)',
-    FSS:'生利宝',
-    OFFLINE_DEPOSIT:'线下充值'
+
+var nameMap = {
+    INVEST: "投资",
+    WITHDRAW: "提现",
+    DEPOSIT: "充值",
+    LOAN: "放款",
+    LOAN_REPAY: "贷款还款",
+    DISBURSE: "投资还款",
+    INVEST_REPAY: "投资还款",
+    CREDIT_ASSIGN: "债权转让",
+    TRANSFER: "转账扣款",
+    REWARD_REGISTER: "注册奖励",
+    REWARD_INVEST: "投资奖励",
+    REWARD_DEPOSIT: "充值奖励",
+    FEE_WITHDRAW: "提现手续费",
+    FEE_CREDIT_ASSIGN: "债转手续费",
+    FEE_AUTHENTICATE: "身份验证手续费",
+    FEE_INVEST_INTEREST: "回款利息管理费",
+    FEE_LOAN_SERVICE: "借款服务费",
+    FEE_LOAN_MANAGE: "借款管理费",
+    FEE_LOAN_INTEREST: "还款利息管理费",
+    FEE_LOAN_VISIT: "实地考察费",
+    FEE_LOAN_GUARANTEE: "担保费",
+    FEE_LOAN_RISK: "风险管理费",
+    FEE_LOAN_OVERDUE: "逾期管理费",
+    FEE_LOAN_PENALTY: "逾期罚息(给商户)",
+    FEE_LOAN_PENALTY_INVEST: "逾期罚息(给投资人)",
+    FEE_DEPOSIT: "充值手续费",
+    FEE_ADVANCE_REPAY: "提前还款违约金(给商户)",
+    FEE_ADVANCE_REPAY_INVEST: "提前还款违约金(给投资人)",
+    FSS: "生利宝"
 };
-var fundinvest ='WITHDRAW&type=DEPOSIT&type=LOAN&type=LOAN_REPAY&type=DISBURSE&type=TRANSFER&type=FEE_WITHDRAW&type=FEE_LOAN_SERVICE&type=FEE_LOAN_GUARANTEE&type=FEE_LOAN_PENALTY&type=FEE_DEPOSIT&type=FEE_ADVANCE_REPAY&type=OFFLINE_DEPOSIT&type=FEE_ADVANCE_REPAY_INVEST';
-var fundloan = 'INVEST&type=WITHDRAW&type=DEPOSIT&type=INVEST_REPAY&type=FEE_WITHDRAW&type=TRANSFER&type=OFFLINE_DEPOSIT';
+
 var FundRecordType = nameMap;
 $.each(FundRecordType, function (k, v) {
-    if(k=== 'FEE_LOAN_GUARANTEE' ||k=== 'INVEST' ||k === 'WITHDRAW'||k === 'DEPOSIT'||k === 'LOAN'||k ==='LOAN_REPAY'||k === 'DISBURSE'||k ==='TRANSFER'
-      ||k === 'FEE_WITHDRAW'||k === 'FEE_LOAN_SERVICE'||k === 'FEE_LOAN_PENALTY'||k === 'FEE_DEPOSIT'||k ==='FEE_ADVANCE_REPAY'||k === 'OFFLINE_DEPOSIT'){
-        if(!(CC.loanl.urlname==='investDeal'&&k==='INVEST')){
-        typeLists[0].push({
-        type: k,
-        text: v
-    });
-        }
+    if (k === 'FEE_LOAN_GUARANTEE' || k === 'INVEST' || k === 'WITHDRAW' || k === 'DEPOSIT' || k === 'LOAN' || k === 'LOAN_REPAY' || k === 'DISBURSE' || k === 'TRANSFER'
+        || k === 'FEE_WITHDRAW' || k === 'FEE_LOAN_SERVICE' || k === 'FEE_LOAN_PENALTY' || k === 'FEE_DEPOSIT' || k === 'FEE_ADVANCE_REPAY' || k === 'OFFLINE_DEPOSIT') {
+            typeLists[0].push({
+                type: k,
+                text: v
+            });
     }
 });
 typeLists[0].push({
-    type:'OFFLINE_DEPOSIT',
-    text:'线下充值'
+    type: 'OFFLINE_DEPOSIT',
+    text: '线下充值'
 });
 typeLists[1] = [{
     type: true,
@@ -92,14 +82,14 @@ typeLists[2] = [{
 
 var statusMap = {
     'INITIALIZED': '初始',
-    'PROCESSING' : '处理中',
-    'AUDITING' : '审核中',//目前主要用于取现申请复核
-    'PAY_PENDING' : '支付结果待查',// 目前用于银联单笔代付没有实时返回最终成功或者失败结果的情况
-    'CUT_PENDING' : '代扣结果待查',// 目前用于银联单笔代扣没有实时返回最终成功或者失败结果的情况
-    'SUCCESSFUL' : '成功',
-    'FAILED' : '失败',
-    'REJECTED' : '拒绝',
-    'CANCELED' : '取消'
+    'PROCESSING': '处理中',
+    'AUDITING': '审核中',//目前主要用于取现申请复核
+    'PAY_PENDING': '支付结果待查',// 目前用于银联单笔代付没有实时返回最终成功或者失败结果的情况
+    'CUT_PENDING': '代扣结果待查',// 目前用于银联单笔代扣没有实时返回最终成功或者失败结果的情况
+    'SUCCESSFUL': '成功',
+    'FAILED': '失败',
+    'REJECTED': '拒绝',
+    'CANCELED': '取消'
 };
 
 var pageOneData = {};
@@ -109,8 +99,8 @@ var ractive = new Ractive({
     template: template,
 
     data: {
-        urlname:CC.loanl.urlname,
-        user:CC.user,
+        //urlname: CC.loanl.urlname,
+        user: CC.user,
         tabIndex: 0,
         selectedIndex: 0, // 类别的selectedIndex
 
@@ -124,23 +114,12 @@ var ractive = new Ractive({
     }
 });
 
-// 切换tab
-$('.ccc-tab')
-    .on('select', function (e) {
-        ractive.set({
-            tabIndex: e.index,
-            selectedIndex: 0
-        });
-        loadInitData(e.index);
-        return false;
-    });
-
 
 // datetime picker
 $('.date-from-picker,.date-to-picker').datetimepicker({
     language: 'zh-cn',
     pickTime: false,
-    format:'YYYY-MM-DD'
+    format: 'YYYY-MM-DD'
 }).find('input').click(function () {
     $(this).prev().trigger('click');
     return false;
@@ -153,26 +132,21 @@ ractive.on('select-type', function (e) { // dropdown 选择类型的时候
     var selectedIndex = +(e.keypath.substring(e.keypath.lastIndexOf('.') +
         1));
 
-   this.set('selectedIndex', selectedIndex);
+    this.set('selectedIndex', selectedIndex);
 
     $(this.find('.type-checker'))
         .removeClass('open');
-    var typea=typeLists[0][selectedIndex].type;
+    var typea = typeLists[0][selectedIndex].type;
 
-    if (typea === 'ALL') {
-        typea = fundinvest;
-    }
-            typet=typea;
-              ractive.loadData({
-                    type: typea,
-                    preset: tab1Preset
-              });
+    ractive.loadData({
+        type: typea,
+        preset: tab1Preset
+    });
     return false;
 });
 
 ractive.on('do-filter', function () { // 开始筛选数据
     // 类型
-    $('.sDuration li').removeClass('s__is-selected');
     var type,
         status,
         operation;
@@ -189,11 +163,8 @@ ractive.on('do-filter', function () { // 开始筛选数据
         // 第一个tab
         type = (typeLists[0][this.get('selectedIndex')])
             .type;
-        operation = (typeLists[0][this.get('selectedIndex')])
-            .operation;
-    }
-    if (CC.loanl.urlname !== 'investDeal') {
-        type = $(".sRate .s__is-selected").data('type');
+        status = $('#status').prop('checked');
+        operation = $('#peration').prop('checked');
     }
     var preset;
     if (this.get('tabIndex') === 0) {
@@ -207,6 +178,7 @@ ractive.on('do-filter', function () { // 开始筛选数据
     ractive.loadData({
         type: type,
         status: status,
+        operation: operation,
         preset: preset
     });
 
@@ -222,17 +194,11 @@ ractive.loadData = function (obj) {
     }
     this.set('loading', true);
     size = obj.pageSize || size;
-    if (obj.type === 'ALL') {
-        if (CC.loanl.urlname === 'investDeal') {
-            obj.type = fundinvest
-        } else {
-            obj.type = fundloan;
-        }
-    }
-    request.get('/api/v2/user/MYSELF/funds/query?type=' + obj.type)
+
+    request.get('/api/v2/user/MYSELF/funds?type=' + obj.type)
         .query({
             allStatus: obj.status || false,
-            allOperation: true,
+            allOperation: obj.operation || false,
             startDate: moment($('.date-from-picker>input').val()).unix() * 1000,
             endDate: moment($('.date-to-picker>input').val()).unix() * 1000 + 1000 * 60 * 60 * 24,
             page: obj.page || 1,
@@ -263,9 +229,9 @@ ractive.loadData = function (obj) {
             return null;
         });
 };
-function parseList(date){
-    for(var i=0;i<date.length;i++){
-        date[i].transactionType=nameMap[date[i].type];
+function parseList(date) {
+    for (var i = 0; i < date.length; i++) {
+        date[i].transactionType = nameMap[date[i].type];
     }
     return date;
 }
@@ -314,23 +280,23 @@ function tab1Preset(item) {
     // 金额
     // amountClass 用于显示颜色
     switch (item.operation) {
-    case 'IN':
-        item.amount = '+' + item.amount;
-        item.amountClass = 'in';
-        break;
-    case 'OUT':
-        item.amount = '-' + item.amount;
-        item.amountClass = 'out';
-        break;
+        case 'IN':
+            item.amount = '+' + item.amount;
+            item.amountClass = 'in';
+            break;
+        case 'OUT':
+            item.amount = '-' + item.amount;
+            item.amountClass = 'out';
+            break;
 
-    case 'RELEASE':
-        item.amountClass = 'release';
-        break;
-    case 'FREEZE':
-        item.amountClass = 'freeze';
-        break;
-    default:
-        break;
+        case 'RELEASE':
+            item.amountClass = 'release';
+            break;
+        case 'FREEZE':
+            item.amountClass = 'freeze';
+            break;
+        default:
+            break;
     }
     return item;
 }
@@ -356,40 +322,34 @@ function tab3Preset(item) {
 }
 
 function loadInitData(index) {
-    var allType;
-    if (CC.loanl.urlname === 'investDeal') {
-        allType = fundinvest
-    } else {
-        allType = fundloan;
-    }
     switch (index) {
-    case 0:
-        ractive.loadData({
-            type: allType,
-            preset: tab1Preset
-        });
-        break;
-    case 1:
-        ractive.loadData({
-            type: 'DEPOSIT',
-            status: true,
-            preset: tab2Preset
-        });
-        break;
-    case 2:
-        ractive.loadData({
-            type: 'WITHDRAW',
-            status: true,
-            preset: tab3Preset
-        });
-        break;
+        case 0:
+            ractive.loadData({
+                type: 'ALL',
+                preset: tab1Preset
+            });
+            break;
+        case 1:
+            ractive.loadData({
+                type: 'DEPOSIT',
+                status: true,
+                preset: tab2Preset
+            });
+            break;
+        case 2:
+            ractive.loadData({
+                type: 'WITHDRAW',
+                status: true,
+                preset: tab3Preset
+            });
+            break;
     }
 }
 
 function renderPage(total, obj) {
     var self = ractive;
     var params = {
-//        type: obj.type || 'ALL',
+        type: 'ALL',
         allStatus: obj.status || false,
         allOperation: true,
         startDate: moment($('.date-from-picker>input').val()).unix() * 1000,
@@ -397,7 +357,7 @@ function renderPage(total, obj) {
             .unix() * 1000,
         pageSize: size
     };
-    var api = '/api/v2/user/MYSELF/funds/query?page=$page&type=' + obj.type + jsonToParams(params);
+    var api = '/api/v2/user/MYSELF/funds?page=$page&type=' + obj.type + jsonToParams(params);
     $(".ccc-paging")
         .cccPaging({
             total: total,
@@ -412,15 +372,15 @@ function renderPage(total, obj) {
             onSelect: function (p, o) {
                 if (o) {
                     switch (self.get('tabIndex')) {
-                    case 0:
-                        o = formatData(0, o);
-                        break;
-                    case 1:
-                        o = formatData(1, o);
-                        break;
-                    case 2:
-                        o = formatData(2, o);
-                        break;
+                        case 0:
+                            o = formatData(0, o);
+                            break;
+                        case 1:
+                            o = formatData(1, o);
+                            break;
+                        case 2:
+                            o = formatData(2, o);
+                            break;
 
                     }
                 } else {
@@ -463,45 +423,5 @@ function isNumber(t) {
     var e = new RegExp('^[0-9]*$');
     return e.test(t) ? !0 : !1;
 }
-var typet;
-if (CC.loanl.urlname === 'investDeal') {
-    typet = fundinvest;
-} else {
-    typet = fundloan;
-}
-$('.sRate li').click(function(){
-        if (!$(this).hasClass("selectTitle")) {
-            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
-            var typea=$(this).data('type');
-            if (typea === 'ALL') {
-                typea = fundloan;
-            }
-            typet=typea;
 
-          ractive.loadData({
-                type: typea,
-                preset: tab1Preset
-          });
-        }
-    });
-    $('.sDuration li').click(function(){
 
-        if (!$(this).hasClass("selectTitle")) {
-            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
-            var longtime=$(this).text().substring(0,2);
-           if(longtime==='全部'){
-               longtime=0;
-           }
-           ractive.set({
-               dateFrom:'',
-               dateTo:''
-           });
-           ractive.set('dateFrom',moment().subtract(longtime,'d').format('YYYY-MM-DD'));
-           ractive.set('dateTo',moment().format('YYYY-MM-DD'));
-
-             ractive.loadData({
-                 type: typet,
-                 preset: tab1Preset
-             });
-        }
-    });
