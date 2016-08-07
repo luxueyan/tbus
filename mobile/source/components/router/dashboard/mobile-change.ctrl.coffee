@@ -18,6 +18,8 @@ do (_, angular) ->
                     store: {}
                 }
 
+                EXTEND_API @api
+
 
             send_mobile_captcha: ->
 
