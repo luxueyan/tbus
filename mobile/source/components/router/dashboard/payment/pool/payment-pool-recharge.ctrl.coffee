@@ -99,3 +99,51 @@ do (_, angular) ->
 
                 .then @TAKE_RESPONSE_DATA
                 .catch @TAKE_RESPONSE_ERROR
+
+
+
+
+
+
+
+    angular.module('factory').factory 'popup_payment_password', _.ai '$uibModal', ($uibModal) ->
+
+        ->
+
+            prompt = $uibModal.open {
+                size: 'lg'
+                animation: false
+                backdrop: 'static'
+                windowClass: 'modal-payment-password'
+                template: '''
+                    <div class="modal-header">
+                        <span class="pull-right" ng-click="$dismiss('cancel')">
+                            <param class="glyphicon glyphicon-remove">
+                        </span>
+                        <h4 class="modal-title">请输入支付密码</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="form-group form-group-number-password"
+                             data-mask="{{ '******'.slice(0, (password ? password.length : 0)) }}"
+                        >
+                            <input type="tel"
+                                   class="form-control"
+                                   maxlength="6"
+                                   ng-model="password"
+                                   ng-change="password.length == 6 && $close(password)"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="modal-footer text-right">
+                        <a href="dashboard/payment/password">忘记密码？</a>
+                    </div>
+                '''
+            }
+
+            once = @$scope.$on '$locationChangeStart', ->
+                prompt?.dismiss('cancel')
+                do once
+
+            return prompt.result
