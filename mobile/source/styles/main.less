@@ -1280,7 +1280,7 @@ a {
             .button-size(9px; 9px; 14px; 1; 8px);
         }
 
-        .btn-sumbmit-wrap {
+        .btn-submit-wrap {
             margin-left: 60px;
             margin-right: 60px;
         }
@@ -2394,65 +2394,40 @@ a {
 #dashboard-bank-card {
 
     .banks {
+        padding-top: 12px;
+
         .bank-list {
             > li {
-                margin-top: 8px;
-                margin-bottom: 8px;
-                border-top: 1px solid @color-gray-light;
-                border-bottom: 1px solid @color-gray-light;
-                padding: 13px 16px;
+                padding: 20px;
                 background-color: #FFF;
 
-                a {
-                    &, &:hover, &:visited {
-                        color: inherit;
-                    }
-                }
-
                 .media-bank {
-                    position: relative;
-
                     .media-heading {
-                        margin-bottom: 0;
                         font-size: 16px;
+                        color: #717071;
+
+                        .bank-name {
+                            margin-right: 17px;
+                        }
+                    }
+
+                    .media-left {
+                        padding-right: 15px;
                     }
 
                     .desc {
-                        margin-top: 15px;
                         margin-bottom: 0;
-                        color: @color-gray;
-                    }
-
-                    .default-card {
-                        position: absolute;
-                        right: 0;
-                        top: 0;
-                        padding: 2px 10px;
-                        border-radius: 999px;
-                        background-color: @color-theme-main;
-                        color: #FFF;
-                        font-size: 12px;
+                        color: #B4B4B5;
                     }
                 }
             }
         }
 
         .action {
-            margin-top: 32px;
-            margin-bottom: 32px;
+            margin: 35px 60px;
 
             .btn {
-                .button-size(11px; 11px; 18px; 1; 999px);
-
-                &-block {
-                    + .btn-block {
-                        margin-top: 16px;
-                    }
-                }
-
-                &-delete {
-                    .button-variant(#FFF; #EC6858; #EC6858);
-                }
+                .button-size(9px; 9px; 14px; 1; 8px);
             }
         }
     }
@@ -2891,7 +2866,37 @@ a {
 ----*/
 
 #dashboard-payment-bind-card {
-    padding-bottom: 140px;
+    .inputs {
+        margin-bottom: 0 !important;
+        overflow: visible !important;
+        padding-left: 15px;
+        padding-right: 15px;
+        background-color: #FFF;
+
+        &:first-child {
+            margin-bottom: 10px !important;
+
+            .form-group:last-child:not(.has-error) .form-group-inner {
+                border-bottom: 0 !important;
+            }
+        }
+
+        .form-group:first-child .form-group-inner {
+            border-top: 0 !important;
+        }
+    }
+
+    .btn-submit-outter {
+        padding-top: 68px;
+        padding-bottom: 20px;
+        background-color: #FFF;
+    }
+
+    label {
+        margin: 0 8px 0 18px !important;
+        min-width: 6em !important;
+        text-align: left !important;
+    }
 
     .form-flatten {
         #login > .form-flatten;
@@ -2902,7 +2907,6 @@ a {
             margin: 0;
             padding: 0;
             padding-left: 4px;
-            height: 52px;
             font-size: 14px;
             color: @color-gray-dark-double;
             border: none;
@@ -2923,61 +2927,8 @@ a {
             position: absolute;
             top: 50%;
             right: 17px;
-            color: #CBCCD0;
+            color: #C79F62;
             pointer-events: none;
-        }
-
-        .form-group-inner {
-            &:before {
-                content: "";
-                position: absolute;
-                left: 0;
-                right: 0;
-                top: 0;
-                bottom: 0;
-                z-index: 11;
-            }
-        }
-    }
-
-}
-
-/*=============================================================================
-                             [Router] [Dashboard] Payment Bind Card Select Bank
-----*/
-
-#dashboard-payment-bind-card-select-bank {
-
-    .banks {
-        .bank-list {
-            border-top: 1px solid @color-gray-light;
-            border-bottom: 1px solid @color-gray-light;
-
-            > li {
-                padding: 11px 16px;
-                background-color: #FFF;
-
-                + li {
-                    border-top: 1px solid #EAEBED;
-                }
-
-                .media-bank {
-                    .media-left {
-                        padding-right: 13px;
-                    }
-
-                    .media-heading {
-                        margin-bottom: 0;
-                        font-size: 16px;
-                        line-height: 1.4;
-                    }
-
-                    .desc {
-                        margin-bottom: 0;
-                        color: @color-gray;
-                    }
-                }
-            }
         }
     }
 

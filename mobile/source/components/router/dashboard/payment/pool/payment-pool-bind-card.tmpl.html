@@ -6,7 +6,7 @@
         <a class="col-xs-3 back" x-go-back>
             <param class="glyphicon glyphicon-menu-left">
         </a>
-        <span class="col-xs-6 title">银行卡绑定</span>
+        <span class="col-xs-6 title">绑定银行卡</span>
         <span class="col-xs-3">&nbsp;</span>
     </div>
     </nav>
@@ -33,7 +33,54 @@
               ng-submit="self.bind_card(store)"
               novalidate
         >
-            <div class="inputs container">
+            <div class="inputs shadow">
+                <div class="form-group merge"
+                     ng-class="{'has-error': form.user_name.$invalid && form.user_name.$dirty}"
+                    >
+                    <div class="form-group-inner">
+                        <label for="user-name">姓名</label>
+                        <div class="form-control-wrap"
+                             ng-init="
+                                 store.user_name = self.user.info.name;
+                                 is_user_name_init_editable = !self.user.info.name
+                             "
+                        >
+                            <input id="user-name" class="form-control input-target input-lg" type="text"
+                                   name="user_name"
+                                   autocapitalize="none"
+                                   autocomplete="off"
+                                   autocorrect="off"
+                                   ng-model="store.user_name"
+                                   ng-model-options="{
+                                       updateOn: 'blur default',
+                                       debounce: {blur: 0, default: 1000}
+                                   }"
+                                   ng-readonly="self.user.info.name"
+                                   minlength="2"
+                                   maxlength="15"
+                                   pattern="[\u4E00-\u9FBF]{2,15}"
+                                   placeholder="身份证上的姓名"
+                                   required
+                                   ng-if="is_user_name_init_editable"
+                            >
+
+                            <input id="user-name" class="form-control input-target input-lg" type="text"
+                                   name="user_name"
+                                   value="{{ store.user_name | string_mask | string_replace: '^(.)(.+)$' : '*$2' }}"
+                                   readonly
+                                   ng-if="!is_user_name_init_editable"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="help-block"
+                         ng-show="form.user_name.$invalid && form.user_name.$dirty"
+                    >
+                        <span ng-show="form.user_name.$error.required">必须填写</span>
+                        <span ng-show="form.user_name.$error.pattern">2 至 15 位中文</span>
+                    </div>
+                </div>
+
                 <div class="form-group merge"
                      ng-class="{'has-error': form.id_number.$invalid && form.id_number.$dirty}"
                 >
@@ -48,6 +95,10 @@
                             <input id="id-number" class="form-control input-target input-lg" type="text"
                                    name="id_number"
                                    ng-model="store.id_number"
+                                   ng-model-options="{
+                                       updateOn: 'blur default',
+                                       debounce: {blur: 0, default: 1000}
+                                   }"
                                    ng-readonly="self.user.info.idNumber"
                                    minlength="18"
                                    maxlength="18"
@@ -75,80 +126,12 @@
                         <span ng-show='form.id_number.$error.already_exists'>此身份证号已被注册</span>
                     </div>
                 </div>
-
-                <div class="form-group merge"
-                     ng-class="{'has-error': form.user_name.$invalid && form.user_name.$dirty}"
-                    >
-                    <div class="form-group-inner">
-                        <label for="user-name">姓名</label>
-                        <div class="form-control-wrap"
-                             ng-init="
-                                 store.user_name = self.user.info.name;
-                                 is_user_name_init_editable = !self.user.info.name
-                             "
-                        >
-                            <input id="user-name" class="form-control input-target input-lg" type="text"
-                                   name="user_name"
-                                   autocapitalize="none"
-                                   autocomplete="off"
-                                   autocorrect="off"
-                                   ng-model="store.user_name"
-                                   ng-readonly="self.user.info.name"
-                                   minlength="2"
-                                   maxlength="15"
-                                   pattern="[\u4E00-\u9FBF]{2,15}"
-                                   placeholder="身份证上的姓名"
-                                   required
-                                   ng-if="is_user_name_init_editable"
-                            >
-
-                            <input id="user-name" class="form-control input-target input-lg" type="text"
-                                   name="user_name"
-                                   value="{{ store.user_name | string_mask | string_replace: '^(.)(.+)$' : '*$2' }}"
-                                   readonly
-                                   ng-if="!is_user_name_init_editable"
-                            >
-                        </div>
-                    </div>
-
-                    <div class="help-block"
-                         ng-show="form.user_name.$invalid && form.user_name.$dirty"
-                    >
-                        <span ng-show="form.user_name.$error.required">必须填写</span>
-                        <span ng-show="form.user_name.$error.pattern">2 至 15 位中文</span>
-                    </div>
-                </div>
             </div>
 
-            <div class="inputs container">
-
-                <div class="form-group merge"
-                     ng-class="{'has-error': form.card_no.$invalid && form.card_no.$dirty}"
-                >
-                    <div class="form-group-inner">
-                        <label for="card_no">银行卡</label>
-                        <input id="card_no" class="form-control input-target input-lg" type="tel"
-                               name="card_no"
-                               ng-model="store.cardNo"
-                               ui-mask="9999 9999 9999 9999 ?9?9?9"
-                               ui-mask-placeholder
-                               ui-mask-placeholder-char="space"
-                               ui-validate="{ already_exists: 'self.does_not_exist_bank($modelValue)' }"
-                               placeholder="请输入16至19位的本人借记卡号"
-                               required
-                        >
-                    </div>
-
-                    <div class="help-block"
-                         ng-show="form.card_no.$invalid && form.card_no.$dirty && form.card_no.$error.already_exists"
-                    >
-                        <span>该银行卡已绑定</span>
-                    </div>
-                </div>
-
+            <div class="inputs">
                 <div class="form-group merge form-group-bank">
-                    <div class="form-group-inner" ng-click="self.select_bank($event, store)">
-                        <label for="bank-name">银行</label>
+                    <div class="form-group-inner">
+                        <label for="bank-name">开户行</label>
                         <select name="bankName" class="form-control input-lg"
                                 id="bank-name"
                                 ng-model="store.bank"
@@ -165,17 +148,27 @@
                     </div>
                 </div>
 
-                <div class="form-group merge">
+                <div class="form-group merge"
+                     ng-class="{'has-error': form.card_no.$invalid && form.card_no.$dirty}"
+                >
                     <div class="form-group-inner">
-                        <label for="card-phone">手机号</label>
-                        <input id="card-phone" class="form-control input-target input-lg" type="tel"
-                               name="card-phone"
-                               ng-model="store.cardPhone"
-                               ng-pattern="/^1\d{10}$/"
-                               maxlength="11"
-                               placeholder="请输入银行预留手机号"
+                        <label for="card_no">银行卡</label>
+                        <input id="card_no" class="form-control input-target input-lg" type="tel"
+                               name="card_no"
+                               ng-model="store.cardNo"
+                               ui-mask="9999 9999 9999 9999 ?9?9?9"
+                               ui-mask-placeholder
+                               ui-mask-placeholder-char="space"
+                               ui-validate="{ already_exists: 'self.does_not_exist_bank($modelValue)' }"
+                               placeholder="请输入本人借记卡号"
                                required
                         >
+                    </div>
+
+                    <div class="help-block"
+                         ng-show="form.card_no.$invalid && form.card_no.$dirty && form.card_no.$error.already_exists"
+                    >
+                        <span>该银行卡已绑定</span>
                     </div>
                 </div>
 
@@ -191,6 +184,10 @@
                                id="mobile_captcha"
                                name="mobile_captcha"
                                ng-model="store.smsCaptcha"
+                               ng-model-options="{
+                                   updateOn: 'blur default',
+                                   debounce: {blur: 0, default: 1000}
+                               }"
                                pattern="^\d{6}$"
                                autocapitalize="none"
                                autocomplete="off"
@@ -201,15 +198,8 @@
                         >
 
                         <button class="btn btn-sm btn-action btn-plain" type="button"
-                                ng-click="self.send_mobile_captcha(store.cardPhone)"
-                                ng-disabled="
-                                       !store.id_number
-                                    || !store.user_name
-                                    || !store.cardNo
-                                    || !store.bank
-                                    || !store.cardPhone
-                                    || self.captcha.buffering
-                                "
+                                ng-click="self.send_mobile_captcha(self.user.info.mobile)"
+                                ng-disabled="self.captcha.buffering"
                         >
                             <span class="text">获取验证码</span>
                             <span class="count" ng-show="self.captcha.buffering">
@@ -218,81 +208,91 @@
                             <span class="icon" ng-hide="self.captcha.buffering">重发</span>
                         </button>
                     </div>
+
+                    <div class="help-block"
+                         ng-show="form.mobile_captcha.$invalid && form.mobile_captcha.$dirty"
+                    >
+                        <span ng-show="form.mobile_captcha.$error.required">必须填写</span>
+                        <span ng-show="form.mobile_captcha.$error.pattern">请输入6位数字</span>
+                    </div>
+                </div>
+
+                <div class="form-group merge"
+                     ng-class="{
+                        'has-error': form.password.$invalid && form.password.$dirty
+                     }"
+                >
+                    <div class="form-group-inner">
+                        <label for="password">{{ self.user.has_payment_password ? '验证' : '设置' }}支付密码</label>
+                        <input id="password" class="form-control input-target input-lg"
+                               type="password"
+                               name="password"
+                               ng-model="store.password"
+                               ng-model-options="{
+                                   updateOn: 'blur default',
+                                   debounce: {blur: 0, default: 1000}
+                               }"
+                               pattern="^\d{6}$"
+                               minlength="6"
+                               maxlength="6"
+                               placeholder="请输入支付密码"
+                               required
+                        >
+                    </div>
+
+                    <div class="help-block"
+                         ng-show="form.password.$invalid && form.password.$dirty"
+                    >
+                        <span ng-show="form.password.$error.required">必须填写</span>
+                        <span ng-show="form.password.$error.pattern">请输入6位数字</span>
+                    </div>
+                </div>
+
+                <div class="form-group merge"
+                     ng-class="{
+                        'has-error': form.password_confirm.$invalid && form.password_confirm.$dirty
+                     }"
+                >
+                    <div class="form-group-inner">
+                        <label for="password_confirm">确认支付密码</label>
+                        <div class="form-control-wrap">
+                            <input class="form-control input-target input-lg" type="password"
+                                   id="password_confirm"
+                                   name="password_confirm"
+                                   ng-model="password_confirm"
+                                   ng-model-options="{
+                                       updateOn: 'blur default',
+                                       debounce: {blur: 0, default: 1000}
+                                   }"
+                                   ui-validate=" '$value == store.password' "
+                                   ui-validate-watch=" 'store.password' "
+                                   placeholder="请再次输入支付密码"
+                                   minlength="6"
+                                   maxlength="6"
+                                   required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="help-block"
+                         ng-show="form.password_confirm.$error.validator && form.password_confirm.$dirty"
+                    >
+                        <span ng-show="form.password_confirm.$error.validator">必须相同</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="container">
-                <div class="form-group container">
+            <div class="btn-submit-outter">
+                <div class="btn-submit-wrap">
                     <button type="submit" class="btn btn-theme btn-block btn-lg"
                             ng-disabled="form.$invalid || self.submit_sending"
-                    >下一步</button>
-                    <a class="btn btn-link btn-block" x-go-back>以后再说</a>
+                    >绑定</button>
                 </div>
             </div>
+
         </form>
 
     </div>
 
 </div>
 
-
-
-
-
-<script type="text/ng-template" id="ngt-dashboard-payment-bind-card-select-bank.tmpl">
-    <div id="dashboard-payment-bind-card-select-bank">
-
-        <nav class="container page-nav">
-        <div class="row">
-            <a class="col-xs-3 back" ng-click="$close()">
-                <param class="glyphicon glyphicon-menu-left">
-            </a>
-            <span class="col-xs-6 title">银行卡选择</span>
-            <span class="col-xs-3">&nbsp;</span>
-        </div>
-        </nav>
-
-        <div></div>
-
-        <section class="banks">
-            <ul class="list-unstyled u-off-margin-bottom bank-list">
-                <li ng-repeat="item in banks"
-                    ng-click="select(item); $close()"
-                >
-                    <div class="media media-bank">
-                        <div class="media-left media-middle">
-                            <img width="37" ng-src="assets/image/bank-icons/{{ item.bankCode | lowercase }}.png">
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">{{ item.bankName }}</h4>
-                            <p class="desc">
-                                单笔
-                                    {{
-                                        item.singleQuota == -1
-                                        ? '无限额'
-                                        : (
-                                            item.singleQuota >= 10000
-                                            ? item.singleQuota / 10000 + '万'
-                                            : item.singleQuota
-                                          )
-                                    }}
-                                /
-                                日限额
-                                    {{
-                                        item.dailyQuota == -1
-                                        ? '无限额'
-                                        : (
-                                            item.dailyQuota >= 10000
-                                            ? item.dailyQuota / 10000 + '万'
-                                            : item.dailyQuota
-                                          )
-                                    }}
-                            </p>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </section>
-
-    </div>
-</script>

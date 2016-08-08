@@ -12,53 +12,47 @@
     </nav>
 
     <section class="banks">
-        <ul class="list-unstyled u-off-margin-bottom bank-list">
+        <ul class="list-unstyled u-off-margin-bottom bank-list shadow">
             <li ng-repeat="item in bank_account_list">
-                <a ng-href="dashboard/bank-card/edit/{{ item.id }}">
-                    <div class="media media-bank">
-                        <div class="media-left">
-                            <img width="30" ng-src="assets/image/bank-icons/{{ item.account.bankCode | lowercase }}.png">
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">
-                                {{ item.account.bankName }} ｜
-                                {{ item.account.account | string_replace: '^\\d+(\\d{4})$' : '****$1' }}
-                            </h4>
-                            <p class="desc">
-                                充值限额: <br>
-                                单笔
-                                    {{
-                                        item.account.singleQuota == -1
-                                        ? '无限额'
-                                        : (
-                                            item.account.singleQuota >= 10000
-                                            ? item.account.singleQuota / 10000 + '万'
-                                            : item.account.singleQuota
-                                          )
-                                    }}
-                                /
-                                日限额
-                                    {{
-                                        item.account.dailyQuota == -1
-                                        ? '无限额'
-                                        : (
-                                            item.account.dailyQuota >= 10000
-                                            ? item.account.dailyQuota / 10000 + '万'
-                                            : item.account.dailyQuota
-                                          )
-                                    }}
-                            </p>
-                            <span class="default-card"
-                                  ng-if="item.defaultAccount"
-                            >默认卡</span>
-                        </div>
+                <div class="media media-bank">
+                    <div class="media-left">
+                        <img width="30" ng-src="assets/image/bank-icons/{{ item.account.bankCode | lowercase }}.png">
                     </div>
-                </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            <span class="bank-name">{{ item.account.bankName }}</span>
+                            {{ item.account.account | string_replace: '^(\\d{3})\\d+(\\d{4})$' : '$1****$2' }}
+                        </h4>
+                        <p class="desc">
+                            单笔
+                                {{
+                                    item.account.singleQuota == -1
+                                    ? '无限额'
+                                    : (
+                                        item.account.singleQuota >= 10000
+                                        ? item.account.singleQuota / 10000 + '万'
+                                        : item.account.singleQuota
+                                      )
+                                }}
+                            /
+                            日限额
+                                {{
+                                    item.account.dailyQuota == -1
+                                    ? '无限额'
+                                    : (
+                                        item.account.dailyQuota >= 10000
+                                        ? item.account.dailyQuota / 10000 + '万'
+                                        : item.account.dailyQuota
+                                      )
+                                }}
+                        </p>
+                    </div>
+                </div>
             </li>
         </ul>
 
         <div class="container action">
-            <a class="btn btn-lg btn-block btn-theme" href="dashboard/payment/bind-card">添加银行卡</a>
+            <a class="btn btn-lg btn-block btn-theme" href="dashboard/bank-card/edit">更换银行卡</a>
         </div>
     </section>
 

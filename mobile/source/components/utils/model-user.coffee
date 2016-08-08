@@ -35,7 +35,7 @@ do (_, angular) ->
 
                 @has_logged_in = true
 
-                @has_payment_account = !!@info?.priv
+                @has_payment_account = !!@authenticates?.idauthenticated
                 @has_payment_password = !!@authenticates?.paymentAuthenticated
                 @has_instant_invest = !!@agreement?.invest
 
