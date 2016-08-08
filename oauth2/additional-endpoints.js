@@ -55,4 +55,10 @@ module.exports = function (router, auth) {
     router.post('/api/v2/creditassign/autoAssign/:userId', auth.user());
     //发送短信验证码
     router.post('/api/v2/smsCaptcha', auth.user());
+    //银行卡预绑卡
+    router.post('/api/v2/baofoo/preBindCard', auth.user());
+    //银行卡绑卡
+    router.post('/api/v2/baofoo/confirmBindCard', auth.user());
+    //银行卡绑卡
+    router.post('/api/v2/baofoo/pay', auth.user());
 };

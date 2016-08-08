@@ -52,18 +52,15 @@ var nameMap = {
 
 var FundRecordType = nameMap;
 $.each(FundRecordType, function (k, v) {
-    if (k === 'FEE_LOAN_GUARANTEE' || k === 'INVEST' || k === 'WITHDRAW' || k === 'DEPOSIT' || k === 'LOAN' || k === 'LOAN_REPAY' || k === 'DISBURSE' || k === 'TRANSFER'
-        || k === 'FEE_WITHDRAW' || k === 'FEE_LOAN_SERVICE' || k === 'FEE_LOAN_PENALTY' || k === 'FEE_DEPOSIT' || k === 'FEE_ADVANCE_REPAY' || k === 'OFFLINE_DEPOSIT') {
+    if ( k === 'INVEST' || k === 'WITHDRAW' || k === 'DEPOSIT' || k === 'TRANSFER'
+        || k === 'FEE_WITHDRAW'|| k === 'FEE_DEPOSIT' || k === 'OFFLINE_DEPOSIT') {
             typeLists[0].push({
                 type: k,
                 text: v
             });
     }
 });
-typeLists[0].push({
-    type: 'OFFLINE_DEPOSIT',
-    text: '线下充值'
-});
+
 typeLists[1] = [{
     type: true,
     text: '全部状态'
