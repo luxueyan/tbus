@@ -87,46 +87,23 @@ function formatItem(item) {
     }
 
 
-    //if (item.duration.days > 0) {
-    //    if (typeof item.duration.totalDays === "undefined") {
-    //        item.fduration = item.duration.days;
-    //    } else {
-    //        item.fduration = item.duration.totalDays;
-    //    }
-    //    item.fdurunit = "天";
-    //} else {
-    //    item.fduration = item.duration.totalMonths;
-    //    item.fdurunit = "个月";
-    //}
-    //if (item.duration.days === 0) {
-    //    item.fdurationDay = "";
-    //    item.fdurunitDay = " ";
-    //} else {
-    //    item.fdurationDay = item.duration.days;
-    //    item.fdurunitDay = "天";
-    //}
-    //if (item.duration.months > 0) {
-    //    item.fdurationMonth = item.duration.months;
-    //    item.fdurunitMonth = "个月";
-    //} else {
-    //    item.fdurationMonth = "";
-    //    item.fdurunitMonth = "";
-    //}
-    //if (item.duration.years > 0) {
-    //    item.fdurationYear = item.duration.years;
-    //    item.fdurunitYear = "年";
-    //} else {
-    //    item.fdurationYear = "";
-    //    item.fdurunitYear = "";
-    //}
-    //
-    //
-    //if (item.amount >= 10000) {
-    //    item.amountUnit = '万';
-    //    item.amount = (item.amount / 10000);
-    //} else {
-    //    item.amountUnit = '元';
-    //}
+    if (item.duration.days > 0) {
+        if (typeof item.duration.totalDays === "undefined") {
+            item.fduration = item.duration.days;
+            } else {
+                item.fduration = item.duration.totalDays;
+            }
+                item.fdurunit = "天";
+            } else {
+                item.fduration = item.duration.totalMonths;
+                item.fdurunit = "个月";
+            }
+            if (item.amount >= 10000) {
+               item.amountUnit = '万';
+                item.amount = (item.amount / 10000);
+            } else {
+                item.amountUnit = '元';
+            }
 
     if (item.status == "OPENED") {
         item.leftTime = formateLeftTime(item.timeLeft);
@@ -197,7 +174,7 @@ IndexService.getLoanSummary(function (res) {
         el: ".fixedPro",
         template: require('ccc/invest/partials/fixedPro.html'),
         data: {
-            list: (listFixed.slice(0, 3)),
+            list: (listFixed),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         },
     });
