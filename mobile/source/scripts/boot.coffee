@@ -118,7 +118,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         do $q.reject
                     }
 
-                    .when '/dashboard/bank-card/edit/:id', {
+                    .when '/dashboard/bank-card/edit', {
                         controller: 'BankCardEditCtrl as self'
                         templateUrl: 'components/router/dashboard/bank-card-edit.tmpl.html'
                         resolve:
@@ -128,8 +128,10 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         $location
                                             .replace()
                                             .path '/login'
-                                            .search next: "dashboard/bank-card/edit/#{ $route.current.params.id }"
+                                            .search next: 'dashboard/bank-card/edit'
                                         do $q.reject
+
+                            banks: _.ai 'api', (api) -> api.get_available_bank_list()
                     }
 
                     .when '/dashboard/coupon', {

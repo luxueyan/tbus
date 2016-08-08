@@ -2439,8 +2439,18 @@ a {
 ----*/
 
 #dashboard-bank-card-edit {
-    .banks {
-        #dashboard-bank-card .banks;
+    #dashboard-payment-bind-card;
+
+    label {
+        min-width: 5em !important;
+    }
+
+    .inputs:first-child {
+        margin-bottom: 0 !important;
+
+        .form-group:last-child:not(.has-error) .form-group-inner {
+            border-bottom: 1px solid #B6B6B6 !important;
+        }
     }
 }
 
