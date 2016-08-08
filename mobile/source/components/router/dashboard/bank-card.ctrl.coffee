@@ -10,9 +10,10 @@ do (_, angular) ->
 
                 @$rootScope.state = 'dashboard'
 
-                angular.extend @$scope, {
-                    bank_account_list: _.clone @user.bank_account_list
-                }
+                bank_account = do (list = _.clone @user.bank_account_list) ->
+                    _.find list, (item) -> item.defaultAccount is true
+
+                angular.extend @$scope, { bank_account }
 
                 if !@user.has_bank_card or !@user.has_payment_password
                     @popup_payment_state {

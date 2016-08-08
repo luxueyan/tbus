@@ -13,36 +13,36 @@
 
     <section class="banks">
         <ul class="list-unstyled u-off-margin-bottom bank-list shadow">
-            <li ng-repeat="item in bank_account_list">
+            <li ng-if="bank_account">
                 <div class="media media-bank">
                     <div class="media-left">
-                        <img width="30" ng-src="assets/image/bank-icons/{{ item.account.bankCode | lowercase }}.png">
+                        <img width="30" ng-src="assets/image/bank-icons/{{ bank_account.account.bankCode | lowercase }}.png">
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">
-                            <span class="bank-name">{{ item.account.bankName }}</span>
-                            {{ item.account.account | string_replace: '^(\\d{3})\\d+(\\d{4})$' : '$1****$2' }}
+                            <span class="bank-name">{{ bank_account.account.bankName }}</span>
+                            {{ bank_account.account.account | string_replace: '^(\\d{3})\\d+(\\d{4})$' : '$1****$2' }}
                         </h4>
                         <p class="desc">
                             单笔
                                 {{
-                                    item.account.singleQuota == -1
+                                    bank_account.account.singleQuota == -1
                                     ? '无限额'
                                     : (
-                                        item.account.singleQuota >= 10000
-                                        ? item.account.singleQuota / 10000 + '万'
-                                        : item.account.singleQuota
+                                        bank_account.account.singleQuota >= 10000
+                                        ? bank_account.account.singleQuota / 10000 + '万'
+                                        : bank_account.account.singleQuota
                                       )
                                 }}
                             /
                             日限额
                                 {{
-                                    item.account.dailyQuota == -1
+                                    bank_account.account.dailyQuota == -1
                                     ? '无限额'
                                     : (
-                                        item.account.dailyQuota >= 10000
-                                        ? item.account.dailyQuota / 10000 + '万'
-                                        : item.account.dailyQuota
+                                        bank_account.account.dailyQuota >= 10000
+                                        ? bank_account.account.dailyQuota / 10000 + '万'
+                                        : bank_account.account.dailyQuota
                                       )
                                 }}
                         </p>

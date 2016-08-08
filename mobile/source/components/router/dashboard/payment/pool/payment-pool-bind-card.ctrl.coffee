@@ -3,12 +3,14 @@ do (_, angular) ->
 
     angular.module('controller').controller 'PaymentPoolBindCardCtrl',
 
-        _.ai '            @banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @$location, @$interval, @$routeParams, @$uibModal', class
-            constructor: (@banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @$location, @$interval, @$routeParams, @$uibModal) ->
+        _.ai '            @banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @$location, @$interval, @$routeParams', class
+            constructor: (@banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @$location, @$interval, @$routeParams) ->
 
                 @$window.scrollTo 0, 0
 
                 @$rootScope.state = 'dashboard'
+
+                return @$location.path 'dashboard' if @user.has_bank_card
 
                 angular.extend @$scope, {
                     store: {}
