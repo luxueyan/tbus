@@ -2,13 +2,13 @@
     {{#if hasID}}
         <img src="/ccc/loan/img/unlogin.png" class="unlogin_img" style="display: block;">
         {{#if loan.status == "FINISHED"}}
-        <button class="finished-btn">已满标</button>
+        <button class="finished-btn">已售罄</button>
         {{/if}}
         {{#if loan.status == "SETTLED"}}
-        <button class="finished-btn">已抢完</button>
+        <button class="finished-btn">计息中</button>
         {{/if}}
         {{#if loan.status == "CLEARED"}}
-        <button class="finished-btn">还款结束</button>
+        <button class="finished-btn">已结息</button>
         {{/if}}
         {{#if loan.status == "SCHEDULED"}}
         <button class="finished-btn">即将开始</button>

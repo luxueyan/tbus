@@ -15,11 +15,7 @@
         <p class="title">预期收益率</p>
       </div>
       <div class="info_box">
-        <div>
-            {{#if duration.years!=0}}<span>{{duration.years}}</span>年{{/if}}
-            {{#if duration.months!=0}}<span>{{duration.months}}</span>个月{{/if}}
-            {{#if duration.days!=0}}<span>{{duration.days}}</span>天{{/if}}
-        </div>
+          <div><span>{{fduration}}</span>{{fdurunit}}</div>
         <p class="title">投资期限</p>
       </div>
       <div class="info_box">
@@ -65,13 +61,13 @@
         <a href="/loan/{{id}}">即将开始</a>
         <!--<div class="investbtn-time" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}" data-serv="{{ serverDate }}" style="margin-top:5px;color: black;width: 180px;text-align: center;"></div>-->
         {{/if}} {{#if status === 'FINISHED'}}
-        <a href="/loan/{{id}}">已满标</a>
+        <a href="/loan/{{id}}">已售罄</a>
         {{/if}} {{#if status === 'FAILED'}}
         <a href="/loan/{{id}}">流标</a>
         {{/if}} {{#if status === 'SETTLED'}}
-        <a href="/loan/{{id}}">已抢完</a>
+        <a href="/loan/{{id}}">计息中</a>
         {{/if}} {{#if status === 'CLEARED'}}
-        <a href="/loan/{{id}}">还款结束</a>
+        <a href="/loan/{{id}}">已结息</a>
         {{/if}}
     </div>
   </div>

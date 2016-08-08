@@ -56,7 +56,7 @@ module.exports = function (router) {
             }
         
             var user = res.locals.user;
-            res.locals.title='帮助中心_太和会';
+            res.locals.title='帮助中心_太合汇';
 
             req.uest('/api/v2/cms/category/' + cateMap[req.params.tab] + '/name/' + encodeURIComponent(nameMap[req.params.tab])).end().then(function (r) {
                 if (r.body.length > 1) {

@@ -37,15 +37,15 @@
           {{#if status === 'OPENED'}}
           <div class="rate">在售中</div>
           {{/if}} {{#if status === 'SCHEDULED'}}
-          <div>预售中</div>
+          <div>即将开始</div>
           {{/if}} {{#if status === 'FINISHED'}}
-          <div>已满标</div>
+          <div>已售罄</div>
           {{/if}} {{#if status === 'FAILED'}}
           <div>流标</div>
           {{/if}} {{#if status === 'SETTLED'}}
-          <div>已抢完</div>
+          <div>计息中</div>
           {{/if}} {{#if status === 'CLEARED'}}
-          <div>还款结束</div>
+          <div>已结息</div>
           {{/if}}
         </td>
         <td class="operate">
