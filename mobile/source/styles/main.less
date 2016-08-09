@@ -565,6 +565,25 @@ a {
     }
 }
 
+.not-found {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 45px;
+    padding-bottom: 140px;
+    background-color: #FFF;
+    text-align: center;
+
+    .icon {
+        &-wrap {
+            margin-bottom: 10px;
+        }
+    }
+
+    .desc {
+        color: #717071;
+    }
+}
+
 /*=============================================================================
                                                                     Page Header
 ----*/
@@ -2580,62 +2599,50 @@ a {
 ----*/
 
 #dashboard-invest {
-    .btn-group {
-        #loan-info .btn-group;
-
-        &-wrap + *:before {
-            height: 48px;
-        }
-
-        .btn-tab {
-            min-width: 94px;
-        }
+    .tab-links {
+        #dashboard-coupon .tab-links;
     }
 
     .invest-list {
         .list > li {
-            margin: 8px 0;
-            border-top: 1px solid @color-gray-light;
-            border-bottom: 1px solid @color-gray-light;
+            margin: 10px 0;
             background-color: #FFF;
-
-            a {
-                &, &:hover, &:visited {
-                    color: inherit;
-                }
-            }
 
             .head {
                 .flex-display(center; space-between);
 
-                border-bottom: 1px solid @color-gray-light-double;
-                padding: 15px 18px;
+                border-bottom: 1px solid #C3C3C3;
+                padding: 8px 15px;
 
                 .title {
                     .flex(1);
 
                     margin: 0;
                     font-size: 14px;
-                    color: @color-gray-dark-double;
+                    color: #717071;
                     word-break: break-all;
+
+                    a {
+                        color: inherit;
+                    }
                 }
 
                 .date {
                     margin-left: 10px;
                     font-size: 12px;
                     line-height: 1;
-                    color: @color-gray;
+                    color: #717071;
                 }
             }
 
             .body {
-                .flex-display();
+                .flex-display(center; space-between);
 
-                padding: 15px 18px;
+                padding: 6px 15px;
 
                 .name {
                     font-size: 12px;
-                    color: @color-gray;
+                    color: #717071;
                 }
 
                 .rate {
@@ -2647,22 +2654,16 @@ a {
                     &:after {
                         content: "";
                         position: absolute;
-                        top: 5px;
-                        bottom: 2px;
+                        top: 0;
+                        bottom: 0;
                         right: 0;
                         width: 1px;
-                        background-color: @color-gray-light-double;
+                        background-color: #B6B6B7;
                     }
 
                     .value {
-                        margin-bottom: 6px;
-                        font-size: 32px;
-                        line-height: 1;
+                        font-size: 18px;
                         color: @color-theme-main;
-
-                        small {
-                            font-size: 16px;
-                        }
                     }
                 }
 
@@ -2670,8 +2671,10 @@ a {
                     .flex(1);
 
                     > .info {
+                        color: #717071;
+
                         & + .info {
-                            margin-top: 15px;
+                            margin-top: 2px;
                         }
 
                         .value {
@@ -2680,13 +2683,18 @@ a {
                         }
                     }
                 }
+
+                .action {
+                    .btn {
+                        .button-size(4px; 10px; 12px; 1; 6px);
+                    }
+                }
             }
         }
     }
 
     .loading {
         padding: 10px;
-        background-color: #FFF;
     }
 }
 

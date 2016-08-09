@@ -16,22 +16,24 @@
         }">
     </div>
 
-    <div class="text-center btn-group-wrap">
-        <div class="btn-group">
-            <a class="btn btn-tab"
-               ng-class="{ selected: current_tab === 'raising' }"
-               ng-click="self.goto_tab('raising')"
-            >投资中</a>
-            <a class="btn btn-tab"
-               ng-class="{ selected: current_tab === 'repaying' }"
-               ng-click="self.goto_tab('repaying')"
-            >回款中</a>
-            <a class="btn btn-tab"
-               ng-class="{ selected: current_tab === 'done' }"
-               ng-click="self.goto_tab('done')"
-            >已结束</a>
+    <section class="omit-margin shadow tab-links">
+        <div class="text-center btn-group-wrap">
+            <div class="btn-group">
+                <a class="btn btn-tab"
+                   ng-class="{ selected: current_tab === 'INHAND' }"
+                   ng-click="self.goto_tab('INHAND')"
+                >在投产品</a>
+                <a class="btn btn-tab"
+                   ng-class="{ selected: current_tab === 'ASSIGN' }"
+                   ng-click="self.goto_tab('ASSIGN')"
+                >我的转让</a>
+                <a class="btn btn-tab"
+                   ng-class="{ selected: current_tab === 'CLEARED' }"
+                   ng-click="self.goto_tab('CLEARED')"
+                >安全兑付</a>
+            </div>
         </div>
-    </div>
+    </section>
 
     <section class="invest-list">
         <ul class="list list-unstyled u-off-margin-bottom"
@@ -44,12 +46,8 @@
                 && list.length < list.totalSize
             }}"
         >
-            <li ng-repeat="item in list track by $index">
-                <a ng-href="dashboard/invest/{{ item.id }}"
-                   x-invest-summary
-                   data-item="item"
-                   data-type="current_tab"
-                ></a>
+            <li ng-repeat="item in list">
+                <div x-invest-summary data-item="item" data-type="current_tab"></div>
             </li>
         </ul>
 
@@ -57,8 +55,11 @@
             <img src="assets/image/spinner.gif">
         </p>
 
-        <div class="container" ng-if="!list.length" ng-hide="loading">
-            <h4 class="alert alert-info text-center">暂无数据</h4>
+        <div class="container not-found" ng-if="!list.length" ng-hide="loading">
+            <div class="icon-wrap">
+                <img class="icon" height="51" ng-src="assets/image/not-found-icon.png">
+            </div>
+            <p class="desc">暂无数据</p>
         </div>
     </section>
 

@@ -80,17 +80,19 @@
     <section class="detail">
         <ul class="list-unstyled u-off-margin-bottom list">
             <li>
-                <div class="info-row info-row-fixed">
-                    <div class="info-col title">固定收益</div>
-                    <div class="info-col">
-                        <div class="value">{{ self.user.statistics.investStatistics.dueAmount.totalAmount | number: 2 }}</div>
-                        <div class="name">持有本金</div>
+                <a href="dashboard/invest">
+                    <div class="info-row info-row-fixed">
+                        <div class="info-col title">固定收益</div>
+                        <div class="info-col">
+                            <div class="value">{{ self.user.statistics.investStatistics.dueAmount.totalAmount | number: 2 }}</div>
+                            <div class="name">持有本金</div>
+                        </div>
+                        <div class="info-col">
+                            <div class="value">{{ self.user.statistics.outstandingInterest | number: 2 }}</div>
+                            <div class="name">预计当前收益 (元)</div>
+                        </div>
                     </div>
-                    <div class="info-col">
-                        <div class="value">{{ self.user.statistics.outstandingInterest | number: 2 }}</div>
-                        <div class="name">预计当前收益 (元)</div>
-                    </div>
-                </div>
+                </a>
             </li>
             <li>
                 <div class="info-row info-row-float">
