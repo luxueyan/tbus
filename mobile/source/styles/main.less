@@ -1861,48 +1861,71 @@ a {
 }
 
 #loan-invest {
-    padding-bottom: 155px;
+    color: #717071;
 
     section:not(.omit-margin) {
         margin-top: 16px;
         margin-bottom: 16px;
     }
 
-    .loan-summary {
-        //#loan .loan-summary;
-    }
+    section {
+        .list {
+            border-top: 1px solid #C1C1C1;
+            border-bottom: 1px solid #C1C1C1;
 
-    .form-flatten {
-        #login .form-flatten;
+            > li {
+                padding: 5px 20px;
 
-        .inputs {
-            margin-bottom: 0;
+                + li {
+                    border-top: 1px solid #D3D3D3;
+                }
+            }
+        }
+
+        .info {
+            .flex-display(center; space-between);
+
+            .name {
+                margin-right: 10px;
+                border-left: 1px solid @color-theme-main;
+                padding-left: 5px;
+                color: @color-theme-main;
+                line-height: 1.1;
+            }
+
+            .value {
+                .flex(1);
+                text-align: right;
+                color: #717071;
+
+                &.text-left {
+                    text-align: left;
+                }
+
+                &.text-muted {
+                    color: #B4B4B5;
+                }
+            }
+
+            .action {
+
+            }
         }
     }
 
     .form-invest {
-
-        section {
-            > .hd {
-                padding-top: 3px;
-                padding-bottom: 5px;
-            }
-
-            > .bd {
-                border-top: 1px solid @color-gray-light;
-                border-bottom: 1px solid @color-gray-light;
-                background-color: #FFF;
-            }
+        .summary {
+            padding: 20px;
+            background-color: #FFF;
         }
 
         .earning {
             margin-bottom: 10px;
-            margin-left: 45px;
+            text-align: center;
         }
 
         .invest-input {
-            padding-top: 10px;
-            padding-bottom: 24px;
+            padding: 10px 30px;
         }
 
         .form-control-wrap {
@@ -1911,8 +1934,8 @@ a {
             .form-control {
                 .flex(1);
 
-                border: 1px solid #CBCCD0;
-                height: 36px;
+                border: 1px solid #808080;
+                -webkit-appearance: none;
                 -webkit-box-shadow: none;
                         box-shadow: none;
             }
@@ -1921,10 +1944,10 @@ a {
                 position: relative;
                 display: block;
                 border-radius: 50%;
-                border: 1px solid @color-theme-main;
-                width: 28px;
-                height: 28px;
-                color: @color-theme-main;
+                border: 1px solid #808080;
+                width: 24px;
+                height: 24px;
+                color: #808080;
 
                 &:before {
                     .transform(translateY(-50%));
@@ -1935,15 +1958,15 @@ a {
                     right: 5px;
                     top: 50%;
                     height: 1px;
-                    background-color: @color-theme-main;
+                    background-color: #808080;
                 }
 
                 &-minus {
-                    margin-right: 15px;
+                    margin-right: 20px;
                 }
 
                 &-plus {
-                   margin-left: 15px;
+                   margin-left: 20px;
 
                    &:after {
                        .transform(translateX(-50%));
@@ -1954,36 +1977,15 @@ a {
                        bottom: 5px;
                        left: 50%;
                        width: 1px;
-                       background-color: @color-theme-main;
+                       background-color: #808080;
                    }
-                }
-
-                &:active {
-                    background-color: @color-theme-main;
-
-                    &:before, &:after {
-                        background-color: #FFF;
-                    }
                 }
             }
         }
 
         .coupon-wrap {
-            padding-top: 9px;
-            padding-bottom: 9px;
-
             &.rsaquo {
                 position: relative;
-
-                &:before {
-                    content: "";
-                    position: absolute;
-                    left: 0;
-                    right: 0;
-                    top: 0;
-                    bottom: 0;
-                    z-index: 11;
-                }
 
                 &:after {
                     .transform(translateY(-50%));
@@ -1993,16 +1995,16 @@ a {
                     top: 50%;
                     font-family: "Glyphicons Halflings";
                     content: "\e258";
-                    color: #CBCCD0;
-                    font-size: 18px;
+                    color: #C79F62;
                 }
             }
 
             .form-control {
                 border: none;
+                direction: rtl;
                 padding-left: 0;
-                padding-right: 0;
-                color: @color-gray-dark-double;
+                padding-right: 30px;
+                color: #717071;
                 font-size: 16px;
                 -webkit-appearance: none;
                 -webkit-box-shadow: none;
@@ -2010,70 +2012,41 @@ a {
             }
 
             .hint {
-                padding: 7px 0;
-                color: @color-gray;
+                color: #B4B4B5;
             }
         }
 
         .agreement {
+            margin: 20px 5px 40px;
+
             label {
                 font-weight: normal;
-                color: #757A82;
+                font-size: 12px;
+                color: #717071;
+            }
+
+            input {
+                margin: 0;
+                vertical-align: top;
             }
 
             a {
-                color: @color-theme-link;
+                color: #C79F62;
             }
+        }
+
+        .btn-submit-wrap {
+            margin-left: 60px;
+            margin-right: 60px;
         }
 
         button[type="submit"] {
-            .button-size(12px; 12px; 18px; 1; 999px);
+            .button-size(9px; 9px; 14px; 1; 8px);
         }
     }
 
-    .invest-result {
-        .state {
-            border-bottom: 1px solid @color-gray-light;
-            background-color: #FFF;
-            text-align: center;
-
-            .desc {
-                margin-top: -28px;
-                margin-left: 10px;
-                font-size: 18px;
-                color: @color-theme-main;
-            }
-
-            .detail {
-                margin-top: 20px;
-                margin-bottom: 20px;
-                font-size: 16px;
-                color: #B37C37;
-
-                p {
-                    margin-bottom: 2px;
-                }
-            }
-        }
-
-        .action {
-            margin-top: 32px;
-            margin-bottom: 32px;
-
-            .btn {
-                .button-size(12px; 12px; 18px; 1; 999px);
-
-                &-plain {
-                    .button-variant(@color-theme-main; transparent; @color-theme-main);
-                }
-
-                &-block {
-                    + .btn-block {
-                        margin-top: 16px;
-                    }
-                }
-            }
-        }
+    .action-result {
+        #dashboard-payment-recharge .action-result;
     }
 }
 
