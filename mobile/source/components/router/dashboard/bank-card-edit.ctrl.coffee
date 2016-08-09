@@ -3,113 +3,102 @@ do (_, angular) ->
 
     angular.module('controller').controller 'BankCardEditCtrl',
 
-        _.ai '            @user, @api, @$scope, @$window, @$location, @$routeParams, @$uibModal', class
-            constructor: (@user, @api, @$scope, @$window, @$location, @$routeParams, @$uibModal) ->
+        _.ai '            @banks, @user, @api, @$scope, @$rootScope, @$window, @$interval, @popup_payment_state', class
+            constructor: (@banks, @user, @api, @$scope, @$rootScope, @$window, @$interval, @popup_payment_state) ->
 
                 @$window.scrollTo 0, 0
 
-                @submit_sending = false
-
-                bank_account = do (list = _.clone @user.bank_account_list) =>
-                    _.find list, (item) => item.id is @$routeParams.id
-
-                return @$window.history.back() unless bank_account
+                @$rootScope.state = 'dashboard'
 
                 angular.extend @$scope, {
-                    bank_account
+                    store: {}
                 }
+
+                @submit_sending = false
+
+                @captcha = {timer: null, count: 60, count_default: 60, has_sent: false, buffering: false}
+
+                if !@user.has_bank_card or !@user.has_payment_password
+                    @popup_payment_state {
+                        user: @user
+                        page: 'bank-card-edit'
+                    }
 
                 EXTEND_API @api
 
 
-            unbind: (account) ->
+            send_mobile_captcha: (mobile) ->
 
-                @submit_sending = true
-
-                (@unbind_card_confirm()
+                (@api.payment_pool_replace_card_sent_captcha(mobile)
 
                     .then =>
-                        (@api.payment_pool_unbind_card(account)
+                        @captcha.timer = @$interval =>
+                            @captcha.count -= 1
 
-                            .then @api.process_response
+                            if @captcha.count < 1
+                                @$interval.cancel @captcha.timer
+                                @captcha.count = @captcha.count_default
+                                @captcha.buffering = false
+                        , 1000
 
-                            .then (data) =>
-                                @$window.alert @$scope.msg.CANCEL_CARD_SUCCEED
-
-                            .catch (data) =>
-                                if _.get(data, 'error') is 'access_denied'
-                                    @$window.alert @$scope.msg.ACCESS_DENIED
-                                    return
-
-                                key = _.get data, 'error[0].message', 'UNKNOWN'
-                                msg = @$scope.msg[key] or key
-
-                                if key in _.split 'CANCEL_CARD_FAILED'
-                                    detail = _.get data, 'error[0].value', ''
-                                    msg += if detail then "，#{ detail }" else ''
-
-                                @$window.alert msg
-
-                            .finally =>
-                                @$scope.$on '$locationChangeSuccess', =>
-                                    @$window.location.reload()
-
-                                @$window.history.back()
-                        )
-                        return
-
-                    .catch =>
-                        @submit_sending = false
-                )
-
-
-            set_default: (account) ->
-
-                @submit_sending = true
-
-                (@api.payment_pool_set_default_card(account)
-
-                    .then @api.process_response
-
-                    .then (data) =>
-                        @$window.alert @$scope.msg.SET_DEFAULT_ACCOUNT_SUCCEED
+                        @captcha.has_sent = @captcha.buffering = true
 
                     .catch (data) =>
                         if _.get(data, 'error') is 'access_denied'
                             @$window.alert @$scope.msg.ACCESS_DENIED
+                            @$window.location.reload()
                             return
 
                         key = _.get data, 'error[0].message', 'UNKNOWN'
                         @$window.alert @$scope.msg[key] or key
-
-                    .finally =>
-                        @$scope.$on '$locationChangeSuccess', =>
-                            @$window.location.reload()
-
-                        @$window.history.back()
                 )
 
 
-            unbind_card_confirm: ->
+            bind_card: ({bank, cardNo, smsCaptcha}) ->
 
-                prompt = @$uibModal.open {
-                    size: 'sm'
-                    keyboard: false
-                    backdrop: 'static'
-                    windowClass: 'center modal-confirm'
-                    animation: true
-                    templateUrl: 'ngt-unbind-card-confirm.tmpl'
+                @submit_sending = true
 
-                    controller: _.ai '$scope',
-                        (             $scope) ->
-                            angular.extend $scope, {}
+                bind_card_data = {
+                    userId: @user.info.id,
+                    mobile: @user.info.mobile,
+                    name: @user.info.name,
+                    idCardNumber: @user.info.idNumber,
+                    bankCode: bank.bankCode,
+                    accountNumber: cardNo,
+                    smsCaptcha: smsCaptcha
                 }
 
-                once = @$scope.$on '$locationChangeStart', ->
-                    prompt?.dismiss()
-                    do once
+                (@api.payment_pool_replace_card(bind_card_data)
 
-                return prompt.result
+                    .then @api.process_response
+
+                    .then (data) =>
+                        @$window.alert @$scope.msg.SUCCEED
+                        @api.user_fetching_promise = null
+                        @user.has_logged_in = false
+                        @$window.history.back()
+
+                    .catch (data) =>
+                        if _.get(data, 'error') is 'access_denied'
+                            @$window.alert @$scope.msg.ACCESS_DENIED
+                            @$window.location.reload()
+                            return
+
+                        @submit_sending = false
+
+                        key = _.get data, 'error[0].message', 'UNKNOWN'
+                        msg = @$scope.msg[key] or key
+
+                        if key in _.split 'REGISTER_FAILED CHECK_CARD_FAILED BIND_CARD_FAILED'
+                            detail = _.get data, 'error[0].value', ''
+                            msg += if detail then "，#{ detail }" else ''
+
+                        @$window.alert msg
+                )
+
+
+            does_not_exist_bank: (value) ->
+                _.every @user.bank_account_list, (item) -> item.account.account isnt value
 
 
 
@@ -120,19 +109,20 @@ do (_, angular) ->
 
     EXTEND_API = (api) ->
 
-        api.__proto__.payment_pool_unbind_card = (cardNo) ->
+        api.__proto__.payment_pool_replace_card_sent_captcha = (mobile) ->
 
             @$http
-                .post '/api/v2/hundsun/cancelCard/MYSELF', {cardNo}
+                .post '/api/v2/smsCaptcha',
+                    {mobile, smsType: 'CREDITMARKET_CAPTCHA'}
 
                 .then @TAKE_RESPONSE_DATA
                 .catch @TAKE_RESPONSE_ERROR
 
 
-        api.__proto__.payment_pool_set_default_card = (cardNo) ->
+        api.__proto__.payment_pool_replace_card = (data) ->
 
             @$http
-                .post '/api/v2/hundsun/setDefaultAccount/MYSELF', {cardNo}
+                .post '/api/v2/user/checkBankcard', data
 
                 .then @TAKE_RESPONSE_DATA
                 .catch @TAKE_RESPONSE_ERROR

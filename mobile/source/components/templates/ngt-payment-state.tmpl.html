@@ -19,12 +19,12 @@
     <h5 ng-if="user.has_bank_card && !user.has_payment_password">您已经在我们平台上进行过注册认证<br>为了能顺利投资还需设定支付密码</h5>
 
     <ul class="list-unstyled state-list">
-        <li ng-class="{ gray: user.has_bank_card }">
+        <li>
             <div class="state">
                 <param class="icon icon-bank-card">绑定银行卡
             </div>
         </li>
-        <li ng-class="{ gray: user.has_payment_password }">
+        <li>
             <div class="state">
                 <param class="icon icon-payment-password">设定支付密码
             </div>

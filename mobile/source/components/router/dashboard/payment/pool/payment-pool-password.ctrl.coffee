@@ -86,16 +86,6 @@ do (_, angular) ->
 
     EXTEND_API = (api) ->
 
-        api.__proto__.payment_pool_password_set = (password) ->
-
-            @$http
-                .post '/api/v2/user/MYSELF/setPaymentPassword',
-                    {password}
-
-                .then @TAKE_RESPONSE_DATA
-                .catch @TAKE_RESPONSE_ERROR
-
-
         api.__proto__.payment_pool_password_change = (oldPassword, newPassword) ->
 
             @$http

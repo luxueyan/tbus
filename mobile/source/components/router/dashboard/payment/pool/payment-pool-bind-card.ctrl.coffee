@@ -3,10 +3,14 @@ do (_, angular) ->
 
     angular.module('controller').controller 'PaymentPoolBindCardCtrl',
 
-        _.ai '            @banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @$location, @$interval, @$routeParams, @$uibModal, @popup_payment_state', class
-            constructor: (@banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @$location, @$interval, @$routeParams, @$uibModal, @popup_payment_state) ->
+        _.ai '            @banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @$location, @$interval, @$routeParams', class
+            constructor: (@banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @$location, @$interval, @$routeParams) ->
 
                 @$window.scrollTo 0, 0
+
+                @$rootScope.state = 'dashboard'
+
+                return @$location.path 'dashboard' if @user.has_bank_card
 
                 angular.extend @$scope, {
                     store: {}
@@ -48,51 +52,46 @@ do (_, angular) ->
                 )
 
 
-            bind_card: ({id_number, user_name, cardNo, bank, cardPhone, smsCaptcha}) ->
+            bind_card: ({user_name, id_number, bank, cardNo, smsCaptcha, password}) ->
 
                 @submit_sending = true
 
-                (@$q.resolve(!!@user.has_payment_account)
+                bind_card_data = {
+                    userId: @user.info.id,
+                    mobile: @user.info.mobile,
+                    name: user_name,
+                    idCardNumber: id_number,
+                    bankCode: bank.bankCode,
+                    accountNumber: cardNo,
+                    smsCaptcha: smsCaptcha
+                }
 
-                    .then (has_payment_account) =>
-                        return if has_payment_account
+                (@$q.resolve(!!@user.has_payment_password)
 
-                        (@api.payment_pool_register(id_number, user_name)
+                    .then (has_payment_password) =>
+                        if has_payment_password
+                            return (
+                                @api.payment_pool_check_password(password)
+                                    .then @api.process_response
+                            )
 
-                            .then @api.process_response
+                        else
+                            return (
+                                @api.payment_pool_password_set(password)
+                                    .then @api.process_response
+                                    .then (data) =>
+                                        @user.has_payment_password = true
+                            )
 
-                            .then (data) =>
-                                @user.info.name = user_name
-                                @user.info.idNumber = id_number
-                                @user.has_payment_account = true
-                        )
-
-                    .then => @api.payment_pool_check_card(id_number, user_name, cardNo, bank.bankCode, cardPhone)
-
-                    .then @api.process_response
-
-                    .then => @api.payment_pool_bind_card(cardNo, bank.bankCode, cardPhone, smsCaptcha)
+                    .then => @api.payment_pool_bind_card(bind_card_data)
 
                     .then @api.process_response
 
                     .then (data) =>
                         @$window.alert @$scope.msg.SUCCEED
-
-                        @$rootScope.$on '$locationChangeSuccess', =>
-                            @$window.location.reload()
-
-                        @user.has_bank_card = true
-
-                        unless @user.has_payment_password
-                            @popup_payment_state {
-                                user: @user
-                                page: 'bind-card'
-                            }
-                            return
-
-                        else
-                            @$window.history.back()
-
+                        @api.user_fetching_promise = null
+                        @user.has_logged_in = false
+                        @$window.history.back()
 
                     .catch (data) =>
                         if _.get(data, 'error') is 'access_denied'
@@ -130,34 +129,6 @@ do (_, angular) ->
                 _.every @user.bank_account_list, (item) -> item.account.account isnt value
 
 
-            select_bank: (event, store) ->
-
-                do event.preventDefault
-
-                prompt = @$uibModal.open {
-                    size: 'lg'
-                    backdrop: 'static'
-                    windowClass: 'modal-full-page'
-                    openedClass: 'modal-full-page-wrap'
-                    animation: false
-                    templateUrl: 'ngt-dashboard-payment-bind-card-select-bank.tmpl'
-
-                    controller: _.ai '$scope',
-                        (             $scope) =>
-                            angular.extend $scope, {
-                                banks: @banks
-                                select: (bank) ->
-                                    store.bank = bank
-                            }
-                }
-
-                once = @$scope.$on '$locationChangeStart', ->
-                    prompt?.dismiss()
-                    do once
-
-                return prompt.result
-
-
 
 
 
@@ -165,6 +136,16 @@ do (_, angular) ->
 
 
     EXTEND_API = (api) ->
+
+        api.__proto__.payment_pool_password_set = (password) ->
+
+            @$http
+                .post '/api/v2/user/MYSELF/setPaymentPassword',
+                    {password}
+
+                .then @TAKE_RESPONSE_DATA
+                .catch @TAKE_RESPONSE_ERROR
+
 
         api.__proto__.check_id_number = (idNumber) ->
 
@@ -178,37 +159,17 @@ do (_, angular) ->
         api.__proto__.payment_pool_bind_card_sent_captcha = (mobile) ->
 
             @$http
-                .get "/api/v2/hundsun/checkCard/sendSmsCaptcha/#{ mobile }"
+                .post '/api/v2/smsCaptcha',
+                    {mobile, smsType: 'CREDITMARKET_CAPTCHA'}
 
                 .then @TAKE_RESPONSE_DATA
                 .catch @TAKE_RESPONSE_ERROR
 
 
-        api.__proto__.payment_pool_register = (idNumber, name) ->
+        api.__proto__.payment_pool_bind_card = (data) ->
 
             @$http
-                .post '/api/v2/hundsun/register/MYSELF',
-                    {idNumber, name}
-
-                .then @TAKE_RESPONSE_DATA
-                .catch @TAKE_RESPONSE_ERROR
-
-
-        api.__proto__.payment_pool_check_card = (idNumber, name, cardNo, bankCode, cardPhone) ->
-
-            @$http
-                .post '/api/v2/hundsun/checkCard/MYSELF',
-                    {idNumber, name, cardNo, bankCode, cardPhone}
-
-                .then @TAKE_RESPONSE_DATA
-                .catch @TAKE_RESPONSE_ERROR
-
-
-        api.__proto__.payment_pool_bind_card = (cardNo, bankCode, cardPhone, smsCaptcha) ->
-
-            @$http
-                .post '/api/v2/hundsun/bindCard/MYSELF',
-                    {cardNo, bankCode, cardPhone, smsCaptcha}
+                .post '/api/v2/user/checkBankcard', data
 
                 .then @TAKE_RESPONSE_DATA
                 .catch @TAKE_RESPONSE_ERROR
