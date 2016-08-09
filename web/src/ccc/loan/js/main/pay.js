@@ -48,8 +48,11 @@ payRactive.on("invest-submit", function (e) {
     var that = this;
     e.original.preventDefault();
     var availableAmount = CC.user.availableAmount;
-    var num = this.get('investNum'); // 输入的值
-    var paymentPassword = this.get('paymentPassword');
+    var num = that.get('investNum'); // 输入的值
+    var paymentPassword = that.get('paymentPassword');
+    var isUseB = that.get('useBankCard');
+    //console.log(isUseB)
+
     if (paymentPassword === '') {
         showErrors('请输入交易密码!');
         return false;
@@ -62,10 +65,17 @@ payRactive.on("invest-submit", function (e) {
 
                 if (document.getElementById('agree').checked == true) {
                     $('.agree-error').css('visibility', 'hidden');
-                    $.post('/api/v2/invest/tender/MYSELF', {
-                        amount: num,
+                    //$.post('/api/v2/invest/tender/MYSELF', {
+                    $.post('/api/v2/baofoo/pay', {
+                        //amount: num,
+                        //loanId: CC.loanId,
+                        //placementId:CC.placementId,
+                        //paymentPassword: paymentPassword
                         loanId: CC.loanId,
-                        placementId:CC.placementId,
+                        userId: CC.user.id,
+                        txn_amt: num,
+                        smsEnabled: false,
+                        isUseBalance: isUseB,
                         paymentPassword: paymentPassword
                     }, function (res) {
                         //alert(11);

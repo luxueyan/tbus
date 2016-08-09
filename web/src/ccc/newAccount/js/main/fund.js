@@ -350,11 +350,10 @@ function renderPage(total, obj) {
         allStatus: obj.status || false,
         allOperation: true,
         startDate: moment($('.date-from-picker>input').val()).unix() * 1000,
-        endDate: moment(self.get('toDate'))
-            .unix() * 1000,
+        endDate: moment($('.date-to-picker>input').val()).unix() * 1000 + 1000 * 60 * 60 * 24,
         pageSize: size
     };
-    var api = '/api/v2/user/MYSELF/funds?page=$page&type=' + obj.type + jsonToParams(params);
+    var api = '/api/v2/user/MYSELF/funds?page=$page' + jsonToParams(params);
     $(".ccc-paging")
         .cccPaging({
             total: total,
