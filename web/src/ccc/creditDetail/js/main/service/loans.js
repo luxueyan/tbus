@@ -77,5 +77,13 @@ exports.loanService = {
                 next(r);
             });
 
+    },
+    getLoanDetail: function (loanId, next) {
+        request
+            .get('/api/v2/loan/' + loanId + '/detail')
+            .end()
+            .then(function (res) {
+                next(res.body);
+            });
     }
 };
