@@ -2067,3 +2067,73 @@
     line-height: 0;
     float: right;
 }
+
+
+/*信息详情*/
+.invest-detail-wrapper {
+    width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    background: #fff;
+}
+.invest-detail-wrapper .tab-panels .tab-panel {
+    display: none;
+    overflow: hidden;
+}
+.invest-detail-wrapper .tab-panels .active {
+    display: block;
+}
+.invest-detail-wrapper .nav-tabs {
+    border-bottom:none;
+}
+.invest-detail-wrapper .nav-tabs li a {
+    display: block;
+    border-radius: 0;
+    margin-right: 0;
+    width: 297px;
+    height: 72px;
+    line-height: 56px;
+    font-size: 24px;
+    border: none;
+    background: #cfa972;
+    color: #fff;
+    margin-right: 4px;
+    text-align: center;
+}
+.invest-detail-wrapper .nav-tabs li:last-child a{
+    margin-right: 0px;
+}
+
+.invest-detail-wrapper .nav-tabs .active a, .invest-detail-wrapper .nav-tabs .active a:focus {
+    color: #666;
+    background: #fff url(/ccc/loan/img/active_line.png) no-repeat center bottom;
+    height: 81px;
+    border: none;
+}
+.invest-detail-wrapper .tab-panels {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+/*产品介绍*/
+.invest-info-box {
+    font-size: 18px;
+    margin-left: 70px;
+}
+.invest-info-box .title {
+    color: #999;
+    width: 200px;
+    vertical-align: top;
+    padding: 20px;
+    text-align: center;
+}
+
+.invest-info-box .content{
+    padding: 9px;
+    width: 845px;
+    padding-left: 35px;
+    color: #666;
+}
+.invest-info-box .content h5{
+    font-size: 18px;
+    color: #666;
+}
