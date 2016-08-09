@@ -1,31 +1,64 @@
 
-<div class="head">
-    <h4 class="title">{{ item.title }}</h4>
-    <span class="date"
-          ng-if="type === 'raising'"
-    >投资日期: {{ item.submit_time | date: "yyyy-MM-dd" }}</span>
-    <span class="date"
-          ng-if="type !== 'raising'"
-    >结束日期: {{ item.end_date | date: "yyyy-MM-dd" }}</span>
+<div ng-if="type !== 'ASSIGN'">
+    <div class="head">
+        <h4 class="title">
+            <a ng-href="loan/{{ item.loan_id }}">{{ item.title }}</a>
+        </h4>
+        <span class="date">
+            起息日：{{ item.settled_date | date: "yyyy-MM-dd" }}
+            到期日：{{ item.end_date | date: "yyyy-MM-dd" }}
+        </span>
+    </div>
+
+    <div class="body">
+        <div class="rate">
+            <div class="value">{{ item.rate }}%</div>
+            <div class="name">预期年收益率</div>
+        </div>
+        <div class="info-list">
+            <div class="info"
+                 ng-if="[
+                    'FINISHED',
+                    'PROPOSED',
+                    'FROZEN',
+                    'SETTLED',
+                    'OVERDUE',
+                    'BREACH'
+                 ].indexOf(item.status) > -1"
+            >
+                <span class="name">预期收益(元)</span>
+                <span class="value">{{ item.amount_interest | number: 2 }}</span>
+            </div>
+
+            <div class="info"
+                 ng-if="['CLEARED'].indexOf(item.status) > -1"
+            >
+                <span class="name">实际收益(元)</span>
+                <span class="value">{{ item.amount_interest | number: 2 }}</span>
+            </div>
+
+            <div class="info">
+                <span class="name">投资金额(元)</span>
+                <span class="value">{{ item.amount | number: 2 }}</span>
+            </div>
+        </div>
+
+        <div class="action"
+             ng-if="[
+                'FINISHED',
+                'PROPOSED',
+                'FROZEN',
+                'SETTLED',
+                'OVERDUE',
+                'BREACH'
+             ].indexOf(item.status) > -1"
+        >
+            <a ng-href="dashboard/assignment/{{ item.id }}" class="btn btn-theme btn-xs">转让</a>
+        </div>
+    </div>
 </div>
 
-<div class="body">
-    <div class="rate">
-        <div class="value">{{ item.rate }}<small>%</small></div>
-        <div class="name">预期年化</div>
-    </div>
-    <div class="info-list">
-        <div class="info">
-            <span class="name" ng-switch="type">
-                <span ng-switch-when="raising">预期收益(元)</span>
-                <span ng-switch-when="repaying">到期收益(元)</span>
-                <span ng-switch-when="done">累计收益(元)</span>
-            </span>
-            <span class="value">{{ item.amount_interest | number: 2 }}</span>
-        </div>
-        <div class="info">
-            <span class="name">投资金额(元)</span>
-            <span class="value">{{ item.amount | number: 2 }}</span>
-        </div>
-    </div>
+
+<div ng-if="type === 'ASSIGN'">
+
 </div>

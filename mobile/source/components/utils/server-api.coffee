@@ -89,7 +89,7 @@ do (_, angular, moment, Array, Date) ->
                 return @user_fetching_promise
 
 
-            get_user_investments: (query_set = {}, cache = true) ->
+            get_user_investments: (query_set = {}, cache = false) ->
 
                 _.defaults query_set, {
                     status: _.split 'FINISHED PROPOSED FROZEN SETTLED OVERDUE BREACH CLEARED'
@@ -107,6 +107,23 @@ do (_, angular, moment, Array, Date) ->
                 @$http
                     .get new_path(),
                         params: _.omit query_set, ['page', 'pageSize']
+                        cache: cache
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
+            get_user_creditassign_list: (query_set = {}, cache = false) ->
+
+                _.defaults query_set, {
+                    status: 'OPEN'
+                    page: 1
+                    pageSize: 10
+                }
+
+                @$http
+                    .get '/api/v2/creditassign/list/user/MYSELF',
+                        params: query_set
                         cache: cache
 
                     .then TAKE_RESPONSE_DATA

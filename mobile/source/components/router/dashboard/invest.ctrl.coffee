@@ -8,12 +8,14 @@ do (_, angular) ->
 
                 @$window.scrollTo 0, 0
 
-                current_tab = @$routeParams.tab or 'raising'
+                @$rootScope.state = 'dashboard'
+
+                current_tab = @$routeParams.tab or 'INHAND'
 
                 type_status_map = {
-                    raising : _.split 'FINISHED PROPOSED FROZEN'
-                    repaying: _.split 'SETTLED OVERDUE BREACH'
-                    done    : _.split 'CLEARED'
+                    INHAND : _.split 'FINISHED PROPOSED FROZEN SETTLED OVERDUE BREACH'
+                    ASSIGN: _.split 'OPEN'
+                    CLEARED: _.split 'CLEARED'
                 }
 
                 query_set = {
@@ -46,24 +48,45 @@ do (_, angular) ->
 
                 @$scope.loading = true
 
-                (@api.get_user_investments(query_set, false)
+                if @$scope.current_tab is 'ASSIGN'
 
-                    .then ({results, totalSize}) =>
+                    (@api.get_user_creditassign_list(query_set)
 
-                        @$scope.list = @$scope.list.concat results.map(@map_invest_summary)
+                        .then ({results, totalSize}) =>
 
-                        angular.extend @$scope.list, {totalSize}
+                            @$scope.list = @$scope.list.concat results
 
-                        @$rootScope.invest_list = @$scope.list
+                            angular.extend @$scope.list, {totalSize}
 
-                    .catch (data) =>
-                        if _.get(data, 'error') is 'access_denied'
-                            @$window.alert @$scope.msg.ACCESS_DENIED
-                            @$window.location.reload()
+                        .catch (data) =>
+                            if _.get(data, 'error') is 'access_denied'
+                                @$window.alert @$scope.msg.ACCESS_DENIED
+                                @$window.location.reload()
 
-                    .finally =>
-                        @$scope.loading = false
-                )
+                        .finally =>
+                            @$scope.loading = false
+                    )
+
+                else
+
+                    (@api.get_user_investments(query_set)
+
+                        .then ({dates, result}) =>
+
+                            {results, totalSize} = result
+
+                            @$scope.list = @$scope.list.concat results.map(@map_invest_summary)
+
+                            angular.extend @$scope.list, {totalSize}
+
+                        .catch (data) =>
+                            if _.get(data, 'error') is 'access_denied'
+                                @$window.alert @$scope.msg.ACCESS_DENIED
+                                @$window.location.reload()
+
+                        .finally =>
+                            @$scope.loading = false
+                    )
 
 
             infinite_scroll: (distance) =>
@@ -122,7 +145,8 @@ do (_, angular) ->
             is_show_repayment: item.status in _.split 'SETTLED CLEARED OVERDUE BREACH'
             progress: repayment.progress
 
-            end_date: repayment.end_date
+            settled_date: item.timeSettled
+            end_date: item.endDate
             submit_time: item.submitTime
             repayments: item.repayments
         }
