@@ -19,7 +19,7 @@ var registerRactive = new RegisterRactive({
     computed: {
         whatTheRefFuck: function() {
             var value = registerRactive.get('reftf.data.value');
-            return value === CC.registerRel ? 'inviteCode' : 'referral';
+            return value === CC.registerRel ? 'referral' : 'inviteCode';
         }
     },
 });
