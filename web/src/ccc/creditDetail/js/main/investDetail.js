@@ -114,3 +114,86 @@ function disableErrors() {
             msg: ''
         });
 }
+$('.nav-tabs > li')
+    .click(function () {
+        $(this)
+            .addClass('active')
+            .siblings()
+            .removeClass('active');
+        $('.tab-panel')
+            .eq($(this)
+                .data('step'))
+            .addClass('active')
+            .siblings()
+            .removeClass('active');
+    });
+//产品介绍图片
+//loanService.getLoanProof(CC.loan.requestId, function (imgs) {
+loanService.getLoanDetail(CC.loan.id, function (res) {
+    var imgs = res.data.proof.proofImages;
+    //console.log(imgs);
+
+    var relateDataRactive = new Ractive({
+        // insurance 担保
+        el: ".insurance-wrapper",
+        template: require('ccc/loan/partials/relateDataOnDetail.html'),
+        data: {
+            imgs: imgs,
+            currentIndex: 0,
+            selectorsMarginLeft: 0,
+            stageLen: 5,
+            imgLen: imgs.length
+        },
+        onrender:function(){
+            this.set('imgs',this.parseData(res.data.proof.proofImages));
+        },
+        parseData:function(res){
+            for(var i = 0;i<res.length;i++){
+                res[i].proof.content =res[i].proof.content.split('.')[0];
+            };
+            return res;
+        }
+    });
+
+    var i = 1;
+    var imgLen = $('.pic-box .show-pic-box').length;
+    var lf = [], zs = [];
+
+    // 开始大图浏览
+    relateDataRactive.on('begin-big-pic', function (e) {
+        //console.log(e.index.i)
+        relateDataRactive.set('currentIndex', e.index.i);
+        var options = {
+            imgs: imgs,
+            currentIndex: e.index.i,
+            selectorsMarginLeft: 0,
+            stageLen: 1,
+            imgLen: imgLen
+        };
+        popupBigPic.show(options);
+        //init();
+        return false;
+    });
+
+    $("#left-arrow").click(function () {
+        if (i > 1) {
+            for (var j = 0; j < imgLen; j++) {
+                zs[j] = zs[j] + 200;
+                $(".show-pic-box").eq(j).css("left", zs[j]);
+            }
+            i--;
+        }
+    });
+
+    $("#right-arrow").click(function () {
+        if (i < imgLen) {
+            for (var j = 0; j < imgLen; j++) {
+                lf[j] = $(".show-pic-box").eq(j).css("left");
+                zs[j] = lf[j].slice(0, -2) - 200;
+
+                $(".show-pic-box").eq(j).css("left", zs[j]);
+            }
+            i++;
+        }
+    });
+});

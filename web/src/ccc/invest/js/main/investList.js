@@ -156,7 +156,13 @@ IndexService.getLoanSummary(function (res) {
             listFloat.push(res[i]);
         }
     }
-
+    var listNone = [];
+    for (var i = 0; i < listFixed.length; i++) {
+        if (listFixed[i].Fbalance != '"0.00"') {
+            listNone.push(res[i]);
+        }
+    }
+    //console.log(listNone);
     var compare = function (obj1, obj2) {
         var val1 = obj1.loanRequest.timeSubmit;
         var val2 = obj2.loanRequest.timeSubmit;
@@ -168,7 +174,8 @@ IndexService.getLoanSummary(function (res) {
             return 0;
         }
     }
-    listFixed.sort(compare);
+    listNone.sort(compare);
+    //console.log(listNone);
     // 固定收益
     var listRactive = new Ractive({
         el: ".fixedPro",

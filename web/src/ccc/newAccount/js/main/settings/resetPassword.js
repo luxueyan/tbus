@@ -108,9 +108,9 @@ resetPasswordRactive.on('resetPassword', function () {
 resetPasswordRactive.on('sendCode', function (){
 	var pwd = this.get('password');
 	var repwd = this.get('repassword');
-    if(pwd === ""||repwd === ""){
-			  return showErrorIndex('showErrorMessagec','errorMessagec','交易密码不能为空');
-		}
+    //if(pwd === ""||repwd === ""){
+    //        return showErrorIndex('showErrorMessagec','errorMessagec','交易密码不能为空');
+		//}
     if (!this.get('isSend')) {
         this.set('isSend', true);
         var smsType = 'CONFIRM_CREDITMARKET_RESET_PAYMENTPASSWORD';
