@@ -3,12 +3,17 @@ do (_, angular, Math) ->
 
     angular.module('controller').controller 'LoanInvestCtrl',
 
-        _.ai '            @api, @user, @loan, @coupon, @$scope, @$location, @$window, map_loan_summary, @$uibModal, @popup_payment_state', class
-            constructor: (@api, @user, @loan, @coupon, @$scope, @$location, @$window, map_loan_summary, @$uibModal, @popup_payment_state) ->
+        _.ai '            @api, @user, @loan, @coupon, @$scope, @$rootScope, @$location, @$window, @$q, map_loan_summary, @$uibModal, @popup_payment_state, @popup_payment_password', class
+            constructor: (@api, @user, @loan, @coupon, @$scope, @$rootScope, @$location, @$window, @$q, map_loan_summary, @$uibModal, @popup_payment_state, @popup_payment_password) ->
 
                 @$window.scrollTo 0, 0
 
+                @$rootScope.state = 'list'
+
                 @page_path = @$location.path()[1..]
+
+                @$scope.default_bank_account = do (list = @user.bank_account_list) ->
+                        _.find list, (item) -> item.defaultAccount is true
 
                 angular.extend @$scope, {
                     store: {}
@@ -110,7 +115,7 @@ do (_, angular, Math) ->
 
                 loan = @$scope.loan
 
-                {password} = @$scope.store
+                # {password} = @$scope.store
                 coupon = @$scope.store?.coupon
                 amount = @$scope.store.amount or 0
                 loan_minimum = loan.raw.loanRequest.investRule.minAmount
@@ -149,24 +154,49 @@ do (_, angular, Math) ->
 
                 @submit_sending = true
 
-                (@api.payment_pool_tender(loan.id, password, amount, coupon?.id)
+                (@popup_payment_password()
+
+                    .then (data) =>
+                        @$scope.store.password = data
+                        @api.payment_pool_check_password(@$scope.store.password)
+
+                    .then @api.process_response
+
+                    .catch (data) =>
+                        return @$q.reject(data) if data is 'cancel'
+                        return @$q.reject(data) if _.get(data, 'error') is 'access_denied'
+
+                        @$q.reject error: [message: 'INCORRECT_PASSWORD']
+
+
+                    .then (data) => @api.payment_pool_tender(loan.id, @$scope.store.password, amount, coupon?.id)
 
                     .then @api.process_response
 
                     .then =>
-                        @$scope.show_invest_result = true
+                        @api.user_fetching_promise = null
+                        @user.has_logged_in = false
+                        @$scope.action_result = { success: true }
 
-                        @$scope.$on '$locationChangeSuccess', =>
-                            @$window.location.reload()
+                        # @$scope.show_invest_result = true
+
+                        # @$scope.$on '$locationChangeSuccess', =>
+                        #     @$window.location.reload()
 
                     .catch (data) =>
+                        return if data is 'cancel'
+
                         if _.get(data, 'error') is 'access_denied'
                             @$window.alert @$scope.msg.ACCESS_DENIED
                             @$window.location.reload()
                             return
 
-                        message = _.get data, 'error[0].message', '系统繁忙，请稍后重试！'
-                        @$window.alert message
+                        key = _.get data, 'error[0].message', 'UNKNOWN'
+                        msg = @$scope.msg[key] or key
+
+                        @$scope.action_result = { success: false, msg: msg }
+
+                        # @$window.alert message
 
                     .finally =>
                         @submit_sending = false
@@ -218,34 +248,6 @@ do (_, angular, Math) ->
                     controller: _.ai '$scope, content',
                         (             $scope, content) ->
                             angular.extend $scope, {content}
-                }
-
-                once = @$scope.$on '$locationChangeStart', ->
-                    prompt?.dismiss()
-                    do once
-
-                return prompt.result
-
-
-            select_coupon: (event, store) ->
-
-                do event.preventDefault
-
-                prompt = @$uibModal.open {
-                    size: 'lg'
-                    backdrop: 'static'
-                    windowClass: 'modal-full-page'
-                    openedClass: 'modal-full-page-wrap'
-                    animation: false
-                    templateUrl: 'ngt-loan-invest-select-coupon.tmpl'
-
-                    controller: _.ai '$scope',
-                        (             $scope) =>
-                            angular.extend $scope, {
-                                coupon_list: @$scope.coupon_list
-                                select: (coupon) ->
-                                    store.coupon = coupon
-                            }
                 }
 
                 once = @$scope.$on '$locationChangeStart', ->

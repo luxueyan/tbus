@@ -1,5 +1,6 @@
 
-<div id="loan-invest" ng-hide="show_invest_result">
+<div id="loan-invest">
+    <style> body { background-color: #FFF; } </style>
 
     <nav class="omit-margin container page-nav">
     <div class="row">
@@ -13,22 +14,11 @@
 
     <div>
         <param ng-model="msg" ng-init="msg = {
+            INCORRECT_PASSWORD: '交易密码不正确',
+            UNKNOWN: '系统繁忙，请稍后重试！',
             ACCESS_DENIED: '登录超时',
         }">
     </div>
-
-    <section class="omit-margin loan-summary">
-        <div class="rate text-center">
-            <div class="value">{{ loan.rate }}%</div>
-            <div class="name">预期年化</div>
-        </div>
-        <div class="footer">
-            <div class="inner">
-                <span class="percent">投资进度 {{ loan.invest_percent_int }}%</span>
-                <span class="balance text-right">剩余金额 {{ loan.balance | number }}元</span>
-            </div>
-        </div>
-    </section>
 
     <form class="form-horizontal form-invest"
           name="form"
@@ -36,138 +26,162 @@
           autocomplete="off"
           autocorrect="off"
           ng-submit="self.submit($event)"
+          ng-hide="action_result"
     >
-        <section>
-            <div class="container hd">
-                <span class="pull-left">请输入投资金额</span>
-                <span class="pull-right">账户余额: {{ self.user.fund.availableAmount | number: 2 }}元</span>
-            </div>
-
-            <div class="container bd invest-input">
-                <div class="earning" ng-class="{ invisible: !form.amount.$valid }">
-                    预期收益<span class="u-color-main">{{ earning | number: 2 }}</span>元
-                </div>
-
-                <div class="form-control-wrap">
-                    <param class="icon icon-minus"
-                           ng-click="store.amount = self.amount_polishing(store.amount - loan.raw.loanRequest.investRule.stepAmount); self.fetch_analyse(store.amount)"
-                           ontouchstart
-                    >
-
-                    <input name="amount"
-                           id="amount"
-                           ng-model="store.amount"
-                           ng-change="form.amount.$valid && self.fetch_analyse(store.amount)"
-                           type="number"
-                           class="form-control"
-                           placeholder="{{ loan.raw.loanRequest.investRule.minAmount | number }}元起投，{{ loan.raw.loanRequest.investRule.stepAmount | number }}元递增"
-                           required
-                    >
-
-                    <param class="icon icon-plus"
-                           ng-click="store.amount = self.amount_polishing(store.amount + loan.raw.loanRequest.investRule.stepAmount); self.fetch_analyse(store.amount)"
-                           ontouchstart
-                    >
-                </div>
+        <section class="summary shadow">
+            <div class="info">
+                <span class="name">请输入投资金额</span>
+                <span class="value">
+                    剩余可投资(元)
+                    <span class="u-color-main">{{ loan.balance | number }}</span>
+                </span>
             </div>
         </section>
 
-        <section>
-            <div class="container hd">
-                实际支付金额：<span class="u-color-main" ng-show="form.amount.$valid">{{ actual_payment_amount | number: 2 }}元</span>
+        <section class="invest-input">
+            <div class="earning" ng-class="{ invisible: !form.amount.$valid }">
+                预期收益(元) <span class="u-color-main">{{ earning | number: 2 }}</span>
             </div>
 
-            <div class="container bd">
-                <div class="coupon-wrap"
-                     ng-class="{ rsaquo: coupon_list.length }"
-                     ng-click="coupon_list.length && self.select_coupon($event, store)"
+            <div class="form-control-wrap">
+                <param class="icon icon-minus"
+                       ng-click="store.amount = self.amount_polishing(store.amount - loan.raw.loanRequest.investRule.stepAmount); self.fetch_analyse(store.amount)"
+                       ontouchstart
                 >
-                    <select name="placementId" class="form-control"
-                            id="coupon"
-                            ng-model="store.coupon"
-                            ng-options="
-                                coupon.display
-                                for coupon in coupon_list
-                                track by coupon.id
-                            "
-                            ng-if="coupon_list.length"
-                    >
-                        <option value="">{{ coupon_list.length }}个红包可用</option>
-                    </select>
 
-                    <div class="hint" ng-if="!coupon_list.length">暂无红包可用</div>
-                </div>
+                <input name="amount"
+                       id="amount"
+                       ng-model="store.amount"
+                       ng-change="form.amount.$valid && self.fetch_analyse(store.amount)"
+                       type="number"
+                       class="form-control"
+                       placeholder="{{ loan.raw.loanRequest.investRule.minAmount | number }}元起投，{{ loan.raw.loanRequest.investRule.stepAmount | number }}元递增"
+                       required
+                >
+
+                <param class="icon icon-plus"
+                       ng-click="store.amount = self.amount_polishing(store.amount + loan.raw.loanRequest.investRule.stepAmount); self.fetch_analyse(store.amount)"
+                       ontouchstart
+                >
             </div>
         </section>
 
-        <section class="form-flatten">
-            <div class="inputs container">
-                <div class="form-group merge">
-                    <div class="form-group-inner">
-                        <label for="password">交易密码</label>
-                        <input name="password"
-                               id="password"
-                               ng-model="store.password"
-                               type="password"
-                               class="form-control input-target input-lg"
-                               placeholder="请输入交易密码"
-                               required
-                        >
+        <section>
+            <ul class="list-unstyled u-off-margin-bottom list">
+                <li>
+                    <div class="info">
+                        <span class="name">账户余额(元)</span>
+                        <span class="value text-left">
+                            <span class="u-color-main">
+                                {{ self.user.fund.availableAmount | number: 2 }}
+                            </span>
+                        </span>
+                        <span class="action">
+                            使用 <input type="checkbox" ng-init="use_available_amount = true" ng-model="use_available_amount">
+                        </span>
                     </div>
-                </div>
-            </div>
+                </li>
+                <li>
+                    <div class="info">
+                        <span class="name">银行卡</span>
+                        <span class="value text-muted" ng-if="default_bank_account">
+                            {{ default_bank_account.account.bankName }}
+                            {{ default_bank_account.account.account | string_replace: '^\\d+(\\d{4})$' : '****$1' }}
+                        </span>
+                    </div>
+                </li>
+                <li>
+                    <div class="info">
+                        <span class="name">红包</span>
+                        <span class="value">
+                            <div class="coupon-wrap"
+                                 ng-class="{ rsaquo: coupon_list.length }"
+                            >
+                                <select name="placementId" class="form-control"
+                                        id="coupon"
+                                        ng-model="store.coupon"
+                                        ng-options="
+                                            coupon.display
+                                            for coupon in coupon_list
+                                            track by coupon.id
+                                        "
+                                        ng-if="coupon_list.length"
+                                >
+                                    <option value="">{{ coupon_list.length }}个红包可用</option>
+                                </select>
+
+                                <div class="hint" ng-if="!coupon_list.length">暂无红包可用</div>
+                            </div>
+                        </span>
+                    </div>
+                </li>
+            </ul>
         </section>
 
-        <div class="container agreement">
+        <section class="container agreement">
             <label>
                 <input type="checkbox" ng-init="agreement = true" ng-model="agreement" required>
-                阅读并同意<a href="#" ng-click="self.agreement('投资协议')">《投资协议》</a>
+                我阅读并同意<a href="#" ng-click="self.agreement('风险投资书')">《风险投资书》</a>
             </label>
-        </div>
+        </section>
 
-        <section class="container">
+        <section class="container text-center actual-payment-amount">
+            实际支付金额(元) ：<span class="u-color-main" ng-show="form.amount.$valid">{{ actual_payment_amount | number: 2 }}</span>
+        </section>
+
+        <section class="btn-submit-wrap">
             <button type="submit" class="btn btn-theme btn-lg btn-block"
                     ng-disabled="form.$invalid || self.submit_sending"
             >确认投资</button>
         </section>
     </form>
 
-</div>
 
 
 
 
 
+    <div class="action-result" ng-show="action_result">
+        <div ng-show="action_result.success">
+            <div class="content text-center shadow">
+                <div class="icon-wrap">
+                    <img class="icon" width="66" ng-src="assets/image/smile-icon.png">
+                </div>
 
-<div id="loan-invest" ng-show="show_invest_result">
+                <p class="desc">支付成功</p>
+            </div>
 
-    <nav class="omit-margin container page-nav">
-    <div class="row">
-        <span class="col-xs-3">&nbsp;</span>
-        <span class="col-xs-6 title">投资成功</span>
-        <span class="col-xs-3">&nbsp;</span>
-    </div>
-    </nav>
-
-    <div class="invest-result">
-        <div class="container state">
-            <img width="126" ng-src="assets/image/success-icon.png">
-            <p class="desc">投资成功啦！</p>
-            <div class="detail">
+            <div class="detail text-center">
                 <p>您已成功投资 {{ store.amount | number: 2 }}元</p>
-                <p>预计到期可赚 {{ earning | number: 2 }}元</p>
+                <p>预计到期收益 {{ earning | number: 2 }}元</p>
+            </div>
+
+            <div class="action">
+                <a class="btn btn-theme btn-block" href="list">继续投资</a>
+                <a class="btn btn-plain btn-block" href="dashboard/invest">查看投资详情</a>
             </div>
         </div>
 
-        <div class="container action">
-            <a class="btn btn-lg btn-block btn-theme" href="list">继续投资</a>
-            <a class="btn btn-lg btn-block btn-plain" href="dashboard/invest">查看投资详情</a>
+        <div ng-hide="action_result.success">
+            <div class="content text-center shadow">
+                <div class="icon-wrap">
+                    <img class="icon" width="66" ng-src="assets/image/unhappy-icon.png">
+                </div>
+
+                <p class="desc text-muted">支付失败</p>
+
+                <p class="msg">{{ action_result.msg }}</p>
+            </div>
+
+            <div class="action">
+                <a class="btn btn-theme btn-block" href=""
+                   ng-click="action_result = null"
+                >重新支付</a>
+            </div>
         </div>
     </div>
 
 </div>
-
-
 
 
 
@@ -211,76 +225,3 @@
     </div>
 </script>
 
-<script type="text/ng-template" id="ngt-loan-invest-select-coupon.tmpl">
-    <div id="loan-invest-select-coupon">
-
-        <nav class="omit-margin container page-nav">
-        <div class="row">
-            <a class="col-xs-3 back" ng-click="$close()">
-                <param class="glyphicon glyphicon-menu-left">
-            </a>
-            <span class="col-xs-6 title">红包</span>
-            <span class="col-xs-3">&nbsp;</span>
-        </div>
-        </nav>
-
-        <div></div>
-
-        <section class="coupons">
-            <ul class="list-unstyled u-off-margin-bottom coupon-list">
-                <li class="item"
-                    ng-repeat="item in coupon_list"
-                    ng-click="item.status != 'DISABLED' && select(item); $close()"
-                    ng-class="[
-                        'item-status-' + (item.status | lowercase),
-                        'item-type-' + (item.couponPackage.type | lowercase)
-                    ]"
-                >
-                    <div class="media">
-                        <div class="media-left media-middle text-center">
-                            <div class="value" ng-switch="item.couponPackage.type">
-                                <span ng-switch-when="INTEREST">
-                                    <span class="num">{{ item.couponPackage.parValue / 100 }}</span>
-                                    <span class="unit">%</span>
-                                </span>
-                                <span ng-switch-default>
-                                    <span ng-if="item.couponPackage.parValue >= 10000">
-                                        <span class="num">{{ item.couponPackage.parValue / 10000 | number }}</span>
-                                        <span class="unit">万</span>
-                                    </span>
-                                    <span ng-if="item.couponPackage.parValue < 10000">
-                                        <span class="num">{{ item.couponPackage.parValue | number }}</span>
-                                        <span class="unit">元</span>
-                                    </span>
-                                </span>
-                            </div>
-
-                            <div class="type" ng-switch="item.couponPackage.type">
-                                <span ng-switch-when="CASH">现金券</span>
-                                <span ng-switch-when="INTEREST">加息券</span>
-                                <span ng-switch-when="PRINCIPAL">增值券</span>
-                                <span ng-switch-when="REBATE">返现券</span>
-                            </div>
-                        </div>
-
-                        <div class="media-body">
-                            <div class="desc">{{ item.couponPackage.description || '暂无描述' }}</div>
-
-                            <div class="desc">
-                                投资满{{ item.couponPackage.minimumInvest | number }}元，{{ item.couponPackage.minimumDuration }}个月可使用
-                            </div>
-
-                            <div class="expire">
-                                <span ng-if="item.couponPackage.timeExpire">
-                                    有效期至 {{ item.couponPackage.timeExpire | date: "yyyy-MM-dd" }}
-                                </span>
-                                <span ng-if="!item.couponPackage.timeExpire">永不过期</span>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </section>
-
-    </div>
-</script>
