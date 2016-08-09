@@ -66,6 +66,8 @@
                     {{#if assignAble}}
                     <button class="operation" data-invest="{{id}}" data-amount="{{amount}}" data-title="{{loanTitle}}">转让</button>
                     <a href="/account/invest/allContracts/{{id}}" class="look_contact">查看合同</a>
+                    {{elseif status == 'SETTLED'}}
+                    <a href="/account/invest/allContracts/{{id}}" class="look_contact">查看合同</a>
                     {{/if}}
                 </p>
             </td>

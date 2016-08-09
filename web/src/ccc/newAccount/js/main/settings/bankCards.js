@@ -64,41 +64,52 @@ var ractive = new Ractive({
     }
 });
 
+var accessA = false;
+var accessB = false;
+var accessC = false;
+var accessD = false;
 //校验表单
-//ractive.on("validateCardNo", function () {
-//    var no = this.get("cardNo");
-//    if(no == ''){
-//        this.set("errMessgaeBank", '银行账户不能为空');
-//    }else if (!/^\d*$/.test(no)) {
-//        this.set("errMessgaeBank", '银行卡号只能由数字组成');
-//    } else {
-//        this.set("errMessgaeBank", '');
-//    }
-//});
-//ractive.on("validateIdNo", function () {
-//    var no = this.get("idNo");
-//    if (!/^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/.test(no)) {
-//        this.set("idNoError", true);
-//    } else {
-//        this.set("idNoError", false);
-//    }
-//});
-//ractive.on("validatePhoneNo", function () {
-//    var no = this.get("mobile");
-//    if (!/^\d*$/.test(no)) {
-//        this.set("phoneNoError", true);
-//    } else {
-//        this.set("phoneNoError", false);
-//    }
-//});
-//ractive.on("validateCaptcha", function () {
-//    var no = this.get("smsCaptcha");
-//    if (no === '') {
-//        this.set('SMS_NULL', true);
-//    } else {
-//        this.set('SMS_NULL', false);
-//    };
-//});
+ractive.on("validatePersonal", function () {
+    var personal = this.get("personal");
+
+    if (personal == '') {
+        this.set("personalError", '请输入您的姓名');
+        return;
+    } else {
+        this.set("personalError", false);
+        accessA = true;
+    }
+});
+ractive.on("validateIdNo", function () {
+    var idNo = this.get("idNo");
+    if (!/^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/.test(idNo)) {
+        this.set("idNoError", '请输入正确的身份证号');
+        return;
+    } else {
+        this.set("idNoError", false);
+        accessB = true;
+    }
+});
+ractive.on("validateCardNo", function () {
+    var cardNo = this.get("cardNo");
+    if (cardNo == '') {
+        this.set("errMessgaeBank", '请输入您的银行卡号');
+        return;
+    } else {
+        this.set("errMessgaeBank", false);
+        accessC = true;
+    }
+});
+ractive.on("validatePhoneNo", function () {
+    var no = this.get("mobile");
+    if (!/^[1][3|5|7|8][0-9]{9}$/.test(no)) {
+        this.set("phoneNoError", '请输入正确的手机号');
+        return;
+    } else {
+        this.set("phoneNoError", false);
+        accessD = true;
+    }
+});
 
 ractive.on("bind-card-submit", function (e) {
     e.original.preventDefault();
@@ -117,28 +128,14 @@ ractive.on("bind-card-submit", function (e) {
     var rePwd = this.get('repassword');
 
     //校验表单
-    if (personal == '') {
-        this.set("personalError", '请输入您的姓名');
-        return;
-    } else {
-        this.set("personalError", false);
-    }
-
-    if (!/^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/.test(idNo)) {
-        this.set("idNoError", '请输入正确的身份证号');
-        return;
-    } else {
-        this.set("idNoError", false);
-    }
-
-    if (cardNo == '') {
-        this.set("errMessgaeBank", '请输入您的银行卡号');
-    } else {
-        this.set("errMessgaeBank", false);
-    }
+    this.fire('validatePersonal');
+    this.fire('validateIdNo');
+    this.fire('validateCardNo');
+    this.fire('validatePhoneNo');
 
     if (smsCaptcha === '') {
         this.set('SMS_NULL', '请输入手机验证码');
+        return;
     } else {
         this.set('SMS_NULL', false);
     }
@@ -162,13 +159,15 @@ ractive.on("bind-card-submit", function (e) {
         this.set('errMessgaeRePwd', false);
     }
 
+
     var sendCard = {
-        userId: CC.user.id,
+        realName:personal,
+        IdNumber: idNo,
         accountNumber: cardNo,
         mobile: cardPhone,
-        idCardNumber: idNo,
-        name: personal,
-        smsCaptcha: smsCaptcha
+        bankName: bankName,
+        smsCode: smsCaptcha,
+        userId: CC.user.id,
     }
     var msg = {
         SEND_CAPTCHA_FAILED: '验证码发送失败',
@@ -186,7 +185,7 @@ ractive.on("bind-card-submit", function (e) {
         accountService.initialPassword(pwd, function (r) {
             if (r.success) {
                 $('.btn-box button').text('绑卡中,请稍等...');
-                $.post('/api/v2/user/checkBankcard', sendCard, function (res) { //bindCard
+                $.post('/api/v2/baofoo/confirmBindCard', sendCard, function (res) { //bindCard
                     if (res.success) {
                         ractive.set('step1', false);
                         ractive.set('step2', true);
@@ -250,17 +249,50 @@ ractive.on("bind-card-submit", function (e) {
 });
 
 ractive.on('sendCode', function () {
+    var realName = this.get('personal');
+    var IdNumber = this.get('idNo');
+    var accountNumber = this.get('cardNo');
     var cardPhone = this.get('mobile');
-    if (!this.get('isSend')) {
-        this.set('isSend', true);
-        //$.get('/api/v2/hundsun/checkCard/sendSmsCaptcha/'+cardPhone,function(r){
-        //$.post('/api/v2/smsCaptcha',{mobile:cardPhone,smsType:'CONFIRM_CREDITMARKET_BINDCARD'},function(r){
-        $.post('/api/v2/smsCaptcha', {mobile: cardPhone, smsType: 'CREDITMARKET_CAPTCHA'}, function (r) {
-            if (r.success) {
-                countDown();
-            }
-        });
+    var bankName = this.get('bankName');
+
+    //校验表单
+    this.fire('validatePersonal');
+    this.fire('validateIdNo');
+    this.fire('validateCardNo');
+    this.fire('validatePhoneNo');
+
+    var params ={
+        realName:realName,
+        IdNumber:IdNumber,
+        accountNumber:accountNumber,
+        mobile:cardPhone,
+        bankName:bankName
     }
+
+if(accessA && accessB && accessC && accessD){
+    $.post('/api/v2/baofoo/preBindCard',params,function(r){
+        if(r.success){
+            console.log(r);
+            $.post('/api/v2/smsCaptcha', {mobile: cardPhone, smsType: 'CREDITMARKET_CAPTCHA'}, function (r) {
+                if (r.success) {
+                    countDown();
+                }
+            });
+        }else{
+            CccOk.create({
+                msg: r.error[0].message,
+                okText: '确定',
+                ok: function () {
+                    $('.ccc-box-overlay').remove();
+                    $('.ccc-box-wrap').remove();
+                }
+            });
+        }
+    });
+}
+
+
+
 });
 
 function countDown() {
