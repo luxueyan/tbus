@@ -162,7 +162,7 @@ IndexService.getLoanSummary(function (res) {
             listNone.push(res[i]);
         }
     }
-    //console.log(listNone);
+    console.log(listNone);
     var compare = function (obj1, obj2) {
         var val1 = obj1.loanRequest.timeSubmit;
         var val2 = obj2.loanRequest.timeSubmit;
@@ -175,13 +175,13 @@ IndexService.getLoanSummary(function (res) {
         }
     }
     listNone.sort(compare);
-    //console.log(listNone);
+    console.log(listNone);
     // 固定收益
     var listRactive = new Ractive({
         el: ".fixedPro",
         template: require('ccc/invest/partials/fixedPro.html'),
         data: {
-            list: (listFixed.slice(0, 3)),
+            list: (listNone.slice(0, 3)),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         },
     });
