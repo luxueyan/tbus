@@ -206,6 +206,27 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         return $q.reject()
                     }
 
+                    .when '/dashboard/assignment/:id', {
+                        controller: 'DashboardAssignmentCtrl as self'
+                        templateUrl: 'components/router/dashboard/assignment.tmpl.html'
+                        resolve:
+                            user: _.ai 'api, $location, $route, $q',
+                                (       api, $location, $route, $q) ->
+                                    api.fetch_current_user().catch ->
+                                        $location
+                                            .replace()
+                                            .path '/login'
+                                            .search next: "dashboard/assignment/#{ $route.current.params.id }"
+                                        return $q.reject()
+
+                            loan: _.ai 'api, $location, $route, $q',
+                                (       api, $location, $route, $q) ->
+                                    api.get_loan_detail($route.current.params.id, false).catch ->
+                                        $location.path '/'
+                                        do $q.reject
+
+                    }
+
                     .when '/dashboard/repayment', {
                         controller: 'RepaymentCtrl as self'
                         templateUrl: 'components/router/dashboard/repayment.tmpl.html'
