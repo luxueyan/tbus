@@ -192,14 +192,23 @@ ractive.on('recharge_submit', function (e) {
         accountService.checkPassword(password, function (res) {
             if(res){
                 $('.submit_btn').text('正在充值中，请稍等...');
-                request.post('/api/v2/baofoo/recharge/MYSELF')
-                .type("form")
-                .send({
-                    //userId:CC.user.id,
-                    amount: amount,
-                    paymentPassword: password,
-                    cardNo: cardNo
-                })
+                request.post('/api/v2/baofoo/charge')
+                    .type("form")
+                    .send({
+                        userId:CC.user.id,
+                        txn_amt: amount,
+                        paymentPasswd: password,
+                        smsEnabled:false
+                        //cardNo: cardNo
+                    })
+                //request.post('/api/v2/baofoo/recharge/MYSELF')
+                //.type("form")
+                //.send({
+                //    //userId:CC.user.id,
+                //    amount: amount,
+                //    paymentPassword: password,
+                //    cardNo: cardNo
+                //})
                 .end()
                 .then(function (r) {
                     

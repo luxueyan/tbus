@@ -348,7 +348,7 @@ function renderPage(total, obj) {
     var params = {
         type: obj.type,
         allStatus: obj.status || false,
-        allOperation: true,
+        allOperation: obj.operation || false,
         startDate: moment($('.date-from-picker>input').val()).unix() * 1000,
         endDate: moment($('.date-to-picker>input').val()).unix() * 1000 + 1000 * 60 * 60 * 24,
         pageSize: size
