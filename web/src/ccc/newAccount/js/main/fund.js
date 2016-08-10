@@ -346,7 +346,7 @@ function loadInitData(index) {
 function renderPage(total, obj) {
     var self = ractive;
     var params = {
-        type: 'ALL',
+        type: obj.type,
         allStatus: obj.status || false,
         allOperation: true,
         startDate: moment($('.date-from-picker>input').val()).unix() * 1000,
