@@ -59,6 +59,7 @@ var infoRactive = new Ractive({
 		showVip: true,
 		greetingText:'',
 		avaAmount : avaAmount,
+		emailAuthenticated:false,
 	},
 
 	oninit: function () {

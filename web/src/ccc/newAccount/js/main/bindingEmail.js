@@ -1,4 +1,5 @@
 "use strict";
+var CccOk = require('ccc/global/js/modules/cccOk');
 
 var emailRactive = new Ractive({
     el: '#ractive-container',
@@ -36,11 +37,18 @@ emailRactive.on("setEmail", function (event) {
             }, function (o) {
                 console.log(o);
                 if (o.success) {
-                    emailRactive.set("step",2);
-                    setTimeout(function(){alert('认证邮件已发送至您的账号为' + o.data + '的邮箱，快去认证吧！');},600);
+                    //emailRactive.set("step",2);
+                    CccOk.create({
+                        title: '信息提示',
+                        msg: '认证邮件已发送至您的账号为' + o.data + '的邮箱，快去认证吧！',
+                        okText: '确定',
+                        ok: function() {
+                            window.location.href='/newAccount/userInfo';
+                        }
+                    });
                 } else {
                     emailRactive.set("step",3);
-                    setTimeout(function(){alert(o.error[0].message);},600);
+                    alert(o.error[0].message);
                 }
             });
         }
