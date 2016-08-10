@@ -33,7 +33,7 @@ var ractive = new Ractive({
         bankAccount: banksabled || [],
         province: '',
         city: '',
-        mobile: CC.user.mobile,
+        //mobile: CC.user.mobile,
         realName: CC.user.name,
         paymentPasswordHasSet: CC.user.paymentPasswordHasSet
     },

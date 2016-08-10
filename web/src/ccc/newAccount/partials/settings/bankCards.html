@@ -23,7 +23,7 @@
                     <img class="" src="/ccc/newAccount/img/card-id.png"/>
                 </div>
                 <input  on-keyup="validateIdNo" type="text" name="idNo" {{hasCardO?'disabled':''}} value="{{idNo}}"
-                class="payInp" placeholder="输入身份证号">
+                class="payInp" placeholder="输入身份证号码">
             </div>
             <p class="error">{{#if idNoError}} {{idNoError}} {{/if}}</p>
 
@@ -35,13 +35,14 @@
                 <div class="img-box">
                     <img src="/ccc/newAccount/img/bankcode.png"/>
                 </div>
-                <select name="bankName" class="select" value="{{bankName}}">
-                    <option value="">请选择开户行</option>
+                <select name="bankName" class="select" value="{{bankName}}" on-keyup="validateBankName">
+                    <option value="">选择开户银行</option>
                     {{#each newbanks}}
                     <option value="{{bankName}}">{{bankName}}</option>
                     {{/each}}
                 </select>
             </div>
+            <p class="error">{{#if bankNameError}} {{bankNameError}} {{/if}}</p>
             <div class="clearfix"></div>
         </div>
 
@@ -64,7 +65,7 @@
                     <img class="" src="/ccc/newAccount/img/card_mobile.png" style="width: 16px;margin-left: 12px;"/>
                 </div>
                 <input on-keyup="validatePhoneNo" type="text" name="cardPhone" value="{{mobile}}" class="payInp"
-                       placeholder="输入银行预留手机号">
+                       placeholder="输入银行预留手机号码">
             </div>
             <p class="error">{{#if phoneNoError}} {{phoneNoError}} {{/if}}</p>
             <div class="clearfix"></div>
@@ -110,9 +111,9 @@
             <div class="clearfix"></div>
         </div>
 
-        <div class="agree-box">
+        <!--<div class="agree-box">-->
             <!--<input type="checkbox" checked>我阅读并同意<a href="#">《用户委托支付协议》</a>-->
-        </div>
+        <!--</div>-->
 
         <div class="btn-box">
             <button type="submit">绑定</button>
