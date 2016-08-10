@@ -34,12 +34,16 @@ var ractive = new Ractive({
         bankAccount: banksabled || [],
         province: '',
         city: '',
-        //mobile: CC.user.mobile,
-        realName: CC.user.name
     },
     oninit: function () {
         accountService.getUserInfo(function (o) {
-            ractive.set('realName', o.userInfo.user.name);
+            if (o.userInfo.user.idNumber) {
+                ractive.set('hasCardO', true);
+                ractive.set('idNo', o.userInfo.user.idNumber);
+                ractive.set('personal', o.userInfo.user.name);
+            } else {
+                ractive.set('hasCardO', false);
+            }
         });
         $.get('/api/v2/hundsun/banks', function (r) {
             ractive.set('newbanks', r);
@@ -52,15 +56,6 @@ var ractive = new Ractive({
                 ractive.set('pwdText', '设定支付密码');
             }
         });
-        $.get('/api/v2/user/MYSELF', function (m) {
-            if (m.idNumber) {
-                ractive.set('hasCardO', true);
-                ractive.set('idNo', m.idNumber);
-                ractive.set('personal', m.name);
-            } else {
-                ractive.set('hasCardO', false);
-            }
-        })
     }
 });
 
@@ -154,6 +149,7 @@ ractive.on("bind-card-submit", function (e) {
 
     if (pwd === '') {
         this.set('errMessgaePwd', '请输入支付密码');
+        return;
     } else if (pwd.length < 6 || !/^[0-9]*$/g.test(pwd)) {
         this.set('errMessgaePwd', '交易密码为不小于6位纯数字');
         return;
@@ -173,7 +169,7 @@ ractive.on("bind-card-submit", function (e) {
 
 
     var sendCard = {
-        realName:personal,
+        realName: personal,
         IdNumber: idNo,
         accountNumber: cardNo,
         mobile: cardPhone,
@@ -274,36 +270,41 @@ ractive.on('sendCode', function () {
     this.fire('validatePhoneNo');
     this.fire('validateBankName');
 
-    var params ={
-        realName:realName,
-        IdNumber:IdNumber,
-        accountNumber:accountNumber,
-        mobile:cardPhone,
-        bankName:bankName
+    var params = {
+        realName: realName,
+        IdNumber: IdNumber,
+        accountNumber: accountNumber,
+        mobile: cardPhone,
+        bankName: bankName
     }
 
-if(accessA && accessB && accessC && accessD && accessE){
-    $.post('/api/v2/baofoo/preBindCard',params,function(r){
-        if(r.success){
-            console.log(r);
-            $.post('/api/v2/smsCaptcha', {mobile: cardPhone, smsType: 'CREDITMARKET_CAPTCHA'}, function (r) {
-                if (r.success) {
-                    countDown();
-                }
-            });
-        }else{
-            CccOk.create({
-                msg: r.error[0].message,
-                okText: '确定',
-                ok: function () {
-                    $('.ccc-box-overlay').remove();
-                    $('.ccc-box-wrap').remove();
-                }
-            });
-        }
-    });
-}
-
+    if (accessA && accessB && accessC && accessD && accessE) {
+        $.post('/api/v2/baofoo/MYSELF/preBindCard', params, function (r) {
+            if (r.success) {
+                console.log(r);
+                $.post('/api/v2/smsCaptcha', {mobile: cardPhone, smsType: 'CREDITMARKET_CAPTCHA'}, function (r) {
+                    if (r.success) {
+                        //ractive.set('personal',);
+                        //ractive.set('idNo',);
+                        //ractive.set('cardNo',);
+                        //ractive.set('mobile',);
+                        //ractive.set('bankName',);
+                        //ractive.set('hasCardO',true);
+                        countDown();
+                    }
+                });
+            } else {
+                CccOk.create({
+                    msg: r.error[0].message,
+                    okText: '确定',
+                    ok: function () {
+                        $('.ccc-box-overlay').remove();
+                        $('.ccc-box-wrap').remove();
+                    }
+                });
+            }
+        });
+    }
 
 
 });
