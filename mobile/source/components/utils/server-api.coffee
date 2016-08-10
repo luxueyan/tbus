@@ -285,6 +285,32 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
+            get_assignment_list: (query_set = {}, cache = false) ->
+
+                _.defaults query_set, {
+                    status: _.split 'OPEN FINISHED'
+                    page: 1
+                    pageSize: 10
+                }
+
+                @$http
+                    .get '/api/v2/creditassign/list',
+                        params: query_set
+                        cache: cache
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
+            get_assignment_detail: (id, cache = false) ->
+
+                @$http
+                    .get('/api/v2/creditassign/creditAssignDetail/' + id, {cache})
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
             login: (loginName, password) ->
 
                 @$http
