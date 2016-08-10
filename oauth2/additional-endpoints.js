@@ -56,9 +56,9 @@ module.exports = function (router, auth) {
     //发送短信验证码
     router.post('/api/v2/smsCaptcha', auth.user());
     //银行卡预绑卡
-    router.post('/api/v2/baofoo/preBindCard', auth.user());
+    router.post('/api/v2/baofoo/:userId/preBindCard', auth.user());
     //银行卡绑卡
-    router.post('/api/v2/baofoo/confirmBindCard', auth.user());
+    router.post('/api/v2/baofoo/:userId/confirmBindCard', auth.user());
     //银行卡绑卡
     router.post('/api/v2/baofoo/pay', auth.user());
 };
