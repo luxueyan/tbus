@@ -34,7 +34,7 @@ module.exports = function (router, auth) {
     router.post('/api/v2/user/checkBankcard', auth.user());
     //充值
     router.post('/api/v2/baofoo/recharge/:userId', auth.owner());
-    router.post('/api/v2/baofoo/charge', auth.owner());
+    router.post('/api/v2/baofoo/charge', auth.user());
     //取现
     router.post('/api/v2/baofoo/withdraw/:userId', auth.owner());
     //好友数目与红包数量

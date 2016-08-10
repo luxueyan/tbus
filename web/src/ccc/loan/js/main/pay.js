@@ -65,17 +65,17 @@ payRactive.on("invest-submit", function (e) {
 
                 if (document.getElementById('agree').checked == true) {
                     $('.agree-error').css('visibility', 'hidden');
-                    //$.post('/api/v2/invest/tender/MYSELF', {
-                    $.post('/api/v2/baofoo/pay', {
+                    $.post('/api/v2/invest/tender/MYSELF', {
+                    //$.post('/api/v2/baofoo/pay', {
                         //amount: num,
                         //loanId: CC.loanId,
                         //placementId:CC.placementId,
                         //paymentPassword: paymentPassword
-                        loanId: CC.loanId,
                         userId: CC.user.id,
-                        txn_amt: num,
-                        smsEnabled: false,
-                        isUseBalance: isUseB,
+                        loanId: CC.loanId,
+                        amount: num,
+                        smsCaptcha: false,
+                        placementId: CC.placementId,
                         paymentPassword: paymentPassword
                     }, function (res) {
                         //alert(11);
@@ -90,6 +90,7 @@ payRactive.on("invest-submit", function (e) {
                             payRactive.set('step1',false);
                             payRactive.set('step2',false);
                             payRactive.set('step3',true);
+                            payRactive.set('failerror',res.error[0].message);
                         }
                     });
 
