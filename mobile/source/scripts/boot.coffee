@@ -409,6 +409,20 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                     )
                     }
 
+                    .when '/assignment/:id', {
+                        controller: 'AssignmentCtrl as self'
+                        templateUrl: 'components/router/assignment/assignment.tmpl.html'
+                        resolve:
+                            loan: _.ai 'api, $location, $route',
+                                (       api, $location, $route) ->
+                                    api.get_assignment_detail($route.current.params.id, false)
+                                        .then (result) -> api.get_loan_detail(result.creditassign.loanId, false)
+
+                            assignment: _.ai 'api, $location, $route',
+                                (             api, $location, $route) ->
+                                    api.get_assignment_detail($route.current.params.id, false)
+                    }
+
                     .when '/more', {
                         controller: 'MoreCtrl as self'
                         templateUrl: 'components/router/more/more.tmpl.html'

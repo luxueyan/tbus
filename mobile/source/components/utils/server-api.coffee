@@ -302,6 +302,15 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
+            get_assignment_detail: (id, cache = false) ->
+
+                @$http
+                    .get('/api/v2/creditassign/creditAssignDetail/' + id, {cache})
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
             login: (loginName, password) ->
 
                 @$http
