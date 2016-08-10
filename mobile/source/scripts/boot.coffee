@@ -423,6 +423,39 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                     api.get_assignment_detail($route.current.params.id, false)
                     }
 
+                    .when '/assignment/:id/invest', {
+                        controller: 'AssignmentInvestCtrl as self'
+                        templateUrl: 'components/router/assignment/assignment-invest.tmpl.html'
+                        resolve:
+                            assignment: _.ai 'api, $location, $route, $q',
+                                (       api, $location, $route, $q) ->
+                                    api.fetch_current_user()
+                                        .then -> api.get_assignment_detail($route.current.params.id, false)
+                                        .catch ->
+                                            $location
+                                                .replace()
+                                                .path '/login'
+                                                .search next: "assignment/#{ $route.current.params.id }/invest"
+                                            do $q.reject
+
+                            loan: _.ai 'api, $location, $route',
+                                (       api, $location, $route) ->
+                                    api.get_assignment_detail($route.current.params.id, false)
+                                        .then (result) -> api.get_loan_detail(result.creditassign.loanId, false)
+
+                            coupon: _.ai 'api, $route, $q',
+                                (         api, $route, $q) ->
+                                    api.fetch_current_user()
+                                        .then -> api.get_assignment_detail($route.current.params.id, false)
+                                        .then (result) -> api.get_loan_detail(result.creditassign.loanId, false)
+                                        .then (data) ->
+                                            amount = data.balance
+                                            months = _.get data, 'duration.totalMonths'
+                                            loan_id = data.id
+
+                                            return api.fetch_coupon_list amount, months, loan_id
+                    }
+
                     .when '/more', {
                         controller: 'MoreCtrl as self'
                         templateUrl: 'components/router/more/more.tmpl.html'
