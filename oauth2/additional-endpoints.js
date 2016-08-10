@@ -34,6 +34,7 @@ module.exports = function (router, auth) {
     router.post('/api/v2/user/checkBankcard', auth.user());
     //充值
     router.post('/api/v2/baofoo/recharge/:userId', auth.owner());
+    router.post('/api/v2/baofoo/charge', auth.owner());
     //取现
     router.post('/api/v2/baofoo/withdraw/:userId', auth.owner());
     //好友数目与红包数量
@@ -59,6 +60,6 @@ module.exports = function (router, auth) {
     router.post('/api/v2/baofoo/:userId/preBindCard', auth.user());
     //银行卡绑卡
     router.post('/api/v2/baofoo/:userId/confirmBindCard', auth.user());
-    //银行卡绑卡
+    //投资支付
     router.post('/api/v2/baofoo/pay', auth.user());
 };
