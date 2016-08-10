@@ -15,7 +15,7 @@ var ractive = new Ractive({
         mobile: formatNumber(CC.user.mobile),
         idNumber: false,
         //paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false,
-        email: CC.user.email,
+        email: '',
         percent: 25,
         levelText:'弱',
         isEnterprise: CC.user.enterprise,
@@ -25,7 +25,10 @@ var ractive = new Ractive({
         accountService.checkAuthenticate(function (r) {
             ractive.set('paymentPasswordHasSet', r.paymentAuthenticated);
             accountService.getUserInfo(function (userinfo) {
-                ractive.set('email', userinfo.userInfo.user.email);
+                console.log(r.emailAuthenticated);
+                if(r.emailAuthenticated){
+                    ractive.set('email', userinfo.userInfo.user.email);
+                }
                 ractive.set('idNumber', formatNumber(userinfo.userInfo.user.idNumber));
             });
         });
@@ -62,38 +65,38 @@ function formatNumber(number, left, right) {
     return tmp;
 }
 
-$(function (){
-    //$(".goRz").click(function (e){
-    //    e.preventDefault();
-    //    $('.rzz').toggle();
-    //});
-
-    $(".rzE_button").click(function (){
-        var email = $('.rZemail').val();
-        if (email == '') {
-            $('.errors').text('请输入邮箱!');
-            $('.errors').css('backgroundImage','url(/ccc/register/img/gou-bg.png)');
-        } else if (!email.match(/[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+/)) {
-            $('.errors').text('请输入正确的邮箱!');
-			$('.errors').css('backgroundImage','url(/ccc/register/img/gou-bg.png)');
-
-        } else {
-            $('.errors').text('');
-            $.post('/api/v2/users/creditEmail/MYSELF', {
-                email : email
-            }, function(o){
-                //console.log(o);
-                if (o.success) {
-                    alert('认证邮件已发送至您的账号为' + o.data + '的邮箱，快去认证吧！');
-                    window.location.reload();
-                } else {
-                    alert(o.error[0].message);
-                    window.location.reload();
-                }
-            });
-        }
-    });
-});
+//$(function (){
+//    $(".goRz").click(function (e){
+//        e.preventDefault();
+//        $('.rzz').toggle();
+//    });
+//
+//    $(".rzE_button").click(function (){
+//        var email = $('.rZemail').val();
+//        if (email == '') {
+//            $('.errors').text('请输入邮箱!');
+//            $('.errors').css('backgroundImage','url(/ccc/register/img/gou-bg.png)');
+//        } else if (!email.match(/[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+/)) {
+//            $('.errors').text('请输入正确的邮箱!');
+//			$('.errors').css('backgroundImage','url(/ccc/register/img/gou-bg.png)');
+//
+//        } else {
+//            $('.errors').text('');
+//            $.post('/api/v2/users/creditEmail/MYSELF', {
+//                email : email
+//            }, function(o){
+//                //console.log(o);
+//                if (o.success) {
+//                    alert('认证邮件已发送至您的账号为' + o.data + '的邮箱，快去认证吧！');
+//                    window.location.reload();
+//                } else {
+//                    alert(o.error[0].message);
+//                    window.location.reload();
+//                }
+//            });
+//        }
+//    });
+//});
 
 ractive.on('submit',function() {
     var male = $('#male').val();
