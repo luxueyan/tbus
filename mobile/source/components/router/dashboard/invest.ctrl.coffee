@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'InvestCtrl',
 
-        _.ai '            @api, @$scope, @$rootScope, @$window, @$location, @$routeParams, @map_invest_summary', class
-            constructor: (@api, @$scope, @$rootScope, @$window, @$location, @$routeParams, @map_invest_summary) ->
+        _.ai '            @api, @$scope, @$rootScope, @$window, @$location, @$routeParams, @map_invest_summary, @map_assignment_summary', class
+            constructor: (@api, @$scope, @$rootScope, @$window, @$location, @$routeParams, @map_invest_summary, @map_assignment_summary) ->
 
                 @$window.scrollTo 0, 0
 
@@ -54,7 +54,7 @@ do (_, angular) ->
 
                         .then ({results, totalSize}) =>
 
-                            @$scope.list = @$scope.list.concat results
+                            @$scope.list = @$scope.list.concat results.map(@map_assignment_summary)
 
                             angular.extend @$scope.list, {totalSize}
 
@@ -125,6 +125,7 @@ do (_, angular) ->
 
         return {
             id: item.id
+            raw: item
             rate: parseFloat (item.rate / 100).toFixed(2)
             title: item.loanTitle
             status: item.status
