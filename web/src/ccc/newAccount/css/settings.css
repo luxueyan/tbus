@@ -18,10 +18,10 @@
     height: 70px;
 }
 
-#main-container .label {
-    height: 70px;
-    line-height: 70px;
-}
+/*#main-container .label {*/
+    /*height: 70px;*/
+    /*line-height: 70px;*/
+/*}*/
 
 .value {
     width: 310px;

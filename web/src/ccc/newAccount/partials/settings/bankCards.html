@@ -38,7 +38,7 @@
                 <select name="bankName" class="select" value="{{bankName}}" {{hasCardO?'disabled':''}} on-blur="validateBankName">
                     <option value="">选择开户银行</option>
                     {{#each newbanks}}
-                    <option value="{{bankName}}">{{bankName}}</option>
+                    <option value="{{bankCode}}">{{bankName}}</option>
                     {{/each}}
                 </select>
             </div>

@@ -54,6 +54,7 @@ module.exports = function (router, auth) {
     router.get('/api/v2/creditassign/list/filter', auth.pass());
     //债转购买接口
     router.post('/api/v2/creditassign/autoAssign/:userId', auth.user());
+    router.post('/api/v2/invest/user/:userId/creditAssign', auth.user());
     //发送短信验证码
     router.post('/api/v2/smsCaptcha', auth.user());
     //银行卡预绑卡
