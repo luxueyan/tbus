@@ -20,6 +20,9 @@ module.exports = function(router) {
     // topNav 需要的东西
     router.get('/*', function(req, res, next) {
 
+        //var clientIp = req.getClientIp(req);
+        //res.expose(clientIp,'clientIp');
+
         // assign user数据
         var user = res.locals.user;
         if (user && user.idNumber) {

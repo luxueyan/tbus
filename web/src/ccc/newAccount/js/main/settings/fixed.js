@@ -128,8 +128,8 @@ function init(type) {
                     this.set('pageOne', o.results);
                     this.set('list', o.results);
                 }else{
-                    console.log('#####');
-                    console.log(o);
+                    //console.log('#####');
+                    //console.log(o);
                     //this.set('valueDate', o.dates.(o.result.results.id).loanRequest.valueDate);
                     //this.set('total', o.dates.);
                     this.set('total', o.result.totalSize);
