@@ -44,11 +44,13 @@ var payRactive = new Ractive({
 payRactive.on("invest-submit", function (e) {
     var that = this;
     var creditassign = that.get('creditassign');
+    var isUseB = that.get('useBankCard');
+    //console.log(isUseB);
     //console.log(creditassign);
     e.original.preventDefault();
-    if(!this.get('useBankCard')){
-        return;
-    }
+    //if(!this.get('useBankCard')){
+    //    return;
+    //}
     var num = this.get('investNum'); //
     var paymentPassword = this.get('paymentPassword');
     if (paymentPassword === '') {
@@ -63,9 +65,13 @@ payRactive.on("invest-submit", function (e) {
 
                 if (document.getElementById('agree').checked == true) {
                     $('.agree-error').css('visibility', 'hidden');
-                    $.post('/api/v2/creditassign/autoAssign/MYSELF', {
-                        creditAssignId:creditassignId,
-                        principalAmount: num
+                    //$.post('/api/v2/creditassign/autoAssign/MYSELF', {
+                    $.post('/api/v2/invest/user/MYSELF/creditAssign/invest', {
+                        //creditAssignId:creditassignId,
+                        //principalAmount: num
+                        amount: num,
+                        creditAssignId: creditassignId,
+                        isUseBalance: isUseB
                     }, function (res) {
                         if (res.success) {
                             payRactive.set('step1',false);
