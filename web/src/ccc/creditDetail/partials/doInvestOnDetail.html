@@ -25,7 +25,7 @@
                             </div>
                             <div class="item itemThird" style="border-right:none">
                                 <div class="value">{{creditassign.creditassign.timeOut}} <span>小时</span></div>
-                                <div class="name">预期到期日 <span style="color: #666">{{timeFinished}}</span></div>
+                                <div class="name">预期到期日 <span style="color: #666">{{dueDate}}</span></div>
                             </div>
                             <div class="item itemFirst">
                                 <div class="value">
@@ -53,8 +53,8 @@
                 <div class="tooltip">{{ errors.msg }}</div>
                 {{/if}}
 
-                <div>转让价格(元): <span>{{creditassign.creditassign.balance}}</span></div>
-                <input type="hidden" value="{{creditassign.creditassign.balance}}" />
+                <div>转让价格(元): <span>{{creditassign.creditassign.creditDealAmount}}</span></div>
+                <input type="hidden" value="{{creditassign.creditassign.creditDealAmount}}" />
                 <div>预期收益(元): <span>{{profit}}</span></div>
                 <button class="btn" on-click="invest-submit">确认购买</button>
             </div>

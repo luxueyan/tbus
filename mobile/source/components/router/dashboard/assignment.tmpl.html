@@ -1,0 +1,126 @@
+
+<div id="dashboard-assignment">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" x-go-back>
+            <param class="glyphicon glyphicon-menu-left">
+        </a>
+        <span class="col-xs-6 title">转让</span>
+        <span class="col-xs-3">&nbsp;</span>
+    </div>
+    </nav>
+
+    <div>
+        <param ng-model="msg" ng-init="msg = {
+            INCORRECT_PASSWORD: '交易密码不正确',
+            UNKNOWN: '系统繁忙，请稍后重试！',
+            ACCESS_DENIED: '登录超时',
+        }">
+    </div>
+
+    <section class="summary shadow">
+        <h4>{{ loan.title }}</h4>
+    </section>
+
+    <form class="form-horizontal form-assignment"
+          name="form"
+          autocapitalize="none"
+          autocomplete="off"
+          autocorrect="off"
+          ng-submit="self.submit($event)"
+          ng-hide="action_result"
+    >
+        <section>
+            <ul class="list-unstyled u-off-margin-bottom list">
+                <li>
+                    <div class="info">
+                        <span class="name">标的估值(元)</span>
+                        <span class="value"><span class="num">{{  }}</span></span>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="info">
+                        <span class="name">转让折价率</span>
+                        <span class="value">
+                            <div class="form-control-wrap">
+                                <input class="form-control input-target"
+                                       type="number"
+                                       id="rate"
+                                       name="rate"
+                                       ng-model="store.rate"
+                                       placeholder=""
+                                       required
+                                >
+                            </div>
+                        </span>
+                    </div>
+                    <p class="desc">(支持溢价，折价率必须大于等于0.95；小余等于1.05)</p>
+                </li>
+
+                <li>
+                    <div class="info">
+                        <span class="name">转让价格(元)</span>
+                        <span class="value"><span class="num">{{ }}</span></span>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="info">
+                        <span class="name">转让期限</span>
+                        <span class="value">24小时</span>
+                    </div>
+                    <p class="desc">(如果到期无人购买，申请将自动撤销)</p>
+                </li>
+            </ul>
+        </section>
+
+        <section class="btn-submit-wrap">
+            <button type="submit" class="btn btn-theme btn-lg btn-block"
+                    ng-disabled="form.$invalid || self.submit_sending"
+            >确认转让</button>
+        </section>
+    </form>
+
+
+
+
+
+
+    <div class="action-result" ng-show="action_result">
+        <div ng-show="action_result.success">
+            <div class="content text-center shadow">
+                <div class="icon-wrap">
+                    <img class="icon" width="66" ng-src="assets/image/smile-icon.png">
+                </div>
+
+                <p class="desc">提交成功</p>
+            </div>
+
+            <div class="action">
+                <a class="btn btn-theme btn-block" href="dashboard/invest">查看投资详情</a>
+            </div>
+        </div>
+
+        <div ng-hide="action_result.success">
+            <div class="content text-center shadow">
+                <div class="icon-wrap">
+                    <img class="icon" width="66" ng-src="assets/image/unhappy-icon.png">
+                </div>
+
+                <p class="desc text-muted">提交失败</p>
+
+                <p class="msg">{{ action_result.msg }}</p>
+            </div>
+
+            <div class="action">
+                <a class="btn btn-theme btn-block" href=""
+                   ng-click="action_result = null"
+                >重新提交</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+

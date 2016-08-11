@@ -45,10 +45,17 @@
                 && list.length < list.totalSize
             }}"
         >
-            <li ng-repeat="item in list">
+            <li ng-repeat="item in list" ng-switch="current_tab">
                 <a ng-href="loan/{{ item.id }}"
                    x-loan-summary
                    data-loan="item"
+                   ng-switch-when="loan"
+                ></a>
+
+                <a ng-href="assignment/{{ item.id }}"
+                   x-assignment-summary
+                   data-loan="item"
+                   ng-switch-when="assignment"
                 ></a>
             </li>
         </ul>
@@ -57,8 +64,11 @@
             <img src="assets/image/spinner.gif">
         </p>
 
-        <div ng-if="!list.length" ng-hide="loading">
-            <h4 class="alert alert-info text-center">暂无数据</h4>
+        <div class="container not-found" ng-if="!list.length" ng-hide="loading">
+            <div class="icon-wrap">
+                <img class="icon" height="51" ng-src="assets/image/not-found-icon.png">
+            </div>
+            <p class="desc">暂无数据</p>
         </div>
     </section>
 

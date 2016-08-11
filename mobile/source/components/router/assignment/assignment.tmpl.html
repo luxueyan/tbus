@@ -1,0 +1,159 @@
+
+<div id="assignment">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-2 back" x-go-back>
+            <param class="glyphicon glyphicon-menu-left">
+        </a>
+        <span class="col-xs-8 title">{{ assignment.title }}</span>
+        <span class="col-xs-2">&nbsp;</span>
+    </div>
+    </nav>
+
+    <section class="omit-margin container loan-summary-1">
+        <div class="row text-center">
+            <div class="col-xs-6 rate">
+                <div class="value">{{ assignment.rate }}<small>%</small></div>
+                <div class="name">预期年收益率</div>
+            </div>
+
+            <div class="col-xs-6 duration">
+                <div class="value">{{ loan.due_date | date: 'yyyy-MM-dd' }}</div>
+                <div class="name">预期到期日</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="omit-margin shadow loan-summary-2">
+        <span class="date">
+            发布日期：{{  }}
+        </span>
+        <span class="date">
+            起息日：{{  }}
+        </span>
+    </section>
+
+    <section class="loan-info">
+        <ul class="list-unstyled u-off-margin-bottom list">
+            <li>
+                <span class="name">产品总额</span>
+                <span class="value">
+                    {{ assignment.amount_myriad || assignment.amount }}<!--
+                    --><span class="unit" ng-if="assignment.amount_myriad">万</span><!--
+                    --><span class="unit" ng-if="!assignment.amount_myriad">元</span>
+                </span>
+            </li>
+            <li>
+                <span class="name">投资期限</span>
+                <span class="value">{{ assignment.total_days }}天</span>
+            </li>
+            <li>
+                <span class="name">起投金额</span>
+                <span class="value">{{ loan.raw.loanRequest.investRule.minAmount }}元</span>
+            </li>
+            <li>
+                <span class="name">递增金额</span>
+                <span class="value">{{ loan.raw.loanRequest.investRule.stepAmount }}元</span>
+            </li>
+            <li>
+                <span class="name">收益分配</span>
+                <span class="value" ng-switch="assignment.method">
+                    <span ng-switch-when="MonthlyInterest">按月付息到期还本</span>
+                    <span ng-switch-when="EqualInstallment">按月等额本息</span>
+                    <span ng-switch-when="EqualPrincipal">按月等额本金</span>
+                    <span ng-switch-when="BulletRepayment">一次性还本付息</span>
+                    <span ng-switch-when="EqualInterest">月平息</span>
+                    <span ng-switch-when="YearlyInterest">按年付息到期还本</span>
+                </span>
+            </li>
+            <li>
+                <span class="name">产品风险等级</span>
+                <span class="value"
+                      ng-bind-html="loan.raw.loanRequest.mortgageInfo | sanitize"
+                ></span>
+            </li>
+            <li>
+                <span class="name">资金用途</span>
+                <span class="value"
+                      ng-bind-html="loan.raw.loanRequest.guaranteeInfo | sanitize"
+                ></span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="loan-detail">
+        <uib-accordion close-others="true">
+            <uib-accordion-group is-open="open" ng-if="true">
+                <uib-accordion-heading>
+                    <param class="pull-right glyphicon"
+                           ng-class="open ? 'glyphicon-menu-up' : 'glyphicon-menu-down'"
+                    >
+                    产品亮点
+                </uib-accordion-heading>
+
+                <div class="content"
+                     ng-bind-html="loan.raw.loanRequest.guaranteeInfo | sanitize"
+                ></div>
+            </uib-accordion-group>
+
+            <uib-accordion-group is-open="open" ng-if="true">
+                <uib-accordion-heading>
+                    <param class="pull-right glyphicon"
+                           ng-class="open ? 'glyphicon-menu-up' : 'glyphicon-menu-down'"
+                    >
+                    风控措施
+                </uib-accordion-heading>
+
+                <div class="content"
+                     ng-bind-html="loan.raw.loanRequest.riskInfo | sanitize"
+                ></div>
+            </uib-accordion-group>
+
+            <uib-accordion-group is-open="open" ng-if="true">
+                <uib-accordion-heading>
+                    <param class="pull-right glyphicon"
+                           ng-class="open ? 'glyphicon-menu-up' : 'glyphicon-menu-down'"
+                    >
+                    常见问题
+                </uib-accordion-heading>
+
+                <div class="content"
+                     ng-bind-html="loan.raw.loanRequest.description | sanitize"
+                ></div>
+            </uib-accordion-group>
+        <uib-accordion>
+    </section>
+
+    <section class="omit-margin loan-fixed">
+        <div class="rule">
+            转让价格(元) {{  }}<br>
+            预期收益(元) {{  }}
+        </div>
+
+        <div class="status" ng-switch="assignment.status">
+            <div class="btn btn-block btn-default disabled"
+                 ng-switch-when="SCHEDULED"
+            >即将开始</div>
+
+            <a class="btn btn-block btn-theme"
+               ng-switch-when="OPENED"
+               ng-click="self.submit($event)"
+            >马上投资</a>
+
+            <div class="btn btn-block btn-default disabled"
+                 ng-switch-when="FINISHED"
+            >已抢完</div>
+
+            <div class="btn btn-block btn-default disabled"
+                 ng-switch-when="SETTLED"
+            >计息中</div>
+
+            <div class="btn btn-block btn-default disabled"
+                 ng-switch-when="CLEARED"
+            >已结息</div>
+        </div>
+    </section>
+
+</div>
+

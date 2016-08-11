@@ -158,11 +158,11 @@ IndexService.getLoanSummary(function (res) {
     }
     var listNone = [];
     for (var i = 0; i < listFixed.length; i++) {
-        if (listFixed[i].Fbalance != '"0.00"') {
-            listNone.push(res[i]);
+        if (listFixed[i].status == "OPENED"||listFixed[i].status == "SCHEDULED") {
+            listNone.push(listFixed[i]);
         }
     }
-    console.log(listNone);
+    console.log(listFixed);
     var compare = function (obj1, obj2) {
         var val1 = obj1.loanRequest.timeSubmit;
         var val2 = obj2.loanRequest.timeSubmit;
@@ -181,7 +181,7 @@ IndexService.getLoanSummary(function (res) {
         el: ".fixedPro",
         template: require('ccc/invest/partials/fixedPro.html'),
         data: {
-            list: (listNone.slice(0, 3)),
+            list: listNone,
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         },
     });
