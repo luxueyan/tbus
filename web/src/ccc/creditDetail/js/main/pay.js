@@ -77,15 +77,15 @@ payRactive.on("invest-submit", function (e) {
                             payRactive.set('step1',false);
                             payRactive.set('step2',true);
                             payRactive.set('step3',false);
-                            ///creditDetail/{{id}}/{{loanId}}
                             setTimeout(function(){
-                              window.location.href = '/creditDetail/'+creditassign.id+'/'+creditassign.loanId;
+                              //window.location.href = '/creditDetail/'+creditassign.id+'/'+creditassign.loanId;
+                              window.location.href = '/creditList';
                             },5000);
                         } else {
                             payRactive.set('step1',false);
                             payRactive.set('step2',false);
                             payRactive.set('step3',true);
-                            payRactive.set('failerror',res);
+                            payRactive.set('failerror',res.error[0].message);
                         }
                     });
 
