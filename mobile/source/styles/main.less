@@ -1002,7 +1002,7 @@ a {
         }
 
         > li {
-            padding: 15px 0 5px;
+            padding: 13px 0 7px;
 
             + li {
                 position: relative;
@@ -1028,23 +1028,33 @@ a {
                 font-size: 14px;
 
                 &:after {
-                    .transform(scale(0.5));
+                    .transform(scale(0.7));
                     display: inline-block;
                     position: relative;
                     top: -2px;
                     border-radius: 2px;
                     padding: 2px 8px;
                     content: attr(data-after-content);
+                    color: #FFF;
                 }
 
                 &.HOT:after {
                     background-color: @color-theme-main;
-                    color: #FFF;
+                }
+
+                &.status-OPENED:after {
+                    background-color: #C79F62;
+                }
+
+                &.status-FINISHED:after {
+                    background-color: #B4B4B5;
                 }
             }
 
             .info-list {
-                .flex-display(center; space-between);
+                .flex-display(flex-end; space-between);
+                -webkit-box-align: end;
+                margin-top: -10px;
 
                 .info {
                     .flex(1);
@@ -1059,7 +1069,7 @@ a {
 
                 .percent {
                     position: relative;
-                    top: -10px;
+                    top: -3px;
                     text-align: center;
 
                     .chart {
@@ -1076,6 +1086,24 @@ a {
                         top: 50%;
                         font-size: 12px;
                         line-height: 1;
+                    }
+                }
+            }
+
+            .icon {
+                display: block;
+                margin: 0 auto;
+                background: url("@{path-image}/refresh-icons.png") no-repeat;
+                background-size: 108px/2 196px/2;
+                width: 108px/2;
+                height: 98px/2;
+                overflow: hidden;
+
+                &-refresh {
+                    background-position: 0 0;
+
+                    &.gray {
+                        background-position: 0 -98px/2;
                     }
                 }
             }
@@ -2070,13 +2098,19 @@ a {
 }
 
 /*=============================================================================
-                                             [Router] Loan invest Select Coupon
+                                                     [Router] Assignment detail
 ----*/
 
-#loan-invest-select-coupon {
-    .coupon-list {
-        #dashboard-coupon .coupon-list;
-    }
+#assignment {
+    #loan;
+}
+
+/*=============================================================================
+                                                     [Router] Assignment invest
+----*/
+
+#assignment-invest {
+    #loan-invest;
 }
 
 /*=============================================================================
@@ -2695,6 +2729,93 @@ a {
 
     .loading {
         padding: 10px;
+    }
+}
+
+/*=============================================================================
+                                                    [Router] [Dashboard] Invest
+----*/
+
+#dashboard-assignment {
+    .summary {
+        margin-bottom: 8px;
+        padding: 20px 15px 12px;
+        background-color: #FFF;
+        text-align: center;
+
+        h4 {
+            margin: 0;
+            font-size: 16px;
+            color: #717071;
+        }
+    }
+
+    .form-assignment {
+        padding: 5px 15px 140px;
+        background-color: #FFF;
+
+        .list {
+            > li {
+                padding: 12px 8px;
+
+                + li {
+                    border-top: 1px dashed #DCDCDC;
+                }
+            }
+        }
+
+        .info {
+            .flex-display(center; space-between);
+
+            .name {
+                border-left: 1px solid #717071;
+                padding-left: 4px;
+                width: 8em;
+                line-height: 1.1;
+                color: #717071;
+            }
+
+            .value {
+                .flex(1);
+                text-align: left;
+                color: #9E9E9F;
+
+                .num {
+                    font-size: 18px;
+                    color: @color-theme-main;
+                }
+            }
+        }
+
+        .form-control-wrap {
+            margin-right: 50px;
+        }
+
+        input.form-control {
+            border: 1px solid #808080;
+            border-radius: 5px;
+            padding: 5px 10px;
+            height: 32px;
+            -webkit-appearance: none;
+            -webkit-box-shadow: none;
+                    box-shadow: none;
+        }
+
+        .desc {
+            margin: 6px 0 0;
+            font-size: 12px;
+            color: #B4B4B5;
+        }
+
+        button[type="submit"] {
+            .button-size(9px; 9px; 14px; 1; 8px);
+        }
+
+        .btn-submit-wrap {
+            margin-top: 27px;
+            margin-left: 60px;
+            margin-right: 60px;
+        }
     }
 }
 

@@ -1,0 +1,194 @@
+
+<div id="assignment-invest">
+    <style> body { background-color: #FFF; } </style>
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-2 back" x-go-back>
+            <param class="glyphicon glyphicon-menu-left">
+        </a>
+        <span class="col-xs-8 title">{{ assignment.title }}</span>
+        <span class="col-xs-2">&nbsp;</span>
+    </div>
+    </nav>
+
+    <div>
+        <param ng-model="msg" ng-init="msg = {
+            INCORRECT_PASSWORD: '交易密码不正确',
+            UNKNOWN: '系统繁忙，请稍后重试！',
+            ACCESS_DENIED: '登录超时',
+        }">
+    </div>
+
+    <form class="form-horizontal form-invest"
+          name="form"
+          autocapitalize="none"
+          autocomplete="off"
+          autocorrect="off"
+          ng-submit="self.submit($event)"
+          ng-hide="action_result"
+    >
+        <section class="summary shadow">
+            转让价格(元) <span class="u-color-main">{{ }}</span><br>
+            预期收益(元) <span class="u-color-main">{{ }}</span>
+        </section>
+
+        <section>
+            <ul class="list-unstyled u-off-margin-bottom list">
+                <li>
+                    <div class="info">
+                        <span class="name">账户余额(元)</span>
+                        <span class="value text-left">
+                            <span class="u-color-main">
+                                {{ self.user.fund.availableAmount | number: 2 }}
+                            </span>
+                        </span>
+                        <span class="action">
+                            使用 <input type="checkbox" ng-init="use_available_amount = true" ng-model="use_available_amount">
+                        </span>
+                    </div>
+                </li>
+                <li>
+                    <div class="info">
+                        <span class="name">银行卡</span>
+                        <span class="value text-muted" ng-if="default_bank_account">
+                            {{ default_bank_account.account.bankName }}
+                            {{ default_bank_account.account.account | string_replace: '^\\d+(\\d{4})$' : '****$1' }}
+                        </span>
+                    </div>
+                </li>
+                <li>
+                    <div class="info">
+                        <span class="name">红包</span>
+                        <span class="value">
+                            <div class="coupon-wrap"
+                                 ng-class="{ rsaquo: coupon_list.length }"
+                            >
+                                <select name="placementId" class="form-control"
+                                        id="coupon"
+                                        ng-model="store.coupon"
+                                        ng-options="
+                                            coupon.display
+                                            for coupon in coupon_list
+                                            track by coupon.id
+                                        "
+                                        ng-if="coupon_list.length"
+                                >
+                                    <option value="">{{ coupon_list.length }}个红包可用</option>
+                                </select>
+
+                                <div class="hint" ng-if="!coupon_list.length">暂无红包可用</div>
+                            </div>
+                        </span>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <section class="container agreement">
+            <label>
+                <input type="checkbox" ng-init="agreement = true" ng-model="agreement" required>
+                我阅读并同意<a href="#" ng-click="self.agreement('风险投资书')">《风险投资书》</a>
+            </label>
+        </section>
+
+        <section class="container text-center actual-payment-amount">
+            实际支付金额(元) ：<span class="u-color-main" ng-show="form.amount.$valid">{{ actual_payment_amount | number: 2 }}</span>
+        </section>
+
+        <section class="btn-submit-wrap">
+            <button type="submit" class="btn btn-theme btn-lg btn-block"
+                    ng-disabled="form.$invalid || self.submit_sending"
+            >确认投资</button>
+        </section>
+    </form>
+
+
+
+
+
+
+    <div class="action-result" ng-show="action_result">
+        <div ng-show="action_result.success">
+            <div class="content text-center shadow">
+                <div class="icon-wrap">
+                    <img class="icon" width="66" ng-src="assets/image/smile-icon.png">
+                </div>
+
+                <p class="desc">支付成功</p>
+            </div>
+
+            <div class="detail text-center">
+                <p>您已成功投资 {{ store.amount | number: 2 }}元</p>
+                <p>预计到期收益 {{ earning | number: 2 }}元</p>
+            </div>
+
+            <div class="action">
+                <a class="btn btn-theme btn-block" href="list">继续投资</a>
+                <a class="btn btn-plain btn-block" href="dashboard/invest">查看投资详情</a>
+            </div>
+        </div>
+
+        <div ng-hide="action_result.success">
+            <div class="content text-center shadow">
+                <div class="icon-wrap">
+                    <img class="icon" width="66" ng-src="assets/image/unhappy-icon.png">
+                </div>
+
+                <p class="desc text-muted">支付失败</p>
+
+                <p class="msg">{{ action_result.msg }}</p>
+            </div>
+
+            <div class="action">
+                <a class="btn btn-theme btn-block" href=""
+                   ng-click="action_result = null"
+                >重新支付</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+<script type="text/ng-template" id="ngt-invest-agreement.tmpl">
+    <div class="modal-body" style="max-height: 300px; overflow-y: auto;" ng-bind-html="content | sanitize"></div>
+
+    <div class="modal-footer">
+        <button class="btn btn-block btn-theme" ng-click="$close()">
+            已阅读此协议
+        </button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="ngt-loan-invest-short-of-balance.tmpl">
+    <div class="modal-header text-center">
+        <h3 class="modal-title">账户余额不足</h3>
+    </div>
+
+    <div class="modal-body text-center">
+        当前账户余额{{ balance | number }}元，最小投资额{{ minimum | number }}元
+    </div>
+
+    <div class="modal-footer container">
+        <div class="row">
+            <div class="col-xs-6">
+                <button class="btn btn-block btn-default" ng-click="$close()">
+                    调整金额
+                </button>
+            </div>
+            <div class="col-xs-6">
+                <button class="btn btn-block btn-theme" ng-click="$dismiss('dashboard/recharge')">
+                    快速充值
+                </button>
+            </div>
+        </div>
+    </div>
+</script>
+

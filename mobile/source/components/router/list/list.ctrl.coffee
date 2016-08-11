@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'ListCtrl',
 
-        _.ai '            @api, @$scope, @$rootScope, @$window, @map_loan_summary, @$routeParams', class
-            constructor: (@api, @$scope, @$rootScope, @$window, @map_loan_summary, @$routeParams) ->
+        _.ai '            @api, @$scope, @$rootScope, @$window, @map_loan_summary, @map_assignment_summary, @$routeParams', class
+            constructor: (@api, @$scope, @$rootScope, @$window, @map_loan_summary, @map_assignment_summary, @$routeParams) ->
 
                 @$window.scrollTo 0, 0
 
@@ -39,6 +39,28 @@ do (_, angular) ->
                         .then ({results, totalSize}) =>
 
                             @$scope.list = @$scope.list.concat results.map(@map_loan_summary)
+
+                            angular.extend @$scope.list, {totalSize}
+
+                        .finally =>
+                            @$scope.loading = false
+                    )
+
+                else if @$scope.current_tab is 'assignment'
+
+                    if options.on_next_page
+                        query_set.page++
+                    else
+                        query_set.page = 1
+                        @$scope.list = []
+
+                    @$scope.loading = true
+
+                    (@api.get_assignment_list(query_set)
+
+                        .then ({results, totalSize}) =>
+
+                            @$scope.list = @$scope.list.concat results.map(@map_assignment_summary)
 
                             angular.extend @$scope.list, {totalSize}
 

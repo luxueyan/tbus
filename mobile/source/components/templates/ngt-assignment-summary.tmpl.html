@@ -1,0 +1,35 @@
+
+<h4 class="title"
+    data-after-content="{{ { OPENED: '转', FINISHED: '已摘牌' }[loan.status] }}"
+    ng-class="'status-' + loan.status"
+>{{ loan.title }}</h4>
+
+<div class="info-list">
+    <div class="info rate">
+        <div class="value">
+            <span class="num">{{ loan.rate }}</span><span class="unit">%</span>
+        </div>
+        <div class="name">预期年收益率</div>
+    </div>
+
+    <div class="info text-center">
+        <div class="value">{{ loan.due_date | date: 'yyyy-MM-dd' }}</div>
+        <div class="name">预期到期日</div>
+    </div>
+
+    <div class="info text-center">
+        <div class="value">{{ loan.amount | number: 2 }}</div>
+        <div class="name">转让价格(元)</div>
+    </div>
+
+    <div class="info percent">
+        <param class="icon icon-refresh"
+               ng-class="{ gray: loan.status == 'FINISHED' }"
+        >
+        <span class="status" ng-switch="loan.status">
+            <span ng-switch-when="OPENED" class="u-color-main">抢购</span>
+            <span ng-switch-when="FINISHED"><small>已转让</small></span>
+        </span>
+    </div>
+</div>
+
