@@ -141,7 +141,9 @@ var investRactive = new Ractive({
         var that = this;
         InvestListService.getCreditassignData(jsonToParams(params),function(res){
             that.set('list',parseLoanList(res.results));
-            that.renderPager(res,params.currentPage,that)
+            that.set('date',moment(res.results.dueDate).format('YYYY-MM-DD'));
+            that.renderPager(res,params.currentPage,that);
+            console.log(res);
         });
 
     },
