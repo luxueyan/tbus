@@ -187,6 +187,9 @@
 .deal-data-box table thead th{
     padding: 10px;
 }
+.deal-data-box table tbody tr td{
+    padding: 0 10px;
+}
 
 #main-container {
     padding-bottom: 0;

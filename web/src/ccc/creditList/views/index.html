@@ -68,13 +68,13 @@
                     </tr>
                     </thead>
                     <tbody>
+                    {{#record}}
                     <tr>
-                        {{#record}}
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        {{/record}}
+                        <td>{{mobile}}</td>
+                        <td>{{amount}}</td>
+                        <td>{{submitTime}}</td>
                     </tr>
+                    {{/record}}
                     </tbody>
                 </table>
             </div>

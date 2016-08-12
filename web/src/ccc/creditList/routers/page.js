@@ -15,9 +15,9 @@ module.exports = function (router) {
             '理财平台为您提供了多种理财产品，每种理财产品都有不同的特点，满足您的投资需求。理财产品有：新手专享、活动专享、新能宝等。';
 
         //转让总金额和总笔数
-        req.uest('/api/v2/creditassign/stat/total').end().then(function(r){
+        req.uest('/api/v2/creditassign/stat/total?status=FINISHED').end().then(function(r){
             console.log('====r.body')
-
+            console.log(r.body)
             res.locals.total = r.body.data;
             var total = res.locals.total;
             total.totalDealAmount = utils.format.amount(1000000+total.totalDealAmount,2);
@@ -27,11 +27,17 @@ module.exports = function (router) {
         });
 
         //转让成交记录
-        req.uest('/api/v2/creditassign/stat/list').end().then(function(r){
+        req.uest('/api/v2/creditassign/list/allInvests?status=SETTLED').end().then(function(r){
             console.log('-----')
-            console.log(r.body.data)
-            res.locals.record = r.body.data;
+
+            res.locals.record = r.body.results;
             var record = res.locals.record;
+            console.log(record)
+            for(var i=0;i<record.length;i++){
+                record[i].mobile =  record[i].mobile.replace(/(\d{3})\d{4}(\d{4})/,'$1****$2');
+                record[i].submitTime =  moment(record[i].submitTime).format('YYYY-MM-DD');
+            }
+
             res.expose(record, 'record');
         });
 

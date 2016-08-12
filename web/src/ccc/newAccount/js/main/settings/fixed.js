@@ -24,13 +24,13 @@ var fixedRactive = new Ractive({
         this.set('holdTotalAmount', parseInt(amoutArray[0]));
         this.set('hMore', amoutArray[1]);
 
-        $.get('/api/v2/user/MYSELF/invest/list/0/4?status=SETTLED&status=OVERDUE&status=BREACH&status=FINISHED&status=PROPOSED&status=FROZEN&status=CLEARED', function (o) {
+        $.get('/api/v2/user/MYSELF/invest/list/1/4?status=SETTLED&status=OVERDUE&status=BREACH&status=FINISHED&status=PROPOSED&status=FROZEN&status=CLEARED', function (o) {
             that.set('ASSIGN', o.result.totalSize);
         });
         $.get('/api/v2/creditassign/list/user/MYSELF?status=OPEN', function (o) {
             that.set('INHAND', o.totalSize);
         });
-        $.get('/api/v2/user/MYSELF/invest/list/0/4?status=CLEARED', function (o) {
+        $.get('/api/v2/user/MYSELF/invest/list/1/4?status=CLEARED', function (o) {
             that.set('CLEARED', o.result.totalSize);
         });
     }
@@ -48,7 +48,7 @@ var Tab = {
     // 进行中/申请中 (FINISHED/PROPOSED/FROZEN) 全部 (SETTLED/OVERDUE/BREACH/FINISHED/PROPOSED/FROZEN/CLEARED)
     INHAND: {
         ractive: null,
-        api: '/api/v2/user/MYSELF/invest/list/$page/$size?status=SETTLED&status=OVERDUE&status=BREACH&status=FINISHED&status=PROPOSED&status=FROZEN&status=CLEARED',
+        api: '/api/v2/user/MYSELF/invest/list/$page/$size?status=SETTLED&status=OVERDUE&status=BREACH&status=FINISHED&status=PROPOSED&status=FROZEN',
         template: require('ccc/newAccount/partials/invest/inhand.html')
     },
     // 已结清 (CLEARED)
@@ -108,11 +108,12 @@ function init(type) {
             },
             getData: function (callback) {
                 var self = this;
-                if (type == 'ASSIGN') {
-                    var api = tab.api.replace('$page', 1).replace('$size', self.size);
-                } else {
-                    var api = tab.api.replace('$page', 0).replace('$size', self.size);
-                }
+                var api = tab.api.replace('$page', 1).replace('$size', self.size);
+                //if (type == 'ASSIGN') {
+                //    var api = tab.api.replace('$page', 1).replace('$size', self.size);
+                //} else {
+                //    var api = tab.api.replace('$page', 0).replace('$size', self.size);
+                //}
 
                 $.get(api, function (o) {
                     //console.log(o);
@@ -222,7 +223,7 @@ function init(type) {
                     perpage: self.size,
                     api: tab.api.replace('$size', self.size),
                     params: {
-                        pageFromZero: true,
+                        //pageFromZero: true,
                         type: 'GET',
                         error: function (o) {
                             console.info('请求出现错误，' + o.statusText);
@@ -232,9 +233,9 @@ function init(type) {
                         console.log(p)
                         console.log(o)
                         if (type == 'ASSIGN') {
-                            self.set('list', p > 0 ? self.parseData(o).results : self.get('pageOne'));
+                            self.set('list', p > 1 ? self.parseData(o).results : self.get('pageOne'));
                         }else{
-                            self.set('list', p > 0 ? self.parseData(o).result.results : self.get('pageOne'));
+                            self.set('list', p > 1 ? self.parseData(o).result.results : self.get('pageOne'));
                         }
                         self.tooltip();
                     }
