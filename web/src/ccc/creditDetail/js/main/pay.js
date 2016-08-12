@@ -69,6 +69,7 @@ payRactive.on("invest-submit", function (e) {
                     $.post('/api/v2/invest/user/MYSELF/creditAssign/invest', {
                         //creditAssignId:creditassignId,
                         //principalAmount: num
+                        clientIp: CC.clientIp,
                         amount: num,
                         creditAssignId: creditassignId,
                         isUseBalance: isUseB

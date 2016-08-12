@@ -161,6 +161,7 @@ ractive.on('recharge_submit', function (e) {
     var password = this.get('password');
     var bankcardNo = this.get('bankcards');
     var cardNo = bankcardNo[0].account.account;
+    var clientIp = CC.clientIp;
 
     this.set('msg', {
         AMOUNT_NULL: false,
@@ -199,10 +200,11 @@ ractive.on('recharge_submit', function (e) {
                         txn_amt: amount,
                         paymentPasswd: password,
                         //cardNo: cardNo
+                        clientIp: clientIp
                     })
                 .end()
                 .then(function (r) {
-                    
+
                     if (r.body.success) {
                         ractive.set('step1',false);
                         ractive.set('step2',true);
@@ -224,4 +226,3 @@ ractive.on('recharge_submit', function (e) {
     }
 
 });
-

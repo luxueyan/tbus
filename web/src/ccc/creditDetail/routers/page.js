@@ -20,6 +20,7 @@ function Fpercent(percent, offset) {
     }
 };
 
+
 module.exports = function (router) {
     router.get('/:id/:loanId', async function (req, res) {
         var user = res.locals.user;
@@ -182,4 +183,23 @@ module.exports = function (router) {
         res.render('creditDetail/detail');
         return false;
     });
+
+    router.get('/payment', function (req,res) {
+        var clientIp = getClientIp(req);
+        res.expose(clientIp,'clientIp');
+
+        //var user = res.locals.user;
+        //res.expose(req.query.loanId,'loanId')
+        //res.expose(user, 'user');
+        //res.locals.title = '';
+        res.render('payment');
+    });
+}
+
+
+function getClientIp(req) {
+    return (req.headers['x-forwarded-for'] || '').split(',')[0] ||
+        req.connection.remoteAddress ||
+        req.socket.remoteAddress ||
+        req.connection.socket.remoteAddress;
 }

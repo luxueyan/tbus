@@ -72,6 +72,7 @@ payRactive.on("invest-submit", function (e) {
                         //placementId:CC.placementId,
                         //paymentPassword: paymentPassword
                         userId: CC.user.id,
+                        clientIp: CC.clientIp,
                         loanId: CC.loanId,
                         amount: num,
                         smsCaptcha: false,
