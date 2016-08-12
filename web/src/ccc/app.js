@@ -21,9 +21,9 @@ require('./node-global')
 var port = Number(process.env.PORT || config.port) || 4000;
 app.locals.dsLayoutPath = 'ccc/global/views/layouts/default';
 
-app.locals.title = '太合汇平台';
-app.locals.keywords = '华瑞金控';
-app.locals.description = '华瑞金控';
+app.locals.title = '太合汇';
+app.locals.keywords = '';
+app.locals.description = '';
 
 /*
 if (config.startOAuthServer) {
@@ -77,14 +77,6 @@ app.use(async function (req, res, next) {
         return next();
     }
     user.agreement = (await req.uest.get('/api/v2/user/MYSELF/agreement').end().get('body') || {});
-
-    // 获取客户端IP
-    req.getClientIp = function(req) {
-        return (req.headers['x-forwarded-for'] || '').split(',')[0] ||
-            req.connection.remoteAddress ||
-            req.socket.remoteAddress ||
-            req.connection.socket.remoteAddress;
-    }
 
     next();
 });

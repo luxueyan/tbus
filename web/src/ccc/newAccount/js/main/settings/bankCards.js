@@ -193,7 +193,7 @@ ractive.on("bind-card-submit", function (e) {
         accountService.initialPassword(pwd, function (r) {
             if (r.success) {
                 $('.btn-box button').text('绑卡中,请稍等...');
-                $.post('/api/v2/baofoo/confirmBindCard', sendCard, function (res) { //bindCard
+                $.post('/api/v2/baofoo/MYSELF/confirmBindCard', sendCard, function (res) { //bindCard
                     if (res.success) {
                         ractive.set('step1', false);
                         ractive.set('step2', true);
@@ -218,16 +218,13 @@ ractive.on("bind-card-submit", function (e) {
         accountService.checkPassword(pwd, function (r) {
             if (r) {
                 $('.btn-box button').text('绑卡中,请稍等...');
-                $.post('/api/v2/user/checkBankcard', sendCard, function (res) { //bindCard
+                $.post('/api/v2/baofoo/MYSELF/confirmBindCard', sendCard, function (res) { //bindCard
                     if (res.success) {
                         //console.log(res);
 
                         ractive.set('step1', false);
                         ractive.set('step2', true);
                         ractive.set('step3', false);
-                        ractive.on('close', function () {
-                            window.location.href = "/newAccount/home";
-                        });
                     } else {
                         $('.btn-box button').text('绑定');
                         if (res.error[0].message === 'SMSCAPTCHA_IS_NOT_CORRECT') {
@@ -282,17 +279,17 @@ ractive.on('sendCode', function () {
         $.post('/api/v2/baofoo/MYSELF/preBindCard', params, function (r) {
             if (r.success) {
                 console.log(r);
-                $.post('/api/v2/smsCaptcha', {mobile: cardPhone, smsType: 'CREDITMARKET_CAPTCHA'}, function (r) {
-                    if (r.success) {
+                //$.post('/api/v2/smsCaptcha', {mobile: cardPhone, smsType: 'CREDITMARKET_CAPTCHA'}, function (r) {
+                //    if (r.success) {
                         //ractive.set('personal',);
                         //ractive.set('idNo',);
                         //ractive.set('cardNo',);
                         //ractive.set('mobile',);
                         //ractive.set('bankName',);
-                        //ractive.set('hasCardO',true);
+                        ractive.set('hasCardO',true);
                         countDown();
-                    }
-                });
+                    //}
+                //});
             } else {
                 CccOk.create({
                     msg: r.error[0].message,

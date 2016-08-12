@@ -20,9 +20,6 @@ module.exports = function(router) {
     // topNav 需要的东西
     router.get('/*', function(req, res, next) {
 
-        //var clientIp = req.getClientIp(req);
-        //res.expose(clientIp,'clientIp');
-
         // assign user数据
         var user = res.locals.user;
         if (user && user.idNumber) {
@@ -187,6 +184,10 @@ module.exports = function(router) {
     });
 
     router.get('/recharge', async function(req, res) {
+
+        var clientIp = getClientIp(req);
+        res.expose(clientIp,'clientIp');
+
         var paymentPasswordHasSet = await req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
             .end().get('body');
         res.locals.user.paymentPasswordHasSet =
@@ -347,4 +348,12 @@ module.exports = function(router) {
             res.redirect('/api/v2/user/MYSELF/invest/' + req.params.id +'/contract');
             next();
         });
+}
+
+
+function getClientIp(req) {
+    return (req.headers['x-forwarded-for'] || '').split(',')[0] ||
+        req.connection.remoteAddress ||
+        req.socket.remoteAddress ||
+        req.connection.socket.remoteAddress;
 }

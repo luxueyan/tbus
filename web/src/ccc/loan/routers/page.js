@@ -7,9 +7,9 @@ var requestId = '';
 
 
 router.get('/payment', function (req,res) {
-    console.log('#########%%%%%%%%%%%%%%%%')
-    console.log(req.query)
-    console.log('#########%%%%%%%%%%%%%%%%')
+    var clientIp = getClientIp(req);
+    res.expose(clientIp,'clientIp');
+
     var user = res.locals.user;
     res.expose(req.query.num,'investNum')
     res.expose(req.query.loanId,'loanId')
@@ -22,6 +22,8 @@ router.get('/payment', function (req,res) {
         placementId:req.query.placementId
     });
 });
+
+
 
 
 // TODO 对id进行正则匹配
@@ -343,3 +345,10 @@ function mask (str, s, l) {
     return str;
 }
 
+
+function getClientIp(req) {
+    return (req.headers['x-forwarded-for'] || '').split(',')[0] ||
+        req.connection.remoteAddress ||
+        req.socket.remoteAddress ||
+        req.connection.socket.remoteAddress;
+}

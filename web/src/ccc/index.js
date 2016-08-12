@@ -22,9 +22,9 @@ var port = Number(process.env.PORT || config.port) || 4000;
 import {app, server} from 'dysonshell/instance';
 
 app.locals.dsLayoutPath = 'ccc/global/views/layouts/default';
-app.locals.title = '太合汇平台';
-app.locals.keywords = '华瑞金控';
-app.locals.description = '华瑞金控';
+app.locals.title = '太合汇';
+app.locals.keywords = '';
+app.locals.description = '';
 if (config.startOAuthServer) {
     config.urlBackend = 'http://127.0.0.1:' + port + '/';
 }
@@ -32,6 +32,15 @@ ds.request(app, config.urlBackend);
 var Data = require('@ds/data');
 app.use(function(req,res,next){
     req.data = new Data(req);
+
+    // 获取客户端IP
+    req.getClientIp = function(req) {
+        return (req.headers['x-forwarded-for'] || '').split(',')[0] ||
+            req.connection.remoteAddress ||
+            req.socket.remoteAddress ||
+            req.connection.socket.remoteAddress;
+    }
+
     next();
 });
 app.use('/api/web', ds.loader('api'));
