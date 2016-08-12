@@ -1726,10 +1726,40 @@
     margin-left: 20px;
 }
 
-.insurance-wrapper {
-    width: 350px;
+
+.invest-info-box .insurance-wrapper {
+    height: 170px;
+    margin-top: 15px;
+}
+.insurance-wrapper .big-box {
+    overflow: hidden;
+}
+.insurance-wrapper #left-arrow, #right-arrow {
     float: left;
-    margin-left: 20px;
+    margin-top: 36px;
+    cursor: pointer;
+}
+.insurance-wrapper .pic-box{
+    float: left;
+    width: 1000px;
+    overflow: hidden;
+    height: 148px;
+}
+.insurance-wrapper .show-pic-box {
+    width: 176px;
+    float: left;
+    margin: 0px 12px;
+    text-align: center;
+    height: 148px;
+    color: #666;
+    line-height: 36px;
+}
+.insurance-wrapper .show-pic {
+    border: 1px solid #ccc;
+}
+.insurance-wrapper .show-pic img {
+    width: 174px;
+    height: 118px;
 }
 
 .do-invest-wrapper .status .userBlock .left-time-start span {
