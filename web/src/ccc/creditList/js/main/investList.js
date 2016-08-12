@@ -118,6 +118,8 @@ function parseLoanList(list) {
        // var methodFmt = i18n.enums.RepaymentMethod[method][0];
         //list[i].methodFmt = methodFmt;
 		list[i].titleLength = replaceStr(list[i].title);
+		list[i].actualRate = (list[i].actualRate*100).toFixed(2);
+
     }
     //console.log("######");
     //console.log(list);
