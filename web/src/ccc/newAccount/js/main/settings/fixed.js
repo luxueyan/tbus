@@ -27,7 +27,7 @@ var fixedRactive = new Ractive({
         $.get('/api/v2/user/MYSELF/invest/list/0/4?status=SETTLED&status=OVERDUE&status=BREACH&status=FINISHED&status=PROPOSED&status=FROZEN&status=CLEARED', function (o) {
             that.set('ASSIGN', o.result.totalSize);
         });
-        $.get('/api/v2/creditassign/list/user/MYSELF?status=OPEN&page=1&pageSize=4', function (o) {
+        $.get('/api/v2/creditassign/list/user/MYSELF?status=OPEN', function (o) {
             that.set('INHAND', o.totalSize);
         });
         $.get('/api/v2/user/MYSELF/invest/list/0/4?status=CLEARED', function (o) {
@@ -128,10 +128,8 @@ function init(type) {
                     this.set('pageOne', o.results);
                     this.set('list', o.results);
                 }else{
-                    console.log('#####');
-                    console.log(o);
-                    //this.set('valueDate', o.dates.(o.result.results.id).loanRequest.valueDate);
-                    //this.set('total', o.dates.);
+                    //console.log('#####');
+                    //console.log(o);
                     this.set('total', o.result.totalSize);
                     this.set('pageOne', o.result.results);
                     this.set('list', o.result.results);
@@ -176,49 +174,20 @@ function init(type) {
                         datas[i].end2 =  moment(datas[i].start2).add(res.dates[datas[i].loanId].duration.totalDays, 'days').format('YYYY-MM-DD');
 
                         switch (type) {
-                            //case 'ASSIGN':
-                            //    var assignStatus = {
-                            //        "PROPOSED": "已申请",
-                            //        "SCHEDULED": "已安排",
-                            //        "FINISHED": "转让已满",
-                            //        "OPEN": "转让中",
-                            //        "FAILED": "转让未满",
-                            //        "CANCELED": "已取消"
-                            //    };
-                            //    datas[i].id = o.id;
-                            //    datas[i].creditDealRate = o.creditDealRate * 100;
-                            //    datas[i].timeOpen = moment(o.timeOpen).format('YYYY-MM-DD HH:mm:ss');
-                            //    datas[i].timeFinished = moment(o.timeOpen).add(o.timeOut, 'hours').format('YYYY-MM-DD HH:mm:ss');
-                            //    datas[i].status = assignStatus[o.status];
-                            //    datas[i].investId = o.investId;
-                            //    break;
                             case 'INHAND':
                                 datas[i].submitTime = moment(o.submitTime).format('YYYY-MM-DD');
                                 datas[i].Fduration = utils.format.duration(o.duration);
                                 datas[i].Fstatus = utils.i18n.InvestStatus[o.status];
                                 datas[i].Frate = utils.format.percent(o.rate / 100, 2);
                                 datas[i].Famount = utils.format.amount(o.amount, 2);
-                                //datas[i].expectYield = utils.format.amount(o.repayments[0].repayment.amountInterest, 2);
-                                //datas[i].FrepayMethod = utils.i18n.RepaymentMethod[o.repayMethod][0];
                                 datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true : false;
                                 break;
                             case 'CLEARED':
                                 datas[i].Fduration = utils.format.duration(o.duration);
                                 datas[i].Frate = utils.format.percent(o.rate / 100, 2);
                                 datas[i].Famount = utils.format.amount(o.amount, 2);
-                                //datas[i].expectYield = utils.format.amount(o.repayments[0].repayment.amountInterest, 2);
                                 datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true : false;
                                 datas[i].submitTime = moment(o.submitTime).format('YYYY-MM-DD');
-                                //datas[i].endDate = o.repayments[o.repayments.length - 1].repayment.dueDate;
-
-                                //获取未到期的个数
-                                var notodays = 0;
-                                for (var j = 0; j < o.repayments.length; j++) {
-                                    if (o.repayments[j].status == 'UNDUE') {
-                                        notodays++;
-                                    }
-                                }
-                                datas[i].notodays = notodays;
                                 break;
                         }
                         ////申请中
@@ -249,9 +218,9 @@ function init(type) {
                 self.bindActions();
                 this.tooltip();
                 $(this.el).find(".ccc-paging").cccPaging({
-                    total: this.get('total'),
+                    total: self.get('total'),
                     perpage: self.size,
-                    api: tab.api.replace('$size', this.size),
+                    api: tab.api.replace('$size', self.size),
                     params: {
                         pageFromZero: true,
                         type: 'GET',
@@ -260,7 +229,13 @@ function init(type) {
                         }
                     },
                     onSelect: function (p, o) {
-                        self.set('list', p > 0 ? self.parseData(o).result.results : self.get('pageOne'));
+                        console.log(p)
+                        console.log(o)
+                        if (type == 'ASSIGN') {
+                            self.set('list', p > 0 ? self.parseData(o).results : self.get('pageOne'));
+                        }else{
+                            self.set('list', p > 0 ? self.parseData(o).result.results : self.get('pageOne'));
+                        }
                         self.tooltip();
                     }
                 });

@@ -170,7 +170,7 @@ ractive.on("bind-card-submit", function (e) {
 
     var sendCard = {
         realName: personal,
-        IdNumber: idNo,
+        idNumber: idNo,
         accountNumber: cardNo,
         mobile: cardPhone,
         bankName: bankName,
@@ -258,7 +258,7 @@ ractive.on("bind-card-submit", function (e) {
 
 ractive.on('sendCode', function () {
     var realName = this.get('personal');
-    var IdNumber = this.get('idNo');
+    var idNumber = this.get('idNo');
     var accountNumber = this.get('cardNo');
     var cardPhone = this.get('mobile');
     var bankName = this.get('bankName');
@@ -272,7 +272,7 @@ ractive.on('sendCode', function () {
 
     var params = {
         realName: realName,
-        IdNumber: IdNumber,
+        idNumber: idNumber,
         accountNumber: accountNumber,
         mobile: cardPhone,
         bankName: bankName

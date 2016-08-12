@@ -48,6 +48,7 @@ module.exports = function (router, auth) {
     router.get('/api/v2/creditassign/stat/total', auth.pass());
     //转让成交记录
     router.get('/api/v2/creditassign/stat/list', auth.pass());
+    router.get('/api/v2/creditassign/list/allInvests', auth.pass());
     //修改手机号
     router.post('/api/v2/user/:userId/resetMobile', auth.user());
     //债转列表

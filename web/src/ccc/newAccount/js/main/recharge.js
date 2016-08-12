@@ -198,17 +198,8 @@ ractive.on('recharge_submit', function (e) {
                         userId:CC.user.id,
                         txn_amt: amount,
                         paymentPasswd: password,
-                        smsEnabled:false
                         //cardNo: cardNo
                     })
-                //request.post('/api/v2/baofoo/recharge/MYSELF')
-                //.type("form")
-                //.send({
-                //    //userId:CC.user.id,
-                //    amount: amount,
-                //    paymentPassword: password,
-                //    cardNo: cardNo
-                //})
                 .end()
                 .then(function (r) {
                     
