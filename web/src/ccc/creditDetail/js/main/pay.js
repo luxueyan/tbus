@@ -36,7 +36,7 @@ var payRactive = new Ractive({
         $.get('/api/v2/creditassign/creditAssignDetail/' + creditassignId, function(res){
             //console.log(res)
             self.set('creditassign',res.creditassign);
-            self.set('investNum',res.creditassign.creditDealAmount);
+            self.set('investNum',res.creditassign.creditAmount);
         });
     }
 });
@@ -45,13 +45,12 @@ payRactive.on("invest-submit", function (e) {
     var that = this;
     var creditassign = that.get('creditassign');
     var isUseB = that.get('useBankCard');
-    //console.log(isUseB);
-    //console.log(creditassign);
     e.original.preventDefault();
     //if(!this.get('useBankCard')){
     //    return;
     //}
-    var num = this.get('investNum'); //
+    var num = this.get('investNum');
+    //console.log(num);
     var paymentPassword = this.get('paymentPassword');
     if (paymentPassword === '') {
         showErrors('请输入交易密码!');
@@ -65,10 +64,7 @@ payRactive.on("invest-submit", function (e) {
 
                 if (document.getElementById('agree').checked == true) {
                     $('.agree-error').css('visibility', 'hidden');
-                    //$.post('/api/v2/creditassign/autoAssign/MYSELF', {
                     $.post('/api/v2/invest/user/MYSELF/creditAssign/invest', {
-                        //creditAssignId:creditassignId,
-                        //principalAmount: num
                         clientIp: CC.clientIp,
                         amount: num,
                         creditAssignId: creditassignId,
@@ -79,7 +75,6 @@ payRactive.on("invest-submit", function (e) {
                             payRactive.set('step2',true);
                             payRactive.set('step3',false);
                             setTimeout(function(){
-                              //window.location.href = '/creditDetail/'+creditassign.id+'/'+creditassign.loanId;
                               window.location.href = '/creditList';
                             },5000);
                         } else {

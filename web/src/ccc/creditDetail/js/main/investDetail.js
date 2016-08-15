@@ -86,9 +86,9 @@ var investRactive = new Ractive({
             that.set("guaranteeInfo", result.loanRequest.guaranteeInfo);
             that.set("description", result.loanRequest.description);
 
-            console.log(1111)
-            console.log(result);
-            console.log(1111)
+            //console.log(1111)
+            //console.log(result);
+            //console.log(1111)
 
             result.userId = result.loanRequest.userId;
             result.requestId = result.loanRequest.id;
@@ -356,10 +356,10 @@ investRactive.on("invest-submit", function (e) {
         showErrors('不能投自己债转的标的');
         return false;
     }
-    if (num > CC.user.availableAmount) {
-        showErrors('账户余额不足，请先充值 !');
-        return false;
-    }
+    //if (num > CC.user.availableAmount) {
+    //    showErrors('账户余额不足，请先充值 !');
+    //    return false;
+    //}
     window.location.href = '/creditDetail/payment?id='+CC.creditassign.creditassign.id;
 });
 
