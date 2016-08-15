@@ -220,8 +220,8 @@ var totalRactive = new Ractive({
             .end()
             .then(function(r){
                 var num = r.body.data;
-                var totalDealAmount = utils.format.amount(parseInt(1000000)+num.totalDealAmount,2);
-                var totalNumber = utils.format.amount(parseInt(100)+num.totalNumber,2);
+                var totalDealAmount = utils.format.amount(num.totalDealAmount,2);
+                var totalNumber = utils.format.amount(num.totalNumber,2);
                 self.set('totalDealAmount', totalDealAmount);
                 self.set('totalNumber', totalNumber);
             })
