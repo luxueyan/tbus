@@ -41,6 +41,8 @@ module.exports = function (router, auth) {
     router.get('/api/v2/reward/getReferUserCountAndReward/:userId', auth.user());
     //邮箱绑定
     router.post('/api/v2/user/bindEmail', auth.user());
+    router.post('/api/v2/user/authenticateEmail', auth.pass());
+
 
     //问卷调查
     router.post('/api/v2/user/:userId/surveyFilling', auth.user());
