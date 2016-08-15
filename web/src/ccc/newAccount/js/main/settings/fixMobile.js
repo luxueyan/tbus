@@ -6,9 +6,15 @@ var fixMobileRactive = new Ractive({
     el: '#ractive-container',
     template: require('ccc/newAccount/partials/settings/fixMobile.html'),
     data: {
-        user:CC.user,
         step1:true,
         step2:false
+    },
+    init:function(){
+        request.get('/api/v2/user/MYSELF/userinfo')
+            .end()
+            .then(function(r){
+                fixMobileRactive.set('user', r.body.userInfo.user)
+            });
     }
 });
 fixMobileRactive.on('checkold', function () {

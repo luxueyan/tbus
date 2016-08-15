@@ -12,9 +12,7 @@ var ractive = new Ractive({
         unbindMsg: null,
         agreement: typeof CC.user.accountId === 'undefined' ? false : CC.user.agreement,
         accountId: CC.user.agreement ? CC.user.agreement : false,
-        mobile: formatNumber(CC.user.mobile),
         idNumber: false,
-        //paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false,
         email: '',
         percent: 25,
         levelText:'弱',
@@ -30,6 +28,7 @@ var ractive = new Ractive({
                     ractive.set('email', userinfo.userInfo.user.email);
                 }
                 ractive.set('idNumber', formatNumber(userinfo.userInfo.user.idNumber));
+                ractive.set('mobile', formatNumber(userinfo.userInfo.user.mobile));
             });
         });
     },
