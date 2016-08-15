@@ -50,6 +50,8 @@ function parseLoanList(list) {
     for (var i = 0; i < list.length; i++) {
         list[i] = formatItem(list[i]);
 		list[i].titleLength = replaceStr(list[i].title);
+		list[i].actualRate = (list[i].actualRate*100).toFixed(2);
+
     }
     return list;
 }
