@@ -241,81 +241,13 @@ setTimeout((function () {
             return false;
         }
 
-        if (num > CC.user.availableAmount) {
-            showErrors('账户余额不足，请先充值 !');
-            return false;
-        }
+        //if (num > CC.user.availableAmount) {
+        //    showErrors('账户余额不足，请先充值 !');
+        //    return false;
+        //}
 
         window.location.href = '/loan/payment?num='+num+'&loanId='+CC.loan.id+'&placementId='+$('#couponSelection').val()
         //window.open('/loan/payment?num='+num+'&loanId='+CC.loan.id);
-
-        //if (paymentPassword === '') {
-        //    showErrors('请输入交易密码!');
-        //    return false;
-        //} else {
-        //    accountService.checkPassword(paymentPassword, function (r) {
-        //        if (!r) {
-        //            showErrors('请输入正确的交易密码!');
-        //        } else {
-        //            disableErrors();
-        //
-        //            if (document.getElementById('agree').checked == true) {
-        //                $('.agree-error').css('visibility', 'hidden');
-        //                Confirm.create({
-        //                    msg: '您本次投资的金额为' + num + '元，是否确认投资？',
-        //                    okText: '确定',
-        //                    cancelText: '取消',
-        //
-        //                    ok: function () {
-        //                        $.post('/api/v2/invest/tender/MYSELF', {
-        //                            amount: num,
-        //                            loanId: investRactive.get('loan.id'),
-        //                            placementId: $('#couponSelection').find("option:selected").val(),
-        //                            paymentPassword: paymentPassword
-        //                        }, function (res) {
-        //                            if (res.success) {
-        //                                CccOk.create({
-        //                                    msg: '投资成功，<a href="/invest" style="color:#009ada;text-decoration:none">继续浏览其他项目</a>',
-        //                                    okText: '确定',
-        //                                    // cancelText: '重新登录',
-        //                                    ok: function () {
-        //                                        window.location.reload();
-        //                                    },
-        //                                    cancel: function () {
-        //                                        window.location.reload();
-        //                                    }
-        //                                });
-        //                            } else {
-        //                                var errType = res.error && res.error[0] && res.error[0].message || '';
-        //                                var errMsg = {
-        //                                        TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
-        //                                    }[errType] || errType;
-        //                                CccOk.create({
-        //                                    msg: '投资失败' + errMsg,
-        //                                    okText: '确定',
-        //                                    // cancelText: '重新登录',
-        //                                    ok: function () {
-        //                                        window.location.reload();
-        //                                    },
-        //                                    cancel: function () {
-        //                                        window.location.reload();
-        //                                    }
-        //                                });
-        //                            }
-        //                        });
-        //                        $('.dialog').hide();
-        //                    },
-        //                    cancel: function () {
-        //                        $('.dialog').hide();
-        //                    }
-        //                });
-        //            } else {
-        //                $('.agree-error').css('visibility', 'visible');
-        //                $('.agree-error').html('请先同意用户投资服务协议');
-        //            }
-        //        }
-        //    });
-        //};
     });
 
     // 初始化倒计时
@@ -429,6 +361,13 @@ setTimeout((function () {
         if (parseInt(inputNum) > parseInt(mout)) {
             this.set('inputNum', mout);
             inputNum = mout;
+            if(inputNum ==  CC.loan.rule.max){
+                showErrors('投标金额最大为'+CC.loan.rule.max+'元');
+            }
+            if(inputNum == amount){
+                showErrors('剩余可投标金额为'+amount+'元');
+            }
+
         }
         if (inputNum.length > 10) {
             this.set('inputNum', inputNum.substring(0, 10));

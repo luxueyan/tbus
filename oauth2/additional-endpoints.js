@@ -41,6 +41,8 @@ module.exports = function (router, auth) {
     router.get('/api/v2/reward/getReferUserCountAndReward/:userId', auth.user());
     //邮箱绑定
     router.post('/api/v2/user/bindEmail', auth.user());
+    router.post('/api/v2/user/authenticateEmail', auth.pass());
+
 
     //问卷调查
     router.post('/api/v2/user/:userId/surveyFilling', auth.user());
@@ -62,6 +64,8 @@ module.exports = function (router, auth) {
     router.post('/api/v2/baofoo/:userId/preBindCard', auth.user());
     //银行卡绑卡
     router.post('/api/v2/baofoo/:userId/confirmBindCard', auth.user());
+    //银行卡解绑
+    router.post('/api/v2/baofoo/cancelBindCard', auth.user());
     //投资支付
     router.post('/api/v2/baofoo/pay', auth.user());
 };
