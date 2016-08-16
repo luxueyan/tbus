@@ -29,8 +29,8 @@
           ng-hide="action_result"
     >
         <section class="summary shadow">
-            转让价格(元) <span class="u-color-main">{{ }}</span><br>
-            预期收益(元) <span class="u-color-main">{{ }}</span>
+            转让价格(元) <span class="u-color-main">{{ assignment.raw.creditDealAmount | number: 2 }}</span><br>
+            预期收益(元) <span class="u-color-main">{{ assignment.raw.amountInterest | number: 2 }}</span>
         </section>
 
         <section>
@@ -44,10 +44,13 @@
                             </span>
                         </span>
                         <span class="action">
-                            使用 <input type="checkbox" ng-init="use_available_amount = true" ng-model="use_available_amount">
+                            <label>
+                                使用 <input type="checkbox" ng-init="store.isUseBalance = true" ng-model="store.isUseBalance">
+                            </label>
                         </span>
                     </div>
                 </li>
+
                 <li>
                     <div class="info">
                         <span class="name">银行卡</span>
@@ -57,7 +60,8 @@
                         </span>
                     </div>
                 </li>
-                <li>
+
+                <li x-gyro-comment>
                     <div class="info">
                         <span class="name">红包</span>
                         <span class="value">
@@ -88,12 +92,12 @@
         <section class="container agreement">
             <label>
                 <input type="checkbox" ng-init="agreement = true" ng-model="agreement" required>
-                我阅读并同意<a href="#" ng-click="self.agreement('风险投资书')">《风险投资书》</a>
+                我阅读并同意<a href="#" ng-click="self.agreement('风险提示书')">《风险提示书》</a>
             </label>
         </section>
 
         <section class="container text-center actual-payment-amount">
-            实际支付金额(元) ：<span class="u-color-main" ng-show="form.amount.$valid">{{ actual_payment_amount | number: 2 }}</span>
+            实际支付金额(元) ：{{ assignment.amount | number: 2 }}
         </section>
 
         <section class="btn-submit-wrap">
@@ -118,13 +122,8 @@
                 <p class="desc">支付成功</p>
             </div>
 
-            <div class="detail text-center">
-                <p>您已成功投资 {{ store.amount | number: 2 }}元</p>
-                <p>预计到期收益 {{ earning | number: 2 }}元</p>
-            </div>
-
             <div class="action">
-                <a class="btn btn-theme btn-block" href="list">继续投资</a>
+                <a class="btn btn-theme btn-block" href="list?tab=assignment">继续投资</a>
                 <a class="btn btn-plain btn-block" href="dashboard/invest">查看投资详情</a>
             </div>
         </div>
@@ -173,14 +172,14 @@
     </div>
 
     <div class="modal-body text-center">
-        当前账户余额{{ balance | number }}元，最小投资额{{ minimum | number }}元
+        当前账户余额{{ balance | number }}元，投资额{{ minimum | number }}元
     </div>
 
     <div class="modal-footer container">
         <div class="row">
             <div class="col-xs-6">
                 <button class="btn btn-block btn-default" ng-click="$close()">
-                    调整金额
+                    取消
                 </button>
             </div>
             <div class="col-xs-6">

@@ -464,17 +464,17 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                     api.get_assignment_detail($route.current.params.id, false)
                                         .then (result) -> api.get_loan_detail(result.creditassign.loanId, false)
 
-                            coupon: _.ai 'api, $route, $q',
-                                (         api, $route, $q) ->
-                                    api.fetch_current_user()
-                                        .then -> api.get_assignment_detail($route.current.params.id, false)
-                                        .then (result) -> api.get_loan_detail(result.creditassign.loanId, false)
-                                        .then (data) ->
-                                            amount = data.balance
-                                            months = _.get data, 'duration.totalMonths'
-                                            loan_id = data.id
+                            # coupon: _.ai 'api, $route, $q',
+                            #     (         api, $route, $q) ->
+                            #         api.fetch_current_user()
+                            #             .then -> api.get_assignment_detail($route.current.params.id, false)
+                            #             .then (result) -> api.get_loan_detail(result.creditassign.loanId, false)
+                            #             .then (data) ->
+                            #                 amount = data.balance
+                            #                 months = _.get data, 'duration.totalMonths'
+                            #                 loan_id = data.id
 
-                                            return api.fetch_coupon_list amount, months, loan_id
+                            #                 return api.fetch_coupon_list amount, months, loan_id
                     }
 
                     .when '/more', {
