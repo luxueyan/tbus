@@ -239,7 +239,7 @@ ractive.on("bind-card-submit", function (e) {
                         if (res.error[0].message === 'Something is wrong') {
                             msg[res.error[0].message] = '请再次确认您的信息'
                         }
-                        ractive.set('failError', msg[res.error[0].message])
+                        ractive.set('failError', res.error[0].message)
 
                     }
 
