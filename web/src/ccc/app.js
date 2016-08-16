@@ -52,7 +52,7 @@ ds.apiproxy(app, config.urlBackend);
 
 require('@ccc/inspect/middleware')(app);
 app.use(async function (req, res, next) {
-   
+
     res.expose(Date.now(), 'serverDate');
 
     // global user
@@ -116,6 +116,17 @@ app.all('/logout', function (req, res) {
     } else {
         res.redirect('/');
     }
+});
+
+app.get('/getClientIp', function (req, res) {
+    function getClientIp(req) {
+        return (req.headers['x-forwarded-for'] || '').split(',')[0] ||
+            req.connection.remoteAddress ||
+            req.socket.remoteAddress ||
+            req.connection.socket.remoteAddress;
+    }
+
+    res.send(getClientIp(req));
 });
 
 server.listen(port, '0.0.0.0', function () {
