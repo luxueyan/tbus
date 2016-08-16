@@ -27,7 +27,7 @@ var nameMap = {
     DISBURSE: "投资还款",
     INVEST_REPAY: "投资还款",
     CREDIT_ASSIGN: "债权转让",
-    TRANSFER: "转账扣款",
+    TRANSFER: "平台奖励",
     REWARD_REGISTER: "注册奖励",
     REWARD_INVEST: "投资奖励",
     REWARD_DEPOSIT: "充值奖励",
