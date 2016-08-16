@@ -3,10 +3,14 @@
 var utils = require('ccc/global/js/lib/utils');
 var Tips = require('ccc/global/js/modules/cccTips');
 require('ccc/global/js/modules/cccTab');
-
+require('ccc/global/js/modules/tooltip');
+require('ccc/global/js/modules/cccPaging');
 var couponTpl = require('ccc/newAccount/partials/coupon/coupon.html');
+var RenderPage = require('ccc/global/js/modules/cccPageSuper')
 
-var pagesize = 999;
+
+
+var pagesize = 9;
 var page = 1;
 var totalPage = 1;
 
@@ -14,11 +18,32 @@ var getCurrentType = function () {
     return $('.ccc-tab li.active').data('type');
 };
 
+var Tab = {
+    PLACED: {
+        ractive: null,
+        api: '/api/v2/coupon/MYSELF/coupons/byStatus?status=PLACED&pageNo=$page&pageSize=$size',
+        //template: require('ccc/newAccount/partials/coupon/coupon.html')
+    },
+    // 未使用
+    REDEEMED: {
+        ractive: null,
+        api: '/api/v2/coupon/MYSELF/coupons/byStatus?status=REDEEMED&pageNo=$page&pageSize=$size',
+        //template: require('ccc/newAccount/partials/coupon/coupon.html')
+    },
+    // 已使用
+    EXPIRED: {
+        ractive: null,
+        api: '/api/v2/coupon/MYSELF/coupons/byStatus?status=EXPIRED&pageNo=$page&pageSize=$size',
+        //template: require('ccc/newAccount/partials/coupon/coupon.html')
+    }
+    // REALIZATION (可变现)
+};
+
 $('ul.ttabs li a').on('click', function () {
     var type = $(this).parent().data('type');
     init(type);
-    console.log(type);
-    console.log(typeof type);
+    //console.log(type);
+    //console.log(typeof type);
 });
 
 Date.prototype.Format = function (fmt) { //author: meizz
@@ -39,6 +64,7 @@ Date.prototype.Format = function (fmt) { //author: meizz
 
 function init(type) {
     //console.log(type);
+    var tab = Tab[type];
     if (type) {
         var couponRactive = new Ractive({
             el: '.panel-' + type,
@@ -47,13 +73,12 @@ function init(type) {
             perpage: self.size,
             page: page,
             totalPage: totalPage,
-            //api: '/api/v2/coupon/MYSELF/coupons',
-            //            api:'/api/v2/coupon/'+CC.user.userId+'/coupons/byStatus',
             api: '/api/v2/coupon/MYSELF/coupons/byStatus',
             data: {
                 loading: true,
                 list: [],
                 total: 0,
+                pageOne: null // 第一次加载的数据
             },
             bindTime: 0,
             status: {
@@ -75,7 +100,7 @@ function init(type) {
                 self.getCouponData(function (o) {
                     self.set('total', o.totalSize);
                     var parseResult = self.parseData(o.results);
-                    self.setData(parseResult);
+                    self.setData(parseResult, o.totalSize,type);
                 });
             },
             getCouponData: function (callback) {
@@ -92,10 +117,12 @@ function init(type) {
                     }
                 });
             },
-            setData: function (o) {
+            setData: function (o,totalSize,type) {
                 var self = this;
                 self.set('loading', false);
                 self.set('list', o);
+
+                this.renderPager(totalSize,type);
             },
 
             parseData: function (o) {
@@ -168,6 +195,28 @@ function init(type) {
                     }
                 }
                 return o;
+            },
+            renderPager: function (totalSize,type) {
+                var self = this;
+                new RenderPage().page({
+                    pageSize:pagesize,
+                    totalSize:totalSize,
+                    api:'/api/v2/coupon/MYSELF/coupons/byStatus?pageNo=$currentPage&pageSize=$pageSize',
+                    queryString:{
+                        status:type
+                    },
+                    callback:function(o){
+                        console.log(o)
+                        self.set('list', self.parseData(o.data.results))
+                    }
+                });
+
+            },
+            tooltip: function () {
+                $('.tips-top').tooltip({
+                    container: 'body',
+                    placement: 'top'
+                });
             },
         });
     }
