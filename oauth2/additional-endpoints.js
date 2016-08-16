@@ -64,6 +64,8 @@ module.exports = function (router, auth) {
     router.post('/api/v2/baofoo/:userId/preBindCard', auth.user());
     //银行卡绑卡
     router.post('/api/v2/baofoo/:userId/confirmBindCard', auth.user());
+    //银行卡解绑
+    router.post('/api/v2/baofoo/cancelBindCard', auth.user());
     //投资支付
     router.post('/api/v2/baofoo/pay', auth.user());
 };

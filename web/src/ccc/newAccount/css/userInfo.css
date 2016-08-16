@@ -512,6 +512,7 @@ p.tips {
     color: white;
     line-height: 45px;
     margin-top: 30px;
+    cursor: pointer;
 }
 .card_box .card_add a h5 {
     font-size: 18px;
