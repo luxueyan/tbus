@@ -121,12 +121,12 @@
         <section class="container agreement">
             <label>
                 <input type="checkbox" ng-init="agreement = true" ng-model="agreement" required>
-                我阅读并同意<a href="#" ng-click="self.agreement('风险投资书')">《风险投资书》</a>
+                我阅读并同意<a href="#" ng-click="self.agreement('风险提示书')">《风险提示书》</a>
             </label>
         </section>
 
         <section class="container text-center actual-payment-amount">
-            实际支付金额(元) ：<span class="u-color-main" ng-show="form.amount.$valid">{{ actual_payment_amount | number: 2 }}</span>
+            实际支付金额(元) ：<span ng-show="form.amount.$valid">{{ actual_payment_amount | number: 2 }}</span>
         </section>
 
         <section class="btn-submit-wrap">

@@ -19,7 +19,7 @@
             </div>
 
             <div class="col-xs-6 duration">
-                <div class="value">{{ loan.due_date | date: 'yyyy-MM-dd' }}</div>
+                <div class="value">{{ due_date | date: 'yyyy-MM-dd' }}</div>
                 <div class="name">预期到期日</div>
             </div>
         </div>
@@ -27,10 +27,10 @@
 
     <section class="omit-margin shadow loan-summary-2">
         <span class="date">
-            发布日期：{{  }}
+            发布日期：{{ assignment.time_open | date: 'yyyy-MM-dd' }}
         </span>
         <span class="date">
-            起息日：{{  }}
+            起息日：{{ loan.value_date | date: 'yyyy-MM-dd' }}
         </span>
     </section>
 
@@ -39,14 +39,21 @@
             <li>
                 <span class="name">产品总额</span>
                 <span class="value">
-                    {{ assignment.amount_myriad || assignment.amount }}<!--
-                    --><span class="unit" ng-if="assignment.amount_myriad">万</span><!--
-                    --><span class="unit" ng-if="!assignment.amount_myriad">元</span>
+                    {{ loan.amount_myriad || loan.amount }}<!--
+                    --><span ng-if="loan.amount_myriad">万</span><!--
+                    --><span ng-if="!loan.amount_myriad">元</span>
                 </span>
             </li>
             <li>
                 <span class="name">投资期限</span>
-                <span class="value">{{ assignment.total_days }}天</span>
+                <span class="value">
+                    <span ng-if="loan.raw.duration.days">
+                        {{ loan.total_days }}天
+                    </span>
+                    <span ng-if="!loan.raw.duration.days">
+                        {{ loan.total_months }}个月
+                    </span>
+                </span>
             </li>
             <li>
                 <span class="name">起投金额</span>
@@ -127,8 +134,8 @@
 
     <section class="omit-margin loan-fixed">
         <div class="rule">
-            转让价格(元) {{  }}<br>
-            预期收益(元) {{  }}
+            转让价格(元) {{ assignment.raw.creditDealAmount | number: 2 }}<br>
+            预期收益(元) {{ assignment.raw.amountInterest | number: 2 }}
         </div>
 
         <div class="status" ng-switch="assignment.status">
