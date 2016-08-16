@@ -237,6 +237,7 @@ function init(type) {
                         }else{
                             self.set('list', p > 1 ? self.parseData(o).result.results : self.get('pageOne'));
                         }
+                        self.bindActions();
                         self.tooltip();
                     }
                 });
@@ -311,11 +312,11 @@ function init(type) {
                         "ASSIGN_AMOUNT_LIMIT": "低于最低转让金额限制"
                     };
 
-                    var investId = $(this).data("invest");
-                    var amount = $(this).data("amount");
-                    var title = $(this).data("title");
+                    var investId = $(this).attr("data-invest");
+                    var amount = $(this).attr("data-amount");
+                    var title = $(this).attr("data-title");
 
-                    $(".assignAmount").text(amount.toFixed(2));
+                    $(".assignAmount").text(Number(amount).toFixed(2));
                     $("#form-data-title").text("转让 - " + title);
 
                     $("#creditDealRate").blur(function () {
