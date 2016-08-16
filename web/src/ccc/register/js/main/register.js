@@ -44,7 +44,7 @@ baconflux.store('register', 'success').onValue(function(data) {
             clearInterval(interval);
             window.location.href = "/newAccount/home/index";
         }
-    }), 1000);
+    }), 100);
 });
 
 $("#getSms").on('click', function() {});
