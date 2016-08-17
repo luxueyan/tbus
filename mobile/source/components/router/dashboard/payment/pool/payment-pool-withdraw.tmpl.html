@@ -61,9 +61,13 @@
                             <input name="withdraw"
                                    id="withdraw"
                                    ng-model="store.amount"
+                                   ng-model-options="{
+                                       updateOn: 'blur default',
+                                       debounce: {blur: 0, default: 300}
+                                   }"
+                                   ui-validate-async="{ amount_invalid: 'self.calculate_withdraw_fee($modelValue)' }"
                                    type="number"
                                    class="form-control input-target input-lg"
-                                   min="3"
                                    max="{{ self.user.fund.availableAmount }}"
                                    placeholder=""
                                    autocapitalize="none"
@@ -72,12 +76,13 @@
                                    required
                             >
 
-                            <p class="hint">取现费用3.00元/笔</p>
+                            <p class="hint">提现费用(元): <span ng-show="totalFee">{{ totalFee | number: 2 }}</span></p>
 
                             <div class="help-block"
-                                 ng-show="form.withdraw.$invalid && form.withdraw.$dirty && form.withdraw.$error.max"
+                                 ng-show="form.withdraw.$invalid && form.withdraw.$dirty"
                             >
                                 <span ng-show="form.withdraw.$error.max">可提现金额不足</span>
+                                <span ng-show='form.withdraw.$error.amount_invalid'>到账金额小于0, 请调整提现金额</span>
                             </div>
                         </div>
                     </div>

@@ -30,6 +30,21 @@ do (_, angular) ->
                 EXTEND_API @api
 
 
+            calculate_withdraw_fee: (amount) ->
+
+                return (
+                    @api.calculate_withdraw_fee(amount)
+
+                        .then ({totalFee, withdrawAmount}) =>
+                            @$scope.totalFee = totalFee
+
+                            if withdrawAmount >= 0
+                                @$q.resolve()
+                            else
+                                @$q.reject()
+                )
+
+
             submit: ({bank_account, amount}) ->
 
                 account = _.get bank_account, 'account.account'
@@ -96,6 +111,15 @@ do (_, angular) ->
 
 
     EXTEND_API = (api) ->
+
+        api.__proto__.calculate_withdraw_fee = (amount) ->
+
+            @$http
+                .get "/api/v2/user/MYSELF/calculateWithdrawFee/#{ amount }"
+
+                .then @TAKE_RESPONSE_DATA
+                .catch @TAKE_RESPONSE_ERROR
+
 
         api.__proto__.payment_pool_withdraw = (cardNo, amount, paymentPassword) ->
 

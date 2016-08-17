@@ -109,10 +109,15 @@
 .btn-reset{
     width: 200px;
     height: 45px;
-    line-height: 45px;
     background-color: #e4262b;
-    color:#fff;
     text-align: center;
     margin: 36px auto;
-    cursor: pointer;
+}
+.btn-reset a{
+    display: block;
+    width: 200px;
+    height: 45px;
+    line-height: 45px;
+    color:#fff;
+    text-align: center;
 }

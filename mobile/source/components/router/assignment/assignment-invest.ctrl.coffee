@@ -75,11 +75,6 @@ do (angular, _) ->
                 good_to_go = true
                 do event.preventDefault  # submitting via AJAX
 
-                clientIp = @user.clientIp
-                amount = @assignment.creditassign.creditAmount
-                creditAssignId = @assignment.creditassign.id
-                isUseBalance = @$scope.store.isUseBalance
-
                 # loan_available = @assignment.creditassign.balance
                 # user_available = @user.fund.availableAmount
 
@@ -126,7 +121,15 @@ do (angular, _) ->
                         @$q.reject error: [message: 'INCORRECT_PASSWORD']
 
 
-                    .then (data) => @api.payment_pool_creditAssign_invest(clientIp, amount, creditAssignId, isUseBalance)
+                    .then (data) =>
+                        post_data = {
+                            clientIp: @user.clientIp
+                            amount: @assignment.creditassign.creditAmount
+                            creditAssignId: @assignment.creditassign.id
+                            isUseBalance: @$scope.store.isUseBalance
+                        }
+
+                        @api.payment_pool_creditAssign_invest(post_data)
 
                     .then @api.process_response
 
@@ -222,11 +225,10 @@ do (angular, _) ->
 
     EXTEND_API = (api) ->
 
-        api.__proto__.payment_pool_creditAssign_invest = (clientIp, amount, creditAssignId, isUseBalance) ->
+        api.__proto__.payment_pool_creditAssign_invest = (data) ->
 
             @$http
-                .post '/api/v2/invest/user/MYSELF/creditAssign/invest',
-                    _.compact {clientIp, amount, creditAssignId, isUseBalance}
+                .post '/api/v2/invest/user/MYSELF/creditAssign/invest', data
 
                 .then @TAKE_RESPONSE_DATA
                 .catch @TAKE_RESPONSE_ERROR
