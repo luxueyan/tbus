@@ -36,15 +36,15 @@ baconflux.store('register', 'success').onValue(function(data) {
     
     //window.location.href = "/newAccount/settings/home?register";
     
-    var left = 1;
-    var interval = setInterval((function() {
-        --left;
-        if (left == 0) {
-            console.log(left)
-            clearInterval(interval);
-            window.location.href = "/newAccount/home/index";
-        }
-    }), 100);
+    //var left = 1;
+    //var interval = setInterval((function() {
+    //    --left;
+    //    if (left == 0) {
+    //        console.log(left)
+    //        clearInterval(interval);
+    //        window.location.href = "/newAccount/home/index";
+    //    }
+    //}), 100);
 });
 
 $("#getSms").on('click', function() {});

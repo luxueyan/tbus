@@ -25,7 +25,7 @@ RenderPage.prototype = {
         for(var i=1;i<=totalPageSize;i++){
             totalPage.push(i);
         };
-        
+        console.log(totalPage)
         return totalPage;
     },
     
