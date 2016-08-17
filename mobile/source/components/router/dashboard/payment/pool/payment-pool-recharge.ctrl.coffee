@@ -52,7 +52,15 @@ do (_, angular) ->
                         @$q.reject error: [message: 'INCORRECT_PASSWORD']
 
 
-                    .then (data) => @api.payment_pool_recharge(account, amount, @$scope.store.password)
+                    .then (data) =>
+                        post_data = {
+                            userId: @user.info.id
+                            clientIp: @user.clientIp
+                            txn_amt: amount
+                            paymentPasswd: @$scope.store.password
+                        }
+
+                        @api.payment_pool_recharge(post_data)
 
                     .then @api.process_response
 
@@ -99,11 +107,10 @@ do (_, angular) ->
 
     EXTEND_API = (api) ->
 
-        api.__proto__.payment_pool_recharge = (cardNo, amount, paymentPassword) ->
+        api.__proto__.payment_pool_recharge = (data) ->
 
             @$http
-                .post '/api/v2/baofoo/recharge/MYSELF',
-                    {cardNo, amount, paymentPassword}
+                .post '/api/v2/baofoo/charge', data
 
                 .then @TAKE_RESPONSE_DATA
                 .catch @TAKE_RESPONSE_ERROR
