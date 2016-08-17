@@ -124,7 +124,7 @@ do (angular, _) ->
                     .then (data) =>
                         post_data = {
                             clientIp: @user.clientIp
-                            amount: @assignment.creditassign.creditAmount
+                            amount: @assignment.creditassign.creditDealAmount
                             creditAssignId: @assignment.creditassign.id
                             isUseBalance: @$scope.store.isUseBalance
                         }
@@ -176,7 +176,7 @@ do (angular, _) ->
                     controller: _.ai '$scope', ($scope) =>
                         angular.extend $scope, {
                             balance: @user.fund.availableAmount
-                            minimum: @assignment.creditassign.creditAmount
+                            minimum: @assignment.creditassign.creditDealAmount
                         }
                 }
 
