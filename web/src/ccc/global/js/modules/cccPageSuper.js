@@ -47,8 +47,10 @@ RenderPage.prototype = {
             e.original.preventDefault();
             if (page) {
                 current = page;
+                this.set('current',current);
             } else {
                 current = e.context;
+                this.set('current',current);
             }
             if(!that.cfg.api){           //如果api不存在，就去分割传入的数据results
                 that.pageSliceData(current,that.cfg.pageSize);

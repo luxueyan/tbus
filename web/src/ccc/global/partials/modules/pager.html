@@ -8,7 +8,7 @@
     </li>
     {{#totalPage}}
     {{#if current-5< totalPage[@key] && current+5 > totalPage[@key]}}
-    <li class="current-page-now {{#if current == totalPage[@key]}} current-page {{/if}}" on-click="page:{{this}}">
+    <li class="current-page-now {{#if current === totalPage[@key]}} current-page {{/if}}" on-click="page:{{this}}">
         <a>{{totalPage[@key]}}</a>
     </li>
     {{/if}}
