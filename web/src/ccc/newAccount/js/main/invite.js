@@ -51,7 +51,7 @@ new Ractive({
         });
 
          $.get(rewardApi, function (o) {
-             console.log(o)
+             //console.log(o)
              //self.set('totalSize', o.totalSize);
              //self.set('list', self.parseData(o));
              self.set('count', o.count);
@@ -86,24 +86,16 @@ new Ractive({
             var o = r.results[i];
             r.results[i].user.registerDate = new Date(r.results[i].user.registerDate);
             r.results[i].user.registerDate = moment(r.results[i].user.registerDate).format('YYYY-MM-DD');
-            r.results[i].user.loginName = format.mask(o.user.loginName);
+            if( r.results[i].user.name.length>3){
+                r.results[i].user.name =  r.results[i].user.name.substr(0, 1)+'***';
+            }else if( r.results[i].user.name.length>2){
+                r.results[i].user.name =  r.results[i].user.name.substr(0, 1)+'**';
+            }else{
+                r.results[i].user.name = format.mask(o.user.name);
+            }
             r.results[i].FOmobile = format.mask(o.user.mobile, 3, 4);
         }
         return r.results;
-    },
-     parseRewardListData: function (r) {
-         var statueMap={false:'未奖励',true:'已奖励'}
-        for (var i = 0; i < r.length; i++) {
-            var o = r[i];
-            o.rewarded=statueMap[o.rewarded];
-            o.user.loginName=o.user.loginName.substr(0, 1)+'******'+o.user.loginName.substr(o.user.loginName.length-1, 1);
-        }
-        return r;
-    },
-    status: {
-        ACTIVATED: '已注册',
-        UNACTIVATED: '未注册',
-        DELETED: '已作废'
     },
     bindActions: function () {
         var self = this;

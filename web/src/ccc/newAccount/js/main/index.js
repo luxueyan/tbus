@@ -17,7 +17,7 @@ var outstandingInterest = parseFloat(CC.user.investStatistics.outstandingInteres
 // 当前收益
 var currentIncome = parseFloat(CC.user.investStatistics.currentIncome || 0).toFixed(2);
 // 待收金额
-var dueInAmount = CC.user.dueInAmount || 0;
+var dueInAmount = parseFloat(CC.user.investStatistics.investStatistics.dueAmount.principal || 0).toFixed(2);
 
 // 冻结金额
 var frozenAmount = CC.user.frozenAmount || 0;
@@ -42,7 +42,7 @@ var homeRactive = new Ractive({
         outstandingInterest: outstandingInterest,
         totalAmount: totalAmount,
         investAmount: investAmount,
-        dueInAmount: parseFloat(dueInAmount).toFixed(2),
+        dueInAmount: dueInAmount,
         frozenAmount: parseFloat(frozenAmount).toFixed(2),
         holdTotalAmount: holdTotalAmount
 
@@ -91,7 +91,9 @@ var homeRactive = new Ractive({
             self.set('advertisement',data[0].content)
         })
         accountService.getUserInfo(function (res) {
-            self.set('riskBear', res.surveyScore.name);
+            if(res.surveyScore){
+                self.set('riskBear', res.surveyScore.name);
+            }
         });
 
     }
