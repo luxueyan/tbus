@@ -27,7 +27,13 @@
                  ].indexOf(item.status) > -1"
             >
                 <span class="name">预期收益(元)</span>
-                <span class="value">{{ item.amount_interest | number: 2 }}</span>
+                <span class="value">
+                    {{
+                        item.amount_interest
+                        ? (item.amount_interest | number: 2 )
+                        : '-'
+                    }}
+                </span>
             </div>
 
             <div class="info"
@@ -44,7 +50,7 @@
         </div>
 
         <div class="action" ng-if="item.raw.canBeAssign">
-            <a ng-href="dashboard/assignment/{{ item.loan_id }}" class="btn btn-theme btn-xs">转让</a>
+            <a ng-href="dashboard/assignment/{{ item.id }}" class="btn btn-theme btn-xs">转让</a>
         </div>
     </div>
 </div>
@@ -55,21 +61,20 @@
         <h4 class="title">
             <a ng-href="assignment/{{ item.id }}">{{ item.title }}</a>
         </h4>
-        <span class="date" x-gyro-comment>
-            起息日：{{ item.settled_date | date: "yyyy-MM-dd" }}
-            到期日：{{ item.end_date | date: "yyyy-MM-dd" }}
+        <span class="date">
+            挂牌日：{{ item.time_open | date: "yyyy-MM-dd" }}
         </span>
     </div>
 
     <div class="body">
         <div class="rate">
             <div class="value">{{ item.rate }}%</div>
-            <div class="name">预期年收益率</div>
+            <div class="name">转让利率</div>
         </div>
         <div class="info-list">
             <div class="info">
-                <span class="name">实际收益(元)</span>
-                <span class="value">{{ item.raw.amountInterest | number: 2 }}</span>
+                <span class="name">转让价格(元)</span>
+                <span class="value">{{ item.raw.creditDealAmount | number: 2 }}</span>
             </div>
 
             <div class="info">

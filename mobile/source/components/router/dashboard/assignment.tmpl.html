@@ -13,14 +13,30 @@
 
     <div>
         <param ng-model="msg" ng-init="msg = {
-            INCORRECT_PASSWORD: '交易密码不正确',
+            SUCCESSFUL: '债转创建成功!',
+            CREDIT_ASSIGN_DISABLED: '没有开启债权转让功能',
+            REASSIGN_DISABLED: '二次转让功能关闭',
+            INVEST_NOT_FOUND: '原始投标找不到',
+            EXCEED_DISCOUNT_LIMIT: '超过债权转让折让率允许范围',
+            REPEATED_ASSIGN_REQUEST: '债权转让已存在,不能重复转让',
+            INSUFFICIENT: '没有本金可转让',
+            ILLEGAL_INVEST: '投标状态不可转让',
+            ILLEGAL_INVEST_USER: '只能转让自己的投标',
+            ILLEGAL_REPAYMENT: '投标有逾期违约还款',
+            ILLEGAL_DATE: '不在可转让时间范围',
+            NEXT_REPAY_DATE_LIMIT: '下次回款到期日前一定天数内不允许转让',
+            INVEST_DATE_LIMIT: '投资持有一定天数后才允许转让',
+            DAILY_LIMIT: '超过每日债权转让次数上限',
+            DISCOUNT_LIMIT: '超过债权转让折让率允许范围',
+            ASSIGN_AMOUNT_LIMIT: '低于最低转让金额限制',
+
             UNKNOWN: '系统繁忙，请稍后重试！',
             ACCESS_DENIED: '登录超时',
         }">
     </div>
 
     <section class="summary shadow">
-        <h4>{{ loan.title }}</h4>
+        <h4>{{ item.title }}</h4>
     </section>
 
     <form class="form-horizontal form-assignment"
@@ -28,15 +44,15 @@
           autocapitalize="none"
           autocomplete="off"
           autocorrect="off"
-          ng-submit="self.submit($event)"
-          ng-hide="action_result"
+          novalidate
+          ng-submit="self.submit(store)"
     >
         <section>
             <ul class="list-unstyled u-off-margin-bottom list">
                 <li>
                     <div class="info">
                         <span class="name">标的估值(元)</span>
-                        <span class="value"><span class="num">{{  }}</span></span>
+                        <span class="value"><span class="num">{{ item.amount | number: 2 }}</span></span>
                     </div>
                 </li>
 
@@ -49,20 +65,35 @@
                                        type="number"
                                        id="rate"
                                        name="rate"
+                                       ng-min="0.95"
+                                       ng-max="1.05"
                                        ng-model="store.rate"
+                                       ng-change="form.rate.$valid && self.fetch_analyse(store.rate)"
                                        placeholder=""
+                                       autocapitalize="none"
+                                       autocomplete="off"
+                                       autocorrect="off"
                                        required
                                 >
                             </div>
                         </span>
                     </div>
+
+                    <div class="help-block"
+                         ng-show="form.rate.$invalid && form.rate.$dirty"
+                    >
+                        <span ng-show="form.rate.$error.required">请输入折价率</span>
+                        <span ng-show="form.rate.$error.min">折价率必须大于等于0.95</span>
+                        <span ng-show="form.rate.$error.max">折价率必须小于等于1.05</span>
+                    </div>
+
                     <p class="desc">(支持溢价，折价率必须大于等于0.95；小余等于1.05)</p>
                 </li>
 
                 <li>
                     <div class="info">
                         <span class="name">转让价格(元)</span>
-                        <span class="value"><span class="num">{{ }}</span></span>
+                        <span class="value"><span class="num">{{ creditDealAmount | number: 2 }}</span></span>
                     </div>
                 </li>
 
@@ -82,45 +113,6 @@
             >确认转让</button>
         </section>
     </form>
-
-
-
-
-
-
-    <div class="action-result" ng-show="action_result">
-        <div ng-show="action_result.success">
-            <div class="content text-center shadow">
-                <div class="icon-wrap">
-                    <img class="icon" width="66" ng-src="assets/image/smile-icon.png">
-                </div>
-
-                <p class="desc">提交成功</p>
-            </div>
-
-            <div class="action">
-                <a class="btn btn-theme btn-block" href="dashboard/invest">查看投资详情</a>
-            </div>
-        </div>
-
-        <div ng-hide="action_result.success">
-            <div class="content text-center shadow">
-                <div class="icon-wrap">
-                    <img class="icon" width="66" ng-src="assets/image/unhappy-icon.png">
-                </div>
-
-                <p class="desc text-muted">提交失败</p>
-
-                <p class="msg">{{ action_result.msg }}</p>
-            </div>
-
-            <div class="action">
-                <a class="btn btn-theme btn-block" href=""
-                   ng-click="action_result = null"
-                >重新提交</a>
-            </div>
-        </div>
-    </div>
 
 </div>
 
