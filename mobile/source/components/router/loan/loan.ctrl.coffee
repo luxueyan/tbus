@@ -141,7 +141,7 @@ do (_, angular, moment, Math, Date) ->
             balance
             balance_myriad
 
-            amount_myriad: (item.amount / 10000) | 0
+            amount_myriad: (item.amount / 10000)
             total_days: item.duration.totalDays
             total_months: item.duration.totalMonths
 

@@ -12,6 +12,7 @@ do (_, angular) ->
                     loan: map_loan_summary @loan
                     assignment: map_assignment_summary @assignment.creditassign
                     investors: @assignment.invests.results
+                    due_date: @assignment.dueDate
                 }
 
 
@@ -66,13 +67,6 @@ do (_, angular) ->
         invest_percent_int = ((1 - item.balance / item.creditAmount) * 100) | 0
         invest_percent_int = 100 if item.status in _.split 'SETTLED FINISHED'
 
-        (finished_date = do ->
-            if item.timeFinished
-                return new Date( item.timeFinished )
-            else
-                return new Date( +moment(item.timeOpen).add(Math.ceil(item.timeout / 24), 'd') )
-        )
-
         return _.merge result, {
 
             raw: item
@@ -81,7 +75,7 @@ do (_, angular) ->
 
             invest_percent_int
 
-            balance_myriad: (item.balance / 10000) | 0
+            balance_myriad: (item.balance / 10000)
             rate: (item.actualRate * 100).toFixed(2)
 
             time_open_left: item.timeOpen - Date.now()
@@ -89,13 +83,13 @@ do (_, angular) ->
             time_open: item.timeOpen
             time_close: item.timeOpen + (item.timeOut * 3600 * 1000)
 
-            due_date: new Date( +moment(finished_date).add(1 + item.remainPeriod, 'd'))
+            due_date: new Date( +moment(item.timeOpen).add(item.remainPeriod - 1, 'd'))
 
             status: item.status
             method: item.repaymentMethod
 
             amount: item.creditAmount
-            amount_myriad: (item.creditAmount / 10000) | 0
+            amount_myriad: (item.creditAmount / 10000)
 
             trade_rate: item.creditDealRate * 100
             total_days: item.remainPeriod

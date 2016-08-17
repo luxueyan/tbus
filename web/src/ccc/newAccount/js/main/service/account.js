@@ -269,7 +269,7 @@ exports.accountService = {
             });
     },
     deleteBank: function (params, next) {
-        request('POST', 'api/v2/baofoo/cancelBindCard')
+        request('POST', '/api/v2/baofoo/cancelBindCard')
             .type('form')
             .send(params)
             .end()

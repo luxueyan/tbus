@@ -24,6 +24,8 @@ try
         /api/web/register/submit
 
         /wx/signature
+
+        GET/getClientIp
     '
 catch
     app.use require('cookie-parser')()

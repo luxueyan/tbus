@@ -3,8 +3,8 @@ do (angular, _) ->
 
     angular.module('controller').controller 'AssignmentInvestCtrl',
 
-        _.ai '            @api, @user, @assignment, @loan, @coupon, @$scope, @$rootScope, @$q, @$location, @$window, map_assignment_summary, @$uibModal, @popup_payment_state, @popup_payment_password', class
-            constructor: (@api, @user, @assignment, @loan, @coupon, @$scope, @$rootScope, @$q, @$location, @$window, map_assignment_summary, @$uibModal, @popup_payment_state, @popup_payment_password) ->
+        _.ai '            @api, @user, @assignment, @loan, @$scope, @$rootScope, @$q, @$location, @$window, map_assignment_summary, @$uibModal, @popup_payment_state, @popup_payment_password', class
+            constructor: (@api, @user, @assignment, @loan, @$scope, @$rootScope, @$q, @$location, @$window, map_assignment_summary, @$uibModal, @popup_payment_state, @popup_payment_password) ->
 
                 @$window.scrollTo 0, 0
 
@@ -19,46 +19,46 @@ do (angular, _) ->
                     store: {}
                     assignment: map_assignment_summary @assignment.creditassign
 
-                    coupon_list:
-                        _(@coupon.data)
-                            .filter (item) -> item.disabled is false
-                            .pluck 'placement'
-                            .filter (item) -> item.couponPackage.type isnt 'CASH'
-                            .map (item) ->
-                                info = item.couponPackage
+                    # coupon_list:
+                    #     _(@coupon.data)
+                    #         .filter (item) -> item.disabled is false
+                    #         .pluck 'placement'
+                    #         .filter (item) -> item.couponPackage.type isnt 'CASH'
+                    #         .map (item) ->
+                    #             info = item.couponPackage
 
-                                return {
-                                    id: item.id
-                                    couponPackage: info
-                                    status: item.status
-                                    minimum: info.minimumInvest
-                                    type: info.type
-                                    value: do ->
-                                        value = info.parValue
-                                        value /= 100 if info.type is 'INTEREST'
-                                        return value
+                    #             return {
+                    #                 id: item.id
+                    #                 couponPackage: info
+                    #                 status: item.status
+                    #                 minimum: info.minimumInvest
+                    #                 type: info.type
+                    #                 value: do ->
+                    #                     value = info.parValue
+                    #                     value /= 100 if info.type is 'INTEREST'
+                    #                     return value
 
-                                    display: do ->
-                                        INTEREST = 'INTEREST'
+                    #                 display: do ->
+                    #                     INTEREST = 'INTEREST'
 
-                                        type_cn = {
-                                            CASH: '现金券'
-                                            INTEREST: '加息券'
-                                            PRINCIPAL: '增值券'
-                                            REBATE: '返现券'
-                                        }[info.type]
+                    #                     type_cn = {
+                    #                         CASH: '现金券'
+                    #                         INTEREST: '加息券'
+                    #                         PRINCIPAL: '增值券'
+                    #                         REBATE: '返现券'
+                    #                     }[info.type]
 
-                                        value = info.parValue
-                                        value /= 100 if info.type is INTEREST
+                    #                     value = info.parValue
+                    #                     value /= 100 if info.type is INTEREST
 
-                                        unit = if info.type is INTEREST then '%' else '元'
+                    #                     unit = if info.type is INTEREST then '%' else '元'
 
-                                        return "#{ value + unit + type_cn } - 最低投资额: #{ info.minimumInvest }"
-                                }
-                            .value()
+                    #                     return "#{ value + unit + type_cn } - 最低投资额: #{ info.minimumInvest }"
+                    #             }
+                    #         .value()
 
-                    coupon_minimum: (item) =>
-                        @$scope.store.amount >= item.minimum
+                    # coupon_minimum: (item) =>
+                    #     @$scope.store.amount >= item.minimum
                 }
 
                 if !@user.has_bank_card or !@user.has_payment_password
@@ -75,25 +75,26 @@ do (angular, _) ->
                 good_to_go = true
                 do event.preventDefault  # submitting via AJAX
 
-                amount = @$scope.store.amount * @$scope.assignment.trade_rate / 100 or 0
-                loan_available = @assignment.creditassign.balance
-                user_available = @user.fund.availableAmount
+                clientIp = @user.clientIp
+                amount = @assignment.creditassign.creditAmount
+                creditAssignId = @assignment.creditassign.id
+                isUseBalance = @$scope.store.isUseBalance
 
-                coupon = @$scope.store?.coupon
-                coupon_minimum = @$scope.store.coupon?.minimum
+                # loan_available = @assignment.creditassign.balance
+                # user_available = @user.fund.availableAmount
 
-                (if user_available <= 0 or amount > user_available
-                    good_to_go = false
-                    if @$window.confirm "余额不足，前去充值吗？"
-                        @$location
-                            .path 'dashboard/recharge'
-                            .search next: @page_path
+                # coupon = @$scope.store?.coupon
+                # coupon_minimum = @$scope.store.coupon?.minimum
 
-                else if @$scope.store.amount > loan_available
-                    good_to_go = false
-                    @$window.alert "投资金额超出项目剩余金额，请重新输入"
+                # (if user_available <= 0 or amount > user_available
+                #     good_to_go = false
+                #     do @prompt_short_of_balance
 
-                else if @assignment.creditassign.userId == @user.info.id
+                # else if @$scope.store.amount > loan_available
+                #     good_to_go = false
+                #     @$window.alert "投资金额超出项目剩余金额，请重新输入"
+
+                if @assignment.creditassign.userId == @user.info.id
                     good_to_go = false
                     @$window.alert "不可以投自己转让的债权标"
 
@@ -101,10 +102,10 @@ do (angular, _) ->
                     good_to_go = false
                     @$window.alert "不可以投自己借款的债转标"
 
-                else if coupon_minimum and amount < coupon_minimum
-                    good_to_go = false
-                    @$window.alert "该优惠券需要投资额大于 #{ coupon_minimum } 方可使用"
-                )
+                # else if coupon_minimum and amount < coupon_minimum
+                #     good_to_go = false
+                #     @$window.alert "该优惠券需要投资额大于 #{ coupon_minimum } 方可使用"
+                # )
 
                 return unless good_to_go
 
@@ -125,7 +126,7 @@ do (angular, _) ->
                         @$q.reject error: [message: 'INCORRECT_PASSWORD']
 
 
-                    .then (data) => @api.payment_pool_tender(loan.id, @$scope.store.password, amount, coupon?.id)
+                    .then (data) => @api.payment_pool_creditAssign_invest(clientIp, amount, creditAssignId, isUseBalance)
 
                     .then @api.process_response
 
@@ -172,7 +173,7 @@ do (angular, _) ->
                     controller: _.ai '$scope', ($scope) =>
                         angular.extend $scope, {
                             balance: @user.fund.availableAmount
-                            minimum: @loan.loanRequest.investRule.minAmount
+                            minimum: @assignment.creditassign.creditAmount
                         }
                 }
 
@@ -221,11 +222,11 @@ do (angular, _) ->
 
     EXTEND_API = (api) ->
 
-        api.__proto__.payment_pool_tender = (loanId, paymentPassword, amount, placementId = '') ->
+        api.__proto__.payment_pool_creditAssign_invest = (clientIp, amount, creditAssignId, isUseBalance) ->
 
             @$http
-                .post '/api/v2/invest/tender/MYSELF',
-                    _.compact {loanId, paymentPassword, amount, placementId}
+                .post '/api/v2/invest/user/MYSELF/creditAssign/invest',
+                    _.compact {clientIp, amount, creditAssignId, isUseBalance}
 
                 .then @TAKE_RESPONSE_DATA
                 .catch @TAKE_RESPONSE_ERROR

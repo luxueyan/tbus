@@ -278,18 +278,9 @@ ractive.on('sendCode', function () {
     if (accessA && accessB && accessC && accessD && accessE) {
         $.post('/api/v2/baofoo/MYSELF/preBindCard', params, function (r) {
             if (r.success) {
-                console.log(r);
-                //$.post('/api/v2/smsCaptcha', {mobile: cardPhone, smsType: 'CREDITMARKET_CAPTCHA'}, function (r) {
-                //    if (r.success) {
-                        //ractive.set('personal',);
-                        //ractive.set('idNo',);
-                        //ractive.set('cardNo',);
-                        //ractive.set('mobile',);
-                        //ractive.set('bankName',);
-                        ractive.set('hasCardO',true);
-                        countDown();
-                    //}
-                //});
+                ractive.set('hasCardO', true);
+                ractive.set('hasCard1', true);
+                countDown();
             } else {
                 CccOk.create({
                     msg: r.error[0].message,

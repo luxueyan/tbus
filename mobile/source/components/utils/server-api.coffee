@@ -64,6 +64,7 @@ do (_, angular, moment, Array, Date) ->
                             @$http.get "/api/v2/user/#{ @user.info.id }/#{ path }"
 
                         api_list.push @$http.get '/api/v2/hundsun/banks', cache: true
+                        api_list.push @$http.get '/getClientIp', cache: true
 
                         return @$q.all api_list
 
@@ -74,6 +75,7 @@ do (_, angular, moment, Array, Date) ->
                             @user.fund_accounts
                             @user.authenticates
                             banks
+                            @user.clientIp
 
                         ] = _.pluck response, 'data'
 
