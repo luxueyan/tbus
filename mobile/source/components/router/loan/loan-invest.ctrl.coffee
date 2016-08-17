@@ -169,7 +169,19 @@ do (_, angular, Math) ->
                         @$q.reject error: [message: 'INCORRECT_PASSWORD']
 
 
-                    .then (data) => @api.payment_pool_tender(loan.id, @$scope.store.password, amount, coupon?.id)
+                    .then (data) =>
+                        post_data = {
+                            userId: @user.info.id
+                            clientIp: @user.clientIp
+                            loanId: loan.id
+                            amount: amount
+                            smsCaptcha: false
+                            placementId: coupon?.id or ''
+                            paymentPassword: @$scope.store.password
+                            isUseBalance: @$scope.store.isUseBalance
+                        }
+
+                        @api.payment_pool_tender(post_data)
 
                     .then @api.process_response
 
@@ -264,11 +276,10 @@ do (_, angular, Math) ->
 
     EXTEND_API = (api) ->
 
-        api.__proto__.payment_pool_tender = (loanId, paymentPassword, amount, placementId = '') ->
+        api.__proto__.payment_pool_tender = (data) ->
 
             @$http
-                .post '/api/v2/invest/tender/MYSELF',
-                    _.compact {loanId, paymentPassword, amount, placementId}
+                .post '/api/v2/invest/tender/MYSELF', _.compact data
 
                 .then @TAKE_RESPONSE_DATA
                 .catch @TAKE_RESPONSE_ERROR
