@@ -10,8 +10,8 @@ var ractive = new Ractive({
     el: '#ractive-container',
     template: require('ccc/return/partials/authenticateEmail.html'),
     data: {
-        step: 1,
-        message:""
+        step: 0,
+        message:''
     },
     oninit:function(){
         var code=GetQueryString('code');
@@ -21,16 +21,19 @@ var ractive = new Ractive({
             .send({code:code,email:email})
             .end()
             .then(function (r) {
-                if(r.ConfirmResult=="SUCCESSFUL"){
+                if(r.body.ConfirmResult=="SUCCESSFUL"){
                     ractive.set('step',1);
-
                 }
                 else{
                     ractive.set('step',2);
-                    ractive.set('message',statusMap[r.ConfirmResult]);
+                    ractive.set('message',statusMap[r.body.ConfirmResult]);
                 }
-                setTimeout(function(){window.location.href="/newAccount/home/index"},5000)
+                //setTimeout(function(){window.location.href="/newAccount/home/index"},5000)
             });
+    },
+    resetEmail:function(){
+        console.log(">>>>>>>");
+        window.location.href="/newAccount/bindingEmail"
     }
 });
 function GetQueryString(name) {
