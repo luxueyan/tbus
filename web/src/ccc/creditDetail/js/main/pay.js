@@ -36,7 +36,7 @@ var payRactive = new Ractive({
         $.get('/api/v2/creditassign/creditAssignDetail/' + creditassignId, function(res){
             //console.log(res)
             self.set('creditassign',res.creditassign);
-            self.set('investNum',res.creditassign.creditAmount);
+            self.set('investNum',res.creditassign.creditDealAmount);
         });
     }
 });
