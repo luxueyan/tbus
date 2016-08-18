@@ -102,7 +102,7 @@ do (_, angular, moment, Array, Date) ->
                 new_path = ->
                     ARRAY_JOIN.call [
                         '/api/v2/user/MYSELF/invest/list'
-                        '/', query_set.page - 1
+                        '/', query_set.page
                         '/', query_set.pageSize
                     ]
 

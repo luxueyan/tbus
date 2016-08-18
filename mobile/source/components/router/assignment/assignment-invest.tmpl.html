@@ -97,7 +97,7 @@
         </section>
 
         <section class="container text-center actual-payment-amount">
-            实际支付金额(元) ：{{ assignment.amount | number: 2 }}
+            实际支付金额(元) ：{{ assignment.raw.creditDealAmount | number: 2 }}
         </section>
 
         <section class="btn-submit-wrap">

@@ -25,9 +25,19 @@ do (_, angular) ->
                 EXTEND_API @api
 
 
-            send_mobile_captcha: (mobile) ->
+            send_mobile_captcha: ({user_name, id_number, bank, cardNo, cardPhone}) ->
 
-                (@api.payment_pool_bind_card_sent_captcha(mobile)
+                post_data = {
+                    realName: user_name
+                    idNumber: id_number
+                    accountNumber: cardNo
+                    mobile: cardPhone
+                    bankName: bank.bankCode
+                }
+
+                (@api.payment_pool_bind_card_sent_captcha(post_data)
+
+                    .then @api.process_response
 
                     .then =>
                         @captcha.timer = @$interval =>
@@ -52,19 +62,9 @@ do (_, angular) ->
                 )
 
 
-            bind_card: ({user_name, id_number, bank, cardNo, smsCaptcha, password}) ->
+            bind_card: ({user_name, id_number, bank, cardNo, cardPhone, smsCaptcha, password}) ->
 
                 @submit_sending = true
-
-                bind_card_data = {
-                    userId: @user.info.id,
-                    mobile: @user.info.mobile,
-                    name: user_name,
-                    idCardNumber: id_number,
-                    bankCode: bank.bankCode,
-                    accountNumber: cardNo,
-                    smsCaptcha: smsCaptcha
-                }
 
                 (@$q.resolve(!!@user.has_payment_password)
 
@@ -73,6 +73,10 @@ do (_, angular) ->
                             return (
                                 @api.payment_pool_check_password(password)
                                     .then @api.process_response
+                                    .catch (data) =>
+                                        return @$q.reject(data) if _.get(data, 'error') is 'access_denied'
+
+                                        @$q.reject error: [message: 'INCORRECT_PASSWORD']
                             )
 
                         else
@@ -83,7 +87,18 @@ do (_, angular) ->
                                         @user.has_payment_password = true
                             )
 
-                    .then => @api.payment_pool_bind_card(bind_card_data)
+                    .then =>
+                        post_data = {
+                            realName: user_name
+                            idNumber: id_number
+                            accountNumber: cardNo
+                            mobile: cardPhone
+                            bankName: bank.bankCode
+                            smsCode: smsCaptcha
+                            userId: @user.info.id
+                        }
+
+                        @api.payment_pool_bind_card(post_data)
 
                     .then @api.process_response
 
@@ -156,11 +171,10 @@ do (_, angular) ->
                 .catch @TAKE_RESPONSE_ERROR
 
 
-        api.__proto__.payment_pool_bind_card_sent_captcha = (mobile) ->
+        api.__proto__.payment_pool_bind_card_sent_captcha = (data) ->
 
             @$http
-                .post '/api/v2/smsCaptcha',
-                    {mobile, smsType: 'CREDITMARKET_CAPTCHA'}
+                .post '/api/v2/baofoo/MYSELF/preBindCard', data
 
                 .then @TAKE_RESPONSE_DATA
                 .catch @TAKE_RESPONSE_ERROR
@@ -169,7 +183,7 @@ do (_, angular) ->
         api.__proto__.payment_pool_bind_card = (data) ->
 
             @$http
-                .post '/api/v2/user/checkBankcard', data
+                .post '/api/v2/baofoo/MYSELF/confirmBindCard', data
 
                 .then @TAKE_RESPONSE_DATA
                 .catch @TAKE_RESPONSE_ERROR

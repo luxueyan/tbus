@@ -79,6 +79,8 @@ do (_, angular) ->
 
                             angular.extend @$scope.list, {totalSize}
 
+                            @$rootScope.invest_list = @$scope.list
+
                         .catch (data) =>
                             if _.get(data, 'error') is 'access_denied'
                                 @$window.alert @$scope.msg.ACCESS_DENIED
