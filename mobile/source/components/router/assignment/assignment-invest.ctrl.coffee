@@ -124,7 +124,7 @@ do (angular, _) ->
                     .then (data) =>
                         post_data = {
                             clientIp: @user.clientIp
-                            amount: @assignment.creditassign.creditDealAmount
+                            amount: @assignment.creditassign.creditAmount
                             creditAssignId: @assignment.creditassign.id
                             isUseBalance: @$scope.store.isUseBalance
                         }
