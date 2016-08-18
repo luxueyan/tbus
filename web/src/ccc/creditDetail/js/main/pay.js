@@ -37,11 +37,29 @@ var payRactive = new Ractive({
             //console.log(res)
             self.set('creditassign',res.creditassign);
             self.set('investNum',res.creditassign.creditDealAmount);
+            self.set('creditAmount',res.creditassign.creditAmount);
         });
     }
 });
 
 payRactive.on("invest-submit", function (e) {
+    var message = {
+        'CREDIT_ASSIGN_DISABLED':"债转功能不可用",
+        'NOT_FOUND':"债转不存在",
+        'ASSIGN_NOT_OPEN':"转让未开始或已结束",
+        'ASSIGN_NO_BALANCE':"转让金额已满",
+        'SELF_ASSIGN_FORBIDDEN':"不能承接自己的转让",
+        'BORROWER_ASSIGN_FORBIDDEN':"标的借款人不能承接转让",
+        'PARTLY_ASSIGN_FORBIDDEN':"必须全额承接",
+        'FEE_EXCEED_LIMIT':"费率超过上限",
+        'ILLEGAL_AMOUNT':"金额错误",
+        'USER_BALANCE_INSUFFICIENT':"用户账户可用余额不足",
+        'ASSIGN_REDUNDANT':"重复的债转投资",
+        'DEPOSIT_FAILED':"使用认证支付失败",
+        'USER_NOT_EXIST':"获取用户信息失败",
+        'ASSIGN_FEE_FAIL':"债权转让收费失败",
+        'FAILED':"其他原因失败"
+    };
     var that = this;
     var creditassign = that.get('creditassign');
     var isUseB = that.get('useBankCard');
@@ -49,7 +67,7 @@ payRactive.on("invest-submit", function (e) {
     //if(!this.get('useBankCard')){
     //    return;
     //}
-    var num = this.get('investNum');
+    var num = this.get('creditAmount');
     //console.log(num);
     var paymentPassword = this.get('paymentPassword');
     if (paymentPassword === '') {
@@ -81,7 +99,12 @@ payRactive.on("invest-submit", function (e) {
                             payRactive.set('step1',false);
                             payRactive.set('step2',false);
                             payRactive.set('step3',true);
-                            payRactive.set('failerror',res.error[0].message);
+                            if(message[res.error[0].message]){
+                                payRactive.set('failerror',message[res.error[0].message]);
+                            }else{
+                                payRactive.set('failerror',res.error[0].message);
+                            }
+
                         }
                     });
 
