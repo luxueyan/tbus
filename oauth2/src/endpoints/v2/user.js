@@ -152,5 +152,3 @@ function import$(obj, src){
 router.get('/api/v2/user/:userId/appoint/activity', auth.user());
 router.get('/api/v2/user/:userId/inviteCode', auth.owner());
 router.get('/api/v2/user/:userId/invite', auth.owner());
-// 邮箱认证
-router.post('/api/v2/user/authenticateEmail', auth.user());

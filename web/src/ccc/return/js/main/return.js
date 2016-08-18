@@ -28,12 +28,8 @@ var ractive = new Ractive({
                     ractive.set('step',2);
                     ractive.set('message',statusMap[r.body.ConfirmResult]);
                 }
-                //setTimeout(function(){window.location.href="/newAccount/home/index"},5000)
+                setTimeout(function(){window.location.href="/newAccount/home/index"},5000)
             });
-    },
-    resetEmail:function(){
-        console.log(">>>>>>>");
-        window.location.href="/newAccount/bindingEmail"
     }
 });
 function GetQueryString(name) {
