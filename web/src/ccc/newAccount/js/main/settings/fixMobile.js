@@ -86,6 +86,11 @@ fixMobileRactive.on('fixMobile', function () {
                     clearErrorIndex('showErrorMessagea', 'errorMessagea');
                     clearErrorIndex('showErrorMessagec', 'errorMessagec');
                 }
+                if(r.error[0].message === 'MOBILE_EXISTS'){
+                    showErrorIndex('showErrorMessageb', 'errorMessageb', '该手机号已被注册过');
+                }else{
+                    clearErrorIndex('showErrorMessageb', 'errorMessageb');
+                }
             }
         });
     }
