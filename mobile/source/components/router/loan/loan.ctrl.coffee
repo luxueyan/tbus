@@ -3,24 +3,28 @@ do (_, angular, moment, Math, Date) ->
 
     angular.module('controller').controller 'LoanCtrl',
 
-        _.ai '            @loan, @api, @$scope, @$window, map_loan_summary, @$routeParams, @$timeout', class
-            constructor: (@loan, @api, @$scope, @$window, map_loan_summary, @$routeParams, @$timeout) ->
+        _.ai '            @user, @loan, @api, @$scope, @$window, @$location, map_loan_summary, @$routeParams, @$timeout', class
+            constructor: (@user, @loan, @api, @$scope, @$window, @$location, map_loan_summary, @$routeParams, @$timeout) ->
 
                 @$window.scrollTo 0, 0
 
                 angular.extend @$scope, {
                     loan: map_loan_summary @loan
-                    loading_investors: true
+                    page_path: @$location.path()[1..]
                 }
 
-                (@api.get_loan_investors(@loan.id)
+                if @user.has_logged_in
 
-                    .then (data) =>
-                        @$scope.investors = data
+                    @$scope.loading_investors = true
 
-                    .finally =>
-                        @$scope.loading_investors = false
-                )
+                    (@api.get_loan_investors(@loan.id)
+
+                        .then (data) =>
+                            @$scope.investors = data
+
+                        .finally =>
+                            @$scope.loading_investors = false
+                    )
 
 
                 time_open_left = @loan.timeOpen - @loan.serverDate
