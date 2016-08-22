@@ -12,6 +12,11 @@ do (_, angular) ->
 
                 @$scope.now = Date.now()
 
+                (@api.get_refer_count_and_reward()
+                    .then ({totalCoupons}) =>
+                        @$scope.invite_coupon_length = totalCoupons
+                )
+
                 (@api.get_user_coupons()
                     .then @api.TAKE_RESPONSE_DATA
                     .then ({totalSize}) =>
