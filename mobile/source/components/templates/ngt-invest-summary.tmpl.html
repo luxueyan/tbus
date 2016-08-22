@@ -5,8 +5,8 @@
             <a ng-href="loan/{{ item.loan_id }}">{{ item.title }}</a>
         </h4>
         <span class="date">
-            起息日：{{ item.settled_date | date: "yyyy-MM-dd" }}
-            到期日：{{ item.end_date | date: "yyyy-MM-dd" }}
+            <span class="item">起息日：{{ item.settled_date | date: "yyyy-MM-dd" }}</span>
+            <span class="item">到期日：{{ item.end_date | date: "yyyy-MM-dd" }}</span>
         </span>
     </div>
 

@@ -461,6 +461,15 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
+            get_refer_count_and_reward: (cache = false) ->
+
+                @$http
+                    .get '/api/v2/reward/getReferUserCountAndReward/MYSELF', {cache}
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
             get_user_available_withdraw_amount: (cache = false) ->
 
                 convert_to_day = (date) ->

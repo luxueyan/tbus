@@ -65,7 +65,7 @@
             </li>
             <li>
                 <div class="name">起息日</div>
-                <div class="value">购买成功后第二天</div>
+                <div class="value">{{ loan.value_date | date: 'yyyy-MM-dd' }}</div>
             </li>
             <li>
                 <div class="name">结息日</div>
@@ -176,7 +176,7 @@
                 </uib-accordion-heading>
 
                 <div class="content">
-                    <div ng-hide="loading_investors">
+                    <div ng-show="self.user.has_logged_in && !loading_investors">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -194,14 +194,21 @@
                             </tbody>
                         </table>
 
-                        <div class="container" ng-if="!investors.length">
-                            <h4 class="alert alert-info text-center">暂无记录</h4>
+                        <div class="container not-found" ng-if="!investors.length">
+                            <div class="icon-wrap">
+                                <img class="icon" width="50" ng-src="assets/image/not-found-icon.png">
+                            </div>
+                            <p class="desc">暂无数据</p>
                         </div>
                     </div>
 
                     <p class="text-center loading" ng-show="loading_investors">
                         <img src="assets/image/spinner.gif">
                     </p>
+
+                    <h5 class="text-center" ng-hide="self.user.has_logged_in">
+                        请 <a ng-href="login?next={{ page_path }}">登录</a> 或 <a href="register">注册</a> 后查看
+                    </h5>
                 </div>
             </uib-accordion-group>
         <uib-accordion>

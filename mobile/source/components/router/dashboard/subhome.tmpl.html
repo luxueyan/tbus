@@ -21,7 +21,7 @@
         <div class="info">
             <img class="icon" width="18" ng-src="assets/image/user-icon-sm.png">
             {{ now | greeting_time_cn }},
-            {{ self.user.info.mobile | string_replace: '^(\\d{3})(\\d{5})(\\d{3})$' : '$1*****$3' }}
+            {{ self.user.info.name || (self.user.info.mobile | string_replace: '^(\\d{3})(\\d{5})(\\d{3})$' : '$1*****$3') }}
         </div>
 
         <div class="btns">
@@ -147,7 +147,7 @@
                         </div>
                         <div class="media-body">
                             <h4 class="media-heading">我的邀请</h4>
-                            <p class="desc"></p>
+                            <p class="desc" ng-if="invite_coupon_length">已斩获{{ invite_coupon_length }}个红包</p>
                         </div>
                     </div>
                 </a>
