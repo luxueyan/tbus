@@ -2657,7 +2657,7 @@ a {
                 .flex-display(center; space-between);
 
                 border-bottom: 1px solid #C3C3C3;
-                padding: 8px 15px;
+                padding: 8px 5px 8px 15px;
 
                 .title {
                     .flex(1);
@@ -2677,6 +2677,12 @@ a {
                     font-size: 12px;
                     line-height: 1;
                     color: #717071;
+
+                    .item {
+                        + .item {
+                            margin-left: 6px;
+                        }
+                    }
                 }
             }
 
