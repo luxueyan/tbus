@@ -452,7 +452,7 @@
     border-left: solid #eee 1px;
     /*background-image: url(/assets/img/box_bj.jpg);*/
     /*	min-height: 350px;*/
-    padding-top: 60px;
+    padding-top: 40px;
 }
 
 .do-invest-wrapper div{
@@ -777,16 +777,13 @@
     margin-bottom: 5px;
 }
 
-.do-invest-wrapper .status .userBlock .agree-box span,
-.do-invest-wrapper .status .userBlock .agree-box span a {
-    font-size: 12px;
+.do-invest-wrapper .agree{
+    margin-left: 46px;
+    margin-bottom: 20px;
+    text-align: left;
 }
-.do-invest-wrapper .status .userBlock .agree-box{
-    margin-top: 10px;
-}
-
-.do-invest-wrapper .status .userBlock .agree-box span a {
-    color: #009ada;
+.do-invest-wrapper .agree a{
+    color: #b18e5c;
 }
 
 .do-invest-wrapper .status .userBlock .shiming {

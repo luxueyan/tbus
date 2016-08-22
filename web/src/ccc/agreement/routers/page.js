@@ -6,13 +6,13 @@ module.exports = function (router) {
         console.log('*************');
         console.log(param);
         var tabMap = {
-            regist: '注册协议',
-            assignInvest: '债权转让协议',
-            noviceInvest: '新手专享协议',
-            employeeInvest: '员工专享协议',
-            net: '网络交易资金存管协议',
+            regist: '网站注册协议',
+            protocol:'服务协议',
+            assign: '金融资产转让协议',
             risk:'风险提示书',
-            protocol:'太合汇服务协议',
+            pay:'支付服务协议',
+            assignBuy:'转让方购买金融资产时签署的购买协议',
+            protocolBuy:'产品购买协议',
         };
 
         if (!tabMap[param]) {

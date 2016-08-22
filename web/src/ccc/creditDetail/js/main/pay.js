@@ -80,8 +80,8 @@ payRactive.on("invest-submit", function (e) {
             } else {
                 disableErrors();
 
-                if (document.getElementById('agree').checked == true) {
-                    $('.agree-error').css('visibility', 'hidden');
+                //if (document.getElementById('agree').checked == true) {
+                //    $('.agree-error').css('visibility', 'hidden');
                     $.post('/api/v2/invest/user/MYSELF/creditAssign/invest', {
                         clientIp: CC.clientIp,
                         amount: num,
@@ -108,10 +108,10 @@ payRactive.on("invest-submit", function (e) {
                         }
                     });
 
-                } else {
-                    $('.agree-error').css('visibility', 'visible');
-                    $('.agree-error').html('请先同意用户投资服务协议');
-                }
+                //} else {
+                //    $('.agree-error').css('visibility', 'visible');
+                //    $('.agree-error').html('请先同意用户投资服务协议');
+                //}
             }
         });
     };
