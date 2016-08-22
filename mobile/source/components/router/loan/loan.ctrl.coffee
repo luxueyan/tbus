@@ -138,9 +138,19 @@ do (_, angular, moment, Math, Date) ->
             corporate_name: item.corporationShortName
             product_key: loanRequest.productKey
             product_type: loanRequest.productKey?.trim().match(/^\w+/)?[0] or 'UNKNOWN'
-            value_date: loanRequest.valueDate
 
-            due_date: loanRequest.dueDate || new Date( +moment(finished_date).add(1 + item.duration.totalDays, 'd'))
+            value_date: (
+                item.timeSettled ||
+                loanRequest.valueDate ||
+                new Date( +moment(finished_date).add(1, 'd'))
+            ),
+
+            due_date: (
+                item.timeCleared ||
+                ( item.timeSettled && new Date( +moment(item.timeSettled).add(item.duration.totalDays, 'd')) ) ||
+                loanRequest.dueDate ||
+                new Date( +moment(finished_date).add(1 + item.duration.totalDays, 'd'))
+            ),
 
             balance
             balance_myriad
