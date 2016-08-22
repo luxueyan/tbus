@@ -14,6 +14,22 @@
 
     <div>
         <param ng-model="msg" ng-init="msg = {
+            CREDIT_ASSIGN_DISABLED: '债转功能不可用',
+            NOT_FOUND: '债转不存在',
+            ASSIGN_NOT_OPEN: '转让未开始或已结束',
+            ASSIGN_NO_BALANCE: '转让金额已满',
+            SELF_ASSIGN_FORBIDDEN: '不能承接自己的转让',
+            BORROWER_ASSIGN_FORBIDDEN: '标的借款人不能承接转让',
+            PARTLY_ASSIGN_FORBIDDEN: '必须全额承接',
+            FEE_EXCEED_LIMIT: '费率超过上限',
+            ILLEGAL_AMOUNT: '金额错误',
+            USER_BALANCE_INSUFFICIENT: '用户账户可用余额不足',
+            ASSIGN_REDUNDANT: '重复的债转投资',
+            DEPOSIT_FAILED: '使用认证支付失败',
+            USER_NOT_EXIST: '获取用户信息失败',
+            ASSIGN_FEE_FAIL: '债权转让收费失败',
+            FAILED: '其他原因失败',
+
             INCORRECT_PASSWORD: '交易密码不正确',
             UNKNOWN: '系统繁忙，请稍后重试！',
             ACCESS_DENIED: '登录超时',
@@ -100,10 +116,16 @@
             实际支付金额(元) ：{{ assignment.raw.creditDealAmount | number: 2 }}
         </section>
 
-        <section class="btn-submit-wrap">
+        <section class="btn-submit-wrap" ng-switch="assignment.status">
             <button type="submit" class="btn btn-theme btn-lg btn-block"
+                    ng-switch-when="OPENED"
                     ng-disabled="form.$invalid || self.submit_sending"
             >确认投资</button>
+
+            <button type="submit" class="btn btn-plain btn-lg btn-block"
+                    ng-switch-when="FINISHED"
+                    disabled
+            >已转让</button>
         </section>
     </form>
 
@@ -123,8 +145,21 @@
             </div>
 
             <div class="action">
-                <a class="btn btn-theme btn-block" href="list?tab=assignment">继续投资</a>
-                <a class="btn btn-plain btn-block" href="dashboard/invest">查看投资详情</a>
+                <a class="btn btn-theme btn-block"
+                   ng-click="
+                       self.$location
+                           .replace()
+                           .path('list')
+                           .search({tab: 'assignment'})
+                   "
+                >继续投资</a>
+                <a class="btn btn-plain btn-block"
+                   ng-click="
+                       self.$location
+                           .replace()
+                           .path('dashboard/invest')
+                   "
+                >查看投资详情</a>
             </div>
         </div>
 
