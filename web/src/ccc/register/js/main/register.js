@@ -2,6 +2,7 @@
 var RegisterRactive = require('ccc/register').RegisterRactive;
 var validation = require('ccc/register').validation;
 var errmsgs = require('ccc/register').errmsgs;
+validation.agreement.required = false;
 
 errmsgs.PASSWORD_INVALID = '密码需要为8位以上数字字母组合';
 
@@ -48,8 +49,6 @@ baconflux.store('register', 'success').onValue(function(data) {
 });
 
 $("#getSms").on('click', function() {});
-
-//$("[name = checkbox]").attr("checked", true);
 
 //验证码的图片切换
 $("#refresh-captcha").click(function(event) {

@@ -705,7 +705,7 @@ p.tips {
 .bind-card-wrapper .agree-box{
     clear: both;
     margin: 20px 0;
-    padding-top: 50px;
+    /*padding-top: 50px;*/
 }
 .bind-card-wrapper .agree-box input{
     margin-right: 10px;
@@ -868,7 +868,7 @@ p.tips {
 .home-count .common{
     float: left;
     background-color: #fff;
-    margin-right: 75px;
+    margin-right: 60px;
 }
 .home-count .home-tab-info {
     padding-left: 20px;
@@ -981,6 +981,13 @@ p.tips {
     margin: 5px 0 0 121px;
     font-size: 12px;
     color: #999;
+}
+#popup .formWrapper .agree{
+    font-size: 14px;
+    color: #666;
+}
+#popup .formWrapper .agree a{
+    color: #c59a5d;
 }
 #popup .formWrapper .error{
     color: red;
@@ -1133,10 +1140,6 @@ p.tips {
     z-index: 999999999!important;
     text-align: center;
     padding-bottom: 20px;
-}
-
-.window_box *{
-    font-family: '微软雅黑';
 }
 
 .window_closeBtn{

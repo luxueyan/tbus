@@ -76,9 +76,13 @@
                     <RInput field="agreement" valueStableDuration=100>
                         <div class="rinput agreement-div">
                             <label class="agree-register-protocol">
-                                <input type="checkbox" name="checkbox" id="{{rinputId}}" checked="{{value}}"/>
-                                <span>我同意<span class="i-agree"><a href="/agreement/regist" target="_blank"
-                                                                  class="ccc-agreement">《太合汇用户注册协议》</a></span></span>
+                                <!--<input type="checkbox" name="checkbox" id="{{rinputId}}" checked="{{value}}"/>-->
+                                <span>注册即视为同意
+                                    <span class="i-agree">
+                                        <a href="/agreement/regist" target="_blank" class="ccc-agreement">《网站注册协议》</a>、
+                                        <a href="/agreement/protocol" target="_blank" class="ccc-agreement">《服务协议》</a>
+                                    </span>
+                                </span>
                                 <br>
 
                                 <span class="tip" style="left:0;top:24px;line-height:14px;"> {{#errMsg}}{{errMsg}}{{/errMsg}}</span>
@@ -86,7 +90,7 @@
                             {{#if stepLoading}}
                             <input class="next-step" type="button" value="请稍等" disabled/>
                             {{else}}
-                            <input on-click='nextStep' class="next-step" type="button" value="注&nbsp; &nbsp; &nbsp;册"/>
+                            <input on-click='nextStep' class="next-step" type="button" value="同意协议并注册"/>
                             {{/if}}
                         </div>
                     </RInput>
