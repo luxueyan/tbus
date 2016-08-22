@@ -51,7 +51,7 @@ function parseLoanList(list) {
         list[i] = formatItem(list[i]);
 		list[i].titleLength = replaceStr(list[i].title);
 		list[i].actualRate = (list[i].actualRate*100).toFixed(2);
-
+        list[i].dueDate = (moment(list[i].dueDate).format('YYYY-MM-DD'));
     }
     return list;
 }
@@ -73,7 +73,6 @@ var investRactive = new Ractive({
         var that = this;
         InvestListService.getCreditassignData(jsonToParams(params),function(res){
             that.set('list',parseLoanList(res.results));
-            that.set('date',moment(res.results.dueDate).format('YYYY-MM-DD'));
             that.renderPager(res,params.currentPage,that);
             //console.log(res);
         });
