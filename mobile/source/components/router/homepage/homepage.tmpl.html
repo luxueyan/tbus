@@ -50,9 +50,33 @@
                         </div>
                     </div>
                 </a>
-                <a class="btn btn-theme btn-sm btn-invest"
-                   ng-href="loan/{{ item.id }}/invest"
-                >立即投资</a>
+
+                <div class="status" ng-switch="item.status">
+                    <a class="btn btn-plain btn-sm"
+                       ng-switch-when="SCHEDULED"
+                       ng-href="loan/{{ item.id }}"
+                    >即将开始</a>
+
+                    <a class="btn btn-theme btn-sm"
+                       ng-switch-when="OPENED"
+                       ng-href="loan/{{ item.id }}/invest"
+                    >立即投资</a>
+
+                    <a class="btn btn-plain btn-sm"
+                       ng-switch-when="FINISHED"
+                       ng-href="loan/{{ item.id }}"
+                    >已满标</a>
+
+                    <a class="btn btn-plain btn-sm"
+                       ng-switch-when="SETTLED"
+                       ng-href="loan/{{ item.id }}"
+                    >计息中</a>
+
+                    <a class="btn btn-plain btn-sm"
+                       ng-switch-when="CLEARED"
+                       ng-href="loan/{{ item.id }}"
+                    >已结息</a>
+                </div>
             </li>
         </ul>
 
