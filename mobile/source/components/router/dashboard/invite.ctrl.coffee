@@ -26,8 +26,6 @@ do (_, angular, Math) ->
 
                 @init_wechat() if @wechat.inside
 
-                EXTEND_API @api
-
                 @$scope.loading_have_invited = true
 
                 (@api.get_refer_count_and_reward()
@@ -92,19 +90,3 @@ do (_, angular, Math) ->
                             cancel: _.noop
                         }
 
-
-
-
-
-
-
-
-    EXTEND_API = (api) ->
-
-        api.__proto__.get_refer_count_and_reward = (cache = false) ->
-
-            @$http
-                .get '/api/v2/reward/getReferUserCountAndReward/MYSELF', {cache}
-
-                .then @TAKE_RESPONSE_DATA
-                .catch @TAKE_RESPONSE_ERROR
