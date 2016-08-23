@@ -12,8 +12,8 @@ var avaAmount = CC.user.availableAmount;
 var investInterestAmount = parseFloat(CC.user.investStatistics.investInterestAmount || 0).toFixed(2);
 // 预计当前收益
 var outstandingInterest = CC.user.investStatistics.outstandingInterest || 0;
-// 当前收益
-var currentIncome = CC.user.investStatistics.currentIncome || 0;
+// 当前收益(在投的未结息的利息)
+var currentIncome = CC.user.investStatistics.investStatistics.dueAmount.interest || 0;
 // 待收金额
 var dueInAmount = CC.user.investStatistics.investStatistics.dueAmount.principal || 0;
 // 冻结金额
@@ -21,7 +21,7 @@ var frozenAmount = CC.user.frozenAmount || 0;
 // 冻结中的投标金额
 var investFrozenAmount = CC.user.investStatistics.investFrozenAmount || 0;
 // 在投资金
-var investAmount = dueInAmount + investFrozenAmount;
+var investAmount =CC.user.dueInAmount;
 // 总资产
 var totalAmount = parseFloat(avaAmount + investAmount + outstandingInterest + frozenAmount).toFixed(2);
 //持有本息

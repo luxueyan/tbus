@@ -128,7 +128,7 @@ function formatItem(item) {
 }
 
 function parseLoanList(list) {
-    console.log(list)
+    //console.log(list)
     for (var i = 0; i < list.length; i++) {
         list[i] = formatItem(list[i]);
         var method = list[i].method;
