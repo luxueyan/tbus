@@ -128,13 +128,21 @@ function formatItem(item) {
 }
 
 function parseLoanList(list) {
+    console.log(list)
     for (var i = 0; i < list.length; i++) {
         list[i] = formatItem(list[i]);
         var method = list[i].method;
         var methodFmt = i18n.enums.RepaymentMethod[method][0];
         list[i].methodFmt = methodFmt;
         list[i].titleLength = replaceStr(list[i].title);
-        list[i].FminAmount = utils.format.amount(list[i].loanRequest.investRule.minAmount, 2);
+        //list[i].FminAmount = utils.format.amount(list[i].loanRequest.investRule.minAmount, 2);
+        if(list[i].loanRequest.investRule.minAmount<10000){
+            list[i].FminAmount = list[i].loanRequest.investRule.minAmount;
+            list[i].FminUnit = "元";
+        }else{
+            list[i].FminAmount = (list[i].loanRequest.investRule.minAmount/10000);
+            list[i].FminUnit = "万元";
+        }
         list[i].balance = utils.format.amount(list[i].balance, 2);
         list[i].investPercent = utils.format.amount(list[i].investPercent, 1);
     }
@@ -147,7 +155,7 @@ function replaceStr(str) {
 
 
 IndexService.getLoanSummary(function (res) {
-
+    //parseLoanList(res)
     var listFixed = [], listFloat = [];
     for (var i = 0; i < res.length; i++) {
         if (res[i].loanRequest.productKey == 'GDSY') {
@@ -162,7 +170,7 @@ IndexService.getLoanSummary(function (res) {
             listNone.push(listFixed[i]);
         }
     }
-    console.log(listFixed);
+    //console.log(listFloat);
     var compare = function (obj1, obj2) {
         var val1 = obj1.loanRequest.timeSubmit;
         var val2 = obj2.loanRequest.timeSubmit;
@@ -175,7 +183,7 @@ IndexService.getLoanSummary(function (res) {
         }
     }
     listNone.sort(compare);
-    console.log(listNone);
+    //console.log(listNone);
     // 固定收益
     var listRactive = new Ractive({
         el: ".fixedPro",
