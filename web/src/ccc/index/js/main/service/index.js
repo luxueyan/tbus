@@ -77,7 +77,6 @@ function parseLoanList(loans) {
         }else{
             item.investPercent = (item.investPercent * 100).toFixed(2);
         }
-        item.FminAmount = utils.format.amount(item.loanRequest.investRule.minAmount, 2);
         item.Fbalance = utils.format.amount(item.balance, 2);
 
         //格式化期限
@@ -104,11 +103,13 @@ function parseLoanList(loans) {
         } else {
             item.amountUnit = '元';
         }
+
+        item.FminAmount = utils.format.amount(item.loanRequest.investRule.minAmount, 2);
         if (item.loanRequest.investRule.minAmount >= 10000) {
-            item.minAmountUnit = '万';
-            item.minAmount = (item.loanRequest.investRule.minAmount / 10000);
+            item.minAmountUnit = '万元';
+            item.minAmount = utils.format.amount((item.loanRequest.investRule.minAmount / 10000),2);
         } else {
-            item.minAmount = item.loanRequest.investRule.minAmount;
+            item.minAmount = utils.format.amount(item.loanRequest.investRule.minAmount,2);
             item.minAmountUnit = '元';
         }
         if (item.status === "OPENED") {
