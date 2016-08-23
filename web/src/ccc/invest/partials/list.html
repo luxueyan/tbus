@@ -32,7 +32,7 @@
         <td class="title"><a href="/loan/{{ id }}" class="invest-title">{{title}}</a></td>
         <td class="rate"><span>{{rate}}</span>%</td>
         <td class="fdurunit"><span>{{fduration}}</span>{{fdurunit}}</td>
-        <td class="minAmount"><span>{{loanRequest.investRule.minAmount}}</span>元</td>
+        <td class="minAmount"><span>{{FminAmount}}</span>{{FminUnit}}</td>
         <td class="status">
           {{#if status === 'OPENED'}}
           <div class="rate">在售中</div>
