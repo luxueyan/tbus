@@ -3887,6 +3887,10 @@ a {
                 dl {
                     margin-bottom: 0;
 
+                    + dl {
+                        margin-top: 15px;
+                    }
+
                     dt {
                         margin-bottom: 5px;
                         border-left: 1px solid @color-theme-main;
@@ -3894,15 +3898,16 @@ a {
                         font-weight: normal;
                         color: @color-theme-main;
                         line-height: 1.1;
-
-                        &:not(:first-child) {
-                            margin-top: 15px;
-                        }
                     }
 
                     dd {
                         line-height: 20px;
                     }
+                }
+
+                .not-found {
+                    margin: 0;
+                    padding: 0;
                 }
             }
         }
