@@ -276,7 +276,7 @@
         <p class="btn-submit-wrap">
             <button type="submit" class="btn btn-theme btn-block"
                     ng-disabled="form.$invalid || self.submit_sending"
-            >注册</button>
+            >{{ self.submit_sending ? '注册中...' : '注册' }}</button>
         </p>
     </form>
     </div>

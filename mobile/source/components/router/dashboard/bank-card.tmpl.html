@@ -64,7 +64,7 @@
             <button class="btn btn-lg btn-block btn-theme"
                     ng-click="self.unbind(bank_account.account.account)"
                     ng-disabled="self.submit_sending"
-            >删除银行卡</button>
+            >{{ self.submit_sending ? '删除中...' : '删除银行卡' }}</button>
         </div>
     </section>
 

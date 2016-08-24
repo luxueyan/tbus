@@ -140,7 +140,7 @@
             <button type="submit" class="btn btn-theme btn-lg btn-block"
                     ng-switch-when="OPENED"
                     ng-disabled="form.$invalid || self.submit_sending"
-            >确认投资</button>
+            >{{ self.submit_sending ? '投资中...' : '确认投资' }}</button>
 
             <button type="submit" class="btn btn-plain btn-lg btn-block"
                     ng-switch-when="SCHEDULED"

@@ -120,7 +120,7 @@
                 <button class="btn btn-theme btn-block btn-lg"
                         type="submit"
                         ng-disabled="form.$invalid || self.submit_sending"
-                >确认充值</button>
+                >{{ self.submit_sending ? '充值中...' : '确认充值' }}</button>
             </p>
         </form>
     </section>

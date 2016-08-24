@@ -102,7 +102,7 @@
                             && ['INITIATED', 'PLACED'].indexOf(item.status) > -1
                         "
                         ng-disabled="self.submit_sending"
-                >兑换</button>
+                >{{ self.submit_sending ? '兑换中...' : '兑换' }}</button>
             </li>
         </ul>
 
