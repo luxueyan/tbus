@@ -121,7 +121,7 @@
 
 .footer-guide{
     float: left;
-    width: 660px;
+    width: 900px;
     border-image: url(/ccc/global/img/footer_line.png) 0 1 0 0;
     height: 168px;
     margin: 24px auto;
@@ -156,12 +156,12 @@
     padding-top: 10px;
 }
 .right-report{
-    margin-top: 30px;
+    margin-top: 60px;
     color: #fff;
     font-size: 18px;
 }
 .right-report .report-phone{
-    background: url("/ccc/global/img/app_active.png") no-repeat 9px center;
+    background: url("/ccc/global/img/wx_gzh.png") no-repeat 9px center;
     padding: 24px 56px;
     cursor: pointer;
 }
@@ -171,7 +171,7 @@
     /*color: #cfa972;*/
 /*}*/
 .right-report .report-email{
-    background: url("/ccc/global/img/wx_active.png") no-repeat left center;
+    background: url("/ccc/global/img/wx_gzh.png") no-repeat left center;
     padding: 20px 56px;
     cursor: pointer;
 }
@@ -575,4 +575,11 @@ input[type=button]{
 .pages span:hover {
     /*background-color: #3f7bc6;*/
     color: #cfa972;
+}
+.float-left{
+    float: left;
+}
+.barcode{
+    width: 100px;
+    margin-left: 20px;
 }

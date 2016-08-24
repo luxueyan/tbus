@@ -1,0 +1,183 @@
+#main-container{
+    background-color:#f5f5f4;
+}
+
+.page-guide{
+/*    position: relative;*/
+     width:1200px;
+    margin:auto;
+    overflow: hidden;
+    padding-top: 23px;
+}
+
+.page-guide *{
+	font-family: '微软雅黑';
+}
+.help-header{
+    height: 103px;
+    background: #fff;
+    width: 1200px;
+    margin: auto;
+}
+.infoContent{
+    margin: 0 auto;
+    position: relative;
+    height: 96px;
+    overflow: hidden;
+}
+#aboutus-title{
+    color:#666666;
+    font-size: 24px;
+    line-height: 96px;
+    padding-left: 36px;
+}
+
+#help-left .title-bg{
+    position: absolute;
+    left: 0;
+    top:59px;
+}
+
+.page-guide div{
+/*    margin-left:10px;*/
+}
+#help-left{
+    width: 190px;
+    min-height: 748px;
+    float: left;
+    background: #eee;
+    padding-top: 30px;
+}
+
+#help-left li{
+    width:190px;
+    height:52px;
+    font-size:18px;
+    text-align: center;
+    line-height:52px;
+    color:#666666;
+}
+#help-left .active{
+    border-left: 3px solid #e4262b;
+    background-color: #fff;
+    color: #e4262b;
+}
+#help-left a{
+    color:#4a4a4a;
+    text-decoration: none;
+    font-weight: normal;
+}
+#help-left .active a{
+    color:#e4262b;
+    text-decoration: none;
+    
+}
+
+.page-guide .help-left-body{
+    margin-bottom: 0;
+}
+.help-big p{
+    color: #858585;
+    font-size: 14px;
+    line-height: 14px;
+    margin-bottom: 22px;
+    padding-top: 22px;
+}
+.help-big{
+      width: 1003px;
+      margin: auto;
+
+
+}
+.help-do{
+    width: 1003px;
+    overflow: hidden;
+
+    background-color: #fff;
+}
+
+
+.help-do ul{
+        width: 190px;
+        }
+.help-do ul li{ 
+            border-bottom: 1px solid #fff;
+    }
+
+
+.help-do ul li a{
+    
+    line-height: 52px;
+    color: #858585;
+    font-size: 15px; 
+    padding-left: 54px;
+    display: block;
+    width: 190px;
+    text-align: center;
+   padding:0;
+    
+}
+
+.help-do ul  .active .current-red{
+    background-color:#24b2e7;
+    color: #fff;
+   
+    text-decoration: none;
+}
+
+/* 右页面*/
+#help-right{
+    float: left;
+    width:1010px;
+    margin-bottom:44px;
+    background: #fff;
+}
+
+.invest-container{
+    min-height: 748px;
+    background-color: #fff;
+}
+.invest-wrapper{
+    margin:37px 45px 0;
+ }
+.article-wp {
+
+}
+.article-wp h2.ar-title {
+    font-size: 16px;
+    line-height: 30px;
+    display: inline-block;
+    padding: 5px 20px;
+    border-radius: 4px;
+    background: #fff;
+    cursor: pointer;
+    color: #5e5e5e;
+}
+.article-wp span {
+    font-size: 12px;
+}
+.article-wp .article-content {
+    border-radius: 4px;
+    background: #fff;
+    font-size: 14px;
+    line-height: 24px;
+    padding: 15px 35px;
+    border-radius: 0 0 4px 4px;
+    color: #5e5e5e;
+    display: none;
+    border-bottom: 1px dashed #d4d4d4;
+}
+.article-wp span{
+    width: 16px;
+    height: 16px;display: inline-block;
+}
+.article-wp .ar-title-wp {
+    width: 898px;
+    display: inline-block;
+}
+.open{
+    background: url("/ccc/help/img/open.png") no-repeat;
+}
+.stop{
+    background: url("/ccc/help/img/stop.png") no-repeat;
+}

@@ -25,7 +25,7 @@ var ractive = new Ractive({
         request('GET', '/api/v2/user/MYSELF/userinfo')
             .end()
             .then(function (r) {
-                //console.log(r.body);
+                console.log(r.body);
                 self.set("timeLastUpdated", moment(r.body.surveyFilling.timeLastUpdated).format('YYYY-MM-DD HH:mm:ss'));
                 rank=r.body.surveyScore.rank;
                 if(rank){
@@ -37,46 +37,52 @@ var ractive = new Ractive({
     },
     oncomplete:function(){
         var self = this;
-        self.on('getScore',function(){
-            var sum =0;
-            var len = $('input:radio:checked').length;
-            if(len<10){
-                alert("请确保每个选项都已选择!");
-                return;
-            }
-            $('input:radio:checked').each(function(i){
-                var score = parseInt($(this).val());
-                sum+=score;
-            });
-            request.post('/api/v2/user/MYSELF/surveyFilling')
-                .query({
-                    userId: CC.user.id,
-                    surveyId: riskId,
-                    fillingStatus:'FINISHED',
-                    score:sum,
-                    rank:rank,
-                    content:''
-                })
-                .end()
-                .then(function (r) {
-                    window.location.reload();
-                    var res = r.body;
-                    if (!res) {
-                        return alert("获取数据失败...");
-                    }
-                    //console.log(res.error);
-                    if (res.success) {
-                        //console.log(res.data);
-                        self.set('timeLastUpdated',moment(res.data.timeLastUpdated).format('YYYY-MM-DD HH:mm:ss'));
-
-                        self.set('question',false);
-                        self.set('result',true);
+        accountService.getUserInfo(function (userinfo) {
+            if(userinfo.userInfo.user.idNumber) {
+                self.on('getScore', function () {
+                    var sum = 0;
+                    var len = $('input:radio:checked').length;
+                    if (len < 10) {
+                        alert("请确保每个选项都已选择!");
                         return;
                     }
-                    alert(res.error.toString() + '\n');
-                });
-        });
+                    $('input:radio:checked').each(function (i) {
+                        var score = parseInt($(this).val());
+                        sum += score;
+                    });
+                    request.post('/api/v2/user/MYSELF/surveyFilling')
+                        .query({
+                            userId: CC.user.id,
+                            surveyId: riskId,
+                            fillingStatus: 'FINISHED',
+                            score: sum,
+                            rank: rank,
+                            content: ''
+                        })
+                        .end()
+                        .then(function (r) {
+                            window.location.reload();
+                            var res = r.body;
+                            if (!res) {
+                                return alert("获取数据失败...");
+                            }
+                            //console.log(res.error);
+                            if (res.success) {
+                                //console.log(res.data);
+                                self.set('timeLastUpdated', moment(res.data.timeLastUpdated).format('YYYY-MM-DD HH:mm:ss'));
 
+                                self.set('question', false);
+                                self.set('result', true);
+                                return;
+                            }
+                            alert(res.error.toString() + '\n');
+                        });
+                });
+            }else{
+                alert("请先实名认证！");
+                location.href='/newAccount/settings/authentication';
+            }
+        })
     }
 });
 

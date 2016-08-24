@@ -1,0 +1,37 @@
+<dsBody layout={{dsLayoutPath}}>
+<link rel="stylesheet" href="/ccc/help/css/help.css">
+
+<div class="page-guide">
+    <div class="help-header">
+        <div class="infoContent">
+            <p id="aboutus-title">关于我们</p>
+        </div>
+        <img src="/ccc/newAccount/img/usernav_line.png">
+    </div>
+
+    <div id="help-left" class="pull-left">
+        {{>list}}
+    </div>
+
+    <div id="help-right" class="pull-right">
+        <div class="invest-container">
+            <div class="invest-wrapper">
+                {{#each contents:i}}
+                <div class="article-wp">
+                    <div class="ar-title-wp">
+                        <span class="open"></span>
+                        <h2 class="ar-title">{{i+1}}、{{title}}</h2>
+                    </div>
+                    <div class="article-content">{{& content}}</div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+ 
+</div>
+
+
+
+<script src="/ccc/help/js/main/common.js"></script>
+</dsBody>
