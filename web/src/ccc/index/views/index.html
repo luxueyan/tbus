@@ -34,17 +34,29 @@
 
             <div class="banner-account－box">
                 <div class="banner-account">
-
-                    {{#picture[1]}}
-                    <div class="ad">
-                        <a href="{{this.link}}" target="_blank">
-                            <div style="background-image:url({{this.content}});
-                            background-repeat:no-repeat; background-position:center;
-                            background-size: 100% 200px;padding-top:200px;">
-                            </div>
-                        </a>
-                    </div>
-                    {{/}}
+                    {{#if user}}
+                        {{#picture[1]}}
+                        <div class="ad">
+                            <a href="{{this.link}}" target="_blank">
+                                <div style="background-image:url({{this.content}});
+                                background-repeat:no-repeat; background-position:center;
+                                background-size: 100% 200px;padding-top:200px;">
+                                </div>
+                            </a>
+                        </div>
+                        {{/}}
+                    {{else}}
+                        {{#picture[2]}}
+                        <div class="ad">
+                            <a href="{{this.link}}" target="_blank">
+                                <div style="background-image:url({{this.content}});
+                                    background-repeat:no-repeat; background-position:center;
+                                    background-size: 100% 200px;padding-top:200px;">
+                                </div>
+                            </a>
+                        </div>
+                        {{/}}
+                    {{/if}}
 
                     <div class="free-register">
                         {{#if user}}
@@ -93,8 +105,25 @@
     </div>
     <!--产品展示-->
     <div class="pro_content">
-        <div class="title">
-            我们为您选择最<span>安全</span>，最<span>适合</span>您的理财产品。
+        <div class="cwrapper" style="background: #ffffff;">
+            <div class="u-pos-r-center wide" id="announce-container">
+                <!-- 公告 -->
+                <div class="announce">
+                    <div class="announce_right">
+                        <div class="newest">
+                            <div class="bg hidden"></div>
+                            <div class="small">行业资讯:</div>
+                            <marquee class="big">
+                                <a href="/us/transfer"  >111111111111111111111111111111111111111111111111111111111111111111</a>
+                                <a href="/us/transfer"  >2222222222222222222222222222222222222222222222222222222222222222222</a>
+                                <a href="/us/transfer"  >3333333333333333333333333333333333333333333333333333333333333333333</a>
+                            </marquee>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
         </div>
         <div class="pro_box">
             <div class="pro_detail">

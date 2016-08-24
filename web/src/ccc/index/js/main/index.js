@@ -88,7 +88,17 @@ IndexService.getLoanSummary(function (list) {
     ininconut();
 
 });
-
+window.onload = function () {
+    console.log("111")
+    var settime = function () {
+        var newHands =$(".newHands__news__web");
+        console.log(newHands)
+        for(var i=0;i<newHands.length;i++){
+            newHands[i].css("float","-1077px")
+        }
+    };
+    setInterval(settime, 5000);
+}
 
 IndexService.getLatestScheduled(function (loan) {
     var serverDate = loan.serverDate;
@@ -105,6 +115,7 @@ IndexService.getLatestScheduled(function (loan) {
             }
         }
     });
+
     setInterval((function () {
         serverDate += 1000;
         var leftTime = utils.countDown.getCountDownTime2(loan.timeOpen,
