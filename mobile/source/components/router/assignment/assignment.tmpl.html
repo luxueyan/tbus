@@ -19,8 +19,8 @@
             </div>
 
             <div class="col-xs-6 duration">
-                <div class="value">{{ due_date | date: 'yyyy-MM-dd' }}</div>
-                <div class="name">预期到期日</div>
+                <div class="value">{{ assignment.raw.timeOut }}小时</div>
+                <div class="name">预期到期日 {{ due_date | date: 'yyyy-MM-dd' }}</div>
             </div>
         </div>
     </section>
@@ -54,14 +54,6 @@
                         {{ loan.total_months }}个月
                     </span>
                 </span>
-            </li>
-            <li>
-                <span class="name">起投金额</span>
-                <span class="value">{{ loan.raw.loanRequest.investRule.minAmount }}元</span>
-            </li>
-            <li>
-                <span class="name">递增金额</span>
-                <span class="value">{{ loan.raw.loanRequest.investRule.stepAmount }}元</span>
             </li>
             <li>
                 <span class="name">收益分配</span>
