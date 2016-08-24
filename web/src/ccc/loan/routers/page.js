@@ -217,6 +217,15 @@ function parseLoan(loan) {
     } else {
         loan.amountUnit = '元';
     }
+
+    if (loan.loanRequest.investRule.minAmount >= 10000) {
+        loan.minAmountUnit = '万元';
+        loan.minAmount = loan.loanRequest.investRule.minAmount / 10000;
+    } else {
+        loan.minAmount = loan.loanRequest.investRule.minAmount;
+        loan.minAmountUnit = '元';
+    }
+
     loan.loanRequest.timeSubmit = moment(loan.loanRequest.timeSubmit)
         .format('YYYY-MM-DD');
 
