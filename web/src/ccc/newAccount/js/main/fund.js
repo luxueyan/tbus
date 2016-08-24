@@ -47,7 +47,8 @@ var nameMap = {
     FEE_DEPOSIT: "充值手续费",
     FEE_ADVANCE_REPAY: "提前还款违约金(给商户)",
     FEE_ADVANCE_REPAY_INVEST: "提前还款违约金(给投资人)",
-    FSS: "生利宝"
+    FSS: "生利宝",
+    OFFLINE_DEPOSIT:"线下补录"
 };
 
 var FundRecordType = nameMap;

@@ -1,5 +1,5 @@
 #announce-container {
-    width: 1060px;
+    width: 1180px;
 }
 
 #main-container{
@@ -595,7 +595,7 @@
 
 }
 .pro_content{
-    width: 1200px;
+    width: 1180px;
     margin: auto;
 }
 .pro_content .title{
@@ -684,4 +684,78 @@
 }
 .infoBox .investbtn-open{
     background: #e4262b;
+}
+/*轮播公告*/
+.cwrapper{
+    -webkit-box-shadow: 0 0 13px  rgb(223, 217, 217);
+    -moz-box-shadow: 0 0 13px   rgb(223, 217, 217);
+    -o-box-shadow: 0 0 13px   rgb(223, 217, 217);
+    -ms-box-shadow: 0 0 13px   rgb(223, 217, 217);
+    box-shadow: 0 0 13px   rgb(223, 217, 217);
+    margin-bottom: 10px;
+}
+#announce-container {
+    width: 1180px;
+}
+.announce .announce_right {
+    float: left;
+    width: 1160px;
+    margin-left: 20px;
+}
+.announce {
+    font-size: 14px;
+    color: #a0a0a7;
+    padding: 10px 0;
+    overflow: hidden;
+}
+
+.announce .announce_left .newest {
+    float: left;
+    color: #222D4F;
+    font-weight: bold;
+}
+
+.announce .newest .bg {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin: 1px 0;
+    /*	background-image: url(/ccc/global/img/main/icon_all.png);*/
+    background-position: 0 -370px;
+    vertical-align: middle;
+}
+
+.announce .newest .small {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 24px;
+    padding-right: 1em;
+    font-weight: bold;
+}
+
+.announce .newest .big {
+    display: inline-block;
+    line-height: 24px;
+    vertical-align: middle;
+    width: 1080px;
+    overflow-x: hidden;
+}
+
+.announce .newest .big a {
+    padding: 0 5px;
+    width: 1000px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.announce .announce_left .more {
+    float: right;
+    color: #b5a16b;
+    line-height: 24px;
+    vertical-align: middle;
+}
+.announce .announce_right .more{
+    float: right;
+    color: #b5a16b;
+    margin-top: -22px;
 }
