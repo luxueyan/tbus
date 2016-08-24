@@ -21,7 +21,15 @@
                 <span class="num">{{ loan.total_months }}</span><span class="unit">个月</span>
             </span>
         </div>
-        <div class="min-amount">{{ loan.raw.loanRequest.investRule.minAmount }}元起投</div>
+        <div class="min-amount"
+             ng-init="min_amount = loan.raw.loanRequest.investRule.minAmount"
+        >
+            {{
+                min_amount >= 10000
+                ? (min_amount / 10000 + '万')
+                : (min_amount | number: 2)
+            }}元起投
+        </div>
     </div>
 
     <div class="info percent">

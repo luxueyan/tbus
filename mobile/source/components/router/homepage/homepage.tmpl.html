@@ -45,7 +45,15 @@
                             </span>
                             <span class="min-amount pull-right">
                                 <span class="name">起投金额(元)</span>
-                                <span class="value">{{ item.raw.loanRequest.investRule.minAmount | number: 2 }}</span>
+                                <span class="value"
+                                      ng-init="min_amount = item.raw.loanRequest.investRule.minAmount"
+                                >
+                                    {{
+                                        min_amount >= 10000
+                                        ? (min_amount / 10000 + '万')
+                                        : (min_amount | number: 2)
+                                    }}
+                                </span>
                             </span>
                         </div>
                     </div>
