@@ -2,21 +2,23 @@
 <div class="home-count">
     <div class="home-num">
         <div class="home-total common">
-            <div class="home-tab-info total">总资产(元)</div>
+            <div class="home-tab-info total" on-mouseover="showTip" on-mouseleave="hideTip">总资产(元)</div>
+            <p class="info-tip" style="width: 294px;">冻结本金+在投本金+未结息的利息+可用余额</p>
             <div class="home-tab-amount">{{totalAmount}}<span>.{{tAmount}}</span></div>
-
         </div>
         <div class="home-expect common">
-            <div class="home-tab-info">在投资金(元)</div>
+            <div class="home-tab-info">在投本金(元)</div>
             <div class="home-tab-amount">{{investAmount}}<span>.{{iAmount}}</span></div>
         </div>
         <div class="home-expect common">
-            <div class="home-tab-info">当前收益(元)</div>
+            <div class="home-tab-info" on-mouseover="showTip" on-mouseleave="hideTip">当前收益(元)</div>
+            <p class="info-tip" style="width: 94px;left: 20px;">未结息的利息</p>
             <div class="home-tab-amount">{{currentIncome}}<span>.{{cMore}}</span></div>
         </div>
 
         <div class="home-interest common">
-            <div class="home-tab-info">累计收益(元)</div>
+            <div class="home-tab-info"  on-mouseover="showTip" on-mouseleave="hideTip">累计收益(元)</div>
+            <p class="info-tip" style="width: 140px;">已经结息的全部收益</p>
             <div class="home-tab-amount">{{investInterestAmount}}<span>.{{iMore}}</span></div>
 
         </div>
@@ -36,12 +38,12 @@
                     <div class="label">固定收益</div>
                     <div class="total">
                         <div class="t_box">
-                            <p>{{holdTotalAmount}}.<span>{{hAmount}}</span></p>
-                            <span>持有本息(元)</span>
+                            <p>{{investAmount}}.<span>{{iAmount}}</span></p>
+                            <span>在投本金(元)</span>
                         </div>
                     </div>
                     <div class="detail">
-                        <p><span class="d_lab">预计当前收益(元)</span><span class="d_num">{{outstandingInterest}}.<em>{{oMore}}</em></span></p>
+                        <p><span class="d_lab">预计当前收益(元)</span><span class="d_num">{{currentIncome}}.<em>{{cMore}}</em></span></p>
                     </div>
                 </div>
             </a>
@@ -51,7 +53,7 @@
                     <div class="total">
                         <div class="t_box">
                             <p>0.<em>00</em></p>
-                            <span>持有本息(元)</span>
+                            <span>在投本金(元)</span>
                         </div>
                     </div>
                     <div class="detail">
@@ -65,7 +67,7 @@
                     <div class="total">
                         <div class="t_box">
                             <p>0.<em>00</em></p>
-                            <span>持有本息(元)</span>
+                            <span>在投本金(元)</span>
                         </div>
                     </div>
                     <div class="detail">
@@ -79,7 +81,7 @@
                     <div class="total">
                         <div class="t_box">
                             <p>0.<em>00</em></p>
-                            <span>持有本息(元)</span>
+                            <span>在投本金(元)</span>
                         </div>
                     </div>
                     <div class="detail">

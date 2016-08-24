@@ -14,18 +14,14 @@ var investInterestAmount = parseFloat(CC.user.investStatistics.investInterestAmo
 var outstandingInterest = CC.user.investStatistics.outstandingInterest || 0;
 // 当前收益(在投的未结息的利息)
 var currentIncome = CC.user.investStatistics.investStatistics.dueAmount.interest || 0;
-// 待收金额
-var dueInAmount = CC.user.investStatistics.investStatistics.dueAmount.principal || 0;
 // 冻结金额
 var frozenAmount = CC.user.frozenAmount || 0;
 // 冻结中的投标金额
 var investFrozenAmount = CC.user.investStatistics.investFrozenAmount || 0;
-// 在投资金
-var investAmount =CC.user.dueInAmount;
+// 在投本金(待收本金)
+var investAmount = CC.user.investStatistics.investStatistics.dueAmount.principal || 0;
 // 总资产
-var totalAmount = parseFloat(avaAmount + investAmount + outstandingInterest + frozenAmount).toFixed(2);
-//持有本息
-var holdTotalAmount = parseFloat(CC.user.investStatistics.investStatistics.dueAmount.totalAmount + investFrozenAmount || 0).toFixed(2);
+var totalAmount = parseFloat(avaAmount + currentIncome + investAmount  + investFrozenAmount).toFixed(2);
 
 var homeRactive = new Ractive({
     el: '.account-home-wrapper',
@@ -37,10 +33,7 @@ var homeRactive = new Ractive({
         outstandingInterest: parseFloat(outstandingInterest).toFixed(2),
         totalAmount: totalAmount,
         investAmount: parseFloat(investAmount).toFixed(2),
-        dueInAmount: parseFloat(dueInAmount).toFixed(2),
-        frozenAmount: parseFloat(frozenAmount).toFixed(2),
-        holdTotalAmount: holdTotalAmount
-
+        frozenAmount: parseFloat(frozenAmount).toFixed(2)
     },
     parseData: function () {
         var self = this;
@@ -58,10 +51,6 @@ var homeRactive = new Ractive({
             self.set('outstandingInterest', parseInt(outstandingInterest));
             self.set('investAmount', parseInt(investAmount));
         } else {
-            var amoutArray = holdTotalAmount.split('.');
-            self.set('holdTotalAmount', parseInt(amoutArray[0]));
-            self.set('hAmount', amoutArray[1]);
-
             var amoutArray = currentIncome.split('.');
             self.set('currentIncome', parseInt(amoutArray[0]));
             self.set('cMore', amoutArray[1]);
@@ -93,6 +82,18 @@ var homeRactive = new Ractive({
     }
 });
 homeRactive.parseData();
+
+
+homeRactive.on({
+    'showTip':function(event){
+        $($(event)[0].node.nextElementSibling).fadeIn(200);
+
+    },
+    hideTip:function(event){
+        $($(event)[0].node.nextElementSibling).fadeOut(0);
+    }
+})
+
 
 
 $('#svg_cont').highcharts({

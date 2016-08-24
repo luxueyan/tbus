@@ -79,6 +79,7 @@ new Ractive({
         return url;
     },
     parseData: function (r) {
+        //console.log(r.results)
         r.results.sort(function(a,b){
             return (b.user.registerDate - a.user.registerDate);
         });
@@ -86,13 +87,16 @@ new Ractive({
             var o = r.results[i];
             r.results[i].user.registerDate = new Date(r.results[i].user.registerDate);
             r.results[i].user.registerDate = moment(r.results[i].user.registerDate).format('YYYY-MM-DD');
-            if( r.results[i].user.name.length>3){
-                r.results[i].user.name =  r.results[i].user.name.substr(0, 1)+'***';
-            }else if( r.results[i].user.name.length>2){
-                r.results[i].user.name =  r.results[i].user.name.substr(0, 1)+'**';
-            }else{
-                r.results[i].user.name = format.mask(o.user.name);
+            if(r.results[i].user.name){
+                if( r.results[i].user.name.length>3){
+                    r.results[i].user.name =  r.results[i].user.name.substr(0, 1)+'***';
+                }else if( r.results[i].user.name.length>2){
+                    r.results[i].user.name =  r.results[i].user.name.substr(0, 1)+'**';
+                }else{
+                    r.results[i].user.name = format.mask(o.user.name);
+                }
             }
+
             r.results[i].FOmobile = format.mask(o.user.mobile, 3, 4);
         }
         return r.results;
