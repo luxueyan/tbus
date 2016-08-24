@@ -112,7 +112,7 @@
                 <button class="btn btn-theme btn-block btn-lg"
                         type="submit"
                         ng-disabled="form.$invalid || self.submit_sending"
-                >确认提现</button>
+                >{{ self.submit_sending ? '提现中...' : '确认提现' }}</button>
             </p>
         </form>
     </section>

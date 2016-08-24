@@ -110,7 +110,7 @@
         <section class="btn-submit-wrap">
             <button type="submit" class="btn btn-theme btn-lg btn-block"
                     ng-disabled="form.$invalid || self.submit_sending"
-            >确认转让</button>
+            >{{ self.submit_sending ? '转让中...' : '确认转让' }}</button>
         </section>
     </form>
 

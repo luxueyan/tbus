@@ -109,7 +109,7 @@
                 <div class="btn-submit-wrap">
                     <button type="submit" class="btn btn-theme btn-block"
                             ng-disabled="form.$invalid || self.submit_sending"
-                    >登录</button>
+                    >{{ self.submit_sending ? '登录中...' : '登录' }}</button>
                 </div>
 
                 <p class="links">

@@ -14,6 +14,9 @@ do (_, angular) ->
 
                 query_set = {}
 
+                if current_tab is 'loan'
+                    query_set.product = 'GDSY'
+
                 angular.extend @$scope, {
                     current_tab
                     query_set

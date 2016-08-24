@@ -141,7 +141,7 @@ do (_, angular, Math) ->
                     good_to_go = false
                     @$window.alert "单笔最多可投 #{ loan_maximum }元"
 
-                else if user_available <= 0 or amount > user_available
+                else if @$scope.store.isUseBalance and (user_available <= 0 or amount > user_available)
                     good_to_go = false
                     do @prompt_short_of_balance
 

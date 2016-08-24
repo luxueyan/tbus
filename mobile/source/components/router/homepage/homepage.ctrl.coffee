@@ -22,6 +22,8 @@ do (_, angular) ->
                             _([open, scheduled, finished, settled])
                                 .flatten()
                                 .compact()
+                                .filter (item) ->
+                                    item.loanRequest.productKey == 'GDSY'
                                 .take 1
                                 .map map_loan_summary
                                 .value()

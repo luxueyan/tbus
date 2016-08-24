@@ -322,7 +322,7 @@
                 <div class="btn-submit-wrap">
                     <button type="submit" class="btn btn-theme btn-block btn-lg"
                             ng-disabled="form.$invalid || self.submit_sending"
-                    >绑定</button>
+                    >{{ self.submit_sending ? '绑定中...' : '绑定' }}</button>
                 </div>
             </div>
 

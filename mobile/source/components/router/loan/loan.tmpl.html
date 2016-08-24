@@ -94,7 +94,15 @@
             </li>
             <li>
                 <span class="name">起投金额</span>
-                <span class="value">{{ loan.raw.loanRequest.investRule.minAmount }}元</span>
+                <span class="value"
+                      ng-init="min_amount = loan.raw.loanRequest.investRule.minAmount"
+                >
+                    {{
+                        min_amount >= 10000
+                        ? (min_amount / 10000 + '万')
+                        : (min_amount | number: 2)
+                    }}元
+                </span>
             </li>
             <li>
                 <span class="name">递增金额</span>
@@ -215,8 +223,15 @@
     </section>
 
     <section class="omit-margin loan-fixed">
-        <div class="rule">
-            起投金额(元) {{ loan.raw.loanRequest.investRule.minAmount | number: 2 }}
+        <div class="rule"
+             ng-init="min_amount = loan.raw.loanRequest.investRule.minAmount"
+        >
+            起投金额(元)
+            {{
+                min_amount >= 10000
+                ? (min_amount / 10000 + '万')
+                : (min_amount | number: 2)
+            }}
         </div>
         <div class="status" ng-switch="loan.status">
             <div class="btn btn-block btn-default disabled"

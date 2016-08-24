@@ -55,7 +55,12 @@
                        ng-change="form.amount.$valid && self.fetch_analyse(store.amount)"
                        type="number"
                        class="form-control"
-                       placeholder="{{ loan.raw.loanRequest.investRule.minAmount | number }}元起投，{{ loan.raw.loanRequest.investRule.stepAmount | number }}元递增"
+                       ng-init="min_amount = loan.raw.loanRequest.investRule.minAmount"
+                       placeholder="{{
+                            min_amount >= 10000
+                            ? (min_amount / 10000 + '万')
+                            : (min_amount | number: 2)
+                       }}元起投，{{ loan.raw.loanRequest.investRule.stepAmount | number }}元递增"
                        required
                 >
 
@@ -135,7 +140,7 @@
             <button type="submit" class="btn btn-theme btn-lg btn-block"
                     ng-switch-when="OPENED"
                     ng-disabled="form.$invalid || self.submit_sending"
-            >确认投资</button>
+            >{{ self.submit_sending ? '投资中...' : '确认投资' }}</button>
 
             <button type="submit" class="btn btn-plain btn-lg btn-block"
                     ng-switch-when="SCHEDULED"
