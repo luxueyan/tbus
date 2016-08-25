@@ -8,11 +8,11 @@ module.exports = function (router) {
     var pageSize = 10;
     router.get('/:tab', function (req, res) {
         var cateMap = {
-            account:'US',
-            invest: 'US',
-            transfer: 'US',
-            protection: 'US',
-            question: 'US',
+            account:'INTRODUCTION',
+            invest: 'INTRODUCTION',
+            transfer: 'INTRODUCTION',
+            protection: 'INTRODUCTION',
+            question: 'INTRODUCTION',
         };
         var nameMap = {
             account: '平台简介',
@@ -39,18 +39,24 @@ module.exports = function (router) {
             text: '平台公告',
             url: '/us/transfer'
         },{
-            text: '联系我们',
-            url: '/us/protection'
-        },{
             text: '媒体报道',
             url: '/us/question'
+        },{
+            text: '联系我们',
+            url: '/us/protection'
         }];
 
             var tabIndex;
+            var tabType=null;
             for (var index = 0, length = tabs.length; index < length; index++) {
                 var tab = tabs[index];
                 if (tab.text === indexMap[req.params.tab]) {
                     tabIndex = index;
+                    if (tab.text === '平台简介' || tab.text === '团队介绍' || tab.text === '联系我们') {
+                        tabType = true;
+                    }else{
+                        tabType = false;
+                    }
                     break;
                 }
             }
@@ -64,6 +70,7 @@ module.exports = function (router) {
                     req.uest('/api/v2/cms/channel/' + r.body[0].channelId + '?page=' + current + '&pagesize=10').end()
                         .then(function (r) {
                             formatNews(r.body.results);
+
                             var contents = r.body.results.length >
                                 0 ? r.body.results : null;
 
@@ -78,13 +85,13 @@ module.exports = function (router) {
                                     name: req.params.tab,
                                     text: nameMap[req.paramstab]
                                 },
-                                contents: contents
+                                contents: contents,
+                                tabType:tabType
                             });
                         });
 
 
                 } else {
-                   
                     formatNews(r);
                     var contents = r.body.length >
                         0 ? r.body : null;
@@ -96,7 +103,8 @@ module.exports = function (router) {
                             name: req.params.tab,text:
                                 nameMap[req.params.tab]
                         },
-                        contents: contents
+                        contents: contents,
+                        tabType:tabType
                     });
                 }
             });
