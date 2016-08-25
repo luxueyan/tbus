@@ -26,6 +26,10 @@ do (_, angular, moment, Array, Date) ->
                     return @$q.reject(data) unless data?.success is true
                     return data
 
+                @flush_user_info = =>
+                    @user_fetching_promise = null
+                    @user.has_logged_in = false
+
 
             fetch_current_user: ->
 
@@ -49,8 +53,7 @@ do (_, angular, moment, Array, Date) ->
                         @user.info = response.data
 
                         @$timeout =>
-                            @user_fetching_promise = null
-                            @user.has_logged_in = false
+                            @flush_user_info()
                         , 30 * 60 * 1000 + @user.info.lastLoginDate - Date.now()
 
                         api_list = _.split '
@@ -290,13 +293,19 @@ do (_, angular, moment, Array, Date) ->
             get_assignment_list: (query_set = {}, cache = false) ->
 
                 _.defaults query_set, {
-                    status: _.split 'OPEN FINISHED'
-                    page: 1
                     pageSize: 10
+                    currentPage: 0
+                    status: _.split 'OPEN FINISHED'
+                    minDealAmount: 0
+                    maxDealAmount: 100000000
+                    minRemainPeriod: 0
+                    maxRemainPeriod: 100
+                    orderBy: ''
+                    asc: ''
                 }
 
                 @$http
-                    .get '/api/v2/creditassign/list',
+                    .get '/api/v2/creditassign/list/filter',
                         params: query_set
                         cache: cache
 

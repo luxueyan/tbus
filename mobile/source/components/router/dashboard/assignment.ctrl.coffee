@@ -46,8 +46,7 @@ do (_, angular) ->
                             @$q.reject error: [message: data]
 
                     .then (data) =>
-                        @api.user_fetching_promise = null
-                        @user.has_logged_in = false
+                        @api.flush_user_info()
 
                         @$window.alert @$scope.msg.SUCCESSFUL
                         @$window.history.back()

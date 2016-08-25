@@ -65,8 +65,7 @@ do (_, angular) ->
                     .then @api.process_response
 
                     .then (data) =>
-                        @api.user_fetching_promise = null
-                        @user.has_logged_in = false
+                        @api.flush_user_info()
                         @$scope.action_result = { success: true }
 
                         # @$window.alert @$scope.msg.SUCCEED

@@ -186,8 +186,7 @@ do (_, angular, Math) ->
                     .then @api.process_response
 
                     .then =>
-                        @api.user_fetching_promise = null
-                        @user.has_logged_in = false
+                        @api.flush_user_info()
                         @$scope.action_result = { success: true }
 
                         # @$scope.show_invest_result = true
