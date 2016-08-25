@@ -83,7 +83,7 @@ do (_, angular) ->
             time_open: item.timeOpen
             time_close: item.timeOpen + (item.timeOut * 3600 * 1000)
 
-            due_date: new Date( +moment(item.timeOpen).add(item.remainPeriod - 1, 'd'))
+            due_date: item.dueDate || new Date( +moment(item.timeOpen).add(item.remainPeriod - 1, 'd'))
 
             status: item.status
             method: item.repaymentMethod

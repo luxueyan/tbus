@@ -14,16 +14,19 @@
 
     <div>
         <param ng-model="msg" ng-init="msg = {
-            MOBILE_EXISTS: '手机号已被占用',
-            MOBILE_USED: '手机号已被占用',
+            MOBILE_EXISTS: '该手机号已被注册过',
+            MOBILE_USED: '该手机号已被注册过',
             CAPTCHA_INVALID: '手机验证码不匹配',
             SMS_LOGIN_ERROR: '手机验证码不匹配',
             INVALID_MOBILE_CAPTCHA: '手机验证码不匹配',
+            INVALID_MOBILE_CAPTCHA_OLD: '原手机验证码错误',
+            INVALID_MOBILE_CAPTCHA_NEW: '新手机验证码错误',
             MOBILE_CAPTCHA_INVALID: '手机验证码不匹配',
             MOBILE_CAPTCHA_ALREADY_SENT: '验证码已发送',
             MOBILE_SMS_CAPTCHA_ALREADY_SEND: '验证码已发送',
             SEND_SMS_CAPTCHA_FAILED: '验证码发送失败',
             UNKNOWN: '系统繁忙，请稍后重试！',
+            ACCESS_DENIED: '登录超时',
         }">
     </div>
 

@@ -15,8 +15,7 @@ do (_, angular) ->
 
                 @api.logout().then =>
 
-                    @api.user_fetching_promise = null
-                    @user.has_logged_in = false
+                    @api.flush_user_info()
                     @$scope.is_show_action_result = true
 
                     # @$scope.$on '$locationChangeSuccess', =>

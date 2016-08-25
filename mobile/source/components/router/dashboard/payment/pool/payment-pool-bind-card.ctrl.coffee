@@ -103,9 +103,9 @@ do (_, angular) ->
                     .then @api.process_response
 
                     .then (data) =>
+                        @api.flush_user_info()
+
                         @$window.alert @$scope.msg.SUCCEED
-                        @api.user_fetching_promise = null
-                        @user.has_logged_in = false
                         @$window.history.back()
 
                     .catch (data) =>

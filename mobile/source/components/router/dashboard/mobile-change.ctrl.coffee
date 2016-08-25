@@ -48,7 +48,11 @@ do (_, angular) ->
 
             send_mobile_captcha_new: (mobile_new) ->
 
-                (@api.send_captcha_new_for_change_mobile(mobile_new)
+                (@api.check_mobile(mobile_new)
+
+                    .then @api.process_response
+
+                    .then => @api.send_captcha_new_for_change_mobile(mobile_new)
 
                     .then @api.process_response
 
@@ -81,9 +85,25 @@ do (_, angular) ->
 
                     .then (data) =>
                         @$scope.action_result = { success: true }
+                        @api.flush_user_info()
+                        @api.logout()
 
                     .catch (data) =>
+                        if _.get(data, 'error') is 'access_denied'
+                            @$window.alert @$scope.msg.ACCESS_DENIED
+                            @$window.location.reload()
+                            return
+
                         error = _.get data, 'error[0].message', 'UNKNOWN'
+
+                        if error is 'INVALID_MOBILE_CAPTCHA'
+                            type = _.get data, 'error[0].type'
+
+                            if type is 'smsCaptcha'
+                                error = 'INVALID_MOBILE_CAPTCHA_OLD'
+                            else if type is 'newSmsCaptcha'
+                                error = 'INVALID_MOBILE_CAPTCHA_NEW'
+
                         error = _.result @$scope.msg, error
                         @$window.alert error
 
