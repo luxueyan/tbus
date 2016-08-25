@@ -172,6 +172,7 @@
     line-height: 45px;
     border-left: none;
     margin-left: -4px;
+    line-height: normal;
 }
 
 .bring-in label {
