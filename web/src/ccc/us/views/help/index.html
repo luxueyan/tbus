@@ -17,7 +17,9 @@
         <div class="invest-container">
             <div class="invest-wrapper">
                 {{#if tabType}}
+                    {{#each contents:i}}
                     <div class="article-content">{{& content}}</div>
+                    {{/each}}
                 {{else}}
                     {{#each contents:i}}
                     <div class="article-wp">

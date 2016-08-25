@@ -47,17 +47,16 @@ module.exports = function (router) {
         }];
 
             var tabIndex;
-            var tabType;
-            for (var index = 0, length = tabs.length; index < length; index++) {
-                var tab = tabs[index];
-                if (tab.text === '平台简介'||'团队介绍'||'联系我们') {
-                    tabType = true;
-                }
-            }
+            var tabType=null;
             for (var index = 0, length = tabs.length; index < length; index++) {
                 var tab = tabs[index];
                 if (tab.text === indexMap[req.params.tab]) {
                     tabIndex = index;
+                    if (tab.text === '平台简介' || tab.text === '团队介绍' || tab.text === '联系我们') {
+                        tabType = true;
+                    }else{
+                        tabType = false;
+                    }
                     break;
                 }
             }
