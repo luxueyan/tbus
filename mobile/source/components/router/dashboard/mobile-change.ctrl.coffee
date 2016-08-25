@@ -85,6 +85,8 @@ do (_, angular) ->
 
                     .then (data) =>
                         @$scope.action_result = { success: true }
+                        @api.flush_user_info()
+                        @api.logout()
 
                     .catch (data) =>
                         if _.get(data, 'error') is 'access_denied'

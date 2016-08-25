@@ -26,6 +26,10 @@ do (_, angular, moment, Array, Date) ->
                     return @$q.reject(data) unless data?.success is true
                     return data
 
+                @flush_user_info = =>
+                    @user_fetching_promise = null
+                    @user.has_logged_in = false
+
 
             fetch_current_user: ->
 
@@ -49,8 +53,7 @@ do (_, angular, moment, Array, Date) ->
                         @user.info = response.data
 
                         @$timeout =>
-                            @user_fetching_promise = null
-                            @user.has_logged_in = false
+                            @flush_user_info()
                         , 30 * 60 * 1000 + @user.info.lastLoginDate - Date.now()
 
                         api_list = _.split '

@@ -33,8 +33,7 @@ do (_, angular) ->
                     # .then =>
                     #     @$location.path 'dashboard'
 
-                        @api.user_fetching_promise = null
-                        @user.has_logged_in = false
+                        @api.flush_user_info()
                         @$scope.action_result = { success: true }
 
                         # @$location.path '/login'
