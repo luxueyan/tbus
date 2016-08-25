@@ -191,12 +191,24 @@ ractive.loadData = function (obj) {
         return;
     }
     this.set('loading', true);
+    console.log(obj)
     size = obj.pageSize || size;
-
+    var status = true;
+    var operation = true;
+    if(obj.status==true){
+        status = true;
+    }else if(obj.status==false){
+        status = false;
+    }
+    if(obj.operation==true){
+        operation = true;
+    }else if(obj.operation==false){
+        operation = false;
+    }
     request.get('/api/v2/user/MYSELF/funds?type=' + obj.type)
         .query({
-            allStatus: obj.status || false,
-            allOperation: obj.operation || false,
+            allStatus: status,
+            allOperation: operation,
             startDate: moment($('.date-from-picker>input').val()).unix() * 1000,
             endDate: moment($('.date-to-picker>input').val()).unix() * 1000 + 1000 * 60 * 60 * 24,
             page: obj.page || 1,
@@ -346,10 +358,22 @@ function loadInitData(index) {
 
 function renderPage(total, obj) {
     var self = ractive;
+    var status = true;
+    var operation = true;
+    if(obj.status==true){
+        status = true;
+    }else if(obj.status==false){
+        status = false;
+    }
+    if(obj.operation==true){
+        operation = true;
+    }else if(obj.operation==false){
+        operation = false;
+    }
     var params = {
         type: obj.type,
-        allStatus: obj.status || false,
-        allOperation: obj.operation || false,
+        allStatus: status,
+        allOperation: operation,
         startDate: moment($('.date-from-picker>input').val()).unix() * 1000,
         endDate: moment($('.date-to-picker>input').val()).unix() * 1000 + 1000 * 60 * 60 * 24,
         pageSize: size

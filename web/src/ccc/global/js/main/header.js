@@ -50,4 +50,8 @@ if (new RegExp("^/$")
     .test(path)) {
     $(".u-nolist-ul li a#aboutus")
         .addClass("navactive");
+}else if (new RegExp("^/high/*")
+        .test(path)) {
+    $(".u-nolist-ul li a#high")
+        .addClass("navactive");
 }

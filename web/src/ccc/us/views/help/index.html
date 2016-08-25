@@ -16,15 +16,19 @@
     <div id="help-right" class="pull-right">
         <div class="invest-container">
             <div class="invest-wrapper">
-                {{#each contents:i}}
-                <div class="article-wp">
-                    <div class="ar-title-wp">
-                        <span class="open"></span>
-                        <h2 class="ar-title">{{i+1}}、{{title}}</h2>
-                    </div>
+                {{#if tabType}}
                     <div class="article-content">{{& content}}</div>
-                </div>
-                {{/each}}
+                {{else}}
+                    {{#each contents:i}}
+                    <div class="article-wp">
+                        <div class="ar-title-wp">
+                            <span class="open"></span>
+                            <h2 class="ar-title">{{i+1}}、{{title}}</h2>
+                        </div>
+                        <div class="article-content">{{& content}}</div>
+                    </div>
+                    {{/each}}
+                {{/if}}
             </div>
         </div>
     </div>
