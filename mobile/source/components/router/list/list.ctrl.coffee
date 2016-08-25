@@ -52,9 +52,9 @@ do (_, angular) ->
                 else if @$scope.current_tab is 'assignment'
 
                     if options.on_next_page
-                        query_set.page++
+                        query_set.currentPage++
                     else
-                        query_set.page = 1
+                        query_set.currentPage = 0
                         @$scope.list = []
 
                     @$scope.loading = true
@@ -63,7 +63,12 @@ do (_, angular) ->
 
                         .then ({results, totalSize}) =>
 
-                            @$scope.list = @$scope.list.concat results.map(@map_assignment_summary)
+                            @$scope.list = @$scope.list.concat(
+                                _(results.map(@map_assignment_summary))
+                                    .sortBy (item) ->
+                                        ['OPENED', 'FINISHED'].indexOf(item.status)
+                                    .value()
+                            )
 
                             angular.extend @$scope.list, {totalSize}
 

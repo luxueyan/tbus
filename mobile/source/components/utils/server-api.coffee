@@ -290,13 +290,19 @@ do (_, angular, moment, Array, Date) ->
             get_assignment_list: (query_set = {}, cache = false) ->
 
                 _.defaults query_set, {
-                    status: _.split 'OPEN FINISHED'
-                    page: 1
                     pageSize: 10
+                    currentPage: 0
+                    status: _.split 'OPEN FINISHED'
+                    minDealAmount: 0
+                    maxDealAmount: 100000000
+                    minRemainPeriod: 0
+                    maxRemainPeriod: 100
+                    orderBy: ''
+                    asc: ''
                 }
 
                 @$http
-                    .get '/api/v2/creditassign/list',
+                    .get '/api/v2/creditassign/list/filter',
                         params: query_set
                         cache: cache
 
