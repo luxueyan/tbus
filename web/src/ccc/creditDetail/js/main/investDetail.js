@@ -80,12 +80,12 @@ var investRactive = new Ractive({
             that.set("fduration", result.fduration);
             that.set("fdurunit", result.fdurunit);
             that.set("rate", result.rate);
-            that.set("guaranteeInfo", result.loanRequest.guaranteeInfo);
-            that.set("mortgageInfo", result.loanRequest.mortgageInfo);
-            that.set("riskInfo", result.loanRequest.riskInfo);
-            that.set("guaranteeInfo", result.loanRequest.guaranteeInfo);
-            that.set("description", result.loanRequest.description);
-
+            that.set("guaranteeInfo", result.loanRequest.productLightspot);
+            that.set("mortgageInfo", result.loanRequest.riskRank);
+            that.set("riskInfo", result.loanRequest.riskControlMethod);
+            that.set("fundUsage", result.loanRequest.fundUsage);
+            that.set("description", result.loanRequest.commonQuestion);
+            that.set("riskPrompt", result.loanRequest.riskPrompt);
             //console.log(1111)
             //console.log(result);
             //console.log(1111)

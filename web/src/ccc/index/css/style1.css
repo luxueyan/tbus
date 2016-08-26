@@ -367,7 +367,7 @@
     height: 18px;
     overflow: hidden;
     width: 400px;
-    margin-top: 22px;
+    margin-top: 3px;
 }
 
 #scrollWrap #scrollMsg li{
@@ -686,21 +686,20 @@
     background: #e4262b;
 }
 /*轮播公告*/
-.cwrapper{
-    -webkit-box-shadow: 0 0 13px  rgb(223, 217, 217);
-    -moz-box-shadow: 0 0 13px   rgb(223, 217, 217);
-    -o-box-shadow: 0 0 13px   rgb(223, 217, 217);
-    -ms-box-shadow: 0 0 13px   rgb(223, 217, 217);
-    box-shadow: 0 0 13px   rgb(223, 217, 217);
-    margin-bottom: 10px;
-}
+/*.cwrapper{*/
+    /*-webkit-box-shadow: 0 0 13px  rgb(223, 217, 217);*/
+    /*-moz-box-shadow: 0 0 13px   rgb(223, 217, 217);*/
+    /*-o-box-shadow: 0 0 13px   rgb(223, 217, 217);*/
+    /*-ms-box-shadow: 0 0 13px   rgb(223, 217, 217);*/
+    /*box-shadow: 0 0 13px   rgb(223, 217, 217);*/
+    /*margin-bottom: 10px;*/
+/*}*/
 #announce-container {
     width: 1180px;
 }
 .announce .announce_right {
     float: left;
     width: 1160px;
-    margin-left: 20px;
 }
 .announce {
     font-size: 14px;
@@ -737,7 +736,7 @@
     display: inline-block;
     line-height: 24px;
     vertical-align: middle;
-    width: 1080px;
+    width: 1030px;
     overflow-x: hidden;
 }
 
@@ -758,4 +757,8 @@
     float: right;
     color: #b5a16b;
     margin-top: -22px;
+}
+.newest{
+    padding-right: 50px;
+    position: relative;
 }
