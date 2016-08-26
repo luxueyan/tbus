@@ -1010,9 +1010,13 @@ a {
 
 /*财富讲堂*/
 .dd02 a div,.dd02 a p,.dd02 a div span,.dd02 a p span{
-	color: rgb(0, 0, 0)!important;
+	/*color: rgb(0, 0, 0)!important;*/
 	font-family: 微软雅黑, MicrosoftYaHeiLight, 宋体!important;
 	font-size: 14px!important;
 	line-height: 26px!important;
-	text-align: center!important;
+	/*text-align: center!important;*/
+}
+.dd02 a>p:first-child strong {
+	display: block;
+	text-align: center;
 }

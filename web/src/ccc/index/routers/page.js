@@ -27,6 +27,21 @@ router.get('/', function (req, res, next) {
             return data;
         });
 
+    res.locals.latestNew = req.uest(
+        '/api/v2/cms/category/INTRODUCTION/name/' + encodeURIComponent('平台公告'))
+        .end()
+        .get('body')
+        .then(function (data) {
+            console.log("11111");
+            console.log(data);
+            console.log("111111");
+            _.forEach(data,  function (userInfo){
+                userInfo.timeRecorded = moment(userInfo.timeRecorded).format('YYYY-MM-DD');
+            })
+            return data;
+
+        });
+
     res.locals.latestNews = req.uest(
         '/api/v2/cms/category/NEWS/name/' + encodeURIComponent('财富讲堂'))
         .end()

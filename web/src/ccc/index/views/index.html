@@ -105,19 +105,43 @@
     </div>
     <!--产品展示-->
     <div class="pro_content">
-        <div class="cwrapper" style="background: #ffffff;">
+        <div class="cwrapper" >
             <div class="u-pos-r-center wide" id="announce-container">
                 <!-- 公告 -->
                 <div class="announce">
                     <div class="announce_right">
                         <div class="newest">
                             <div class="bg hidden"></div>
-                            <div class="small">网站公告:</div>
-                            <marquee class="big">
-                                <a href="/us/transfer"  >111111111111111111111111111111111111111111111111111111111111111111</a>
-                                <a href="/us/transfer"  >2222222222222222222222222222222222222222222222222222222222222222222</a>
-                                <a href="/us/transfer"  >3333333333333333333333333333333333333333333333333333333333333333333</a>
-                            </marquee>
+                            <!--<div class="small">网站公告:</div>-->
+                            <!--<marquee class="big">-->
+                                <!--{{#latestNew}}-->
+                                <!--<a href="/us/transfer" target="_blank" style="text-decoration:none">{{{title}}}{{timeRecorded}}</a>-->
+                                <!--{{/latestNew}}-->
+                            <!--</marquee>-->
+                            <!--<a href="/us/transfer"  style="position: absolute;left: 1100px;top: 3px;">更多>></a>-->
+                            <!-- 公告 -->
+                            <div class="cwrapper">
+                                <div class="u-pos-r-center wide" id="announce-container">
+                                    <div class="announce">
+                                        <div class="announce_left">
+                                            <div class="newest">
+                                                <div class="small">最新公告:</div>
+                                                <div id="scrollWrap">
+                                                    <ul id="scrollMsg">
+                                                        {{#latestNew}}
+                                                        <li><a target="_blank" href="/us/transfer" style="text-decoration:none">{{{title}}} <span style="margin-left: 20px;">{{timeRecorded}}</span></a>
+                                                        </li>
+                                                        {{/latestNew}}
+                                                    </ul>
+                                                    <a href="/us/transfer"  style="width: 60px;position: absolute;left: 1130px;top: 3px;font-weight: 400;">更多>></a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -168,5 +192,47 @@
     </div>
 
     <script src="/ccc/index/js/main/index.js"></script>
+    <script type="text/javascript">
+        try {
+            var isStoped = false;
+            var oScroll = document.getElementById("scrollWrap");
+            with(oScroll) {
+                noWrap = true;
+            }
+            oScroll.onmouseover = new Function('isStoped = true');
+            oScroll.onmouseout = new Function('isStoped = false');
+            var preTop = 0;
+            var curTop = 0;
+            var stopTime = 0;
+            var oScrollMsg = document.getElementById("scrollMsg");
+            oScroll.appendChild(oScrollMsg.cloneNode(true));
+            init_srolltext();
+        } catch (e) {}
 
+        function init_srolltext() {
+            oScroll.scrollTop = 0;
+            setInterval('scrollUp()', 15);
+        }
+
+        function scrollUp() {
+            if (isStoped)
+                return;
+            curTop += 1;
+            if (curTop == 19) {
+                stopTime += 1;
+                curTop -= 1;
+                if (stopTime == 180) {
+                    curTop = 0;
+                    stopTime = 0;
+                }
+            } else {
+                preTop = oScroll.scrollTop;
+                oScroll.scrollTop += 1;
+                if (preTop == oScroll.scrollTop) {
+                    oScroll.scrollTop = 0;
+                    oScroll.scrollTop += 1;
+                }
+            }
+        }
+    </script>
 </dsBody>
