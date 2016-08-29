@@ -45,7 +45,25 @@ var payRactive = new Ractive({
 });
 
 payRactive.on("invest-submit", function (e) {
+    var message = {
+        'CREDIT_ASSIGN_DISABLED':"债转功能不可用",
+        'NOT_FOUND':"债转不存在",
+        'ASSIGN_NOT_OPEN':"转让未开始或已结束",
+        'ASSIGN_NO_BALANCE':"转让金额已满",
+        'SELF_ASSIGN_FORBIDDEN':"不能承接自己的转让",
+        'BORROWER_ASSIGN_FORBIDDEN':"标的借款人不能承接转让",
+        'PARTLY_ASSIGN_FORBIDDEN':"必须全额承接",
+        'FEE_EXCEED_LIMIT':"费率超过上限",
+        'ILLEGAL_AMOUNT':"金额错误",
+        'USER_BALANCE_INSUFFICIENT':"用户账户可用余额不足",
+        'ASSIGN_REDUNDANT':"重复的债转投资",
+        'DEPOSIT_FAILED':"使用认证支付失败",
+        'USER_NOT_EXIST':"获取用户信息失败",
+        'ASSIGN_FEE_FAIL':"债权转让收费失败",
+        'FAILED':"其他原因失败"
+    };
     var that = this;
+    $("#subBtn").attr("disabled","true");
     e.original.preventDefault();
     var num = that.get('investNum'); // 输入的值
     var paymentPassword = that.get('paymentPassword');
@@ -54,11 +72,13 @@ payRactive.on("invest-submit", function (e) {
 
     if (paymentPassword === '') {
         showErrors('请输入交易密码!');
+        myFunc();
         return false;
     } else {
         accountService.checkPassword(paymentPassword, function (r) {
             if (!r) {
                 showErrors('请输入正确的交易密码');
+                myFunc();
             } else {
                 disableErrors();
 
@@ -85,7 +105,12 @@ payRactive.on("invest-submit", function (e) {
                             payRactive.set('step1',false);
                             payRactive.set('step2',false);
                             payRactive.set('step3',true);
-                            payRactive.set('failerror',res.error[0].message);
+                            if(message[res.error[0].message]){
+                                payRactive.set('failerror',message[res.error[0].message]);
+                            }else{
+                                payRactive.set('failerror',res.error[0].message);
+                            }
+
                         }
                     });
 
@@ -96,6 +121,11 @@ payRactive.on("invest-submit", function (e) {
             }
         });
     };
+    function myFunc(){
+        //code
+        //执行某段代码后可选择移除disabled属性，让button可以再次被点击
+        $("#subBtn").removeAttr("disabled");
+    }
 });
 
 function showErrors(error) {
