@@ -68,6 +68,7 @@ ractive.on('checkIdNumber', function () {
         }
     });
 });
+
 ractive.on("register-account-submit", function () {
     var name = this.get("name");
     var idNumber = this.get("idNumber");
@@ -96,20 +97,10 @@ ractive.on("register-account-submit", function () {
                     name: $.trim(name),
                     idCardNumber: $.trim(idNumber)
                 };
-                var msg, link;
-                if (that.get('bank') && that.get('paymentPasswordHasSet')) {
-                    msg = "恭喜您，认证成功！";
-                } else if (!that.get('bank') && that.get('paymentPasswordHasSet')) {
-                    msg = "认证成功，请绑定银行卡！";
-                    link = '/newAccount/settings/bankCards';
-                } else {
-                    msg = "认证成功，请开通交易密码";
-                    link = '/newAccount/settings/password';
-                }
                 accountService.checkId(user,
                     function (res) {
                         //console.log(res);
-                        if (res) {
+                        if (res.success) {
                             ractive.set('step1',false);
                             ractive.set('step2',true);
                             ractive.set('step3',false);
@@ -117,11 +108,16 @@ ractive.on("register-account-submit", function () {
                             ractive.set('step1',false);
                             ractive.set('step2',false);
                             ractive.set('step3',true);
-                            ractive.set('error',res.error[0].message);
+                            if(res.error[0].message == 'ID authenticate Failed'){
+                                ractive.set('error','实名验证失败');
+                            }else if(res.error[0].message == 'ID number is used by another User!'){
+                                ractive.set('error','当前身份证号被占用');
+                            }else if(res.error[0].message == 'User is ID authenticated already!'){
+                                ractive.set('error','当前用户已经实名过');
+                            }else if(res.error[0].message == "User to be authenticated doesn't exist!"){
+                                ractive.set('error','当前用户不存在');
+                            }
 
-                            //if (res.error[0].message == '认证失败') {
-                            //    res.error[0].message = "";
-                            //}
                             //CccOk.create({
                             //    msg: '实名认证失败，' + res.error[0].message,
                             //    okText: '确定',

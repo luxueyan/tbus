@@ -140,15 +140,13 @@ do (_, angular, moment, Math, Date) ->
             product_type: loanRequest.productKey?.trim().match(/^\w+/)?[0] or 'UNKNOWN'
 
             value_date: (
-                item.timeSettled ||
                 loanRequest.valueDate ||
                 new Date( +moment(finished_date).add(1, 'd'))
             ),
 
             due_date: (
-                item.timeCleared ||
-                ( item.timeSettled && new Date( +moment(item.timeSettled).add(item.duration.totalDays, 'd')) ) ||
                 loanRequest.dueDate ||
+                item.timeCleared ||
                 new Date( +moment(finished_date).add(1 + item.duration.totalDays, 'd'))
             ),
 

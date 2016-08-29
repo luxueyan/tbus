@@ -68,4 +68,8 @@ module.exports = function (router, auth) {
     router.post('/api/v2/baofoo/cancelBindCard', auth.user());
     //投资支付
     router.post('/api/v2/baofoo/pay', auth.user());
+    //债转默认合同模版获取
+    router.get('/api/v2/creditassign/template', auth.user());
+    //借款合同模版获取
+    router.get('/api/v2/loan/loanRequest/:requestId/bind/template', auth.user());
 };
