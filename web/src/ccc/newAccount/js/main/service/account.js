@@ -49,7 +49,7 @@ exports.accountService = {
             });
     },
     checkId: function(user, next) {
-        request('POST', '/api/v2/user/checkId')
+        request('POST', '/api/v2/user/MYSELF/checkId')
             .type('form')
             .send(user)
             .end()
