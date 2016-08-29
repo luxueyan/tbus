@@ -148,8 +148,8 @@ do (_, angular) ->
             is_show_repayment: item.status in _.split 'SETTLED CLEARED OVERDUE BREACH'
             progress: repayment.progress
 
-            settled_date: item.timeSettled || item.loan.loanRequest.valueDate
-            end_date: item.endDate || item.loan.loanRequest.dueDate
+            settled_date: item.loan.loanRequest.valueDate
+            end_date: item.loan.loanRequest.dueDate || repayment.end_date
             submit_time: item.submitTime
             repayments: item.repayments
         }
