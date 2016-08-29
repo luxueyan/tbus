@@ -291,6 +291,7 @@ function init(type) {
                         "INVEST_DATE_LIMIT": "投资持有一定天数后才允许转让",
                         "DAILY_LIMIT": "超过每日债权转让次数上限",
                         "DISCOUNT_LIMIT": "超过债权转让折让率允许范围",
+                        "DISCOUNT_TOO_HIGH":"债权转让折让率太高，实际利率小于等于零",
                         "ASSIGN_AMOUNT_LIMIT": "低于最低转让金额限制",
                         'NEXT_REPAY_DATE_IN_TIMEOUT':'',
                     };
@@ -332,7 +333,7 @@ function init(type) {
                                                 window.location.reload();
                                             } else {
                                                 alert("债转创建失败，" + returnMap[o]);
-                                                window.location.reload();
+                                                //window.location.reload();
                                             }
 
                                         });

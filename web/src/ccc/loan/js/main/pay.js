@@ -46,22 +46,30 @@ var payRactive = new Ractive({
 
 payRactive.on("invest-submit", function (e) {
     var message = {
-        'CREDIT_ASSIGN_DISABLED':"债转功能不可用",
-        'NOT_FOUND':"债转不存在",
-        'ASSIGN_NOT_OPEN':"转让未开始或已结束",
-        'ASSIGN_NO_BALANCE':"转让金额已满",
-        'SELF_ASSIGN_FORBIDDEN':"不能承接自己的转让",
-        'BORROWER_ASSIGN_FORBIDDEN':"标的借款人不能承接转让",
-        'PARTLY_ASSIGN_FORBIDDEN':"必须全额承接",
-        'FEE_EXCEED_LIMIT':"费率超过上限",
-        'ILLEGAL_AMOUNT':"金额错误",
-        'USER_BALANCE_INSUFFICIENT':"用户账户可用余额不足",
-        'ASSIGN_REDUNDANT':"重复的债转投资",
-        'DEPOSIT_FAILED':"使用认证支付失败",
-        'USER_NOT_EXIST':"获取用户信息失败",
-        'ASSIGN_FEE_FAIL':"债权转让收费失败",
-        'FAILED':"其他原因失败"
-    };
+        "PAYMENT_PWD_NOT_MATCHED":"交易密码错误",
+        "INVALID_MOBILE_CAPTCHA":"无效的手机验证码",
+        "DEPOSIT_FAILED":"充值失败",
+        "LOAN_NOT_FOUND":"标的未找到",
+        "SURVEY_FILLING_NOT_FOUND":"用户问卷记录为空",
+        "BID_NOT_OPEN":"标的没有开始募集,或已募集结束",
+        "BID_NO_BALANCE":"已满标",
+        "BID_EXCEED_TIMES_LIMIT":"投标次数超过上限",
+        "BID_EXCEED_PRODUCT_TIMES_LIMIT":"投标次数超过产品类型上限",
+        "BID_EXCEED_TOTAL_AMOUNT_LIMIT":"投标总金额超过上限",
+        "BID_EXCEED_PRODUCT_TOTAL_AMOUNT_LIMIT":"投标总金额超过产品类型上限",
+        "BID_EXCEED_SINGLE_AMOUNT_LIMIT":"投标单次金额超过上限",
+        "BID_REDUNDANT":"重复投标",
+        "USER_BALANCE_INSUFFICIENT":"账户可用余额不足",
+        "FROZEN_FAILED":"冻结用户账户余额失败",
+        "INVALID_AMOUNT":"投资金额不合规，请查看产品说明",
+        "SELF_BID_FORBIDDEN":"不能投给自己的标的",
+        "BID_FORBIDDEN":"不满足投标条件",
+        "FAILED":"投资失败，请重试",
+        "BID_USER_NOT_FOUND":"投标用户不存在",
+        "ENTERPRISE_USER_BID_DISABLED":"不允许企业用户投标",
+        "COUPON_REDEEM_FAILED":"使用奖券失败",
+        "NO_ENOUGH_BALANCE":"标的余额不足",
+};
     var that = this;
     $("#subBtn").attr("disabled","true");
     e.original.preventDefault();
