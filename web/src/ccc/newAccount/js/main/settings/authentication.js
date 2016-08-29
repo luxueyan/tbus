@@ -92,7 +92,7 @@ ractive.on("register-account-submit", function () {
                 }
 
                 var user = {
-                    userId: CC.user.id,
+                    //userId: CC.user.id,
                     name: $.trim(name),
                     idCardNumber: $.trim(idNumber)
                 };

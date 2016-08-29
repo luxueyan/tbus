@@ -58,7 +58,7 @@ do (_, angular, Math) ->
                 'FEE_CREDIT_ASSIGN': '债权转让手续费'
                 'FEE_BIND_CARD': '用户绑卡手续费'
                 'FSS': '生利宝'
-                'OFFLINE_DEPOSIT': '线下充值'
+                'OFFLINE_DEPOSIT': '线下补录'
             }
 
             (type) ->

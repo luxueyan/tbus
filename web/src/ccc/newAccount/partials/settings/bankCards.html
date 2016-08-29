@@ -22,8 +22,8 @@
                 <div class="img-box">
                     <img class="" src="/ccc/newAccount/img/card-id.png"/>
                 </div>
-                <input  on-keyup="validateIdNo" type="text" name="idNo" {{hasCardO?'disabled':''}} value="{{idNo}}"
-                class="payInp" placeholder="输入身份证号码">
+                <input  on-keyup="validateIdNo" type="text" name="idNo" value="{{idNo}}" class="payInp" placeholder="输入身份证号码"
+                        {{hasCardO?'disabled':''}}>
             </div>
             <p class="error">{{#if idNoError}} {{idNoError}} {{/if}}</p>
 
@@ -51,8 +51,8 @@
                 <div class="img-box">
                     <img class="" src="/ccc/newAccount/img/card-card.png"/>
                 </div>
-                <input on-keyup="validateCardNo" type="text" name="cardNo" {{hasCard1?'disabled':''}} value="{{cardNo}}" class="payInp"
-                       placeholder="输入银行卡号">
+                <input on-keyup="validateCardNo" type="text" name="cardNo" value="{{cardNo}}" class="payInp"
+                       placeholder="输入银行卡号" {{hasCard1?'disabled':''}}>
             </div>
             <p class="error">{{#if errMessgaeBank}} {{errMessgaeBank}} {{/if}}</p>
 
@@ -85,6 +85,7 @@
             <div class="clearfix"></div>
         </div>
 
+        {{#if !paymentAuthenticated}}
         <div class="row">
             <div class="card-brame">
                 <div class="img-box">
@@ -110,6 +111,7 @@
 
             <div class="clearfix"></div>
         </div>
+        {{/if}}
 
         <div class="agree-box">
           绑定即视为同意<a href="/agreement/pay" target="_blank">《支付服务协议》</a>

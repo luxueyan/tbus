@@ -29,7 +29,7 @@ module.exports = function (router, auth) {
     router.get('/api/v2/rebateCounpon/listUserCouponPlacement/:userId', auth.pass());
 
     //实名认证
-    router.post('/api/v2/user/checkId', auth.user());
+    router.post('/api/v2/user/:userId/checkId', auth.user());
     //银行卡验证
     router.post('/api/v2/user/checkBankcard', auth.user());
     //充值

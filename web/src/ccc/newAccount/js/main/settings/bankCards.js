@@ -52,6 +52,7 @@ var ractive = new Ractive({
             ractive.set('authenticates', r);
             if (r.paymentAuthenticated) {
                 ractive.set('pwdText', '输入支付密码');
+                ractive.set('paymentAuthenticated', r.paymentAuthenticated);
             } else {
                 ractive.set('pwdText', '设定支付密码');
             }
@@ -76,6 +77,7 @@ ractive.on("validatePersonal", function () {
         accessA = true;
     }
 });
+
 ractive.on("validateIdNo", function () {
     var idNo = this.get("idNo");
     if (!/^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/.test(idNo)) {
@@ -91,10 +93,14 @@ ractive.on("validateCardNo", function () {
     if (cardNo == '') {
         this.set("errMessgaeBank", '请输入您的银行卡号');
         return;
-    } else {
+    } else if(!/^\d+$/.test(cardNo)){
+        this.set("errMessgaeBank", '银行卡号只能是数字');
+        return;
+    }else {
         this.set("errMessgaeBank", false);
         accessC = true;
     }
+
 });
 ractive.on("validatePhoneNo", function () {
     var no = this.get("mobile");
@@ -114,6 +120,31 @@ ractive.on("validateBankName", function () {
     } else {
         this.set("bankNameError", false);
         accessE = true;
+    }
+});
+ractive.on("validatePwd", function () {
+    var pwd = this.get("password");
+    if (pwd === '') {
+        this.set('errMessgaePwd', '请输入支付密码');
+        return;
+    } else if (pwd.length != 6 || !/^[0-9]*$/g.test(pwd)) {
+        this.set('errMessgaePwd', '支付密码为6位纯数字');
+        return;
+    } else {
+        this.set('errMessgaePwd', false);
+    }
+});
+ractive.on("validateRePwd", function () {
+    var pwd = this.get("password");
+    var rePwd = this.get("repassword");
+    if (rePwd === '') {
+        this.set('errMessgaeRePwd', '请再次输入支付密码');
+        return;
+    } else if (pwd !== rePwd) {
+        this.set('errMessgaeRePwd', '两次密码输入不一致');
+        return;
+    } else {
+        this.set('errMessgaeRePwd', false);
     }
 });
 
@@ -150,8 +181,8 @@ ractive.on("bind-card-submit", function (e) {
     if (pwd === '') {
         this.set('errMessgaePwd', '请输入支付密码');
         return;
-    } else if (pwd.length < 6 || !/^[0-9]*$/g.test(pwd)) {
-        this.set('errMessgaePwd', '交易密码为不小于6位纯数字');
+    } else if (pwd.length != 6 || !/^[0-9]*$/g.test(pwd)) {
+        this.set('errMessgaePwd', '支付密码为6位纯数字');
         return;
     } else {
         this.set('errMessgaePwd', false);
@@ -186,6 +217,7 @@ ractive.on("bind-card-submit", function (e) {
         BIND_CARD_FAILED: '绑卡失败',
         UNKNOWN: '系统繁忙，请稍后重试！',
         ACCESS_DENIED: '登录超时',
+        IDNUMBER_EXISTS: '账号已存在',
         SUCCEED: '银行卡绑定成功'
     };
 
@@ -215,8 +247,8 @@ ractive.on("bind-card-submit", function (e) {
             }
         });
     } else {
-        accountService.checkPassword(pwd, function (r) {
-            if (r) {
+        //accountService.checkPassword(pwd, function (r) {
+            //if (r) {
                 $('.btn-box button').text('绑卡中,请稍等...');
                 $.post('/api/v2/baofoo/MYSELF/confirmBindCard', sendCard, function (res) { //bindCard
                     if (res.success) {
@@ -244,10 +276,10 @@ ractive.on("bind-card-submit", function (e) {
                     }
 
                 });
-            } else {
-                ractive.set('errMessgaePwd', '交易密码错误');
-            }
-        });
+            //} else {
+            //    ractive.set('errMessgaePwd', '交易密码错误');
+            //}
+        //});
     }
 
 
@@ -283,7 +315,7 @@ ractive.on('sendCode', function () {
                 countDown();
             } else {
                 CccOk.create({
-                    msg: r.error[0].message,
+                    msg: '信息验证错误，请检查上述四要素是否填写正确!',
                     okText: '确定',
                     ok: function () {
                         $('.ccc-box-overlay').remove();
