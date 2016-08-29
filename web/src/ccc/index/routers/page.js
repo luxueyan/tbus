@@ -32,9 +32,6 @@ router.get('/', function (req, res, next) {
         .end()
         .get('body')
         .then(function (data) {
-            console.log("11111");
-            console.log(data);
-            console.log("111111");
             _.forEach(data,  function (userInfo){
                 userInfo.timeRecorded = moment(userInfo.timeRecorded).format('YYYY-MM-DD');
             })
