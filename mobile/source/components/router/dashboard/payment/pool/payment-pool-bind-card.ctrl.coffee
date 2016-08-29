@@ -58,7 +58,7 @@ do (_, angular) ->
                             return
 
                         key = _.get data, 'error[0].message', 'UNKNOWN'
-                        @$window.alert @$scope.msg[key] or key
+                        @$window.alert @$scope.msg[key] or @$scope.msg.PRE_BIND_CARD_FAILED
                 )
 
 
@@ -70,14 +70,7 @@ do (_, angular) ->
 
                     .then (has_payment_password) =>
                         if has_payment_password
-                            return (
-                                @api.payment_pool_check_password(password)
-                                    .then @api.process_response
-                                    .catch (data) =>
-                                        return @$q.reject(data) if _.get(data, 'error') is 'access_denied'
-
-                                        @$q.reject error: [message: 'INCORRECT_PASSWORD']
-                            )
+                            return
 
                         else
                             return (
