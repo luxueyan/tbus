@@ -277,7 +277,7 @@ function init(type) {
                         assignTitle:$(e.node).data('title'),
                         requestId:$(e.node).data('request')
                     }
-                    console.log(data)
+                    //console.log(data)
                     var returnMap = {
                         "CREDIT_ASSIGN_DISABLED": "没有开启债权转让功能",
                         "REASSIGN_DISABLED": "二次转让功能关闭",
