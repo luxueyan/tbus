@@ -45,7 +45,33 @@ var payRactive = new Ractive({
 });
 
 payRactive.on("invest-submit", function (e) {
+    var message = {
+        "PAYMENT_PWD_NOT_MATCHED":"交易密码错误",
+        "INVALID_MOBILE_CAPTCHA":"无效的手机验证码",
+        "DEPOSIT_FAILED":"充值失败",
+        "LOAN_NOT_FOUND":"标的未找到",
+        "SURVEY_FILLING_NOT_FOUND":"用户问卷记录为空",
+        "BID_NOT_OPEN":"标的没有开始募集,或已募集结束",
+        "BID_NO_BALANCE":"已满标",
+        "BID_EXCEED_TIMES_LIMIT":"投标次数超过上限",
+        "BID_EXCEED_PRODUCT_TIMES_LIMIT":"投标次数超过产品类型上限",
+        "BID_EXCEED_TOTAL_AMOUNT_LIMIT":"投标总金额超过上限",
+        "BID_EXCEED_PRODUCT_TOTAL_AMOUNT_LIMIT":"投标总金额超过产品类型上限",
+        "BID_EXCEED_SINGLE_AMOUNT_LIMIT":"投标单次金额超过上限",
+        "BID_REDUNDANT":"重复投标",
+        "USER_BALANCE_INSUFFICIENT":"账户可用余额不足",
+        "FROZEN_FAILED":"冻结用户账户余额失败",
+        "INVALID_AMOUNT":"投资金额不合规，请查看产品说明",
+        "SELF_BID_FORBIDDEN":"不能投给自己的标的",
+        "BID_FORBIDDEN":"不满足投标条件",
+        "FAILED":"投资失败，请重试",
+        "BID_USER_NOT_FOUND":"投标用户不存在",
+        "ENTERPRISE_USER_BID_DISABLED":"不允许企业用户投标",
+        "COUPON_REDEEM_FAILED":"使用奖券失败",
+        "NO_ENOUGH_BALANCE":"标的余额不足",
+};
     var that = this;
+    $("#subBtn").attr("disabled","true");
     e.original.preventDefault();
     var num = that.get('investNum'); // 输入的值
     var paymentPassword = that.get('paymentPassword');
@@ -54,11 +80,13 @@ payRactive.on("invest-submit", function (e) {
 
     if (paymentPassword === '') {
         showErrors('请输入交易密码!');
+        myFunc();
         return false;
     } else {
         accountService.checkPassword(paymentPassword, function (r) {
             if (!r) {
                 showErrors('请输入正确的交易密码');
+                myFunc();
             } else {
                 disableErrors();
 
@@ -85,7 +113,12 @@ payRactive.on("invest-submit", function (e) {
                             payRactive.set('step1',false);
                             payRactive.set('step2',false);
                             payRactive.set('step3',true);
-                            payRactive.set('failerror',res.error[0].message);
+                            if(message[res.error[0].message]){
+                                payRactive.set('failerror',message[res.error[0].message]);
+                            }else{
+                                payRactive.set('failerror',res.error[0].message);
+                            }
+
                         }
                     });
 
@@ -96,6 +129,11 @@ payRactive.on("invest-submit", function (e) {
             }
         });
     };
+    function myFunc(){
+        //code
+        //执行某段代码后可选择移除disabled属性，让button可以再次被点击
+        $("#subBtn").removeAttr("disabled");
+    }
 });
 
 function showErrors(error) {

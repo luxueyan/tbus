@@ -22,6 +22,7 @@
             UNKNOWN: '系统繁忙，请稍后重试！',
             ACCESS_DENIED: '登录超时',
             INCORRECT_PASSWORD: '交易密码不正确',
+            PRE_BIND_CARD_FAILED: '信息验证错误，请检查上述四要素是否填写正确！',
 
             SUCCEED: '银行卡绑定成功',
         }">
@@ -256,9 +257,10 @@
                      ng-class="{
                         'has-error': form.password.$invalid && form.password.$dirty
                      }"
+                     ng-if="!self.user.has_payment_password"
                 >
                     <div class="form-group-inner">
-                        <label for="password">{{ self.user.has_payment_password ? '验证' : '设置' }}支付密码</label>
+                        <label for="password">设置支付密码</label>
                         <input id="password" class="form-control input-target input-lg"
                                type="password"
                                name="password"
