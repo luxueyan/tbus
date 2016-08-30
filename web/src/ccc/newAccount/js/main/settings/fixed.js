@@ -183,6 +183,7 @@ function init(type) {
                                 datas[i].Frate = utils.format.percent(o.rate / 100, 2);
                                 datas[i].Famount = utils.format.amount(o.amount, 2);
                                 datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true : false;
+                                datas[i].requestId = o.loan.loanRequest.id;
                                 break;
                             case 'CLEARED':
                                 datas[i].Fduration = utils.format.duration(o.duration);
@@ -273,8 +274,10 @@ function init(type) {
                         investId:$(e.node).data('invest'),
                         creditDealRate:null,
                         error:'',
-                        assignTitle:$(e.node).data('title')
+                        assignTitle:$(e.node).data('title'),
+                        requestId:$(e.node).data('request')
                     }
+                    console.log(data)
                     var returnMap = {
                         "CREDIT_ASSIGN_DISABLED": "没有开启债权转让功能",
                         "REASSIGN_DISABLED": "二次转让功能关闭",
