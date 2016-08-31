@@ -245,9 +245,11 @@ ractive.on('withDrawSubmit', function () {
     } else if (pass === '') {
         this.set('msg.CODE_NULL', true);
     } else if (pass !== '') {
+        $(".submit_btn").attr("disabled","true");
         accountService.checkPassword(pass, function (r) {
             if (!r) {
                 ractive.set('msg.CODE_INVALID', true);
+                myFunc();
             } else {
                 ractive.set('msg', {
                     CODE_NULL: false,
@@ -280,5 +282,10 @@ ractive.on('withDrawSubmit', function () {
                                 //};
             }
         });
+    }
+    function myFunc(){
+        //code
+        //执行某段代码后可选择移除disabled属性，让button可以再次被点击
+        $(".submit_btn").removeAttr("disabled");
     }
 });
