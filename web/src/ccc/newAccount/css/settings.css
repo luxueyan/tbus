@@ -179,6 +179,7 @@ p.tips {
     cursor: pointer;
     text-align: center;
     border: none;
+    margin-left: 84px;
 }
 
 .btn-update:hover {

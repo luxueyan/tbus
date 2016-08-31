@@ -15,22 +15,22 @@
 .step-first{
     width: 1200px;
     margin: 0 auto;
-    height: 474px;
+    height: 367px;
     padding-left: 578px;
 }
 .step-title {
     text-align: center;
-    font-size: 48px;
+    font-size: 30px;
     color: #d90202;
-    line-height: 140px;
+    line-height: 120px;
+    padding-top: 20px;
 }
 
 .model-content {
     width: 100%;
     line-height: 48px;
-    font-family: "微软雅黑";
-    text-align: left;
-    font-size: 24px;
+    text-align: center;
+    font-size: 14px;
     color: #666666;
 }
 
@@ -49,9 +49,10 @@
 }
 .step-second {
     width: 1200px;
-    height: 630px;
+    height: 422px;
     margin: 0 auto;
     position: relative;
+    margin-top: 50px;
 }
 .step-second >span {
     font-size: 30px;
@@ -90,45 +91,47 @@
 .step-third ul li{
     float: left;
     width: 400px;
-    padding: 0 30px;
+    padding: 0 42px;
     text-align: center;
-    font-size: 26px;
     border-left: 1px solid #cacaca;
 }
 .step-third ul li p{
     margin-top: 42px;
-    font-size: 18px;
     line-height: 30px;
     text-align: left;
 }
 .tips-title{
     color: #b08b56;
-    font-size: 36px;
+    font-size: 30px;
     text-align: center;
-    line-height: 136px;
+    line-height: 70px;
 }
 .tips-title span{
     color: #d70500;
 }
 .step-box4{
-    background: url("/ccc/guide/img/step4.png") no-repeat center;
+    background: #eadecd;
 }
 .step-four{
     width: 1200px;
-    height: 628px;
+    height: 320px;
     margin: 0 auto;
+    background: url("/ccc/guide/img/step4.png") no-repeat center;
 }
 .guide-btn{
-    margin: 75px auto 60px;
+    margin: 30px auto 25px;
     display: block;
-    width: 451px;
-    height: 75px;
+    width: 272px;
+    height: 59px;
     background-color: #e60012;
-    font-size: 36px;
+    font-size: 24px;
     color: #fff;
-    line-height: 75px;
+    line-height: 59px;
     text-align: center;
-    letter-spacing: 2px;
+    cursor: pointer;
+}
+.guide-btn a{
+    color: #fff;
 }
 
 /*轮播注册*/

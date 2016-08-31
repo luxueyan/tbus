@@ -116,7 +116,7 @@ h3{
 }
 .img-box{
     text-align: center;
-    margin: 50px 0px 60px 10px;
+    margin: 50px 0px 20px 10px;
 
 }
 .img-box .type{
@@ -124,7 +124,7 @@ h3{
     margin-right: 10px;
 }
 .img-box .declare{
-    width: 668px;
+    width: 664px;
 }
 
 .img-box .title{
@@ -142,36 +142,42 @@ h3{
 }
 .img-box .detail .common{
     float: left;
-    background: #eeeeee;
-    height: 130px;
+    /*background: #eeeeee;*/
+    height: 74px;
     margin-top: 7px;
+    margin-right: 12px;
 }
 .img-box .detail .type{
     font-size: 25px;
-    padding: 30px;
-    margin-right: 6px;
+    padding: 18px;
+    margin-right: 0;
+    width: 240px;
+    margin-left: 10px;
+    background: #eeeeee;
+    height: 74px;
 }
 .img-box .detail .declare{
-    font-size: 15px;
+    font-size: 14px;
     text-align: left;
-    padding: 24px;
+    padding: 10px 24px;
     line-height: 26px;
-    width: 672px;
+    width: 662px;
+    background: #eeeeee;
 }
 .img-box .detail .red{
-    border-left: 24px solid #e6474a;
+    border-left: 10px solid #e6474a;
 }
 .img-box .detail .orange{
-    border-left: 24px solid #e65e2e;
+    border-left: 10px solid #e65e2e;
 }
 .img-box .detail .yellow{
-    border-left: 24px solid #f7a633;
+    border-left: 10px solid #f7a633;
 }
 .img-box .detail .green{
-    border-left: 24px solid #69b15d;
+    border-left: 10px solid #69b15d;
 }
 .img-box .detail .blue{
-    border-left: 24px solid #006b9e;
+    border-left: 10px solid #006b9e;
 }
 
 
