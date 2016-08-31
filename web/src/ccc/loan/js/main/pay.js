@@ -69,7 +69,9 @@ payRactive.on("invest-submit", function (e) {
         "ENTERPRISE_USER_BID_DISABLED":"不允许企业用户投标",
         "COUPON_REDEEM_FAILED":"使用奖券失败",
         "NO_ENOUGH_BALANCE":"标的余额不足",
-};
+        "CALL_WITHDRAWREQUEST_FAILED":"请联系管理员",
+        "PAID_FAILED":"请联系管理员",
+    };
     var that = this;
     $("#subBtn").attr("disabled","true");
     e.original.preventDefault();
