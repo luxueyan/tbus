@@ -29,7 +29,7 @@ router.get('/payment', function (req,res) {
 // TODO 对id进行正则匹配
 router.get('/:id',
    async function (req, res) {
-        console.log(req.params.id);
+        //console.log(req.params.id);
         var user = res.locals.user;
         var buffer = new Buffer(req.path);
         var backUrl = buffer.toString('base64');
@@ -78,8 +78,8 @@ router.get('/:id',
                 '/api/v2/loan/' + req.params.id)
                 .end()
                 .then(function (r) {
-                    console.log('==-=-0=11r.body');
-                    console.log(r.body);
+                    //console.log('==-=-0=11r.body');
+                    //console.log(r.body);
                     var result = parseLoan(r.body);
                     result.userId = result.loanRequest.userId;
                     result.requestId = result.loanRequest.id;
@@ -178,6 +178,8 @@ function parseLoan(loan) {
     //};
 
     var SinvestPercent = (loan.investPercent * 100).toFixed(2)+'';
+    //console.log('111111111');
+    //console.log(SinvestPercent.slice(-2));
 
     if(SinvestPercent.slice(-2)=='00'){
         loan.investPercent = (loan.investPercent * 100);
@@ -253,8 +255,8 @@ function parseLoan(loan) {
     loan.timeFinished = moment(loan.timeFinished).format('YYYY-MM-DD');
     loan.timeout = loan.timeout/24;
     loan.timeEnd = moment(loan.timeOpen).add(loan.timeout, 'days').format('YYYY-MM-DD');
-    console.log( "=====loan.timeFinished" + loan.timeFinished);
-    console.log( "=====loan.timeEnd" + loan.timeEnd);
+    //console.log( "=====loan.timeFinished" + loan.timeFinished);
+    //console.log( "=====loan.timeEnd" + loan.timeEnd);
 
     loan.valueDate = moment(loan.loanRequest.valueDate).format('YYYY-MM-DD');
     loan.dueDate = moment(loan.loanRequest.dueDate).format('YYYY-MM-DD');

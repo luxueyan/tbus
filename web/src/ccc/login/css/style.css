@@ -129,10 +129,10 @@ input:-webkit-autofill {
 .s-login-view .s-login-window button {
     background-color: #e60012;
     color: #fff;
-    font-size: 24px;
+    font-size: 18px;
     border: none;
     width: 380px;
-    height: 44px;
+    height: 47px;
     margin-top: 44px;
     letter-spacing: 8px;
 }

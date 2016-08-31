@@ -857,10 +857,11 @@ a {
 }
 .partnerList .icon-single{
     float: left;
-    padding: 14px;
+    padding: 10px;
 }
 .partnerList .icon-single img{
-    width: 230px;
+	width: 154px !important;
+	height: 55px !important;
 }
 #carousel-company{
     padding: 0 90px;
