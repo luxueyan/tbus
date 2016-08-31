@@ -183,13 +183,13 @@ ractive.on('recharge_submit', function (e) {
         this.$amount.focus();
         return false;
     }
-
     if (password === '') {
         e.original.preventDefault();
         this.set('msg.CODE_NULL', true);
         return false;
     } else {
         var self = this;
+        $(".submit_btn").attr("disabled","true");
         accountService.checkPassword(password, function (res) {
             if(res){
                 $('.submit_btn').text('正在充值中，请稍等...');
@@ -224,5 +224,9 @@ ractive.on('recharge_submit', function (e) {
         })
         return false;
     }
-
+    function myFunc(){
+        //code
+        //执行某段代码后可选择移除disabled属性，让button可以再次被点击
+        $(".submit_btn").removeAttr("disabled");
+    }
 });
