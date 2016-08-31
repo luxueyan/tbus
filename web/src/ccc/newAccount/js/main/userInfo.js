@@ -23,6 +23,7 @@ var ractive = new Ractive({
                     ractive.set('email', userinfo.userInfo.user.email);
                 }
                 ractive.set('idNumber', formatNumber(userinfo.userInfo.user.idNumber));
+                ractive.set('name', formatNumber(userinfo.userInfo.user.name));
                 ractive.set('mobile', formatNumber(userinfo.userInfo.user.mobile));
             });
         });

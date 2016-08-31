@@ -660,7 +660,6 @@ table tbody tr td {
     float: right;
     width: 80px;
     height: 30px;
-    border-radius: 2px;
     text-align: center;
     line-height: 30px;
     color: #fff;
@@ -677,7 +676,7 @@ table tbody tr td {
     margin-left: 20px;
     width: 80px;
     height: 30px;
-    border-radius: 2px;
+    /*border-radius: 2px;*/
     text-align: center;
     line-height: 30px;
     color: #e4262b;

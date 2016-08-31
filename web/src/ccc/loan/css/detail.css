@@ -218,9 +218,9 @@ select::-ms-expand { display: none; }
     border-radius: 0;
     margin-right: 0;
     width: 297px;
-    height: 72px;
-    line-height: 56px;
-    font-size: 24px;
+    height: 60px;
+    line-height: 35px;
+    font-size: 18px;
     border: none;
     background: #cfa972;
     color: #fff;
@@ -234,7 +234,7 @@ select::-ms-expand { display: none; }
 .invest-detail-wrapper .nav-tabs .active a, .invest-detail-wrapper .nav-tabs .active a:focus {
     color: #666;
     background: #fff url(/ccc/loan/img/active_line.png) no-repeat center bottom;
-    height: 81px;
+    height: 69px;
     border: none;
 }
 .invest-detail-wrapper .tab-panels {
@@ -250,17 +250,21 @@ select::-ms-expand { display: none; }
     color: #999;
     width: 200px;
     vertical-align: top;
-    padding: 20px;
+    padding-bottom: 10px;
     text-align: right;
     padding-right: 50px;
 }
 
 .invest-info-box .content{
-    padding: 9px;
+    padding-bottom: 10px;
     width: 845px;
     padding-left: 35px;
     color: #666;
 }
+.invest-info-box .content p{
+    margin-left: 0px!important;
+}
+
 .invest-info-box .content h5{
     font-size: 18px;
     color: #666;

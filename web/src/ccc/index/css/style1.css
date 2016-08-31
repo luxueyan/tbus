@@ -271,7 +271,6 @@
     background: #e60012;
     text-align: center;
     line-height: 42px;
-    border-radius: 4px;
 }
 
 .free-register{
@@ -544,7 +543,6 @@
 #newsBg .carousel-indicators li{
     width: 10px;
     height: 10px;
-    border-radius: 6px;
     float: left;
     position: relative;
     margin-right: 10px;

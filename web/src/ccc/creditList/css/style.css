@@ -298,6 +298,7 @@
     padding: 12px 50px 0 40px;
 }
 .loan_info .rate_box{
+    width: 200px;
     padding: 5px 55px 0 40px;
 }
 .loan_info .info_box:last-child{
