@@ -38,7 +38,7 @@
 
                         <div class="item">
                             <div class="value">
-                                <span>{{loans.minAmount}}</span>{{loans.minAmountUnit}}
+                                <span id="minAmount">{{loans.minAmount}}</span>{{loans.minAmountUnit}}
                             </div>
                             <div class="name">起投金额</div>
                         </div>
@@ -122,7 +122,7 @@
     <div class="expected_date">
         <!--{{loans.dueDate}}-->
         {{#if loans.dueDate !== 'Invalid date'}}
-            {{loans.dueDate}}
+            {{loans.dueDates}}
         {{else}}
             {{#if loans.timeFinished !== 'Invalid date'}}
             {{loans.end1}}
@@ -179,7 +179,7 @@
                         </tr>
                         <tr>
                             <th class="title">递增金额</th>
-                            <th class="content">{{ loans.loanRequest.investRule.stepAmount }}元</th>
+                            <th class="content" > <span id="stepAmount">{{ loans.loanRequest.investRule.stepAmount }}</span>元</th>
                         </tr>
                         <tr>
                             <th class="title">产品风险等级</th>

@@ -375,13 +375,18 @@ setTimeout((function () {
             return false;
         }
     });
+    var call =0;
     investRactive.on('addNum', function () {
         var inputNum = parseInt(this.get('inputNum'));
-        if (inputNum > 0) {
-            investRactive.set('inputNum',inputNum+100);
-        } else {
-            return false;
+        var minAmount = $("#minAmount").html();
+        var stepAmount = parseInt($("#stepAmount").html());
+        if(call==0){
+            investRactive.set('inputNum',minAmount);
+            call++;
+        }else if(inputNum>0){
+            investRactive.set('inputNum',inputNum+stepAmount);
         }
+        console.log(inputNum)
     });
 
 }), 100);
