@@ -339,12 +339,12 @@ h3 {
 
 .rinput {
 	position: relative;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
 }
 .rinput .mdi{
      position: absolute;
     border-right: 1px solid #c0c8bd;
-    height: 47px;
+    height: 33px;
     width: 38px;
 }
 
@@ -363,13 +363,7 @@ h3 {
 }
 
 .agree-register-protocol {
-	height: 34px;
-	position: relative;
-	font-size: 14px;
-	line-height: 20px;
-	color: #999999;
-	/*width: 280px;*/
-	text-align: center;
+	font-size: 12px;
 }
 
 
@@ -396,7 +390,7 @@ h3 {
 .register-body{
 }
 .register-body-img{
-	padding: 0;
+	padding:14px;
 }
 .register-body .register-body-img img{
     display: block;
@@ -413,6 +407,7 @@ h3 {
     font-size: 18px;
     border: none;
     padding-right: 50px;
+	height: 45px;
 }
 
 
