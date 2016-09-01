@@ -160,6 +160,8 @@
 }
 
 .bring-in button {
+    float: left;
+    margin-bottom: 18px;
     background-color: #fff;
     width: 99px;
     height: 33px;

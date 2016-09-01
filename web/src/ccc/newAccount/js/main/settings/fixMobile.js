@@ -74,7 +74,7 @@ fixMobileRactive.on('fixMobile', function () {
                 fixMobileRactive.set('step1',false);
                 fixMobileRactive.set('step2',true);
                 setTimeout(function(){
-                    window.location.href = '/newAccount/home/index';
+                    window.location.href = '/logoutNew';
                 },5000);
             }
             else {
