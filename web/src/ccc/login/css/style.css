@@ -3,8 +3,8 @@ input:-webkit-autofill {
 }
 
 .s-login-view .s-login-window {
-    margin-left: 95px;
-    margin-top: 74px;
+    margin-left: 72px;
+    margin-top: 50px;
 }
 
 .login-error {
@@ -48,8 +48,8 @@ input:-webkit-autofill {
 /*华瑞金科*/
 
 .container {
-    width: 1200px;
-    margin: 56px auto 68px;
+    width: 900px;
+    margin: 56px auto;
     background: #fff;
     padding:0 !important;
 }
@@ -58,23 +58,22 @@ input:-webkit-autofill {
 
 }
 .register-body .register-body-img{
-    padding: 0;
+    padding: 14px;
 }
 .register-body .register-body-img img {
     display: block;
     margin: auto;
 }
 .s-login-header{
-    font-size: 42px;
-    line-height: 42px;
-    margin-bottom: 60px;
-    padding-left: 130px;
+    font-size: 30px;
+    margin-bottom: 30px;
+    padding-left: 112px;
     color: #666666;
 }
 .s-input-wrapper .lineUser .mdi {
     position: absolute;
     border-right: 1px solid #c0c8bd;
-    height: 47px;
+    height: 37px;
     width: 38px;
 }
 
@@ -94,17 +93,18 @@ input:-webkit-autofill {
 }
 
 .s-input-wrapper .lineUser input {
-    height: 47px;
+    height: 37px;
     padding-left: 50px;
-    width: 380px;
-    font-size: 16px;
+    width: 300px;
+    font-size: 13px;
     border: 1px solid #c0c8bd;
 }
 
 .s-input-wrapper .lineUser a {
     color: #ae8a45;
     text-decoration: underline;
-    padding-left: 15px;
+    padding-left: 6px;
+    font-size: 12px;
 }
 
 .s-input-wrapper .lineUser .captcha {
@@ -131,10 +131,10 @@ input:-webkit-autofill {
     color: #fff;
     font-size: 18px;
     border: none;
-    width: 380px;
-    height: 47px;
-    margin-top: 44px;
-    letter-spacing: 8px;
+    width: 300px;
+    height: 45px;
+    margin-top: 24px;
+    letter-spacing: 4px;
 }
 
 .register-banner {
@@ -149,5 +149,5 @@ input:-webkit-autofill {
 
 .register-banner a {
     color: #e60012;
-    font-size: 16px;
+    /*font-size: 16px;*/
 }
