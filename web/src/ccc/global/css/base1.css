@@ -130,6 +130,10 @@
     font-size: 16px;
     margin-bottom: 8px;
 }
+.footer-guide ul p a{
+    color: #999;
+    text-decoration: none;
+}
 .footer-guide ul li a{
     font-size: 12px;
     color: #999;
