@@ -246,10 +246,10 @@ request.get(encodeURI('/api/v2/cms/category/COOPERATION/name/合作伙伴'))
             },
             onrender: function(){
                 
-                if(res.body.length <= 4){
+                if(res.body.length <= 6){
                     this.set('cooperation',res.body);
                 }else{
-                    var num = 4;
+                    var num = 6;
                     var j = num;
                     var length = res.body.length;
                     var total = Math.ceil(length/j);

@@ -728,6 +728,8 @@
     line-height: 24px;
     padding-right: 1em;
     font-weight: bold;
+    background: url(/ccc/global/img/public_icon.png) no-repeat left center;
+    padding-left: 30px;
 }
 
 .announce .newest .big {
@@ -759,4 +761,8 @@
 .newest{
     padding-right: 50px;
     position: relative;
+}
+.icon-grounp{
+    margin-top: 50px;
+    margin-bottom: 15px;
 }
