@@ -340,6 +340,7 @@ h3 {
 .rinput {
 	position: relative;
     margin-bottom: 16px;
+	clear: both;
 }
 .rinput .mdi{
      position: absolute;
