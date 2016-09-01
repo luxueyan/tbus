@@ -4,7 +4,7 @@
     background-size: cover;
 }
 .safety-box{
-    height: 301px;
+    height: 180px;
 }
 .safety-box1{
     background: url(/ccc/safety/img/tips-bg-1.png) no-repeat center;
@@ -20,63 +20,59 @@
  }
 .step{
     width: 1200px;
-    height: 301px;
+    height: 180px;
     margin: 0 auto;
     position: relative;
 
 }
 /*标题*/
 .step .step-title{
-    font-size: 48px;
+    font-size: 30px;
     color: #fff;
     position: absolute;
 }
 .step-first .step-title{
-     top:190px;
-     right: 220px;
+     top:110px;
+     right: 340px;
  }
 .step-second .step-title{
-    top:190px;
-    left: 220px;
+    top:110px;
+    left: 330px;
 }
 .step-third .step-title{
-    top:190px;
-    right: 220px;
+    top:110px;
+    right: 340px;
 }
 .step-four .step-title{
-    top:190px;
-    left: 220px;
+    top:110px;
+    left: 330px;
 }
 /*内容*/
 .step .step-content{
-    font-size: 18px;
+    font-size: 13px;
     color: #666666;
     position: absolute;
-
+    line-height: 26px;
 }
 .step-first .step-content{
     top:22px;
     left: 110px;
     text-align: right;
-    line-height: 38px;
 }
 .step-second .step-content{
-    top:35px;
-    right: 60px;
+    top:26px;
+    right: 180px;
     text-align: left;
-    line-height: 38px;
 }
 .step-third .step-content{
-    top: 75px;
-    left: 55px;
+    top: 32px;
+    left: 180px;
     text-align: right;
-    line-height: 38px;
 }
 .step-four .step-content{
-    top: 74px;
-    right: 235px;
+    top: 36px;
+    right: 310px;
     text-align: left;
-    line-height: 38px;
 }
 /*图标*/
 .step .step-icon{
@@ -84,35 +80,35 @@
 }
 .step-first .step-icon{
     background: url(/ccc/safety/img/tips1.png) no-repeat center;;
-    top: 27px;
-    right: 272px;
+    top: 22px;
+    right: 380px;
 }
 .step-second .step-icon{
     background: url(/ccc/safety/img/tips2.png) no-repeat center;
-    top:27px;
-    left: 270px;
+    top:22px;
+    left: 350px;
 }
 .step-third .step-icon{
     background: url(/ccc/safety/img/tips3.png) no-repeat center;
-    top:27px;
-    right: 255px;
+    top:22px;
+    right: 390px;
 }
 .step-four .step-icon{
     background: url(/ccc/safety/img/tips4.png) no-repeat center;
-    top:50px;
-    left: 260px;
+    top:22px;
+    left: 340px;
 }
 /*机制*/
 .safety-mechanism-box{
     box-shadow:2px 5px 10px #d8d8d7 inset;
 }
 .safety-mechanism-box .mechanism-header{
-    font-size: 36px;
+    font-size: 30px;
     color: #666;
     text-space: 50;
     text-align: center;
-    height: 120px;
-    line-height: 130px;
+    height: 86px;
+    line-height: 86px;
     -moz-box-shadow:2px -5px 10px #d8d8d7 inset;
     -webkit-box-shadow:2px -5px 10px #d8d8d7 inset;
     box-shadow:2px -5px 10px #d8d8d7 inset;
@@ -120,6 +116,7 @@
 .safety-mechanism{
     width: 1200px;
     margin: 0 auto;
+    padding-bottom: 28px;
 }
 .mechanism-wrap-left{
     width: 515px;
@@ -141,14 +138,14 @@
     margin-top: 42px;
 }
 .mechanism-wrap-left .detail{
-    width: 400px;
-    padding: 32px 0 48px 0;
+    width: 420px;
+    padding: 28px 0;
     float: right;
     border-bottom: 2px solid #dcdcdc;
 }
 .mechanism-wrap-right .detail{
-    width: 440px;
-    padding: 32px 0 48px 0;
+    width: 460px;
+    padding: 28px 0;
     float: right;
     border-bottom: 2px solid #dcdcdc;
 }
@@ -160,10 +157,10 @@
     margin-bottom: 10px;
 }
 .detail p{
-    font-size: 16px;
+    font-size: 14px;
     font-family: "微软雅黑";
     font-weight: 100;
-    line-height: 26px;
+    line-height: 24px;
 }
 
 /**/
