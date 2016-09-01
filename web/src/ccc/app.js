@@ -117,6 +117,15 @@ app.all('/logout', function (req, res) {
         res.redirect('/');
     }
 });
+//退出后跳转到登录
+app.all('/logoutNew', function (req, res) {
+    res.clearCookie('ccat');
+    if (req.xhr) {
+        res.send('');
+    } else {
+        res.redirect('/login');
+    }
+});
 
 app.get('/getClientIp', function (req, res) {
     function getClientIp(req) {
