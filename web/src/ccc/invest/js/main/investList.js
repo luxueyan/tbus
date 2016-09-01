@@ -282,6 +282,7 @@ if (CC.key) {
                     params.currentPage = current;
                     obj.onrender();
                 }
+                location.href = "#href"
 
             });
             pagerRactive.on('next', function (e) {
@@ -294,6 +295,7 @@ if (CC.key) {
                     params.currentPage = current;
                     obj.onrender();
                 }
+                location.href = "#href"
             });
             pagerRactive.on('page', function (e, page) {
                 e.original.preventDefault();
@@ -305,6 +307,7 @@ if (CC.key) {
                 this.set('current', currentPage);
                 params.currentPage = currentPage;
                 obj.onrender();
+                location.href = "#href"
             });
         },
     });

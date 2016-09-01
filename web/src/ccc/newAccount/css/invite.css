@@ -39,8 +39,8 @@
 .form-inline .form-group input{
     width: 470px;
     border-radius: 0;
-    height: 48px;
-    line-height: 48px;
+    height: 40px;
+    line-height: 40px;
 }
 .btn-default {
     background: #e4262b;
@@ -84,6 +84,7 @@
 }
 .record {
     margin: 18px 0;
+    margin-top: 120px;
     padding-left: 10px;
 }
 .record h3 {
@@ -146,7 +147,7 @@ th {
     color: #ffffff;
     text-align: center;
     background-color: #e4262b;
-    margin-left: 70px;
+    margin-left: 81px;
     position: absolute;
     top: 5px;
 }

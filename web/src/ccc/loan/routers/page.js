@@ -78,11 +78,13 @@ router.get('/:id',
                 '/api/v2/loan/' + req.params.id)
                 .end()
                 .then(function (r) {
-                    //console.log('==-=-0=11r.body');
-                    //console.log(r.body);
+                    console.log('==-=-0=11r.body');
+                    console.log(r.body);
                     var result = parseLoan(r.body);
+                    console.log(r.body.dueDate+'=====================');
                     result.userId = result.loanRequest.userId;
                     result.requestId = result.loanRequest.id;
+                    //result.dueDate
                     res.locals.keywords = '理财产品、投资、理财投资、个人理财、理财新品、新能宝、活动专享、新手专享';
                     if(result.loanRequest.productKey=='NEW'){
                         res.locals.title = '太合汇';
@@ -119,7 +121,7 @@ router.get('/:id',
                     }
                     return r.body;
                 }),
-            // TODO 如何共享 loanRequestId 减少请求次数
+             //TODO 如何共享 loanRequestId 减少请求次数
             replay: repayments
         });
             res.expose(repayments, 'repayments');
@@ -260,6 +262,7 @@ function parseLoan(loan) {
 
     loan.valueDate = moment(loan.loanRequest.valueDate).format('YYYY-MM-DD');
     loan.dueDate = moment(loan.loanRequest.dueDate).format('YYYY-MM-DD');
+    loan.dueDates = moment(loan.loanRequest.dueDate+ 3 * 24 * 60 * 60 * 1000).format('YYYY-MM-DD');
 //    起息日
     loan.start1 = moment(loan.timeFinished).add(1, 'days').format('YYYY-MM-DD');
     loan.start2 =  moment(loan.timeEnd).add(1, 'days').format('YYYY-MM-DD');
