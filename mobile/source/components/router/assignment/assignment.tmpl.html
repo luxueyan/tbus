@@ -34,6 +34,10 @@
     <section class="loan-info">
         <ul class="list-unstyled u-off-margin-bottom list">
             <li>
+                <span class="name">产品名称</span>
+                <span class="value">{{ loan.title }}</span>
+            </li>
+            <li>
                 <span class="name">产品总额</span>
                 <span class="value">
                     {{ loan.amount_myriad || loan.amount }}<!--
@@ -53,26 +57,31 @@
                 </span>
             </li>
             <li>
-                <span class="name">收益分配</span>
-                <span class="value" ng-switch="assignment.method">
-                    <span ng-switch-when="MonthlyInterest">按月付息到期还本</span>
-                    <span ng-switch-when="EqualInstallment">按月等额本息</span>
-                    <span ng-switch-when="EqualPrincipal">按月等额本金</span>
-                    <span ng-switch-when="BulletRepayment">一次性还本付息</span>
-                    <span ng-switch-when="EqualInterest">月平息</span>
-                    <span ng-switch-when="YearlyInterest">按年付息到期还本</span>
-                </span>
+                <span class="name">收益率</span>
+                <span class="value">{{ loan.rate }}%</span>
             </li>
             <li>
                 <span class="name">产品风险等级</span>
                 <span class="value"
-                      ng-bind-html="loan.raw.loanRequest.mortgageInfo | sanitize"
+                      ng-bind-html="loan.raw.loanRequest.riskRank | sanitize"
                 ></span>
             </li>
             <li>
                 <span class="name">资金用途</span>
                 <span class="value"
-                      ng-bind-html="loan.raw.loanRequest.guaranteeInfo | sanitize"
+                      ng-bind-html="loan.raw.loanRequest.fundUsage | sanitize"
+                ></span>
+            </li>
+            <li>
+                <span class="name">风控措施</span>
+                <span class="value"
+                      ng-bind-html="loan.raw.loanRequest.riskControlMethod | sanitize"
+                ></span>
+            </li>
+            <li>
+                <span class="name">风险提示</span>
+                <span class="value"
+                      ng-bind-html="loan.raw.loanRequest.riskPrompt | sanitize"
                 ></span>
             </li>
         </ul>
@@ -89,20 +98,7 @@
                 </uib-accordion-heading>
 
                 <div class="content"
-                     ng-bind-html="loan.raw.loanRequest.guaranteeInfo | sanitize"
-                ></div>
-            </uib-accordion-group>
-
-            <uib-accordion-group is-open="open" ng-if="true">
-                <uib-accordion-heading>
-                    <param class="pull-right glyphicon"
-                           ng-class="open ? 'glyphicon-menu-up' : 'glyphicon-menu-down'"
-                    >
-                    风控措施
-                </uib-accordion-heading>
-
-                <div class="content"
-                     ng-bind-html="loan.raw.loanRequest.riskInfo | sanitize"
+                     ng-bind-html="loan.raw.loanRequest.productLightspot | sanitize"
                 ></div>
             </uib-accordion-group>
 
@@ -115,7 +111,7 @@
                 </uib-accordion-heading>
 
                 <div class="content"
-                     ng-bind-html="loan.raw.loanRequest.description | sanitize"
+                     ng-bind-html="loan.raw.loanRequest.commonQuestion | sanitize"
                 ></div>
             </uib-accordion-group>
         <uib-accordion>

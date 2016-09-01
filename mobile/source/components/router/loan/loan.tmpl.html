@@ -64,11 +64,11 @@
                 <div class="value">{{ loan.time_open | date: 'yyyy-MM-dd' }}</div>
             </li>
             <li>
-                <div class="name">起息日</div>
+                <div class="name">预计起息日</div>
                 <div class="value">{{ loan.value_date | date: 'yyyy-MM-dd' }}</div>
             </li>
             <li>
-                <div class="name">结息日</div>
+                <div class="name">预计结息日</div>
                 <div class="value">{{ loan.due_date | date: 'yyyy-MM-dd' }}</div>
             </li>
             <li>
@@ -122,13 +122,13 @@
             <li>
                 <span class="name">产品风险等级</span>
                 <span class="value"
-                      ng-bind-html="loan.raw.loanRequest.mortgageInfo | sanitize"
+                      ng-bind-html="loan.raw.loanRequest.riskRank | sanitize"
                 ></span>
             </li>
             <li>
                 <span class="name">资金用途</span>
                 <span class="value"
-                      ng-bind-html="loan.raw.loanRequest.guaranteeInfo | sanitize"
+                      ng-bind-html="loan.raw.loanRequest.fundUsage | sanitize"
                 ></span>
             </li>
         </ul>
@@ -145,7 +145,7 @@
                 </uib-accordion-heading>
 
                 <div class="content"
-                     ng-bind-html="loan.raw.loanRequest.guaranteeInfo | sanitize"
+                     ng-bind-html="loan.raw.loanRequest.productLightspot | sanitize"
                 ></div>
             </uib-accordion-group>
 
@@ -158,7 +158,7 @@
                 </uib-accordion-heading>
 
                 <div class="content"
-                     ng-bind-html="loan.raw.loanRequest.riskInfo | sanitize"
+                     ng-bind-html="loan.raw.loanRequest.riskControlMethod | sanitize"
                 ></div>
             </uib-accordion-group>
 
@@ -171,7 +171,7 @@
                 </uib-accordion-heading>
 
                 <div class="content"
-                     ng-bind-html="loan.raw.loanRequest.description | sanitize"
+                     ng-bind-html="loan.raw.loanRequest.commonQuestion | sanitize"
                 ></div>
             </uib-accordion-group>
 
