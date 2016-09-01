@@ -101,7 +101,6 @@
 .rinput label {
     float: left;
     font-weight: normal;
-    margin-top: -12px;
     margin-bottom: 15px;
 }
 
@@ -141,7 +140,7 @@
     padding-left: 20px;
     position: absolute;
 	left: 0;
-	top: 40px;
+	top: 24px;
 }
 .rinput .tip-loading {
     color: #9fa0a0;
@@ -157,18 +156,18 @@
 
 .bring-in input {
     width: 200px;
+    float: left;
 }
 
 .bring-in button {
     float: left;
     margin-bottom: 18px;
     background-color: #fff;
-    width: 99px;
+    width:99px;
     height: 33px;
     color: #ae8a45;
     border: 1px solid #c0c8bd;
     border-left: none;
-    margin-left: -4px;
 }
 
 .bring-in label {
