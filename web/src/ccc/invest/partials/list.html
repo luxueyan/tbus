@@ -1,6 +1,6 @@
 <!--{{JSON.stringify(list)}}-->
 
-<div class="list_header">
+<div class="list_header" id="href">
   <div class="list_title">
     <a href="/invest">我要理财</a> > <span>{{#if key === 'GDSY'}}固定收益{{elseif key=== 'FDSY'}}浮动收益{{/if}}</span>
   </div>
@@ -18,22 +18,22 @@
     <table>
       <thead>
       <tr>
-        <th>产品名称</th>
-        <th>预期收益率</th>
-        <th>投资期限</th>
-        <th>起投金额</th>
-        <th>状态</th>
-        <th></th>
+        <th >产品名称</th>
+        <th class="textCenter">预期收益率</th>
+        <th class="textCenter">投资期限</th>
+        <th class="textCenter">起投金额</th>
+        <th class="textCenter">状态</th>
+        <th class="textCenter"></th>
       </tr>
       </thead>
       <tbody>
       {{#list}}
       <tr>
         <td class="title"><a href="/loan/{{ id }}" class="invest-title">{{title}}</a></td>
-        <td class="rate"><span>{{rate}}</span>%</td>
-        <td class="fdurunit"><span>{{fduration}}</span>{{fdurunit}}</td>
-        <td class="minAmount"><span>{{FminAmount}}</span>{{FminUnit}}</td>
-        <td class="status">
+        <td class="rate textCenter"><span>{{rate}}</span>%</td>
+        <td class="fdurunit textCenter"><span>{{fduration}}</span>{{fdurunit}}</td>
+        <td class="minAmount textCenter"><span>{{FminAmount}}</span>{{FminUnit}}</td>
+        <td class="status textCenter">
           {{#if status === 'OPENED'}}
           <div class="rate">在售中</div>
           {{/if}} {{#if status === 'SCHEDULED'}}
