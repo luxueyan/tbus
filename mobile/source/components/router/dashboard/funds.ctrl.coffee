@@ -78,8 +78,8 @@ do (_, angular, moment) ->
 
             _.defaults query_set, {
                 type: ''
-                status: 'SUCCESSFUL'
-                operation: _.split 'IN OUT FREEZE'
+                status: ''
+                operation: ''
                 startDate: convert_to_day moment().subtract 10, 'y'
                 endDate: convert_to_day moment().add 1, 'd'
                 page: 1
