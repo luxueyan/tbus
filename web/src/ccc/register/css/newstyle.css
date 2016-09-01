@@ -161,15 +161,18 @@
 
 .bring-in input {
     width: 260px;
+    float: left;
 }
 
 .bring-in button {
+    float: left;
+    margin-bottom: 18px;
     background-color: #fff;
-    width: 120px;
+    width: 125px;
     height: 47px;
     color: #ae8a45;
     border: 1px solid #c0c8bd;
-    line-height: 45px;
+    line-height: 47px;
     border-left: none;
     margin-left: -4px;
 }
