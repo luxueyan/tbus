@@ -171,23 +171,22 @@ function parseLoan(loan) {
         'CORPORATION': '企业融资',
         'OTHER': '其它借款'
     };
-    //if (loan.investPercent* 100 > 0 && loan.investPercent * 100 < 1) {
-    //    loan.investPercent = 1;
-    //} else {
-    //  loan.investPercent = parseInt(loan.investPercent * 100, 10);
-    //};
 
-    var SinvestPercent = (loan.investPercent * 100).toFixed(2)+'';
-    //console.log('111111111');
-    //console.log(SinvestPercent.slice(-2));
+    var SinvestPercent = (loan.investPercent * 100)+'';
+    var SinvestPercentString = SinvestPercent.split('.');
 
-    if(SinvestPercent.slice(-2)=='00'){
-        loan.investPercent = (loan.investPercent * 100);
-    }else if(SinvestPercent.slice(-1)=='0'){
-        loan.investPercent = (loan.investPercent * 100).toFixed(1);
+    if(SinvestPercentString[1]){
+        if(SinvestPercentString[1].substr(0,2)=='00'){
+            loan.investPercent = SinvestPercentString[0];
+        }else if(SinvestPercentString[1].substr(1,1)=='0'|| SinvestPercentString[1].substr(1,1)==''){
+            loan.investPercent = (loan.investPercent * 100).toFixed(1);
+        }else{
+            loan.investPercent = (loan.investPercent * 100).toFixed(2);
+        }
     }else{
-        loan.investPercent = (loan.investPercent * 100).toFixed(2);
+        loan.investPercent = (loan.investPercent * 100);
     }
+
     loan.rate = loan.rate / 100;
     loan.loanRequest.deductionRate = loan.loanRequest.deductionRate / 100;
     loan.basicRate = loan.rate - loan.loanRequest.deductionRate;

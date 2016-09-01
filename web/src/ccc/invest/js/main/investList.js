@@ -76,16 +76,30 @@ function formatItem(item) {
     //    item.investPercent = parseInt(item.investPercent * 100, 10);
     //}
 
-    var SinvestPercent = (item.investPercent * 100).toFixed(2)+'';
+    //var SinvestPercent = (item.investPercent * 100).toFixed(2)+'';
+    //
+    //if(SinvestPercent.slice(-2)=='00'){
+    //    item.investPercent = (item.investPercent * 100);
+    //}else if(SinvestPercent.slice(-1)=='0'){
+    //    item.investPercent = (item.investPercent * 100).toFixed(1);
+    //}else{
+    //    item.investPercent = (item.investPercent * 100).toFixed(2);
+    //}
 
-    if(SinvestPercent.slice(-2)=='00'){
-        item.investPercent = (item.investPercent * 100);
-    }else if(SinvestPercent.slice(-1)=='0'){
-        item.investPercent = (item.investPercent * 100).toFixed(1);
+    var SinvestPercent = (item.investPercent * 100)+'';
+    var SinvestPercentString = SinvestPercent.split('.');
+
+    if(SinvestPercentString[1]){
+        if(SinvestPercentString[1].substr(0,2)=='00'){
+            item.investPercent = SinvestPercentString[0];
+        }else if(SinvestPercentString[1].substr(1,1)=='0'|| SinvestPercentString[1].substr(1,1)==''){
+            item.investPercent = (item.investPercent * 100).toFixed(1);
+        }else{
+            item.investPercent = (item.investPercent * 100).toFixed(2);
+        }
     }else{
-        item.investPercent = (item.investPercent * 100).toFixed(2);
+        item.investPercent = (item.investPercent * 100);
     }
-
 
     if (item.duration.days > 0) {
         if (typeof item.duration.totalDays === "undefined") {
