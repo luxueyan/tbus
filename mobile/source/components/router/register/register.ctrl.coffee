@@ -107,18 +107,34 @@ do (_, angular) ->
                         # @$rootScope.$on '$locationChangeSuccess', =>
                         #     @$window.location.reload()
 
-                        @api.fetch_current_user()
-                            .then (user) =>
-                                @popup_payment_state {
-                                    user
-                                    page: 'register'
-                                }
+                        (@api.fetch_current_user()
 
-                        return
+                            .then (user) =>
+                                if user.has_bank_card and user.has_payment_password
+
+                                    unless @next_path
+                                        @$location
+                                            .path 'dashboard'
+                                            .search t: _.now()
+                                    else
+                                        @$location
+                                            .path @next_path
+                                            .search {}
+
+                                else
+                                    @popup_payment_state {
+                                        user
+                                        page: 'register'
+                                    }
+                        )
 
                     .catch (data) =>
+                        return if data is 'cancel'
+
                         key = _.get data, 'error[0].message', 'UNKNOWN'
                         @$window.alert @$scope.msg[key] or key
+
+                    .finally =>
                         @submit_sending = false
                 )
 
@@ -173,7 +189,7 @@ do (_, angular) ->
             }
 
             once = @$scope.$on '$locationChangeStart', ->
-                prompt?.dismiss()
+                prompt?.dismiss('cancel')
                 do once
 
             return prompt.result
