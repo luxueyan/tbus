@@ -116,12 +116,14 @@
 .loan_info .info_box div{
   font-size: 14px;
   color: #666;
+  margin-top: 8px;
 }
 .loan_info .info_box div span{
   font-size: 24px;
 }
 .loan_info .info_box .rate{
   color: #e60012;
+  margin-top: 0;
   font-size: 16px;
 }
 .loan_info .info_box .rate span{
