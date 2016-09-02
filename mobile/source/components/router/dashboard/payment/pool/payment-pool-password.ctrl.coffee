@@ -110,7 +110,7 @@ do (_, angular) ->
 
             @$http
                 .post '/api/v2/smsCaptcha/MYSELF',
-                    {smsType: 'CONFIRM_CREDITMARKET_RESET_PAYMENTPASSWORD'}
+                    {smsType: 'CREDITMARKET_RESET_PAYMENTPASSWORD'}
 
                 .then @TAKE_RESPONSE_DATA
                 .catch @TAKE_RESPONSE_ERROR
