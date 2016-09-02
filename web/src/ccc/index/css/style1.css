@@ -1,5 +1,8 @@
 #announce-container {
-    width: 1180px;
+    width: 1188px;
+    background: #eaeae9;
+    margin: auto;
+    height: 40px;
 }
 
 #main-container{
@@ -593,8 +596,11 @@
 
 }
 .pro_content{
-    width: 1180px;
+    width: 1200px;
     margin: auto;
+}
+.pro_content .cwrapper{
+    margin: 25px auto;
 }
 .pro_content .title{
     text-align: center;
@@ -607,6 +613,10 @@
 .pro_content .title span{
     font-weight: bold;
 }
+.pro_box{
+    width: 1200px;
+    position: relative;
+}
 .pro_box .GDSYproductList{
     overflow: hidden;
     color: #999;
@@ -615,7 +625,7 @@
     width: 380px;
     float: left;
     border: 1px solid #e5e5e5;
-    margin-right: 20px;
+    margin-right: 27px;
     background: #fff;
 }
 .pro_box .proWrapper:last-child{
@@ -623,20 +633,21 @@
 }
 .proWrapper .header{
     padding: 20px 30px;
-    height: 134px;
-    background: url("/ccc/index/img/fixed_icon.png") no-repeat right 2px;
+    height: 104px;
+    background: url("/ccc/index/img/fixed_icon.png") no-repeat right center;
+    background-size: 30%;
 }
 .proWrapper .header_title{
     color: #e4262b;
-    font-size: 30px;
+    font-size: 24px;
     margin-bottom: 10px;
 }
 .proWrapper .infoBox_title{
-    font-size: 24px;
+    font-size: 30px;
     text-align: center;
     border-bottom: 1px solid #e4262b;
     margin: 0px 18px;
-    padding: 25px 0;
+    padding: 16px 0;
 }
 .proWrapper .infoBox_title a{
     color: #666;
@@ -678,7 +689,8 @@
     color: #fff;
     text-align: center;
     margin-left: 25px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    font-size: 18px;
 }
 .infoBox .investbtn-open{
     background: #e4262b;
@@ -692,9 +704,6 @@
     /*box-shadow: 0 0 13px   rgb(223, 217, 217);*/
     /*margin-bottom: 10px;*/
 /*}*/
-#announce-container {
-    width: 1180px;
-}
 .announce .announce_right {
     float: left;
     width: 1160px;
@@ -702,7 +711,7 @@
 .announce {
     font-size: 14px;
     color: #a0a0a7;
-    padding: 10px 0;
+    padding: 8px 0;
     overflow: hidden;
 }
 
@@ -730,6 +739,7 @@
     font-weight: bold;
     background: url(/ccc/global/img/public_icon.png) no-repeat left center;
     padding-left: 30px;
+    margin-left: 30px;
 }
 
 .announce .newest .big {

@@ -105,54 +105,35 @@
     </div>
     <!--产品展示-->
     <div class="pro_content">
-        <div class="cwrapper" >
+        <!-- 公告 -->
+        <div class="cwrapper">
             <div class="u-pos-r-center wide" id="announce-container">
-                <!-- 公告 -->
                 <div class="announce">
-                    <div class="announce_right">
+                    <div class="announce_left">
                         <div class="newest">
-                            <div class="bg hidden"></div>
-                            <!--<div class="small">网站公告:</div>-->
-                            <!--<marquee class="big">-->
-                                <!--{{#latestNew}}-->
-                                <!--<a href="/us/transfer" target="_blank" style="text-decoration:none">{{{title}}}{{timeRecorded}}</a>-->
-                                <!--{{/latestNew}}-->
-                            <!--</marquee>-->
-                            <!--<a href="/us/transfer"  style="position: absolute;left: 1100px;top: 3px;">更多>></a>-->
-                            <!-- 公告 -->
-                            <div class="cwrapper">
-                                <div class="u-pos-r-center wide" id="announce-container">
-                                    <div class="announce">
-                                        <div class="announce_left">
-                                            <div class="newest">
-                                                <div class="small">最新公告:</div>
-                                                <div id="scrollWrap">
-                                                    <ul id="scrollMsg">
-                                                        {{#latestNew}}
-                                                        <li><a target="_blank" href="/us/transfer" style="text-decoration:none">{{{title}}} <span style="margin-left: 20px;">{{timeRecorded}}</span></a>
-                                                        </li>
-                                                        {{/latestNew}}
-                                                    </ul>
-                                                    <a href="/us/transfer"  style="width: 100px;position: absolute;left: 1105px;top: 3px;font-weight: 400;">更多公告>></a>
+                            <div class="small">最新公告:</div>
+                            <div id="scrollWrap">
+                                <ul id="scrollMsg">
+                                    {{#latestNew}}
+                                    <li><a target="_blank" href="/us/transfer" style="text-decoration:none">{{{title}}} <span style="margin-left: 20px;">{{timeRecorded}}</span></a>
+                                    </li>
+                                    {{/latestNew}}
+                                </ul>
+                                <a href="/us/transfer"  style="position: absolute;right: 0px;top: 3px;font-weight: 400;">更多公告>></a>
 
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
 
             </div>
         </div>
+
         <div class="pro_box">
             <div class="pro_detail">
                 <div class="GDSYproductList"></div>
             </div>
+            <a href="/invest"  style="position: absolute;right: 20px;bottom: -30px;font-weight: 400;">更多产品>></a>
         </div>
     </div>
 
