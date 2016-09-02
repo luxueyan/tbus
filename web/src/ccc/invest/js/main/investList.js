@@ -171,6 +171,7 @@ function replaceStr(str) {
 IndexService.getLoanSummary(function (res) {
     //parseLoanList(res)
     var listFixed = [], listFloat = [];
+
     for (var i = 0; i < res.length; i++) {
         if (res[i].loanRequest.productKey == 'GDSY') {
             listFixed.push(res[i]);
@@ -178,6 +179,9 @@ IndexService.getLoanSummary(function (res) {
             listFloat.push(res[i]);
         }
     }
+    console.log("1111")
+    console.log(listFixed)
+    console.log("1111")
     var listNone = [];
     for (var i = 0; i < listFixed.length; i++) {
         if (listFixed[i].status == "OPENED"||listFixed[i].status == "SCHEDULED") {
@@ -196,8 +200,11 @@ IndexService.getLoanSummary(function (res) {
             return 0;
         }
     }
+
     listNone.sort(compare);
-    //console.log(listNone);
+    console.log("@@@@");
+    console.log(listNone);
+    console.log("@@@@");
     // 固定收益
     var listRactive = new Ractive({
         el: ".fixedPro",
