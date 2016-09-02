@@ -31,7 +31,8 @@
 			<ul class="doCredit">
 				<!--手机-->
 				{{#if user.mobile}}
-				<li class="rzpa cmo-active"></li>
+				<li class="rzpa cmo-active" on-mouseover="showTip" on-mouseleave="hideTip"></li>
+				<p class="info-tip" style="top:5px;left:0;">点击修改手机号</p>
 				{{else}}
 				<li class="rzpa cmo"></li>
 				{{/if}}
@@ -47,18 +48,6 @@
 					<p class="info-tip" style="top:5px;left:56px;">点击设置邮箱</p>
 				</li>
 				{{/if}}
-
-				<!--{{#if user.name}}-->
-				<!--<li>-->
-					<!--<a href="/newAccount/settings/authentication" class="mouse-enter rzpa cid-active" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>-->
-					<!--<p class="info-tip" style="top:16px;left:30px;">点击查看实名认证</p>-->
-				<!--</li>-->
-				<!--{{else}}-->
-				<!--<li>-->
-					<!--<a href="/newAccount/settings/authentication" class="mouse-enter rzpa cid" id="mouse-enter" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>-->
-					<!--<p class="info-tip" style="top:16px;left:30px;">点击查看实名认证</p>-->
-				<!--</li>-->
-				<!--{{/if}}-->
 
 				<!--交易密码-->
 				{{#if paymentPasswordHasSet}}
@@ -87,9 +76,9 @@
 				{{/if}}
 
 			</ul>
-			{{#if user.mobile}}
-			<p class="fix-mobile"><a href="/newAccount/settings/fixMobile">修改手机号</a></p>
-			{{/if}}
+			<!--{{#if user.mobile}}-->
+			<!--<p class="fix-mobile"><a href="/newAccount/settings/fixMobile">修改手机号</a></p>-->
+			<!--{{/if}}-->
 		</div>
 		{{#if home}}
 		<div class="home-topnav">
