@@ -17,8 +17,8 @@ resetPasswordRactive.on('checkpwd', function () {
     this.set('isAcessa', false);
     if (pwd === '') {
         showErrorIndex('showErrorMessagea', 'errorMessagea', '密码不能为空');
-    } else if (pwd.length < 6) {
-        showErrorIndex('showErrorMessagea', 'errorMessagea', '交易密码长度最少为6位');
+    } else if (pwd.length != 6) {
+        showErrorIndex('showErrorMessagea', 'errorMessagea', '支付密码为6位');
     } else {
         clearErrorIndex('showErrorMessagea', 'errorMessagea');
         this.set('isAcessa', true);
