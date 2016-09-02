@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'HomepageCtrl',
 
-        _.ai '            @api, @$scope, @$rootScope, @$window, map_loan_summary', class
-            constructor: (@api, @$scope, @$rootScope, @$window, map_loan_summary) ->
+        _.ai '            @api, @user, @$scope, @$rootScope, @$window, map_loan_summary', class
+            constructor: (@api, @user, @$scope, @$rootScope, @$window, map_loan_summary) ->
 
                 @$window.scrollTo 0, 0
 

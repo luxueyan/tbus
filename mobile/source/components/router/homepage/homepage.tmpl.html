@@ -3,10 +3,11 @@
 
     <nav class="omit-margin container page-nav">
     <div class="row">
-        <a class="col-xs-4" href="login">
+        <a class="col-xs-4" href="login" ng-if="!self.user.has_logged_in">
             <img height="19" ng-src="assets/image/user-icon.png">
             <small>登录</small>
         </a>
+        <span class="col-xs-4" ng-if="self.user.has_logged_in">&nbsp;</span>
         <span class="col-xs-4 text-center logo">
             <img height="12" ng-src="assets/image/nav-logo.png">
         </span>
