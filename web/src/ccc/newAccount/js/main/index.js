@@ -21,14 +21,14 @@ var investFrozenAmount = CC.user.investStatistics.investFrozenAmount || 0;
 // 在投本金(待收本金)
 var investAmount = CC.user.investStatistics.investStatistics.dueAmount.principal || 0;
 // 总资产
-var totalAmount = parseFloat(avaAmount + currentIncome + investAmount  + frozenAmount).toFixed(2);
+var totalAmount = parseFloat(avaAmount + currentIncome + investAmount + frozenAmount).toFixed(2);
 
 var homeRactive = new Ractive({
     el: '.account-home-wrapper',
     template: require('ccc/newAccount/partials/home/home.html'),
     data: {
         user: CC.user,
-        currentIncome:  parseFloat(currentIncome).toFixed(2),
+        currentIncome: parseFloat(currentIncome).toFixed(2),
         investInterestAmount: investInterestAmount,
         outstandingInterest: parseFloat(outstandingInterest).toFixed(2),
         totalAmount: totalAmount,
@@ -71,10 +71,10 @@ var homeRactive = new Ractive({
 
         $.get('/api/v2/cms/category/IMAGE/name/' + encodeURIComponent('我的账户页广告栏'), function (data) {
             //console.log(data[0].content)
-            self.set('advertisement',data[0].content)
+            self.set('advertisement', data[0].content)
         })
         accountService.getUserInfo(function (res) {
-            if(res.surveyScore){
+            if (res.surveyScore) {
                 self.set('riskBear', res.surveyScore.name);
             }
         });
@@ -85,15 +85,14 @@ homeRactive.parseData();
 
 
 homeRactive.on({
-    'showTip':function(event){
+    'showTip': function (event) {
         $($(event)[0].node.nextElementSibling).fadeIn(200);
 
     },
-    hideTip:function(event){
+    hideTip: function (event) {
         $($(event)[0].node.nextElementSibling).fadeOut(0);
     }
 })
-
 
 
 $('#svg_cont').highcharts({
@@ -123,6 +122,8 @@ $('#svg_cont').highcharts({
             colors: ["#cea784", "#9b8579", "#a40000", "#db0716"],
             dataLabels: {
                 enabled: true,
+                distance: 15,
+                connectorWidth: 0,
                 style: {
                     fontWeight: 'bold',
                     fontSize: '16px',
@@ -133,11 +134,17 @@ $('#svg_cont').highcharts({
     },
     series: [{
         innerSize: '60%',
-        data: [
-            ['精选收益', 10.38],
-            ['固定收益', 56.33],
-            ['高端理财', 24.03],
-            ['浮动收益', 4.77],
-        ]
+        data: [{
+            name: '精选收益',
+            y: 30,
+            //sliced: true,
+            //selected: true
+        }, {
+            name: '固定收益',
+            y: 35,
+        }, {
+            name: '浮动收益',
+            y: 15,
+        }]
     }]
 });
