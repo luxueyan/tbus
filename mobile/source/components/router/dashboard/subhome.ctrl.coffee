@@ -29,7 +29,8 @@ do (_, angular) ->
                 )
 
                 @$scope.default_bank_account = do (list = @user.bank_account_list) ->
-                        _.find list, (item) -> item.defaultAccount is true
+                    item = _.find list, (item) -> item.defaultAccount is true
+                    return (if item then item else _(list).first())
 
 
 

@@ -12,9 +12,9 @@ do (_, angular) ->
 
                 @submit_sending = false
 
-                @bank_account_list = _.clone @user.bank_account_list
-
-                bank_account = _.find @bank_account_list, (item) -> item.defaultAccount is true
+                bank_account = do (list = _.clone @user.bank_account_list) ->
+                    item = _.find list, (item) -> item.defaultAccount is true
+                    return (if item then item else _(list).first())
 
                 angular.extend @$scope, {
                     bank_account
