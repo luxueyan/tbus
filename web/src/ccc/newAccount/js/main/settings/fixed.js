@@ -336,7 +336,7 @@ function init(type) {
                                                 window.location.reload();
                                             } else {
                                                 alert("债转创建失败，" + returnMap[o]);
-                                                //window.location.reload();
+                                                window.location.reload();
                                             }
 
                                         });
