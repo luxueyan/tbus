@@ -177,16 +177,19 @@ ractive.on('recharge_submit', function (e) {
         this.$amount.focus();
         this.set('msg.AMOUNT_NULL', true);
         return false;
+        myFunc()
     } else if (!this.match(amount) || parseFloat(amount) > parseFloat(this.get('amountValue'))) {
         e.original.preventDefault();
         this.set('msg.AMOUNT_INVALID', true);
         this.$amount.focus();
         return false;
+        myFunc()
     }
     if (password === '') {
         e.original.preventDefault();
         this.set('msg.CODE_NULL', true);
         return false;
+        myFunc()
     } else {
         var self = this;
         $(".submit_btn").attr("disabled","true");
@@ -209,6 +212,7 @@ ractive.on('recharge_submit', function (e) {
                         ractive.set('step1',false);
                         ractive.set('step2',true);
                         ractive.set('step3',false);
+                        myFunc()
                     } else {
                         ractive.set('step1',false);
                         ractive.set('step2',false);
@@ -216,10 +220,12 @@ ractive.on('recharge_submit', function (e) {
                         //alert('充值失败');
                         ractive.set('failError', r.error[0].message);
                         $('.submit_btn').text('确认充值');
+                        myFunc()
                     }
                 });
             }else{
                 self.set('msg.CODE_INVALID', true);
+                myFunc()
             }
         })
         return false;
