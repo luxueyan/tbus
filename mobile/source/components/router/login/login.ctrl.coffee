@@ -54,31 +54,31 @@ do (_, angular) ->
                         # @$rootScope.$on '$locationChangeSuccess', =>
                         #     @$window.location.reload()
 
-                        @api.fetch_current_user()
+                        (@api.fetch_current_user()
 
                             .then (user) =>
-                                return user if user.has_bank_card and user.has_payment_password
-                                return @$q.reject(user)
+                                if user.has_bank_card and user.has_payment_password
 
-                            .then =>
-                                unless @next_path
-                                    @$location
-                                        .path 'dashboard'
-                                        .search t: _.now()
+                                    unless @next_path
+                                        @$location
+                                            .path 'dashboard'
+                                            .search t: _.now()
+                                    else
+                                        @$location
+                                            .path @next_path
+                                            .search {}
+
                                 else
-                                    @$location
-                                        .path @next_path
-                                        .search {}
+                                    @popup_payment_state {
+                                        user
+                                        page: 'login'
+                                    }
+                        )
 
-                            .catch (user) =>
-                                @popup_payment_state {
-                                    user
-                                    page: 'login'
-                                }
-
-                        return
 
                     .catch (data) =>
+                        return if data is 'cancel'
+
                         result = _.get data, 'error_description.result'
 
                         if result in _.split 'TOO_MANY_ATTEMPT USER_DISABLED'
@@ -88,6 +88,7 @@ do (_, angular) ->
                         else
                             @$window.alert @$scope.msg.UNKNOWN
 
+                    .finally =>
                         @submit_sending = false
                 )
 
