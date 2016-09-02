@@ -13,6 +13,11 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                     .when '/', {
                         controller: 'HomepageCtrl as self'
                         templateUrl: 'components/router/homepage/homepage.tmpl.html'
+                        resolve:
+                            user: _.ai 'api, user',
+                                (       api, user) ->
+                                    api.fetch_current_user().catch ->
+                                        return user
                         # redirectTo: '/list'
                     }
 
