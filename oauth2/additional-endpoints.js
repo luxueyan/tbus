@@ -29,7 +29,7 @@ module.exports = function (router, auth) {
     router.get('/api/v2/rebateCounpon/listUserCouponPlacement/:userId', auth.pass());
 
     //实名认证
-    router.post('/api/v2/user/:userId/checkId', auth.user());
+    router.post('/api/v2/user/:userId/checkId', auth.owner());
     //银行卡验证
     router.post('/api/v2/user/checkBankcard', auth.user());
     //充值
@@ -52,18 +52,18 @@ module.exports = function (router, auth) {
     router.get('/api/v2/creditassign/stat/list', auth.pass());
     router.get('/api/v2/creditassign/list/allInvests', auth.pass());
     //修改手机号
-    router.post('/api/v2/user/:userId/resetMobile', auth.user());
+    router.post('/api/v2/user/:userId/resetMobile', auth.owner());
     //债转列表
     router.get('/api/v2/creditassign/list/filter', auth.pass());
     //债转购买接口
-    router.post('/api/v2/creditassign/autoAssign/:userId', auth.user());
-    router.post('/api/v2/invest/user/:userId/creditAssign/invest', auth.user());
+    router.post('/api/v2/creditassign/autoAssign/:userId', auth.owner());
+    router.post('/api/v2/invest/user/:userId/creditAssign/invest', auth.owner());
     //发送短信验证码
     router.post('/api/v2/smsCaptcha', auth.user());
     //银行卡预绑卡
-    router.post('/api/v2/baofoo/:userId/preBindCard', auth.user());
+    router.post('/api/v2/baofoo/:userId/preBindCard', auth.owner());
     //银行卡绑卡
-    router.post('/api/v2/baofoo/:userId/confirmBindCard', auth.user());
+    router.post('/api/v2/baofoo/:userId/confirmBindCard', auth.owner());
     //银行卡解绑
     router.post('/api/v2/baofoo/cancelBindCard', auth.user());
     //投资支付

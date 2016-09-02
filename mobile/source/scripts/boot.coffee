@@ -118,21 +118,21 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         do $q.reject
                     }
 
-                    .when '/dashboard/bank-card/edit', {
-                        controller: 'BankCardEditCtrl as self'
-                        templateUrl: 'components/router/dashboard/bank-card-edit.tmpl.html'
-                        resolve:
-                            user: _.ai 'api, $location, $q, $route',
-                                (       api, $location, $q, $route) ->
-                                    api.fetch_current_user().catch ->
-                                        $location
-                                            .replace()
-                                            .path '/login'
-                                            .search next: 'dashboard/bank-card/edit'
-                                        do $q.reject
+                    # .when '/dashboard/bank-card/edit', {
+                    #     controller: 'BankCardEditCtrl as self'
+                    #     templateUrl: 'components/router/dashboard/bank-card-edit.tmpl.html'
+                    #     resolve:
+                    #         user: _.ai 'api, $location, $q, $route',
+                    #             (       api, $location, $q, $route) ->
+                    #                 api.fetch_current_user().catch ->
+                    #                     $location
+                    #                         .replace()
+                    #                         .path '/login'
+                    #                         .search next: 'dashboard/bank-card/edit'
+                    #                     do $q.reject
 
-                            banks: _.ai 'api', (api) -> api.get_available_bank_list()
-                    }
+                    #         banks: _.ai 'api', (api) -> api.get_available_bank_list()
+                    # }
 
                     .when '/dashboard/coupon', {
                         controller: 'CouponCtrl as self'
@@ -192,19 +192,19 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         return $q.reject()
                     }
 
-                    .when '/dashboard/invest/:id', {
-                        controller: 'InvestDetailCtrl as self'
-                        templateUrl: 'components/router/dashboard/invest-detail.tmpl.html'
-                        resolve:
-                            user: _.ai 'api, $location, $route, $q',
-                                (       api, $location, $route, $q) ->
-                                    api.fetch_current_user().catch ->
-                                        $location
-                                            .replace()
-                                            .path '/login'
-                                            .search next: "dashboard/invest/#{ $route.current.params.id }"
-                                        return $q.reject()
-                    }
+                    # .when '/dashboard/invest/:id', {
+                    #     controller: 'InvestDetailCtrl as self'
+                    #     templateUrl: 'components/router/dashboard/invest-detail.tmpl.html'
+                    #     resolve:
+                    #         user: _.ai 'api, $location, $route, $q',
+                    #             (       api, $location, $route, $q) ->
+                    #                 api.fetch_current_user().catch ->
+                    #                     $location
+                    #                         .replace()
+                    #                         .path '/login'
+                    #                         .search next: "dashboard/invest/#{ $route.current.params.id }"
+                    #                     return $q.reject()
+                    # }
 
                     .when '/dashboard/assignment/:id', {
                         controller: 'DashboardAssignmentCtrl as self'
@@ -220,19 +220,19 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         return $q.reject()
                     }
 
-                    .when '/dashboard/repayment', {
-                        controller: 'RepaymentCtrl as self'
-                        templateUrl: 'components/router/dashboard/repayment.tmpl.html'
-                        resolve:
-                            user: _.ai 'api, $location, $q',
-                                (       api, $location, $q) ->
-                                    api.fetch_current_user().catch ->
-                                        $location
-                                            .replace()
-                                            .path '/login'
-                                            .search next: 'dashboard/repayment'
-                                        return $q.reject()
-                    }
+                    # .when '/dashboard/repayment', {
+                    #     controller: 'RepaymentCtrl as self'
+                    #     templateUrl: 'components/router/dashboard/repayment.tmpl.html'
+                    #     resolve:
+                    #         user: _.ai 'api, $location, $q',
+                    #             (       api, $location, $q) ->
+                    #                 api.fetch_current_user().catch ->
+                    #                     $location
+                    #                         .replace()
+                    #                         .path '/login'
+                    #                         .search next: 'dashboard/repayment'
+                    #                     return $q.reject()
+                    # }
 
                     .when '/dashboard/funds', {
                         controller: 'FundsCtrl as self'
@@ -304,19 +304,19 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                     return deferred.promise
                     }
 
-                    .when '/dashboard/feedback', {
-                        controller: 'FeedbackCtrl as self'
-                        templateUrl: 'components/router/dashboard/feedback.tmpl.html'
-                        resolve:
-                            user: _.ai 'api, $location, $route, $q',
-                                (       api, $location, $route, $q) ->
-                                    api.fetch_current_user().catch ->
-                                        $location
-                                            .replace()
-                                            .path '/login'
-                                            .search next: 'dashboard/feedback'
-                                        return $q.reject()
-                    }
+                    # .when '/dashboard/feedback', {
+                    #     controller: 'FeedbackCtrl as self'
+                    #     templateUrl: 'components/router/dashboard/feedback.tmpl.html'
+                    #     resolve:
+                    #         user: _.ai 'api, $location, $route, $q',
+                    #             (       api, $location, $route, $q) ->
+                    #                 api.fetch_current_user().catch ->
+                    #                     $location
+                    #                         .replace()
+                    #                         .path '/login'
+                    #                         .search next: 'dashboard/feedback'
+                    #                     return $q.reject()
+                    # }
 
                     .when '/dashboard/mobile-change', {
                         controller: 'MobileChangeCtrl as self'
@@ -343,38 +343,38 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         do $q.reject
                     }
 
-                    .when '/loan/:id/investors', {
-                        controller: 'LoanInvestorsCtrl as self'
-                        templateUrl: 'components/router/loan/loan-investors.tmpl.html'
-                        resolve:
-                            investors: _.ai 'api, $location, $route, $q',
-                                (            api, $location, $route, $q) ->
-                                    api.get_loan_investors($route.current.params.id).catch ->
-                                        $location.path '/'
-                                        do $q.reject
-                    }
+                    # .when '/loan/:id/investors', {
+                    #     controller: 'LoanInvestorsCtrl as self'
+                    #     templateUrl: 'components/router/loan/loan-investors.tmpl.html'
+                    #     resolve:
+                    #         investors: _.ai 'api, $location, $route, $q',
+                    #             (            api, $location, $route, $q) ->
+                    #                 api.get_loan_investors($route.current.params.id).catch ->
+                    #                     $location.path '/'
+                    #                     do $q.reject
+                    # }
 
-                    .when '/loan/:id/info', {
-                        controller: 'LoanInfoCtrl as self'
-                        templateUrl: 'components/router/loan/loan-info.tmpl.html'
-                        resolve:
-                            loan: _.ai 'api, $location, $route, $q',
-                                (       api, $location, $route, $q) ->
-                                    api.get_loan_detail($route.current.params.id, true).catch ->
-                                        $location.path '/'
-                                        do $q.reject
-                    }
+                    # .when '/loan/:id/info', {
+                    #     controller: 'LoanInfoCtrl as self'
+                    #     templateUrl: 'components/router/loan/loan-info.tmpl.html'
+                    #     resolve:
+                    #         loan: _.ai 'api, $location, $route, $q',
+                    #             (       api, $location, $route, $q) ->
+                    #                 api.get_loan_detail($route.current.params.id, true).catch ->
+                    #                     $location.path '/'
+                    #                     do $q.reject
+                    # }
 
-                    .when '/loan/:id/detail', {
-                        controller: 'LoanDetailCtrl as self'
-                        templateUrl: 'components/router/loan/loan-detail.tmpl.html'
-                        resolve:
-                            loan: _.ai 'api, $location, $route, $q',
-                                (       api, $location, $route, $q) ->
-                                    api.get_loan_detail($route.current.params.id, false).catch ->
-                                        $location.path '/'
-                                        do $q.reject
-                    }
+                    # .when '/loan/:id/detail', {
+                    #     controller: 'LoanDetailCtrl as self'
+                    #     templateUrl: 'components/router/loan/loan-detail.tmpl.html'
+                    #     resolve:
+                    #         loan: _.ai 'api, $location, $route, $q',
+                    #             (       api, $location, $route, $q) ->
+                    #                 api.get_loan_detail($route.current.params.id, false).catch ->
+                    #                     $location.path '/'
+                    #                     do $q.reject
+                    # }
 
                     .when '/loan/:id/invest', {
                         controller: 'LoanInvestCtrl as self'
@@ -480,10 +480,10 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                         templateUrl: 'components/router/about/about.tmpl.html'
                     }
 
-                    .when '/about-coupon', {
-                        controller: 'AboutCouponCtrl as self'
-                        templateUrl: 'components/router/about/about-coupon.tmpl.html'
-                    }
+                    # .when '/about-coupon', {
+                    #     controller: 'AboutCouponCtrl as self'
+                    #     templateUrl: 'components/router/about/about-coupon.tmpl.html'
+                    # }
 
                     .when '/contact', {
                         controller: 'ContactCtrl as self'

@@ -11,7 +11,8 @@ do (_, angular) ->
                 @$rootScope.state = 'dashboard'
 
                 bank_account = do (list = _.clone @user.bank_account_list) ->
-                    _.find list, (item) -> item.defaultAccount is true
+                    item = _.find list, (item) -> item.defaultAccount is true
+                    return (if item then item else _(list).first())
 
                 angular.extend @$scope, { bank_account }
 
