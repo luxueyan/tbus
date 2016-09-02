@@ -170,8 +170,8 @@ IndexService.getLoanSummary(function (res) {
     }
     //console.log(listFloat);
     var compare = function (obj1, obj2) {
-        var val1 = obj1.loanRequest.timeSubmit;
-        var val2 = obj2.loanRequest.timeSubmit;
+        var val1 = obj1.timeOpen;
+        var val2 = obj2.timeOpen;
         if (val1 < val2) {
             return 1;
         } else if (val1 > val2) {
