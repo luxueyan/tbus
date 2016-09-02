@@ -52,6 +52,7 @@ var href=window.location.href.split('/');
 var loanId=href[href.length-1];
 
 var myLoan=null;
+console.log(CC.creditassign)
 var investRactive = new Ractive({
     el: ".creditDetail-container",
     template: require('ccc/creditDetail/partials/doInvestOnDetail.html'),
