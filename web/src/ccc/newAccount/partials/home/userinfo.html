@@ -31,8 +31,12 @@
 			<ul class="doCredit">
 				<!--手机-->
 				{{#if user.mobile}}
-				<li class="rzpa cmo-active" on-mouseover="showTip" on-mouseleave="hideTip"></li>
-				<p class="info-tip" style="top:5px;left:0;">点击修改手机号</p>
+				<li>
+					<a href="/newAccount/settings/fixMobile" class="mouse-enter rzpa cmo-active" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
+					<p class="info-tip" style="top:5px;left:0;">点击修改手机号</p>
+				</li>
+				<!--<li class="rzpa cmo-active" on-mouseover="showTip" on-mouseleave="hideTip"></li>-->
+				<!--<p class="info-tip" style="top:5px;left:0;">点击修改手机号</p>-->
 				{{else}}
 				<li class="rzpa cmo"></li>
 				{{/if}}
