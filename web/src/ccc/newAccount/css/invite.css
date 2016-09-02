@@ -10,11 +10,13 @@
     padding-left: 10px;
     border-bottom: 1px solid #dcdcdc;
     margin-right: 27px;
+    margin-left: 30px;
 }
 
 .invite-code {
     position: relative;
     height: 185px;
+    margin-left: 30px;
 }
 .code-img {
     position:absolute;
@@ -84,8 +86,7 @@
 }
 .record {
     margin: 18px 0;
-    margin-top: 120px;
-    padding-left: 10px;
+    margin-top: 42px;
 }
 .record h3 {
     padding-left: 37px;
@@ -95,7 +96,8 @@
     padding-bottom: 10px;
 }
 .record img{
-    width: 973px;
+    width: 1010px;
+    margin-bottom: 66px;
 }
 .record table{
     margin-bottom: 0;
@@ -103,8 +105,8 @@
     margin: auto;
 }
 .record table tr{
-    border-bottom: 1px solid #dcdcdc;
-    font-size: 18px;
+    background: #efe3d1;
+    font-size: 16px;
 }
 .record table tr td{
     font-size: 15px;
@@ -114,7 +116,7 @@ th , td {
     text-align: center;
 }
 th {
-    padding: 16px 0;
+    padding: 8px 0 3px;
 }
 .cc-tips-wp {
     position:absolute;
@@ -131,6 +133,7 @@ th {
     padding-left: 6px;
     position: relative;
     margin-bottom: 20px;
+    margin-left: 30px;
 }
 .statistics span{
     font-size: 45px;
