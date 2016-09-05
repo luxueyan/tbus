@@ -103,6 +103,10 @@ $('#svg_cont').highcharts({
     },
     title: {
         text: '当前配置百分比',
+        style: {
+            color: '#9b8579',
+            fontSize: '18px'
+        }
     },
     legend: {
         enabled: false
@@ -112,20 +116,29 @@ $('#svg_cont').highcharts({
     },
     tooltip: {
         headerFormat: '',
-        pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+        //pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>',
+        pointFormatter: function () {
+            return this.name + ': ' + Math.round(this.y) + '%'
+        }
     },
     plotOptions: {
         pie: {
             allowPointSelect: true,
             cursor: 'pointer',
-            colors: ["#cea784", "#9b8579", "#a40000", "#db0716"],
+            colors: ["#9b8579", "#db0716", "#cea784", "#a40000"],
             dataLabels: {
                 enabled: true,
-                distance: 15,
+                distance: 10,
                 connectorWidth: 0,
+                //format: '{point.name} {numberFormatpoint.percentage:.1f}%',
+                formatter: function () {
+                    return this.point.name + ' ' + Math.round(this.percentage) + '%';
+                },
                 style: {
-                    fontWeight: 'bold',
-                    fontSize: '16px',
+                    color: '#7e8c8d',
+                    fontSize: '14px',
+                    fontWeight: 'normal',
+                    textShadow: 'none'
                 }
             },
         }
@@ -134,16 +147,16 @@ $('#svg_cont').highcharts({
         type: 'pie',
         innerSize: '60%',
         data: [{
-            name: '精选基金',
-            y: 30,
-            //sliced: true,
-            //selected: true
+            name: '浮动收益',
+            y: 60,
         }, {
             name: '固定收益',
-            y: 35,
+            y: 25.8,
         }, {
-            name: '浮动收益',
+            name: '精选基金',
             y: 15,
+            sliced: true,
+            selected: true
         }]
     }]
 });
