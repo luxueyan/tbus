@@ -128,15 +128,6 @@ $('#svg_cont').highcharts({
                     fontSize: '16px',
                 }
             },
-            showInLegend: true,
-            point:{
-                events:{
-                    legendItemClick:function(){
-                        this.select();
-                        this.show();
-                    },
-                }
-            }
         }
     },
     series: [{
