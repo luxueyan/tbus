@@ -135,7 +135,7 @@
     margin-top: 26px;
     cursor: pointer;
 }
-.home-count .total{
+.home-count .total {
     font-size: 24px;
     margin-top: 20px;
 }
@@ -153,7 +153,7 @@
 .home-total .home-tab-amount {
     color: #e60012;
 }
-.home-count .common .info-tip{
+.home-count .common .info-tip {
     display: none;
     position: absolute;
     left: 0;
@@ -166,7 +166,6 @@
     opacity: 0.7;
     z-index: 99999999999;
 }
-
 .invest_status {
     height: 105px;
     width: 990px;
@@ -181,8 +180,6 @@
     height: 54px;
     line-height: 60px;
 }
-
-
 .index-invest {
     width: 990px;
     height: 310px;
@@ -303,8 +300,8 @@
 }
 .asset_mod .asset_cont .svg_cont {
     float: right;
-    width: 420px;
-    height: 420px;
+    width: 435px;
+    height: 300px;
     position: relative;
     text-align: center;
 }
@@ -315,9 +312,9 @@
 .advertisement img {
     width: 100%;
 }
-.account-content{
+.account-content {
     margin: 0 auto 30px 25px;
 }
-.fund_detail{
+.fund_detail {
     font-size: 16px;
 }
