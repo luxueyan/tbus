@@ -23,11 +23,11 @@
 }
 
 .account-content-wrapper {
-    height: 100%;
-    float: left;
-    min-height: 748px;
-    padding-left: 27px;
-    background: #fff;
+  height: 100%;
+  float: left;
+  min-height: 748px;
+  padding-left: 27px;
+  background: #fff;
 }
 
 .account-content {
