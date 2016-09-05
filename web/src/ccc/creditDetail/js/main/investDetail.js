@@ -13,7 +13,8 @@ require('bootstrap/js/tooltip');
 
 var format = require('@ds/format')
 var Box = require('ccc/global/js/modules/cccBox');
-
+var Confirm = require('ccc/global/js/modules/cccConfirm');
+var popupBigPic = require('ccc/loan/js/main/bigPic').popupBigPic;
 
 var statusMap = {
     SCHEDULED: '开标时间:{{timeOpen}}',

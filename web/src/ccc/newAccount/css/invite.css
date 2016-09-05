@@ -150,38 +150,62 @@ th {
 }
 
 .cc-tips-container {
-  width: 250px!important;
-  background: rgb(243, 247, 249);
-  box-shadow: 1px 1px 5px #B1ADAD;
-  border-radius: 10px;
+    width:250px!important;
+    background: rgb(243, 247, 249);
+    box-shadow: 1px 1px 5px #B1ADAD;
+    border-radius: 10px;
+}
+.statistics{
+    font-size:21px;
+    color: #999999;
+    padding-left: 6px;
+    position: relative;
+    margin-bottom: 20px;
+    margin-left: 30px;
+}
+.statistics span{
+    font-size: 45px;
+    line-height: 45px;
+    color: #e4262b;
+    padding: 0 20px;
+}
+.statistics a{
+    display: inline-block;
+    width: 172px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #e4262b;
+    margin-left: 81px;
+    position: absolute;
+    top: 5px;
 }
 
-.statistics {
-  font-size: 21px;
-  color: #999999;
-  padding-left: 16px;
-  position: relative;
-  margin-bottom: 20px;
-  margin-left: 30px;
-}
 
-.statistics span {
-  font-size: 45px;
-  line-height: 45px;
-  color: #e4262b;
-  padding: 0 20px;
-}
 
-.statistics a {
-  display: inline-block;
-  width: 172px;
-  height: 40px;
-  line-height: 40px;
-  font-size: 18px;
-  color: #ffffff;
-  text-align: center;
-  background-color: #e4262b;
-  margin-left: 81px;
-  position: absolute;
-  top: 5px;
+/*分页样式*/
+.invest-pager li {
+    display: inline-block;
+    margin: 0 3px;
+}
+.invest-pager li a:hover {
+    color: #fff;
+    background: #bb9f6a;
+}
+.invest-pager li a {
+    padding: 5px 11px;
+    border: 1px #eeeeee solid;
+    text-decoration: none;
+    background-color: #fefefe;
+    font-size: 14px;
+    color: #4a4a4a;
+    cursor: pointer;
+    display: inline-block;
+}
+.invest-pager .current-page a {
+    background-color: #bb9f6a;
+    color: #fff;
+    border: 1px #bb9f6a solid;
 }

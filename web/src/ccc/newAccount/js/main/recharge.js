@@ -77,8 +77,8 @@ var ractive = new Ractive({
                 CODE_NULL: false,
                 CODE_INVALID: false,
             });
-            var value = $(e.node)
-                .val();
+            var value = self.get('amount');
+
         //console.log(value)
         //console.log(singleQuota)
             if (value === '') {
