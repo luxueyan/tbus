@@ -57,9 +57,9 @@
                 <input type="hidden" value="{{creditassign.creditassign.creditDealAmount}}" />
                 <div>预期收益(元): <span>{{profit}}</span></div>
                 <p class="agree">确认购买即视为同意
-                    <a href="/agreement/assign" target="_blank">《金融资产转让协议》、</a>
+                    <a href="/api/v2/creditassign/template" target="_blank">《金融资产转让协议》、</a>
                     <a href="/agreement/risk" target="_blank">《风险提示书》、</a>
-                    <a href="/agreement/assignBuy" target="_blank">《转让方购买金融资产时签署的购买协议》</a>
+                    <a href="/account/invest/allContracts/{{creditassign.creditassign.id}}" target="_blank">《转让方购买金融资产时签署的购买协议》</a>
                 </p>
                 <button class="btn" on-click="invest-submit">同意协议并确认购买</button>
             </div>

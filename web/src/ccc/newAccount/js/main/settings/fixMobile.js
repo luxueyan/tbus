@@ -7,7 +7,9 @@ var fixMobileRactive = new Ractive({
     template: require('ccc/newAccount/partials/settings/fixMobile.html'),
     data: {
         step1:true,
-        step2:false
+        step2:false,
+        canOldClick:true,
+        canNewClick:true
     },
     init:function(){
         request.get('/api/v2/user/MYSELF/userinfo')
@@ -96,22 +98,29 @@ fixMobileRactive.on('fixMobile', function () {
     }
 });
 
-fixMobileRactive.on('sendOldCode', function () {
+fixMobileRactive.on('sendOldCode', function (e) {
     //var pwd = this.get('password');
     //var repwd = this.get('repassword');
     //if (pwd === "" || repwd === "") {
     //    return showErrorIndex('showErrorMessagec', 'errorMessagec', '交易密码不能为空');
     //}
     //if (!this.get('isSend')) {
-    //    this.set('isSend', true);
+    //    this.set('isSend',true);
+    var that = this;
+    if(this.get('canOldClick')){
+        this.set('canOldClick',false)
         var smsType = 'CREDITMARKET_RESET_MOBILE';
         CommonService.getMessage(smsType, function (r) {
             if (r.success) {
                 //alert('111');
-                countDown('sendOldCode');
+                countDown('sendOldCode',function(){
+                    that.set('canOldClick',true)
+                });
                 //alert('222');
             }
         });
+    }
+        
     //}
 });
 
@@ -121,6 +130,11 @@ fixMobileRactive.on('sendNewCode', function () {
         mobile: mobile,
         smsType: 'CREDITMARKET_RESET_MOBILE'
     }
+    var that = this;
+    if(!this.get('canNewClick')){
+        return;
+    }
+    
     if (mobile === "") {
         return showErrorIndex('showErrorMessagec', 'errorMessagec', '请先输入手机号');
     }else{
@@ -129,16 +143,19 @@ fixMobileRactive.on('sendNewCode', function () {
     //if (!this.get('isSend')) {
     //    this.set('isSend', true);
     //    var smsType = 'CREDITMARKET_RESET_MOBILE';
+        this.set('canNewClick',false)
         accountService.sendSmsCaptcha(params, function (r) {
             if (r.success) {
                 //alert("333");
-                countDown('sendNewCode');
+                countDown('sendNewCode',function(){
+                    that.set('canNewClick',true)
+                });
             }
         });
     //}
 });
 
-function countDown(className) {
+function countDown(className,next) {
     $('.'+className).addClass('disabled');
     var previousText = '获取验证码';
     var msg = '$秒后重新发送';
@@ -156,6 +173,7 @@ function countDown(className) {
                 .removeClass('disabled');
             //fixMobileRactive.set('isSend', false);
             clearInterval(interval);
+           next()
         }
     }), 1000);
 }
