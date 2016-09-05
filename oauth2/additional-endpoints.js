@@ -74,6 +74,4 @@ module.exports = function (router, auth) {
     router.get('/api/v2/creditassign/template', auth.user());
     //借款合同模版获取
     router.get('/api/v2/loan/loanRequest/:requestId/bind/template', auth.user());
-    //获取银行卡
-    router.get('/api/v2/baofoo/getBankConstraints', auth.user());
 };

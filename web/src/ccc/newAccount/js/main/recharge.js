@@ -2,18 +2,11 @@
 
 var utils = require('ccc/global/js/lib/utils');
 var UMPBANKS = require('ccc/global/js/modules/cccUmpBanks');
-var NETBANKS = require('ccc/global/js/modules/netBank');
 require('ccc/global/js/modules/cccTab');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 
-var banks = _.filter(NETBANKS, function (r) {
-    return r.enable === true;
-});
 
-var corBanks = _.filter(NETBANKS, function (r) {
-    return r.isSupportted === true;
-});
 var ractive = new Ractive({
     el: '#ractive-container',
     template: require('ccc/newAccount/partials/recharge/recharge.html'),
@@ -25,20 +18,7 @@ var ractive = new Ractive({
             CODE_NULL: false,
             CODE_INVALID: false,
         },
-        pointNum: null,
-        intNum: null,
-        banks: banks,
-        corBanks: corBanks,
-        bankcards: CC.user.bankcards,
-        bankCodeEnd: (function () {
-            if (CC.user.enterprise) {
-                return '-NET-B2B';
-            } else {
-                return '-NET-B2C';
-            }
-        })(),
         isBankCard: CC.user.bankCards.length,
-        amountValue: 5000,
         showNum: 9,
         minAmount: 100,
         step1: true,
@@ -56,47 +36,41 @@ var ractive = new Ractive({
             }
             self.set('bankcards', self.parseBankData(o));
             self.set('loadMessage', null);
+
+            $.get('/api/v2/baofoo/getBankConstraints', function (r) {
+                if(r.success){
+                    var item= r.data;
+                    for(var i=0; i< item.length; i++){
+                        if(item[i].bankCode == o[0].account.bank){
+                            ractive.set('singleQuota', item[i].singleQuota);
+                            ractive.set('dailyQuota', item[i].dailyQuota);
+                        }
+                    }
+                }
+
+            });
         }).error(function () {
             self.set('loadMessage', '请求出错了');
         });
     },
-    parseData: function () {
-        var self = this;
-        var availableAmount = self.get('availableAmount').toFixed(2) + '';
-        var point = availableAmount.indexOf('.');
-        if (point !== -1) {
-            var num = availableAmount.split('.');
-            self.set({
-                'intNum': num[0],
-                'pointNum': num[1]
-            })
-        };
-
-    },
     parseBankData: function (datas) {
-        // 依据UMPBANKS的code来分组
-        var BANKS = _.groupBy(UMPBANKS, function (b) {
-            return b.code;
-        });
-
         // format data
         for (var i = 0; i < datas.length; i++) {
             var o = datas[i];
-            datas[i].account.imgPos = BANKS[o.account.bank][0].imgPos;
             datas[i].Faccount = o.account.account.slice(-3);
         }
         return datas;
     },
     oncomplete: function () {
         var self = this;
-        this.$help = $(this.el)
-            .find('.help-block');
         this.$amount = $(this.el)
             .find('[name=rechargeValue]');
         this.$form = $(this.el)
             .find('form[name=rechargeForm]');
 
         this.on('changeValue', function (e) {
+            var singleQuota = self.get('singleQuota');
+
             self.set('msg', {
                 AMOUNT_NULL: false,
                 AMOUNT_INVALID: false,
@@ -105,16 +79,17 @@ var ractive = new Ractive({
             });
             var value = $(e.node)
                 .val();
-
+        //console.log(value)
+        //console.log(singleQuota)
             if (value === '') {
                 self.set('msg.AMOUNT_NULL', true);
                 self.set('msg.CODE_NULL', true);
                 return;
             }
-            //            if (value > 10){
-            //                self.set('msg.AMOUNT_NOTENOUGH',true);
-            //                return;
-            //            }
+            if (value > singleQuota){
+                self.set('msg.AMOUNT_INVALID',true);
+                return;
+            }
 
             if (!self.get('msg.AMOUNT_MULL')) {
                 self.set('msg.AMOUNT_NULL', false);
@@ -154,8 +129,6 @@ var ractive = new Ractive({
 
 });
 
-ractive.parseData();
-
 ractive.on('recharge_submit', function (e) {
     var amount = this.get('amount');
     var password = this.get('password');
@@ -178,7 +151,7 @@ ractive.on('recharge_submit', function (e) {
         this.set('msg.AMOUNT_NULL', true);
         return false;
         myFunc()
-    } else if (!this.match(amount) || parseFloat(amount) > parseFloat(this.get('amountValue'))) {
+    } else if (!this.match(amount) || parseFloat(amount) > parseFloat(this.get('singleQuota'))) {
         e.original.preventDefault();
         this.set('msg.AMOUNT_INVALID', true);
         this.$amount.focus();

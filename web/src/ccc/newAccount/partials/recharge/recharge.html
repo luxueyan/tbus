@@ -19,15 +19,6 @@
         <div class="bankcards-wrap">
             {{#each bankcards}}
             <div class="bankcard-box {{account.bank}}" style="position:relative;">
-                {{#if hasExpress}}
-                    {{#if !expressAccount}}
-                        <div class="wrapper"></div>
-                    {{/if}}
-                {{/if}}
-<!--
-                <div class="bank-img"
-                style="visibility:hidden;background-position: 10px -{{account.imgPos+3}}px"></div>
--->
                 <span>******** {{Faccount}}</span>
             </div>
             {{/each}}
@@ -52,7 +43,7 @@
                         {{#msg.AMOUNT_INVALID}}输入的金额有误{{/msg.AMOUNT_INVALID}}
 <!--                        {{#msg.AMOUNT_NOTENOUGH}}单笔充值10元内{{/msg.AMOUNT_NOTENOUGH}}-->
                     </p>
-                    <p class="warm-tip">单笔限额5000元，单日限额50000元</p>
+                    <p class="warm-tip">单笔限额{{singleQuota}}元，单日限额{{dailyQuota}}元</p>
                 </div>
 
                 <div class="rows">
