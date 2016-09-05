@@ -100,7 +100,6 @@ $('#svg_cont').highcharts({
         plotBackgroundColor: null,
         plotBorderWidth: null,
         plotShadow: false,
-        type: 'pie',
     },
     title: {
         text: '当前配置百分比',
@@ -129,13 +128,13 @@ $('#svg_cont').highcharts({
                     fontSize: '16px',
                 }
             },
-
         }
     },
     series: [{
+        type: 'pie',
         innerSize: '60%',
         data: [{
-            name: '精选收益',
+            name: '精选基金',
             y: 30,
             //sliced: true,
             //selected: true
