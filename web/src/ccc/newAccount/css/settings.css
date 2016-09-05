@@ -883,7 +883,7 @@ p.tips {
 }
 .home-count .home-tab-amount {
     font-size: 30px;
-    color: #666;
+    /*color: #666;*/
     padding-left: 20px;
 }
 .home-count .home-tab-amount span{
