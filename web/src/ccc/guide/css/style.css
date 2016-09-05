@@ -34,7 +34,7 @@
     color: #666666;
 }
 
-.model-content > span {
+.model-content > span a{
     color:#d10010;
 }
 
