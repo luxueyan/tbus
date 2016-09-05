@@ -6,10 +6,17 @@ require("ccc/global/js/lib/share");
 var format = require('@ds/format');
 var Tips = require('ccc/global/js/modules/cccTips');
 var qr = require('qr-element');
+var RenderPage = require('ccc/global/js/modules/cccPageSuper');
+
 
 CC.imgUrlS = $('#imgurls').attr('src');
 CC.imgUrl = $('#imgurl').attr('src');
 ZeroClipboard.moviePath = '/ccc/global/img/ZeroClipboard.swf';
+
+
+var pagesize = 5;
+var page = 1;
+var totalPage = 1;
 
 new Ractive({
     el: '.account-invite-wrapper',
@@ -45,9 +52,9 @@ new Ractive({
             };
 
             self.set('totalSize', o.totalSize);
-            self.set('list', self.parseData(o));
             self.set('loading', false);
-
+            var parseResult = self.parseData(o);
+            self.setData(parseResult, o.totalSize);
         });
 
          $.get(rewardApi, function (o) {
@@ -72,6 +79,13 @@ new Ractive({
         });   
         
     },
+    setData: function (o,totalSize) {
+        var self = this;
+        self.set('loading', false);
+        self.set('list', o.slice(0,pagesize));
+
+        this.renderPager(o,totalSize);
+    },
     buildImgUrl: function(){
         var self = this;
         var url = 'http://' + location.host + '/register?refm=' + self.get('Fmobile');
@@ -79,7 +93,8 @@ new Ractive({
         return url;
     },
     parseData: function (r) {
-        //console.log(r.results)
+        console.log(r)
+        console.log(r)
         r.results.sort(function(a,b){
             return (b.user.registerDate - a.user.registerDate);
         });
@@ -100,6 +115,18 @@ new Ractive({
             r.results[i].FOmobile = format.mask(o.user.mobile, 3, 4);
         }
         return r.results;
+    },
+    renderPager: function (o,totalSize) {
+        var self = this;
+        new RenderPage().page({
+            pageSize:pagesize,
+            totalSize:totalSize,
+            results:o,
+            callback:function(o){
+                self.set('list',o)
+            }
+        });
+
     },
     bindActions: function () {
         var self = this;
@@ -152,5 +179,6 @@ new Ractive({
                 }
             });
         });
-    }
+    },
+
 });
