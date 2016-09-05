@@ -339,6 +339,7 @@ select::-ms-expand { display: none; }
 /*产品亮点*/
 .lightspot-box{
     margin: 10px 58px;
+    font-size: 18px;
 }
 .lightspot-box .single{
     margin-bottom: 48px;

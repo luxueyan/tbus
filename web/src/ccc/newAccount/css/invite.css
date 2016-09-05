@@ -1,126 +1,154 @@
-.account-invite-wrapper{
-    background: #fff;
-    min-height: 748px;
-    padding-top: 20px;
+.invite_wrapper {
+  padding-left: 0;
 }
-.account-invite-wrapper .invite-nav{
-    font-size: 24px;
-    color: #ad8a58;
-    padding-bottom: 15px;
-    padding-left: 10px;
-    border-bottom: 1px solid #dcdcdc;
-    margin-right: 27px;
-    margin-left: 30px;
+
+.account-invite-wrapper {
+  background: #fff;
+  min-height: 748px;
+  padding-top: 20px;
+}
+
+.account-invite-wrapper .invite-nav {
+  font-size: 24px;
+  color: #ad8a58;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  border-bottom: 1px solid #dcdcdc;
+  margin-right: 27px;
+  margin-left: 45px;
 }
 
 .invite-code {
-    position: relative;
-    height: 185px;
-    margin-left: 30px;
+  position: relative;
+  height: 185px;
+  margin-left: 38px;
 }
+
 .code-img {
-    position:absolute;
-    right:50px;
-    top:40px;
-    text-align:center;
-    font-size:14px;
-    color:#666;
-    margin-right: 35px;
+  position: absolute;
+  right: 50px;
+  top: 40px;
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  margin-right: 35px;
 }
+
 .tip {
-    font-size: 14px;
-    color: #999;
-    padding-top: 50px;
-    padding-left: 10px;
+  font-size: 14px;
+  color: #999;
+  padding-top: 50px;
+  padding-left: 20px;
 }
+
 .form-inline {
-    border-radius: 5px;
-    padding-top: 10px;
-    margin-left: 10px;
+  border-radius: 5px;
+  padding-top: 10px;
+  margin-left: 10px;
 }
-.form-inline .form-group input{
-    width: 470px;
-    border-radius: 0;
-    height: 40px;
-    line-height: 40px;
+
+.form-inline .form-group input {
+  width: 470px;
+  border-radius: 0;
+  height: 40px;
+  line-height: 40px;
 }
+
 .btn-default {
-    background: #e4262b;
-    border: 1px solid #e4262b;
-    color: #fff;
-    margin-left: 17px;
-    width: 135px;
-    height: 40px;
-    border-radius: 0;
-    font-size: 16px;
+  background: #e4262b;
+  border: 1px solid #e4262b;
+  color: #fff;
+  margin-left: 17px;
+  width: 135px;
+  height: 40px;
+  border-radius: 0;
+  font-size: 16px;
 }
 
 .img-wrapper {
-    border-top: 1px solid #ebebeb;
-    margin: 46px;
-    padding-top: 20px;
-    color: #666;
-    border-bottom: 1px solid #ebebeb;
+  border-top: 1px solid #ebebeb;
+  margin: 46px;
+  padding-top: 20px;
+  color: #666;
+  border-bottom: 1px solid #ebebeb;
 }
+
 .img-wrapper img {
-    margin: 0 20px;
+  margin: 0 20px;
 }
-.img-wrapper ul li{
-    margin-bottom: 30px;
+
+.img-wrapper ul li {
+  margin-bottom: 30px;
 }
-.img-wrapper ul .step2{
-    border-bottom: 1px solid #ebebeb;
-    line-height: 50px;
+
+.img-wrapper ul .step2 {
+  border-bottom: 1px solid #ebebeb;
+  line-height: 50px;
 }
-.rule-info{
-    padding-left: 46px;
-    color: #9d9fa5;
+
+.rule-info {
+  padding-left: 46px;
+  color: #9d9fa5;
 }
+
 .rule-info span {
-    float:left;
-    color: #ec8a78;
+  float: left;
+  color: #ec8a78;
 }
+
 .rule-info ul {
-    margin-left: 80px;
-    letter-spacing: 1px;
+  margin-left: 80px;
+  letter-spacing: 1px;
 }
+
 .record {
-    margin: 18px 0;
-    margin-top: 42px;
+  margin: 18px 0;
+  margin-top: 42px;
 }
+
 .record h3 {
-    padding-left: 37px;
-    color: #999;
-    font-size: 18px;
-    background: url("/ccc/newAccount/img/icon_invite.png") no-repeat left 3px;
-    padding-bottom: 10px;
+  padding-left: 37px;
+  color: #999;
+  font-size: 18px;
+  background: url("/ccc/newAccount/img/icon_invite.png") no-repeat left 3px;
+  padding-bottom: 10px;
 }
-.record img{
-    width: 1010px;
-    margin-bottom: 66px;
+
+.record img {
+  width: 1010px;
+  margin-bottom: 66px;
 }
-.record table{
-    margin-bottom: 0;
-    width: 95%;
-    margin: auto;
+
+.record table {
+  margin-bottom: 0;
+  width: 93%;
+  margin: auto;
+  margin-left: 48px;
 }
-.record table tr{
-    background: #efe3d1;
-    font-size: 16px;
+
+.record table tr.header {
+  background: #efe3d1;
+  font-size: 16px;
 }
-.record table tr td{
-    font-size: 15px;
-    height: 52px;
+
+.record table tr td {
+  font-size: 15px;
+  height: 52px;
 }
-th , td {
-    text-align: center;
+
+th,
+td {
+  text-align: center;
 }
+
 th {
-    padding: 8px 0 3px;
+  padding: 8px 0 3px;
 }
+
 .cc-tips-wp {
-    position:absolute;
+  position: absolute;
 }
+
 .cc-tips-container {
     width:250px!important;
     background: rgb(243, 247, 249);
