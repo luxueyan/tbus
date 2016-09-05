@@ -252,11 +252,11 @@ var recordRactive = new Ractive({
 });
 
 //常见问题
-request.get(encodeURI('/api/v2/cms/category/HELP/name/常见问题')).end().then(function(res) {
+request.get(encodeURI('/api/v2/cms/category/HELP/name/产品转让')).end().then(function(res) {
     //console.log(res.body);
     var count = new Ractive({
         el: '.question-box',
-        template: '{{#each items:i}}<ul>{{#if i<5}}<li><a href="/help">{{title}}</a></li>{{/if}}</ul>{{/each}}',
+        template: '{{#each items:i}}<ul>{{#if i<5}}<li><a href="/help/transfer">{{title}}</a></li>{{/if}}</ul>{{/each}}',
         data: {
             items: res.body
         }
