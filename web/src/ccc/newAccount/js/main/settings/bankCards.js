@@ -45,8 +45,11 @@ var ractive = new Ractive({
                 ractive.set('hasCardO', false);
             }
         });
-        $.get('/api/v2/hundsun/banks', function (r) {
-            ractive.set('newbanks', r);
+        $.get('/api/v2/baofoo/getBankConstraints', function (r) {
+            if(r.success){
+                ractive.set('newbanks', r.data);
+            }
+
         });
         $.get('/api/v2/user/MYSELF/authenticates', function (r) {
             ractive.set('authenticates', r);
