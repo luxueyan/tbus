@@ -51,7 +51,7 @@
   width: 470px;
   border-radius: 0;
   height: 40px;
-  line-height: 40px;
+  /*line-height: 40px;*/
 }
 
 .btn-default {
