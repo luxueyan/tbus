@@ -264,7 +264,7 @@ ractive.on('withDrawSubmit', function () {
                 $.post('/api/v2/baofoo/withdraw/MYSELF', {
                     paymentPassword: pass,
                     amount: amount,
-                    cardNo: cardNo
+                    //cardNo: cardNo
 
                 }, function (res) {
                     if (res.success) {
