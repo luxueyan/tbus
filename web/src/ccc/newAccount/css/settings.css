@@ -671,7 +671,9 @@ p.tips {
     border: none;
     float: left;
     color: #999;
-    text-indent: 8px;
+    padding-left: 16px;
+    appearance: none;
+    -webkit-appearance: none;
 }
 #main-container .row .card-brame input {
     border: 0;
