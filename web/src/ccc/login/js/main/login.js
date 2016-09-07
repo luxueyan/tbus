@@ -1,49 +1,5 @@
 'use strict';
 var CommonService = require('ccc/global/js/modules/common').CommonService;
-var captChaImg = $('.captcha-img');
-var captcha = {};
-
-
-getCaptCha();
-
-$('.change-captcha').on('click', function (e) {
-    e.preventDefault();
-    getCaptCha();
-});
-
-//$("[name = checkbox]").attr("checked", true);
-
-function getCaptCha() {
-    CommonService.getCaptcha(function (data) {
-        captcha = data;
-        captChaImg.attr('src', data.captcha);
-    });
-}
-
-//var loginRac = new Ractive({
-//    el: $('.s-login-view'),
-//    template: require('ccc/login/partials/login.html'),
-//    data: {
-//        captcha:{
-//            img: '',
-//            token: ''
-//        }
-//    }
-//});
-//CommonService.getCaptcha(function (res) {
-//    loginRac.set('captcha', {
-//        img: res.captcha,
-//        token: res.token
-//    });
-//});
-//loginRac.on('change-captcha',function(){
-//    CommonService.getCaptcha(function (res) {
-//        loginRac.set('captcha', {
-//            img: res.captcha,
-//            token: res.token
-//        });
-//    });
-//});
 
 var errorRac = new Ractive({
     el: $('.error-wrap'),
@@ -77,9 +33,9 @@ $('#loginForm').submit(function (e) {
     }
 
     var errorMaps = {
-        USER_DISABLED: '帐号密码错误次数过多，您的帐户已被锁定，请联系客服400-1688-188解锁。',
-        FAILED: '你输入的账户名或密码错误。请重新输入！您也可以找回登录密码。',
-        TOO_MANY_ATTEMPT: '密码输入次数过多，该用户已被禁用'
+        USER_DISABLED: '帐号密码错误次数过多，您的帐户已被锁定，请联系客服400-900-8868解锁。',
+        FAILED: '帐号或密码错误，请重新输入，',
+        TOO_MANY_ATTEMPT: '帐号密码错误次数过多，您的帐户已被锁定，请联系客服400-900-8868解锁。'
     };
 
     if ($postBtn.hasClass('disabled')) {
@@ -103,7 +59,15 @@ $('#loginForm').submit(function (e) {
                 location.href = (r.redirect) ? r.redirect : '/';
             }
         } else {
-            $error.html('<p class="login-error">'+errorMaps[r.error_description.result]+'</p>');
+            //console.log(r.error_description);
+            if(r.error_description.failedAttempts == 0 || r.error_description.failedAttempts == 5){
+                $error.html('<p class="login-error">'+errorMaps[r.error_description.result]+'</p>');
+            }else if(r.error_description.failedAttempts<4){
+                var num = 5-r.error_description.failedAttempts;
+                $error.html('<p class="login-error">'+errorMaps[r.error_description.result]+'您还有'+ num +'次机会' +'</p>');
+            }else if(r.error_description.failedAttempts<5){
+                $error.html('<p class="login-error">'+'您还有最后1次机会，再次失败账户将被锁定'+'</p>');
+            }
             $postBtn.removeClass('disabled').text('登录');
         }
     });

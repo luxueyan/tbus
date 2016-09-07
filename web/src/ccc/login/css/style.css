@@ -151,3 +151,10 @@ input:-webkit-autofill {
     color: #e60012;
     /*font-size: 16px;*/
 }
+
+
+.password,
+.mobile{
+    color: red;
+    font-size: 12px;
+}
