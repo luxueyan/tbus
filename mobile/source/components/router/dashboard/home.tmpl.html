@@ -17,7 +17,7 @@
              ng-click="self.$location.path('dashboard/subhome')"
     >
         <div class="info">
-            <img class="icon" width="18" ng-src="assets/image/user-icon-sm.png">
+            <img class="icon" width="30" ng-src="assets/image/user-icon-2.png">
             {{ now | greeting_time_cn }},
             {{ self.user.info.name || (self.user.info.mobile | string_replace: '^(\\d{3})(\\d{5})(\\d{3})$' : '$1*****$3') }}
         </div>
@@ -121,6 +121,66 @@
                 </div>
             </li>
         </ul>
+    </section>
+
+    <section class="container shadow links-list">
+        <div class="row list-row">
+            <div class="col-xs-6 item">
+                <a href="dashboard/subhome">
+                    <div class="media">
+                        <div class="media-left">
+                            <param class="icon icon-user">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">个人中心</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xs-6 item">
+                <a href="dashboard/funds">
+                    <div class="media">
+                        <div class="media-left">
+                            <param class="icon icon-doc">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">资金明细</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="row list-row">
+            <div class="col-xs-6 item">
+                <a href="dashboard/coupon">
+                    <div class="media">
+                        <div class="media-left">
+                            <param class="icon icon-coupon">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">我的红包</h4>
+                            <p class="desc" ng-if="available_coupon_length">{{ available_coupon_length }}个可用</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xs-6 item">
+                <a href="dashboard/invite" target="_self">
+                    <div class="media">
+                        <div class="media-left">
+                            <param class="icon icon-gift">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">我的邀请</h4>
+                            <p class="desc" ng-if="has_invited_count">已邀请{{ has_invited_count }}位好友</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
     </section>
 
 </div>
