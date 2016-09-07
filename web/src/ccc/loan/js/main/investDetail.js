@@ -5,6 +5,7 @@ var accountService = require('ccc/newAccount/js/main/service/account').accountSe
 var CccOk = require('ccc/global/js/modules/cccOk');
 var i18n = require('@ds/i18n')['zh-cn'];
 var format = require('@ds/format')
+var RenderPage = require('ccc/global/js/modules/cccPageSuper');
 require('ccc/global/js/modules/tooltip');
 require('ccc/global/js/lib/jquery.easy-pie-chart');
 require('bootstrap/js/carousel');
@@ -26,6 +27,9 @@ var statusMap = {
     CLEARED: ''
 };
 var template = statusMap[CC.loan.status];
+
+var pagesize = 10;
+
 
 new Ractive({
     el: ".openTime",
@@ -386,7 +390,7 @@ setTimeout((function () {
         }else if(inputNum>0){
             investRactive.set('inputNum',inputNum+stepAmount);
         }
-        console.log(inputNum)
+        //console.log(inputNum)
     });
 
 }), 100);
@@ -423,26 +427,23 @@ var recordRactive = new Ractive({
     },
     getRecord: function () {
         var self = this;
-        //        var api = self.api + self.page + '/' + self.pageSize;
         var api = self.api;
         request(api)
             .end()
             .get('body')
             .then(function (r) {
-                //console.log('rrrrrrrr')
-                //console.log(r)
-                self.setData(r);
-
+                //self.setData(r);
+                var parseResult = self.parseData(r);
+                self.setData(parseResult, r.length);
             });
     },
-    setData: function (r) {
+    setData: function (r,totalSize) {
         var self = this;
-        //self.set('rebateMoney',rebateMoney);
+        //self.set('totalSize', r.totalSize);
         self.set('loading', false);
-        self.set('list', self.parseData(r));
-        self.set('totalSize', r.totalSize);
-        //self.set('protimeT',)
-        self.renderPager();
+        self.set('list', r.slice(0,pagesize));
+        this.renderPager(r,totalSize);
+        //self.renderPager();
     },
     parseData: function (list) {
         for (var i = 0, l = list.length; i < l; i++) {
@@ -452,74 +453,83 @@ var recordRactive = new Ractive({
         }
         return list;
     },
-    renderPager: function () {
+    renderPager: function (r,totalSize) {
         var self = this;
-        var totalSize = self.get('totalSize');
+        console.log("!!!!!!!")
+        //var totalSize = self.get('totalSize');
+        //
+        //if (totalSize != 0) {
+        //    self.totalPage = Math.ceil(totalSize / self.pageSize);
+        //}
+        //
+        //var totalPage = [];
+        ////console.log("===>> totalPage = " + self.totalPage);
+        //for (var i = 0; i < self.totalPage; i++) {
+        //    totalPage.push(i + 1);
+        //}
+        new RenderPage().page({
+            pageSize:pagesize,
+            totalSize:totalSize,
+            results:r,
+            callback:function(r){
+                self.set('list',r)
+            }
+        });
 
-        if (totalSize != 0) {
-            self.totalPage = Math.ceil(totalSize / self.pageSize);
-        }
-
-        var totalPage = [];
-        //console.log("===>> totalPage = " + self.totalPage);
-        for (var i = 0; i < self.totalPage; i++) {
-            totalPage.push(i + 1);
-        }
-
-        renderPager(totalPage, self.page);
+        //renderPager(totalPage, self.page);
     }
 });
 
-function renderPager(totalPage, current) {
-    //console.log("===>render")
-    if (!current) {
-        current = 1;
-    }
-    var pagerRactive = new Ractive({
-        el: '#record-pager',
-        template: require('ccc/loan/partials/pagerRecord.html'),
-        data: {
-            totalPage: totalPage,
-            current: current
-        }
-    });
-
-    pagerRactive.on('previous', function (e) {
-        e.original.preventDefault();
-        var current = this.get('current');
-        if (current > 1) {
-            current -= 1;
-            this.set('current', current);
-            recordRactive.page = current;
-            recordRactive.getRecord();
-
-        }
-    });
-
-    pagerRactive.on('page', function (e, page) {
-        e.original.preventDefault();
-        if (page) {
-            current = page;
-        } else {
-            current = e.context;
-        }
-        this.set('current', current);
-        recordRactive.page = current;
-        recordRactive.getRecord();
-
-    });
-    pagerRactive.on('next', function (e) {
-        e.original.preventDefault();
-        var current = this.get('current');
-        if (current < this.get('totalPage')[this.get('totalPage')
-                .length - 1]) {
-            current += 1;
-            this.set('current', current);
-            recordRactive.page = current;
-            recordRactive.getRecord();
-        }
-    });
-}
+//function renderPager(totalPage, current) {
+//    //console.log("===>render")
+//    if (!current) {
+//        current = 1;
+//    }
+//    var pagerRactive = new Ractive({
+//        el: '#record-pager',
+//        template: require('ccc/loan/partials/pagerRecord.html'),
+//        data: {
+//            totalPage: totalPage,
+//            current: current
+//        }
+//    });
+//
+//    pagerRactive.on('previous', function (e) {
+//        e.original.preventDefault();
+//        var current = this.get('current');
+//        if (current > 1) {
+//            current -= 1;
+//            this.set('current', current);
+//            recordRactive.page = current;
+//            recordRactive.getRecord();
+//
+//        }
+//    });
+//
+//    pagerRactive.on('page', function (e, page) {
+//        e.original.preventDefault();
+//        if (page) {
+//            current = page;
+//        } else {
+//            current = e.context;
+//        }
+//        this.set('current', current);
+//        recordRactive.page = current;
+//        recordRactive.getRecord();
+//
+//    });
+//    pagerRactive.on('next', function (e) {
+//        e.original.preventDefault();
+//        var current = this.get('current');
+//        if (current < this.get('totalPage')[this.get('totalPage')
+//                .length - 1]) {
+//            current += 1;
+//            this.set('current', current);
+//            recordRactive.page = current;
+//            recordRactive.getRecord();
+//        }
+//    });
+//}
 
 function mask(str, s, l) {
     if (!str) {
