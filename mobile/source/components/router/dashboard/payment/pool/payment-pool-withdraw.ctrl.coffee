@@ -66,7 +66,14 @@ do (_, angular) ->
                         @$q.reject error: [message: 'INCORRECT_PASSWORD']
 
 
-                    .then (data) => @api.payment_pool_withdraw(account, amount, @$scope.store.password)
+                    .then (data) =>
+                        post_data = {
+                            # cardNo: account
+                            amount
+                            paymentPassword: @$scope.store.password
+                        }
+
+                        @api.payment_pool_withdraw(post_data)
 
                     .then @api.process_response
 
@@ -120,11 +127,10 @@ do (_, angular) ->
                 .catch @TAKE_RESPONSE_ERROR
 
 
-        api.__proto__.payment_pool_withdraw = (cardNo, amount, paymentPassword) ->
+        api.__proto__.payment_pool_withdraw = (data) ->
 
             @$http
-                .post '/api/v2/baofoo/withdraw/MYSELF',
-                    {cardNo, amount, paymentPassword}
+                .post '/api/v2/baofoo/withdraw/MYSELF', data
 
                 .then @TAKE_RESPONSE_DATA
                 .catch @TAKE_RESPONSE_ERROR

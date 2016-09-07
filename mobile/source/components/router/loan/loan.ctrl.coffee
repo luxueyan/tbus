@@ -122,6 +122,19 @@ do (_, angular, moment, Math, Date) ->
                 return new Date( +moment(item.timeOpen).add(Math.ceil(item.timeout / 24), 'd') )
         )
 
+        value_date = (
+            loanRequest.valueDate ||
+            new Date( +moment(finished_date).add(1, 'd'))
+        )
+
+        due_date = (
+            loanRequest.dueDate ||
+            item.timeCleared ||
+            new Date( +moment(finished_date).add(1 + item.duration.totalDays, 'd'))
+        )
+
+        arrival_date = new Date( +moment(due_date).add(3, 'd'))
+
         return _.merge result, {
 
             raw: item
@@ -139,16 +152,9 @@ do (_, angular, moment, Math, Date) ->
             product_key: loanRequest.productKey
             product_type: loanRequest.productKey?.trim().match(/^\w+/)?[0] or 'UNKNOWN'
 
-            value_date: (
-                loanRequest.valueDate ||
-                new Date( +moment(finished_date).add(1, 'd'))
-            ),
-
-            due_date: (
-                loanRequest.dueDate ||
-                item.timeCleared ||
-                new Date( +moment(finished_date).add(1 + item.duration.totalDays, 'd'))
-            ),
+            value_date
+            due_date
+            arrival_date
 
             balance
             balance_myriad
