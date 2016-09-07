@@ -110,6 +110,10 @@ select::-ms-expand { display: none; }
     font-size: 30px;
     color: #666;
 }
+.invest-data-wrapper .investContainer .content .inner .item .value span.assign_info{
+    color: #e4262b;
+    font-size: 16px;
+}
 .invest-data-wrapper .investContainer .content .innerBottom {
     overflow: hidden;
     color: #666;
@@ -246,17 +250,20 @@ select::-ms-expand { display: none; }
     font-size: 18px;
     margin-left: 70px;
 }
+.invest-info-box table tbody tr{
+    line-height: 46px;
+}
 .invest-info-box .title {
     color: #999;
     width: 200px;
-    vertical-align: top;
-    padding-bottom: 10px;
+    vertical-align: middle;
+    /*padding-bottom: 10px;*/
     text-align: right;
     padding-right: 50px;
 }
 
 .invest-info-box .content{
-    padding-bottom: 10px;
+    /*padding-bottom: 10px;*/
     width: 845px;
     padding-left: 35px;
     color: #666;
@@ -1010,4 +1017,33 @@ select::-ms-expand { display: none; }
     letter-spacing: 5px;
     cursor: default;
     margin-left: 51px;
+}
+
+
+/*分页样式*/
+.invest-pager li {
+    display: inline-block;
+    margin: 0 3px;
+}
+.invest-pager li a:hover {
+    color: #fff;
+    background: #bb9f6a;
+}
+.invest-pager li a {
+    padding: 5px 11px;
+    border: 1px #eeeeee solid;
+    text-decoration: none;
+    background-color: #fefefe;
+    font-size: 14px;
+    color: #4a4a4a;
+    cursor: pointer;
+    display: inline-block;
+}
+.invest-pager .current-page a {
+    background-color: #bb9f6a;
+    color: #fff;
+    border: 1px #bb9f6a solid;
+}
+.space-40{
+    height: 40px;
 }
