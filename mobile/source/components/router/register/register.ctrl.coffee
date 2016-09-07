@@ -36,7 +36,7 @@ do (_, angular) ->
                     # .catch (data) =>
                     #     @$q.reject error: [message: 'MOBILE_EXISTS']
 
-                    .then => @api.send_verification_code(mobile, captcha, @captcha?.token)
+                    .then => @api.send_verification_code(mobile, captcha, @img_captcha?.token)
 
                     .then @api.process_response
 
@@ -60,18 +60,18 @@ do (_, angular) ->
 
                         @$window.alert @$scope.msg[key] or @$scope.msg.UNKNOWN
 
-                        # do @fetch_new_captcha if key in _.split '
-                        #     INVALID_CAPTCHA
-                        #     IMG_CAPTCHA_NULL
-                        #     IMG_CAPTCHA_REQUIRED
-                        # '
+                        do @fetch_new_captcha if key in _.split '
+                            INVALID_CAPTCHA
+                            IMG_CAPTCHA_NULL
+                            IMG_CAPTCHA_REQUIRED
+                        '
                 )
 
 
             fetch_new_captcha: (reset = true) ->
 
                 @api.fetch_register_captcha().then (data) =>
-                    @captcha = data
+                    @img_captcha = data
                     @$scope.store.captcha = '' if reset
 
 

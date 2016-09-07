@@ -445,7 +445,7 @@ do (_, angular, moment, Array, Date) ->
             send_verification_code: (mobile, captcha_answer, captcha_token) ->
 
                 @$http
-                    .get '/api/v2/users/smsCaptcha',
+                    .get '/api/web/register/smsCaptcha',
                         params: _.compact {mobile, captcha_answer, captcha_token}
 
                     .then TAKE_RESPONSE_DATA

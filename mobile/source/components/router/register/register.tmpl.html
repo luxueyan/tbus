@@ -23,7 +23,7 @@
           MOBILE_SMS_CAPTCHA_ALREADY_SEND: '验证码已发送',
           SEND_SMS_CAPTCHA_FAILED: '验证码发送失败',
           LOGINNAME_EXISTS: '用户名已被占用',
-          INVALID_CAPTCHA: '图形验证码不匹配',
+          INVALID_CAPTCHA: '图形验证码错误或已失效',
           IMG_CAPTCHA_NULL: '请输入图形验证码',
           IMG_CAPTCHA_REQUIRED: '请输入图形验证码',
           INVITECODE_INVALID: '邀请码无效',
@@ -101,43 +101,48 @@
             </div>
 
             <div class="form-group merge captcha"
-                 ng-show="self.captcha.token"
                  ng-class="{
                     'has-error': form.captcha.$invalid && form.captcha.$dirty
                  }"
-                 x-gyro-comment
             >
-                <label for="captcha"></label>
-                <div class="form-control-wrap">
-                    <input class="form-control input-target input-lg captcha" type="text"
-                           id="captcha"
-                           name="captcha"
-                           ng-model="store.captcha"
-                           ng-pattern="/^[A-Za-z0-9]+$/"
-                           autocapitalize="none"
-                           autocomplete="off"
-                           autocorrect="off"
-                           maxlength="5"
-                           placeholder="填写图形码"
-                           required
-                    >
-
-                    <div class="action"
-                          ng-click="self.fetch_new_captcha()"
-                    >
-                        <img ng-src="{{ self.captcha.captcha }}"
-                             class="captcha-img"
-                             width="72"
-                             height="24"
+                <div class="form-group-inner">
+                    <label for="captcha">图形验证码</label>
+                    <div class="form-control-wrap">
+                        <input class="form-control input-target input-lg captcha" type="text"
+                               id="captcha"
+                               name="captcha"
+                               ng-model="store.captcha"
+                               ng-model-options="{
+                                   updateOn: 'blur default',
+                                   debounce: {blur: 0, default: 1000}
+                               }"
+                               ng-pattern="/^[A-Za-z0-9]+$/"
+                               autocapitalize="none"
+                               autocomplete="off"
+                               autocorrect="off"
+                               maxlength="5"
+                               placeholder="请输入图形验证码"
+                               required
                         >
-                    </div>
 
-                    <div class="help-block"
-                         ng-show="form.captcha.$invalid && form.captcha.$dirty"
-                    >
-                        <span ng-show="form.captcha.$invalid">必须填写</span>
-                        <span ng-show="form.captcha.$error.pattern">图形验证码错误或失效</span>
+                        <div class="action"
+                             ng-init="self.fetch_new_captcha()"
+                             ng-click="self.fetch_new_captcha()"
+                        >
+                            <img ng-src="{{ self.img_captcha.captcha }}"
+                                 class="captcha-img"
+                                 width="72"
+                                 height="24"
+                            >
+                        </div>
                     </div>
+                </div>
+
+                <div class="help-block"
+                     ng-show="form.captcha.$invalid && form.captcha.$dirty"
+                >
+                    <span ng-show="form.captcha.$invalid">必须填写</span>
+                    <span ng-show="form.captcha.$error.pattern">图形验证码错误或失效</span>
                 </div>
             </div>
 
@@ -148,7 +153,7 @@
                  }"
             >
                 <div class="form-group-inner">
-                    <label for="mobile_captcha">验证码</label>
+                    <label for="mobile_captcha">短信验证码</label>
                     <div class="form-control-wrap">
                         <input class="form-control input-target input-lg captcha" type="tel"
                                id="mobile_captcha"
@@ -163,14 +168,14 @@
                                autocapitalize="none"
                                autocomplete="off"
                                autocorrect="off"
-                               placeholder="请输入验证码"
+                               placeholder="请输入短信验证码"
                                maxlength="6"
                                required
                         >
 
                         <button class="btn btn-sm btn-action btn-plain" type="button"
                                 ng-click="self.get_verification_code(store)"
-                                ng-disabled="!store.mobile || (self.captcha.token && !store.captcha) || self.captcha.buffering"
+                                ng-disabled="!store.mobile || (self.img_captcha.token && !store.captcha) || self.captcha.buffering"
                         >
                             <span class="text">获取验证码</span>
                             <span class="count" ng-show="self.captcha.buffering">

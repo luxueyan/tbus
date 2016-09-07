@@ -22,6 +22,7 @@ try
 
         /api/web/login
         /api/web/register/submit
+        GET/api/web/register/smsCaptcha
 
         /wx/signature
 
