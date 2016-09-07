@@ -135,7 +135,7 @@ a {
             background-color: #FFF;
 
             top: 40px;
-            bottom: 50px;
+            bottom: 46px;
 
             &.in {
                 .opacity(1);
@@ -294,11 +294,11 @@ a {
     &-payment-password {
         position: absolute;
         top: 40px;
-        bottom: 50px;
+        bottom: 46px;
 
         + .modal-backdrop {
             top: 40px;
-            bottom: 50px;
+            bottom: 46px;
         }
 
         .modal-dialog {
@@ -705,8 +705,8 @@ a {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #000;
-    padding: 6px 0;
+    background-color: #444;
+    padding: 4px 0;
     line-height: 1;
     font-size: 12px;
     text-align: center;
@@ -1137,6 +1137,11 @@ a {
 
     .form-flatten {
         #login > .form-flatten;
+
+        .form-group.merge label {
+            margin: 0 15px;
+            min-width: 5em;
+        }
     }
 
     .form {
@@ -1427,6 +1432,13 @@ a {
         }
     }
 
+    .form-flatten {
+        .form-group.merge label {
+            margin: 0 25px;
+            min-width: 3em;
+        }
+    }
+
     .action-result {
         .content {
             margin-bottom: 66px;
@@ -1494,7 +1506,7 @@ a {
 ----*/
 
 #loan {
-    padding-bottom: 50px;
+    padding-bottom: 46px;
 
     section:not(.omit-margin) {
         margin-top: 6px;
@@ -2162,7 +2174,7 @@ a {
 
     .subject {
         .flex-display(center; space-between);
-        padding: 20px 18px 18px 20px;
+        padding: 15px 18px 13px 20px;
         background-color: #FFF;
         color: #717071;
 
@@ -2327,6 +2339,50 @@ a {
             }
         }
     }
+
+    .links-list {
+        #dashboard-subhome .links-list;
+
+        .list-row {
+            > .item {
+                padding: 18px 5px 18px 18px;
+                height: 66px;
+            }
+        }
+
+        .media {
+            &-left {
+                padding-right: 15px;
+            }
+
+            &-heading {
+                margin-top: 5px;
+            }
+        }
+
+        .icon {
+            background: url("@{path-image}/dashboard-icons-2.png") no-repeat;
+            background-size: 208px/2 48px/2;
+            width: 52px/2;
+            height: 48px/2;
+
+            &-user {
+                background-position: 0 0;
+            }
+
+            &-doc {
+                background-position: -52px/2 0;
+            }
+
+            &-coupon {
+                background-position: -104px/2 0;
+            }
+
+            &-gift {
+                background-position: -156px/2 0;
+            }
+        }
+    }
 }
 
 /*=============================================================================
@@ -2347,6 +2403,8 @@ a {
 
     .subject {
         #dashboard .subject;
+
+        padding: 20px 18px 18px 20px;
     }
 
     .summary {
@@ -3387,7 +3445,7 @@ a {
                         position: fixed;
                         z-index: 12;
                         top: 90px;
-                        bottom: 50px;
+                        bottom: 46px;
                         left: 0;
                         right: 0;
                         background-color: rgba(0, 0, 0, 0.21)
