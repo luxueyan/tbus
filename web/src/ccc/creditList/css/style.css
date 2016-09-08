@@ -22,12 +22,17 @@
     padding: 10px 20px;
     box-shadow: 0px 15px 10px -15px #ccc;
 }
+.pro_title {
+    float: left;
+    width: 500px;
+}
 .pro_header .pro_title img {
     float: left;
+    width: 7%;
 }
 .pro_header .pro_title h2 {
     float: left;
-    font-size: 24px;
+    font-size: 20px;
     color: #e4262b;
     border-left: 3px solid #e4262b;
     padding-left: 10px;
