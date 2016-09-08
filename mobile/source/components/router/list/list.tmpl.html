@@ -8,9 +8,9 @@
                 <a href="list?tab=loan" class="btn btn-tab"
                    ng-class="{ selected: current_tab === 'loan' }"
                 >理财</a>
-                <a href="list?tab=fund" class="btn btn-tab"
-                   ng-class="{ selected: current_tab === 'fund' }"
-                >基金</a>
+                <a href="list?tab=high" class="btn btn-tab"
+                   ng-class="{ selected: current_tab === 'high' }"
+                >高端理财</a>
                 <a href="list?tab=assignment" class="btn btn-tab"
                    ng-class="{ selected: current_tab === 'assignment' }"
                 >转让</a>
@@ -24,9 +24,9 @@
             <h3 class="title">固定收益</h3>
             <span class="desc">稳健投资 乐享收益</span>
         </div>
-        <div class="content" ng-switch-when="fund">
-            <h3 class="title"></h3>
-            <span class="desc"></span>
+        <div class="content" ng-switch-when="high">
+            <h3 class="title">固定收益</h3>
+            <span class="desc">稳健投资 乐享收益</span>
         </div>
         <div class="content" ng-switch-when="assignment">
             <h3 class="title">转让专区</h3>
@@ -50,6 +50,12 @@
                    x-loan-summary
                    data-loan="item"
                    ng-switch-when="loan"
+                ></a>
+
+                <a ng-href="loan/{{ item.id }}"
+                   x-loan-summary
+                   data-loan="item"
+                   ng-switch-when="high"
                 ></a>
 
                 <a ng-href="assignment/{{ item.id }}"
