@@ -48,26 +48,36 @@
                 </div>
             </div>
             {{#if user}}
-            <div class="do-invest-wrapper">
-                {{#if errors.visible}}
-                <div class="tooltip">{{ errors.msg }}</div>
-                {{/if}}
+                <div class="do-invest-wrapper">
+                {{#if !user.bankCards.length}}
+                    <p class="shiming">您还未绑定银行卡，绑定后可投资</p>
+                    <a class="loginBtn" href="/newAccount/settings/bankCards">去绑定</a>
+                {{elseif !user.paymentPasswordHasSet}}
+                    <p class="shiming">您还未设置交易密码，设置后可投资</p>
+                    <a class="loginBtn" href="/newAccount/settings/password">去设置交易密码</a>
+                {{else}}
 
-                <div>转让价格(元): <span>{{creditassign.creditassign.creditDealAmount}}</span></div>
-                <input type="hidden" value="{{creditassign.creditassign.creditDealAmount}}" />
-                <div>预期收益(元): <span>{{profit}}</span></div>
-                <p class="agree">确认购买即视为同意
-                    <a href="/api/v2/creditassign/template" target="_blank">《金融资产转让协议》、</a>
-                    <a href="/agreement/risk" target="_blank">《风险提示书》、</a>
-                    <a href="/account/invest/allContracts/{{creditassign.creditassign.id}}" target="_blank">《转让方购买金融资产时签署的购买协议》</a>
-                </p>
-                <button class="btn" on-click="invest-submit">同意协议并确认购买</button>
-            </div>
+                        {{#if errors.visible}}
+                        <div class="tooltip">{{ errors.msg }}</div>
+                        {{/if}}
+
+                        <div>转让价格(元): <span>{{creditassign.creditassign.creditDealAmount}}</span></div>
+                        <input type="hidden" value="{{creditassign.creditassign.creditDealAmount}}" />
+                        <div>预期收益(元): <span>{{profit}}</span></div>
+                        <p class="agree">确认购买即视为同意
+                            <a href="/api/v2/creditassign/template" target="_blank">《金融资产转让协议》、</a>
+                            <a href="/agreement/risk" target="_blank">《风险提示书》、</a>
+                            <a href="/account/invest/allContracts/{{creditassign.creditassign.id}}" target="_blank">《转让方购买金融资产时签署的购买协议》</a>
+                        </p>
+                        <button class="btn" on-click="invest-submit">同意协议并确认购买</button>
+
+                {{/if}}
+                </div>
             {{else}}
-            <div class="do-invest-wrapper">
-                <p class="shiming">请先登录</p>
-                <a class="btn-login" href="/login">立即登录</a>
-            </div>
+                <div class="do-invest-wrapper">
+                    <p class="shiming">请先登录</p>
+                    <a class="btn-login" href="/login">立即登录</a>
+                </div>
             {{/if}}
         </div>
     </div>
