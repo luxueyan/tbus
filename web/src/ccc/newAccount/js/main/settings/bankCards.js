@@ -48,6 +48,21 @@ var ractive = new Ractive({
         $.get('/api/v2/baofoo/getBankConstraints', function (r) {
             if(r.success){
                 ractive.set('newbanks', r.data);
+                //var o=r.data;
+                //for(var i=0;i<o.length;i++){
+                //    if(o[i].singleQuota>10000){
+                //        o[i].singleQuota = o.singleQuota/10000;
+                //        o[i].singleQuotaU = '万';
+                //    }else{
+                //        o[i].singleQuotaU = '元';
+                //    }
+                //    if(o[i].dailyQuota>10000){
+                //        o[i].dailyQuota = o[i].singleQuota/10000;
+                //        o[i].dailyQuotaU = '万';
+                //    }else{
+                //        o[i].dailyQuotaU = '元';
+                //    }
+                //}
             }
 
         });

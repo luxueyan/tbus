@@ -38,7 +38,9 @@
                 <select name="bankName" class="select" value="{{bankName}}" {{hasCard1?'disabled':''}} on-blur="validateBankName">
                     <option value="">选择开户银行</option>
                     {{#each newbanks}}
-                    <option value="{{bankCode}}">{{bankName}}</option>
+                    <option value="{{bankCode}}">{{bankName}}
+                        <span>单笔 {{#if singleQuota == -1}}无限额{{else}}{{singleQuota}}元{{/if}}/日限额 {{#if dailyQuota == -1}}无限额{{else}}{{dailyQuota}}元{{/if}}</span>
+                    </option>
                     {{/each}}
                 </select>
             </div>
