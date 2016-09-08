@@ -2557,10 +2557,20 @@ a {
 
                 &:not(.selected) {
                     .button-variant(@color-theme-main; #FFF; @color-theme-main);
+
+                    &:hover, &:focus, &:active {
+                        background-color: #FFF;
+                        border-color: @color-theme-main;
+                    }
                 }
 
                 &.selected {
                     .button-variant(#FFF; @color-theme-main; @color-theme-main);
+
+                    &:hover, &:focus, &:active {
+                        background-color: @color-theme-main;
+                        border-color: @color-theme-main;
+                    }
                 }
 
                 &:first-child {
