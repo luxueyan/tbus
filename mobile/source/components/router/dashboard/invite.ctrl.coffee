@@ -44,6 +44,7 @@ do (_, angular, Math) ->
                     onMenuShareAppMessage
                     onMenuShareTimeline
                     onMenuShareQQ
+                    onMenuShareQZone
                 '
 
                 @wechat.wx.ready =>

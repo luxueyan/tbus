@@ -1035,7 +1035,7 @@ a {
             }
 
             .title {
-                margin: 0;
+                margin: 0 2em 0 0;
                 font-size: 14px;
 
                 &:after {
@@ -2341,12 +2341,20 @@ a {
     }
 
     .links-list {
-        #dashboard-subhome .links-list;
+        background-color: #FFF;
 
         .list-row {
             > .item {
                 padding: 18px 5px 18px 18px;
                 height: 66px;
+
+                + .item {
+                    border-left: 1px solid #C2C2C3;
+                }
+            }
+
+            + .list-row {
+                border-top: 1px solid #B6B6B6;
             }
         }
 
@@ -2357,10 +2365,20 @@ a {
 
             &-heading {
                 margin-top: 5px;
+                font-size: 14px;
+                color: #585757;
+                line-height: 1.2;
+            }
+
+            .desc {
+                font-size: 12px;
+                color: #B4B4B5;
             }
         }
 
         .icon {
+            display: inline-block;
+            overflow: hidden;
             background: url("@{path-image}/dashboard-icons-2.png") no-repeat;
             background-size: 208px/2 48px/2;
             width: 52px/2;
@@ -2403,8 +2421,6 @@ a {
 
     .subject {
         #dashboard .subject;
-
-        padding: 20px 18px 18px 20px;
     }
 
     .summary {
@@ -2443,66 +2459,6 @@ a {
 
             .action {
                 color: #b28146;
-            }
-        }
-    }
-
-    .links-list {
-        background-color: #FFF;
-
-        .list-row {
-            > .item {
-                padding: 12px 18px;
-                height: 72px;
-
-                + .item {
-                    border-left: 1px solid #C2C2C3;
-                }
-            }
-
-            + .list-row {
-                border-top: 1px solid #B6B6B6;
-            }
-        }
-
-        .media {
-            &-left {
-            }
-
-            &-heading {
-                font-size: 14px;
-                color: #585757;
-                line-height: 1.2;
-            }
-
-            .desc {
-                font-size: 12px;
-                color: #B4B4B5;
-            }
-        }
-
-        .icon {
-            display: inline-block;
-            background: url("@{path-image}/dashboard-icons.png") no-repeat;
-            background-size: 128px/2 30px/2;
-            width: 32px/2;
-            height: 30px/2;
-            overflow: hidden;
-
-            &-doc {
-                background-position: 0 0;
-            }
-
-            &-card {
-                background-position: -32px/2 0;
-            }
-
-            &-gift {
-                background-position: -64px/2 0;
-            }
-
-            &-coupon {
-                background-position: -96px/2 0;
             }
         }
     }
@@ -2601,10 +2557,20 @@ a {
 
                 &:not(.selected) {
                     .button-variant(@color-theme-main; #FFF; @color-theme-main);
+
+                    &:hover, &:focus, &:active {
+                        background-color: #FFF;
+                        border-color: @color-theme-main;
+                    }
                 }
 
                 &.selected {
                     .button-variant(#FFF; @color-theme-main; @color-theme-main);
+
+                    &:hover, &:focus, &:active {
+                        background-color: @color-theme-main;
+                        border-color: @color-theme-main;
+                    }
                 }
 
                 &:first-child {

@@ -105,6 +105,10 @@ do (_, angular, moment, Math, Date) ->
         # do ({stepAmount, minAmount} = loanRequest.investRule) ->
         #     loanRequest.investRule.minAmount = Math.max stepAmount, minAmount
 
+        # fix stepAmount
+        do ({stepAmount} = loanRequest.investRule) ->
+            loanRequest.investRule.stepAmount = Math.max stepAmount, 1
+
         result = _.pick item, _.split 'id title status amount method'
 
         (if item.status in _.split 'SCHEDULED OPENED FINISHED'

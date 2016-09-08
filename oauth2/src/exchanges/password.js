@@ -33,6 +33,7 @@ module.exports = oauth2orize.exchange.password(function (client, username, passw
         scope = [];
         obj = {
             user: user,
+            accountStatus: r.body.accountStatus || null,
             client: {
                 name: client.name,
                 id: client.id

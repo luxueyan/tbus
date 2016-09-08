@@ -17,6 +17,9 @@ do (_, angular) ->
                 if current_tab is 'loan'
                     query_set.product = 'GDSY'
 
+                else if current_tab is 'high'
+                    query_set.product = 'GDLC'
+
                 angular.extend @$scope, {
                     current_tab
                     query_set
@@ -27,7 +30,7 @@ do (_, angular) ->
 
             query: (query_set, options = {}) ->
 
-                if @$scope.current_tab is 'loan'
+                if @$scope.current_tab in _.split 'loan high'
 
                     if options.on_next_page
                         query_set.currentPage++
