@@ -92,5 +92,8 @@ module.exports = {
         "./myself"
     ],
     after: [], // 会添加到 endpoints 之后的 middlewares
-    openApiRules: false // 打开api代理规则(读写分离)
+    openApiRules: false, // 打开api代理规则(读写分离)
+
+    //WWW-Authenticate
+    authenticate: 'Basic realm="oauth2"'
 }
