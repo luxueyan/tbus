@@ -803,22 +803,47 @@
     line-height: 30px;
 }
 
-.loginBtn {
+/*.loginBtn {*/
+    /*height: 44px;*/
+    /*color: #fff;*/
+    /*background-color: #0090e0;*/
+    /*font-size: 18px;*/
+    /*line-height: 44px;*/
+    /*padding: 0;*/
+    /*border: none;*/
+    /*display: block;*/
+    /*width: 290px;*/
+    /*border-radius: 4px;*/
+    /*margin: 0 auto;*/
+    /*margin-top: 14px;*/
+    /*text-decoration: none;*/
+    /*font-family: '微软雅黑';*/
+    /*letter-spacing: 5px;*/
+/*}*/
+
+.do-invest-wrapper .loginBtn {
     height: 44px;
     color: #fff;
-    background-color: #0090e0;
+    background-color: #e4262b;
     font-size: 18px;
     line-height: 44px;
     padding: 0;
     border: none;
     display: block;
-    width: 290px;
-    border-radius: 4px;
+    width: 296px;
     margin: 0 auto;
-    margin-top: 14px;
     text-decoration: none;
-    font-family: '微软雅黑';
-    letter-spacing: 5px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+.do-invest-wrapper .loginBtn:hover {
+    background-color: #C71E23;
+}
+.do-invest-wrapper .shiming {
+    text-align: center;
+    color: #d4242f;
+    font-size: 16px;
+    margin: 60px auto 50px;
 }
 
 .do-invest-wrapper .status .userBlock .loginBtn:hover {

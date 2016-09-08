@@ -685,18 +685,31 @@ p.tips {
   padding-left: 16px;
   appearance: none;
   -webkit-appearance: none;
+  background: #fff;
+  text-align: left;
 }
-.select option{
+.row ul li{
     padding: 10px;
+    height: 40px;
+  color: #c9c9c9;
 }
-.select option span {
+.row ul li:hover{
+  background: #dcdcdc;
+  color:#666666;
+}
+.row ul{
+  display: inline-block;
+  width: 380px;
+  border: 1px solid #ccc;
+}
+.row ul li span {
     font-size: 12px;
     margin-left: 10px;
     display: block;
     float: right;
     width: 200px;
     text-align: left;
-    margin-top: -20px;
+    line-height: 22px;
 }
 
 #main-container .row .card-brame input {

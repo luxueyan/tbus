@@ -58,21 +58,21 @@ body {
 }
 
 h2.forgot_title {
-    font-size: 42px;
+    font-size: 35px;
     color: #4a4a4a;
     line-height: 42px;
     text-align: center;
-    margin-top: 72px;
+    margin-top: 20px;
 }
 .forgot_step_img{
-    margin: 24px;
+    margin: 16px;
     height: 112px;
 }
 .step1_img{
      background: url("/ccc/forgot/img/step01.png") no-repeat center;
  }
 .step2_img{
-    margin-bottom: 55px;
+    margin-bottom: 15px;
     background: url("/ccc/forgot/img/step02.png") no-repeat center;
 }
 .step3_img{
@@ -211,12 +211,12 @@ h2.forgot_title {
     background-color: #e60012;
     border-radius: 3px;
     display: block;
-    margin-top: 56px;
+    margin-top: 40px;
     font-size: 16px;
     cursor: pointer;
 }
 .main .step02 .verify-content .u-form-btn-red {
-    margin-top: 37px;
+    margin-top: 25px;
 }
 .tip_information {
     font-size: 15px!important;
@@ -666,7 +666,7 @@ h2.forgot_title {
 }
 p.step03_img {
     height: 193px;
-    margin: 98px auto 60px;
+    margin: 30px auto 60px;
     background: url(/ccc/newAccount/img/band-success.png) no-repeat center;
 }
 p.step03_title {
@@ -701,4 +701,7 @@ p.step03_title {
 }
 .forgot-body-img{
     padding: 0;
+}
+.reset-body .forgot-body-img {
+    padding: 20px;
 }
