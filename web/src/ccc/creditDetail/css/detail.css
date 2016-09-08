@@ -2092,17 +2092,20 @@
     font-size: 18px;
     margin-left: 70px;
 }
+.invest-info-box table tr{
+    line-height: 46px;
+}
 .invest-info-box .title {
     color: #999;
     width: 200px;
     vertical-align: top;
-    padding-bottom: 10px;
+    /*padding-bottom: 10px;*/
     text-align: right;
     padding-right: 50px;
 }
 
 .invest-info-box .content{
-    padding-bottom: 10px;
+    /*padding-bottom: 10px;*/
     width: 845px;
     padding-left: 35px;
     color: #666;

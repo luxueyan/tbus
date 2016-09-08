@@ -23,6 +23,7 @@
                             <div class="value">
                                 <span>{{loans.fduration}}</span>
                                 {{loans.fdurunit}}
+                                <span class="assign_info">持有满30天可转让</span>
                             </div>
                             <div class="name">投资期限</div>
                         </div>
@@ -137,9 +138,10 @@
     <div class="current-container">
         <ul class="nav nav-tabs">
             <li role="presentation" class="active" data-step='0'>
-                 <a href="javascript:;">产品介绍</a>
+                <a href="javascript:;">产品亮点</a>
             </li>
-            <li role="presentation" class="" data-step='1'><a href="javascript:;">产品亮点</a>
+            <li role="presentation" class="" data-step='1'>
+                 <a href="javascript:;">产品详情</a>
             </li>
             <li role="presentation" class="" data-step='2'><a href="javascript:;">常见问题</a>
             </li>
@@ -150,7 +152,16 @@
         <div class="clearfix"></div>
 
         <div class="tab-panels">
-            <div class="tab-panel  active">
+            <div class="tab-panel active">
+                <div class="lightspot-box">
+                    {{{loans.loanRequest.productLightspot}}}
+                    <!--<div class="single">-->
+                    <!--<p class="title">雄厚的集团背景</p>-->
+                    <!--<p class="content">诺亚（中国）控股有限公司（NYSE：NOAH）创始于2003年，2010年11月10日成功登陆美国纽约证券交易所，是中国内地首家上市的独立财富管理机构。诺亚实现业务多元化布局，金融服务集团架构基本成型，总体上具备为中国高净值人士实现全球化、全面资产配置服务的能力。财富派为诺亚下设的子公司，作为集团的重要战略布局，财富派是借助最新的移动互联技术专为社会精英、企业白领等高潜力人群打造的互联网私人银行。目前财富派已经形成了完善的互联网私人银行客户服务体系，可以为用户一站式提供跨品类、跨周期、跨地域的高品质财富管理服务。</p>-->
+                    <!--</div>-->
+                </div>
+            </div>
+            <div class="tab-panel">
                 <div class="invest-info-box">
                     <table>
                         <tr>
@@ -237,47 +248,11 @@
                     <div class="insurance-wrapper"></div>
                 </div>
             </div>
-            <div class="tab-panel">
-                <div class="lightspot-box">
-                    {{{loans.loanRequest.productLightspot}}}
-                    <!--<div class="single">-->
-                        <!--<p class="title">雄厚的集团背景</p>-->
-                        <!--<p class="content">诺亚（中国）控股有限公司（NYSE：NOAH）创始于2003年，2010年11月10日成功登陆美国纽约证券交易所，是中国内地首家上市的独立财富管理机构。诺亚实现业务多元化布局，金融服务集团架构基本成型，总体上具备为中国高净值人士实现全球化、全面资产配置服务的能力。财富派为诺亚下设的子公司，作为集团的重要战略布局，财富派是借助最新的移动互联技术专为社会精英、企业白领等高潜力人群打造的互联网私人银行。目前财富派已经形成了完善的互联网私人银行客户服务体系，可以为用户一站式提供跨品类、跨周期、跨地域的高品质财富管理服务。</p>-->
-                    <!--</div>-->
-                    <!--<div class="single">-->
-                        <!--<p class="title">雄厚的集团背景</p>-->
-                        <!--<p class="content">诺亚（中国）控股有限公司（NYSE：NOAH）创始于2003年，2010年11月10日成功登陆美国纽约证券交易所，是中国内地首家上市的独立财富管理机构。诺亚实现业务多元化布局，金融服务集团架构基本成型，总体上具备为中国高净值人士实现全球化、全面资产配置服务的能力。财富派为诺亚下设的子公司，作为集团的重要战略布局，财富派是借助最新的移动互联技术专为社会精英、企业白领等高潜力人群打造的互联网私人银行。目前财富派已经形成了完善的互联网私人银行客户服务体系，可以为用户一站式提供跨品类、跨周期、跨地域的高品质财富管理服务。</p>-->
-                    <!--</div>-->
-                    <!--<div class="single">-->
-                        <!--<p class="title">雄厚的集团背景</p>-->
-                        <!--<p class="content">诺亚（中国）控股有限公司（NYSE：NOAH）创始于2003年，2010年11月10日成功登陆美国纽约证券交易所，是中国内地首家上市的独立财富管理机构。诺亚实现业务多元化布局，金融服务集团架构基本成型，总体上具备为中国高净值人士实现全球化、全面资产配置服务的能力。财富派为诺亚下设的子公司，作为集团的重要战略布局，财富派是借助最新的移动互联技术专为社会精英、企业白领等高潜力人群打造的互联网私人银行。目前财富派已经形成了完善的互联网私人银行客户服务体系，可以为用户一站式提供跨品类、跨周期、跨地域的高品质财富管理服务。</p>-->
-                    <!--</div>-->
-                    <!--<div class="single">-->
-                        <!--<p class="title">雄厚的集团背景</p>-->
-                        <!--<p class="content">诺亚（中国）控股有限公司（NYSE：NOAH）创始于2003年，2010年11月10日成功登陆美国纽约证券交易所，是中国内地首家上市的独立财富管理机构。诺亚实现业务多元化布局，金融服务集团架构基本成型，总体上具备为中国高净值人士实现全球化、全面资产配置服务的能力。财富派为诺亚下设的子公司，作为集团的重要战略布局，财富派是借助最新的移动互联技术专为社会精英、企业白领等高潜力人群打造的互联网私人银行。目前财富派已经形成了完善的互联网私人银行客户服务体系，可以为用户一站式提供跨品类、跨周期、跨地域的高品质财富管理服务。</p>-->
-                    <!--</div>-->
-                </div>
-            </div>
+
 
             <div class="tab-panel">
                 <div class="question-box">
                     {{{loans.loanRequest.commonQuestion}}}
-                    <!--<div class="single">-->
-                        <!--<p class="question">Q: 该产品是否可以随时转让？转让费用是多少？</p>-->
-                        <!--<p class="answer">A:  该产品可以在购买一个月后转让，转让费用为转让总额的5%。</p>-->
-                    <!--</div>-->
-                    <!--<div class="single">-->
-                        <!--<p class="question">Q: 该产品是否可以随时转让？转让费用是多少？</p>-->
-                        <!--<p class="answer">A:  该产品可以在购买一个月后转让，转让费用为转让总额的5%。</p>-->
-                    <!--</div>-->
-                    <!--<div class="single">-->
-                        <!--<p class="question">Q: 该产品是否可以随时转让？转让费用是多少？</p>-->
-                        <!--<p class="answer">A:  该产品可以在购买一个月后转让，转让费用为转让总额的5%。</p>-->
-                    <!--</div>-->
-                    <!--<div class="single">-->
-                        <!--<p class="question">Q: 该产品是否可以随时转让？转让费用是多少？</p>-->
-                        <!--<p class="answer">A:  该产品可以在购买一个月后转让，转让费用为转让总额的5%。</p>-->
-                    <!--</div>-->
                     <!--<div class="single">-->
                         <!--<p class="question">Q: 该产品是否可以随时转让？转让费用是多少？</p>-->
                         <!--<p class="answer">A:  该产品可以在购买一个月后转让，转让费用为转让总额的5%。</p>-->
@@ -295,7 +270,6 @@
 
                 {{else}}
                 <div class="notLogin">
-<!--                    <p>用户详情</p>-->
                     <p>请 <a href="/login" style="color:#009ada;">登录</a> 或 <a href="/register" style="color:#ff6c08;">注册</a> 后查看</p>
                 </div>
                 {{/if}}

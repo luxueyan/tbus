@@ -71,6 +71,17 @@ do (_, angular, Math) ->
 
                 EXTEND_API @api
 
+                @init_amount()
+
+
+            init_amount: (amount) ->
+
+                amount ?= @loan.loanRequest.investRule.minAmount
+                amount = @amount_polishing(amount)
+
+                @fetch_analyse(amount)
+                angular.extend @$scope.store, {amount}
+
 
             amount_polishing: (amount) ->
 
