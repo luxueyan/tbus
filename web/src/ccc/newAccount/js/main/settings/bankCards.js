@@ -194,7 +194,6 @@ ractive.on("bind-card-submit", function (e) {
     e.original.preventDefault();
     var authenticates = this.get('authenticates');
     var paymentAuthenticated = authenticates.paymentAuthenticated;
-    //console.log(paymentAuthenticated);
 
     var bankName = this.get('bankval');
     var cardNo = this.get('cardNo');
@@ -226,26 +225,30 @@ ractive.on("bind-card-submit", function (e) {
     } else {
         this.set('SMS_NULL', false);
     }
+    if(!paymentAuthenticated){
+        if (pwd === '') {
+            this.set('errMessgaePwd', '请输入支付密码');
+            return;
+        } else if (pwd.length != 6 || !/^[0-9]*$/g.test(pwd)) {
+            this.set('errMessgaePwd', '支付密码为6位纯数字');
+            return;
+        } else {
+            this.set('errMessgaePwd', false);
+        }
 
-    if (pwd === '') {
-        this.set('errMessgaePwd', '请输入支付密码');
-        return;
-    } else if (pwd.length != 6 || !/^[0-9]*$/g.test(pwd)) {
-        this.set('errMessgaePwd', '支付密码为6位纯数字');
-        return;
-    } else {
-        this.set('errMessgaePwd', false);
+        if (rePwd === '') {
+            this.set('errMessgaeRePwd', '请再次输入支付密码');
+            return;
+        } else if (pwd !== rePwd) {
+            this.set('errMessgaeRePwd', '两次密码输入不一致');
+            return;
+        } else {
+            this.set('errMessgaeRePwd', false);
+        }
     }
 
-    if (rePwd === '') {
-        this.set('errMessgaeRePwd', '请再次输入支付密码');
-        return;
-    } else if (pwd !== rePwd) {
-        this.set('errMessgaeRePwd', '两次密码输入不一致');
-        return;
-    } else {
-        this.set('errMessgaeRePwd', false);
-    }
+
+
 
 
     var sendCard = {
@@ -269,8 +272,9 @@ ractive.on("bind-card-submit", function (e) {
         IDNUMBER_EXISTS: '账号已存在',
         SUCCEED: '银行卡绑定成功'
     };
-
+    console.log("@@@@@")
     if (!paymentAuthenticated) {
+        console.log("1");
         accountService.initialPassword(pwd, function (r) {
             if (r.success) {
                 $('.btn-box button').text('绑卡中,请稍等...');
@@ -298,6 +302,7 @@ ractive.on("bind-card-submit", function (e) {
     } else {
         //accountService.checkPassword(pwd, function (r) {
             //if (r) {
+        console.log("!!!!!")
                 $('.btn-box button').text('绑卡中,请稍等...');
                 $.post('/api/v2/baofoo/MYSELF/confirmBindCard', sendCard, function (res) { //bindCard
                     if (res.success) {
@@ -400,7 +405,7 @@ function countDown() {
             $('.sendCode')
                 .html(previousText);
             $('.sendCode')
-                .removeClass('disabled');
+                .removeAttr('disabled');
             clearInterval(interval);
         }
     }), 1000);
