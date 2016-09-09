@@ -386,8 +386,7 @@ ractive.on('sendCode', function () {
 });
 
 function countDown() {
-    $('.sendCode')
-        .addClass('disabled');
+    $('.sendCode').attr('disabled','true');
     var previousText = '获取验证码';
     var msg = '$秒后重新发送';
 
