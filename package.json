@@ -4,7 +4,6 @@
   "description": "这个根目录下只放 @cc/node-sh 等公用脚本，其他还是放具体各子项目下",
   "scripts": {
     "postinstall": "ds-init-sub-projects",
-    "prepush": "cd web/ && ccnpm run build && NODE_ENV=production PORT=`next-port 8000` node index --start-then-close",
     "postmerge": "cc-post-merge",
     "dev": "cd web/ && npm run dev",
     "deploy": "node-deploy"
