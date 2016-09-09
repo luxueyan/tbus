@@ -697,9 +697,10 @@ p.tips {
 }
 .row ul li{
   padding: 10px;
-  height: 35px;
+  height: 40px;
   color: #c9c9c9;
   font-size: 16px;
+  padding-right: 0px;
 }
 .row ul li:hover{
   background: #dcdcdc;
@@ -711,15 +712,16 @@ p.tips {
   border: 1px solid #ccc;
   position: absolute;
   background: #fff;
+  z-index: 99999;
 }
 .row ul li span {
     font-size: 12px;
-    margin-left: 10px;
     display: block;
     float: right;
     width: 200px;
     text-align: left;
     line-height: 22px;
+
 }
 
 #main-container .row .card-brame input {
