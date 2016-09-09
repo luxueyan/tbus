@@ -27,6 +27,12 @@ module.exports = function (router) {
         if (user && user.idNumber) {
             delete user.idNumber;
         }
+        // 交易密码
+        if (res.locals.user) {
+            var paymentPasswordHasSet =await req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
+                .end().get('body');
+            res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet;
+        };
 
         var creditassignId = req.params.id;
         var loanId = req.params.loanId;
@@ -74,7 +80,7 @@ module.exports = function (router) {
             'OTHER': '其它借款'
         };
         res.expose(serverDate,'serverDate');
-        res.expose(res.locals.user,'u//ser');
+        res.expose(res.locals.user,'user');
         //res.expose(req.data.path(),'backUrl');
         res.expose(creditassign,'creditassign');
 
