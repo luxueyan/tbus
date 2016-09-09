@@ -735,7 +735,7 @@ p.tips {
   height: 46px;
   font-size: 16px;
   color: #bbbbbb;
-  text-indent: 16px;
+  padding-left: 16px;
 }
 
 #main-container .row .card-brame input.payCodeInp {
