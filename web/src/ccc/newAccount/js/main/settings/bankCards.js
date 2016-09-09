@@ -34,8 +34,8 @@ var ractive = new Ractive({
         bankAccount: banksabled || [],
         province: '',
         city: '',
-        banking:false,
-        vara:'请选择开户银行'
+        banking: false,
+        vara: '请选择开户银行'
     },
     oninit: function () {
         accountService.getUserInfo(function (o) {
@@ -48,7 +48,7 @@ var ractive = new Ractive({
             }
         });
         $.get('/api/v2/baofoo/getBankConstraints', function (r) {
-            if(r.success){
+            if (r.success) {
                 ractive.set('newbanks', r.data);
                 //var o=r.data;
                 //for(var i=0;i<o.length;i++){
@@ -113,10 +113,10 @@ ractive.on("validateCardNo", function () {
     if (cardNo == '') {
         this.set("errMessgaeBank", '请输入您的银行卡号');
         return;
-    } else if(!/^\d+$/.test(cardNo)){
+    } else if (!/^\d+$/.test(cardNo)) {
         this.set("errMessgaeBank", '银行卡号只能是数字');
         return;
-    }else {
+    } else {
         this.set("errMessgaeBank", false);
         accessC = true;
     }
@@ -142,15 +142,15 @@ ractive.on("validateBankName", function () {
         accessE = true;
     }
 });
-ractive.on("banking",function(){
+ractive.on("banking", function () {
     var dis = this.get("banking");
-    if(dis){
+    if (dis) {
         ractive.set('banking', false);
-    }else{
+    } else {
         ractive.set('banking', true);
     }
 });
-ractive.on("bankfull",function(i){
+ractive.on("bankfull", function (i) {
     var name = i.context.bankName;
     var val = i.context.bankCode;
     ractive.set('banking', false);
@@ -211,10 +211,10 @@ ractive.on("bind-card-submit", function (e) {
     this.fire('validatePhoneNo');
     //this.fire('bankfull');
 
-    if(bankName==undefined){
+    if (bankName == undefined) {
         this.set("bankNameError", '请选择开户银行');
         return;
-    }else {
+    } else {
         this.set("bankNameError", false);
         accessE = true;
     }
@@ -225,7 +225,9 @@ ractive.on("bind-card-submit", function (e) {
     } else {
         this.set('SMS_NULL', false);
     }
-    if(!paymentAuthenticated){
+
+
+    if (!paymentAuthenticated) {
         if (pwd === '') {
             this.set('errMessgaePwd', '请输入支付密码');
             return;
@@ -246,9 +248,6 @@ ractive.on("bind-card-submit", function (e) {
             this.set('errMessgaeRePwd', false);
         }
     }
-
-
-
 
 
     var sendCard = {
@@ -301,38 +300,38 @@ ractive.on("bind-card-submit", function (e) {
         });
     } else {
         //accountService.checkPassword(pwd, function (r) {
-            //if (r) {
+        //if (r) {
         console.log("!!!!!")
-                $('.btn-box button').text('绑卡中,请稍等...');
-                $.post('/api/v2/baofoo/MYSELF/confirmBindCard', sendCard, function (res) { //bindCard
-                    if (res.success) {
-                        //console.log(res);
+        $('.btn-box button').text('绑卡中,请稍等...');
+        $.post('/api/v2/baofoo/MYSELF/confirmBindCard', sendCard, function (res) { //bindCard
+            if (res.success) {
+                //console.log(res);
 
-                        ractive.set('step1', false);
-                        ractive.set('step2', true);
-                        ractive.set('step3', false);
-                    } else {
-                        $('.btn-box button').text('绑定');
-                        if (res.error[0].message === 'SMSCAPTCHA_IS_NOT_CORRECT') {
-                            ractive.set('SMS_NULL', '手机验证码错误');
-                            return;
-                        } else {
-                            ractive.set('SMS_NULL', false);
-                        }
-                        ractive.set('step1', false);
-                        ractive.set('step2', false);
-                        ractive.set('step3', true);
-                        if (res.error[0].message === 'Something is wrong') {
-                            msg[res.error[0].message] = '请再次确认您的信息'
-                        }
-                        ractive.set('failError', res.error[0].message)
+                ractive.set('step1', false);
+                ractive.set('step2', true);
+                ractive.set('step3', false);
+            } else {
+                $('.btn-box button').text('绑定');
+                if (res.error[0].message === 'SMSCAPTCHA_IS_NOT_CORRECT') {
+                    ractive.set('SMS_NULL', '手机验证码错误');
+                    return;
+                } else {
+                    ractive.set('SMS_NULL', false);
+                }
+                ractive.set('step1', false);
+                ractive.set('step2', false);
+                ractive.set('step3', true);
+                if (res.error[0].message === 'Something is wrong') {
+                    msg[res.error[0].message] = '请再次确认您的信息'
+                }
+                ractive.set('failError', res.error[0].message)
 
-                    }
+            }
 
-                });
-            //} else {
-            //    ractive.set('errMessgaePwd', '交易密码错误');
-            //}
+        });
+        //} else {
+        //    ractive.set('errMessgaePwd', '交易密码错误');
+        //}
         //});
     }
 
@@ -360,10 +359,10 @@ ractive.on('sendCode', function () {
         mobile: cardPhone,
         bankName: bankName
     }
-    if(bankName==undefined){
+    if (bankName == undefined) {
         this.set("bankNameError", '请选择开户银行');
         return;
-    }else {
+    } else {
         this.set("bankNameError", false);
         accessE = true;
     }
@@ -391,7 +390,7 @@ ractive.on('sendCode', function () {
 });
 
 function countDown() {
-    $('.sendCode').attr('disabled','true');
+    $('.sendCode').attr('disabled', 'true');
     var previousText = '获取验证码';
     var msg = '$秒后重新发送';
 

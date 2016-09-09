@@ -20,6 +20,14 @@ redis.on('error', function(err){
   throw err;
 });
 
+
+server.use(function(req, res, next){
+    //res.setHeader('WWW-Authenticate', config.authenticate || 'Basic realm="xxxx"');
+    res.setHeader('WWW-Authenticate', 'Basic realm="xxxx-xxx"');
+    next()
+});
+
+
 require('./middlewares/encpass').forEach(function (mid) {
     server.use(mid);
 });
@@ -71,4 +79,4 @@ server.use(require('api-pass')(config.proxy.market, {
         return onresponse(response, res);
     }
 }));
-use(server, require('oauth2-errorhandlers')(os));
+use(server, require('@os/oauth2-errorhandlers')(os));
