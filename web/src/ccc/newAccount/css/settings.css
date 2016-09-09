@@ -687,11 +687,19 @@ p.tips {
   -webkit-appearance: none;
   background: #fff;
   text-align: left;
+  /*background-image: url(/ccc/newAccount/img/bank_open.png) no-repeat center right;*/
+}
+.open{
+  width: 14px!important;
+  position: relative;
+  left: 344px;
+  top: 12px;
 }
 .row ul li{
-    padding: 10px;
-    height: 40px;
+  padding: 10px;
+  height: 35px;
   color: #c9c9c9;
+  font-size: 16px;
 }
 .row ul li:hover{
   background: #dcdcdc;
@@ -701,6 +709,8 @@ p.tips {
   display: inline-block;
   width: 380px;
   border: 1px solid #ccc;
+  position: absolute;
+  background: #fff;
 }
 .row ul li span {
     font-size: 12px;
