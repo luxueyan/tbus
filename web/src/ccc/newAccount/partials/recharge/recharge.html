@@ -43,7 +43,10 @@
                         {{#msg.AMOUNT_INVALID}}输入的金额有误{{/msg.AMOUNT_INVALID}}
 <!--                        {{#msg.AMOUNT_NOTENOUGH}}单笔充值10元内{{/msg.AMOUNT_NOTENOUGH}}-->
                     </p>
-                    <p class="warm-tip">单笔限额{{singleQuota}}元，单日限额{{dailyQuota}}元</p>
+                    <p class="warm-tip">
+                        单笔限额 {{#if singleQuota==-1}}无限额{{else}}{{singleQuota}}元{{/if}}，
+                        单日限额 {{#if dailyQuota==-1}}无限额{{else}}{{dailyQuota}}元{{/if}}
+                    </p>
                 </div>
 
                 <div class="rows">
