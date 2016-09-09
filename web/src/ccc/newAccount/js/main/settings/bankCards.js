@@ -34,6 +34,8 @@ var ractive = new Ractive({
         bankAccount: banksabled || [],
         province: '',
         city: '',
+        banking:false,
+        vara:'请选择开户银行'
     },
     oninit: function () {
         accountService.getUserInfo(function (o) {
@@ -140,6 +142,28 @@ ractive.on("validateBankName", function () {
         accessE = true;
     }
 });
+ractive.on("banking",function(){
+    var dis = this.get("banking");
+    if(dis){
+        ractive.set('banking', false);
+    }else{
+        ractive.set('banking', true);
+    }
+});
+ractive.on("bankfull",function(i){
+    var name = i.context.bankName;
+    var val = i.context.bankCode;
+    ractive.set('banking', false);
+    this.set('vara', name);
+    this.set('bankval', val);
+    if (name == '') {
+        this.set("bankNameError", '请选择开户银行');
+        return;
+    } else {
+        this.set("bankNameError", false);
+        accessE = true;
+    }
+});
 ractive.on("validatePwd", function () {
     var pwd = this.get("password");
     if (pwd === '') {
@@ -168,12 +192,11 @@ ractive.on("validateRePwd", function () {
 
 ractive.on("bind-card-submit", function (e) {
     e.original.preventDefault();
-
     var authenticates = this.get('authenticates');
     var paymentAuthenticated = authenticates.paymentAuthenticated;
     //console.log(paymentAuthenticated);
 
-    var bankName = this.get('bankName');
+    var bankName = this.get('bankval');
     var cardNo = this.get('cardNo');
     var idNo = this.get('idNo');
     var personal = this.get('personal');
@@ -187,7 +210,15 @@ ractive.on("bind-card-submit", function (e) {
     this.fire('validateIdNo');
     this.fire('validateCardNo');
     this.fire('validatePhoneNo');
-    this.fire('validateBankName');
+    //this.fire('bankfull');
+
+    if(bankName==undefined){
+        this.set("bankNameError", '请选择开户银行');
+        return;
+    }else {
+        this.set("bankNameError", false);
+        accessE = true;
+    }
 
     if (smsCaptcha === '') {
         this.set('SMS_NULL', '请输入手机验证码');
@@ -308,14 +339,14 @@ ractive.on('sendCode', function () {
     var idNumber = this.get('idNo');
     var accountNumber = this.get('cardNo');
     var cardPhone = this.get('mobile');
-    var bankName = this.get('bankName');
-
+    var bankName = this.get('bankval');
+    console.log(bankName)
     //校验表单
     this.fire('validatePersonal');
     this.fire('validateIdNo');
     this.fire('validateCardNo');
     this.fire('validatePhoneNo');
-    this.fire('validateBankName');
+    //this.fire('bankfull');
 
     var params = {
         realName: realName,
@@ -323,6 +354,13 @@ ractive.on('sendCode', function () {
         accountNumber: accountNumber,
         mobile: cardPhone,
         bankName: bankName
+    }
+    if(bankName==undefined){
+        this.set("bankNameError", '请选择开户银行');
+        return;
+    }else {
+        this.set("bankNameError", false);
+        accessE = true;
     }
 
     if (accessA && accessB && accessC && accessD && accessE) {

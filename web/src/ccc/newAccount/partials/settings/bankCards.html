@@ -35,15 +35,30 @@
                 <div class="img-box">
                     <img src="/ccc/newAccount/img/bankcode.png"/>
                 </div>
-                <select name="bankName" class="select" value="{{bankName}}" {{hasCard1?'disabled':''}} on-blur="validateBankName">
-                    <option value="">选择开户银行</option>
-                    {{#each newbanks}}
-                    <option value="{{bankCode}}">{{bankName}}
-                        <span>单笔 {{#if singleQuota == -1}}无限额{{else}}{{singleQuota}}元{{/if}}/日限额 {{#if dailyQuota == -1}}无限额{{else}}{{dailyQuota}}元{{/if}}</span>
-                    </option>
-                    {{/each}}
-                </select>
+                <!--<select name="bankName" class="select" value="{{bankName}}" {{hasCard1?'disabled':''}} on-blur="validateBankName">-->
+                    <!--<option value="">选择开户银行</option>-->
+                    <!--{{#each newbanks}}-->
+                    <!--<option value="{{bankCode}}">{{bankName}}-->
+                        <!--<span>单笔 {{#if singleQuota == -1}}无限额{{else}}{{singleQuota}}元{{/if}}/日限额 {{#if dailyQuota == -1}}无限额{{else}}{{dailyQuota}}元{{/if}}</span>-->
+                    <!--</option>-->
+                    <!--{{/each}}-->
+                <!--</select>-->
+                <input type="button" class="select" on-click="banking" on-blur="validateBankName" id="select" value="{{vara}}"/>
+                <div style="position: absolute">
+                    <img src="/ccc/newAccount/img/bank_open.png" alt="" class="open" on-click="banking"/>
+                </div>
+
             </div>
+            {{#banking}}
+            <ul id="bank">
+                {{#each newbanks}}
+                <li on-click="bankfull" value="{{bankCode}}" >
+                    {{bankName}}
+                    <span>单笔 {{#if singleQuota == -1}}无限额{{else}}{{singleQuota}}元{{/if}}/日限额 {{#if dailyQuota == -1}}无限额{{else}}{{dailyQuota}}元{{/if}}</span>
+                </li>
+                {{/each}}
+            </ul>
+            {{/banking}}
             <p class="error">{{#if bankNameError}} {{bankNameError}} {{/if}}</p>
             <div class="clearfix"></div>
         </div>

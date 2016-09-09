@@ -685,18 +685,43 @@ p.tips {
   padding-left: 16px;
   appearance: none;
   -webkit-appearance: none;
+  background: #fff;
+  text-align: left;
+  /*background-image: url(/ccc/newAccount/img/bank_open.png) no-repeat center right;*/
 }
-.select option{
-    padding: 10px;
+.open{
+  width: 14px!important;
+  position: relative;
+  left: 344px;
+  top: 12px;
 }
-.select option span {
+.row ul li{
+  padding: 10px;
+  height: 40px;
+  color: #c9c9c9;
+  font-size: 16px;
+  padding-right: 0px;
+}
+.row ul li:hover{
+  background: #dcdcdc;
+  color:#666666;
+}
+.row ul{
+  display: inline-block;
+  width: 380px;
+  border: 1px solid #ccc;
+  position: absolute;
+  background: #fff;
+  z-index: 99999;
+}
+.row ul li span {
     font-size: 12px;
-    margin-left: 10px;
     display: block;
     float: right;
     width: 200px;
     text-align: left;
-    margin-top: -20px;
+    line-height: 22px;
+
 }
 
 #main-container .row .card-brame input {
