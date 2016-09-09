@@ -43,7 +43,7 @@
                     <!--</option>-->
                     <!--{{/each}}-->
                 <!--</select>-->
-                <input type="button" class="select" on-click="banking" on-blur="validateBankName" id="select" value="{{vara}}"/>
+                <input type="button" class="select" on-click="banking" on-blur="validateBankName" id="select" value="{{vara}}"{{hasCard1?'disabled':''}}/>
                 <div style="position: absolute">
                     <img src="/ccc/newAccount/img/bank_open.png" alt="" class="open" on-click="banking"/>
                 </div>
@@ -95,7 +95,7 @@
                 </div>
                 <input on-keyup="validateCaptcha" type="text" name="smsCaptcha" class="payInp payCodeInp"
                        value="{{smsCaptcha}}" placeholder="输入验证码">
-                <span class="sendCode" on-click="sendCode" style="border:0;">发送验证码</span>
+                <button class="sendCode" on-click="sendCode" style="border:0;" >发送验证码</button>
             </div>
             <p class="error">{{#if SMS_NULL}} {{SMS_NULL}} {{/if}}</p>
 

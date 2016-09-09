@@ -56,7 +56,7 @@ var ractive = new Ractive({
                             surveyId: riskId,
                             fillingStatus: 'FINISHED',
                             score: sum,
-                            rank: rank,
+                            //rank: rank,
                             content: ''
                         })
                         .end()
