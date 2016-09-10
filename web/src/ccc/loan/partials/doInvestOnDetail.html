@@ -76,7 +76,7 @@
                     <p class="totalInterest">预计收益
                             <span>
                         <!-- {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}} -->
-                            {{(1/360 * (isNaN(inputNum)?0 : inputNum) *loan.rate/100).toFixed(2)}}
+                            {{(1/365 * (isNaN(inputNum)?0 : inputNum) *loan.rate/100).toFixed(2)}}
                             </span>元
                     </p>
 
