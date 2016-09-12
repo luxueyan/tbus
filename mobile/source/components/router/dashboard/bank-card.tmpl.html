@@ -62,10 +62,11 @@
         </ul>
 
         <div class="container action">
-            <button class="btn btn-lg btn-block btn-theme"
-                    ng-click="self.unbind(bank_account.account.account)"
-                    ng-disabled="self.submit_sending"
-            >{{ self.submit_sending ? '删除中...' : '删除银行卡' }}</button>
+            <form ng-submit="self.unbind(bank_account.account.account)">
+                <button type="submit" class="btn btn-lg btn-block btn-theme"
+                        ng-disabled="self.submit_sending"
+                >{{ self.submit_sending ? '删除中...' : '删除银行卡' }}</button>
+            </form>
         </div>
     </section>
 
