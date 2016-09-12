@@ -39,7 +39,8 @@
 
                         <div class="item">
                             <div class="value">
-                                <span id="minAmount">{{loans.minAmount}}</span>{{loans.minAmountUnit}}
+                                <span>{{loans.minAmount}}</span>
+                               {{loans.minAmountUnit}}
                             </div>
                             <div class="name">起投金额</div>
                         </div>
@@ -186,7 +187,7 @@
                         </tr>
                         <tr>
                             <th class="title">起投金额</th>
-                            <th class="content">{{ loans.loanRequest.investRule.minAmount }}元</th>
+                            <th class="content"><span id="minAmount">{{ loans.loanRequest.investRule.minAmount }}</span>元</th>
                         </tr>
                         <tr>
                             <th class="title">递增金额</th>

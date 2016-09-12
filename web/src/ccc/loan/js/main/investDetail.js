@@ -382,7 +382,7 @@ setTimeout((function () {
     var call =0;
     investRactive.on('addNum', function () {
         var inputNum = parseInt(this.get('inputNum'));
-        var minAmount = $("#minAmount").html();
+        var minAmount = parseInt($("#minAmount").html());
         var stepAmount = parseInt($("#stepAmount").html());
         if(call==0){
             investRactive.set('inputNum',minAmount);
