@@ -91,7 +91,7 @@ select::-ms-expand { display: none; }
 }
 .invest-data-wrapper .investContainer .content .inner .item {
     float: left;
-    padding-right: 80px;
+    padding-right: 65px;
 }
 .invest-data-wrapper .investContainer .content .inner .item:last-child{
     padding-right: 0px;
