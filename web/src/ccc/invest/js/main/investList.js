@@ -171,7 +171,6 @@ function replaceStr(str) {
 IndexService.getLoanSummary(function (res) {
     //parseLoanList(res)
     var listFixed = [], listFloat = [];
-
     for (var i = 0; i < res.length; i++) {
         if (res[i].loanRequest.productKey == 'GDSY') {
             listFixed.push(res[i]);
@@ -179,16 +178,19 @@ IndexService.getLoanSummary(function (res) {
             listFloat.push(res[i]);
         }
     }
-    console.log("1111")
-    console.log(listFixed)
-    console.log("1111")
+    //console.log("1111")
+    //console.log(listFixed)
+    //console.log(listFloat)
+    //console.log("1111")
+    var listOpen = [];
     var listNone = [];
     for (var i = 0; i < listFixed.length; i++) {
         if (listFixed[i].status == "OPENED"||listFixed[i].status == "SCHEDULED") {
+            listOpen.push(listFixed[i]);
+        }else{
             listNone.push(listFixed[i]);
         }
     }
-    //console.log(listFloat);
     var compare = function (obj1, obj2) {
         var val1 = obj1.timeOpen;
         var val2 = obj2.timeOpen;
@@ -201,18 +203,35 @@ IndexService.getLoanSummary(function (res) {
         }
     }
 
+    listOpen.sort(compare);
     listNone.sort(compare);
-    console.log("@@@@");
-    console.log(listNone);
-    console.log("@@@@");
+    //console.log("@@@@");
+    //console.log(listOpen);
+    //console.log(listNone);
+    //console.log("@@@@");
     // 固定收益
     var listRactive = new Ractive({
         el: ".fixedPro",
         template: require('ccc/invest/partials/fixedPro.html'),
         data: {
-            list: (listNone.slice(0, 5)),
+            list: [],
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         },
+        onrender:function(){
+            var self = this;
+            if(listOpen.length){
+                self.set('list',listOpen.slice(0, 5));
+            }else{
+                self.set('list',listNone.slice(0, 5));
+            };
+
+            $('.assign_time').mouseover(function(){
+                $(this).parent().parent().parent().siblings('.assign_tip').fadeIn(200);
+            })
+            $('.assign_tip').mouseleave(function(){
+                $(this).fadeOut(200);
+            })
+        }
     });
     // 浮动收益
     var listRactive = new Ractive({

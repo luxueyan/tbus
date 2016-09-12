@@ -23,7 +23,7 @@ var investAmounted = CC.user.investStatistics.investStatistics.dueAmount.princip
 //// 在投本金(待收本金)+冻结金额
 var investAmount = investAmounted+frozenAmount;
 // 总资产
-var totalAmount = parseFloat(avaAmount + currentIncome + investAmount + frozenAmount).toFixed(2);
+var totalAmount = parseFloat(avaAmount + currentIncome + investAmount ).toFixed(2);
 
 var homeRactive = new Ractive({
     el: '.account-home-wrapper',

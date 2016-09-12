@@ -89,6 +89,12 @@ $("[data-toggle=tooltip]")
                     .find('.tooltip-container')
             });
     });
+$('.assign_time').mouseover(function(){
+    $('.assign_tip').fadeIn(200);
+})
+$('.assign_tip').mouseleave(function(){
+    $(this).fadeOut(200);
+})
 
 setTimeout((function () {
     CC.loan.timeElapsed = utils.format.timeElapsed(CC.loan.timeElapsed);
