@@ -19,9 +19,9 @@ var frozenAmount = CC.user.frozenAmount || 0;
 // 冻结中的投标金额
 var investFrozenAmount = CC.user.investStatistics.investFrozenAmount || 0;
 // 在投本金(待收本金)
-var investAmount = CC.user.investStatistics.investStatistics.dueAmount.principal || 0;
+var investAmounted = CC.user.investStatistics.investStatistics.dueAmount.principal || 0;
 //// 在投本金(待收本金)+冻结金额
-//var investAmount = investAmounted+frozenAmount;
+var investAmount = investAmounted+frozenAmount;
 // 总资产
 var totalAmount = parseFloat(avaAmount + currentIncome + investAmount + frozenAmount).toFixed(2);
 
