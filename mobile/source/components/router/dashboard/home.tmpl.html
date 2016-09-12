@@ -84,7 +84,7 @@
                     <div class="info-row info-row-fixed">
                         <div class="info-col title">固定收益</div>
                         <div class="info-col">
-                            <div class="value">{{ self.user.statistics.investStatistics.dueAmount.principal | number: 2 }}</div>
+                            <div class="value">{{ (self.user.statistics.investStatistics.dueAmount.principal + self.user.fund.frozenAmount) | number: 2 }}</div>
                             <div class="name">持有本金</div>
                         </div>
                         <div class="info-col">
