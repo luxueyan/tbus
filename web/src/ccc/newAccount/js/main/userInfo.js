@@ -53,19 +53,29 @@ function formatNumber(number, left, right) {
 ractive.on('delete-card',function() {
     var userId = CC.user.id;
     var banks = this.get('bankCards');
-    console.log(banks);
+    var avaAmount = CC.user.availableAmount;
+    var frozenAmount = CC.user.frozenAmount;
+    var outstandingInterest = CC.user.outstandingInterest;
+    var outstandingPrincipal = CC.user.outstandingPrincipal;
+    var totalAmount = parseFloat(avaAmount + frozenAmount + outstandingInterest + outstandingPrincipal).toFixed(2);
     var accountNumber = banks[0].account.account;
     var params = {
         userId:userId,
         accountNumber:accountNumber
     }
-    accountService.deleteBank(params,function(r) {
-        if (r.success) {
-            alert('删卡成功！');
-            window.location.reload();
-        } else {
-            alert('删卡成功！');
-        }
-    });
+    if(totalAmount>0){
+        alert('1、您的平台总资产还有资金(含在投资金和未提现资金)，为保证您的资金安全，暂时不允许通过线上删除银行卡；2、如有疑问，请联系客服：400-900-8868');
+        window.location.reload();
+    }else{
+        accountService.deleteBank(params,function(r) {
+            if (r.success) {
+                alert('删卡成功！');
+                window.location.reload();
+            } else {
+                alert('删卡失败！');
+            }
+        });
+    }
+
 });
            
