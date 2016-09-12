@@ -1238,7 +1238,7 @@
     height: 75px;
     line-height: 55px;
     font-weight: normal;
-    font-size: 24px;
+    font-size: 18px;
     border: none;
     border-bottom: 1px solid #eee;
     text-align: center;
@@ -1250,7 +1250,7 @@
 
 .invest-detail-wrapper .nav-tabs .active a,
 .invest-detail-wrapper .nav-tabs .active a:focus {
-    font-size: 24px;
+    font-size: 18px;
     border: none;
     text-align: center;
     color: #4a4a4a;
