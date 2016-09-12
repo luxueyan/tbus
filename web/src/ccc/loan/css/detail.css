@@ -81,6 +81,7 @@ select::-ms-expand { display: none; }
     float: left;
     clear: both;
     margin-top: 20px;
+    position: relative;
 }
 .invest-data-wrapper .investContainer .content .inner {
     overflow: hidden;
@@ -91,7 +92,8 @@ select::-ms-expand { display: none; }
 }
 .invest-data-wrapper .investContainer .content .inner .item {
     float: left;
-    padding-right: 80px;
+    /*padding-right: 80px;*/
+    width: 168px;
 }
 .invest-data-wrapper .investContainer .content .inner .item:last-child{
     padding-right: 0px;
@@ -110,9 +112,12 @@ select::-ms-expand { display: none; }
     font-size: 30px;
     color: #666;
 }
-.invest-data-wrapper .investContainer .content .inner .item .value span.assign_info{
+.invest-data-wrapper .investContainer .content .inner .item .value span.assign_time{
+    font-size: 12px;
     color: #e4262b;
-    font-size: 16px;
+    text-decoration: underline;
+    margin-left: 10px;
+    cursor: pointer;
 }
 .invest-data-wrapper .investContainer .content .innerBottom {
     overflow: hidden;
@@ -247,7 +252,7 @@ select::-ms-expand { display: none; }
 }
 /*产品介绍*/
 .invest-info-box {
-    font-size: 18px;
+    /*font-size: 18px;*/
     margin-left: 70px;
 }
 .invest-info-box table tbody tr{
@@ -1046,4 +1051,22 @@ select::-ms-expand { display: none; }
 }
 .space-40{
     height: 40px;
+}
+
+.assign_tip{
+    clear: both;
+    position: absolute;
+    width: 202px;
+    height: 93px;
+    top: 70px;
+    left: 99px;
+    z-index: 1111111111111;
+    background: #f3eadd;
+    padding: 12px;
+    font-size: 12px;
+    display: none;
+}
+.assign_tip a{
+    color: #e4262b;
+    text-decoration: underline;
 }

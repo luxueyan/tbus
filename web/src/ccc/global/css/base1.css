@@ -156,6 +156,8 @@
     color: #cca671;
     padding-top: 5px;
     display: block;
+    background: url(/ccc/global/img/email_icon.png) no-repeat 2px 9px;
+    padding-left: 36px;
 }
 
 .footer-info{
