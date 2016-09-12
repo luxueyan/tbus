@@ -387,6 +387,8 @@ setTimeout((function () {
         if(call==0){
             investRactive.set('inputNum',minAmount);
             call++;
+        }else if(inputNum<minAmount){
+            investRactive.set('inputNum',minAmount);
         }else if(inputNum>0){
             investRactive.set('inputNum',inputNum+stepAmount);
         }
