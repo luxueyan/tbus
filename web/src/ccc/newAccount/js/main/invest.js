@@ -78,7 +78,7 @@ if (tab.ractive === null) {
 						datas[i].Frate = utils.format.percent(o.rate/100, 2);
 						datas[i].Famount = utils.format.amount(o.amount, 2);
 						datas[i].Fstatus = utils.i18n.InvestStatus[o.status];
-            datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true:false;
+            			datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true:false;
 						break;
 					case 'INHAND':
 						datas[i].Fduration = utils.format.duration(o.duration);
