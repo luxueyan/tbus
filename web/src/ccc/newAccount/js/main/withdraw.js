@@ -110,7 +110,7 @@ var ractive = new Ractive({
                     self.set('submitText', '确认提现');
                     self.set('totalFee', o.totalFee);
                     self.set('withdrawAmount', o.withdrawAmount);
-                    if(o.withdrawAmount<0){
+                    if(o.withdrawAmount<=0){
                         self.set('withdrawAmount', '到账金额小于0,请调整取现金额');
                     }
                 },
@@ -232,7 +232,7 @@ ractive.on('withDrawSubmit', function () {
 
     if (amount === '') {
         this.set('msg.AMOUNT_NULL', true);
-    } else if (amount == 0) {
+    } else if (amount <= 2) {
         this.set('msg.AMOUNT_INVALID', true);
     } else if (!this.match(amount)) {
         this.set('msg.AMOUNT_INVALID', true);
