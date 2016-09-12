@@ -133,7 +133,6 @@ h2.forgot_title {
     width: 276px;
     border: 1px solid #c5c5c5;
     border-radius: 3px;
-    padding-left: 10px;
     border-radius: 4px;
     float: left;
 }
@@ -211,12 +210,9 @@ h2.forgot_title {
     background-color: #e60012;
     border-radius: 3px;
     display: block;
-    margin-top: 40px;
+    margin-top: 25px;
     font-size: 16px;
     cursor: pointer;
-}
-.main .step02 .verify-content .u-form-btn-red {
-    margin-top: 25px;
 }
 .tip_information {
     font-size: 15px!important;
@@ -635,14 +631,12 @@ h2.forgot_title {
 
 .main .step01 .verify-content .box-phone {
     overflow: hidden;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 .errors {
     float: left;
     margin-left: 10px;
-    height: 40px;
-    font-size: 15px;
 }
 
 .errors h1 {
@@ -653,13 +647,13 @@ h2.forgot_title {
     background-position: left center;
     padding-left: 30px;
     color: #9fa0a0;
-    line-height: 40px;
+    /*line-height: 40px;*/
     color: #d2252c;
 }
 
 .main .step02 .u-form-panel .box-password {
     overflow: hidden;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .step03 {
