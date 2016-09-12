@@ -2739,7 +2739,7 @@ a {
             .body {
                 .flex-display(center; space-between);
 
-                padding: 6px 15px;
+                padding: 6px 10px 6px 15px;
 
                 .name {
                     font-size: 12px;
@@ -2785,9 +2785,23 @@ a {
                     }
                 }
 
-                .action {
-                    .btn {
-                        .button-size(4px; 10px; 12px; 1; 6px);
+                .status-action {
+                    text-align: center;
+
+                    .status {
+                        margin: 5px 0;
+                        font-size: 12px;
+                        color: #717071;
+                    }
+
+                    .action {
+                        .btn {
+                            .button-size(4px; 10px; 12px; 1; 6px);
+
+                            &-disabled {
+                                .button-variant(#FFF; #BBBDC1; #BBBDC1);
+                            }
+                        }
                     }
                 }
             }
