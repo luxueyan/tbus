@@ -16,6 +16,8 @@ do (_, angular) ->
 
                 angular.extend @$scope, { bank_account }
 
+                @total = @user.fund.availableAmount + @user.fund.dueInAmount + @user.fund.frozenAmount
+
                 if !@user.has_bank_card or !@user.has_payment_password
                     @popup_payment_state {
                         user: @user
@@ -26,6 +28,10 @@ do (_, angular) ->
 
 
             unbind: (account) ->
+
+                if @total > 0
+                    @$window.alert @$scope.msg.UNBIND_CARD_NOT_ALLOWED
+                    return
 
                 return if @submit_sending
 
