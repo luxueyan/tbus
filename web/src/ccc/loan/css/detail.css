@@ -256,7 +256,7 @@ select::-ms-expand { display: none; }
     margin-left: 70px;
 }
 .invest-info-box table tbody tr{
-    line-height: 46px;
+    line-height: 30px;
 }
 .invest-info-box .title {
     color: #999;
@@ -351,7 +351,7 @@ select::-ms-expand { display: none; }
 /*产品亮点*/
 .lightspot-box{
     margin: 10px 58px;
-    font-size: 18px;
+    font-size: 14px;
 }
 .lightspot-box .single{
     margin-bottom: 48px;
@@ -386,7 +386,6 @@ select::-ms-expand { display: none; }
     text-align: center;
     font-size: 18px;
 }
-
 /*投资框*/
 
 .do-invest-wrapper {

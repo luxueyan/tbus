@@ -33,8 +33,9 @@ router.get('/', function (req, res, next) {
         .get('body')
         .then(function (data) {
             _.forEach(data,  function (userInfo){
-                userInfo.timeRecorded = moment(userInfo.timeRecorded).format('YYYY-MM-DD');
+                userInfo.timeRecorded = moment(userInfo.pubDate).format('YYYY-MM-DD');
             })
+
             return data;
 
         });
