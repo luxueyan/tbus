@@ -150,13 +150,13 @@ $('#svg_cont').highcharts({
         innerSize: '60%',
         data: [{
             name: '浮动收益',
-            y: 60,
+            y: 0,
         }, {
             name: '固定收益',
-            y: 25.8,
+            y: investAmount,
         }, {
             name: '精选基金',
-            y: 15,
+            y: 0,
             sliced: true,
             selected: true
         }]
