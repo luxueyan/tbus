@@ -234,7 +234,7 @@
             }}
         </div>
         <div class="status" ng-switch="loan.status">
-            <div class="btn btn-block btn-default disabled"
+            <div class="btn btn-block btn-theme disabled"
                  ng-switch-when="SCHEDULED"
             >即将开始</div>
 
@@ -243,15 +243,15 @@
                ng-href="loan/{{ loan.id }}/invest"
             >马上投资</a>
 
-            <div class="btn btn-block btn-default disabled"
+            <div class="btn btn-block btn-theme disabled"
                  ng-switch-when="FINISHED"
             >已满标</div>
 
-            <div class="btn btn-block btn-default disabled"
+            <div class="btn btn-block btn-theme disabled"
                  ng-switch-when="SETTLED"
             >计息中</div>
 
-            <div class="btn btn-block btn-default disabled"
+            <div class="btn btn-block btn-theme disabled"
                  ng-switch-when="CLEARED"
             >已结息</div>
         </div>
