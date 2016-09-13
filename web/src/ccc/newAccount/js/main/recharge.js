@@ -38,12 +38,13 @@ var ractive = new Ractive({
             self.set('loadMessage', null);
 
             $.get('/api/v2/baofoo/getBankConstraints', function (r) {
-                if(r.success){
-                    var item= r.data;
-                    for(var i=0; i< item.length; i++){
-                        if(item[i].bankCode == o[0].account.bank){
+                if (r.success) {
+                    var item = r.data;
+                    for (var i = 0; i < item.length; i++) {
+                        if (item[i].bankCode == o[0].account.bank) {
                             ractive.set('singleQuota', item[i].singleQuota);
                             ractive.set('dailyQuota', item[i].dailyQuota);
+                            ractive.set('minQuota', item[i].minQuota);
                         }
                     }
                 }
@@ -70,6 +71,8 @@ var ractive = new Ractive({
 
         this.on('changeValue', function (e) {
             var singleQuota = self.get('singleQuota');
+            var minQuota = self.get('minQuota');
+            //console.log(minQuota)
 
             self.set('msg', {
                 AMOUNT_NULL: false,
@@ -79,15 +82,29 @@ var ractive = new Ractive({
             });
             var value = self.get('amount');
 
-        //console.log(value)
-        //console.log(singleQuota)
+            //console.log(value)
+            //console.log(singleQuota)
+
             if (value === '') {
                 self.set('msg.AMOUNT_NULL', true);
                 self.set('msg.CODE_NULL', true);
                 return;
             }
-            if (value > singleQuota){
-                self.set('msg.AMOUNT_INVALID',true);
+            if(minQuota == -1){
+                if (value < 1) {
+                    self.set('minQuota',0);
+                    self.set('msg.AMOUNT_NOTENOUGH', true);
+                    return;
+                }
+            }else{
+                if (value < minQuota+1) {
+                    self.set('msg.AMOUNT_NOTENOUGH', true);
+                    return;
+                }
+            }
+
+            if (value > singleQuota) {
+                self.set('msg.AMOUNT_INVALID', true);
                 return;
             }
 
@@ -105,19 +122,19 @@ var ractive = new Ractive({
         });
 
         //去除chrome浏览器里的自动填充
-        if(navigator.userAgent.toLowerCase().indexOf("chrome") != -1 || navigator.userAgent.toLowerCase().indexOf("Safari") == -1){
+        if (navigator.userAgent.toLowerCase().indexOf("chrome") != -1 || navigator.userAgent.toLowerCase().indexOf("Safari") == -1) {
             var selectors = document.getElementsByTagName("input");
-            for(var i=0;i<selectors.length;i++){
-                if((selectors[i].type !== "submit") && (selectors[i].type !== "password")){
+            for (var i = 0; i < selectors.length; i++) {
+                if ((selectors[i].type !== "submit") && (selectors[i].type !== "password")) {
                     var input = selectors[i];
                     var inputName = selectors[i].name;
                     var inputid = selectors[i].id;
                     selectors[i].removeAttribute("name");
                     selectors[i].removeAttribute("id");
-                    setTimeout(function(){
-                        input.setAttribute("name",inputName);
-                        input.setAttribute("id",inputid);
-                    },1)
+                    setTimeout(function () {
+                        input.setAttribute("name", inputName);
+                        input.setAttribute("id", inputid);
+                    }, 1)
                 }
             }
         }
@@ -135,6 +152,7 @@ ractive.on('recharge_submit', function (e) {
     var bankcardNo = this.get('bankcards');
     var cardNo = bankcardNo[0].account.account;
     var clientIp = CC.clientIp;
+    var minQuota = this.get('minQuota');
 
     this.set('msg', {
         AMOUNT_NULL: false,
@@ -144,7 +162,18 @@ ractive.on('recharge_submit', function (e) {
         CODE_INVALID: false,
     });
 
-
+    if(minQuota == -1){
+        if (amount < 1) {
+            this.set('minQuota',0);
+            this.set('msg.AMOUNT_NOTENOUGH', true);
+            return false;
+        }
+    }else{
+        if (amount < minQuota+1) {
+            this.set('msg.AMOUNT_NOTENOUGH', true);
+            return false;
+        }
+    }
     if (amount === '') {
         e.original.preventDefault();
         this.$amount.focus();
@@ -158,6 +187,9 @@ ractive.on('recharge_submit', function (e) {
         return false;
         myFunc()
     }
+
+
+
     if (password === '') {
         e.original.preventDefault();
         this.set('msg.CODE_NULL', true);
@@ -165,45 +197,45 @@ ractive.on('recharge_submit', function (e) {
         myFunc()
     } else {
         var self = this;
-        $(".submit_btn").attr("disabled","true");
+        $(".submit_btn").attr("disabled", "true");
         accountService.checkPassword(password, function (res) {
-            if(res){
+            if (res) {
                 $('.submit_btn').text('正在充值中，请稍等...');
                 request.post('/api/v2/baofoo/charge')
                     .type("form")
                     .send({
-                        userId:CC.user.id,
+                        userId: CC.user.id,
                         txn_amt: amount,
                         paymentPasswd: password,
                         //cardNo: cardNo
                         clientIp: clientIp
                     })
-                .end()
-                .then(function (r) {
+                    .end()
+                    .then(function (r) {
 
-                    if (r.body.success) {
-                        ractive.set('step1',false);
-                        ractive.set('step2',true);
-                        ractive.set('step3',false);
-                        myFunc()
-                    } else {
-                        ractive.set('step1',false);
-                        ractive.set('step2',false);
-                        ractive.set('step3',true);
-                        //alert('充值失败');
-                        ractive.set('failError', r.error[0].message);
-                        $('.submit_btn').text('确认充值');
-                        myFunc()
-                    }
-                });
-            }else{
+                        if (r.body.success) {
+                            ractive.set('step1', false);
+                            ractive.set('step2', true);
+                            ractive.set('step3', false);
+                            myFunc()
+                        } else {
+                            ractive.set('step1', false);
+                            ractive.set('step2', false);
+                            ractive.set('step3', true);
+                            //alert('充值失败');
+                            ractive.set('failError', r.error[0].message);
+                            $('.submit_btn').text('确认充值');
+                            myFunc()
+                        }
+                    });
+            } else {
                 self.set('msg.CODE_INVALID', true);
                 myFunc()
             }
         })
         return false;
     }
-    function myFunc(){
+    function myFunc() {
         //code
         //执行某段代码后可选择移除disabled属性，让button可以再次被点击
         $(".submit_btn").removeAttr("disabled");
