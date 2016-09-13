@@ -1,6 +1,8 @@
 "use strict";
 
 var utils = require('ccc/global/js/lib/utils');
+var CccOk = require('ccc/global/js/modules/cccOk');
+var Confirm = require('ccc/global/js/modules/cccConfirm');
 
 $(".s-header-info .app").hover(
     function () {
@@ -22,36 +24,48 @@ $(".s-header-info .wx_img").hover(
 var path = window.location.pathname;
 
 if (new RegExp("^/$")
-    .test(path)) {
+        .test(path)) {
     $(".u-nolist-ul li a#index")
         .addClass("navactive");
 
 } else if (new RegExp("^/invest")
-    .test(path)) {
+        .test(path)) {
     $(".u-nolist-ul li a#invest")
         .addClass("navactive");
 
-}  else if (new RegExp("^/credit")
+} else if (new RegExp("^/credit")
         .test(path)) {
     $(".u-nolist-ul li a#credit")
         .addClass("navactive");
 
 } else if (new RegExp("^/newAccount/*")
-    .test(path)) {
+        .test(path)) {
     $(".u-nolist-ul li a#account")
         .addClass("navactive");
 
 } else if (new RegExp("^/guide")
-    .test(path)) {
+        .test(path)) {
     $(".u-nolist-ul li a#guide")
         .addClass("navactive");
 
 } else if (new RegExp("^/aboutus/*")
-    .test(path)) {
+        .test(path)) {
     $(".u-nolist-ul li a#aboutus")
         .addClass("navactive");
-}else if (new RegExp("^/high/*")
+} else if (new RegExp("^/high/*")
         .test(path)) {
     $(".u-nolist-ul li a#high")
         .addClass("navactive");
 }
+
+
+//弹出框
+$('.mark_box').css({
+    height:$(window).height(),
+    width:$(window).width()
+})
+
+$('.showPop').click(function () {
+    $('.mark_box').fadeIn(1000);
+    $('.pop_box').fadeIn(1000);
+});

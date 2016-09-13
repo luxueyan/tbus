@@ -588,3 +588,60 @@ input[type=button]{
     background: url(/ccc/global/img/service_phone.png) no-repeat left center;
     padding-left: 25px;
 }
+
+
+.mark_box{
+    opacity: 0.8;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 1;
+    background: url(/ccc/register/img/tchk_bg.png);
+}
+.pop_box{
+    border: 1px solid #ccc;
+    width: 700px;
+    height: 360px;
+    border-radius: 5px;
+    position: absolute;
+    top: 10%;
+    /*    margin-top: -210px;*/
+    left: 50%;
+    margin-left: -350px;
+    z-index: 2;
+    display: none;
+    background: #fff;
+}
+.pop_content{
+    margin: 60px;
+    line-height: 30px;
+}
+.pop_btn{
+    margin-left: 150px;
+}
+.quit_btn{
+    width: 140px;
+    height: 40px;
+    border: 1px solid;
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    display: block;
+    float: left;
+    text-align: center;
+    line-height: 40px;
+}
+.login_btn{
+    width: 140px;
+    height: 40px;
+    border: 1px solid;
+    color: #FFF;
+    background-color: #D7000F;
+    border-color: transparent;
+    display: block;
+    float: left;
+    text-align: center;
+    line-height: 40px;
+    margin-left: 100px;
+}
