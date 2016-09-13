@@ -107,18 +107,13 @@ var _hmt = _hmt || [];
                 <li><a id="index" href="/">首页</a></li>
                 <li><a id="invest" href="/invest">我要理财</a></li>
                 <!--<li><a id="fund" href="">精选基金</a></li>-->
+                {{#if user}}
                 <li><a id="high" href="/high">高端理财</a></li>
+                {{else}}
+                <li class="showPop"><a href="#">高端理财</a></li>
+                {{/if}}
                 <li><a id="credit" href="/creditList">转让专区</a></li>
-                <!--<li><a id="gdlc" href="">高端理财</a></li>-->
                 <li><a id="guide" href="/guide">新手指引</a></li>
-
-                <!--<li>
-                    {{#if user}}
-                    <a id="account" href="/newAccount/home/index">我的账户</a>
-                    {{else}}
-                    <a id="account" href="/login">我的账户</a>
-                    {{/if}}
-                </li>-->
                 <li><a id="account" href="/newAccount/home/index">我的账户</a></li>
             </ul>
 
@@ -126,6 +121,21 @@ var _hmt = _hmt || [];
     </div>
 </div>
 <!-- 导航结束 -->
+
+<div class="mark_box"></div>
+<div class="pop_box">
+    <div class="pop_content">阁下如有意进行私募投资基金投资且满足
+        《私募投资基金监督管理暂行办法》关于"合规投资者"标准之规定，
+        即具备相应风险识别能力和风险承担能力，
+        投资于单只私募基金的金额不低于100 万元，
+        且个人金融类资产不低于300万元或者最近三年个人年均收入不低于50万元人民币。
+        请阁下详细阅读本提示，并注册成为太合汇·汇财富特定的合规投资者，
+        方可获得太合汇私募投资基金产品宣传推介服务。</div>
+    <div class="pop_btn">
+        <a class="quit_btn" href="http://tahone.cn/">离开</a>
+        <a class="login_btn" href="/login">登录</a>
+    </div>
+</div>
 
 <div id="main-container" style="padding-bottom:0">{{>content}}</div>
 
