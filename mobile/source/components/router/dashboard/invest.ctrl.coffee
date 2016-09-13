@@ -168,3 +168,11 @@ do (_, angular) ->
         scope:
             item: '='
             type: '='
+
+
+        controller: _.ai '@$element, @$location, @$scope, @$rootScope', class
+            constructor: (@$element, @$location, @$scope, @$rootScope) ->
+                42
+
+        controllerAs: 'self'
+
