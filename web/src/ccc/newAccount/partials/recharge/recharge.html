@@ -41,7 +41,7 @@
                     <p class="text-danger" style="color:red;">
                         {{#msg.AMOUNT_NULL}}请输入充值金额{{/msg.AMOUNT_NULL}}
                         {{#msg.AMOUNT_INVALID}}输入的金额有误{{/msg.AMOUNT_INVALID}}
-<!--                        {{#msg.AMOUNT_NOTENOUGH}}单笔充值10元内{{/msg.AMOUNT_NOTENOUGH}}-->
+                        {{#msg.AMOUNT_NOTENOUGH}}单笔充值要大于{{minQuota}}元{{/msg.AMOUNT_NOTENOUGH}}
                     </p>
                     <p class="warm-tip">
                         单笔限额 {{#if singleQuota==-1}}无限额{{else}}{{singleQuota}}元{{/if}}，
