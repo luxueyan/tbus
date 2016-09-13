@@ -12,6 +12,7 @@
     "@ccc/register": "^2.10.6",
     "@ccc/template-watch": "^2.0.2",
     "@ccc/validation": "^1.0.5",
+    "@ccc/wx": "^1.2.3",
     "@ds/data": "^1.0.0",
     "@ds/format": "^3.2.2",
     "@ds/i18n": "^1.2.1",
