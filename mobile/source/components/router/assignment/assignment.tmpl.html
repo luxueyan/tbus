@@ -124,7 +124,7 @@
         </div>
 
         <div class="status" ng-switch="assignment.status">
-            <div class="btn btn-block btn-default disabled"
+            <div class="btn btn-block btn-theme disabled"
                  ng-switch-when="SCHEDULED"
             >即将开始</div>
 
@@ -133,15 +133,15 @@
                ng-click="self.submit($event)"
             >马上投资</a>
 
-            <div class="btn btn-block btn-default disabled"
+            <div class="btn btn-block btn-theme disabled"
                  ng-switch-when="FINISHED"
             >已转让</div>
 
-            <div class="btn btn-block btn-default disabled"
+            <div class="btn btn-block btn-theme disabled"
                  ng-switch-when="SETTLED"
             >计息中</div>
 
-            <div class="btn btn-block btn-default disabled"
+            <div class="btn btn-block btn-theme disabled"
                  ng-switch-when="CLEARED"
             >已结息</div>
         </div>
