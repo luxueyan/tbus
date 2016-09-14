@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        <div class="status-action">
+        <div class="status-contract">
             <div class="status" ng-switch="item.status">
                 <span ng-switch-when="PROPOSED">申请投标</span>
                 <span ng-switch-when="FROZEN">资金冻结</span>
@@ -65,19 +65,34 @@
                 <span ng-switch-when="BREACH">违约</span>
             </div>
 
-            <div class="action">
-                <button class="btn btn-theme btn-xs"
-                        ng-click="
-                            self.$location.path('dashboard/assignment/' + item.id);
-                            $event.stopPropagation();
-                        "
-                        ng-if="item.raw.canBeAssign"
-                >转让</button>
-                <button class="btn btn-disabled btn-xs"
-                        ng-click="$event.stopPropagation()"
-                        ng-if="!item.raw.canBeAssign"
-                >转让</button>
+            <div class="contract"
+                 ng-if="[
+                    'SETTLED',
+                    'CLEARED',
+                    'OVERDUE',
+                    'BREACH'
+                 ].indexOf(item.status) > -1"
+            >
+                <a ng-click="
+                        self.goto('/api/v2/user/MYSELF/invest/' + item.id + '/contract');
+                        $event.stopPropagation();
+                    "
+                >查看合同</a>
             </div>
+        </div>
+
+        <div class="action">
+            <button class="btn btn-theme btn-xs"
+                    ng-click="
+                        self.$location.path('dashboard/assignment/' + item.id);
+                        $event.stopPropagation();
+                    "
+                    ng-if="item.raw.canBeAssign"
+            >转让</button>
+            <button class="btn btn-disabled btn-xs"
+                    ng-click="$event.stopPropagation()"
+                    ng-if="!item.raw.canBeAssign"
+            >转让</button>
         </div>
     </div>
 </div>

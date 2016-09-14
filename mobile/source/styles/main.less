@@ -2749,7 +2749,7 @@ a {
             .body {
                 .flex-display(center; space-between);
 
-                padding: 6px 10px 6px 15px;
+                padding: 6px 10px;
 
                 .name {
                     font-size: 12px;
@@ -2757,20 +2757,7 @@ a {
                 }
 
                 .rate {
-                    position: relative;
-                    margin-right: 15px;
-                    padding-right: 16px;
                     text-align: center;
-
-                    &:after {
-                        content: "";
-                        position: absolute;
-                        top: 0;
-                        bottom: 0;
-                        right: 0;
-                        width: 1px;
-                        background-color: #B6B6B7;
-                    }
 
                     .value {
                         font-size: 18px;
@@ -2780,6 +2767,19 @@ a {
 
                 .info-list {
                     .flex(1);
+                    position: relative;
+                    margin-left: 10px;
+                    padding-left: 10px;
+
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        bottom: 0;
+                        left: 0;
+                        width: 1px;
+                        background-color: #B6B6B7;
+                    }
 
                     > .info {
                         color: #717071;
@@ -2795,22 +2795,30 @@ a {
                     }
                 }
 
-                .status-action {
+                .status-contract {
+                    padding-right: 10px;
                     text-align: center;
+                    font-size: 12px;
 
                     .status {
-                        margin: 5px 0;
-                        font-size: 12px;
+                        margin: 8px 0;
                         color: #717071;
                     }
 
-                    .action {
-                        .btn {
-                            .button-size(4px; 10px; 12px; 1; 6px);
+                    .contract {
+                        a {
+                            color: @color-theme-main;
+                            text-decoration: underline;
+                        }
+                    }
+                }
 
-                            &-disabled {
-                                .button-variant(#FFF; #BBBDC1; #BBBDC1);
-                            }
+                .action {
+                    .btn {
+                        .button-size(4px; 10px; 12px; 1; 6px);
+
+                        &-disabled {
+                            .button-variant(#FFF; #BBBDC1; #BBBDC1);
                         }
                     }
                 }
