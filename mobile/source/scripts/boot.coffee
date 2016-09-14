@@ -24,6 +24,11 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                     .when '/list', {
                         controller: 'ListCtrl as self'
                         templateUrl: 'components/router/list/list.tmpl.html'
+                        resolve:
+                            user: _.ai 'api, user',
+                                (       api, user) ->
+                                    api.fetch_current_user().catch ->
+                                        return user
                     }
 
                     .when '/login', {
