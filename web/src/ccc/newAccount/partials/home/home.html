@@ -3,11 +3,12 @@
     <div class="home-num">
         <div class="home-total common">
             <div class="home-tab-info total" on-mouseover="showTip" on-mouseleave="hideTip">总资产(元)</div>
-            <p class="info-tip" style="width: 294px;">冻结本金+在投本金+未结息的利息+可用余额</p>
+            <p class="info-tip" style="width: 224px;">在投本金+未结息的利息+可用余额</p>
             <div class="home-tab-amount">{{totalAmount}}<span>.{{tAmount}}</span></div>
         </div>
         <div class="home-expect common">
-            <div class="home-tab-info">在投本金(元)</div>
+            <div class="home-tab-info" on-mouseover="showTip" on-mouseleave="hideTip">在投本金(元)</div>
+            <p class="info-tip" style="width: 166px;">冻结资金及已计息的本金</p>
             <div class="home-tab-amount">{{investAmount}}<span>.{{iAmount}}</span></div>
         </div>
         <div class="home-expect common">
