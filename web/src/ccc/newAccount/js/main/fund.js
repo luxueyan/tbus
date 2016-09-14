@@ -193,22 +193,24 @@ ractive.loadData = function (obj) {
     this.set('loading', true);
     console.log(obj)
     size = obj.pageSize || size;
-    var status = true;
-    var operation = true;
+    var status = ["PROCESSING", "AUDITING","PAY_PENDING","CUT_PENDING","SUCCESSFUL","FAILED","REJECTED","CANCELED","REFUND"];
+    var operation = ["FREEZE","RELEASE","IN","OUT"];
     if(obj.status==true){
-        status = true;
+        status = ["PROCESSING", "AUDITING","PAY_PENDING","CUT_PENDING","SUCCESSFUL","FAILED","REJECTED","CANCELED","REFUND"];
     }else if(obj.status==false){
-        status = false;
+        status = ["SUCCESSFUL"];
     }
     if(obj.operation==true){
-        operation = true;
+        operation = ["FREEZE","RELEASE","IN","OUT"];
     }else if(obj.operation==false){
-        operation = false;
+        operation = ["IN","OUT"];
     }
-    request.get('/api/v2/user/MYSELF/funds?type=' + obj.type)
+    request.get('/api/v2/user/MYSELF/funds/query?')
         .query({
-            allStatus: status,
-            allOperation: operation,
+            user:CC.user.id,
+            type:obj.type,
+            status: status,
+            operation: operation,
             startDate: moment($('.date-from-picker>input').val()).unix() * 1000,
             endDate: moment($('.date-to-picker>input').val()).unix() * 1000 + 1000 * 60 * 60 * 24,
             page: obj.page || 1,
@@ -358,27 +360,36 @@ function loadInitData(index) {
 
 function renderPage(total, obj) {
     var self = ractive;
-    var status = true;
-    var operation = true;
+    var status = "PROCESSING&statusList=AUDITING,statusList=PAY_PENDING,statusList=CUT_PENDING,statusList=SUCCESSFUL,statusList=FAILED,statusList=REJECTED,statusList=CANCELED,statusList=REFUND";
+    var operation = "FREEZE,operationList=RELEASE,operationList=IN,operationList=OUT";
+    console.log(obj)
     if(obj.status==true){
-        status = true;
+        status = "PROCESSING,AUDITING,PAY_PENDING,CUT_PENDING,SUCCESSFUL,FAILED,REJECTED,CANCELED,REFUND";
     }else if(obj.status==false){
-        status = false;
+        status = "SUCCESSFUL";
     }
     if(obj.operation==true){
-        operation = true;
+        operation = "FREEZE,RELEASE,IN&OUT";
     }else if(obj.operation==false){
-        operation = false;
+        operation = "IN,OUT";
     }
     var params = {
-        type: obj.type,
-        allStatus: status,
-        allOperation: operation,
+        user:CC.user.id,
+        typeList:obj.type,
+        statusList: status,
+        operationList: operation,
         startDate: moment($('.date-from-picker>input').val()).unix() * 1000,
         endDate: moment($('.date-to-picker>input').val()).unix() * 1000 + 1000 * 60 * 60 * 24,
+        //page: obj.page ,
         pageSize: size
+        //type: obj.type,
+        //allStatus: status,
+        //allOperation: operation,
+        //startDate: moment($('.date-from-picker>input').val()).unix() * 1000,
+        //endDate: moment($('.date-to-picker>input').val()).unix() * 1000 + 1000 * 60 * 60 * 24,
+        //pageSize: size
     };
-    var api = '/api/v2/user/MYSELF/funds?page=$page' + jsonToParams(params);
+    var api = '/api/v2/user/MYSELF/funds/query?page=$page' + jsonToParams(params);
     $(".ccc-paging")
         .cccPaging({
             total: total,
