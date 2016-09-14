@@ -170,9 +170,12 @@ do (_, angular) ->
             type: '='
 
 
-        controller: _.ai '@$element, @$location, @$scope, @$rootScope', class
-            constructor: (@$element, @$location, @$scope, @$rootScope) ->
+        controller: _.ai '@$window, @$location, @$scope, @$rootScope', class
+            constructor: (@$window, @$location, @$scope, @$rootScope) ->
                 42
+
+            goto: (url) ->
+                @$window.location.href = url;
 
         controllerAs: 'self'
 
