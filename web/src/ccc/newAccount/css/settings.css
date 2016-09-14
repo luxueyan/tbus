@@ -1310,3 +1310,9 @@ p.tips {
   width: 80px;
   border-radius: 5px;
 }
+.unionPay{
+  position: relative;
+  left: 365px;
+  top: 13px;
+  color: #e4262b;
+}

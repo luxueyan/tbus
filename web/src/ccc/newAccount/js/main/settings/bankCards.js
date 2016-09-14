@@ -35,7 +35,9 @@ var ractive = new Ractive({
         province: '',
         city: '',
         banking: false,
-        vara: '请选择开户银行'
+        vara: '请选择开户银行',
+        unionPayErr:false
+
     },
     oninit: function () {
         accountService.getUserInfo(function (o) {
@@ -126,6 +128,7 @@ ractive.on("validateBankName", function () {
         this.set("bankNameError", false);
         accessE = true;
     }
+
 });
 ractive.on("banking", function () {
     var dis = this.get("banking");
@@ -147,6 +150,11 @@ ractive.on("bankfull", function (i) {
     } else {
         this.set("bankNameError", false);
         accessE = true;
+    }
+    if(val == "PSBC"||val =="SHB"){
+        ractive.set('unionPayErr', true);
+    }else{
+        ractive.set('unionPayErr', false);
     }
 });
 ractive.on("validatePwd", function () {
