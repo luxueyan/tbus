@@ -163,6 +163,18 @@ setTimeout((function () {
                 }
                 ;
             }
+            loanService.getLoanDetail(CC.loan.id, function (res) {
+                var date = new Date().getTime();
+                var valueDate = res.data.loan.loanRequest.valueDate;
+                if (date>valueDate){
+                    self.set('valueDate',true);
+                    console.log("1")
+                }else{
+                    self.set('valueDate',false);
+                    console.log("2")
+                }
+            })
+
         }
     });
 
@@ -568,7 +580,6 @@ function mask(str, s, l) {
 loanService.getLoanDetail(CC.loan.id, function (res) {
     var imgs = res.data.proof.proofImages;
     //console.log(imgs);
-
     var relateDataRactive = new Ractive({
         // insurance 担保
         el: ".insurance-wrapper",

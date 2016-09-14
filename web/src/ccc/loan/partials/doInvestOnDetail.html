@@ -5,7 +5,11 @@
         <button class="finished-btn">已售罄</button>
         {{/if}}
         {{#if loan.status == "SETTLED"}}
-        <button class="finished-btn">计息中</button>
+            {{#if valueDate}}
+                <button class="finished-btn">计息中</button>
+            {{else}}
+                <button class="finished-btn">已售罄</button>
+            {{/if}}
         {{/if}}
         {{#if loan.status == "CLEARED"}}
         <button class="finished-btn">已结息</button>

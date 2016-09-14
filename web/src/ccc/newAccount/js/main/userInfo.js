@@ -64,7 +64,7 @@ ractive.on('delete-card',function() {
         accountNumber:accountNumber
     }
     if(totalAmount>0){
-        alert('1、您的平台总资产还有资金(含在投资金和未提现资金)，为保证您的资金安全，暂时不允许通过线上删除银行卡；2、如有疑问，请联系客服：400-900-8868');
+        alert('1、您在平台的总资产不为零，为了保障您的资金安全，暂时不能通过线上换卡。2、若有疑问，请联系客服：400-900-8868，或查看：帮助中心。');
         window.location.reload();
     }else{
         accountService.deleteBank(params,function(r) {
