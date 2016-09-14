@@ -261,7 +261,7 @@ select::-ms-expand { display: none; }
 .invest-info-box .title {
     color: #999;
     width: 200px;
-    vertical-align: middle;
+    vertical-align: top;
     /*padding-bottom: 10px;*/
     text-align: right;
     padding-right: 50px;
@@ -352,6 +352,7 @@ select::-ms-expand { display: none; }
 .lightspot-box{
     margin: 10px 58px;
     font-size: 14px;
+    line-height: 30px;
 }
 .lightspot-box .single{
     margin-bottom: 48px;
@@ -365,9 +366,9 @@ select::-ms-expand { display: none; }
 }
 /*常见问题*/
 .invest-detail-wrapper .question-box{
-    font-size: 18px;
+    font-size: 14px;
     margin: 10px 58px;
-    line-height: 46px;
+    line-height: 30px;
 }
 .invest-detail-wrapper .question-box .single{
     margin-bottom: 50px;
@@ -382,9 +383,13 @@ select::-ms-expand { display: none; }
     width: 1160px;
     margin: auto;
 }
+.invest-record table{
+    width: 90%;
+    margin: auto;
+}
 .invest-record table thead tr th {
     text-align: center;
-    font-size: 18px;
+    font-size: 14px;
 }
 /*投资框*/
 
@@ -1056,7 +1061,7 @@ select::-ms-expand { display: none; }
     clear: both;
     position: absolute;
     width: 202px;
-    height: 93px;
+    height: 76px;
     top: 70px;
     left: 99px;
     z-index: 1111111111111;
