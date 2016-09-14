@@ -16,8 +16,8 @@ var params = {
     maxDealAmount: 100000000, //转让价格
     minRemainPeriod: 0,      //剩余期限
     maxRemainPeriod: 100,
-    orderBy:'',
-    asc:''   //是否升序
+    orderBy: '',
+    asc: ''   //是否升序
 };
 
 function jsonToParams(params) {
@@ -33,8 +33,8 @@ function jsonToParams(params) {
 
 function formatItem(item) {
     //格式化序列号
-    if( item.providerProjectCode ){
-        if( item.providerProjectCode.indexOf('#') > 0 ){
+    if (item.providerProjectCode) {
+        if (item.providerProjectCode.indexOf('#') > 0) {
             var hh_project_code = item.providerProjectCode.split('#');
             item.fProjectType = hh_project_code[0];
             item.fProjectCode = hh_project_code[1];
@@ -49,15 +49,15 @@ function formatItem(item) {
 function parseLoanList(list) {
     for (var i = 0; i < list.length; i++) {
         list[i] = formatItem(list[i]);
-		list[i].titleLength = replaceStr(list[i].title);
-		list[i].actualRate = (list[i].actualRate*100).toFixed(2);
+        list[i].titleLength = replaceStr(list[i].title);
+        list[i].actualRate = (list[i].actualRate * 100).toFixed(2);
         list[i].dueDate = (moment(list[i].dueDate).format('YYYY-MM-DD'));
     }
     return list;
 }
 
-function replaceStr(str){
-	return str.replace(/[^\x00-xff]/g,'xx').length;
+function replaceStr(str) {
+    return str.replace(/[^\x00-xff]/g, 'xx').length;
 }
 
 
@@ -69,16 +69,16 @@ var investRactive = new Ractive({
         RepaymentMethod: i18n.enums.RepaymentMethod, // 还款方式
         user: CC.user
     },
-    onrender:function(){
+    onrender: function () {
         var that = this;
-        InvestListService.getCreditassignData(jsonToParams(params),function(res){
-            that.set('list',parseLoanList(res.results));
-            that.renderPager(res,params.currentPage,that);
+        InvestListService.getCreditassignData(jsonToParams(params), function (res) {
+            that.set('list', parseLoanList(res.results));
+            that.renderPager(res, params.currentPage, that);
             //console.log(res);
         });
 
     },
-    oncomplete:function(){
+    oncomplete: function () {
         var that = this;
         $('.sStatus li').click(function () {
             $(this).addClass("selected").siblings().removeClass("selected");
@@ -149,24 +149,26 @@ var investRactive = new Ractive({
             that.onrender();
         });
     },
-    renderPager:function(res, currentPage,obj){
+    renderPager: function (res, currentPage, obj) {
         if (!currentPage) {
-            currentPage = 1;
+            currentPage = 0;
         }
 
         function createList(len) {
             var arr = [];
-            var i=parseInt(len/params.pageSize);
-            if(len%params.pageSize>0){i++;}
-            for(var m=0;m<i;m++){
-                arr[m] =  m + 1;
+            var i = parseInt(len / params.pageSize);
+            if (len % params.pageSize > 0) {
+                i++;
+            }
+            for (var m = 0; m < i; m++) {
+                arr[m] = m;
             }
             return arr;
         };
 
         var pagerRactive = new Ractive({
             el: '#invest-pager',
-            template: require('ccc/invest/partials/pager.html'),
+            template: require('ccc/invest/partials/pager00.html'),
             data: {
                 totalPage: createList(res.totalSize),
                 current: currentPage
@@ -175,19 +177,23 @@ var investRactive = new Ractive({
         pagerRactive.on('previous', function (e) {
             e.original.preventDefault();
             var current = this.get('current');
-            currentPage=current-1;
-            if (current > 1) {
-                current -= 1;
-                this.set('current', current);
-                params.currentPage = current;
-                obj.onrender();
+            if (current - 1) {
+                currentPage = current - 1;
+                if (current > 1) {
+                    current -= 1;
+                    this.set('current', current);
+                    params.currentPage = current;
+                }
+            } else {
+                params.currentPage = 0;
             }
+            obj.onrender();
 
         });
         pagerRactive.on('next', function (e) {
             e.original.preventDefault();
             var current = this.get('current');
-            currentPage=current+1;
+            currentPage = current + 1;
             if (current < this.get('totalPage')[this.get('totalPage').length - 1]) {
                 current += 1;
                 this.set('current', current);
@@ -196,14 +202,18 @@ var investRactive = new Ractive({
             }
         });
         pagerRactive.on('page', function (e, page) {
-            e.original.preventDefault();
             if (page) {
-                currentPage = page;
+                e.original.preventDefault();
+                if (page) {
+                    currentPage = page;
+                } else {
+                    currentPage = e.context;
+                }
+                this.set('current', currentPage);
+                params.currentPage = currentPage;
             } else {
-                currentPage = e.context;
+                params.currentPage = 0;
             }
-            this.set('current', currentPage);
-            params.currentPage = currentPage;
             obj.onrender();
         });
     },
@@ -211,16 +221,16 @@ var investRactive = new Ractive({
 
 //转让总金额和总笔数
 var totalRactive = new Ractive({
-    el:'.statistics-box',
-    template:'<div class="content total">转让总金额(元): <span>{{totalDealAmount}}</span></div><div class="content time">转让总笔数(笔): <span>{{totalNumber}}</span></div>',
-    onrender:function(){
+    el: '.statistics-box',
+    template: '<div class="content total">转让总金额(元): <span>{{totalDealAmount}}</span></div><div class="content time">转让总笔数(笔): <span>{{totalNumber}}</span></div>',
+    onrender: function () {
         var self = this;
         request.get('/api/v2/creditassign/stat/total?status=FINISHED')
             .end()
-            .then(function(r){
+            .then(function (r) {
                 var num = r.body.data;
-                var totalDealAmount = utils.format.amount(num.totalDealAmount,2);
-                var totalNumber = utils.format.amount(num.totalNumber,2);
+                var totalDealAmount = utils.format.amount(num.totalDealAmount, 2);
+                var totalNumber = utils.format.amount(num.totalNumber, 2);
                 self.set('totalDealAmount', totalDealAmount);
                 self.set('totalNumber', totalNumber);
             })
@@ -229,30 +239,30 @@ var totalRactive = new Ractive({
 
 //成交记录
 var recordRactive = new Ractive({
-    el:'.deal-data-box',
-    template:require('ccc/creditList/partials/record.html'),
-    data:{
-        record:[]
+    el: '.deal-data-box',
+    template: require('ccc/creditList/partials/record.html'),
+    data: {
+        record: []
     },
-    onrender:function(){
+    onrender: function () {
         var self = this;
         request.get('/api/v2/creditassign/list/allInvests?status=SETTLED')
             .end()
-            .then(function(r){
+            .then(function (r) {
                 recordRactive.set('record', self.parseDate(r.body.results));
             })
     },
-    parseDate:function(res){
-        for(var i=0;i<res.length;i++){
-            res[i].mobile =  res[i].mobile.replace(/(\d{3})\d{4}(\d{4})/,'$1****$2');
-            res[i].submitTime =  moment(res[i].submitTime).format('YYYY-MM-DD');
+    parseDate: function (res) {
+        for (var i = 0; i < res.length; i++) {
+            res[i].mobile = res[i].mobile.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2');
+            res[i].submitTime = moment(res[i].submitTime).format('YYYY-MM-DD');
         }
         return res;
     }
 });
 
 //常见问题
-request.get(encodeURI('/api/v2/cms/category/HELP/name/产品转让')).end().then(function(res) {
+request.get(encodeURI('/api/v2/cms/category/HELP/name/产品转让')).end().then(function (res) {
     //console.log(res.body);
     var count = new Ractive({
         el: '.question-box',
