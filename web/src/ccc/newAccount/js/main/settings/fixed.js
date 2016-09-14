@@ -28,7 +28,7 @@ var fixedRactive = new Ractive({
         $.get('/api/v2/user/MYSELF/invest/list/1/4?status=SETTLED&status=OVERDUE&status=BREACH&status=FINISHED&status=PROPOSED&status=FROZEN', function (o) {
             that.set('ASSIGN', o.result.totalSize);
         });
-        $.get('/api/v2/creditassign/list/user/MYSELF?status=OPEN', function (o) {
+        $.get('/api/v2/creditassign/list/user/MYSELF?status=OPEN&status=FINISHED', function (o) {
             that.set('INHAND', o.totalSize);
         });
         $.get('/api/v2/user/MYSELF/invest/list/1/4?status=CLEARED', function (o) {
@@ -43,7 +43,7 @@ var Tab = {
     // 转让
     ASSIGN: {
         ractive: null,
-        api: '/api/v2/creditassign/list/user/MYSELF?status=OPEN&page=$page&pageSize=$size',
+        api: '/api/v2/creditassign/list/user/MYSELF?status=OPEN&status=FINISHED&page=$page&pageSize=$size',
         template: require('ccc/newAccount/partials/invest/assign.html')
     },
     // 进行中/申请中 (FINISHED/PROPOSED/FROZEN) 全部 (SETTLED/OVERDUE/BREACH/FINISHED/PROPOSED/FROZEN/CLEARED)
