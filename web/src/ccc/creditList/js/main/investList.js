@@ -41,7 +41,7 @@ function formatItem(item) {
         } else {
             item.fProjectType = '';
             item.fProjectCode = item.providerProjectCode;
-        }       
+        }
     }
     return item;
 }
@@ -55,7 +55,7 @@ function parseLoanList(list) {
     }
     return list;
 }
-	
+
 function replaceStr(str){
 	return str.replace(/[^\x00-xff]/g,'xx').length;
 }
