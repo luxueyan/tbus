@@ -46,9 +46,11 @@
                 <input type="button" class="select" on-click="banking" on-blur="validateBankName" id="select" value="{{vara}}"{{hasCard1?'disabled':''}}/>
                 <div style="position: absolute">
                     <img src="/ccc/newAccount/img/bank_open.png" alt="" class="open" on-click="banking"/>
+                    {{#unionPayErr}}<span class="unionPay">此银行需要开通银联在线支付</span>{{/unionPayErr}}
                 </div>
 
             </div>
+
             {{#banking}}
             <ul id="bank">
                 {{#each newbanks}}

@@ -126,5 +126,16 @@
                 <span class="value">{{ item.amount | number: 2 }}</span>
             </div>
         </div>
+
+        <div class="status-contract">
+            <div class="status" ng-switch="item.status">
+                <span ng-switch-when="PROPOSED">已申请</span>
+                <span ng-switch-when="SCHEDULED">已安排</span>
+                <span ng-switch-when="FINISHED">转让已满</span>
+                <span ng-switch-when="OPENED">转让中</span>
+                <span ng-switch-when="FAILED">转让未满</span>
+                <span ng-switch-when="CANCELED">已取消</span>
+            </div>
+        </div>
     </div>
 </div>

@@ -360,6 +360,7 @@ function renderPage(total, obj) {
     var self = ractive;
     var status = true;
     var operation = true;
+    console.log(obj)
     if(obj.status==true){
         status = true;
     }else if(obj.status==false){
@@ -371,6 +372,14 @@ function renderPage(total, obj) {
         operation = false;
     }
     var params = {
+        //user:CC.user.id,
+        //typeList:obj.type,
+        //statusList: status,
+        //operationList: operation,
+        //startDate: moment($('.date-from-picker>input').val()).unix() * 1000,
+        //endDate: moment($('.date-to-picker>input').val()).unix() * 1000 + 1000 * 60 * 60 * 24,
+        //page: obj.page ,
+        //pageSize: size
         type: obj.type,
         allStatus: status,
         allOperation: operation,

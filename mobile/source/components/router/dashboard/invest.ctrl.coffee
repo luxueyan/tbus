@@ -14,7 +14,7 @@ do (_, angular) ->
 
                 type_status_map = {
                     INHAND : _.split 'FINISHED PROPOSED FROZEN SETTLED OVERDUE BREACH'
-                    ASSIGN: _.split 'OPEN'
+                    ASSIGN: _.split 'OPEN FINISHED'
                     CLEARED: _.split 'CLEARED'
                 }
 

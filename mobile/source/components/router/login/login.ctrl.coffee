@@ -65,8 +65,8 @@ do (_, angular) ->
                                             .search t: _.now()
                                     else
                                         @$location
-                                            .path @next_path
-                                            .search {}
+                                            .url @next_path
+                                            # .search {}
 
                                 else
                                     @popup_payment_state {
