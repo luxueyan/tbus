@@ -689,24 +689,28 @@ p.tips {
   text-align: left;
   /*background-image: url(/ccc/newAccount/img/bank_open.png) no-repeat center right;*/
 }
-.open{
+
+.open {
   width: 14px!important;
   position: relative;
   left: 344px;
   top: 12px;
 }
-.row ul li{
+
+.row ul li {
   padding: 10px;
   height: 40px;
   color: #c9c9c9;
   font-size: 16px;
   padding-right: 0px;
 }
-.row ul li:hover{
+
+.row ul li:hover {
   background: #dcdcdc;
-  color:#666666;
+  color: #666666;
 }
-.row ul{
+
+.row ul {
   display: inline-block;
   width: 380px;
   border: 1px solid #ccc;
@@ -714,14 +718,14 @@ p.tips {
   background: #fff;
   z-index: 99999;
 }
-.row ul li span {
-    font-size: 12px;
-    display: block;
-    float: right;
-    width: 210px;
-    text-align: left;
-    line-height: 22px;
 
+.row ul li span {
+  font-size: 12px;
+  display: block;
+  float: right;
+  width: 210px;
+  text-align: left;
+  line-height: 22px;
 }
 
 #main-container .row .card-brame input {
@@ -983,7 +987,7 @@ p.tips {
 
 .fixed-invest .table-invest-common a {
   color: #e60012;
-  padding: 5px;
+  /* padding: 5px; */
 }
 
 .fixed-invest .look_contact {
@@ -1310,7 +1314,8 @@ p.tips {
   width: 80px;
   border-radius: 5px;
 }
-.unionPay{
+
+.unionPay {
   position: relative;
   left: 365px;
   top: 13px;
