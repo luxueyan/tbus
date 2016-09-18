@@ -1,12 +1,19 @@
 <div id="popup">
     <div class="formWrapper">
-        <p>标的估值(元)<span class="form-data assignAmount">{{amount.toFixed(2)}}</span></p>
+        <p>标的估值(元)<span class="form-data assignAmount">{{Funrepay}}</span>
+            <span class="tip">（转让本金+转让本金*预计年化*已持有天数/365）</span>
+        </p>
         <p>转让折价率
             <input type="text" on-keyup="changeVal" name="creditDealRate" id="creditDealRate" value="{{creditDealRate}}" />
             <span class="tip">（支持溢价，折价率必须大于等于0.95；小于等于1.05）</span>
             <span class="tip error">{{error}}</span>
         </p>
         <p>转让价格(元)<span class="form-data" id="form-num">{{isNaN(area)?0.00:area}}</span></p>
+        <p>
+            转让手续费(元)
+            <span class="form-data" id="form-num">{{isNaN(commiss)?0.00:commiss}}</span>
+            <span class="tip">（转让价格*0.1%）</span>
+        </p>
         <p>转让期限
             <span class="form-time">24小时</span>
             <span class="tip">（如果到期无人购买，申请将自动撤销）</span>

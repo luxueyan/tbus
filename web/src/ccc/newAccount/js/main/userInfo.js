@@ -1,5 +1,6 @@
 "use strict";
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
+var AlertBox = require('ccc/global/js/modules/cccPromiseBox');
 var ractive = new Ractive({
     el: "#ractive-container",
     template: require('ccc/newAccount/partials/userInfo.html'),
@@ -10,16 +11,16 @@ var ractive = new Ractive({
         idNumber: false,
         email: '',
         percent: 25,
-        levelText:'弱',
+        levelText: '弱',
         isEnterprise: CC.user.enterprise,
-        bankCards:CC.user.bankCards,
+        bankCards: CC.user.bankCards,
     },
-    init: function() {
+    init: function () {
         accountService.checkAuthenticate(function (r) {
             ractive.set('paymentPasswordHasSet', r.paymentAuthenticated);
             accountService.getUserInfo(function (userinfo) {
                 console.log(r.emailAuthenticated);
-                if(r.emailAuthenticated){
+                if (r.emailAuthenticated) {
                     ractive.set('email', userinfo.userInfo.user.email);
                 }
                 ractive.set('idNumber', formatNumber(userinfo.userInfo.user.idNumber));
@@ -50,7 +51,7 @@ function formatNumber(number, left, right) {
 }
 
 //删除银行卡
-ractive.on('delete-card',function() {
+ractive.on('delete-card', function () {
     var userId = CC.user.id;
     var banks = this.get('bankCards');
     var avaAmount = CC.user.availableAmount;
@@ -60,14 +61,16 @@ ractive.on('delete-card',function() {
     var totalAmount = parseFloat(avaAmount + frozenAmount + outstandingInterest + outstandingPrincipal).toFixed(2);
     var accountNumber = banks[0].account.account;
     var params = {
-        userId:userId,
-        accountNumber:accountNumber
+        userId: userId,
+        accountNumber: accountNumber
     }
-    if(totalAmount>0){
-        alert('1、您在平台的总资产不为零，为了保障您的资金安全，暂时不能通过线上换卡。2、若有疑问，请联系客服：400-900-8868，或查看：帮助中心。');
-        window.location.reload();
-    }else{
-        accountService.deleteBank(params,function(r) {
+
+    if (totalAmount > 0) {
+        $("#mask").css("display", "inline");
+        $(".debank").css("display", "inline");
+
+    } else {
+        accountService.deleteBank(params, function (r) {
             if (r.success) {
                 alert('删卡成功！');
                 window.location.reload();
@@ -78,4 +81,7 @@ ractive.on('delete-card',function() {
     }
 
 });
-           
+//点击刷新
+ractive.on('makeSure', function () {
+    window.location.reload();
+})

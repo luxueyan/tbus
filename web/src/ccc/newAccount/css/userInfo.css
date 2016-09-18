@@ -993,4 +993,29 @@ p.tips {
 .clear_pro{
     background: url("/ccc/newAccount/img/icon_clear.png") no-repeat left center;
 }
-
+/*删卡弹框*/
+.debank{
+    border: 1px solid #cfa972;
+    width: 400px;
+    padding: 40px;
+    position: fixed;
+    top: 40%;
+    left: 40%;
+    background: #fff;
+    z-index:99;
+    display: none;
+}
+.debank input{
+    border: none;
+    background: #cfa972;
+    color: #fff;
+    width: 100px;
+    height: 30px;
+    margin: 20px 100px 0px;
+}
+.debank p span{
+    color: #e4262b;
+}
+.debank p a{
+    color: #e4262b;
+}

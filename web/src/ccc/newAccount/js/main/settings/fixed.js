@@ -270,8 +270,10 @@ function init(type) {
                         creditDealRate:null,
                         error:'',
                         assignTitle:$(e.node).data('title'),
-                        requestId:$(e.node).data('request')
+                        requestId:$(e.node).data('request'),
+                        Funrepay:$(e.context)[0].Funrepay,
                     }
+
                     var returnMap = {
                         "CREDIT_ASSIGN_DISABLED": "没有开启债权转让功能",
                         "REASSIGN_DISABLED": "二次转让功能关闭",
@@ -306,7 +308,8 @@ function init(type) {
                                 data:data,
                                 magic:true,
                                 computed:{
-                                    area:'(${amount} * ${creditDealRate}).toFixed(2)'
+                                    area:'(${amount} * ${creditDealRate}).toFixed(2)',
+                                    commiss:'(${amount} * ${creditDealRate} * 0.001).toFixed(2)',
                                 },
                                 oncomplete:function(){
                                     var that = this;
