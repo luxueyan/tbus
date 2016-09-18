@@ -1,7 +1,7 @@
 {{#if loan.status == "FINISHED"||loan.status == "SETTLED"||loan.status == "CLEARED"||loan.status == "SCHEDULED"}}
     {{#if hasID}}
         <img src="/ccc/loan/img/unlogin.png" class="unlogin_img" style="display: block;">
-        {{#if loan.status == "FINISHED"}}
+        {{#if loan.status == "FINISHED"||status === 'FAKESETTLED'}}
         <button class="finished-btn">已售罄</button>
         {{/if}}
         {{#if loan.status == "SETTLED"}}
