@@ -117,7 +117,6 @@ function init(type) {
                 //}
 
                 $.get(api, function (o) {
-                    //console.log(o);
                     callback(o);
                 }).error(function (o) {
                     console.info('请求出现错误，' + o.statusText);
@@ -130,8 +129,6 @@ function init(type) {
                     this.set('pageOne', o.results);
                     this.set('list', o.results);
                 }else{
-                    //console.log('#####');
-                    //console.log(o);
                     this.set('total', o.result.totalSize);
                     this.set('pageOne', o.result.results);
                     this.set('list', o.result.results);
@@ -155,7 +152,7 @@ function init(type) {
                         datas[i].creditDealRate = o.creditDealRate * 100;
                         datas[i].timeOpen = moment(o.timeOpen).format('YYYY-MM-DD HH:mm:ss');
                         datas[i].timeFinished = moment(o.timeOpen).add(o.timeOut, 'hours').format('YYYY-MM-DD HH:mm:ss');
-                        datas[i].status = assignStatus[o.status];
+                        datas[i].Fstatus = assignStatus[o.status];
                         datas[i].investId = o.investId;
                     }
                     return res;
@@ -232,8 +229,6 @@ function init(type) {
                         }
                     },
                     onSelect: function (p, o) {
-                        console.log(p)
-                        console.log(o)
                         if (type == 'ASSIGN') {
                             self.set('list', p > 1 ? self.parseData(o).results : self.get('pageOne'));
                         }else{

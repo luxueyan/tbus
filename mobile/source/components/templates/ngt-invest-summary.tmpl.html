@@ -21,6 +21,7 @@
             <div class="info"
                  ng-if="[
                     'FINISHED',
+                    'FAKESETTLED',
                     'PROPOSED',
                     'FROZEN',
                     'SETTLED',
@@ -58,6 +59,7 @@
                 <span ng-switch-when="FROZEN_FAILED">资金冻结失败</span>
                 <span ng-switch-when="FAILED">流标</span>
                 <span ng-switch-when="FINISHED">投标成功</span>
+                <span ng-switch-when="FAKESETTLED">投标成功</span>
                 <span ng-switch-when="CANCELED">已取消</span>
                 <span ng-switch-when="SETTLED">已结算</span>
                 <span ng-switch-when="CLEARED">还款完成</span>
