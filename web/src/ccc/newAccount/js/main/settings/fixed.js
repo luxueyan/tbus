@@ -181,6 +181,12 @@ function init(type) {
                                 datas[i].Famount = utils.format.amount(o.amount, 2);
                                 datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true : false;
                                 datas[i].requestId = o.loan.loanRequest.id;
+                                var nowDate = new Date();
+                                if(datas[i].status == 'SETTLED'){
+                                    if(datas[i].loan.loanRequest.valueDate <= nowDate){
+                                        datas[i].Fstatus = '计息中';
+                                    }
+                                };
                                 break;
                             case 'CLEARED':
                                 datas[i].Fduration = utils.format.duration(o.duration);
