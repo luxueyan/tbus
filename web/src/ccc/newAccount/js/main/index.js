@@ -120,7 +120,7 @@ $('#svg_cont').highcharts({
         headerFormat: '',
         //pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>',
         pointFormatter: function () {
-            return this.name + ': ' + Math.round(this.y) + '%'
+            return this.name + ': ' + Math.round(this.percentage) + '%'
         }
     },
     plotOptions: {

@@ -385,12 +385,12 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
-            register: (password, mobile, mobile_captcha, optional = {}) ->
+            register: (password, mobile, mobile_captcha, token, captcha, optional = {}) ->
 
                 optional = _.compact optional
-
+                str = '?captcha_token=' + token + '&captcha_answer=' + captcha
                 @$http
-                    .post '/api/web/register/submit',
+                    .post '/api/web/register/submit' + str,
                         _.merge optional, {password, mobile, mobile_captcha, source: 'MOBILE'}
 
                     .then TAKE_RESPONSE_DATA
