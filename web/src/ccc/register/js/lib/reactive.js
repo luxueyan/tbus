@@ -37,7 +37,6 @@ errmsgs.SMSCAPTCHA_INVALID_4 = '语音验证码为 4 位';
 errmsgs["推荐人不存在"] = "推荐人不存在";
 
 var registerUserSmsType = 'CONFIRM_CREDITMARKET_REGISTER';
-
 action('inited').onValue(function (registerRactive) {
     var rinputs = registerRactive.rinputs;
     var steps = registerRactive.steps;
@@ -236,6 +235,7 @@ action('inited').onValue(function (registerRactive) {
                         }
                         var token = rinputs.imgCaptcha.get('imgCaptchaToken');
                         var mobile = rinputs.mobile.get('value');
+
                         return services[obj.smsType === 'CREDITMARKET_VOICE_CAPTCHA' ? 'voiceCaptcha' : 'smsCaptcha'](token, captcha, mobile)
                         .then(function (body) {
                             if (!body.success) {
@@ -324,7 +324,12 @@ action('inited').onValue(function (registerRactive) {
                     if (field === 'email' && result.email && validation.email.vermail) {
                         result.vermail = '1';
                     }
+
                 });
+                user.query = {
+                            captcha_token: rinputs.imgCaptcha.get('imgCaptchaToken'),
+                            captcha_answer: rinputs.imgCaptcha.get('value')
+                        };
                 user.smsType = registerUserSmsType;
                 // 可以不要 loginName 这一项 field, 默认填写上，设置了 CC.config.clientCode 的话就以这个为前缀
                 if (!user.loginName) {
@@ -379,11 +384,15 @@ action('inited').onValue(function (registerRactive) {
                 var goStep = _(body.error)
                     .map(function (err) {
                         var op = alteredProps[err.type] || err.type;
+                        if(err.type == 'captcha') {
+                            op = 'imgCaptcha';
+                        }
                         store('errCode', op).push(err.message);
                         return fieldInWhichStep[op];
                     })
                     .uniq()
                     .min();
+                goStep = currentStep;
             }
             action('switchStep').push(goStep);
             return body.success;
