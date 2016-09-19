@@ -138,6 +138,16 @@
                 <span ng-switch-when="FAILED">转让未满</span>
                 <span ng-switch-when="CANCELED">已取消</span>
             </div>
+
+            <div class="contract"
+                 ng-if="['FINISHED'].indexOf(item.status) > -1"
+            >
+                <a ng-click="
+                        self.goto('/api/v2/creditassign/getCreditAssignContract/' + item.id);
+                        $event.stopPropagation();
+                    "
+                >查看合同</a>
+            </div>
         </div>
     </div>
 </div>
