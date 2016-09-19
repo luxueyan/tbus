@@ -16,7 +16,11 @@
     {{#each bankcards}}
     <div class="bank-box {{account.bank}}">
         <span>******** {{Faccount}}</span>
-        <span class="limit">单笔限额10万</span>
+        <span class="limit">
+            此卡单笔限额{{#if singleQuota == -1}} 无限额{{else}}{{singleQuota}}元{{/if}}
+            /
+            单日限额{{#if dailyQuota == -1}} 无限额{{else}}{{dailyQuota}}元{{/if}}
+        </span>
     </div>
     {{/each}}
 
@@ -68,6 +72,9 @@
         <div class="success-content">
             <p>支付失败</p>
             <p class="fail_reason">{{failerror}}</p>
+            <!--{{#if failreason}}-->
+            <!--<p class="fail_reason">当前银行卡单笔充值限额{{singleQuota}}元</p>-->
+            <!--{{/if}}-->
             <div class="button">
             <!--<button class="close-img btn-after" on-click="close">以后再说</button>-->
             <a href="/loan/{{loan.id}}"><button class="btn-after btn-bank">重新购买</button></a>
