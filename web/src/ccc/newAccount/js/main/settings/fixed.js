@@ -212,8 +212,14 @@ function init(type) {
 
                         if (datas[i].hasContract) {
                             var repay = this.getRepay(o.repayments);
+                            //alert(nowDate)
+                            //datas[i].holdDay = nowDate - moment(datas[i].valueDate).unix();
+                            //console.log(nowDate)
+                            //console.log(datas[i].valueDate)
+                            //console.log(datas[i].holdDay)
                             datas[i].Frepayed = utils.format.amount(repay.repayed, 2);
                             datas[i].Funrepay = utils.format.amount(repay.unrepay, 2);
+                            //datas[i].Funrepay = data[i].amount(1+(data[i].rate/100)*());
                         }
                     }
                     return res;
@@ -269,6 +275,7 @@ function init(type) {
                 
                 
                 this.on('showFixed', function (e) {
+                    console.log(e)
                     var alertTip = new AlertBox();
                     var data = {
                         amount:$(e.node).data('amount'),

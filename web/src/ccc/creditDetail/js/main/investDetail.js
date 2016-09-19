@@ -51,9 +51,8 @@ var assignStatus={
 };
 var href=window.location.href.split('/');
 var loanId=href[href.length-1];
+//console.log(loanId)
 
-var myLoan=null;
-console.log(CC.creditassign)
 var investRactive = new Ractive({
     el: ".creditDetail-container",
     template: require('ccc/creditDetail/partials/doInvestOnDetail.html'),
@@ -68,11 +67,10 @@ var investRactive = new Ractive({
         profit:utils.format.percent(CC.creditassign.creditassign.amountInterest,2)
     },
     oninit: function () {
-        //console.log(CC.creditassign);
         var that = this;
         request.get('/api/v2/loan/'+loanId).end().then(function (r) {
-            CC.loan=JSON.parse(r.text);
-            myLoan=CC.loan;
+            //console.log(r.body)
+            CC.loan= r.body;
             investRactive.set('workTime', moment(CC.loan.loanRequest.valueDate).format('YYYY-MM-DD'));
             investRactive.set('loan', CC.loan);
             var result = parseLoan(r.body);
@@ -88,9 +86,6 @@ var investRactive = new Ractive({
             that.set("fundUsage", result.loanRequest.fundUsage);
             that.set("description", result.loanRequest.commonQuestion);
             that.set("riskPrompt", result.loanRequest.riskPrompt);
-            //console.log(1111)
-            //console.log(result);
-            //console.log(1111)
 
             result.userId = result.loanRequest.userId;
             result.requestId = result.loanRequest.id;
@@ -115,11 +110,6 @@ var investRactive = new Ractive({
                 'CORPORATION': '企业融资',
                 'OTHER': '其它借款'
             };
-            //if (loan.investPercent* 100 > 0 && loan.investPercent * 100 < 1) {
-            //    loan.investPercent = 1;
-            //} else {
-            //  loan.investPercent = parseInt(loan.investPercent * 100, 10);
-            //};
 
             var SinvestPercent = (loan.investPercent * 100).toFixed(2)+'';
 
@@ -133,7 +123,6 @@ var investRactive = new Ractive({
             loan.rate = loan.rate / 100;
             loan.loanRequest.deductionRate = loan.loanRequest.deductionRate / 100;
             loan.basicRate = loan.rate - loan.loanRequest.deductionRate;
-//    loan.dueDate = loan.timeout * 60 * 60 * 1000 + loan.timeOpen;
             if (loan.timeSettled) {
                 loan.borrowDueDate = formatBorrowDueDate(loan.timeSettled, loan
                     .duration);
@@ -188,8 +177,6 @@ var investRactive = new Ractive({
             loan.timeFinished = moment(loan.timeFinished).format('YYYY-MM-DD');
             loan.timeout = loan.timeout/24;
             loan.timeEnd = moment(loan.timeOpen).add(loan.timeout, 'days').format('YYYY-MM-DD');
-            console.log( "=====loan.timeFinished" + loan.timeFinished);
-            console.log( "=====loan.timeEnd" + loan.timeEnd);
 
             loan.valueDate = moment(loan.loanRequest.valueDate).format('YYYY-MM-DD');
             loan.dueDate = moment(loan.loanRequest.dueDate).format('YYYY-MM-DD');

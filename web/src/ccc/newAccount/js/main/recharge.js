@@ -72,7 +72,6 @@ var ractive = new Ractive({
         this.on('changeValue', function (e) {
             var singleQuota = self.get('singleQuota');
             var minQuota = self.get('minQuota');
-            //console.log(minQuota)
 
             self.set('msg', {
                 AMOUNT_NULL: false,
@@ -81,9 +80,6 @@ var ractive = new Ractive({
                 CODE_INVALID: false,
             });
             var value = self.get('amount');
-
-            //console.log(value)
-            //console.log(singleQuota)
 
             if (value === '') {
                 self.set('msg.AMOUNT_NULL', true);
@@ -147,6 +143,34 @@ var ractive = new Ractive({
 });
 
 ractive.on('recharge_submit', function (e) {
+    var msg = {
+        "PAYMENT_PWD_NOT_MATCHED": "交易密码错误",
+        "INVALID_MOBILE_CAPTCHA": "无效的手机验证码",
+        "DEPOSIT_FAILED": "充值失败",
+        "LOAN_NOT_FOUND": "标的未找到",
+        "SURVEY_FILLING_NOT_FOUND": "用户问卷记录为空",
+        "BID_NOT_OPEN": "标的没有开始募集,或已募集结束",
+        "BID_NO_BALANCE": "已满标",
+        "BID_EXCEED_TIMES_LIMIT": "投标次数超过上限",
+        "BID_EXCEED_PRODUCT_TIMES_LIMIT": "投标次数超过产品类型上限",
+        "BID_EXCEED_TOTAL_AMOUNT_LIMIT": "投标总金额超过上限",
+        "BID_EXCEED_PRODUCT_TOTAL_AMOUNT_LIMIT": "投标总金额超过产品类型上限",
+        "BID_EXCEED_SINGLE_AMOUNT_LIMIT": "投标单次金额超过上限",
+        "BID_REDUNDANT": "重复投标",
+        "USER_BALANCE_INSUFFICIENT": "账户可用余额不足",
+        "FROZEN_FAILED": "冻结用户账户余额失败",
+        "INVALID_AMOUNT": "投资金额不合规，请查看产品说明",
+        "SELF_BID_FORBIDDEN": "不能投给自己的标的",
+        "BID_FORBIDDEN": "不满足投标条件",
+        "FAILED": "投资失败，请重试",
+        "BID_USER_NOT_FOUND": "投标用户不存在",
+        "ENTERPRISE_USER_BID_DISABLED": "不允许企业用户投标",
+        "COUPON_REDEEM_FAILED": "使用奖券失败",
+        "NO_ENOUGH_BALANCE": "标的余额不足",
+        "CALL_WITHDRAWREQUEST_FAILED": "提现申请失败",
+        "PAID_FAILED": "充值失败"
+    };
+
     var amount = this.get('amount');
     var password = this.get('password');
     var bankcardNo = this.get('bankcards');
@@ -212,7 +236,6 @@ ractive.on('recharge_submit', function (e) {
                     })
                     .end()
                     .then(function (r) {
-
                         if (r.body.success) {
                             ractive.set('step1', false);
                             ractive.set('step2', true);
@@ -223,7 +246,7 @@ ractive.on('recharge_submit', function (e) {
                             ractive.set('step2', false);
                             ractive.set('step3', true);
                             //alert('充值失败');
-                            ractive.set('failError', r.error[0].message);
+                            ractive.set('failError', msg[r.body.error[0].message]);
                             $('.submit_btn').text('确认充值');
                             myFunc()
                         }
