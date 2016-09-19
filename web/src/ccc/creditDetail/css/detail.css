@@ -2112,13 +2112,17 @@
     margin-top: 30px;
     margin-bottom: 50px;
 }
+.lightspot-box {
+    margin: 10px 58px;
+    font-size: 14px;
+    line-height: 30px;
+}
 /*产品介绍*/
 .invest-info-box {
-    font-size: 18px;
     margin-left: 70px;
 }
 .invest-info-box table tr{
-    line-height: 46px;
+    line-height: 30px;
 }
 .invest-info-box .title {
     color: #999;
@@ -2138,4 +2142,9 @@
 .invest-info-box .content h5{
     font-size: 18px;
     color: #666;
+}
+.invest-detail-wrapper .question-box {
+    font-size: 14px;
+    margin: 10px 58px;
+    line-height: 30px;
 }
