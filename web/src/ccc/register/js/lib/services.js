@@ -34,6 +34,7 @@ exports.voiceCaptcha = function (token, captcha, mobile) {
 
 exports.register = function (user) {
     return request('POST', CC.registerSubmit || '/register/ajax/submit', {
-        body: user
+        body: user,
+        query: user.query
     }).end().get('body');
 }

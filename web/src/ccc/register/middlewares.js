@@ -89,7 +89,7 @@ exports.doRegister = conext(function *(req, res, next) {
 });
 
 exports.smsCaptcha = conext(function *(req, res, next) {
-    req.uest('/api/v2/register/smsCaptcha', {
+    req.uest('/api/v2/users/smsCaptcha', {
         query: {mobile: req.query.mobile}
     }).end().get('body').then(res.json.bind(res));
 });
