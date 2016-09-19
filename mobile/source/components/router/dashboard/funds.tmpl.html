@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-xs-6 dropdown" x-uib-dropdown is-open="open_dropdown_type">
                     <div x-uib-dropdown-toggle>
-                        <span ng-show="query_set.type === ''">全部类型</span>
+                        <span ng-show="query_set.type === 'ALL'">全部类型</span>
                         <span ng-show="query_set.type === 'INVEST'">投标</span>
                         <span ng-show="query_set.type === 'WITHDRAW'">提现</span>
                         <span ng-show="query_set.type === 'DEPOSIT'">充值</span>
@@ -33,8 +33,8 @@
                     </div>
 
                     <ul x-uib-dropdown-menu ng-click="self.query(query_set); open_dropdown_type = false">
-                        <li ng-class="{ active: query_set.type === '' }"
-                            ng-click="query_set.type = ''"
+                        <li ng-class="{ active: query_set.type === 'ALL' }"
+                            ng-click="query_set.type = 'ALL'"
                         >全部类型</li>
                         <li ng-class="{ active: query_set.type === 'INVEST' }"
                             ng-click="query_set.type = 'INVEST'"

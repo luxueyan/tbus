@@ -152,6 +152,8 @@ do (_, angular) ->
             end_date: item.loan.loanRequest.dueDate || repayment.end_date
             submit_time: item.submitTime
             repayments: item.repayments
+
+            have_begun_to_settled: item.loan.serverDate > item.loan.loanRequest.valueDate
         }
 
 
