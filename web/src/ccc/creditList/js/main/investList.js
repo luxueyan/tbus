@@ -9,7 +9,7 @@ var utils = require('ccc/global/js/lib/utils');
 require('ccc/global/js/lib/jquery.easy-pie-chart.js')
 
 var params = {
-    pageSize: 10,
+    pageSize: 5,
     currentPage: 0,
     //status: '',
     minDealAmount: 0,
