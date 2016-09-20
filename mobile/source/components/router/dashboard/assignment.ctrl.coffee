@@ -41,9 +41,7 @@ do (_, angular) ->
 
                 (@api.payment_pool_creditAssign_create(post_data)
 
-                    .then (data) =>
-                        unless data is 'SUCCESSFUL'
-                            @$q.reject error: [message: data]
+                    .then @api.process_response
 
                     .then (data) =>
                         @api.flush_user_info()
