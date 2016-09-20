@@ -340,7 +340,6 @@ function init(type) {
                                         e.node.innerHTML = '转让中...';
                                         //发送请求
                                         accountService.createCreditAssign(data.investId, data.creditDealRate, data.assignTitle, function (o) {
-                                            console.log(o)
                                             if (o.success) {
                                                 alert("债转创建成功!");
                                                 window.location.reload();
