@@ -212,14 +212,10 @@ function init(type) {
 
                         if (datas[i].hasContract) {
                             var repay = this.getRepay(o.repayments);
-                            //alert(nowDate)
-                            //datas[i].holdDay = nowDate - moment(datas[i].valueDate).unix();
-                            //console.log(nowDate)
-                            //console.log(datas[i].valueDate)
-                            //console.log(datas[i].holdDay)
+                            datas[i].holdDay = (moment(nowDate).unix() - moment(datas[i].valueDate).unix())/24/60/60;
                             datas[i].Frepayed = utils.format.amount(repay.repayed, 2);
-                            datas[i].Funrepay = utils.format.amount(repay.unrepay, 2);
-                            //datas[i].Funrepay = data[i].amount(1+(data[i].rate/100)*());
+                            //datas[i].Funrepay = utils.format.amount(repay.unrepay, 2);
+                            datas[i].Funrepay = utils.format.amount(o.amount+o.amount*(o.rate/10000)*(parseInt(datas[i].holdDay))/365,2);
                         }
                     }
                     return res;
