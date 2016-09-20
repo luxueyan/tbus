@@ -64,7 +64,7 @@
                 <!--<p class="table-title">操作</p>-->
                 <p class="table-invest-common">
                     {{#if canBeAssign}}
-                    <span class="operation" data-request="{{requestId}}" data-invest="{{id}}" data-amount="{{amount}}" on-click="showFixed"  data-title="转让-{{loanTitle}}">转让</span>
+                    <span class="operation" data-request="{{requestId}}" data-invest="{{id}}" data-amount="{{amount}}" on-click="showFixed"  data-title="转让-{{loanTitle}}"  data-unrepay="{{unrepay}}">转让</span>
                     <a href="/account/invest/allContracts/{{id}}" class="look_contact">查看合同</a>
                     {{elseif status == 'SETTLED'}}
                     <a href="/account/invest/allContracts/{{id}}" class="look_contact">查看合同</a>

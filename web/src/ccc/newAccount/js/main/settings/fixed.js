@@ -212,14 +212,11 @@ function init(type) {
 
                         if (datas[i].hasContract) {
                             var repay = this.getRepay(o.repayments);
-                            //alert(nowDate)
-                            //datas[i].holdDay = nowDate - moment(datas[i].valueDate).unix();
-                            //console.log(nowDate)
-                            //console.log(datas[i].valueDate)
-                            //console.log(datas[i].holdDay)
+                            datas[i].holdDay = (moment(nowDate).unix() - moment(datas[i].valueDate).unix())/24/60/60;
                             datas[i].Frepayed = utils.format.amount(repay.repayed, 2);
-                            datas[i].Funrepay = utils.format.amount(repay.unrepay, 2);
-                            //datas[i].Funrepay = data[i].amount(1+(data[i].rate/100)*());
+                            //datas[i].Funrepay = utils.format.amount(repay.unrepay, 2);
+                            datas[i].unrepay = o.amount+o.amount*(o.rate/10000)*(parseInt(datas[i].holdDay))/365;
+                            datas[i].Funrepay = utils.format.amount(datas[i].unrepay,2);
                         }
                     }
                     return res;
@@ -284,9 +281,11 @@ function init(type) {
                         error:'',
                         assignTitle:$(e.node).data('title'),
                         requestId:$(e.node).data('request'),
-                        dueInInterest:$(e.context)[0].dueInInterest,
+                        unrepay:$(e.node).data('unrepay'),
+                        Funrepay: utils.format.amount($(e.node).data('unrepay'),2)
                     }
-                    console.log($(e.context)[0].dueInInterest)
+                    //console.log(unrepay)
+                    console.log(data.unrepay)
                     var returnMap = {
                         "CREDIT_ASSIGN_DISABLED": "没有开启债权转让功能",
                         "REASSIGN_DISABLED": "二次转让功能关闭",
@@ -321,9 +320,8 @@ function init(type) {
                                 data:data,
                                 magic:true,
                                 computed:{
-                                    area:'((${dueInInterest}+${amount}) * ${creditDealRate}).toFixed(2)',
-                                    commiss:'((${dueInInterest}+${amount}) * ${creditDealRate} * 0.001).toFixed(2)',
-                                    Funrepay:'(${dueInInterest}+${amount}).toFixed(2)',
+                                    area:'(${unrepay} * ${creditDealRate}).toFixed(2)',
+                                    commiss:'(${unrepay} * ${creditDealRate} * 0.001).toFixed(2)',
                                 },
                                 oncomplete:function(){
                                     var that = this;
