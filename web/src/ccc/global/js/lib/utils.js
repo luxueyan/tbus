@@ -431,6 +431,9 @@ module.exports = (function () {
 
     // format percent
     var formatPercent = function (percent, offset) {
+        console.log("1111")
+        console.log(percent)
+        console.log("1111")
         percent = percent.toString();
         if (offset === undefined || offset === null) {
             offset = 2;

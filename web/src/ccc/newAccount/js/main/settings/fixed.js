@@ -223,7 +223,7 @@ function init(type) {
             },
             renderPager: function () {
                 var self = this;
-               
+
                 this.tooltip();
                 $(this.el).find(".ccc-paging").cccPaging({
                     total: self.get('total'),
@@ -242,7 +242,7 @@ function init(type) {
                         }else{
                             self.set('list', p > 1 ? self.parseData(o).result.results : self.get('pageOne'));
                         }
-                        
+
                         self.tooltip();
                     }
                 });
@@ -267,9 +267,9 @@ function init(type) {
                         $('.detail').css('height', 'auto');
                     })
                 });
-                
-                
-                
+
+
+
                 this.on('showFixed', function (e) {
                     console.log(e)
                     var alertTip = new AlertBox();
@@ -280,9 +280,9 @@ function init(type) {
                         error:'',
                         assignTitle:$(e.node).data('title'),
                         requestId:$(e.node).data('request'),
-                        Funrepay:$(e.context)[0].Funrepay,
+                        dueInInterest:$(e.context)[0].dueInInterest,
                     }
-
+                    console.log($(e.context)[0].dueInInterest)
                     var returnMap = {
                         "CREDIT_ASSIGN_DISABLED": "没有开启债权转让功能",
                         "REASSIGN_DISABLED": "二次转让功能关闭",
@@ -317,8 +317,9 @@ function init(type) {
                                 data:data,
                                 magic:true,
                                 computed:{
-                                    area:'(${amount} * ${creditDealRate}).toFixed(2)',
-                                    commiss:'(${amount} * ${creditDealRate} * 0.001).toFixed(2)',
+                                    area:'((${dueInInterest}+${amount}) * ${creditDealRate}).toFixed(2)',
+                                    commiss:'((${dueInInterest}+${amount}) * ${creditDealRate} * 0.001).toFixed(2)',
+                                    Funrepay:'(${dueInInterest}+${amount}).toFixed(2)',
                                 },
                                 oncomplete:function(){
                                     var that = this;
@@ -330,7 +331,7 @@ function init(type) {
                                         else if((data.creditDealRate+'').length>4) return data.error = '折价率最多保留两位小数！';
                                         else data.error = '';
                                     })
-                                    
+
                                     this.on('makeSure',function(e){
                                         if(data.error || !data.creditDealRate) return !data.creditDealRate ? data.error = '请输入折价率！':data.error;
                                         e.node.disabled = true;
