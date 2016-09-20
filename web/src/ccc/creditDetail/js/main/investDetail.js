@@ -64,7 +64,7 @@ var investRactive = new Ractive({
         timeOpen:moment(CC.creditassign.creditassign.timeOpen).format('YYYY-MM-DD HH:mm'),
         timeFinished:moment(CC.creditassign.creditassign.timeFinished).format('YYYY-MM-DD'),
         workTime:'',
-        profit:utils.format.percent(CC.creditassign.creditassign.amountInterest,2)
+        profit:utils.format.percent(CC.creditassign.repayments[0].repayment.amountInterest,2)
     },
     oninit: function () {
         var that = this;
