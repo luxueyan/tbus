@@ -149,7 +149,7 @@ function init(type) {
                             "CANCELED": "已取消"
                         };
                         datas[i].id = o.id;
-                        datas[i].creditDealRate = o.creditDealRate * 100;
+                        //datas[i].creditDealRate = o.creditDealRate * 100;
                         datas[i].timeOpen = moment(o.timeOpen).format('YYYY-MM-DD HH:mm:ss');
                         datas[i].timeFinished = moment(o.timeOpen).add(o.timeOut, 'hours').format('YYYY-MM-DD HH:mm:ss');
                         datas[i].Fstatus = assignStatus[o.status];
@@ -340,11 +340,11 @@ function init(type) {
                                         e.node.innerHTML = '转让中...';
                                         //发送请求
                                         accountService.createCreditAssign(data.investId, data.creditDealRate, data.assignTitle, function (o) {
-                                            if (o == "SUCCESSFUL") {
+                                            if (o.success) {
                                                 alert("债转创建成功!");
                                                 window.location.reload();
                                             } else {
-                                                alert("债转创建失败，" + returnMap[o]);
+                                                alert("债转创建失败，" + o.error[0].message);
                                                 window.location.reload();
                                             }
 
