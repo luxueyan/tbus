@@ -17,6 +17,7 @@
     <tbody>
 
     {{#each list}}
+    <!--{{JSON.stringify(list)}}====-->
     <tr>
         <td>
             <!--产品名称-->
@@ -32,7 +33,7 @@
         </td>
         <td>
             <!--转让价格（元）-->
-            <p class="table-invest-common">{{creditDealAmount}}</p>
+            <p class="table-invest-common">{{creditAmount*creditDealRate}}</p>
         </td>
         <td>
             <!--挂牌日-->
