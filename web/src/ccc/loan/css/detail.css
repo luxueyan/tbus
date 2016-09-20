@@ -925,7 +925,7 @@ select::-ms-expand { display: none; }
     padding-left: 280px;
 }
 .payment-content .bank .bank-box span.limit{
-    padding-left: 80px;
+    padding-left: 60px;
     font-size: 14px;
 }
 .payment-content .invest-input{
