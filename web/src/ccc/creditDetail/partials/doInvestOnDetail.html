@@ -70,8 +70,11 @@
                             <!--<a href="/account/invest/allContracts/{{creditassign.creditassign.investId}}" target="_blank">《转让方购买金融资产时签署的购买协议》</a>-->
                             <a href="/api/v2/loan/loanRequest/{{loan.loanRequest.id}}/bind/template" target="_blank">《转让方购买金融资产时签署的购买协议》</a>
                         </p>
-                        <button class="btn" on-click="invest-submit">同意协议并确认购买</button>
-
+                        {{#if cstatus=="转让中"}}
+                        <button class="btn btnT" on-click="invest-submit">同意协议并确认购买</button>
+                        {{else}}
+                        <button class="btn btnF" disabled>已转让</button>
+                        {{/if}}
                 {{/if}}
                 </div>
             {{else}}

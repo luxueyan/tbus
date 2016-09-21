@@ -8,6 +8,7 @@
         <th>到期日</th>
         <th>实际收益(元)</th>
         <th>状态</th>
+        <th>操作</th>
     </tr>
     </thead>
     {{#if list}}
@@ -63,6 +64,12 @@
         <td>
             <!--<p class="table-title">状态</p>-->
             <p class="table-invest-common">已兑付</p>
+        </td>
+        <td>
+            <!--<p class="table-title">操作</p>-->
+            <p class="table-invest-common">
+                <a href="/account/invest/allContracts/{{id}}" class="look_contact">查看合同</a>
+            </p>
         </td>
     </tr>
     {{/each}}
