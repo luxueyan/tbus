@@ -589,16 +589,15 @@ select::-ms-expand { display: none; }
 }
 .do-invest-wrapper .status .userBlock .agree-box{
     text-align: left;
-    line-height: 35px;
     margin-left: 2px;
+    margin-right: 46px;
+    font-size: 14px;
+    color: #666;
+    padding: 15px 0;
 }
-.do-invest-wrapper .status .userBlock .agree-box span, .do-invest-wrapper .status .userBlock .agree-box span a {
-    font-size: 12px;
+.do-invest-wrapper .status .userBlock .agree-box a {
+    color: #E60012;
 }
-.do-invest-wrapper .status .userBlock .agree-box span a {
-    color: #5b9dff;
-}
-
 .do-invest-wrapper .status .userBlock .rule-max {
     margin-left: 15px;
     text-align: left;
@@ -607,25 +606,21 @@ select::-ms-expand { display: none; }
     line-height: 30px;
 }
 .do-invest-wrapper .loginBtn {
-    height: 44px;
+    height: 45px;
     color: #fff;
-    background-color: #e4262b;
-    font-size: 18px;
+    background-color: #e60012;
+    font-size: 16px;
     line-height: 44px;
-    padding: 0;
     border: none;
     display: block;
-    width: 296px;
-    margin: 0 auto;
+    width: 270px;
     text-decoration: none;
-    letter-spacing: 1px;
     text-align: center;
 }
 .do-invest-wrapper .loginBtn:hover {
     background-color: #C71E23;
 }
 .do-invest-wrapper .status .userBlock .invest-button {
-    margin-top: 50px;
     margin-left: 0px;
     cursor: pointer;
 }

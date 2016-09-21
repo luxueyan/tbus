@@ -3,8 +3,6 @@ module.exports = function (router) {
 
     router.get('/:param', function (req, res, next) {
         var param = req.params.param;
-        console.log('*************');
-        console.log(param);
         var tabMap = {
             regist: '网站注册协议',
             protocol:'服务协议',
@@ -23,6 +21,8 @@ module.exports = function (router) {
             .end()
             .get('body')
             .then(function (r) {
+                //console.log('*************');
+                //console.log(r);
                 var contents= r.length > 0 ? r : null;
                 return contents;
             });

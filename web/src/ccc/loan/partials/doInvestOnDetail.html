@@ -120,7 +120,11 @@
                     <!--</p>-->
                     <!--<p class="agree-error"></p>-->
                     <!--<input type="submit" class="loginBtn invest-button" value="确认购买"/>-->
-                    <a href="" class="loginBtn invest-button" on-click="invest-submit">确认购买</a>
+                    <div class="agree-box">
+                    确认购买即视为同意<a href="/agreement/risk" target="_blank">《风险提示书》、</a>
+                    <a href="/api/v2/loan/loanRequest/{{loan.requestId}}/bind/template" target="_blank">《产品购买协议》</a>
+                    </div>
+                    <a href="" class="loginBtn invest-button" on-click="invest-submit">同意协议并确认购买</a>
 
                 </div>
 
