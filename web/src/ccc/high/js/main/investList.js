@@ -187,7 +187,7 @@ IndexService.getLoanSummary(function (res) {
         el: ".fixedPro",
         template: require('ccc/high/partials/fixedPro.html'),
         data: {
-            list: (listNone.slice(0, 3)),
+            list: (listNone.slice(0, 5)),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         },
     });
