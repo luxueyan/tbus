@@ -69,11 +69,11 @@
                             <a href="/api/v2/loan/loanRequest/{{loan.loanRequest.id}}/bind/template" target="_blank">《转让产品购买协议》、</a>
                             <a href="/agreement/risk" target="_blank">《风险提示书》</a>
                         </p>
-                    
+
                         {{#if cstatus=="转让中"}}
-                        <button class="btn btnT" on-click="invest-submit">同意协议并确认购买</button>
+                        <button class="btnT" on-click="invest-submit">同意协议并确认购买</button>
                         {{else}}
-                        <button class="btn btnF" disabled>已转让</button>
+                        <button class="btnF" disabled>已转让</button>
                         {{/if}}
                 {{/if}}
                 </div>

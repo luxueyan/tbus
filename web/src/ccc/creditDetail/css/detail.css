@@ -846,6 +846,7 @@
     text-decoration: none;
     letter-spacing: 1px;
     text-align: center;
+    margin: 0 auto;
 }
 .do-invest-wrapper .loginBtn:hover {
     background-color: #C71E23;
