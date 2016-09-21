@@ -15,7 +15,7 @@ var fixedRactive = new Ractive({
     },
     onrender: function () {
         var that = this ;
-        var outstandingInterest = parseFloat(CC.user.outstandingInterest || 0).toFixed(2);
+        var outstandingInterest = parseFloat(CC.user.investStatistics.outstandingInterest || 0).toFixed(2);
         var amoutArray = outstandingInterest.split('.');
         this.set('outstandingInterest', parseInt(amoutArray[0]));
         this.set('oMore', amoutArray[1]);
