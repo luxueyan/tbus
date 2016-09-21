@@ -137,11 +137,10 @@
 /*轮播注册*/
 .banner-account－box{
     position: absolute;
-    top:50%;
-    margin-top: -160px;
-    left:50%;
-    margin-left:251px;
+    top: 15px;
+    left: 1200px
 }
+
 .banner-account {
     width: 300px;
     height: 320px;

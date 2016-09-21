@@ -11,10 +11,9 @@ var avaAmount = CC.user.availableAmount;
 // 累计收益
 var investInterestAmount = parseFloat(CC.user.investStatistics.investInterestAmount || 0).toFixed(2);
 // 预计当前收益
-var outstandingInterest = CC.user.investStatistics.uncollectedIncome || 0;
+var outstandingInterest = CC.user.investStatistics.outstandingInterest || 0;
 // 当前收益(在投的未结息的利息)
-//var currentIncome = CC.user.investStatistics.investStatistics.dueAmount.interest || 0;
-var currentIncome = CC.user.investStatistics.uncollectedIncome || 0;
+var currentIncome = CC.user.investStatistics.investStatistics.dueAmount.interest || 0;
 // 冻结金额
 var frozenAmount = CC.user.frozenAmount || 0;
 // 冻结中的投标金额
@@ -22,9 +21,9 @@ var investFrozenAmount = CC.user.investStatistics.investFrozenAmount || 0;
 // 在投本金(待收本金)
 var investAmounted = CC.user.investStatistics.investStatistics.dueAmount.principal || 0;
 //// 在投本金(待收本金)+冻结金额
-var investAmount = investAmounted+frozenAmount;
+var investAmount = investAmounted + frozenAmount;
 // 总资产
-var totalAmount = parseFloat(avaAmount + currentIncome + investAmount ).toFixed(2);
+var totalAmount = parseFloat(avaAmount + currentIncome + investAmount).toFixed(2);
 
 var homeRactive = new Ractive({
     el: '.account-home-wrapper',
@@ -97,6 +96,26 @@ homeRactive.on({
     }
 })
 
+var dataHigh = [{
+    name: '浮动收益',
+    y: 0,
+}, {
+    name: '固定收益',
+    y: investAmount,
+}, {
+    name: '精选基金',
+    y: 0,
+    sliced: true,
+    selected: true
+}];
+var colorHigh = ["#9b8579", "#db0716", "#cea784", "#a40000"];
+var statusHigh = true;
+
+if (!investAmount) {
+    dataHigh = [{name: '浮动收益', y: 100,}];
+    colorHigh = ["#999"];
+    statusHigh = false;
+}
 
 $('#svg_cont').highcharts({
     chart: {
@@ -118,8 +137,8 @@ $('#svg_cont').highcharts({
         enabled: false,
     },
     tooltip: {
+        enabled: statusHigh,
         headerFormat: '',
-        //pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>',
         pointFormatter: function () {
             return this.name + ': ' + Math.round(this.percentage) + '%'
         }
@@ -128,12 +147,11 @@ $('#svg_cont').highcharts({
         pie: {
             allowPointSelect: true,
             cursor: 'pointer',
-            colors: ["#9b8579", "#db0716", "#cea784", "#a40000"],
+            colors: colorHigh,
             dataLabels: {
-                enabled: true,
+                enabled: statusHigh,
                 distance: 10,
                 connectorWidth: 0,
-                //format: '{point.name} {numberFormatpoint.percentage:.1f}%',
                 formatter: function () {
                     return this.point.name + ' ' + Math.round(this.percentage) + '%';
                 },
@@ -149,17 +167,6 @@ $('#svg_cont').highcharts({
     series: [{
         type: 'pie',
         innerSize: '60%',
-        data: [{
-            name: '浮动收益',
-            y: 0,
-        }, {
-            name: '固定收益',
-            y: investAmount,
-        }, {
-            name: '精选基金',
-            y: 0,
-            sliced: true,
-            selected: true
-        }]
+        data: dataHigh
     }]
 });

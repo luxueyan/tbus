@@ -466,13 +466,19 @@
     color: #e60012;
     font-size: 30px;
 }
-.do-invest-wrapper button {
+.do-invest-wrapper .btnT {
     width: 270px;
     height: 45px;
     background: #e60012;
     color: white;
     border: none;
     font-size: 16px;
+}
+.do-invest-wrapper .btnF {
+    width: 270px;
+    height: 45px;
+    background: #bbbbbb;
+    color: white;
 }
 .do-invest-wrapper button:hover {
     color: white;
