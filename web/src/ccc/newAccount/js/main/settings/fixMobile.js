@@ -77,7 +77,7 @@ fixMobileRactive.on('fixMobile', function () {
                 fixMobileRactive.set('step2',true);
                 setTimeout(function(){
                     window.location.href = '/logoutNew';
-                },5000);
+                },2000);
             }
             else {
                 if(r.error[0].type === 'newSmsCaptcha'&&r.error[0].message === 'INVALID_MOBILE_CAPTCHA'){
