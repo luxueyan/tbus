@@ -616,6 +616,7 @@ select::-ms-expand { display: none; }
     width: 270px;
     text-decoration: none;
     text-align: center;
+    margin: 0 auto;
 }
 .do-invest-wrapper .loginBtn:hover {
     background-color: #C71E23;
