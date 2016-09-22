@@ -30,31 +30,13 @@
         <td>
             <!--<p class="table-title">起息日</p>-->
             <p class="table-invest-common">
-                <!--{{valueDate}}-->
-                {{#if valueDate !== 'Invalid date'}}
-                {{valueDate}}
-                {{else}}
-                {{#if timeFinished !== 'Invalid date'}}
-                {{start1}}
-                {{else}}
-                {{start2}}
-                {{/if}}
-                {{/if}}
+                {{FvalueDate}}
             </p>
         </td>
         <td>
             <!--<p class="table-title">到息日</p>-->
             <p class="table-invest-common">
-                <!--{{dueDate}}-->
-                {{#if dueDate !== 'Invalid date'}}
-                {{dueDate}}
-                {{else}}
-                {{#if timeFinished !== 'Invalid date'}}
-                {{end1}}
-                {{else}}
-                {{end2}}
-                {{/if}}
-                {{/if}}
+                {{FdueDate}}
             </p>
         </td>
         <td>
