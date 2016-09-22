@@ -1,4 +1,8 @@
 'use strict';
+var Promise = require('bluebird');
+var request = require('promisingagent');
+var marketPrefix = require('config').proxy.market;
+
 module.exports = function (router, auth) {
 
     router.get('/api/v2/user/:userId/paymentPasswordHasSet', auth.owner());
@@ -23,10 +27,10 @@ module.exports = function (router, auth) {
 
     //注册
     router.get('/api/v2/users/smsCaptcha', auth.pass());
-    
+
     //账户中心我要投资接口
     router.get('/api/v2/user/MYSELF/invests/list/:page/:size', auth.user());
-    
+
     //根据用户ID获取可用奖券列表
     router.get('/api/v2/rebateCounpon/listUserCouponPlacement/:userId', auth.pass());
 
@@ -44,7 +48,6 @@ module.exports = function (router, auth) {
     //邮箱绑定
     router.post('/api/v2/user/bindEmail', auth.user());
     router.post('/api/v2/user/authenticateEmail', auth.pass());
-
 
     //问卷调查
     router.post('/api/v2/user/:userId/surveyFilling', auth.user());
@@ -76,4 +79,22 @@ module.exports = function (router, auth) {
     router.get('/api/v2/loan/loanRequest/:requestId/bind/template', auth.user());
     //债转合同获取
     router.get('/api/v2/creditassign/getCreditAssignContract/:creditAssignId', auth.user());
+
+    router.get('/api/v2/statisticsAll', auth.user(), function (req, res) {
+        Promise.all([
+            request(marketPrefix + '/api/v2/user/' + req.user.id + '/statistics').get('body'),
+            request(marketPrefix + '/api/v2/user/' + req.user.id + '/userfund').get('body'),
+            request(marketPrefix + '/api/v2/payment/acct/amount/query', {
+                query: {
+                    userId: req.user.id
+                }
+            }).get('body')
+        ]).then(function (objs) {
+            res.send({
+                investInterestAmount: objs[0],
+                outstandingInterest: objs[1],
+                acctAmount: objs[2]
+            });
+        });
+    });
 };
