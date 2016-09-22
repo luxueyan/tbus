@@ -20,11 +20,23 @@ do (_, angular) ->
                     store: {}
                 }
 
+                (@$scope.valuation = do ->
+
+                    {amount, rate, settled_date} = item
+
+                    hold_day = parseInt( (Date.now() - settled_date) / (24 * 60 * 60 * 1000) )
+                    valuation = amount + amount * (rate / 100) * hold_day / 365
+
+                    return valuation
+                )
+
                 EXTEND_API @api
 
 
             fetch_analyse: (rate) ->
-                @$scope.creditDealAmount = @$scope.item.amount * rate
+
+                @$scope.creditDealAmount = @$scope.valuation * rate
+                @$scope.fee = @$scope.valuation * rate * 0.001
 
 
             submit: ({rate}) ->
