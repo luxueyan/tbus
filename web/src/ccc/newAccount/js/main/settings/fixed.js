@@ -207,17 +207,10 @@ function init(type) {
 
                         if (datas[i].hasContract) {
                             var repay = this.getRepay(o.repayments);
-                            datas[i].holdDay = (moment(nowDate).unix() - moment(datas[i].valueDate).unix())/24/60/60;
+                            datas[i].holdDay = (moment(nowDate).unix()*1000 - datas[i].loan.loanRequest.valueDate)/24/60/60/1000;
                             datas[i].Frepayed = utils.format.amount(repay.repayed, 2);
-                            console.log("333333333")
-                            //console.log(datas[i].holdDay)
-                            //console.log(moment(nowDate))
-                            //console.log(moment(nowDate).unix())
-                            console.log(moment(datas[i].valueDate))
-                            //console.log(moment(datas[i].valueDate).unix())
-                            //datas[i].Funrepay = utils.format.amount(repay.unrepay, 2);
                             datas[i].unrepay = o.amount+o.amount*(o.rate/10000)*(parseInt(datas[i].holdDay))/365;
-                            datas[i].Funrepay = utils.format.amount(datas[i].unrepay,2);
+                            datas[i].Funrepay = datas[i].unrepay.toFixed(2);
                         }
                     }
                     return res;
@@ -283,7 +276,7 @@ function init(type) {
                         assignTitle:$(e.node).data('title'),
                         requestId:$(e.node).data('request'),
                         unrepay:$(e.node).data('unrepay'),
-                        Funrepay: utils.format.amount($(e.node).data('unrepay'),2)
+                        Funrepay: $(e.node).data('unrepay').toFixed(2)
                     }
                     //console.log(unrepay)
                     //console.log(data.unrepay)
