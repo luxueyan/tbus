@@ -3147,6 +3147,59 @@ a {
             color: #C79F62;
             pointer-events: none;
         }
+
+        .form-group-inner {
+            &:before {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                z-index: 11;
+            }
+        }
+    }
+
+}
+
+/*=============================================================================
+                             [Router] [Dashboard] Payment Bind Card Select Bank
+----*/
+
+#dashboard-payment-bind-card-select-bank {
+
+    .banks {
+        .bank-list {
+            border-top: 1px solid @color-gray-light;
+            border-bottom: 1px solid @color-gray-light;
+
+            > li {
+                padding: 11px 16px;
+                background-color: #FFF;
+
+                + li {
+                    border-top: 1px solid #EAEBED;
+                }
+
+                .media-bank {
+                    .media-left {
+                        padding-right: 13px;
+                    }
+
+                    .media-heading {
+                        margin-bottom: 0;
+                        font-size: 16px;
+                        line-height: 1.4;
+                    }
+
+                    .desc {
+                        margin-bottom: 0;
+                        color: @color-gray;
+                    }
+                }
+            }
+        }
     }
 
 }

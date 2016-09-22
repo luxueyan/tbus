@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'PaymentPoolBindCardCtrl',
 
-        _.ai '            @banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @$location, @$interval, @$routeParams', class
-            constructor: (@banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @$location, @$interval, @$routeParams) ->
+        _.ai '            @banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @$location, @$interval, @$routeParams, @$uibModal', class
+            constructor: (@banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @$location, @$interval, @$routeParams, @$uibModal) ->
 
                 @$window.scrollTo 0, 0
 
@@ -136,6 +136,33 @@ do (_, angular) ->
             does_not_exist_bank: (value) ->
                 _.every @user.bank_account_list, (item) -> item.account.account isnt value
 
+
+            select_bank: (event, store) ->
+
+                do event.preventDefault
+
+                prompt = @$uibModal.open {
+                    size: 'lg'
+                    backdrop: 'static'
+                    windowClass: 'modal-full-page'
+                    openedClass: 'modal-full-page-wrap'
+                    animation: false
+                    templateUrl: 'ngt-dashboard-payment-bind-card-select-bank.tmpl'
+
+                    controller: _.ai '$scope',
+                        (             $scope) =>
+                            angular.extend $scope, {
+                                banks: @banks
+                                select: (bank) ->
+                                    store.bank = bank
+                            }
+                }
+
+                once = @$scope.$on '$locationChangeStart', ->
+                    prompt?.dismiss()
+                    do once
+
+                return prompt.result
 
 
 

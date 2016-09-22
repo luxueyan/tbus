@@ -132,7 +132,7 @@
 
             <div class="inputs">
                 <div class="form-group merge form-group-bank">
-                    <div class="form-group-inner">
+                    <div class="form-group-inner" ng-click="self.select_bank($event, store)">
                         <label for="bank-name">开户行</label>
                         <select name="bankName" class="form-control input-lg"
                                 id="bank-name"
@@ -328,9 +328,71 @@
                 </div>
             </div>
 
+            <h5 class="container">最终限额以银行设置为准。</h5>
+
         </form>
 
     </div>
 
 </div>
+
+
+
+<script type="text/ng-template" id="ngt-dashboard-payment-bind-card-select-bank.tmpl">
+    <div id="dashboard-payment-bind-card-select-bank">
+
+        <nav class="container page-nav">
+        <div class="row">
+            <a class="col-xs-3 back" ng-click="$close()">
+                <param class="glyphicon glyphicon-menu-left">
+            </a>
+            <span class="col-xs-6 title">选择开户银行</span>
+            <span class="col-xs-3">&nbsp;</span>
+        </div>
+        </nav>
+
+        <div></div>
+
+        <section class="banks">
+            <ul class="list-unstyled u-off-margin-bottom bank-list">
+                <li ng-repeat="item in banks"
+                    ng-click="select(item); $close()"
+                >
+                    <div class="media media-bank">
+                        <div class="media-left media-middle">
+                            <img width="37" ng-src="assets/image/bank-icons/{{ item.bankCode | lowercase }}.png">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{ item.bankName }}</h4>
+                            <p class="desc">
+                                单笔
+                                    {{
+                                        item.singleQuota == -1
+                                        ? '无限额'
+                                        : (
+                                            item.singleQuota >= 10000
+                                            ? item.singleQuota / 10000 + '万'
+                                            : item.singleQuota
+                                          )
+                                    }}
+                                /
+                                日限额
+                                    {{
+                                        item.dailyQuota == -1
+                                        ? '无限额'
+                                        : (
+                                            item.dailyQuota >= 10000
+                                            ? item.dailyQuota / 10000 + '万'
+                                            : item.dailyQuota
+                                          )
+                                    }}
+                            </p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+    </div>
+</script>
 
