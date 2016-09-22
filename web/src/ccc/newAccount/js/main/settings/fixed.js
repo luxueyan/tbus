@@ -272,7 +272,7 @@ function init(type) {
 
 
                 this.on('showFixed', function (e) {
-                    console.log(e)
+                    //console.log(e)
                     var alertTip = new AlertBox();
                     var data = {
                         amount:$(e.node).data('amount'),
@@ -285,7 +285,7 @@ function init(type) {
                         Funrepay: utils.format.amount($(e.node).data('unrepay'),2)
                     }
                     //console.log(unrepay)
-                    console.log(data.unrepay)
+                    //console.log(data.unrepay)
                     var returnMap = {
                         "CREDIT_ASSIGN_DISABLED": "没有开启债权转让功能",
                         "REASSIGN_DISABLED": "二次转让功能关闭",

@@ -305,7 +305,7 @@ p.tips {
 }
 
 .CITIC {
-  background-image: url(/ccc/global/img/banks/CITIC.png);
+  background-image: url(/ccc/global/img/banks/CITIC.jpg);
 }
 
 .CMBC {
@@ -324,7 +324,7 @@ p.tips {
   background-image: url(/ccc/global/img/banks/ICBC.png);
 }
 
-.BOCOM {
+.BCM {
   background-image: url(/ccc/global/img/banks/BOCOM.png);
 }
 
@@ -353,7 +353,7 @@ p.tips {
 }
 
 .PAB {
-  background-image: url(/ccc/global/img/banks/PAB.png);
+  background-image: url(/ccc/global/img/banks/PAB.jpg);
 }
 
 .PSBC {
@@ -366,6 +366,9 @@ p.tips {
 
 .GDB {
   background-image: url(/ccc/global/img/banks/GDB.png);
+}
+.BOS {
+  background-image: url(/ccc/global/img/banks/SH.jpg);
 }
 
 /*个人信息*/
