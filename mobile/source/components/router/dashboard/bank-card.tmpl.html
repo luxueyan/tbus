@@ -65,7 +65,7 @@
             <form ng-submit="self.unbind(bank_account.account.account)">
                 <button type="submit" class="btn btn-lg btn-block btn-theme"
                         ng-disabled="self.submit_sending"
-                >{{ self.submit_sending ? '删除中...' : '删除银行卡' }}</button>
+                >{{ self.submit_sending ? '解除中...' : '更换银行卡' }}</button>
             </form>
         </div>
     </section>
@@ -81,3 +81,23 @@
     </section>
 
 </div>
+
+
+
+
+
+
+
+<script type="text/ng-template" id="ngt-unbind-card-confirm.tmpl">
+    <div class="modal-body">
+        提示：<br>
+        绑定新银行卡前，需要先解除绑定当前银行卡。<br>
+        解除绑定后，您需绑定新卡才能进行充值、取现等资金操作。<br>
+        确认解除绑定当前银行卡？
+    </div>
+
+    <div class="modal-buttons">
+        <div class="modal-button" ng-click="$close()">是</div>
+        <div class="modal-button" ng-click="$dismiss()">否</div>
+    </div>
+</script>

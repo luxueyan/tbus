@@ -85,7 +85,7 @@
                        placeholder="{{
                             min_amount >= 10000
                             ? (min_amount / 10000 + '万')
-                            : (min_amount | number: 2)
+                            : (min_amount | number)
                        }}元起投，{{ loan.raw.loanRequest.investRule.stepAmount | number }}元递增"
                        required
                 >
@@ -154,7 +154,9 @@
         <section class="container agreement">
             <label>
                 <input type="checkbox" ng-init="agreement = true" ng-model="agreement" required>
-                我阅读并同意<a href="#" ng-click="self.agreement('风险提示书')">《风险提示书》</a>
+                我阅读并同意
+                <a href="#" ng-click="self.agreement('风险提示书')">《风险提示书》</a>、
+                <a ng-href="/api/v2/loan/loanRequest/{{ loan.raw.loanRequest.id }}/bind/template" target="_blank">《产品购买协议》</a>
             </label>
         </section>
 

@@ -53,8 +53,9 @@
                 <li>
                     <div class="info">
                         <span class="name">标的估值(元)</span>
-                        <span class="value"><span class="num">{{ item.amount | number: 2 }}</span></span>
+                        <span class="value"><span class="num">{{ valuation | number: 2 }}</span></span>
                     </div>
+                    <p class="desc">( 转让本金 + 转让本金 * 预计年化 * 已持有天数 / 365 ）</p>
                 </li>
 
                 <li>
@@ -88,7 +89,7 @@
                         <span ng-show="form.rate.$error.max">折价率必须小于等于1.05</span>
                     </div>
 
-                    <p class="desc">(支持溢价，折价率必须大于等于0.95；小余等于1.05)</p>
+                    <p class="desc">( 支持溢价，折价率必须大于等于 0.95；小余等于 1.05 )</p>
                 </li>
 
                 <li>
@@ -100,10 +101,22 @@
 
                 <li>
                     <div class="info">
+                        <span class="name">转让手续费(元)</span>
+                        <span class="value"><span class="num">{{ fee | number: 2 }}</span></span>
+                    </div>
+                    <p class="desc">( 转让价格 * 0.1% )</p>
+                </li>
+
+                <li>
+                    <div class="info">
                         <span class="name">转让期限</span>
                         <span class="value">24小时</span>
                     </div>
-                    <p class="desc">(如果到期无人购买，申请将自动撤销)</p>
+                    <p class="desc">( 如果到期无人购买，申请将自动撤销 )</p>
+                    <h5>
+                        确认转让即视为同意
+                        <a href="/api/v2/creditassign/template" target="_blank">《金融资产转让协议》</a>
+                    </h5>
                 </li>
             </ul>
         </section>
@@ -111,7 +124,7 @@
         <section class="btn-submit-wrap">
             <button type="submit" class="btn btn-theme btn-lg btn-block"
                     ng-disabled="form.$invalid || self.submit_sending"
-            >{{ self.submit_sending ? '转让中...' : '确认转让' }}</button>
+            >{{ self.submit_sending ? '转让中...' : '同意协议并确认转让' }}</button>
         </section>
     </form>
 

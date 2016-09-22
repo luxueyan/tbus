@@ -960,7 +960,7 @@ a {
             }
 
             .btn-tab {
-                .button-size(4px; 8px; 12px; 1; 0);
+                .button-size(4px; 8px; 14px; 1; 0);
 
                 &:not(.selected) {
                     .button-variant(#FFF; @color-theme-main; #FFF);
@@ -994,12 +994,12 @@ a {
                 margin: 0;
                 border-left: 1px solid @color-theme-main;
                 padding-left: 5px;
-                font-size: 12px;
+                font-size: 14px;
                 color: @color-theme-main;
             }
 
             .desc {
-                font-size: 10px;
+                font-size: 12px;
                 color: #9E9E9F;
             }
         }
@@ -1520,7 +1520,7 @@ a {
         background-size: cover;
         height: 184px/2;
         overflow: hidden;
-        font-size: 12px;
+        font-size: 14px;
         color: #717071;
 
         .rate {
@@ -1650,7 +1650,7 @@ a {
     .loan-info {
         padding: 5px 20px;
         background-color: #FFF;
-        font-size: 12px;
+        font-size: 14px;
         color: #717071;
 
         .list {
@@ -1709,7 +1709,7 @@ a {
             &-title {
                 border-left: 1px solid #D7000F;
                 padding-left: 5px;
-                font-size: 12px;
+                font-size: 14px;
                 color: @color-theme-main;
 
                 a {
@@ -1733,7 +1733,7 @@ a {
 
                 .content {
                     text-align: justify;
-                    font-size: 12px;
+                    font-size: 14px;
                     color: #999;
                     word-break: break-word;
 
@@ -2917,7 +2917,7 @@ a {
         }
 
         .btn-submit-wrap {
-            margin-top: 27px;
+            margin-top: 10px;
             margin-left: 60px;
             margin-right: 60px;
         }
@@ -3146,6 +3146,59 @@ a {
             right: 17px;
             color: #C79F62;
             pointer-events: none;
+        }
+
+        .form-group-inner {
+            &:before {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                z-index: 11;
+            }
+        }
+    }
+
+}
+
+/*=============================================================================
+                             [Router] [Dashboard] Payment Bind Card Select Bank
+----*/
+
+#dashboard-payment-bind-card-select-bank {
+
+    .banks {
+        .bank-list {
+            border-top: 1px solid @color-gray-light;
+            border-bottom: 1px solid @color-gray-light;
+
+            > li {
+                padding: 11px 16px;
+                background-color: #FFF;
+
+                + li {
+                    border-top: 1px solid #EAEBED;
+                }
+
+                .media-bank {
+                    .media-left {
+                        padding-right: 13px;
+                    }
+
+                    .media-heading {
+                        margin-bottom: 0;
+                        font-size: 16px;
+                        line-height: 1.4;
+                    }
+
+                    .desc {
+                        margin-bottom: 0;
+                        color: @color-gray;
+                    }
+                }
+            }
         }
     }
 
