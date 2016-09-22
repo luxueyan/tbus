@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'BankCardCtrl',
 
-        _.ai '            @user, @api, @$scope, @$rootScope, @$window, @popup_payment_state', class
-            constructor: (@user, @api, @$scope, @$rootScope, @$window, @popup_payment_state) ->
+        _.ai '            @user, @api, @$scope, @$rootScope, @$window, @$location, @$uibModal, @popup_payment_state', class
+            constructor: (@user, @api, @$scope, @$rootScope, @$window, @$location, @$uibModal, @popup_payment_state) ->
 
                 @$window.scrollTo 0, 0
 
@@ -35,37 +35,71 @@ do (_, angular) ->
 
                 return if @submit_sending
 
-                @submit_sending = true
+                (@unbind_card_confirm()
 
-                post_data = {
-                    userId: @user.info.id
-                    accountNumber: account
+                    .then =>
+
+                        @submit_sending = true
+
+                        post_data = {
+                            userId: @user.info.id
+                            accountNumber: account
+                        }
+
+                        (@api.payment_pool_unbind_card(post_data)
+
+                            .then @api.process_response
+
+                            .then (data) =>
+                                @api.flush_user_info()
+
+                                @$window.alert @$scope.msg.CANCEL_CARD_SUCCEED
+
+                                @$location.path 'dashboard/payment/bind-card'
+
+                            .catch (data) =>
+                                if _.get(data, 'error') is 'access_denied'
+                                    @$window.alert @$scope.msg.ACCESS_DENIED
+                                    @$window.location.reload()
+                                    return
+
+                                key = _.get data, 'error[0].message', 'UNKNOWN'
+                                msg = @$scope.msg[key] or key
+
+                                if key in _.split 'CANCEL_CARD_FAILED'
+                                    detail = _.get data, 'error[0].value', ''
+                                    msg += if detail then "，#{ detail }" else ''
+
+                                @$window.alert msg
+
+                            .finally =>
+                                @submit_sending = false
+                        )
+
+                        return
+                )
+
+
+            unbind_card_confirm: ->
+
+                prompt = @$uibModal.open {
+                    size: 'sm'
+                    keyboard: false
+                    backdrop: 'static'
+                    windowClass: 'center modal-confirm'
+                    animation: true
+                    templateUrl: 'ngt-unbind-card-confirm.tmpl'
+
+                    controller: _.ai '$scope',
+                        (             $scope) ->
+                            angular.extend $scope, {}
                 }
 
-                (@api.payment_pool_unbind_card(post_data)
+                once = @$scope.$on '$locationChangeStart', ->
+                    prompt?.dismiss()
+                    do once
 
-                    .then @api.process_response
-
-                    .then (data) =>
-                        @$window.alert @$scope.msg.CANCEL_CARD_SUCCEED
-
-                    .catch (data) =>
-                        if _.get(data, 'error') is 'access_denied'
-                            @$window.alert @$scope.msg.ACCESS_DENIED
-                            return
-
-                        key = _.get data, 'error[0].message', 'UNKNOWN'
-                        msg = @$scope.msg[key] or key
-
-                        if key in _.split 'CANCEL_CARD_FAILED'
-                            detail = _.get data, 'error[0].value', ''
-                            msg += if detail then "，#{ detail }" else ''
-
-                        @$window.alert msg
-
-                    .finally =>
-                        @$window.location.reload()
-                )
+                return prompt.result
 
 
 
