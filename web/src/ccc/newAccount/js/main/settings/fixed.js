@@ -160,17 +160,12 @@ function init(type) {
                     var datas = res.result.results;
                     for (var i = 0; i < datas.length; i++) {
                         var o = datas[i];
-                        datas[i].valueDate = moment(res.dates[datas[i].loanId].loanRequest.valueDate).format('YYYY-MM-DD');
-                        datas[i].dueDate = moment(res.dates[datas[i].loanId].loanRequest.dueDate).format('YYYY-MM-DD');
-                        datas[i].timeFinished = moment(res.dates[datas[i].loanId].timeFinished).format('YYYY-MM-DD');
+                        datas[i].FvalueDate = moment(res.dates[datas[i].loanId].loanRequest.valueDate).format('YYYY-MM-DD');
+                        datas[i].FdueDate = moment(res.dates[datas[i].loanId].loanRequest.dueDate).format('YYYY-MM-DD');
+                        //datas[i].timeFinished = moment(res.dates[datas[i].loanId].timeFinished).format('YYYY-MM-DD');
                         datas[i].timeOpen = moment(res.dates[datas[i].loanId].timeOpen).format('YYYY-MM-DD');
-                        datas[i].timeout = res.dates[datas[i].loanId].timeout/24;
-                        datas[i].timeEnd = moment(res.dates[datas[i].loanId].timeOpen).add(res.dates[datas[i].loanId].timeout, 'days').format('YYYY-MM-DD');
-
-                        datas[i].start1 = moment(res.dates[datas[i].loanId].timeFinished).add(1, 'days').format('YYYY-MM-DD');
-                        datas[i].end1 =  moment(datas[i].start1).add(res.dates[datas[i].loanId].duration.totalDays, 'days').format('YYYY-MM-DD');
-                        datas[i].start2 =  moment(res.dates[datas[i].loanId].timeEnd).add(1, 'days').format('YYYY-MM-DD');
-                        datas[i].end2 =  moment(datas[i].start2).add(res.dates[datas[i].loanId].duration.totalDays, 'days').format('YYYY-MM-DD');
+                        //datas[i].timeout = res.dates[datas[i].loanId].timeout/24;
+                        //datas[i].timeEnd = moment(res.dates[datas[i].loanId].timeOpen).add(res.dates[datas[i].loanId].timeout, 'days').format('YYYY-MM-DD');
 
                         switch (type) {
                             case 'INHAND':
@@ -214,6 +209,12 @@ function init(type) {
                             var repay = this.getRepay(o.repayments);
                             datas[i].holdDay = (moment(nowDate).unix() - moment(datas[i].valueDate).unix())/24/60/60;
                             datas[i].Frepayed = utils.format.amount(repay.repayed, 2);
+                            console.log("333333333")
+                            //console.log(datas[i].holdDay)
+                            //console.log(moment(nowDate))
+                            //console.log(moment(nowDate).unix())
+                            console.log(moment(datas[i].valueDate))
+                            //console.log(moment(datas[i].valueDate).unix())
                             //datas[i].Funrepay = utils.format.amount(repay.unrepay, 2);
                             datas[i].unrepay = o.amount+o.amount*(o.rate/10000)*(parseInt(datas[i].holdDay))/365;
                             datas[i].Funrepay = utils.format.amount(datas[i].unrepay,2);
@@ -328,7 +329,7 @@ function init(type) {
                                     this.on('changeVal',function(e){
                                         if(/\D/g.test(data.creditDealRate) && data.creditDealRate.indexOf('.') ==-1) return data.error = '请输入正确的折价率';
                                         else if(data.creditDealRate == '') return data.error = '请输入折价率！'
-                                        else if(data.creditDealRate>1.05) return data.error = '折价率必须小于等于1.05!';
+                                        else if(data.creditDealRate>2.05) return data.error = '折价率必须小于等于1.05!';
                                         else if(data.creditDealRate<0.95) return data.error = '折价率必须大于等于0.95!';
                                         else if((data.creditDealRate+'').length>4) return data.error = '折价率最多保留两位小数！';
                                         else data.error = '';
