@@ -1,1021 +1,1091 @@
 .passtitle {
-    border-bottom: 2px dashed #dedede;
-    padding-left: 46px;
+  border-bottom: 2px dashed #dedede;
+  padding-left: 46px;
 }
 
 .passtitle h2 {
-    font-size: 22px;
-    color: #575757;
-    line-height: 76px;
+  font-size: 22px;
+  color: #575757;
+  line-height: 76px;
 }
 
 .account-opened-wrapper {
-    width: 400px;
-    margin: 0 auto;
+  width: 400px;
+  margin: 0 auto;
 }
 
 .account-info-row {
-    height: 70px;
+  height: 70px;
 }
 
 #main-container .label {
-    height: 70px;
-    line-height: 70px;
+  height: 70px;
+  line-height: 70px;
 }
 
 .value {
-    width: 310px;
-    height: 45px;
-    line-height: 45px;
-    text-indent: 20px;
-    display: inline-block;
-    border-radius: 5px;
+  width: 310px;
+  height: 45px;
+  line-height: 45px;
+  text-indent: 20px;
+  display: inline-block;
+  border-radius: 5px;
 }
 
 p.tips {
-    color: #999999;
+  color: #999999;
 }
 
 .error-message {
-    text-align: center;
-    color: red;
-    padding: 10px 0;
+  text-align: center;
+  color: red;
+  padding: 10px 0;
 }
 
 .nameAndId {
-    display: inline;
+  display: inline;
 }
 
 .form-control_set {
-    height: 45px;
-    line-height: 45px;
-    position: relative;
-    top: 20px;
+  height: 45px;
+  line-height: 45px;
+  position: relative;
+  top: 20px;
 }
 
 .sendCode {
-    font-size: 14px;
-    width: 110px;
-    cursor: pointer;
-    display: inline-block;
-    text-align: center;
-    line-height: 46px;
-    height: 46px;
-    background: #fcfcfc;
-    color: #4c91e2;
-    border-bottom: 1px solid #cdcdcd;
-    border-top: 1px solid #cdcdcd;
-    border-right: 1px solid #cdcdcd;
+  font-size: 14px;
+  width: 110px;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  line-height: 46px;
+  height: 46px;
+  background: #fcfcfc;
+  color: #4c91e2;
+  border-bottom: 1px solid #cdcdcd;
+  border-top: 1px solid #cdcdcd;
+  border-right: 1px solid #cdcdcd;
 }
 
 .isAu {
-    margin-left: 180px;
+  margin-left: 180px;
 }
 
 .account-password-tab {
-    border-bottom: 1px #ebebeb solid;
-    margin-left: 46px;
-    margin-top: 44px;
-    padding-left: 26px;
+  border-bottom: 1px #ebebeb solid;
+  margin-left: 46px;
+  margin-top: 44px;
+  padding-left: 26px;
 }
 
 .passTab {
-    display: inline-block;
-    text-align: center;
-    cursor: pointer;
-    padding-bottom: 14px;
-    width: 120px;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  padding-bottom: 14px;
+  width: 120px;
 }
 
 .passTab a {
-    display: inline-block;
-    font-size: 12px;
-    color: #737373;
-    width: 84px;
-    height: 28px;
-    border-radius: 2px;
-    line-height: 28px;
+  display: inline-block;
+  font-size: 12px;
+  color: #737373;
+  width: 84px;
+  height: 28px;
+  border-radius: 2px;
+  line-height: 28px;
 }
 
 .PassTabActive {
-    border-bottom: 3px #ef9c2c solid;
+  border-bottom: 3px #ef9c2c solid;
 }
 
 .PassTabActive a {
-    background-color: #ef9c2c;
-    color: #fff;
+  background-color: #ef9c2c;
+  color: #fff;
 }
 
 .resetWra {
-    text-align: center;
+  text-align: center;
 }
 
 #main-container .updateWra .row {
-    margin-left: 270px;
-    margin-right: 0px;
+  margin-left: 270px;
+  margin-right: 0px;
 }
 
 #main-container .formwra .row {
-    margin-left: 186px;
-    margin-right: 0px;
-    font-size: 0;
-    overflow: hidden;
+  margin-left: 186px;
+  margin-right: 0px;
+  font-size: 0;
+  overflow: hidden;
 }
 
 .updateWra,
 .formwra {
-    text-align: left;
+  text-align: left;
 }
 
 #main-container .row .card-brame {
-    margin-left: 0px;
-    margin-right: 0px;
-    border: 1px solid #ccc;
-    width: 380px;
-    overflow: hidden;
+  margin-left: 0px;
+  margin-right: 0px;
+  border: 1px solid #ccc;
+  width: 380px;
+  overflow: hidden;
 }
 
 #main-container .row .card-brame input {
-    border: 0;
+  border: 0;
 }
 
 #main-container .row {
-    margin-bottom: 23px;
-    margin-left: 0;
-    margin-right: 0;
-    margin-left: 186px;
+  margin-bottom: 23px;
+  margin-left: 0;
+  margin-right: 0;
+  margin-left: 186px;
 }
 
 .row .payInp {
-    float: left;
-    display: inline-block;
-    width: 336px;
-    height: 48px;
-    font-size: 14px;
-    color: #000;
-    text-indent: 16px;
-    border: none;
-    border-right: 1px solid #cdcdcd;
-    border-top: 1px solid #cdcdcd;
-    border-bottom: 1px solid #cdcdcd;
+  float: left;
+  display: inline-block;
+  width: 336px;
+  height: 48px;
+  font-size: 14px;
+  color: #000;
+  text-indent: 16px;
+  border: none;
+  border-right: 1px solid #cdcdcd;
+  border-top: 1px solid #cdcdcd;
+  border-bottom: 1px solid #cdcdcd;
 }
 
 .row .tipss {
-    float: left;
-    display: inline-block;
-    height: 46px;
-    line-height: 46px;
-    width: 46px;
-    border: 1px solid #cdcdcd;
-    color: #4a4a4a;
-    background: url(/ccc/newAccount/img/lock2.png) no-repeat center center #fcfcfc;
+  float: left;
+  display: inline-block;
+  height: 46px;
+  line-height: 46px;
+  width: 46px;
+  border: 1px solid #cdcdcd;
+  color: #4a4a4a;
+  background: url(/ccc/newAccount/img/lock2.png) no-repeat center center #fcfcfc;
 }
 
 .row .error {
-    text-align: center;
-    color: red;
+  text-align: center;
+  color: red;
 }
 
 .btn-update {
-    width: 380px;
-    background-color: #ef9c2c;
-    display: inline-block;
-    font-size: 18px;
-    height: 48px;
-    color: #fff;
-    font-weight: normal;
-    line-height: 48px;
-    border-radius: 3px;
-    cursor: pointer;
-    text-align: center;
+  width: 380px;
+  background-color: #ef9c2c;
+  display: inline-block;
+  font-size: 18px;
+  height: 48px;
+  color: #fff;
+  font-weight: normal;
+  line-height: 48px;
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: center;
 }
 
 .btn-update:hover {
-    color: #fff;
+  color: #fff;
 }
 
 .wenanjiaoyi {
-    font-size: 15px!important;
-    color: #a3a3a3;
+  font-size: 15px!important;
+  color: #a3a3a3;
 }
 
 .wenanjiaoyi a span {
-    color: #ef9d30;
-    background: url(/ccc/newAccount/img/jiantoumima.png) no-repeat left center;
-    padding-left: 20px;
+  color: #ef9d30;
+  background: url(/ccc/newAccount/img/jiantoumima.png) no-repeat left center;
+  padding-left: 20px;
 }
 
 .wenanjiaoyi a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .tabwra .tab li {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .tabwra .tab .active {
-    color: #009ada;
-    font-size: 16px;
+  color: #009ada;
+  font-size: 16px;
 }
 
-.modify-password-wrapper {}
+
 
 .cap {
-    padding: 0;
-    float: left;
-    width: 112px;
-    height: 48px;
-    background-color: #f5f9f8;
-    display: inline-block;
-    margin-left: 20px;
+  padding: 0;
+  float: left;
+  width: 112px;
+  height: 48px;
+  background-color: #f5f9f8;
+  display: inline-block;
+  margin-left: 20px;
 }
 
 .errorMessage {
-    margin: 10px 0;
-    color: red;
-    text-indent: 70px;
-    font-size: 12px;
-    clear: both;
-    line-height: 46px;
-    padding-left: 10px;
+  margin: 10px 0;
+  color: red;
+  text-indent: 70px;
+  font-size: 12px;
+  clear: both;
+  line-height: 46px;
+  padding-left: 10px;
 }
 
 .bank-card {
-    width: 305px;
-    height: 170px;
-    border: 1px #eeeeee solid;
-    border-radius: 5px;
-    margin: 0 auto;
+  width: 305px;
+  height: 170px;
+  border: 1px #eeeeee solid;
+  border-radius: 5px;
+  margin: 0 auto;
 }
 
 .card-img {
-    width: 100%;
-    height: 120px;
+  width: 100%;
+  height: 120px;
 }
 
 .card-num {
-    text-align: center;
-    font-size: 14px;
-    color: #4a4a4a;
+  text-align: center;
+  font-size: 14px;
+  color: #4a4a4a;
 }
 
 .btn-change-card,
 .btn-change-card:hover {
-    width: 150px;
-    background-color: #009ada;
-    border-color: #009ada;
-    font-size: 16px;
+  width: 150px;
+  background-color: #009ada;
+  border-color: #009ada;
+  font-size: 16px;
 }
 
 .btn-change-card:hover {
-    background-color: #0287be;
+  background-color: #0287be;
 }
 
 .descript p {
-    color: #999999;
-    font-size: 14px;
-    text-align: left;
-    padding: 2px 0;
+  color: #999999;
+  font-size: 14px;
+  text-align: left;
+  padding: 2px 0;
 }
 
 .select {
-    width: 330px;
-    font-size: 14px;
-    height: 48px;
-    border: none;
-    float: left;
+  width: 330px;
+  font-size: 14px;
+  height: 48px;
+  border: none;
+  float: left;
 }
 
 .ABC {
-    background-image: url(/ccc/global/img/banks/ABC.png);
+  background-image: url(/ccc/global/img/banks/ABC.png);
 }
 
 .BCCB {
-    background-image: url(/ccc/global/img/banks/BCCB.png);
+  background-image: url(/ccc/global/img/banks/BCCB.png);
 }
 
 .CCB {
-    background-image: url(/ccc/global/img/banks/CCB.png);
+  background-image: url(/ccc/global/img/banks/CCB.png);
 }
 
 .CIB {
-    background-image: url(/ccc/global/img/banks/CIB.png);
+  background-image: url(/ccc/global/img/banks/CIB.png);
 }
 
 .CITIC {
-    background-image: url(/ccc/global/img/banks/CITIC.png);
+  background-image: url(/ccc/global/img/banks/CITIC.png);
 }
 
 .CMBC {
-    background-image: url(/ccc/global/img/banks/CMBC.png);
+  background-image: url(/ccc/global/img/banks/CMBC.png);
 }
 
 .CMB {
-    background-image: url(/ccc/global/img/banks/CMB.png);
+  background-image: url(/ccc/global/img/banks/CMB.png);
 }
 
 .SPDB {
-    background-image: url(/ccc/global/img/banks/SPDB.png);
+  background-image: url(/ccc/global/img/banks/SPDB.png);
 }
 
 .ICBC {
-    background-image: url(/ccc/global/img/banks/ICBC.png);
+  background-image: url(/ccc/global/img/banks/ICBC.png);
 }
 
 .BOCOM {
-    background-image: url(/ccc/global/img/banks/BOCOM.png);
+  background-image: url(/ccc/global/img/banks/BOCOM.png);
 }
 
 .CEB {
-    background-image: url(/ccc/global/img/banks/CEB.png);
+  background-image: url(/ccc/global/img/banks/CEB.png);
 }
 
 .BOC {
-    background-image: url(/ccc/global/img/banks/BOC.png);
+  background-image: url(/ccc/global/img/banks/BOC.png);
 }
 
 .SRCB {
-    background-image: url(/ccc/global/img/banks/SRCB.png);
+  background-image: url(/ccc/global/img/banks/SRCB.png);
 }
 
 .HXB {
-    background-image: url(/ccc/global/img/banks/HXB.png);
+  background-image: url(/ccc/global/img/banks/HXB.png);
 }
 
 .HKBEA {
-    background-image: url(/ccc/global/img/banks/HKBEA.png);
+  background-image: url(/ccc/global/img/banks/HKBEA.png);
 }
 
 .WZCB {
-    background-image: url(/ccc/global/img/banks/WZCB.png);
+  background-image: url(/ccc/global/img/banks/WZCB.png);
 }
 
 .PAB {
-    background-image: url(/ccc/global/img/banks/PAB.png);
+  background-image: url(/ccc/global/img/banks/PAB.png);
 }
 
 .PSBC {
-    background-image: url(/ccc/global/img/banks/PSBC.png);
+  background-image: url(/ccc/global/img/banks/PSBC.png);
 }
 
 .PINGAN {
-    background-image: url(/ccc/global/img/banks/pingan.png);
+  background-image: url(/ccc/global/img/banks/pingan.png);
 }
 
 .GDB {
-    background-image: url(/ccc/global/img/banks/GDB.png);
+  background-image: url(/ccc/global/img/banks/GDB.png);
 }
-
 
 /*个人信息*/
 
 .account-userInfo-wrapper {
-    padding-top: 20px;
+  padding-top: 20px;
 }
-.account-userInfo-wrapper .user_title{
-    font-size: 24px;
-    color: #ad8a58;
-    padding-bottom: 15px;
-    padding-left: 10px;
-    border-bottom: 1px solid #dcdcdc;
-    margin-right: 27px;
+
+.account-userInfo-wrapper .user_title {
+  font-size: 24px;
+  color: #ad8a58;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  border-bottom: 1px solid #dcdcdc;
+  margin-right: 27px;
 }
 
 .account-userInfo-tabs {
-    height: 30px;
-    border-bottom: 1px #cccccc solid;
+  height: 30px;
+  border-bottom: 1px #cccccc solid;
 }
 
 .userInfo-tab {
-    display: inline-block;
-    width: 100px;
-    text-align: center;
-    line-height: 30px;
-    color: #999999;
-    cursor: pointer;
-    line-height: 27px;
-    font-size: 18px;
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+  line-height: 30px;
+  color: #999999;
+  cursor: pointer;
+  line-height: 27px;
+  font-size: 18px;
 }
 
 .tab-active {
-    color: #434546;
-    border-bottom: 2px #009ada solid;
+  color: #434546;
+  border-bottom: 2px #009ada solid;
 }
 
 .myinfo {
-    clear: both;
+  clear: both;
 }
+
 .myinfo h3 {
-    color: #666;
-    font-size: 18px;
-    background: url(/ccc/newAccount/img/icon_userinfo.png) no-repeat left center;
-    padding-left: 30px;
-    margin: 20px 0;
+  color: #666;
+  font-size: 18px;
+  background: url(/ccc/newAccount/img/icon_userinfo.png) no-repeat left center;
+  padding-left: 30px;
+  margin: 20px 0;
 }
+
 .myinfo .myinfo_valgroup {
-    width: 100%;
-    overflow: hidden;
+  width: 100%;
+  overflow: hidden;
 }
+
 .myinfo .myinfo_valgroup .valgroup {
-    height: 50px;
-    line-height: 50px;
-    font-size: 14px;
-    overflow: hidden;
-    width: 480px;
-    float: left;
-    border-bottom: 1px dashed #e4e4e4;
+  height: 50px;
+  line-height: 50px;
+  font-size: 14px;
+  overflow: hidden;
+  width: 480px;
+  float: left;
+  border-bottom: 1px dashed #e4e4e4;
 }
+
 .myinfo .myinfo_valgroup .valgroup .check_state {
-    width: 25px;
-    height: 50px;
-    float: left;
-    background: url(/ccc/newAccount/img/tick.png) no-repeat left center;
+  width: 25px;
+  height: 50px;
+  float: left;
+  background: url(/ccc/newAccount/img/tick.png) no-repeat left center;
 }
+
 .myinfo .myinfo_valgroup .valgroup .check_state_error {
-    width: 25px;
-    height: 50px;
-    float: left;
-    background: url(/ccc/newAccount/img/tick_gray.png) no-repeat left center;
+  width: 25px;
+  height: 50px;
+  float: left;
+  background: url(/ccc/newAccount/img/tick_gray.png) no-repeat left center;
 }
+
 .myinfo .myinfo_valgroup .valgroup .value_name {
-    width: 120px;
-    float: left;
-    text-align: left;
+  width: 120px;
+  float: left;
+  text-align: left;
 }
+
 .myinfo .myinfo_valgroup .valgroup .val_detail {
-    width: 130px;
-    color: #666;
-    float: left;
-    margin-right: 6px;
-    text-align: left;
+  width: 130px;
+  color: #666;
+  float: left;
+  margin-right: 6px;
+  text-align: left;
 }
+
 .myinfo .myinfo_valgroup a {
-    float: right;
-    color: #cfa972;
-    margin-right: 20px;
-    text-decoration: underline;
-    text-align: left;
-    width: 100px;
+  float: right;
+  color: #cfa972;
+  margin-right: 20px;
+  text-decoration: underline;
+  text-align: left;
+  width: 100px;
 }
+
 .myinfo .myinfo_valgroup .go_approve {
-    color: #eb0303;
+  color: #eb0303;
 }
 
-.myfortune{
-    margin-top: 40px;
-    overflow: hidden;
-    clear: both;
+.myfortune {
+  margin-top: 40px;
+  overflow: hidden;
+  clear: both;
 }
+
 .myfortune h3 {
-    color: #666;
-    font-size: 18px;
-    background: url(/ccc/newAccount/img/card.png) no-repeat left center;
-    padding-left: 30px;
-    margin: 20px 0;
-    background-size: 20px;
-}
-.myfortune .card_box {
-    overflow: hidden;
-    padding-top: 10px;
-}
-.card_box ul {
-    overflow: hidden;
-}
-.card_box li {
-    float: left;
-    margin-left: 15px;
-}
-.card_box li:first-child{
-    margin-left: 0;
-}
-.card_box .card_add {
-    border: #dcdcdc 1px solid;
-    width: 310px;
-    height: 185px;
-}
-.card_box .card_add a {
-    width: 100%;
-    height: 100%;
-    display: inline-block;
-    text-decoration: none;
-}
-.card_box .card_add a .add_bank_icon {
-    width: 100%;
-    height: 60px;
-    margin-top: 40px;
-    background: url(/ccc/newAccount/img/plus-card.png) no-repeat center 0;
-}
-.card_box .trade_bank_icon{
-    width: 203px;
-    height: 45px;
-    background: #e60012;
-    color: white;
-    line-height: 45px;
-    margin-top: 30px;
-    cursor: pointer;
-}
-.card_box .card_add a h5 {
-    font-size: 18px;
-    color: #666;
-    padding: 9px 0 16px;
-}
-.card_box .card_add a p {
-    font-size: 14px;
-    color: #bbbbbb;
-    text-align: center;
+  color: #666;
+  font-size: 18px;
+  background: url(/ccc/newAccount/img/card.png) no-repeat left center;
+  padding-left: 30px;
+  margin: 20px 0;
+  background-size: 20px;
 }
 
+.myfortune .card_box {
+  overflow: hidden;
+  padding-top: 10px;
+}
+
+.card_box ul {
+  overflow: hidden;
+}
+
+.card_box li {
+  float: left;
+  margin-left: 15px;
+}
+
+.card_box li:first-child {
+  margin-left: 0;
+}
+
+.card_box .card_add {
+  border: #dcdcdc 1px solid;
+  width: 310px;
+  height: 185px;
+}
+
+.card_box .card_add a {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.card_box .card_add a .add_bank_icon {
+  width: 100%;
+  height: 60px;
+  margin-top: 40px;
+  background: url(/ccc/newAccount/img/plus-card.png) no-repeat center 0;
+}
+
+.card_box .trade_bank_icon {
+  width: 203px;
+  height: 45px;
+  background: #e60012;
+  color: white;
+  line-height: 45px;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.card_box .card_add a h5 {
+  font-size: 18px;
+  color: #666;
+  padding: 9px 0 16px;
+}
+
+.card_box .card_add a p {
+  font-size: 14px;
+  color: #bbbbbb;
+  text-align: center;
+}
 
 /*提示信息样式*/
-.card_trade{
-    margin-top: 28px;
-    margin-left: -15px;
-}
-.card_trade li:first-child{
-    width: 100%;
-}
-.card_trade li{
-    width: 100%;
-    margin-left: 0px;
-    color: #a7a7a7;
-}
-.card_trade li a {
-    color: #cfa972;
-    font-size: 14px;
+
+.card_trade {
+  margin-top: 28px;
+  margin-left: -15px;
 }
 
+.card_trade li:first-child {
+  width: 100%;
+}
+
+.card_trade li {
+  width: 100%;
+  margin-left: 0px;
+  color: #a7a7a7;
+}
+
+.card_trade li a {
+  color: #cfa972;
+  font-size: 14px;
+}
 
 .rzz {
-    width: 350px;
-    position: relative;
-    margin: 0 auto;
-    display: none;
-    overflow: auto;
-    zoom: 1;
-    margin-top: 20px;
+  width: 350px;
+  position: relative;
+  margin: 0 auto;
+  display: none;
+  overflow: auto;
+  zoom: 1;
+  margin-top: 20px;
 }
 
 .rZemail {
-    width: 250px;
-    height: 37px;
-    text-indent: 10px;
-    float: left;
-    font-size: 14px;
+  width: 250px;
+  height: 37px;
+  text-indent: 10px;
+  float: left;
+  font-size: 14px;
 }
 
 .rzE_button {
-    width: 80px;
-    height: 35px;
-    text-align: center;
-    line-height: 35px;
-    color: #fff;
-    font-size: 14px;
-    background: #009ADA;
-    float: right;
-    cursor: pointer;
-    border-radius: 2px;
+  width: 80px;
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+  color: #fff;
+  font-size: 14px;
+  background: #009ADA;
+  float: right;
+  cursor: pointer;
+  border-radius: 2px;
 }
 
 .rzE_button:hover {
-    background-color: #009ADA;
+  background-color: #009ADA;
 }
 
 .errors {
-    color: #d2252c;
-    font-size: 12px;
-    clear: both;
-    padding: 10px;
-    padding-left: 20px;
-    background-position: left center;
-    background-repeat: no-repeat;
+  color: #d2252c;
+  font-size: 12px;
+  clear: both;
+  padding: 10px;
+  padding-left: 20px;
+  background-position: left center;
+  background-repeat: no-repeat;
 }
 
 #moreInfo {
-    width: 600px;
-    margin: auto;
+  width: 600px;
+  margin: auto;
 }
 
 #moreInfo ul {
-    width: 100%;
-    overflow: auto;
-    zoom: 1;
+  width: 100%;
+  overflow: auto;
+  zoom: 1;
 }
 
 #moreInfo ul li {
-    float: left;
-    width: 50%;
+  float: left;
+  width: 50%;
 }
 
 #moreInfo ul li label {
-    margin-right: 30px;
-    height: 70px;
-    line-height: 70px;
+  margin-right: 30px;
+  height: 70px;
+  line-height: 70px;
 }
 
 #moreInfo ul li select {
-    min-width: 100px;
-    border: 1px solid #DFDFDF;
-    outline: none;
-    color: #868383;
-    background-color: white;
+  min-width: 100px;
+  border: 1px solid #DFDFDF;
+  outline: none;
+  color: #868383;
+  background-color: white;
 }
 
 #moreInfo .modify {
-    background-color: #009ADA;
-    color: white;
-    width: 80px;
-    margin-left: 210px;
-    height: 30px;
+  background-color: #009ADA;
+  color: white;
+  width: 80px;
+  margin-left: 210px;
+  height: 30px;
 }
 
 #moreInfo .modify:hover {
-    background-color: #015989;
+  background-color: #015989;
 }
+
 /*个人信息 结束*/
 
-
 .descript p a {
-    color: #999;
+  color: #999;
 }
 
 .descript p a:hover {
-    color: #009ada;
-    text-decoration: none;
+  color: #009ada;
+  text-decoration: none;
 }
 
 .border-block {
-    display: inline-block;
-    clear: both;
-    border-top: 1px solid #cdcdcd;
-    border-radius: 5px;
-    width: 200px;
-    background: #eee;
-    border-bottom: 1px solid #cdcdcd;
-    border-right: 1px solid #cdcdcd;
+  display: inline-block;
+  clear: both;
+  border-top: 1px solid #cdcdcd;
+  border-radius: 5px;
+  width: 200px;
+  background: #eee;
+  border-bottom: 1px solid #cdcdcd;
+  border-right: 1px solid #cdcdcd;
 }
 
 .payInp[name='captcha'] {
-    width: 144px;
+  width: 144px;
 }
 
 .input-group-addon {
-    border: none;
+  border: none;
 }
 
 .userIdNumber,
 .trueName {
-    margin-bottom: 10px;
-    width: 550px;
-    text-align: left;
-    margin-left: 264px;
+  margin-bottom: 10px;
+  width: 550px;
+  text-align: left;
+  margin-left: 264px;
 }
 
 .account-submit {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .check-name {
-    height: 30px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    margin-left: 10px;
-    font-size: 12px;
-    width: 200px;
-    color: black;
-    padding-left: 10px;
+  height: 30px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-left: 10px;
+  font-size: 12px;
+  width: 200px;
+  color: black;
+  padding-left: 10px;
 }
 
 .info-submit:hover {
-    background-color: #015989 !important;
+  background-color: #015989 !important;
 }
 
 .btn-success:hover {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .account-password-set {
-    margin-left: 200px;
+  margin-left: 200px;
 }
 
 .account-password-set .tipss-set {
-    width: 80px;
+  width: 80px;
 }
 
 .errorPass {
-    display: inline;
+  display: inline;
 }
-
 
 /*银行卡管理新加*/
 
 .bankcard-nav {
-    line-height: 66px;
-    border-bottom: 1px dashed #dbdbdb;
-    font-size: 24px;
-    padding-left: 46px;
-    color: #000;
+  line-height: 66px;
+  border-bottom: 1px dashed #dbdbdb;
+  font-size: 24px;
+  padding-left: 46px;
+  color: #000;
 }
 
 .bankcard-nav .shuline {
-    color: #ccc;
-    font-size: 30px;
-    margin: 0px 10px;
+  color: #ccc;
+  font-size: 30px;
+  margin: 0px 10px;
 }
 
 .row img {
-    width: 23px;
-    margin-left: 8px;
+  width: 23px;
+  margin-left: 8px;
 }
 
 .row .floatleft {
-    float: left;
+  float: left;
 }
 
 .changenext {
-    float: left;
-    line-height: 48px;
-    margin-left: 15px;
-    color: #4a90e2;
-    text-decoration: underline;
-    cursor: pointer;
+  float: left;
+  line-height: 48px;
+  margin-left: 15px;
+  color: #4a90e2;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .banks-container .row {
-    margin-left: 276px!important;
+  margin-left: 276px!important;
 }
 
 .addcard-info {
-    line-height: 60px;
-    color: #666;
-    margin-left: 276px;
+  line-height: 60px;
+  color: #666;
+  margin-left: 276px;
 }
+
 .setpwd-info {
-    line-height: 60px;
-    color: #666;
-    margin-left: 186px;
+  line-height: 60px;
+  color: #666;
+  margin-left: 186px;
 }
+
 .account-content-wrapper {
-    background: #fff;
+  background: #fff;
 }
 
 .img-box {
-    width: 42px;
-    display: inline-block;
-    border-right: 1px solid #ccc;
-    height: 48px;
-    line-height: 48px;
-    float: left;
+  width: 42px;
+  display: inline-block;
+  border-right: 1px solid #ccc;
+  height: 48px;
+  line-height: 48px;
+  float: left;
 }
-
 
 /*showbank*/
-.bankcard-box{
-    height: 120px;
-    font-size: 18px;
-    color: #4a4a4a;
-    background-size: 72%;
-    background-repeat: no-repeat;
-    background-position: center;
+
+.bankcard-box {
+  height: 120px;
+  font-size: 18px;
+  color: #4a4a4a;
+  background-size: 72%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
- .card_num {
-    text-align: center;
-    font-size: 18px;
-    color: #999;
+
+.card_num {
+  text-align: center;
+  font-size: 18px;
+  color: #999;
 }
- .card_status{
-    text-align: center;
-    font-size: 14px;
-    color: #999;
+
+.card_status {
+  text-align: center;
+  font-size: 14px;
+  color: #999;
 }
 
 .showbank-title {
-    line-height: 76px;
-    font-size: 24px;
-    border-bottom: 1px dashed #ccc;
-    padding-left: 40px;
+  line-height: 76px;
+  font-size: 24px;
+  border-bottom: 1px dashed #ccc;
+  padding-left: 40px;
 }
 
 .showbank-box .showbank-img {
-    margin: 43px auto 26px auto;
-    display: block;
-    width: 66px;
+  margin: 43px auto 26px auto;
+  display: block;
+  width: 66px;
 }
 
 .showbank-word p {
-    font-size: 30px;
-    color: #eb8400;
-    line-height: 30px;
-    text-align: center;
+  font-size: 30px;
+  color: #eb8400;
+  line-height: 30px;
+  text-align: center;
 }
 
 .showbank-box a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .showbank-box {
-    background: #fff;
-    padding-bottom: 60px;
+  background: #fff;
+  padding-bottom: 60px;
 }
 
 .bind-card-wrapper,
 .bankcard-nav {
-    background: #fff;
+  background: #fff;
 }
-.bind-card-wrapper .error{
-    color: #d2252c;
-    margin-left: 276px;
+
+.bind-card-wrapper .error {
+  color: #d2252c;
+  margin-left: 276px;
 }
+
 .bank-success h2 {
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 50px;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 50px;
 }
 
 .bank-success p {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 .bank-success div {
-    float: left;
-    margin-top: 62px;
+  float: left;
+  margin-top: 62px;
 }
 
 .bank-success img {
-    width: 200px;
-    display: block;
-    float: left;
-    margin: auto 50px auto 200px;
+  width: 200px;
+  display: block;
+  float: left;
+  margin: auto 50px auto 200px;
 }
 
 .bank-success {
-    margin: 50px auto;
-    height: 200px;
+  margin: 50px auto;
+  height: 200px;
 }
 
 .success-next button {
-    width: 140px;
-    height: 48px;
-    border-radius: 5px;
-    font-size: 18px;
-    border: none;
-    margin-right: 22px;
+  width: 140px;
+  height: 48px;
+  border-radius: 5px;
+  font-size: 18px;
+  border: none;
+  margin-right: 22px;
 }
 
 .success-next {
-    text-align: center;
+  text-align: center;
 }
 
 .has-card {
-    line-height: 50px;
-    background: #f4f4f4;
-    font-size: 16px;
-    text-align: center;
+  line-height: 50px;
+  background: #f4f4f4;
+  font-size: 16px;
+  text-align: center;
 }
 
 .has-card th {
-    text-align: center;
+  text-align: center;
 }
 
 .has-card-box tbody td {
-    text-align: center;
-    color: #000;
-    font-size: 18px;
+  text-align: center;
+  color: #000;
+  font-size: 18px;
 }
 
 .has-card-box tbody td button {
-    width: 80px;
-    height: 30px;
-    background: #ef9c2c;
-    border-radius: 4px;
-    border: none;
-    color: #fff;
-    margin: auto 8px;
+  width: 80px;
+  height: 30px;
+  background: #ef9c2c;
+  border-radius: 4px;
+  border: none;
+  color: #fff;
+  margin: auto 8px;
 }
 
 .resetfundpass {
-    margin-top: 110px;
-    display: none;
-    font-size: 24px;
-    color: #4a4a4a;
-    font-weight: bold;
-    background: url(/ccc/newAccount/img/band-success.png) no-repeat left center;
-    height: 170px;
-    padding-left: 235px;
-    margin-left: 230px;
-    background-size: 188px;
-    line-height: 170px;
-}
-.disabled{
-    cursor: default;
+  margin-top: 110px;
+  display: none;
+  font-size: 24px;
+  color: #4a4a4a;
+  font-weight: bold;
+  background: url(/ccc/newAccount/img/band-success.png) no-repeat left center;
+  height: 170px;
+  padding-left: 235px;
+  margin-left: 230px;
+  background-size: 188px;
+  line-height: 170px;
 }
 
+.disabled {
+  cursor: default;
+}
 
 /*固定收益*/
-.home-count{
-    margin-top: 13px;
-    overflow: hidden;
-    margin-right: 20px;
-    padding-bottom: 15px;
+
+.home-count {
+  margin-top: 13px;
+  overflow: hidden;
+  margin-right: 20px;
+  padding-bottom: 15px;
 }
-.home-count .common{
-    float: left;
-    background-color: #fff;
-    margin-right: 75px;
+
+.home-count .common {
+  float: left;
+  background-color: #fff;
+  margin-right: 75px;
 }
+
 .home-count .home-tab-info {
-    padding-left: 20px;
-    font-size: 18px;
-    color: #666;
-    margin-top: 26px;
+  padding-left: 20px;
+  font-size: 18px;
+  color: #666;
+  margin-top: 26px;
 }
-.home-count .home-tab-info span{
-    font-size: 12px;
+
+.home-count .home-tab-info span {
+  font-size: 12px;
 }
+
 .home-count .home-tab-amount {
-    font-size: 30px;
-    color: #666;
-    padding-left: 20px;
+  font-size: 30px;
+  color: #666;
+  padding-left: 20px;
 }
-.home-count .home-tab-amount span{
-    font-size: 20px;
+
+.home-count .home-tab-amount span {
+  font-size: 20px;
 }
-.home-intrest .home-tab-amount{
-    color: #e60012;
+
+.home-intrest .home-tab-amount {
+  color: #e60012;
 }
+
 /*重置ccc-tab*/
+
 .ccc-tab > ul.tabs > li {
-    float: left;
-    margin: 0 25px;
+  float: left;
+  margin: 0 25px;
 }
-.ccc-tab > ul.tabs > li:first-child{
-    margin-left: 0;
+
+.ccc-tab > ul.tabs > li:first-child {
+  margin-left: 0;
 }
-.ccc-tab > ul.tabs > li a{
-    color: #999;
-    margin: 10px 25px;
+
+.ccc-tab > ul.tabs > li a {
+  color: #999;
+  margin: 10px 25px;
 }
+
 .ccc-tab > ul.tabs > li a:hover,
 .ccc-tab > ul.tabs > li a:focus {
-    color: #e60012;
-    text-decoration: none;
-    display: inline-block;
-    margin: 10px 25px;
-    width: inherit;
+  color: #e60012;
+  text-decoration: none;
+  display: inline-block;
+  margin: 10px 25px;
+  width: inherit;
 }
+
 .ccc-tab > ul.tabs .active {
-    border-bottom: 2px solid #e60012;
-    margin-bottom: 0px;
-}
-.ccc-tab > ul.tabs .active a{
-    color: #e60012;
+  border-bottom: 2px solid #e60012;
+  margin-bottom: 0px;
 }
 
-.fixed-nav{
-    margin-top: 30px;
-    margin-left: 10px;
+.ccc-tab > ul.tabs .active a {
+  color: #e60012;
 }
-.fixed-nav ul{
-     overflow: hidden;
-     border-bottom: 1px solid #c9c9c9;
-     margin-right: 32px;
- }
 
-.fixed-nav ul li a{
-    padding-left: 20px;
-    font-size: 18px;
+.fixed-nav {
+  margin-top: 30px;
+  margin-left: 10px;
 }
-.inhand_pro{
-    background: url("/ccc/newAccount/img/icon_inhand_active.png") no-repeat left center;
+
+.fixed-nav ul {
+  overflow: hidden;
+  border-bottom: 1px solid #c9c9c9;
+  margin-right: 32px;
 }
-.assign_pro{
-    background: url("/ccc/newAccount/img/icon_assign.png") no-repeat left center;
+
+.fixed-nav ul li a {
+  padding-left: 20px;
+  font-size: 18px;
 }
-.clear_pro{
-    background: url("/ccc/newAccount/img/icon_clear.png") no-repeat left center;
+
+.inhand_pro {
+  background: url("/ccc/newAccount/img/icon_inhand_active.png") no-repeat left center;
 }
+
+.assign_pro {
+  background: url("/ccc/newAccount/img/icon_assign.png") no-repeat left center;
+}
+
+.clear_pro {
+  background: url("/ccc/newAccount/img/icon_clear.png") no-repeat left center;
+}
+
 /*删卡弹框*/
-.debank{
-    border: 1px solid #cfa972;
-    width: 400px;
-    padding: 40px;
-    position: fixed;
-    top: 40%;
-    left: 40%;
-    background: #fff;
-    z-index: 99;
-    display: none;
+
+.debank {
+  border: 1px solid #cfa972;
+  width: 400px;
+  padding: 40px;
+  position: fixed;
+  top: 40%;
+  left: 40%;
+  background: #fff;
+  z-index: 99;
+  display: none;
 }
-.debank input{
-    border: none;
-    background: #cfa972;
-    color: #fff;
-    width: 100px;
-    height: 30px;
-    margin: 20px 100px 0px;
+
+.debank input {
+  border: none;
+  background: #cfa972;
+  color: #fff;
+  width: 100px;
+  height: 30px;
+  margin: 20px 100px 0px;
 }
-.debank p span{
-    color: #e4262b;
+
+.debank p span {
+  color: #e4262b;
 }
-.debank p a{
-    color: #e4262b;
+
+.debank p a {
+  color: #e4262b;
+}
+
+.debank .confirm {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.debank .debank_btn {
+  margin: 0 auto;
+  width: 100px;
+}
+
+.debank .debank_btn button {
+  border: none;
+  background: #cfa972;
+  color: #fff;
+  padding: 8px;
+}
+.debank .debank_btn .no{
+    float: right;
 }

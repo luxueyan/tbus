@@ -96,7 +96,7 @@
                             <!--<button on-click="deleted-card" lala="{{account.account}}">解绑</button>-->
                         <!--</td>-->
                     </div>
-                    <a class="trade_bank_icon" on-click="delete-card">删除银行卡</a>
+                    <a class="trade_bank_icon" on-click="show-pop">更换银行卡</a>
 
                 </li>
 
@@ -110,16 +110,26 @@
                         <li>1、更换新银行卡后，原银行卡将会自动解除绑定。</li>
                         <li>2、为了保障资金安全，投资的本金及收益提现时需返回原银行卡。</li>
                         <li>3、在您更换银行卡前，请确保您投资的所有项目已退出，且平台账户余额为零。</li>
-                        <li>4、若银行卡遗失或注销，则联系客服：400-900-8868，进行线下换卡。具体流程参见：<a href="/help/account">帮助中心-银行卡更换。</a></li>
+                        <li>4、若银行卡遗失或注销，则联系客服：400-900-8868，进行线下换卡。具体流程参见：<a href="/help/account">帮助中心。</a></li>
 
                     </ul>
                 </li>
             </ul>
             <div class="debank">
                 <h4>提示：</h4>
+                {{#if total}}
                 <p>1、您在平台的总资产不为零，为了保障您的资金安全，暂时不能通过线上换卡。</p>
                 <p>2、若有疑问，请联系客服：<span>400-900-8868</span>，或查看： <a href="/help/account">帮助中心</a>。</p>
                 <input type="button" value="关闭" on-click="makeSure" />
+                {{else}}
+                <p>1、绑定新银行卡前，需要先解除绑定当前银行卡。</p>
+                <p>2、解除绑定后，您需绑定新卡才能进行充值、取现等资金操作。</p>
+                <p class="confirm">确定解除绑定当前银行卡?</p>
+                <div class="debank_btn">
+                    <button on-click="delete-card">是</button>
+                    <button class="no" on-click="makeSure">否</button>
+                </div>
+                {{/if}}
             </div>
 
         </div>
