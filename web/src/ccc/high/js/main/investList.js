@@ -190,6 +190,15 @@ IndexService.getLoanSummary(function (res) {
             list: (listNone.slice(0, 5)),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         },
+        onrender:function(){
+
+            $('.assign_time').mouseover(function(){
+                $(this).parent().parent().parent().siblings('.assign_tip').fadeIn(200);
+            })
+            $('.assign_tip').mouseleave(function(){
+                $(this).fadeOut(200);
+            })
+        }
     });
     // 浮动收益
     var listRactive = new Ractive({
