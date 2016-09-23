@@ -3,6 +3,9 @@
     <li class="{{#if tabIndex === @index }}active{{/if}}">
         <a href="{{ url }}">{{ text }}</a>
     </li>
+    {{#subTabs}}
+        <a href="{{ url }}" class="usA ">{{ text }}</a>
+    {{/subTabs}}
     {{/tabs}}
 
 

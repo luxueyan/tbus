@@ -13,20 +13,29 @@ module.exports = function (router) {
             transfer: 'INTRODUCTION',
             protection: 'INTRODUCTION',
             question: 'INTRODUCTION',
+            administration:'INTRODUCTION',
+            investment:'INTRODUCTION',
+            risk:'INTRODUCTION',
         };
         var nameMap = {
             account: '平台简介',
             invest: '团队介绍',
             transfer: '平台公告',
             protection: '联系我们',
-            question:'媒体报道'
+            question:'媒体报道',
+            administration:'团队介绍',
+            investment:'投资决策委员会',
+            risk:'风险管理委员会',
         };
         var indexMap={
             account: '平台简介',
             invest: '团队介绍',
             transfer: '平台公告',
             protection: '联系我们',
-            question:'媒体报道'
+            question:'媒体报道',
+            administration:'团队介绍',
+            investment:'投资决策委员会',
+            risk:'风险管理委员会',
         };
 
         var tabs = [{
@@ -34,7 +43,17 @@ module.exports = function (router) {
              url: '/us/account'
          },{
             text: '团队介绍',
-            url: '/us/invest'
+            url: '/us/invest',
+            subTabs: [{
+                text: '管理团队',
+                url: '/us/administration'
+            }, {
+                text: '投资决策委员会',
+                url: '/us/investment'
+            }, {
+                text: '风险管理委员会',
+                url: '/us/risk'
+            }]
         },{
             text: '平台公告',
             url: '/us/transfer'
@@ -45,22 +64,33 @@ module.exports = function (router) {
             text: '联系我们',
             url: '/us/protection'
         }];
-
-            var tabIndex;
+        var path = req.path.replace(/\/$/, '');
+            var tabIndex,subTabIndex;
             var tabType=null;
             for (var index = 0, length = tabs.length; index < length; index++) {
                 var tab = tabs[index];
+                if (tab.text === '平台简介' || tab.text === '团队介绍' || tab.text === '联系我们'||tabIndex =="2") {
+                    tabType = true;
+                }else{
+                    tabType = false;
+                }
                 if (tab.text === indexMap[req.params.tab]) {
                     tabIndex = index;
-                    if (tab.text === '平台简介' || tab.text === '团队介绍' || tab.text === '联系我们') {
-                        tabType = true;
-                    }else{
-                        tabType = false;
-                    }
                     break;
                 }
+                if (tab.subTabs) {
+                    for (var idx = 0, len = tab.subTabs.length; idx < len; idx++) {
+                        var subTab = tab.subTabs[idx];
+                        if (subTab.url === path) {
+                            tabIndex = index;
+                            subTabIndex = idx;
+                            break;
+                        }
+                    }
+                }
             }
-        
+
+
             var user = res.locals.user;
             res.locals.title='关于我们_太合汇';
 
