@@ -210,7 +210,7 @@ function init(type) {
                             datas[i].holdDay = (moment(nowDate).unix()*1000 - datas[i].loan.loanRequest.valueDate)/24/60/60/1000;
                             datas[i].Frepayed = utils.format.amount(repay.repayed, 2);
                             datas[i].unrepay = o.amount+o.amount*(o.rate/10000)*(parseInt(datas[i].holdDay))/365;
-                            datas[i].Funrepay = datas[i].unrepay.toFixed(2);
+                            //console.log(datas[i].unrepay)
                         }
                     }
                     return res;
@@ -278,7 +278,6 @@ function init(type) {
                         unrepay:$(e.node).data('unrepay'),
                         Funrepay: $(e.node).data('unrepay').toFixed(2)
                     }
-                    //console.log(unrepay)
                     //console.log(data.unrepay)
                     var returnMap = {
                         "CREDIT_ASSIGN_DISABLED": "没有开启债权转让功能",
@@ -322,7 +321,7 @@ function init(type) {
                                     this.on('changeVal',function(e){
                                         if(/\D/g.test(data.creditDealRate) && data.creditDealRate.indexOf('.') ==-1) return data.error = '请输入正确的折价率';
                                         else if(data.creditDealRate == '') return data.error = '请输入折价率！'
-                                        else if(data.creditDealRate>2.05) return data.error = '折价率必须小于等于1.05!';
+                                        else if(data.creditDealRate>1.05) return data.error = '折价率必须小于等于1.05!';
                                         else if(data.creditDealRate<0.95) return data.error = '折价率必须大于等于0.95!';
                                         else if((data.creditDealRate+'').length>4) return data.error = '折价率最多保留两位小数！';
                                         else data.error = '';

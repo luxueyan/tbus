@@ -367,6 +367,7 @@ p.tips {
 .GDB {
   background-image: url(/ccc/global/img/banks/GDB.png);
 }
+
 .BOS {
   background-image: url(/ccc/global/img/banks/SH.jpg);
 }
@@ -786,6 +787,7 @@ p.tips {
   font-size: 18px;
   color: #fff;
   border: none;
+  margin-bottom: 20px;
 }
 
 .bind-card-wrapper .error {
