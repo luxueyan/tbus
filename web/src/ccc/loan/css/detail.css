@@ -314,9 +314,9 @@ select::-ms-expand { display: none; }
     /*background: #fff;*/
 /*}*/
 
-.invest-info-box .insurance-wrapper {
+.tab-panel .insurance-wrapper {
     height: 170px;
-    margin-top: 15px;
+    margin: 30px 50px;
 }
 .insurance-wrapper .big-box {
     overflow: hidden;

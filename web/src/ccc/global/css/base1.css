@@ -602,12 +602,12 @@ input[type=button]{
 .pop_box{
     border: 1px solid #ccc;
     width: 700px;
-    height: 360px;
+    height: 540px;
     border-radius: 5px;
     position: absolute;
-    top: 10%;
-    /*    margin-top: -210px;*/
+    top: 50%;
     left: 50%;
+    margin-top: -270px;
     margin-left: -350px;
     z-index: 2;
     display: none;
@@ -616,6 +616,10 @@ input[type=button]{
 .pop_content{
     margin: 60px;
     line-height: 30px;
+}
+.pop_content h2{
+    font-size: 14px;
+    text-align: center;
 }
 .pop_btn{
     margin-left: 150px;
