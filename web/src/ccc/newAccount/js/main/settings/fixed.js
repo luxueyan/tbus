@@ -121,6 +121,7 @@ function init(type) {
                 }).error(function (o) {
                     console.info('请求出现错误，' + o.statusText);
                 });
+                console.log(utils.i18n.InvestStatus)
             },
             setData: function (o) {
                 this.set('loading', false);
@@ -143,7 +144,7 @@ function init(type) {
                         var assignStatus = {
                             "PROPOSED": "已申请",
                             "SCHEDULED": "已安排",
-                            "FINISHED": "转让已满",
+                            "FINISHED": "已转让",
                             "OPEN": "转让中",
                             "FAILED": "转让未满",
                             "CANCELED": "已取消"
@@ -181,6 +182,9 @@ function init(type) {
                                     if(datas[i].loan.loanRequest.valueDate <= nowDate){
                                         datas[i].Fstatus = '计息中';
                                     }
+                                };
+                                if(datas[i].status == 'FROZEN'){
+                                    datas[i].Fstatus = '资金冻结';
                                 };
                                 break;
                             case 'CLEARED':

@@ -182,14 +182,22 @@ IndexService.getLoanSummary(function (res) {
     //console.log(listFixed)
     //console.log(listFloat)
     //console.log("1111")
-    var listOpen = [];
-    var listNone = [];
+    var listOpen = [];     //在售中  OPENED
+    var listNone = [];     //计息中  SETTLED
+    var listSchedul = [];  //即将发布  SCHEDULED
+    var listFinish = [];     //已售罄 FINISHED
+    var liststatus = [];   //放排序后的产品 ： 在售中》即将发布》已售罄》计息中
     for (var i = 0; i < listFixed.length; i++) {
-        if (listFixed[i].status == "OPENED"||listFixed[i].status == "SCHEDULED") {
+        if (listFixed[i].status == "OPENED") {
             listOpen.push(listFixed[i]);
-        }else{
+        }else if(listFixed[i].status == "SCHEDULED"){
+            listSchedul.push(listFixed[i]);
+        }else if(listFixed[i].status == "FINISHED"){
+            listFinish.push(listFixed[i]);
+        }else if(listFixed[i].status == "SETTLED"){
             listNone.push(listFixed[i]);
         }
+
     }
     var compare = function (obj1, obj2) {
         var val1 = obj1.timeOpen;
@@ -205,25 +213,30 @@ IndexService.getLoanSummary(function (res) {
 
     listOpen.sort(compare);
     listNone.sort(compare);
+    listSchedul.sort(compare);
+    listFinish.sort(compare);
+    liststatus=liststatus.concat(listOpen);
+    liststatus=liststatus.concat(listSchedul);
+    liststatus=liststatus.concat(listFinish);
+    liststatus=liststatus.concat(listNone);
     //console.log("@@@@");
-    //console.log(listOpen);
-    //console.log(listNone);
+    //console.log(liststatus);
     //console.log("@@@@");
     // 固定收益
     var listRactive = new Ractive({
         el: ".fixedPro",
         template: require('ccc/invest/partials/fixedPro.html'),
         data: {
-            list: [],
+            list: liststatus.slice(0, 5),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         },
         onrender:function(){
-            var self = this;
-            if(listOpen.length){
-                self.set('list',listOpen.slice(0, 5));
-            }else{
-                self.set('list',listNone.slice(0, 5));
-            };
+            //var self = this;
+            //if(listOpen.length){
+            //    self.set('list',listOpen.slice(0, 5));
+            //}else{
+            //    self.set('list',listNone.slice(0, 5));
+            //};
 
             $('.assign_time').mouseover(function(){
                 $(this).parent().parent().parent().siblings('.assign_tip').fadeIn(200);
