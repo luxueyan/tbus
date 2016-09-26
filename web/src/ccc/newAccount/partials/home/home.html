@@ -3,29 +3,37 @@
     <div class="home-num">
         <div class="home-total common">
             <div class="home-tab-info total" on-mouseover="showTip" on-mouseleave="hideTip">总资产(元)</div>
-            <p class="info-tip" style="width: 224px;">在投本金+未结息的利息+可用余额</p>
-            <div class="home-tab-amount">{{totalAmount}}<span>.{{tAmount}}</span></div>
+            <p class="info-tip" style="width: 280px;">在投本金＋冻结资金＋当前收益＋可用余额</p>
+            <div class="home-tab-amount">{{totalAmount}}.{{tAmount}}</div>
         </div>
+
+        <div class="home-expect common">
+            <div class="home-tab-info">冻结资金(元)</div>
+            <div class="home-tab-amount">{{frozenAmount}}</div>
+        </div>
+
         <div class="home-expect common">
             <div class="home-tab-info" on-mouseover="showTip" on-mouseleave="hideTip">在投本金(元)</div>
-            <p class="info-tip" style="width: 166px;">冻结资金及已计息的本金</p>
-            <div class="home-tab-amount">{{investAmount}}<span>.{{iAmount}}</span></div>
+            <p class="info-tip" style="width: 94px;">已计息的本金</p>
+            <div class="home-tab-amount">{{investAmount}}.{{iAmount}}</div>
         </div>
+
         <div class="home-expect common">
             <div class="home-tab-info" on-mouseover="showTip" on-mouseleave="hideTip">当前收益(元)</div>
             <p class="info-tip" style="width: 94px;left: 20px;">未结息的利息</p>
-            <div class="home-tab-amount">{{currentIncome}}<span>.{{cMore}}</span></div>
+            <div class="home-tab-amount">{{currentIncome}}.{{cMore}}</div>
         </div>
 
         <div class="home-interest common">
             <div class="home-tab-info"  on-mouseover="showTip" on-mouseleave="hideTip">累计收益(元)</div>
             <p class="info-tip" style="width: 140px;">已经结息的全部收益</p>
-            <div class="home-tab-amount">{{investInterestAmount}}<span>.{{iMore}}</span></div>
-
+            <div class="home-tab-amount">{{investInterestAmount}}.{{iMore}}</div>
         </div>
-    </div>
-    <div class="home-risk">
-        我的风险承受能力: <span>{{#if riskBear}}{{riskBear}}{{else}}系统默认{{/if}}</span>
+
+        <div class="home-interest common" style="margin-right: 0">
+            <div class="home-tab-info">我的风险承受能力</div>
+            <div class="home-tab-amount"><span>{{#if riskBear}}{{riskBear}}{{else}}系统默认{{/if}}</span></div>
+        </div>
     </div>
 </div>
 

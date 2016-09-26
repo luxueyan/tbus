@@ -938,7 +938,7 @@ p.tips {
 .home-count .common {
   float: left;
   background-color: #fff;
-  margin-right: 50px;
+  margin-right: 40px;
 }
 
 .home-count .home-tab-info {
@@ -953,13 +953,14 @@ p.tips {
 }
 
 .home-count .home-tab-amount {
-  font-size: 30px;
+  font-size: 20px;
   /*color: #666;*/
   padding-left: 20px;
 }
 
 .home-count .home-tab-amount span {
-  font-size: 20px;
+  font-size: 14px;
+  color: #b5925f;
 }
 
 .home-intrest .home-tab-amount {
