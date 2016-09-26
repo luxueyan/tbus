@@ -1,6 +1,8 @@
 
 <div id="about">
 
+    <style> body { background-color: #FFF; } </style>
+
     <nav class="omit-margin container page-nav">
     <div class="row">
         <a class="col-xs-3 back" x-go-back>
@@ -11,25 +13,279 @@
     </div>
     </nav>
 
-    <section class="omit-margin banner shadow">
-        <img class="img-responsive" ng-src="assets/image/about-banner-01.jpg">
+    <div ng-switch="current_tab">
+
+    <section class="detail" ng-switch-when="index">
+        <div class="banner shadow">
+            <img class="img-responsive" ng-src="assets/image/about-banner-03.jpg">
+        </div>
+
+        <div class="content">
+            <ul class="list-unstyled u-off-margin-bottom links">
+                <li>
+                    <a href="about?tab=summary">
+                        <div class="zh">平台简介</div>
+                        <div class="en">About TAHONE WEALTH</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="about?tab=management">
+                        <div class="zh">管理团队</div>
+                        <div class="en">Management Team</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="about?tab=investment">
+                        <div class="zh">投资决策委员会</div>
+                        <div class="en">Investment Strategy Committee</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="about?tab=risk">
+                        <div class="zh">风险管理委员会</div>
+                        <div class="en">Risk Management Committee</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </section>
 
-    <section class="detail">
-        <h4 class="title">了解太合汇</h4>
+
+
+    <section class="detail" ng-switch-when="summary">
+        <h4 class="title shadow">平台简介</h4>
 
         <div class="content">
             <div class="img-wrap">
-                <img class="img-responsive" ng-src="assets/image/about-banner-02.jpg">
+                <img class="img-responsive" ng-src="assets/image/about-banner-04.jpg">
             </div>
 
             <div class="text">
-                <p>太合汇（TAHONE）成立于2013年，总部位于上海，是一家行业领先的私募基金管理公司。其股东为亚洲最大的的多元化投资管理公司之一，在地区内各市场的投资总额超过300亿美元。</p>
-                <p>太合汇立足于中国，致力于向全球范围提供各类投资、咨询以及金融资产管理服务，力图建成一家以私募投资、金融租赁、资产管理、财富管理为核心业务的基金管理机构。太合汇利用其在本地市场的广泛网络、深厚人脉以及多元化投资策略，恪守风险管理、合规把控、精准洞察和稳健决策，
-                以严谨务实的工作方式和高度透明的公司治理为原则，带领一支具有国际视野和深厚本土市场经验的团队，为机构客户和中高净值个人客户提供全面的金融资产管理服务。</p>
-                <p>太合汇目前正服务于多个实力超群的国内客户，行业类型涵盖金融投资、航空、地产、健康等领域，业务范围辐射多个国内经济发达城市，包括上海、北京、广州、深圳、重庆、成都、南京、苏州、郑州等。</p>
+                <p>太合汇·汇财富是由太合汇资本（TAHONE CAPITAL）倾力打造的互联网金融资产交易服务平台，专门为白领、中产精英等高潜力人群提供专业、可信赖的财富管理服务，实现财富增值。</p>
+                <p>太合汇资本（TAHONE CAPITAL）成立于2013年，总部位于上海，是一家行业领先的私募基金管理公司。其集团为亚洲最大的多元化投资管理公司之一，在地区内各市场的投资总额超过300亿美元。</p>
+                <p>太合汇资本立足于中国，致力于向全球范围提供各类投资、咨询以及金融资产管理服务，力图建成一家以私募投资、金融租赁、资产管理、财富管理为核心业务的基金管理机构。
+                太合汇资本利用其在本地市场的广泛网络、深厚人脉以及多元化投资策略，恪守风险管理、合规把控、精准洞察和稳健决策，以严谨务实的工作方式和高度透明的公司治理为原则，带领一支具有国际视野和深厚本土市场经验的团队，为机构客户和中高净值个人客户提供全面的金融资产管理服务。</p>
+                <p>太合汇资本目前正服务于多个实力超群的国内客户，行业类型涵盖金融投资、航空、地产、健康等领域，业务范围辐射多个国内经济发达城市。</p>
             </div>
         </div>
     </section>
+
+
+
+     <section class="detail" ng-switch-when="management">
+        <h4 class="title shadow">管理团队</h4>
+
+        <div class="content">
+            <div class="media">
+                <div class="media-left">
+                    <img width="112" ng-src="assets/image/avatar/xiaosuining.jpg">
+                </div>
+                <div class="media-body">
+                    <h4>董事局主席 肖遂宁</h4>
+                    <p>肖遂宁先生现任太合汇资本（Tahone Capital）的董事局主席，他也是太盟投资集团（PAG）的合伙人，并担任太盟投资集团中国区主席一职（2013年至今）。</p>
+                    <p>在加入太盟投资集团之前，肖先生也曾担任平安银行股份有限公司董事长（2010-2012）和深圳发展银行董事、行长（2007-2010）等职务。在此之前，肖先生在交通银行股份有限公司精耕细作17年，担任了一系列高级管理职务，包括交通银行深圳分行行长等。</p>
+                    <p>肖先生的加盟将给太合汇资本带来巨大的价值，他不仅能够帮助太合汇资本加强项目开拓和执行能力，更能利用其在中国市场深厚而广阔的人脉将太合汇资本带领到一个新的行业高度。</p>
+                </div>
+            </div>
+
+            <div class="media">
+                <div class="media-left">
+                    <img width="112" ng-src="assets/image/avatar/liuxinyu.jpg">
+                </div>
+                <div class="media-body">
+                    <h4>总裁 刘欣宇</h4>
+                    <p>刘欣宇先生现任太合汇资本的总裁。在这之前的11年里，刘先生历任民生银行上海分行私人银行部总经理，交易融资部总经理，公司金融部总经理，营业部总经理，支行行长等高级管理职务，熟悉传统对公银行业务、零售银行业务、资产管理业务的全流程管理。在此之前，刘先生供职于中国银行深圳分行。</p>
+                    <p>多年的银行从业经验使得其对中国的资本市场有着较深刻的理解。刘先生擅长资产管理业务的产品研发和高净值客户的维护与管理，在民生银行上海分行私人银行部任职期间业绩骄人，其所领导的团队完成了分行全年三分之一的利润水平，是为数不多进入民生银行20年行志人物。</p>
+                    <p>刘先生持有中欧国际工商学院EMBA学位以及上海财经大学管理学学士学位。</p>
+                </div>
+            </div>
+
+            <div class="media">
+                <div class="media-left">
+                    <img width="112" ng-src="assets/image/avatar/zhangjun.jpg">
+                </div>
+                <div class="media-body">
+                    <h4>首席执行官 张君</h4>
+                    <p>张君先生现任太合汇资本首席执行官。在加入太合汇资本之前，张先生曾任职于新华信托股份有限公司机构业务部总经理，东方新华投资管理有限公司市场总监，东方新华财富众创空间管理（上海）有限公司总经理等职。</p>
+                    <p>张先生曾先后负责业务营销、渠道建设、项目管理等工作，在财富管理、资产管理及渠道运营等方面具有丰富的经验，带领的团队均取得骄人的业绩。</p>
+                    <p>张先生持有亚利桑那州立大学EMBA学位以及上海财经大学管理学硕士和经济学学士学位。张先生也是美国项目管理协会（PMI）认证项目管理师（PMP）以及美国国际训练协会认证职业训练师（PTT）。</p>
+                </div>
+            </div>
+
+            <div class="media">
+                <div class="media-left">
+                    <img width="112" ng-src="assets/image/avatar/chenxiao.jpg">
+                </div>
+                <div class="media-body">
+                    <h4>首席风控官 陈潇</h4>
+                    <p>陈潇女士现任太合汇资本首席风控官。在加入太合汇资本之前，陈女士曾供职于中国民生银行上海分行以及毕马威华振会计事务所上海分所。</p>
+                    <p>陈女士担任的职务包括民生银行上海分行私人银行资产管理业务风控经理，交易融资业务项目经理，对公授信业务评审经理，审计师等，熟悉公司治理制度及风险控制管理。从事多年风险管理的工作使其有较强的风险合规意识，对公司信用评级及投资项目的风险评审有较强的把控能力。</p>
+                    <p>陈女士持有上海财经大学会计学硕士学位，是中国注册会计师（CPA）。</p>
+                </div>
+            </div>
+
+            <div class="media">
+                <div class="media-left">
+                    <img width="112" ng-src="assets/image/avatar/yuanmei.jpg">
+                </div>
+                <div class="media-body">
+                    <h4>人力资源与行政总监 袁梅</h4>
+                    <p>袁梅女士现任太合汇资本人力资源与行政总监。在加入太合汇资本之前，袁女士曾任太盟投资集团（PAG）中国区行政经理以及摩托罗拉中国研发中心总裁助理。</p>
+                    <p>袁女士在公司运营管理方面有着近15年的工作经验，熟知各项行政管理事务，具有丰富的项目管理经验，尤其擅长从有限的资源中挖掘价值，以达效益最大化。她在公司品牌建设及企业传讯方面也有涉猎，熟悉各种渠道以维护和提升企业内外部形象和知名度。</p>
+                    <p>袁女士持有上海交通大学安泰经济与管理学院MBA学位以及华东政法大学法学学士学位。</p>
+                </div>
+            </div>
+
+            <div class="media">
+                <div class="media-left">
+                    <img width="112" ng-src="assets/image/avatar/gonglei.jpg">
+                </div>
+                <div class="media-body">
+                    <h4>营销管理总监 龚蕾</h4>
+                    <p>龚蕾女士现任太合汇资本营销管理总监。在加入太合汇资本之前，龚女士曾任职于中国民生银行上海分行。</p>
+                    <p>龚蕾女士拥有10余年的银行从业经验，从事过银行国际业务及私人银行业务，并曾担任中国民生银行上海分行私人银行部投资顾问中心负责人，在高净值客户的财富管理、投资顾问和理财经理团队培养、产品销售运营等方面有丰富的管理经验，带领团队获得骄人的业绩。</p>
+                    <p>龚蕾女士持有澳大利亚弗林德斯大学硕士学位，拥有金融理财师等专业从业证书。</p>
+                </div>
+            </div>
+
+            <div class="media">
+                <div class="media-left">
+                    <img width="112" ng-src="assets/image/avatar/weiguohui.jpg">
+                </div>
+                <div class="media-body">
+                    <h4>IT总监 魏国辉</h4>
+                    <p>魏国辉先生现任太合汇资本IT总监。在加入太合汇资本之前，魏先生曾任IBM全球服务部基础架构运营服务高级经理，服务过包括中国银行、中宏保险、大都会保险在内的一系列金融企业。</p>
+                    <p>魏先生曾先后负责数据中心运营、信息安全、基础架构运营、云计算、容灾以及业务持续性规划等方面工作，在系统管理、信息安全、大数据和运维自动化方面有着深厚的积累，并带领团队取得优异的成绩。</p>
+                    <p>魏先生持有浙江大学工程和市场双学士学位。魏先生也是美国ISC2 认证CISSP会员，持有IBM、Cloudera、VMware等厂商颁发有关云计算和大数据一系列证书。</p>
+                </div>
+            </div>
+
+            <div class="media">
+                <div class="media-left">
+                    <img width="112" ng-src="assets/image/avatar/kangjian.jpg">
+                </div>
+                <div class="media-body">
+                    <h4>财务总监 康剑</h4>
+                    <p>康剑女士现任太合汇资本的财务总监，她也是太盟投资集团（PAG）中国区的高级财务经理（2007年至今）。</p>
+                    <p>康女士熟悉公司财务管理流程及税务风险控制管理， 制定公司财务管理制度及税收政策方案，利用财务核算与管理为公司经营决策提供依据。主持公司日常财务管理工作，督促各项制度的实施与执行，并提出改进意见及建议。</p>
+                    <p>康女士持有北京工商大学管理学学士学位，并持有中级会计师资格。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+     <section class="detail" ng-switch-when="investment">
+        <h4 class="title shadow">投资决策委员会</h4>
+
+        <div class="content">
+            <div class="media">
+                <div class="media-left">
+                    <img width="112" ng-src="assets/image/avatar/xuyunhui.jpg">
+                </div>
+                <div class="media-body">
+                    <h4>主席 许云辉</h4>
+                    <p>许云辉先生是太盟投资集团(PAG)的主管合伙人，在亚洲拥有逾15年的投资经验。</p>
+                    <p>许先生于2006-2010年间任职于太盟投资集团，后加入黑石集团任董事总经理一职。他于2012年重新加入太盟投资集团，目前负责太盟绝对回报策略在中国区的投资业务。在2006年加入太盟之前，许先生也曾担任梅隆银行旗下对冲基金梅隆HBV的董事总经理。</p>
+                    <p>许先生拥有欧洲工商管理学院的MBA学位，并持有香港大学的国际与公共事务硕士学位。</p>
+                </div>
+            </div>
+
+            <div class="media">
+                <div class="media-left">
+                    <img width="112" ng-src="assets/image/avatar/liuxinyu.jpg">
+                </div>
+                <div class="media-body">
+                    <h4>委员 刘欣宇</h4>
+                    <p>刘欣宇先生现任太合汇资本的总裁。在这之前的11年里，刘先生历任民生银行上海分行私人银行部总经理，交易融资部总经理，公司金融部总经理，营业部总经理，支行行长等高级管理职务，熟悉传统对公银行业务、零售银行业务、资产管理业务的全流程管理。在此之前，刘先生供职于中国银行深圳分行。</p>
+                    <p>多年的银行从业经验使得其对中国的资本市场有着较深刻的理解。刘先生擅长资产管理业务的产品研发和高净值客户的维护与管理，在民生银行上海分行私人银行部任职期间业绩骄人，其所领导的团队完成了分行全年三分之一的利润水平，是为数不多进入民生银行20年行志人物。</p>
+                    <p>刘先生持有中欧国际工商学院EMBA学位以及上海财经大学管理学学士学位。</p>
+                </div>
+            </div>
+
+            <div class="media">
+                <div class="media-left">
+                    <img width="112" ng-src="assets/image/avatar/liuzhanyun.jpg">
+                </div>
+                <div class="media-body">
+                    <h4>委员 刘湛云</h4>
+                    <p>刘湛云女士2006年加入太盟投资集团(PAG)，在亚洲拥有超过15年的投资经验。</p>
+                    <p>刘女士在加入太盟投资集团之前，曾任职于PAMA Group，专注于大中华地区的私人股权投资业务。她也曾服务于HarbourVest Partners 香港公司，负责一级市场和二级市场的投资业务。</p>
+                    <p>刘女士毕业于北京外交学院，持有美国杨柏翰大学MBA学位和文学硕士学位。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+     <section class="detail" ng-switch-when="risk">
+        <h4 class="title shadow">风险管理委员会</h4>
+
+        <div class="content">
+            <div class="media">
+                <div class="media-left">
+                    <img width="112" ng-src="assets/image/avatar/xiaosuining.jpg">
+                </div>
+                <div class="media-body">
+                    <h4>主席 肖遂宁</h4>
+                    <p>肖遂宁先生现任太合汇资本（Tahone Capital）的董事局主席，他也是太盟投资集团（PAG）的合伙人，并担任太盟投资集团中国区主席一职（2013年至今）。</p>
+                    <p>在加入太盟投资集团之前，肖先生也曾担任平安银行股份有限公司董事长（2010-2012）和深圳发展银行董事、行长（2007-2010）等职务。在此之前，肖先生在交通银行股份有限公司精耕细作17年，担任了一系列高级管理职务，包括交通银行深圳分行行长等。</p>
+                    <p>肖先生的加盟将给太合汇资本带来巨大的价值，他不仅能够帮助太合汇资本加强项目开拓和执行能力，更能利用其在中国市场深厚而广阔的人脉将太合汇资本带领到一个新的行业高度。</p>
+                </div>
+            </div>
+
+            <div class="media">
+                <div class="media-left">
+                    <img width="112" ng-src="assets/image/avatar/chengwen.jpg">
+                </div>
+                <div class="media-body">
+                    <h4>委员 程文</h4>
+                    <p>程文女士是太盟投资集团（PAG）的董事总经理及中国区首席财务官。程女士拥有多年投资管理行业从业经验和丰富的财务管理经验，从平台和项目的结构搭建、财务管理、风险控制、退出方案等环节提供建议。</p>
+                    <p>在加入太盟投资集团以前，程女士曾任职于摩根士丹利的中国不良资产包收购和处置平台、太空实验室医学仪器公司以及科莱恩公司。</p>
+                    <p>程女士毕业于南开大学，拥有中国注册会计师资格。</p>
+                </div>
+            </div>
+
+            <div class="media">
+                <div class="media-left">
+                    <img width="112" ng-src="assets/image/avatar/zhangjun.jpg">
+                </div>
+                <div class="media-body">
+                    <h4>委员 张君</h4>
+                    <p>张君先生现任太合汇资本首席执行官。在加入太合汇资本之前，张先生曾任职于新华信托股份有限公司机构业务部总经理，东方新华投资管理有限公司市场总监，东方新华财富众创空间管理（上海）有限公司总经理等职。</p>
+                    <p>张先生曾先后负责业务营销、渠道建设、项目管理等工作，在财富管理、资产管理及渠道运营等方面具有丰富的经验，带领的团队均取得骄人的业绩。</p>
+                    <p>张先生持有亚利桑那州立大学EMBA学位以及上海财经大学管理学硕士和经济学学士学位。张先生也是美国项目管理协会（PMI）认证项目管理师（PMP）以及美国国际训练协会认证职业训练师（PTT）。</p>
+                </div>
+            </div>
+
+            <div class="media">
+                <div class="media-left">
+                    <img width="112" ng-src="assets/image/avatar/yangxiaoying.jpg">
+                </div>
+                <div class="media-body">
+                    <h4>委员 杨晓莹</h4>
+                    <p>杨晓莹女士2007年加入PAG，在PAG期间担任绝对回报策略的中国区法律顾问职务，负责绝对回报策略在中国地区的法律事务以及风险管理，主要业务涉及股权投资、结构化贷款、不良资产收购、证券投资业务等。</p>
+                    <p>在加入PAG之前，先后担任德恒律师事务所（De Heng Law Offices）律师，德恒律师事务所上海分所，长沙分所合伙人，主要业务领域涉及上市公司并购重组业务、破产重整业务、信托及银行法律事务、证券公司法律事务、不良资产收购及处置业务，代理过多起诉讼、仲裁案件。</p>
+                    <p>杨晓莹女士拥有复旦大学法学学士学位以及对外经济贸易大学硕士学位。</p>
+                </div>
+            </div>
+
+            <div class="media">
+                <div class="media-left">
+                    <img width="112" ng-src="assets/image/avatar/chenxiao.jpg">
+                </div>
+                <div class="media-body">
+                    <h4>委员 陈潇</h4>
+                    <p>陈潇女士现任太合汇资本首席风控官。在加入太合汇资本之前，陈女士曾供职于中国民生银行上海分行以及毕马威华振会计事务所上海分所。</p>
+                    <p>陈女士担任的职务包括民生银行上海分行私人银行资产管理业务风控经理，交易融资业务项目经理，对公授信业务评审经理，审计师等，熟悉公司治理制度及风险控制管理。从事多年风险管理的工作使其有较强的风险合规意识，对公司信用评级及投资项目的风险评审有较强的把控能力。</p>
+                    <p>陈女士持有上海财经大学会计学硕士学位，是中国注册会计师（CPA）。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </div>
 
 </div>

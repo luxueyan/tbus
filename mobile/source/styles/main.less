@@ -3849,18 +3849,33 @@ a {
     }
 
     .detail {
-        background-color: #FFF;
-
         .title {
-            margin: 0;
-            border-bottom: 1px solid #BCBCBC;
-            padding: 12px 24px;
+            position: relative;
+            margin: 0 0 10px;
+            padding: 16px 25px 12px;
             font-size: 14px;
             color: #585757;
+            background-color: #FFF;
+
+            &:before {
+                content: "";
+                position: absolute;
+                left: 20px;
+                top: 16px;
+                bottom: 12px;
+                width: 1px;
+                background-color: @color-theme-main;
+            }
+
+            &.shadow:after {
+                left: 5%;
+                right: 5%;
+                width: 90%;
+            }
         }
 
         .content {
-            padding: 10px 18px;
+            padding: 10px 20px;
 
             .img-wrap {
                 margin-bottom: 10px;
@@ -3871,6 +3886,62 @@ a {
                 line-height: 20px;
                 color: #717071;
                 text-indent: 2em;
+                text-align: justify;
+            }
+
+            .links {
+                margin: 20px 50px;
+                text-align: center;
+
+                > li {
+                    border-bottom: 1px solid #E24954;
+                    padding-top: 16px;
+                    padding-bottom: 16px;
+
+                    a {
+                        display: block;
+                        color: inherit;
+
+                        .zh {
+                            font-size: 14px;
+                            color: #717071;
+                        }
+
+                        .en {
+                            font-size: 12px;
+                            color: #C8C9CA;
+                        }
+                    }
+                }
+            }
+
+            .media {
+                + .media {
+                    border-top: 1px solid #D4D4CC;
+                    padding-top: 20px;
+                }
+
+                &-left {
+                    padding-right: 15px;
+                }
+
+                &-body {
+                    h4 {
+                        margin-top: 0;
+                        border-left: 1px solid #444;
+                        padding-left: 5px;
+                        font-size: 16px;
+                        color: #444;
+                    }
+
+                    p {
+                        font-size: 14px;
+                        line-height: 20px;
+                        color: #717071;
+                        text-indent: 2em;
+                        text-align: justify;
+                    }
+                }
             }
         }
     }
