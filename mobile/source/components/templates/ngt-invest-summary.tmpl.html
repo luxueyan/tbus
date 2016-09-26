@@ -58,13 +58,13 @@
                 <span ng-switch-when="FROZEN">资金冻结</span>
                 <span ng-switch-when="FROZEN_FAILED">资金冻结失败</span>
                 <span ng-switch-when="FAILED">流标</span>
-                <span ng-switch-when="FINISHED">投标成功</span>
-                <span ng-switch-when="FAKESETTLED">投标成功</span>
+                <span ng-switch-when="FINISHED">资金冻结</span>
+                <span ng-switch-when="FAKESETTLED">资金冻结</span>
                 <span ng-switch-when="CANCELED">已取消</span>
                 <span ng-switch-when="SETTLED">
                     {{ item.have_begun_to_settled ? '计息中' : '已结算' }}
                 </span>
-                <span ng-switch-when="CLEARED">还款完成</span>
+                <span ng-switch-when="CLEARED">已兑付</span>
                 <span ng-switch-when="OVERDUE">逾期</span>
                 <span ng-switch-when="BREACH">违约</span>
             </div>
@@ -135,7 +135,7 @@
             <div class="status" ng-switch="item.status">
                 <span ng-switch-when="PROPOSED">已申请</span>
                 <span ng-switch-when="SCHEDULED">已安排</span>
-                <span ng-switch-when="FINISHED">转让已满</span>
+                <span ng-switch-when="FINISHED">已转让</span>
                 <span ng-switch-when="OPENED">转让中</span>
                 <span ng-switch-when="FAILED">转让未满</span>
                 <span ng-switch-when="CANCELED">已取消</span>
