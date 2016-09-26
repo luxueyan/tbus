@@ -162,9 +162,19 @@ IndexService.getLoanSummary(function (res) {
             listFixed.push(res[i]);
         }
     }
-    var listNone = [];
+    var listOpen = [];     //在售中  OPENED
+    var listNone = [];     //计息中  SETTLED
+    var listSchedul = [];  //即将发布  SCHEDULED
+    var listFinish = [];     //已售罄 FINISHED
+    var liststatus = [];   //放排序后的产品 ： 在售中》即将发布》已售罄》计息中
     for (var i = 0; i < listFixed.length; i++) {
-        if (listFixed[i].status == "OPENED"||listFixed[i].status == "SCHEDULED") {
+        if (listFixed[i].status == "OPENED") {
+            listOpen.push(listFixed[i]);
+        }else if(listFixed[i].status == "SCHEDULED"){
+            listSchedul.push(listFixed[i]);
+        }else if(listFixed[i].status == "FINISHED"){
+            listFinish.push(listFixed[i]);
+        }else if(listFixed[i].status == "SETTLED"){
             listNone.push(listFixed[i]);
         }
     }
@@ -180,14 +190,21 @@ IndexService.getLoanSummary(function (res) {
             return 0;
         }
     }
+    listOpen.sort(compare);
     listNone.sort(compare);
+    listSchedul.sort(compare);
+    listFinish.sort(compare);
+    liststatus=liststatus.concat(listOpen);
+    liststatus=liststatus.concat(listSchedul);
+    liststatus=liststatus.concat(listFinish);
+    liststatus=liststatus.concat(listNone);
     //console.log(listNone);
     // 固定收益
     var listRactive = new Ractive({
         el: ".fixedPro",
         template: require('ccc/high/partials/fixedPro.html'),
         data: {
-            list: (listNone.slice(0, 5)),
+            list: liststatus.slice(0, 5),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         },
         onrender:function(){
