@@ -47,7 +47,7 @@
                     >
                     <div class="info">
                         <span class="name">总资产 (元)</span>
-                        <span class="value">{{ fund.total | number: 2 }}</span>
+                        <span class="value">{{ total | number: 2 }}</span>
                     </div>
                 </uib-accordion-heading>
 
@@ -56,19 +56,25 @@
                         <li>
                             <div class="info">
                                 <span class="name">账户余额 (元)</span>
-                                <span class="value">{{ fund.available | number: 2 }}</span>
+                                <span class="value">{{ availableAmount | number: 2 }}</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="info">
+                                <span class="name">冻结资金 (元)</span>
+                                <span class="value">{{ frozenAmount | number: 2 }}</span>
                             </div>
                         </li>
                         <li>
                             <div class="info">
                                 <span class="name">当前预期收益 (元)</span>
-                                <span class="value">{{ fund.outstanding_interest | number: 2 }}</span>
+                                <span class="value">{{ outstandingInterest | number: 2 }}</span>
                             </div>
                         </li>
                         <li>
                             <div class="info">
                                 <span class="name">累计收益 (元)</span>
-                                <span class="value">{{ fund.total_interest | number: 2 }}</span>
+                                <span class="value">{{ investInterestAmount | number: 2 }}</span>
                             </div>
                         </li>
                     </ul>
@@ -84,11 +90,11 @@
                     <div class="info-row info-row-fixed">
                         <div class="info-col title">固定收益</div>
                         <div class="info-col">
-                            <div class="value">{{ (self.user.statistics.investStatistics.dueAmount.principal + self.user.fund.frozenAmount) | number: 2 }}</div>
+                            <div class="value">{{ principal | number: 2 }}</div>
                             <div class="name">持有本金</div>
                         </div>
                         <div class="info-col">
-                            <div class="value">{{ self.user.statistics.investStatistics.dueAmount.interest | number: 2 }}</div>
+                            <div class="value">{{ outstandingInterest | number: 2 }}</div>
                             <div class="name">预计当前收益 (元)</div>
                         </div>
                     </div>

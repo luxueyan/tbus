@@ -8,11 +8,18 @@ do (_, angular) ->
 
                 @$window.scrollTo 0, 0
 
-                @$rootScope.state = 'more'
+                {from, tab} = @$routeParams
 
-                current_tab = @$routeParams.tab or 'index'
+                is_from_app = from == 'app'
 
-                angular.extend @$scope, {current_tab}
+                @$rootScope.state = 'more' unless is_from_app
+
+                current_tab = tab or 'index'
+
+                angular.extend @$scope, {
+                    is_from_app
+                    current_tab
+                }
 
 
 
