@@ -3,7 +3,7 @@
 
     <style> body { background-color: #FFF; } </style>
 
-    <nav class="omit-margin container page-nav">
+    <nav class="omit-margin container page-nav" ng-if="!is_from_app">
     <div class="row">
         <a class="col-xs-3 back" x-go-back>
             <param class="glyphicon glyphicon-menu-left">
@@ -15,7 +15,7 @@
 
     <div ng-switch="current_tab">
 
-    <section class="detail" ng-switch-when="index">
+    <section class="omit-margin detail" ng-switch-when="index">
         <div class="banner shadow">
             <img class="img-responsive" ng-src="assets/image/about-banner-03.jpg">
         </div>
@@ -23,25 +23,25 @@
         <div class="content">
             <ul class="list-unstyled u-off-margin-bottom links">
                 <li>
-                    <a href="about?tab=summary">
+                    <a ng-href="about?tab=summary{{ is_from_app ? '&from=app' : ''}}">
                         <div class="zh">平台简介</div>
                         <div class="en">About TAHONE WEALTH</div>
                     </a>
                 </li>
                 <li>
-                    <a href="about?tab=management">
+                    <a ng-href="about?tab=management{{ is_from_app ? '&from=app' : ''}}">
                         <div class="zh">管理团队</div>
                         <div class="en">Management Team</div>
                     </a>
                 </li>
                 <li>
-                    <a href="about?tab=investment">
+                    <a ng-href="about?tab=investment{{ is_from_app ? '&from=app' : ''}}">
                         <div class="zh">投资决策委员会</div>
                         <div class="en">Investment Strategy Committee</div>
                     </a>
                 </li>
                 <li>
-                    <a href="about?tab=risk">
+                    <a ng-href="about?tab=risk{{ is_from_app ? '&from=app' : ''}}">
                         <div class="zh">风险管理委员会</div>
                         <div class="en">Risk Management Committee</div>
                     </a>
@@ -52,7 +52,7 @@
 
 
 
-    <section class="detail" ng-switch-when="summary">
+    <section class="omit-margin detail" ng-switch-when="summary">
         <h4 class="title shadow">平台简介</h4>
 
         <div class="content">
@@ -72,7 +72,7 @@
 
 
 
-     <section class="detail" ng-switch-when="management">
+     <section class="omit-margin detail" ng-switch-when="management">
         <h4 class="title shadow">管理团队</h4>
 
         <div class="content">
@@ -176,7 +176,7 @@
 
 
 
-     <section class="detail" ng-switch-when="investment">
+     <section class="omit-margin detail" ng-switch-when="investment">
         <h4 class="title shadow">投资决策委员会</h4>
 
         <div class="content">
@@ -220,7 +220,7 @@
 
 
 
-     <section class="detail" ng-switch-when="risk">
+     <section class="omit-margin detail" ng-switch-when="risk">
         <h4 class="title shadow">风险管理委员会</h4>
 
         <div class="content">
