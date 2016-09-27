@@ -12,11 +12,19 @@ do (_, angular) ->
 
                 @$scope.now = Date.now()
 
-                @$scope.fund = {
-                    available: @user.fund.availableAmount
-                    total: @user.fund.availableAmount + @user.fund.dueInAmount + @user.fund.frozenAmount
-                    total_interest: @user.statistics.investInterestAmount
-                    outstanding_interest: @user.fund.outstandingInterest
+                {availableAmount, frozenAmount} = @user.fund
+                {investInterestAmount, outstandingInterest} = @user.statistics
+                {principal} = @user.statistics.investStatistics.dueAmount
+
+                total = availableAmount + frozenAmount + principal + outstandingInterest
+
+                angular.extend @$scope, {
+                    total
+                    availableAmount
+                    frozenAmount
+                    investInterestAmount
+                    outstandingInterest
+                    principal
                 }
 
                 (@api.get_refer_count_and_reward()
