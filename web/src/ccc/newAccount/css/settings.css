@@ -962,8 +962,13 @@ p.tips {
   font-size: 14px;
   color: #b5925f;
 }
-
+.home-count .common .home-tab-amount .two{
+  color: #666;
+}
 .home-intrest .home-tab-amount {
+  color: #e60012;
+}
+.home-intrest .home-tab-amount .one{
   color: #e60012;
 }
 

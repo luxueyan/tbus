@@ -87,7 +87,7 @@ var ractive = new Ractive({
                 return;
             }
             if(minQuota == -1){
-                if (value < 1) {
+                if (value <= 0) {
                     self.set('minQuota',0);
                     self.set('msg.AMOUNT_NOTENOUGH', true);
                     return;
@@ -187,7 +187,7 @@ ractive.on('recharge_submit', function (e) {
     });
 
     if(minQuota == -1){
-        if (amount < 1) {
+        if (amount <= 0) {
             this.set('minQuota',0);
             this.set('msg.AMOUNT_NOTENOUGH', true);
             return false;
