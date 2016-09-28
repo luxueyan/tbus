@@ -121,7 +121,7 @@ function init(type) {
                 }).error(function (o) {
                     console.info('请求出现错误，' + o.statusText);
                 });
-                console.log(utils.i18n.InvestStatus)
+                //console.log(utils.i18n.InvestStatus)
             },
             setData: function (o) {
                 this.set('loading', false);
@@ -283,7 +283,8 @@ function init(type) {
                         unrepay:$(e.node).data('unrepay'),
                         Funrepay: $(e.node).data('unrepay').toFixed(2)
                     }
-                    //console.log(data.unrepay)
+                    //console.log(data.unrepay);
+                    //console.log(data.Funrepay);
                     var returnMap = {
                         "CREDIT_ASSIGN_DISABLED": "没有开启债权转让功能",
                         "REASSIGN_DISABLED": "二次转让功能关闭",
@@ -318,8 +319,8 @@ function init(type) {
                                 data:data,
                                 magic:true,
                                 computed:{
-                                    area:'(${unrepay} * ${creditDealRate}).toFixed(2)',
-                                    commiss:'(${unrepay} * ${creditDealRate} * 0.001).toFixed(2)',
+                                    area:'(${Funrepay} * ${creditDealRate}).toFixed(2)',
+                                    commiss:'(${Funrepay} * ${creditDealRate} * 0.001).toFixed(2)',
                                 },
                                 oncomplete:function(){
                                     var that = this;
