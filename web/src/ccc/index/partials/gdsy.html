@@ -57,6 +57,10 @@
             <a href="/loan/{{id}}">
                 <div class="investbtn">还款结束</div>
             </a>
+            {{/if}} {{#if status === 'FAKESETTLED'}}
+            <a href="/loan/{{id}}">
+                <div class="investbtn">已售罄</div>
+            </a>
             {{/if}}
             </div>
     </div>

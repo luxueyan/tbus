@@ -8,7 +8,8 @@
         </div>
 
         <div class="home-expect common">
-            <div class="home-tab-info">冻结资金(元)</div>
+            <div class="home-tab-info" on-mouseover="showTip" on-mouseleave="hideTip">冻结资金(元)</div>
+            <p class="info-tip" style="width: 250px;">未计息的投资金额＋提现审批中的金额</p>
             <div class="home-tab-amount">{{frozenAmount}}</div>
         </div>
 
@@ -20,7 +21,7 @@
 
         <div class="home-expect common">
             <div class="home-tab-info" on-mouseover="showTip" on-mouseleave="hideTip">当前收益(元)</div>
-            <p class="info-tip" style="width: 94px;left: 20px;">未结息的利息</p>
+            <p class="info-tip" style="width: 165px;left: 20px;">截止到当天的未结息利息</p>
             <div class="home-tab-amount">{{currentIncome}}.{{cMore}}</div>
         </div>
 
@@ -52,7 +53,7 @@
                         </div>
                     </div>
                     <div class="detail">
-                        <p><span class="d_lab">预计当前收益(元)</span><span class="d_num">{{currentIncome}}.<em>{{cMore}}</em></span></p>
+                        <p><span class="d_lab">预计收益(元)</span><span class="d_num">{{currentIncome}}.<em>{{cMore}}</em></span></p>
                     </div>
                 </div>
             </a>
@@ -66,7 +67,7 @@
                         </div>
                     </div>
                     <div class="detail">
-                        <p><span class="d_lab">预计当前收益(元)</span><span class="d_num">0.<em>00</em></span></p>
+                        <p><span class="d_lab">预计收益(元)</span><span class="d_num">0.<em>00</em></span></p>
                     </div>
                 </div>
             </a>
@@ -80,7 +81,7 @@
                         </div>
                     </div>
                     <div class="detail">
-                        <p><span class="d_lab">预计当前收益(元)</span><span class="d_num">0.<em>00</em></span></p>
+                        <p><span class="d_lab">预计收益(元)</span><span class="d_num">0.<em>00</em></span></p>
                     </div>
                 </div>
             </a>

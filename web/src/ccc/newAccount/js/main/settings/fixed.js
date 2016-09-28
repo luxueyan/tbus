@@ -15,7 +15,7 @@ var fixedRactive = new Ractive({
     },
     onrender: function () {
         var that = this ;
-        var outstandingInterest = parseFloat(CC.user.investStatistics.outstandingInterest || 0).toFixed(2);
+        var outstandingInterest = parseFloat(CC.user.investStatistics.investStatistics.dueAmount.interest || 0).toFixed(2);
         var amoutArray = outstandingInterest.split('.');
         this.set('outstandingInterest', parseInt(amoutArray[0]));
         this.set('oMore', amoutArray[1]);
@@ -175,6 +175,7 @@ function init(type) {
                                 datas[i].Fstatus = utils.i18n.InvestStatus[o.status];
                                 datas[i].Frate = utils.format.percent(o.rate / 100, 2);
                                 datas[i].Famount = utils.format.amount(o.amount, 2);
+                                datas[i].gains = utils.format.amount((o.amount*(o.rate/10000)*((o.duration.days+o.duration.months*30+o.duration.years*365)/365)), 2);
                                 datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true : false;
                                 datas[i].requestId = o.loan.loanRequest.id;
                                 var nowDate = new Date();
