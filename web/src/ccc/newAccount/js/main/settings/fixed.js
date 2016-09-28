@@ -196,25 +196,16 @@ function init(type) {
                                 datas[i].submitTime = moment(o.submitTime).format('YYYY-MM-DD');
                                 break;
                         }
-                        ////申请中
-                        //if (o.status === 'FINISHED' || o.status === 'PROPOSED' || o.status === 'FROZEN') {
-                        //  datas[i].Fstatus = '申请中';
-                        //}
-                        ////持有中
-                        //if (o.status === 'SETTLED' || o.status === 'OVERDUE' || o.status === 'BREACH') {
-                        //  datas[i].Fstatus = '持有中';
-                        //}
-                        ////已结束
-                        //if (o.status === 'CLEARED') {
-                        //  datas[i].Fstatus = '已结束';
-                        //}
-
 
                         if (datas[i].hasContract) {
                             var repay = this.getRepay(o.repayments);
                             datas[i].holdDay = (moment(nowDate).unix()*1000 - datas[i].loan.loanRequest.valueDate)/24/60/60/1000;
                             datas[i].Frepayed = utils.format.amount(repay.repayed, 2);
-                            datas[i].unrepay = o.amount+o.amount*(o.rate/10000)*(parseInt(datas[i].holdDay))/365;
+                            datas[i].intrest = (o.amount*(o.rate/10000)*(parseInt(datas[i].holdDay))/365).toFixed(2);
+                            datas[i].unrepay = o.amount+parseFloat(datas[i].intrest);
+                            //console.log(o.amount)
+                            //console.log(datas[i].holdDay)
+                            //console.log(datas[i].intrest)
                             //console.log(datas[i].unrepay)
                         }
                     }
