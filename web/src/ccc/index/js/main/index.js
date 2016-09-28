@@ -41,6 +41,7 @@ function replaceStr(str){
 
 IndexService.getLoanSummary(function (list) {
     var listGDSY = [],listDQLC = [],listGDLC = [],listHOT = [];
+    var productKey = [];    //推荐产品放在第一位      CPTJ
     for(var i=0;i<list.length;i++){
         list[i].method = i18n.enums.RepaymentMethod[list[i].method][0];
         list[i].titleLength = replaceStr(list[i].title);
@@ -48,7 +49,9 @@ IndexService.getLoanSummary(function (list) {
             list[i].title = list[i].title.substr(0,60)+'...';
         }
 
-        if(list[i].loanRequest.productKey == 'GDSY'){
+        if(list[i].loanRequest.productKey == "CPTJ"){
+            productKey.push(list[i]);
+        }else if(list[i].loanRequest.productKey == 'GDSY'){
             listGDSY.push(list[i]);
         }else if(list[i].loanRequest.productKey == 'GDLC'){
             listGDLC.push(list[i]);
@@ -56,13 +59,54 @@ IndexService.getLoanSummary(function (list) {
             listHOT.push(list[i]);
         };
     }
+    var listOpen = [];     //在售中  OPENED
+    var listNone = [];     //计息中  SETTLED
+    var listSchedul = [];  //即将发布  SCHEDULED
+    var listFinish = [];     //已售罄 FINISHED
+    var liststatus = [];   //放排序后的产品 ： 在售中》即将发布》已售罄》计息中
+    for (var i = 0; i < listGDSY.length; i++) {
+        if (listGDSY[i].status == "OPENED") {
+            listOpen.push(listGDSY[i]);
+        }else if(listGDSY[i].status == "SCHEDULED"){
+            listSchedul.push(listGDSY[i]);
+        }else if(listGDSY[i].status == "FINISHED"){
+            listFinish.push(listGDSY[i]);
+        }else if(listGDSY[i].status == "SETTLED"){
+            listNone.push(listGDSY[i]);
+        }
 
+    }
+    var compare = function (obj1, obj2) {
+        var val1 = obj1.timeOpen;
+        var val2 = obj2.timeOpen;
+        if (val1 < val2) {
+            return 1;
+        } else if (val1 > val2) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+
+    productKey.sort(compare);
+    listOpen.sort(compare);
+    listNone.sort(compare);
+    listSchedul.sort(compare);
+    listFinish.sort(compare);
+    if(productKey[0]){
+        liststatus=liststatus.concat(productKey[0]);
+    }
+
+    liststatus=liststatus.concat(listOpen);
+    liststatus=liststatus.concat(listSchedul);
+    liststatus=liststatus.concat(listFinish);
+    liststatus=liststatus.concat(listNone);
     //固定收益
     var investRactive = new Ractive({
         el: ".GDSYproductList",
         template: require('ccc/index/partials/gdsy.html'),
         data: {
-            list: listGDSY.slice(0,3),
+            list: liststatus.slice(0,3),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });

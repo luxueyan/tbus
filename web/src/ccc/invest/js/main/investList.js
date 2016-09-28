@@ -171,8 +171,11 @@ function replaceStr(str) {
 IndexService.getLoanSummary(function (res) {
     //parseLoanList(res)
     var listFixed = [], listFloat = [];
+    var productKey = [];    //推荐产品放在第一位      CPTJ
     for (var i = 0; i < res.length; i++) {
-        if (res[i].loanRequest.productKey == 'GDSY') {
+        if(res[i].loanRequest.productKey == "CPTJ"){
+            productKey.push(res[i]);
+        }else if (res[i].loanRequest.productKey == 'GDSY') {
             listFixed.push(res[i]);
         } else if (res[i].loanRequest.productKey == 'FDSY') {
             listFloat.push(res[i]);
@@ -182,6 +185,7 @@ IndexService.getLoanSummary(function (res) {
     //console.log(listFixed)
     //console.log(listFloat)
     //console.log("1111")
+
     var listOpen = [];     //在售中  OPENED
     var listNone = [];     //计息中  SETTLED
     var listSchedul = [];  //即将发布  SCHEDULED
@@ -211,10 +215,15 @@ IndexService.getLoanSummary(function (res) {
         }
     }
 
+    productKey.sort(compare);
     listOpen.sort(compare);
     listNone.sort(compare);
     listSchedul.sort(compare);
     listFinish.sort(compare);
+    if(productKey[0]){
+        liststatus=liststatus.concat(productKey[0]);
+    }
+
     liststatus=liststatus.concat(listOpen);
     liststatus=liststatus.concat(listSchedul);
     liststatus=liststatus.concat(listFinish);
