@@ -67,7 +67,7 @@
                         </li>
                         <li>
                             <div class="info">
-                                <span class="name">当前预期收益 (元)</span>
+                                <span class="name">当前收益 (元)</span>
                                 <span class="value">{{ outstandingInterest | number: 2 }}</span>
                             </div>
                         </li>
@@ -94,8 +94,8 @@
                             <div class="name">持有本金</div>
                         </div>
                         <div class="info-col">
-                            <div class="value">{{ outstandingInterest | number: 2 }}</div>
-                            <div class="name">预计当前收益 (元)</div>
+                            <div class="value">{{ interest | number: 2 }}</div>
+                            <div class="name">预期收益 (元)</div>
                         </div>
                     </div>
                 </a>
@@ -109,7 +109,7 @@
                     </div>
                     <div class="info-col">
                         <div class="value">{{ 0 | number: 2 }}</div>
-                        <div class="name">预计当前收益 (元)</div>
+                        <div class="name">预期收益 (元)</div>
                     </div>
                 </div>
             </li>
@@ -122,7 +122,7 @@
                     </div>
                     <div class="info-col">
                         <div class="value">{{ 0 | number: 2 }}</div>
-                        <div class="name">预计当前收益 (元)</div>
+                        <div class="name">预期收益 (元)</div>
                     </div>
                 </div>
             </li>

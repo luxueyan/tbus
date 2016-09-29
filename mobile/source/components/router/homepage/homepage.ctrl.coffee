@@ -23,7 +23,7 @@ do (_, angular) ->
                                 .flatten()
                                 .compact()
                                 .filter (item) ->
-                                    item.loanRequest.productKey == 'GDSY'
+                                    item.loanRequest.productKey == 'CPTJ'
                                 .take 1
                                 .map map_loan_summary
                                 .value()
