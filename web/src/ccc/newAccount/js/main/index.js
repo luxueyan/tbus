@@ -12,8 +12,10 @@ var avaAmount = CC.user.availableAmount;
 var investInterestAmount = parseFloat(CC.user.investStatistics.investInterestAmount || 0).toFixed(2);
 // 预计当前收益
 var outstandingInterest = CC.user.investStatistics.outstandingInterest || 0;
-// 当前收益(在投的未结息的利息)
-var currentIncome = CC.user.investStatistics.investStatistics.dueAmount.interest || 0;
+// 当前收益
+var currentIncome = CC.user.investStatistics.uncollectedIncome || 0;
+//全部收益
+var interest = parseFloat(CC.user.investStatistics.investStatistics.dueAmount.interest || 0).toFixed(2);
 // 冻结金额
 var frozenAmount = CC.user.frozenAmount || 0;
 // 冻结中的投标金额
@@ -56,6 +58,10 @@ var homeRactive = new Ractive({
             var amoutArray = currentIncome.split('.');
             self.set('currentIncome', parseInt(amoutArray[0]));
             self.set('cMore', amoutArray[1]);
+
+            var interested = interest.split('.');
+            self.set('interest', parseInt(interested[0]));
+            self.set('cMored', interested[1]);
 
             var amoutArray = totalAmount.split('.');
             self.set('totalAmount', parseInt(amoutArray[0]));
