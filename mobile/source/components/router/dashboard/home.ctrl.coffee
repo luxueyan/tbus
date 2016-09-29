@@ -14,7 +14,7 @@ do (_, angular) ->
 
                 {availableAmount, frozenAmount} = @user.fund
                 {investInterestAmount, outstandingInterest} = @user.statistics
-                {principal} = @user.statistics.investStatistics.dueAmount
+                {principal, interest} = @user.statistics.investStatistics.dueAmount
 
                 total = availableAmount + frozenAmount + principal + outstandingInterest
 
@@ -25,6 +25,7 @@ do (_, angular) ->
                     investInterestAmount
                     outstandingInterest
                     principal
+                    interest
                 }
 
                 (@api.get_refer_count_and_reward()
