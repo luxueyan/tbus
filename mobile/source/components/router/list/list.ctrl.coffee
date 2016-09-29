@@ -30,6 +30,25 @@ do (_, angular) ->
 
                 @query(query_set)
 
+                if @$scope.current_tab is 'loan'
+
+                    (@api.get_loan_list()
+
+                        .then (data) =>
+
+                            {open, scheduled, finished, settled} = data
+
+                            @$scope.list_CPTJ =
+                                _([open, scheduled, finished, settled])
+                                    .flatten()
+                                    .compact()
+                                    .filter (item) ->
+                                        item.loanRequest.productKey == 'CPTJ'
+                                    .take 1
+                                    .map @map_loan_summary
+                                    .value()
+                    )
+
 
             query: (query_set, options = {}) ->
 
