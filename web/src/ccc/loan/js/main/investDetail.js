@@ -319,6 +319,7 @@ setTimeout((function () {
             'REBATE': '返现券'
         };
         for (var i = o.length - 1; i >= 0; i--) {
+            o[i].placement.disabled = o[i].disabled;
             o[i] = o[i].placement;
             o[i].value = parseInt(o[i].couponPackage.parValue);
             o[i].id = o[i].id;
