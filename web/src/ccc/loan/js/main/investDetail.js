@@ -176,6 +176,24 @@ setTimeout((function () {
             //    }
             //})
 
+        },
+        oncomplete:function(){
+            this.on('getConpon',function(e){
+                showSelect(parseInt(e.node.value));
+                // var amount = e.node.value;
+                // if(isNaN(amount)){
+                //     return;
+                // }
+                // var newSelectOption = [];
+                // var selectOption = this.get('selectOption');
+                // for (var i = 0; i < selectOption.length; i++) {
+                //     if(parseInt(amount)>=parseInt(selectOption[i].minimumInvest)){
+                //         newSelectOption.push(selectOption[i]);
+                //     }
+                // }
+
+                // this.set('selectOption',newSelectOption);
+            })
         }
     });
 
@@ -377,7 +395,7 @@ setTimeout((function () {
     //初始化选项
     showSelect(CC.loan.rule.min);
 
-    investRactive.on('tenNum', function () {
+    investRactive.on('tenNum', function (e) {
         disableErrors();
         var inputNum = this.get('inputNum');
         var amount = CC.loan.rule.leftAmount * (CC.loan.rule.amountUnit == '万' ? 10000 : 1);
@@ -398,6 +416,9 @@ setTimeout((function () {
             showErrors('投标金额最大允许10位数字');
             return false;
         }
+
+
+        showSelect(inputNum)
     });
     investRactive.on('addNum', function () {
         var inputNum = parseInt(this.get('inputNum'));
