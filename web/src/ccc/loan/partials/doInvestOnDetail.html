@@ -78,7 +78,7 @@
                         <span class="plus" on-click="addNum"></span>
                     </div>
                     <div class="clearfix"></div>
-                    <p class="totalInterest">预计收益
+                    <p class="totalInterest">预期收益
                             <span>
                         <!-- {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}} -->
                             {{(loan.durationdays/365 * (isNaN(inputNum)?0 : inputNum) *loan.rate/100).toFixed(2)}}
