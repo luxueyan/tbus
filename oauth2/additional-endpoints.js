@@ -79,6 +79,10 @@ module.exports = function (router, auth) {
     router.get('/api/v2/loan/loanRequest/:requestId/bind/template', auth.user());
     //债转合同获取
     router.get('/api/v2/creditassign/getCreditAssignContract/:creditAssignId', auth.user());
+    //获取标的估值和转让期限
+    router.get('/api/v2/creditassign/prepareAssign/step1', auth.user());
+    //获取转让折价率
+    router.get('/api/v2/creditassign/prepareAssign/step2', auth.user());
 
     router.get('/api/v2/statisticsAll', auth.user(), function (req, res) {
         Promise.all([
