@@ -18,7 +18,7 @@ exports.InvestListService = {
     getLoanListWithCondition: function (params, next) {
         try {
             return request
-                .get('/api/v2/loans/getLoanWithPage?' + params)
+                .get('/api/v2/loans/getLoanWithPage?recommedInFront=true' + params )
                 .end()
                 .then(function (res) {
                     next(res.body);
