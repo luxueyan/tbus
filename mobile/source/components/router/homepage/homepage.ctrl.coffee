@@ -18,12 +18,26 @@ do (_, angular) ->
 
                         {open, scheduled, finished, settled} = data
 
-                        @$scope.list =
+                        list_ALL =
                             _([open, scheduled, finished, settled])
                                 .flatten()
                                 .compact()
+                                .value()
+
+                        list_CPTJ =
+                            _(list_ALL)
                                 .filter (item) ->
                                     item.loanRequest.productKey == 'CPTJ'
+                                .value()
+
+                        list_OTHERS =
+                            _(list_ALL)
+                                .filter (item) ->
+                                    item.loanRequest.productKey != 'CPTJ'
+                                .value()
+
+                        @$scope.list =
+                            _(list_CPTJ.concat(list_OTHERS))
                                 .take 1
                                 .map map_loan_summary
                                 .value()
