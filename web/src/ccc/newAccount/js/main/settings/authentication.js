@@ -105,13 +105,18 @@ ractive.on("register-account-submit", function () {
                             ractive.set('step2',true);
                             ractive.set('step3',false);
                         } else {
+                            if(res.error[0].message == 'ID number is used by another User!'){
+                                ractive.set({
+                                    showErrorMessageId: true,
+                                    errorMessageId:'当前身份证号被占用'
+                                });
+                                return;
+                            }
                             ractive.set('step1',false);
                             ractive.set('step2',false);
                             ractive.set('step3',true);
                             if(res.error[0].message == 'ID authenticate Failed'){
                                 ractive.set('error','实名验证失败');
-                            }else if(res.error[0].message == 'ID number is used by another User!'){
-                                ractive.set('error','当前身份证号被占用');
                             }else if(res.error[0].message == 'User is ID authenticated already!'){
                                 ractive.set('error','当前用户已经实名过');
                             }else if(res.error[0].message == "User to be authenticated doesn't exist!"){
