@@ -277,15 +277,15 @@ exports.accountService = {
                 next(r.body);
             });
     },
-    getStop1: function (next) {
-        request('GET','/api/v2/creditassign/prepareAssign/step1')
+    getStop1: function (investId,next) {
+        request('GET','/api/v2/creditassign/prepareAssign/step1/?investId='+investId)
             .end()
             .then(function(res){
                 next(res.body);
             });
     },
-    getStop2: function (next) {
-        request('GET','//api/v2/creditassign/prepareAssign/step2')
+    getStop2: function (investId,creditAssignAmount,next) {
+        request('GET','/api/v2/creditassign/prepareAssign/step2?investId='+investId +"&creditAssignAmount=" + creditAssignAmount)
             .end()
             .then(function(res){
                 next(res.body);
