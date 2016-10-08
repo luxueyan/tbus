@@ -262,9 +262,7 @@ function init(type) {
 
 
                 this.on('showFixed', function (e) {
-                    accountService.getStop1(function (res) {
-                        console.log(res)
-                    })
+
                     //console.log(e)
                     var alertTip = new AlertBox();
                     var data = {
@@ -275,9 +273,13 @@ function init(type) {
                         assignTitle:$(e.node).data('title'),
                         requestId:$(e.node).data('request'),
                         unrepay:$(e.node).data('unrepay'),
-                        Funrepay: $(e.node).data('unrepay').toFixed(2)
+                        Funrepay: '',
+                        Time:'',
+                        assigneeYieldRate:'',
+                        creditAssignFee:'',
+                        creditAssignRate:''
                     }
-                    //console.log(data.unrepay);
+                    console.log(data);
                     //console.log(data.Funrepay);
                     var returnMap = {
                         "CREDIT_ASSIGN_DISABLED": "没有开启债权转让功能",
@@ -300,6 +302,8 @@ function init(type) {
                         'NEXT_REPAY_DATE_IN_TIMEOUT':'',
                     };
 
+
+
                     alertTip.alert({
                         width:535,
                         hasCloseBtn:true,
@@ -315,20 +319,32 @@ function init(type) {
                                 computed:{
                                     area:'(${Funrepay} * ${creditDealRate}).toFixed(2)',
                                     commiss:'(${Funrepay} * ${creditDealRate} * 0.001).toFixed(2)',
+                                    minarea:'(${Funrepay} * 0.95).toFixed(2)',
+                                    maxarea:'(${Funrepay} * 1.05).toFixed(2)',
                                 },
                                 oncomplete:function(){
                                     var that = this;
+                                    accountService.getStop1(data.investId,function (res) {
+                                        data.Funrepay= res.data.bidValuation.toFixed(2);
+                                        data.Time=res.data.maxTimeOut;
+                                        //that.set('Funrepay', res.data.bidValuation.toFixed(2));
+                                        //that.set('Time', res.data.maxTimeOut);
+                                    });
                                     this.on('changeVal',function(e){
-                                        if(/\D/g.test(data.creditDealRate) && data.creditDealRate.indexOf('.') ==-1) return data.error = '请输入正确的折价率';
-                                        else if(data.creditDealRate == '') return data.error = '请输入折价率！'
-                                        else if(data.creditDealRate>1.05) return data.error = '折价率必须小于等于1.05!';
-                                        else if(data.creditDealRate<0.95) return data.error = '折价率必须大于等于0.95!';
-                                        else if((data.creditDealRate+'').length>4) return data.error = '折价率最多保留两位小数！';
+                                        if(/\D/g.test(data.creditDealRate) && data.creditDealRate.indexOf('.') ==-1) return data.error = '请输入正确的转让价格';
+                                        else if(data.creditDealRate == '') return data.error = '请输入转让价格！'
+                                        else if(data.creditDealRate>parseInt(that.get("maxarea"))) return data.error = '转让价格必须小于等于'+that.get("maxarea")+'!';
+                                        else if(data.creditDealRate<parseInt(that.get("minarea"))) return data.error = '转让价格必须大于等于'+that.get("minarea")+'!';
                                         else data.error = '';
+                                        accountService.getStop2(data.investId,data.creditDealRate,function (res) {
+                                            data.assigneeYieldRate=(res.data.assigneeYieldRate).toFixed(2);
+                                            data.creditAssignFee=(res.data.creditAssignFee*data.creditDealRate).toFixed(2);
+                                            data.creditAssignRate=res.data.creditAssignRate;
+                                        });
                                     })
 
                                     this.on('makeSure',function(e){
-                                        if(data.error || !data.creditDealRate) return !data.creditDealRate ? data.error = '请输入折价率！':data.error;
+                                        if(data.error || !data.creditDealRate) return !data.creditDealRate ? data.error = '请输入转让价格！':data.error;
                                         e.node.disabled = true;
                                         e.node.innerHTML = '转让中...';
                                         //发送请求

@@ -1066,7 +1066,7 @@ p.tips {
 }
 
 #popup .formWrapper .form-data {
-  margin-left: 20px;
+  margin-left: 55px;
   font-size: 24px;
   color: #e60012;
 }
@@ -1074,6 +1074,13 @@ p.tips {
 #popup .formWrapper .tip {
   display: block;
   margin: 5px 0 0 121px;
+  font-size: 12px;
+  color: #999;
+}
+
+#popup .formWrapper .top {
+  display: block;
+  margin: 5px 0 0 145px;
   font-size: 12px;
   color: #999;
 }
@@ -1093,7 +1100,7 @@ p.tips {
 }
 
 #popup .formWrapper .form-time {
-  margin-left: 45px;
+  margin-left: 70px;
 }
 
 #popup .formWrapper #btn-confirm {
