@@ -262,6 +262,9 @@ function init(type) {
 
 
                 this.on('showFixed', function (e) {
+                    accountService.getStop1(function (res) {
+                        console.log(res)
+                    })
                     //console.log(e)
                     var alertTip = new AlertBox();
                     var data = {

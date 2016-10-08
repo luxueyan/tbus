@@ -276,5 +276,20 @@ exports.accountService = {
             .then(function (r) {
                 next(r.body);
             });
-    }
+    },
+    getStop1: function (next) {
+        request('GET','/api/v2/creditassign/prepareAssign/step1')
+            .end()
+            .then(function(res){
+                next(res.body);
+            });
+    },
+    getStop2: function (next) {
+        request('GET','//api/v2/creditassign/prepareAssign/step2')
+            .end()
+            .then(function(res){
+                next(res.body);
+            });
+    },
+
 };
