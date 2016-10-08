@@ -71,7 +71,7 @@ new Ractive({
         
         $.get(this.api, function(r) {
              if (r.success) {
-                self.set('Fmobile', CC.user.mobile);
+                self.set('Fmobile', r.data);
             }
             self.bindActions();  
         }).error(function(){
