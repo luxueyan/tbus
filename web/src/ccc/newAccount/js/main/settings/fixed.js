@@ -348,7 +348,7 @@ function init(type) {
                                         e.node.disabled = true;
                                         e.node.innerHTML = '转让中...';
                                         //发送请求
-                                        accountService.createCreditAssign(data.investId, data.creditDealRate, data.assignTitle, function (o) {
+                                        accountService.createCreditAssign(data.investId, data.creditAssignRate, data.assignTitle, function (o) {
                                             if (o.success) {
                                                 alert("债转创建成功!");
                                                 window.location.reload();
