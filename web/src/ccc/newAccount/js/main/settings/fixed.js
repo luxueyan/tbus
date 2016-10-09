@@ -14,7 +14,7 @@ var fixedRactive = new Ractive({
         bankCards: CC.user.bankCards
     },
     onrender: function () {
-        var that = this ;
+        var that = this;
         var outstandingInterest = parseFloat(CC.user.investStatistics.investStatistics.dueAmount.interest || 0).toFixed(2);
         var amoutArray = outstandingInterest.split('.');
         this.set('outstandingInterest', parseInt(amoutArray[0]));
@@ -74,19 +74,19 @@ $('ul.tabs li').on('click', function () {
     $('.fixed-invest .tab-panel').eq(num).addClass('active').siblings().removeClass('active');
 });
 $('.inhand_pro').on('click', function () {
-    $(".inhand_pro").css("background-image","url('/ccc/newAccount/img/icon_inhand_active.png')");
-    $(".assign_pro").css("background-image","url('/ccc/newAccount/img/icon_assign.png')");
-    $(".clear_pro").css("background-image","url('/ccc/newAccount/img/icon_clear.png')");
+    $(".inhand_pro").css("background-image", "url('/ccc/newAccount/img/icon_inhand_active.png')");
+    $(".assign_pro").css("background-image", "url('/ccc/newAccount/img/icon_assign.png')");
+    $(".clear_pro").css("background-image", "url('/ccc/newAccount/img/icon_clear.png')");
 });
 $('.assign_pro').on('click', function () {
-    $(".inhand_pro").css("background-image","url('/ccc/newAccount/img/icon_inhand.png')");
-    $(".assign_pro").css("background-image","url('/ccc/newAccount/img/icon_assign_active.png')");
-    $(".clear_pro").css("background-image","url('/ccc/newAccount/img/icon_clear.png')");
+    $(".inhand_pro").css("background-image", "url('/ccc/newAccount/img/icon_inhand.png')");
+    $(".assign_pro").css("background-image", "url('/ccc/newAccount/img/icon_assign_active.png')");
+    $(".clear_pro").css("background-image", "url('/ccc/newAccount/img/icon_clear.png')");
 });
 $('.clear_pro').on('click', function () {
-    $(".inhand_pro").css("background-image","url('/ccc/newAccount/img/icon_inhand.png')");
-    $(".assign_pro").css("background-image","url('/ccc/newAccount/img/icon_assign.png')");
-    $(".clear_pro").css("background-image","url('/ccc/newAccount/img/icon_clear_active.png')");
+    $(".inhand_pro").css("background-image", "url('/ccc/newAccount/img/icon_inhand.png')");
+    $(".assign_pro").css("background-image", "url('/ccc/newAccount/img/icon_assign.png')");
+    $(".clear_pro").css("background-image", "url('/ccc/newAccount/img/icon_clear_active.png')");
 });
 $('ul.tabs li a').on('click', function () {
     var type = $(this).parent().data('type');
@@ -129,7 +129,7 @@ function init(type) {
                     this.set('total', o.totalSize);
                     this.set('pageOne', o.results);
                     this.set('list', o.results);
-                }else{
+                } else {
                     this.set('total', o.result.totalSize);
                     this.set('pageOne', o.result.results);
                     this.set('list', o.result.results);
@@ -157,7 +157,7 @@ function init(type) {
                         datas[i].investId = o.investId;
                     }
                     return res;
-                }else{
+                } else {
                     var datas = res.result.results;
                     for (var i = 0; i < datas.length; i++) {
                         var o = datas[i];
@@ -180,14 +180,16 @@ function init(type) {
                                 datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true : false;
                                 datas[i].requestId = o.loan.loanRequest.id;
                                 var nowDate = new Date();
-                                if(datas[i].status == 'SETTLED'){
-                                    if(datas[i].loan.loanRequest.valueDate <= nowDate){
+                                if (datas[i].status == 'SETTLED') {
+                                    if (datas[i].loan.loanRequest.valueDate <= nowDate) {
                                         datas[i].Fstatus = '计息中';
                                     }
-                                };
-                                if(datas[i].status == 'FROZEN'){
+                                }
+                                ;
+                                if (datas[i].status == 'FROZEN') {
                                     datas[i].Fstatus = '资金冻结';
-                                };
+                                }
+                                ;
                                 break;
                             case 'CLEARED':
                                 datas[i].Fduration = utils.format.duration(o.duration);
@@ -200,10 +202,10 @@ function init(type) {
 
                         if (datas[i].hasContract) {
                             var repay = this.getRepay(o.repayments);
-                            datas[i].holdDay = (moment(nowDate).unix()*1000 - datas[i].loan.loanRequest.valueDate)/24/60/60/1000;
+                            datas[i].holdDay = (moment(nowDate).unix() * 1000 - datas[i].loan.loanRequest.valueDate) / 24 / 60 / 60 / 1000;
                             datas[i].Frepayed = utils.format.amount(repay.repayed, 2);
-                            datas[i].intrest = (o.amount*(o.rate/10000)*(parseInt(datas[i].holdDay))/365).toFixed(2);
-                            datas[i].unrepay = o.amount+parseFloat(datas[i].intrest);
+                            datas[i].intrest = (o.amount * (o.rate / 10000) * (parseInt(datas[i].holdDay)) / 365).toFixed(2);
+                            datas[i].unrepay = o.amount + parseFloat(datas[i].intrest);
                             //console.log(o.amount)
                             //console.log(datas[i].holdDay)
                             //console.log(datas[i].intrest)
@@ -231,7 +233,7 @@ function init(type) {
                     onSelect: function (p, o) {
                         if (type == 'ASSIGN') {
                             self.set('list', p > 1 ? self.parseData(o).results : self.get('pageOne'));
-                        }else{
+                        } else {
                             self.set('list', p > 1 ? self.parseData(o).result.results : self.get('pageOne'));
                         }
 
@@ -261,19 +263,18 @@ function init(type) {
                 });
 
 
-
                 this.on('showFixed', function (e) {
 
                     //console.log(e)
                     var alertTip = new AlertBox();
                     var data = {
-                        amount:$(e.node).data('amount'),
-                        investId:$(e.node).data('invest'),
-                        creditDealRate:null,
-                        error:'',
-                        assignTitle:$(e.node).data('title'),
-                        requestId:$(e.node).data('request'),
-                        unrepay:$(e.node).data('unrepay'),
+                        amount: $(e.node).data('amount'),
+                        investId: $(e.node).data('invest'),
+                        creditDealRate: null,
+                        error: '',
+                        assignTitle: $(e.node).data('title'),
+                        requestId: $(e.node).data('request'),
+                        unrepay: $(e.node).data('unrepay'),
                         Funrepay: $(e.node).data('unrepay').toFixed(2)
                         //Funrepay: '',
                         //Time:'',
@@ -299,38 +300,37 @@ function init(type) {
                         "INVEST_DATE_LIMIT": "投资持有一定天数后才允许转让",
                         "DAILY_LIMIT": "超过每日债权转让次数上限",
                         "DISCOUNT_LIMIT": "超过债权转让折让率允许范围",
-                        "DISCOUNT_TOO_HIGH":"债权转让折让率太高，实际利率小于等于零",
+                        "DISCOUNT_TOO_HIGH": "债权转让折让率太高，实际利率小于等于零",
                         "ASSIGN_AMOUNT_LIMIT": "低于最低转让金额限制",
-                        'NEXT_REPAY_DATE_IN_TIMEOUT':'',
+                        'NEXT_REPAY_DATE_IN_TIMEOUT': '',
                     };
 
 
-
                     alertTip.alert({
-                        width:535,
-                        hasCloseBtn:true,
-                        title:data.assignTitle,
-                        hasCancelBtn:false,
-                        hasOkBtn:false,
-                        renderHandler:function(el){
+                        width: 535,
+                        hasCloseBtn: true,
+                        title: data.assignTitle,
+                        hasCancelBtn: false,
+                        hasOkBtn: false,
+                        renderHandler: function (el) {
                             var tipRac = new Ractive({
-                                el:el,
-                                template:require('ccc/newAccount/partials/settings/fixed.html'),
-                                data:data,
-                                magic:true,
-                                computed:{
-                                    area:'(${Funrepay} * ${creditDealRate}).toFixed(2)',
-                                    commiss:'(${Funrepay} * ${creditDealRate} * 0.001).toFixed(2)',
-                                    minarea:'(${Funrepay} * 0.95).toFixed(2)',
-                                    maxarea:'(${Funrepay} * 1.05).toFixed(2)',
+                                el: el,
+                                template: require('ccc/newAccount/partials/settings/fixed.html'),
+                                data: data,
+                                magic: true,
+                                computed: {
+                                    area: '(${Funrepay} * ${creditDealRate}).toFixed(2)',
+                                    commiss: '(${Funrepay} * ${creditDealRate} * 0.001).toFixed(2)',
+                                    minarea: '(${Funrepay} * 0.95).toFixed(2)',
+                                    maxarea: '(${Funrepay} * 1.05).toFixed(2)',
                                 },
-                                oncomplete:function(){
+                                oncomplete: function () {
                                     var that = this;
                                     //accountService.getStop1(data.investId,function (res) {
                                     //    data.Funrepay= res.data.bidValuation.toFixed(2);
                                     //    data.Time=res.data.maxTimeOut;
                                     //});
-                                    this.on('changeVal',function(e){
+                                    this.on('changeVal', function (e) {
                                         //if(/\D/g.test(data.creditDealRate) && data.creditDealRate.indexOf('.') ==-1) return data.error = '请输入正确的转让价格';
                                         //else if(data.creditDealRate == '') return data.error = '请输入转让价格！'
                                         //else if(data.creditDealRate>parseInt(that.get("maxarea"))) return data.error = '转让价格必须小于等于'+that.get("maxarea")+'!';
@@ -341,16 +341,17 @@ function init(type) {
                                         //    data.creditAssignFee=(res.data.creditAssignFee*data.creditDealRate).toFixed(2);
                                         //    data.creditAssignRate=res.data.creditAssignRate;
                                         //});
-                                        if(/\D/g.test(data.creditDealRate) && data.creditDealRate.indexOf('.') ==-1) return data.error = '请输入正确的折价率';
-                                                                             else if(data.creditDealRate == '') return data.error = '请输入折价率！'
-                                                                                    else if(data.creditDealRate>1.05) return data.error = '折价率必须小于等于1.05!';
-                                                                                else if(data.creditDealRate<0.95) return data.error = '折价率必须大于等于0.95!';
-                                                                                else if((data.creditDealRate+'').length>4) return data.error = '折价率最多保留两位小数！';
+                                        if (/\D/g.test(data.creditDealRate) && data.creditDealRate.indexOf('.') == -1) return data.error = '请输入正确的折价率';
+                                        else if (data.creditDealRate == '') return data.error = '请输入折价率！'
+                                        else if (data.creditDealRate > 1.05) return data.error = '折价率必须小于等于1.05!';
+                                        else if (data.creditDealRate < 0.95) return data.error = '折价率必须大于等于0.95!';
+                                        else if ((data.creditDealRate + '').length > 4) return data.error = '折价率最多保留两位小数！';
+                                        else data.error = '';
                                     })
 
-                                    this.on('makeSure',function(e){
+                                    this.on('makeSure', function (e) {
                                         //if(data.error || !data.creditDealRate) return !data.creditDealRate ? data.error = '请输入转让价格！':data.error;
-                                        if(data.error || !data.creditDealRate) return !data.creditDealRate ? data.error = '请输入折价率！':data.error;
+                                        if (data.error || !data.creditDealRate) return !data.creditDealRate ? data.error = '请输入折价率！' : data.error;
                                         e.node.disabled = true;
                                         e.node.innerHTML = '转让中...';
                                         //发送请求
