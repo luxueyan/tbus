@@ -371,7 +371,12 @@ p.tips {
 .BOS {
   background-image: url(/ccc/global/img/banks/SH.jpg);
 }
-
+.SHB {
+  background-image: url(/ccc/global/img/banks/SH.jpg);
+}
+.BCOM {
+  background-image: url(/ccc/global/img/banks/BOCOM.png);
+}
 /*个人信息*/
 
 .account-userInfo-wrapper {
