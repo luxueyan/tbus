@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'PaymentPoolBindCardCtrl',
 
-        _.ai '            @banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @$location, @$interval, @$routeParams, @$uibModal', class
-            constructor: (@banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @$location, @$interval, @$routeParams, @$uibModal) ->
+        _.ai '            @banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @$location, @$interval, @$routeParams, @$uibModal, @toast', class
+            constructor: (@banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @$location, @$interval, @$routeParams, @$uibModal, @toast) ->
 
                 @$window.scrollTo 0, 0
 
@@ -153,8 +153,10 @@ do (_, angular) ->
                         (             $scope) =>
                             angular.extend $scope, {
                                 banks: @banks
-                                select: (bank) ->
+                                select: (bank) =>
                                     store.bank = bank
+                                    if bank?.bankCode in ['PSBC', 'SHB']
+                                        @toast('此银行需要开通银联在线支付')
                             }
                 }
 

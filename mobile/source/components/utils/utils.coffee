@@ -219,3 +219,20 @@ do (_, angular) ->
 
                 $window.alert message
                 return result: $q.resolve()
+
+
+
+        .factory 'toast', _.ai '$rootScope, $timeout', ($rootScope, $timeout) ->
+
+            (message) ->
+
+                {toast_timer} = $rootScope
+                $timeout.cancel(toast_timer) if toast_timer
+
+                $rootScope.toast_message = message
+
+                $rootScope.toast_timer = $timeout (->
+                    $rootScope.toast_message = ''
+                    $rootScope.toast_timer = ''
+                ), 2000
+

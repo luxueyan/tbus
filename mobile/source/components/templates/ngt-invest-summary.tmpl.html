@@ -32,9 +32,11 @@
                 <span class="name">预期收益(元)</span>
                 <span class="value">
                     {{
-                        item.amount_interest
-                        ? (item.amount_interest | number: 2 )
-                        : '-'
+                        (
+                            item.status == 'FROZEN'
+                            ? item.raw.expectedInterest
+                            : item.raw.dueInInterest
+                        ) | number: 2
                     }}
                 </span>
             </div>
@@ -43,7 +45,7 @@
                  ng-if="['CLEARED'].indexOf(item.status) > -1"
             >
                 <span class="name">实际收益(元)</span>
-                <span class="value">{{ item.amount_interest | number: 2 }}</span>
+                <span class="value">{{ item.raw.inInterest | number: 2 }}</span>
             </div>
 
             <div class="info">
