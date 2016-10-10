@@ -170,6 +170,12 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
 .BCCB {
     background: url(/ccc/newAccount/img/pBanks/BCCB.jpg) no-repeat left #fff;
 }
+.BCOM {
+    background: url(/ccc/newAccount/img/pBanks/BOCOM.jpg) no-repeat left #fff;
+}
+.SHB {
+    background: url(/ccc/newAccount/img/pBanks/SH.jpg) no-repeat left #fff;
+}
 
 
 /*企业*/
@@ -265,6 +271,7 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
 .cBCCB {
     background: url(/ccc/newAccount/img/nBanks/BCCB.jpg) no-repeat center #fff;
 }
+
 
 table.tinfo {
     width: 850px;
