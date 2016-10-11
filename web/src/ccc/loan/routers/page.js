@@ -15,7 +15,7 @@ router.get('/payment', function (req,res) {
     res.expose(req.query.loanId,'loanId')
     res.expose(req.query.placementId,'placementId')
     res.expose(user, 'user');
-    res.locals.title = '';
+    res.locals.title = '汇财富';
     res.render('payment',{
         investNum:req.query.num,
         loanId:req.query.loanId,
@@ -85,13 +85,13 @@ router.get('/:id',
                     result.userId = result.loanRequest.userId;
                     result.requestId = result.loanRequest.id;
                     //result.dueDate
-                    res.locals.keywords = '理财产品、投资、理财投资、个人理财、理财新品、新能宝、活动专享、新手专享';
+                    res.locals.keywords = '太合汇、汇财富、互金交易平台、理财平台、汇利精选、汇盈理财、高端理财、财富管理';
                     if(result.loanRequest.productKey=='NEW'){
-                        res.locals.title = '太合汇';
+                        res.locals.title = '汇财富';
                     }
                     else{
 //                    res.locals.title = result.title+'_自金网平台';
-                    res.locals.title = '太合汇';
+                    res.locals.title = '汇财富';
                     }
                     return result;
 
@@ -125,7 +125,7 @@ router.get('/:id',
             replay: repayments
         });
             res.expose(repayments, 'repayments');
-            res.locals.title = '太合汇';
+            res.locals.title = '汇财富';
             res.render('index', _.assign(res.locals, {
                 totalInterest: repayments.reduce(function (p, r) {
                     return p + (r && r.amountInterest || 0);

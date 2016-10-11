@@ -3,9 +3,9 @@ module.exports = function (router) {
 router.get('/applyloan', function (req,res) {
     var user = res.locals.user;
     res.expose(user, 'user');
-    res.locals.title = '我要借款_太合汇平台';
-    res.locals.keywords = '安徽贷款|安徽网上贷款|安徽企业贷款|奇乐融网络贷款|';
-    res.locals.description = '安徽借款上奇乐融，专注于中小企业贷款、安徽网上借款、债券转让等，专业的贷款服务，最快1天放款，快速帮您解决难题。';
+    res.locals.title = '汇财富';
+    res.locals.keywords = '太合汇、汇财富、互金交易平台、理财平台、汇利精选、汇盈理财、高端理财、财富管理';
+    res.locals.description = '太合汇·汇财富是由太合汇资本倾力打造的互联网金融资产交易服务平台，专门为白领、中产精英等高潜力人群提供专业、可信赖的财富管理服务，实现财富增值。';
     res.render('applyloan');
 });
    

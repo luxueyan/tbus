@@ -3,9 +3,9 @@ var moment = require('moment');
 module.exports = function (router) {
 router.get('/', function (req, res, next) {
     var user = res.locals.user;
-    res.locals.title = '汇财富－卓越金融，财富人生';
-    res.locals.keywords = '理财、投资、财富、理财投资、个人理财、理财产品、理财平台、金融理财、个人投资、普惠金融';
-    res.locals.description = '太合汇致力于为投资者提供专业、绿色、智能、透明、安全的理财服务，是新型的互联网理财服务交易平台。';
+    res.locals.title = '汇财富';
+    res.locals.keywords = '太合汇、汇财富、互金交易平台、理财平台、汇利精选、汇盈理财、高端理财、财富管理';
+    res.locals.description = '太合汇·汇财富是由太合汇资本倾力打造的互联网金融资产交易服务平台，专门为白领、中产精英等高潜力人群提供专业、可信赖的财富管理服务，实现财富增值。';
     if (user && user.idNumber) {
         delete user.idNumber;
     }

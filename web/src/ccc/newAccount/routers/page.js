@@ -26,9 +26,9 @@ module.exports = function(router) {
             delete user.idNumber;
         }
 
-        res.locals.title = '太合汇';
-        res.locals.keywords = '太合汇';
-        res.locals.description = '太合汇';
+        res.locals.title = '汇财富';
+        res.locals.keywords = '太合汇、汇财富、互金交易平台、理财平台、汇利精选、汇盈理财、高端理财、财富管理';
+        res.locals.description = '太合汇·汇财富是由太合汇资本倾力打造的互联网金融资产交易服务平台，专门为白领、中产精英等高潜力人群提供专业、可信赖的财富管理服务，实现财富增值。';
         res.expose(user, 'user');
         // 检测用户是否登录
         if (!user) {
@@ -143,7 +143,7 @@ module.exports = function(router) {
             paymentPasswordHasSet;
 
         res.render('newAccount/coupon', {
-            title: '太合汇'
+            title: '汇财富'
         });
     });
     router.get('/autobid', async function(req, res) {
@@ -153,13 +153,13 @@ module.exports = function(router) {
         res.expose(user, 'user');
 
         res.render('newAccount/autobid', {
-            title: '太合汇'
+            title: '汇财富'
         });
         return false;
     });
     router.get('/assign', function(req, res) {
         res.render('newAccount/assign', {
-            title: '太合汇'
+            title: '汇财富'
         });
     });
     router.get('/invite', function(req, res) {
@@ -169,7 +169,7 @@ module.exports = function(router) {
             paymentPasswordHasSet;
 
         res.render('newAccount/invite', {
-            title: '太合汇'
+            title: '汇财富'
         });
     });
     router.get('/risk', function(req, res) {
@@ -179,7 +179,7 @@ module.exports = function(router) {
             paymentPasswordHasSet;
 
         res.render('newAccount/risk', {
-            title: '太合汇'
+            title: '汇财富'
         });
     });
 
@@ -203,7 +203,7 @@ module.exports = function(router) {
         };
 
         res.render('newAccount/recharge', {
-            title: '太合汇'
+            title: '汇财富'
         });
         return false;
     });
@@ -224,13 +224,13 @@ module.exports = function(router) {
         };
       
         res.render('newAccount/withdraw', {
-            title: '太合汇'
+            title: '汇财富'
         });
         return false;
     });
     router.get('/message', function(req, res) {
         res.render('newAccount/message', {
-            title: '太合汇'
+            title: '汇财富'
         });
     });
 
@@ -241,19 +241,19 @@ module.exports = function(router) {
             paymentPasswordHasSet;
 
         res.render('newAccount/userInfo', {
-            title: '太合汇'
+            title: '汇财富'
         });
         return false;
     });
 
     router.get('/bindingEmail', function(req, res) {
         res.render('newAccount/bindingEmail', {
-            title: '太合汇'
+            title: '汇财富'
         });
     });
     router.get('/invest/*', function(req, res) {
         res.render('newAccount/invest', {
-            title: '太合汇'
+            title: '汇财富'
         });
     });
 
@@ -337,7 +337,7 @@ module.exports = function(router) {
     router.get('/fund', function(req, res, next) {
         //res.expose(req.params.name, 'loanl.urlname');
         res.render('/newAccount/fund', {
-            title: '太合汇'
+            title: '汇财富'
         });
 
     });
