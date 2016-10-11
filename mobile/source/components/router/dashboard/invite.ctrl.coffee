@@ -14,7 +14,7 @@ do (_, angular, Math) ->
                     share_link: {
                         get: =>
                             result = @$location.absUrl().split('/')[0..2]
-                            result.push 'register?refm=' + @user.info?.mobile or ''
+                            result.push 'register?refm=' + @user.info?.invite_code or ''
                             return result.join '/'
                     }
 
