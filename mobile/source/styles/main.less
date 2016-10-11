@@ -2092,6 +2092,16 @@ a {
             &.rsaquo {
                 position: relative;
 
+                &:before {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    z-index: 11;
+                }
+
                 &:after {
                     .transform(translateY(-50%));
 
@@ -2110,7 +2120,7 @@ a {
                 padding-left: 0;
                 padding-right: 30px;
                 color: #717071;
-                font-size: 16px;
+                font-size: 14px;
                 -webkit-appearance: none;
                 -webkit-box-shadow: none;
                         box-shadow: none;
@@ -2160,6 +2170,18 @@ a {
 
     .action-result {
         #dashboard-payment-recharge .action-result;
+    }
+}
+
+/*=============================================================================
+                                             [Router] Loan invest Select Coupon
+----*/
+
+#loan-invest-select-coupon {
+    .coupon-list {
+        #dashboard-coupon .coupon-list;
+
+        padding-top: 1px;
     }
 }
 

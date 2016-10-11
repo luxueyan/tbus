@@ -280,6 +280,34 @@ do (_, angular, Math) ->
                 return prompt.result
 
 
+            select_coupon: (event, store) ->
+
+                do event.preventDefault
+
+                prompt = @$uibModal.open {
+                    size: 'lg'
+                    backdrop: 'static'
+                    windowClass: 'modal-full-page'
+                    openedClass: 'modal-full-page-wrap'
+                    animation: false
+                    templateUrl: 'ngt-loan-invest-select-coupon.tmpl'
+
+                    controller: _.ai '$scope',
+                        (             $scope) =>
+                            angular.extend $scope, {
+                                coupon_list: @$scope.coupon_list
+                                select: (coupon) ->
+                                    store.coupon = coupon
+                            }
+                }
+
+                once = @$scope.$on '$locationChangeStart', ->
+                    prompt?.dismiss()
+                    do once
+
+                return prompt.result
+
+
 
 
 
