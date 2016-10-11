@@ -261,7 +261,7 @@ ractive.on("bind-card-submit", function (e) {
         BIND_CARD_FAILED: '绑卡失败',
         UNKNOWN: '系统繁忙，请稍后重试！',
         ACCESS_DENIED: '登录超时',
-        IDNUMBER_EXISTS: '账号已存在',
+        IDNUMBER_EXISTS: '身份证已被认证',
         SUCCEED: '银行卡绑定成功'
     };
     console.log("@@@@@")

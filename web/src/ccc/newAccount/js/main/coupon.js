@@ -21,19 +21,19 @@ var getCurrentType = function () {
 var Tab = {
     PLACED: {
         ractive: null,
-        api: '/api/v2/coupon/MYSELF/coupons/byStatus?status=PLACED&pageNo=$page&pageSize=$size',
+        api: '/api/v2/coupon/MYSELF/coupons/byStatus?status=PLACED',
         //template: require('ccc/newAccount/partials/coupon/coupon.html')
     },
     // 未使用
     REDEEMED: {
         ractive: null,
-        api: '/api/v2/coupon/MYSELF/coupons/byStatus?status=REDEEMED&pageNo=$page&pageSize=$size',
+        api: '/api/v2/coupon/MYSELF/coupons/byStatus?status=REDEEMED&status=USED',
         //template: require('ccc/newAccount/partials/coupon/coupon.html')
     },
     // 已使用
     EXPIRED: {
         ractive: null,
-        api: '/api/v2/coupon/MYSELF/coupons/byStatus?status=EXPIRED&pageNo=$page&pageSize=$size',
+        api: '/api/v2/coupon/MYSELF/coupons/byStatus?status=EXPIRED',
         //template: require('ccc/newAccount/partials/coupon/coupon.html')
     }
     // REALIZATION (可变现)
@@ -73,7 +73,8 @@ function init(type) {
             perpage: self.size,
             page: page,
             totalPage: totalPage,
-            api: '/api/v2/coupon/MYSELF/coupons/byStatus',
+            //api: '/api/v2/coupon/MYSELF/coupons/byStatus',
+            api: tab.api,
             data: {
                 loading: true,
                 list: [],
@@ -106,7 +107,7 @@ function init(type) {
             getCouponData: function (callback) {
                 var self = this;
                 $.get(self.api, {
-                    status: type,
+                    //status: type,
                     pageNo: self.page,
                     pageSize: self.size
                 }, function (o) {
@@ -198,14 +199,21 @@ function init(type) {
             },
             renderPager: function (totalSize,type) {
                 var self = this;
+                console.log("!!!!")
+                console.log(self)
                 new RenderPage().page({
                     pageSize:pagesize,
                     totalSize:totalSize,
-                    api:'/api/v2/coupon/MYSELF/coupons/byStatus?pageNo=$currentPage&pageSize=$pageSize',
-                    queryString:{
-                        status:type
-                    },
+                    //api:'/api/v2/coupon/MYSELF/coupons/byStatus?pageNo=$currentPage&pageSize=$pageSize',
+                    api:self.api+"&pageNo=$currentPage&pageSize=$pageSize",
+                    //queryString:{
+                    //    pageNo: self.page,
+                    //    pageSize: self.size
+                    //},
+
                     callback:function(o){
+                        console.log(self.page)
+                        console.log(self.size)
                         console.log(o)
                         self.set('list', self.parseData(o.data.results))
                     }
