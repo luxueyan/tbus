@@ -7,6 +7,8 @@ $('[data-ride="carousel"]').each(function () {
   $(this).carousel($carousel.data())
 })
 
+
+
 require('bootstrap/js/tab');
 var $carousel = $("#my-carousel");
 var IndexService = require('./service')

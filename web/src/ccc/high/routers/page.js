@@ -6,10 +6,10 @@ module.exports = function (router) {
             delete user.idNumber;
         }
         res.expose(user, 'user');
-        res.locals.title = '太合汇';
-        res.locals.keywords = '理财产品、投资、理财投资、个人理财、理财新品、活动专享、新手专享';
-        res.locals.description =
-            '太合汇为您提供了多种理财产品，每种理财产品都有不同的特点，满足您的投资需求。理财产品有：新手专享、活动专享、新能宝等。';
+        res.locals.title = '汇财富';
+        res.locals.keywords = '太合汇、汇财富、互金交易平台、理财平台、汇利精选、汇盈理财、高端理财、财富管理';
+        res.locals.description = '太合汇·汇财富是由太合汇资本倾力打造的互联网金融资产交易服务平台，专门为白领、中产精英等高潜力人群提供专业、可信赖的财富管理服务，实现财富增值。';
+
 
         res.locals.bottomAd = req.uest(
             '/api/v2/cms/category/IMAGE/name/' + encodeURIComponent('理财列表页广告栏'))
@@ -36,10 +36,10 @@ module.exports = function (router) {
             delete user.idNumber;
         }
         res.expose(user, 'user');
-        res.locals.title = '太合汇';
-        res.locals.keywords = '理财产品、投资、理财投资、个人理财、理财新品、活动专享、新手专享';
-        res.locals.description =
-            '太合汇为您提供了多种理财产品，每种理财产品都有不同的特点，满足您的投资需求。理财产品有：新手专享、活动专享、新能宝等。';
+        res.locals.title = '汇财富';
+        res.locals.keywords = '太合汇、汇财富、互金交易平台、理财平台、汇利精选、汇盈理财、高端理财、财富管理';
+        res.locals.description = '太合汇·汇财富是由太合汇资本倾力打造的互联网金融资产交易服务平台，专门为白领、中产精英等高潜力人群提供专业、可信赖的财富管理服务，实现财富增值。';
+
 
         res.locals.bottomAd = req.uest(
             '/api/v2/cms/category/IMAGE/name/' + encodeURIComponent('理财历史页广告栏'))
