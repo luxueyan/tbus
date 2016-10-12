@@ -199,8 +199,8 @@ function init(type) {
             },
             renderPager: function (totalSize,type) {
                 var self = this;
-                console.log("!!!!")
-                console.log(self)
+                //console.log("!!!!")
+                //console.log(self)
                 new RenderPage().page({
                     pageSize:pagesize,
                     totalSize:totalSize,
@@ -212,9 +212,9 @@ function init(type) {
                     //},
 
                     callback:function(o){
-                        console.log(self.page)
-                        console.log(self.size)
-                        console.log(o)
+                        //console.log(self.page)
+                        //console.log(self.size)
+                        //console.log(o)
                         self.set('list', self.parseData(o.data.results))
                     }
                 });

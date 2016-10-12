@@ -185,24 +185,12 @@ IndexService.getLoanSummary(function (res) {
     //console.log(listFixed)
     //console.log(listFloat)
     //console.log("1111")
-
     var listOpen = [];     //在售中  OPENED
     var listNone = [];     //计息中  SETTLED
     var listSchedul = [];  //即将发布  SCHEDULED
     var listFinish = [];     //已售罄 FINISHED
     var liststatus = [];   //放排序后的产品 ： 在售中》即将发布》已售罄》计息中
-    for (var i = 0; i < listFixed.length; i++) {
-        if (listFixed[i].status == "OPENED") {
-            listOpen.push(listFixed[i]);
-        }else if(listFixed[i].status == "SCHEDULED"){
-            listSchedul.push(listFixed[i]);
-        }else if(listFixed[i].status == "FINISHED"){
-            listFinish.push(listFixed[i]);
-        }else if(listFixed[i].status == "SETTLED"){
-            listNone.push(listFixed[i]);
-        }
 
-    }
     var compare = function (obj1, obj2) {
         var val1 = obj1.timeOpen;
         var val2 = obj2.timeOpen;
@@ -216,14 +204,46 @@ IndexService.getLoanSummary(function (res) {
     }
 
     productKey.sort(compare);
+
+    if(productKey[0]){
+        liststatus=liststatus.concat(productKey.shift());
+    }
+
+    for (var i = 0; i < productKey.length; i++) {
+        if (productKey[i].status == "OPENED") {
+            listOpen.push(productKey[i]);
+        }else if(productKey[i].status == "SCHEDULED"){
+            listSchedul.push(productKey[i]);
+        }else if(productKey[i].status == "FINISHED"){
+            listFinish.push(productKey[i]);
+        }else if(productKey[i].status == "SETTLED"){
+            listNone.push(productKey[i]);
+        }
+
+    }
+
+
+    for (var i = 0; i < listFixed.length; i++) {
+        if (listFixed[i].status == "OPENED") {
+            listOpen.push(listFixed[i]);
+        }else if(listFixed[i].status == "SCHEDULED"){
+            listSchedul.push(listFixed[i]);
+        }else if(listFixed[i].status == "FINISHED"){
+            listFinish.push(listFixed[i]);
+        }else if(listFixed[i].status == "SETTLED"){
+            listNone.push(listFixed[i]);
+        }
+
+    }
+
+
     listOpen.sort(compare);
     listNone.sort(compare);
     listSchedul.sort(compare);
     listFinish.sort(compare);
-    if(productKey[0]){
-        liststatus=liststatus.concat(productKey[0]);
-    }
 
+    console.log(listOpen);
+    console.log(listOpen);
     liststatus=liststatus.concat(listOpen);
     liststatus=liststatus.concat(listSchedul);
     liststatus=liststatus.concat(listFinish);
