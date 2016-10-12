@@ -299,9 +299,10 @@ if (CC.key) {
             user: CC.user,
             key: CC.key
         },
-        onrender: function (Boolean) {
+        onrender: function (status) {
             var that = this;
             var key = that.get('key');
+            var Boolean="true";
             var api = '/api/v2/loan/summaryTotal?recommedInFront=true&product=';
             request.get(api+ key + '&product=CPTJ')
                 .end()
@@ -310,6 +311,12 @@ if (CC.key) {
 
                 });
 
+            if(status=="OPENED" || status=="SETTLED" || status=="CLEARED" ){
+                Boolean = "false";
+                console.log(Boolean)
+            }else{
+                Boolean = "true";
+            }
             InvestListService.getLoanListWithCondition(jsonToParams(params),Boolean, function (res) {
                 that.set('list', parseLoanList(res.results));
                 that.renderPager(res, params.currentPage, that)
@@ -318,7 +325,7 @@ if (CC.key) {
         },
         oncomplete: function () {
             var that = this;
-            var Boolean;
+            //var Boolean;
             $('.sStatus li').click(function () {
                 $(this).addClass("selected").siblings().removeClass("selected");
                 var status = $(this).data("status");
@@ -328,13 +335,8 @@ if (CC.key) {
                 }
                 params.status = status;
                 params.currentPage = 1;
-                if(status=="OPENED" || status=="SETTLED" || status=="CLEARED" ){
-                    Boolean = "false&";
-                    console.log(Boolean)
-                }else{
-                    Boolean = "true&";
-                }
-                that.onrender(Boolean);
+
+                that.onrender(status);
             });
         },
         renderPager: function (res, currentPage, obj) {
