@@ -303,7 +303,7 @@ if (CC.key) {
             var that = this;
             var key = that.get('key');
             var api = '/api/v2/loan/summaryTotal?product=';
-            request.get(api+ key)
+            request.get(api+ key + '&product=CPTJ')
                 .end()
                 .then(function(r){
                     that.set('num',r.body);
