@@ -15,10 +15,10 @@ exports.InvestListService = {
                 next(res.body);
             });
     },
-    getLoanListWithCondition: function (params, next) {
+    getLoanListWithCondition: function (params,Boolean, next) {
         try {
             return request
-                .get('/api/v2/loans/getLoanWithPage?recommedInFront=true' + params +'&product=CPTJ')
+                .get('/api/v2/loans/getLoanWithPage?recommedInFront='+Boolean + params +'&product=CPTJ')
                 .end()
                 .then(function (res) {
                     next(res.body);

@@ -299,17 +299,18 @@ if (CC.key) {
             user: CC.user,
             key: CC.key
         },
-        onrender: function () {
+        onrender: function (Boolean) {
             var that = this;
             var key = that.get('key');
-            var api = '/api/v2/loan/summaryTotal?product=';
+            var api = '/api/v2/loan/summaryTotal?recommedInFront=true&product=';
             request.get(api+ key + '&product=CPTJ')
                 .end()
                 .then(function(r){
                     that.set('num',r.body);
 
                 });
-            InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) {
+
+            InvestListService.getLoanListWithCondition(jsonToParams(params),Boolean, function (res) {
                 that.set('list', parseLoanList(res.results));
                 that.renderPager(res, params.currentPage, that)
             });
@@ -317,6 +318,7 @@ if (CC.key) {
         },
         oncomplete: function () {
             var that = this;
+            var Boolean;
             $('.sStatus li').click(function () {
                 $(this).addClass("selected").siblings().removeClass("selected");
                 var status = $(this).data("status");
@@ -326,7 +328,13 @@ if (CC.key) {
                 }
                 params.status = status;
                 params.currentPage = 1;
-                that.onrender();
+                if(status=="OPENED" || status=="SETTLED" || status=="CLEARED" ){
+                    Boolean = "false&";
+                    console.log(Boolean)
+                }else{
+                    Boolean = "true&";
+                }
+                that.onrender(Boolean);
             });
         },
         renderPager: function (res, currentPage, obj) {
