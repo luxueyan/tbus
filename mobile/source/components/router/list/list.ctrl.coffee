@@ -15,7 +15,8 @@ do (_, angular) ->
                 query_set = {}
 
                 if current_tab is 'loan'
-                    query_set.product = 'GDSY'
+                    query_set.product = _.split 'GDSY CPTJ'
+                    query_set.recommedInFront = true
 
                 else if current_tab is 'high'
                     query_set.product = 'GDLC'
@@ -29,25 +30,6 @@ do (_, angular) ->
                 }
 
                 @query(query_set)
-
-                if @$scope.current_tab is 'loan'
-
-                    (@api.get_loan_list()
-
-                        .then (data) =>
-
-                            {open, scheduled, finished, settled} = data
-
-                            @$scope.list_CPTJ =
-                                _([open, scheduled, finished, settled])
-                                    .flatten()
-                                    .compact()
-                                    .filter (item) ->
-                                        item.loanRequest.productKey == 'CPTJ'
-                                    .take 1
-                                    .map @map_loan_summary
-                                    .value()
-                    )
 
 
             query: (query_set, options = {}) ->

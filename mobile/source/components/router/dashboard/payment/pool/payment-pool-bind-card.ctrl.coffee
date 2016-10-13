@@ -27,6 +27,8 @@ do (_, angular) ->
 
             send_mobile_captcha: ({user_name, id_number, bank, cardNo, cardPhone}) ->
 
+                @captcha.sending = true
+
                 post_data = {
                     realName: user_name
                     idNumber: id_number
@@ -59,6 +61,9 @@ do (_, angular) ->
 
                         key = _.get data, 'error[0].message', 'UNKNOWN'
                         @$window.alert @$scope.msg[key] or @$scope.msg.PRE_BIND_CARD_FAILED
+
+                    .finally =>
+                        @captcha.sending = false
                 )
 
 

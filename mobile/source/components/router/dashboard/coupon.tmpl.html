@@ -96,13 +96,13 @@
                 </div>
 
                 <button class="btn btn-xs btn-info redeem"
-                        ng-click="self.redeem(item.id)"
+                        ng-click="self.redeem(item)"
                         ng-if="
                                item.couponPackage.type === 'CASH'
                             && ['INITIATED', 'PLACED'].indexOf(item.status) > -1
                         "
-                        ng-disabled="self.submit_sending"
-                >{{ self.submit_sending ? '兑换中...' : '兑换' }}</button>
+                        ng-disabled="item.redeem_sending"
+                >兑换{{ item.redeem_sending ? '中...' : '' }}</button>
             </li>
         </ul>
 

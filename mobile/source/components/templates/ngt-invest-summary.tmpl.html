@@ -87,7 +87,7 @@
             </div>
         </div>
 
-        <div class="action">
+        <div class="action" ng-if="item.status != 'CLEARED'">
             <button class="btn btn-theme btn-xs"
                     ng-click="
                         self.$location.path('dashboard/assignment/' + item.id);
