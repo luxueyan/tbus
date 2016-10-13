@@ -23,6 +23,8 @@
             ACCESS_DENIED: '登录超时',
             INCORRECT_PASSWORD: '交易密码不正确',
             PRE_BIND_CARD_FAILED: '信息验证错误，请检查上述四要素是否填写正确！',
+            IDNUMBER_EXISTS: '身份证已被认证',
+            ACCOUNT_DO_NOT_MATCH_BANK: '卡号与开户行不匹配',
 
             SUCCEED: '银行卡绑定成功',
         }">
@@ -235,6 +237,7 @@
                                     || !store.cardPhone
                                     || !store.bank
                                     || self.captcha.buffering
+                                    || self.captcha.sending
                                 "
                         >
                             <span class="text">获取验证码</span>
