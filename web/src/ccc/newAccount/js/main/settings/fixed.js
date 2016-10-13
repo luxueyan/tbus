@@ -175,6 +175,7 @@ function init(type) {
                                 datas[i].Fstatus = utils.i18n.InvestStatus[o.status];
                                 datas[i].Frate = utils.format.percent(o.rate / 100, 2);
                                 datas[i].Famount = utils.format.amount(o.amount, 2);
+                                datas[i].dueInPrincipal = utils.format.amount(o.dueInPrincipal, 2);
                                 datas[i].expectedInterest = utils.format.amount((o.expectedInterest), 2);
                                 datas[i].dueInInterest = utils.format.amount((o.dueInInterest), 2);
                                 datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true : false;
@@ -337,7 +338,7 @@ function init(type) {
                                         else if(data.creditDealRate<parseInt(that.get("minarea"))) return data.error = '转让价格必须大于等于'+that.get("minarea")+'!';
                                         else data.error = '';
                                         accountService.getStop2(data.investId,data.creditDealRate,function (res) {
-                                            data.assigneeYieldRate=(res.data.assigneeYieldRate).toFixed(2);
+                                            data.assigneeYieldRate=(res.data.assigneeYieldRate*100).toFixed(2);
                                             data.creditAssignFee=(res.data.creditAssignFee*data.creditDealRate).toFixed(2);
                                             data.creditAssignRate=res.data.creditAssignRate;
                                         });
