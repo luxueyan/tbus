@@ -36,18 +36,6 @@
 
     <section class="list-wrap container">
         <ul class="list-unstyled u-off-margin-bottom list"
-            ng-if="current_tab === 'loan' && list_CPTJ.length"
-        >
-            <li ng-repeat="item in list_CPTJ">
-                <a ng-href="loan/{{ item.id }}"
-                   x-loan-summary
-                   data-loan="item"
-                ></a>
-            </li>
-            <li style="padding: 0;"></li>
-        </ul>
-
-        <ul class="list-unstyled u-off-margin-bottom list"
             ui-scrollpoint
             ui-scrollpoint-edge="bottom"
             ui-scrollpoint-action="self.infinite_scroll"
