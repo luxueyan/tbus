@@ -86,38 +86,38 @@ function formatItem(item) {
     //    item.investPercent = (item.investPercent * 100).toFixed(2);
     //}
 
-    var SinvestPercent = (item.investPercent * 100)+'';
+    var SinvestPercent = (item.investPercent * 100) + '';
     var SinvestPercentString = SinvestPercent.split('.');
 
-    if(SinvestPercentString[1]){
-        if(SinvestPercentString[1].substr(0,2)=='00'){
+    if (SinvestPercentString[1]) {
+        if (SinvestPercentString[1].substr(0, 2) == '00') {
             item.investPercent = SinvestPercentString[0];
-        }else if(SinvestPercentString[1].substr(1,1)=='0'|| SinvestPercentString[1].substr(1,1)==''){
+        } else if (SinvestPercentString[1].substr(1, 1) == '0' || SinvestPercentString[1].substr(1, 1) == '') {
             item.investPercent = (item.investPercent * 100).toFixed(1);
-        }else{
+        } else {
             item.investPercent = (item.investPercent * 100).toFixed(2);
         }
-    }else{
+    } else {
         item.investPercent = (item.investPercent * 100);
     }
 
     if (item.duration.days > 0) {
         if (typeof item.duration.totalDays === "undefined") {
             item.fduration = item.duration.days;
-            } else {
-                item.fduration = item.duration.totalDays;
-            }
-                item.fdurunit = "天";
-            } else {
-                item.fduration = item.duration.totalMonths;
-                item.fdurunit = "个月";
-            }
-            if (item.amount >= 10000) {
-               item.amountUnit = '万';
-                item.amount = (item.amount / 10000);
-            } else {
-                item.amountUnit = '元';
-            }
+        } else {
+            item.fduration = item.duration.totalDays;
+        }
+        item.fdurunit = "天";
+    } else {
+        item.fduration = item.duration.totalMonths;
+        item.fdurunit = "个月";
+    }
+    if (item.amount >= 10000) {
+        item.amountUnit = '万';
+        item.amount = (item.amount / 10000);
+    } else {
+        item.amountUnit = '元';
+    }
 
     if (item.status == "OPENED") {
         item.leftTime = formateLeftTime(item.timeLeft);
@@ -150,11 +150,11 @@ function parseLoanList(list) {
         list[i].methodFmt = methodFmt;
         list[i].titleLength = replaceStr(list[i].title);
         //list[i].FminAmount = utils.format.amount(list[i].loanRequest.investRule.minAmount, 2);
-        if(list[i].loanRequest.investRule.minAmount<10000){
+        if (list[i].loanRequest.investRule.minAmount < 10000) {
             list[i].FminAmount = list[i].loanRequest.investRule.minAmount;
             list[i].FminUnit = "元";
-        }else{
-            list[i].FminAmount = (list[i].loanRequest.investRule.minAmount/10000);
+        } else {
+            list[i].FminAmount = (list[i].loanRequest.investRule.minAmount / 10000);
             list[i].FminUnit = "万元";
         }
         list[i].balance = utils.format.amount(list[i].balance, 2);
@@ -173,9 +173,9 @@ IndexService.getLoanSummary(function (res) {
     var listFixed = [], listFloat = [];
     var productKey = [];    //推荐产品放在第一位      CPTJ
     for (var i = 0; i < res.length; i++) {
-        if(res[i].loanRequest.productKey == "CPTJ"){
+        if (res[i].loanRequest.productKey == "CPTJ") {
             productKey.push(res[i]);
-        }else if (res[i].loanRequest.productKey == 'GDSY') {
+        } else if (res[i].loanRequest.productKey == 'GDSY') {
             listFixed.push(res[i]);
         } else if (res[i].loanRequest.productKey == 'FDSY') {
             listFloat.push(res[i]);
@@ -205,18 +205,18 @@ IndexService.getLoanSummary(function (res) {
 
     productKey.sort(compare);
 
-    if(productKey[0]){
-        liststatus=liststatus.concat(productKey.shift());
+    if (productKey[0]) {
+        liststatus = liststatus.concat(productKey.shift());
     }
 
     for (var i = 0; i < productKey.length; i++) {
         if (productKey[i].status == "OPENED") {
             listOpen.push(productKey[i]);
-        }else if(productKey[i].status == "SCHEDULED"){
+        } else if (productKey[i].status == "SCHEDULED") {
             listSchedul.push(productKey[i]);
-        }else if(productKey[i].status == "FINISHED"){
+        } else if (productKey[i].status == "FINISHED") {
             listFinish.push(productKey[i]);
-        }else if(productKey[i].status == "SETTLED"){
+        } else if (productKey[i].status == "SETTLED") {
             listNone.push(productKey[i]);
         }
 
@@ -226,11 +226,11 @@ IndexService.getLoanSummary(function (res) {
     for (var i = 0; i < listFixed.length; i++) {
         if (listFixed[i].status == "OPENED") {
             listOpen.push(listFixed[i]);
-        }else if(listFixed[i].status == "SCHEDULED"){
+        } else if (listFixed[i].status == "SCHEDULED") {
             listSchedul.push(listFixed[i]);
-        }else if(listFixed[i].status == "FINISHED"){
+        } else if (listFixed[i].status == "FINISHED") {
             listFinish.push(listFixed[i]);
-        }else if(listFixed[i].status == "SETTLED"){
+        } else if (listFixed[i].status == "SETTLED") {
             listNone.push(listFixed[i]);
         }
 
@@ -244,10 +244,10 @@ IndexService.getLoanSummary(function (res) {
 
     console.log(listOpen);
     console.log(listOpen);
-    liststatus=liststatus.concat(listOpen);
-    liststatus=liststatus.concat(listSchedul);
-    liststatus=liststatus.concat(listFinish);
-    liststatus=liststatus.concat(listNone);
+    liststatus = liststatus.concat(listOpen);
+    liststatus = liststatus.concat(listSchedul);
+    liststatus = liststatus.concat(listFinish);
+    liststatus = liststatus.concat(listNone);
     //console.log("@@@@");
     //console.log(liststatus);
     //console.log("@@@@");
@@ -259,7 +259,7 @@ IndexService.getLoanSummary(function (res) {
             list: liststatus.slice(0, 5),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         },
-        onrender:function(){
+        onrender: function () {
             //var self = this;
             //if(listOpen.length){
             //    self.set('list',listOpen.slice(0, 5));
@@ -267,10 +267,10 @@ IndexService.getLoanSummary(function (res) {
             //    self.set('list',listNone.slice(0, 5));
             //};
 
-            $('.assign_time').mouseover(function(){
+            $('.assign_time').mouseover(function () {
                 $(this).parent().parent().parent().siblings('.assign_tip').fadeIn(200);
             })
-            $('.assign_tip').mouseleave(function(){
+            $('.assign_tip').mouseleave(function () {
                 $(this).fadeOut(200);
             })
         }
@@ -302,22 +302,22 @@ if (CC.key) {
         onrender: function (status) {
             var that = this;
             var key = that.get('key');
-            var Boolean="true";
+            var Boolean = "true";
             var api = '/api/v2/loan/summaryTotal?recommedInFront=true&product=';
-            request.get(api+ key + '&product=CPTJ')
+            request.get(api + key + '&product=CPTJ')
                 .end()
-                .then(function(r){
-                    that.set('num',r.body);
+                .then(function (r) {
+                    that.set('num', r.body);
 
                 });
 
-            if(status=="OPENED" || status=="SETTLED" || status=="CLEARED" ){
+            if (status == "OPENED" || status == "SETTLED" || status == "CLEARED") {
                 Boolean = "false";
                 console.log(Boolean)
-            }else{
+            } else {
                 Boolean = "true";
             }
-            InvestListService.getLoanListWithCondition(jsonToParams(params),Boolean, function (res) {
+            InvestListService.getLoanListWithCondition(jsonToParams(params), Boolean, function (res) {
                 that.set('list', parseLoanList(res.results));
                 that.renderPager(res, params.currentPage, that)
             });
@@ -415,7 +415,7 @@ function ininconut() {
         var id = t.data("id");
         var openTime = t.data("open");
         var serverDate = t.data("serv");
-        var tip= t.data("status")=="SCHEDULED"?"开始":"结束";
+        var tip = t.data("status") == "SCHEDULED" ? "开始" : "结束";
         //var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
         //var textDay = leftTime.day ? leftTime.day + '天' : '';
         var interval = setInterval((function () {
@@ -427,7 +427,7 @@ function ininconut() {
                 t.prev().hide();
                 //t.replaceWith('<a href="/loan/' + id + '" style="text-decoration:none"><div class="investbtn">立即投资</div></a>');
             } else {
-                t.html('<span class="text" style="color:#666">距离'+tip+'：' +
+                t.html('<span class="text" style="color:#666">距离' + tip + '：' +
                     '<span style="color:#e4262b">' + leftTime.day + '</span>天' +
                     '<span style="color:#e4262b">' + leftTime.hour + '</span>时' +
                     '<span style="color:#e4262b">' + leftTime.min + '</span>分' +
