@@ -6,7 +6,7 @@ module.exports = function (router) {
     router.get('/', function (req, res, next) {
         var user = res.locals.user;
         if (user) {
-            res.redirect('/newAccount/settings/home');
+            res.redirect('/newAccount/home/index');
         };
 
         _.assign(res.locals, {
