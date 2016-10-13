@@ -18,6 +18,9 @@ do (_, angular) ->
                     status: current_tab.toUpperCase()
                 }
 
+                if query_set.status is 'REDEEMED'
+                    query_set.status = _.split 'REDEEMED USED'
+
                 angular.extend @$scope, {
                     current_tab
                     query_set
@@ -75,13 +78,13 @@ do (_, angular) ->
                         .then => @$scope.$broadcast('scrollpointShouldReset')
 
 
-            redeem: (id) ->
+            redeem: (item) ->
 
-                return if @submit_sending
+                return if item.redeem_sending
 
-                @submit_sending = true
+                item.redeem_sending = true
 
-                (@api.redeem_coupon(id)
+                (@api.redeem_coupon(item.id)
 
                     .then (data) =>
                         do if data is true then @$q.resolve else @$q.reject
