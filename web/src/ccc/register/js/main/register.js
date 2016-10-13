@@ -21,7 +21,7 @@ var registerRactive = new RegisterRactive({
         whatTheRefFuck: function() {
             var value = registerRactive.get('reftf.data.value');
             //return value === CC.registerRel ? 'referral' : 'inviteCode';
-            return value = 'inviteCode';
+            return 'inviteCode';
         }
     },
 });
