@@ -20,6 +20,7 @@ do (_, angular) ->
                     store: {}
                 }
 
+                ###
                 (@$scope.valuation = do ->
 
                     {amount, rate, settled_date} = item
@@ -29,25 +30,88 @@ do (_, angular) ->
 
                     return valuation
                 )
+                ###
 
                 EXTEND_API @api
 
+                (@api.prepareAssign_step1({investId: item.id})
 
-            fetch_analyse: (rate) ->
+                    .then @api.process_response
 
+                    .then (response) =>
+                        {bidValuation, maxTimeOut} = _.get(response, 'data', {})
+
+                        angular.extend @$scope, {
+                            bidValuation
+                            minAmount: (bidValuation * 0.95).toFixed(2)
+                            maxAmount: (bidValuation * 1.05).toFixed(2)
+                            maxTimeOut
+                        }
+
+                    .catch (data) =>
+                        if _.get(data, 'error') is 'access_denied'
+                            @$window.alert @$scope.msg.ACCESS_DENIED
+                            @$window.location.reload()
+                            return
+
+                        key = _.get data, 'error[0].message', 'UNKNOWN'
+                        msg = @$scope.msg[key] or key
+                        @$window.alert msg
+                )
+
+
+            fetch_analyse: (amount) ->
+
+                ###
                 @$scope.creditDealAmount = @$scope.valuation * rate
                 @$scope.fee = @$scope.valuation * rate * 0.001
+                ###
+
+                post_data = {
+                    investId: @$scope.item.id
+                    creditAssignAmount: amount
+                }
+
+                (@api.prepareAssign_step2(post_data)
+
+                    .then @api.process_response
+
+                    .then (response) =>
+                        {
+                            creditAssignRate
+                            assigneeYieldRate
+                            creditAssignFee
+
+                        } = _.get(response, 'data', {})
+
+                        angular.extend @$scope, {
+                            creditAssignRate
+                            assigneeYieldRate
+                            creditAssignFee
+                        }
+
+                    .catch (data) =>
+                        if _.get(data, 'error') is 'access_denied'
+                            @$window.alert @$scope.msg.ACCESS_DENIED
+                            @$window.location.reload()
+                            return
+
+                        key = _.get data, 'error[0].message', 'UNKNOWN'
+                        msg = @$scope.msg[key] or key
+                        @$window.alert msg
+                )
 
 
-            submit: ({rate}) ->
+            submit: ->
 
                 @submit_sending = true
 
-                {id, title} = @$scope.item
+                {item, creditAssignRate} = @$scope
+                {id, title} = item
 
                 post_data = {
                     investId: id
-                    creditDealRate: rate
+                    creditDealRate: creditAssignRate
                     creditAssignTitle: title
                 }
 
@@ -80,6 +144,26 @@ do (_, angular) ->
 
 
     EXTEND_API = (api) ->
+
+        api.__proto__.prepareAssign_step1 = (data) ->
+
+            @$http
+                .get '/api/v2/creditassign/prepareAssign/step1',
+                    params: data
+
+                .then @TAKE_RESPONSE_DATA
+                .catch @TAKE_RESPONSE_ERROR
+
+
+        api.__proto__.prepareAssign_step2 = (data) ->
+
+            @$http
+                .get '/api/v2/creditassign/prepareAssign/step2',
+                    params: data
+
+                .then @TAKE_RESPONSE_DATA
+                .catch @TAKE_RESPONSE_ERROR
+
 
         api.__proto__.payment_pool_creditAssign_create = ({investId, creditDealRate, creditAssignTitle}) ->
 
