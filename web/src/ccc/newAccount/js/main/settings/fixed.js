@@ -331,11 +331,15 @@ function init(type) {
                                         data.Funrepay= res.data.bidValuation.toFixed(2);
                                         data.Time=res.data.maxTimeOut;
                                     });
+
                                     this.on('changeVal', function (e) {
+                                        console.log(data.creditDealRate)
+                                        console.log(data.minarea)
+                                        console.log(data.maxarea)
                                         if(/\D/g.test(data.creditDealRate) && data.creditDealRate.indexOf('.') ==-1) return data.error = '请输入正确的转让价格';
                                         else if(data.creditDealRate == '') return data.error = '请输入转让价格！'
-                                        else if(data.creditDealRate>parseInt(that.get("maxarea"))) return data.error = '转让价格必须小于等于'+that.get("maxarea")+'!';
-                                        else if(data.creditDealRate<parseInt(that.get("minarea"))) return data.error = '转让价格必须大于等于'+that.get("minarea")+'!';
+                                        else if(parseFloat(data.creditDealRate)>parseFloat(that.get("maxarea"))) return data.error = '转让价格必须小于等于'+that.get("maxarea")+'!';
+                                        else if(parseFloat(data.creditDealRate)<parseFloat(that.get("minarea"))) return data.error = '转让价格必须大于等于'+that.get("minarea")+'!';
                                         else data.error = '';
                                         accountService.getStop2(data.investId,data.creditDealRate,function (res) {
                                             data.assigneeYieldRate=(res.data.assigneeYieldRate*100).toFixed(2);
