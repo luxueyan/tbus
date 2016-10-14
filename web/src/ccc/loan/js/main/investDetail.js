@@ -378,10 +378,10 @@ setTimeout((function () {
     }
 
     function showSelect(amount) {
-        var months = CC.loan.duration;
+        var months = Math.ceil(CC.loan.durationdays/30);
         investRactive.set('inum', parseFloat(amount));
         disableErrors();
-        loanService.getMyCouponlist(amount, CC.loan.duration, function (coupon) {
+        loanService.getMyCouponlist(amount, months, function (coupon) {
             if (coupon.success) {
                 var list = parsedata(coupon.data);
                 list.sort(function (a, b) {

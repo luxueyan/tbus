@@ -333,9 +333,6 @@ function init(type) {
                                     });
 
                                     this.on('changeVal', function (e) {
-                                        console.log(data.creditDealRate)
-                                        console.log(data.minarea)
-                                        console.log(data.maxarea)
                                         if(/\D/g.test(data.creditDealRate) && data.creditDealRate.indexOf('.') ==-1) return data.error = '请输入正确的转让价格';
                                         else if(data.creditDealRate == '') return data.error = '请输入转让价格！'
                                         else if(parseFloat(data.creditDealRate)>parseFloat(that.get("maxarea"))) return data.error = '转让价格必须小于等于'+that.get("maxarea")+'!';
