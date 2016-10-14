@@ -50,7 +50,15 @@
 
             <div class="info">
                 <span class="name">投资金额(元)</span>
-                <span class="value">{{ item.amount | number: 2 }}</span>
+                <span class="value">
+                    {{
+                        (
+                            item.raw.creditAssignId
+                            ? item.raw.dueInPrincipal
+                            : item.amount
+                        ) | number: 2
+                    }}
+                </span>
             </div>
         </div>
 
