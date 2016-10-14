@@ -46,31 +46,30 @@
           autocomplete="off"
           autocorrect="off"
           novalidate
-          ng-submit="self.submit(store)"
+          ng-submit="self.submit()"
     >
         <section>
             <ul class="list-unstyled u-off-margin-bottom list">
                 <li>
                     <div class="info">
                         <span class="name">标的估值(元)</span>
-                        <span class="value"><span class="num">{{ valuation | number: 2 }}</span></span>
+                        <span class="value"><span class="num">{{ bidValuation | number: 2 }}</span></span>
                     </div>
-                    <p class="desc">( 转让本金 + 转让本金 * 预计年化 * 已持有天数 / 365 ）</p>
                 </li>
 
                 <li>
                     <div class="info">
-                        <span class="name">转让折价率</span>
+                        <span class="name">转让价格(元)</span>
                         <span class="value">
                             <div class="form-control-wrap">
                                 <input class="form-control input-target"
                                        type="number"
-                                       id="rate"
-                                       name="rate"
-                                       ng-min="0.95"
-                                       ng-max="1.05"
-                                       ng-model="store.rate"
-                                       ng-change="form.rate.$valid && self.fetch_analyse(store.rate)"
+                                       id="amount"
+                                       name="amount"
+                                       ng-min="minAmount"
+                                       ng-max="maxAmount"
+                                       ng-model="store.amount"
+                                       ng-change="form.amount.$valid && self.fetch_analyse(store.amount)"
                                        placeholder=""
                                        autocapitalize="none"
                                        autocomplete="off"
@@ -82,35 +81,54 @@
                     </div>
 
                     <div class="help-block"
-                         ng-show="form.rate.$invalid && form.rate.$dirty"
+                         ng-show="form.amount.$invalid && form.amount.$dirty"
                     >
-                        <span ng-show="form.rate.$error.required">请输入折价率</span>
-                        <span ng-show="form.rate.$error.min">折价率必须大于等于0.95</span>
-                        <span ng-show="form.rate.$error.max">折价率必须小于等于1.05</span>
+                        <span ng-show="form.amount.$error.required">请输入转让价格</span>
+                        <span ng-show="form.amount.$error.min">转让价格必须大于等于{{ minAmount }}</span>
+                        <span ng-show="form.amount.$error.max">转让价格必须小于等于{{ maxAmount }}</span>
                     </div>
 
-                    <p class="desc">( 支持溢价，折价率必须大于等于 0.95；小余等于 1.05 )</p>
+                    <p class="desc">*转让价格须在 {{ minAmount }} - {{ maxAmount }} 元之间</p>
+                    <p class="desc">*实际转让价格以标的估值X转让折价率为准</p>
                 </li>
 
                 <li>
                     <div class="info">
-                        <span class="name">转让价格(元)</span>
-                        <span class="value"><span class="num">{{ creditDealAmount | number: 2 }}</span></span>
+                        <span class="name">转让折价率</span>
+                        <span class="value">
+                            <span class="num" ng-show="store.amount">
+                                {{ creditAssignRate }}
+                            </span>
+                        </span>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="info">
+                        <span class="name">受让收益率</span>
+                        <span class="value">
+                            <span class="num" ng-show="store.amount">
+                                {{ (assigneeYieldRate * 100) | number: 2 }}%
+                            </span>
+                        </span>
                     </div>
                 </li>
 
                 <li>
                     <div class="info">
                         <span class="name">转让手续费(元)</span>
-                        <span class="value"><span class="num">{{ fee | number: 2 }}</span></span>
+                        <span class="value">
+                            <span class="num" ng-show="store.amount">
+                                {{ (store.amount * creditAssignFee) | number: 2 }}
+                            </span>
+                        </span>
                     </div>
-                    <p class="desc">( 转让价格 * 0.1% )</p>
                 </li>
 
                 <li>
                     <div class="info">
                         <span class="name">转让期限</span>
-                        <span class="value">24小时</span>
+                        <span class="value">{{ maxTimeOut }}小时</span>
                     </div>
                     <p class="desc">( 如果到期无人购买，申请将自动撤销 )</p>
                     <h5>
