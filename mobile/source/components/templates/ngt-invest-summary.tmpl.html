@@ -50,7 +50,15 @@
 
             <div class="info">
                 <span class="name">投资金额(元)</span>
-                <span class="value">{{ item.amount | number: 2 }}</span>
+                <span class="value">
+                    {{
+                        (
+                            item.raw.creditAssignId
+                            ? item.raw.dueInPrincipal
+                            : item.amount
+                        ) | number: 2
+                    }}
+                </span>
             </div>
         </div>
 
@@ -64,10 +72,10 @@
                 <span ng-switch-when="FAKESETTLED">资金冻结</span>
                 <span ng-switch-when="CANCELED">已取消</span>
                 <span ng-switch-when="SETTLED">
-                    {{ item.have_begun_to_settled ? '计息中' : '已结算' }}
+                    {{ item.have_begun_to_settled ? '计息中' : '资金冻结' }}
                 </span>
                 <span ng-switch-when="CLEARED">已兑付</span>
-                <span ng-switch-when="OVERDUE">逾期</span>
+                <span ng-switch-when="OVERDUE">待收款</span>
                 <span ng-switch-when="BREACH">违约</span>
             </div>
 
