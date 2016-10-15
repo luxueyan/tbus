@@ -184,6 +184,8 @@ function init(type) {
                                 if (datas[i].status == 'SETTLED') {
                                     if (datas[i].loan.loanRequest.valueDate <= nowDate) {
                                         datas[i].Fstatus = '计息中';
+                                    }else{
+                                        datas[i].Fstatus = '资金冻结';
                                     }
                                 }
                                 ;
