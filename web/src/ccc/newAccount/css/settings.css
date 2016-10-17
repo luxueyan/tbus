@@ -1075,7 +1075,11 @@ p.tips {
   font-size: 24px;
   color: #e60012;
 }
-
+#popup .formWrapper .form-datas {
+  margin-left: 55px;
+  font-size: 24px;
+  color: #000;
+}
 #popup .formWrapper .tip {
   display: block;
   margin: 5px 0 0 121px;
