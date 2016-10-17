@@ -37,6 +37,17 @@ do (_, angular, Math) ->
                         @$scope.loading_have_invited = false
                 )
 
+                @$scope.loading_invite_list = true
+
+                (@api.get_user_invite_list()
+
+                    .then (response) =>
+                        @$scope.invite_list = _.get(response, 'data.results')
+
+                    .finally =>
+                        @$scope.loading_invite_list = false
+                )
+
 
             init_wechat: ->
 

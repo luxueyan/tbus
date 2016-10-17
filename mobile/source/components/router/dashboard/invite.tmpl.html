@@ -21,13 +21,62 @@
 
     <section class="omit-margin shadow">
         <ul class="list-unstyled u-off-margin-bottom info-list" ng-hide="loading_have_invited">
-            <li>
-                <div class="info">
-                    <span class="name">已邀请好友</span>
-                    <span class="value">
-                        <span class="num">{{ have_invited.count }}</span>人
-                    </span>
-                </div>
+            <li class="omit-padding">
+                <uib-accordion close-others="true">
+                    <uib-accordion-group is-open="open" ng-if="true">
+                        <uib-accordion-heading>
+                            <param class="pull-right glyphicon"
+                                   ng-class="open ? 'glyphicon-menu-up' : 'glyphicon-menu-down'"
+                            >
+                            <div class="info">
+                                <span class="name">已邀请好友</span>
+                                <span class="value">
+                                    <span class="num">{{ have_invited.count }}</span>人
+                                </span>
+                            </div>
+                        </uib-accordion-heading>
+
+                        <div class="content">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>好友姓名</th>
+                                        <th>手机号</th>
+                                        <th>注册时间</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in invite_list">
+                                        <td>
+                                            {{
+                                                item.user.name
+                                                ? (item.user.name | string_mask | string_replace: '^(.+)(.)$' : '$1*')
+                                                : '未认证'
+                                            }}
+                                        </td>
+                                        <td>
+                                            {{ item.user.mobile | string_replace: '^(\\d{3})(\\d{4})(\\d{4})$' : '$1****$3' }}
+                                        </td>
+                                        <td class="date text-center">
+                                            {{ item.user.registerDate | date: 'yyyy-MM-dd' }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <p class="text-center loading" ng-show="loading_invite_list">
+                                <img src="assets/image/spinner.gif">
+                            </p>
+
+                            <div class="container not-found" ng-if="!invite_list.length" ng-hide="loading_invite_list">
+                                <div class="icon-wrap">
+                                    <img class="icon" width="50" ng-src="assets/image/not-found-icon.png">
+                                </div>
+                                <p class="desc">暂无数据</p>
+                            </div>
+                        </div>
+                    </uib-accordion-group>
+                </uib-accordion>
             </li>
             <li>
                 <div class="info">
