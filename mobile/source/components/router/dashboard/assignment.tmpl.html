@@ -55,6 +55,7 @@
                         <span class="name">标的估值(元)</span>
                         <span class="value"><span class="num">{{ bidValuation | number: 2 }}</span></span>
                     </div>
+                    <p class="desc">( 转让本金 + 转让本金 * 预期年收益率 * 已持有天数 / 365 )</p>
                 </li>
 
                 <li>
@@ -88,8 +89,7 @@
                         <span ng-show="form.amount.$error.max">转让价格必须小于等于{{ maxAmount }}</span>
                     </div>
 
-                    <p class="desc">*转让价格须在 {{ minAmount }} - {{ maxAmount }} 元之间</p>
-                    <p class="desc">*实际转让价格以标的估值X转让折价率为准</p>
+                    <p class="desc">( 转让价格须在 {{ minAmount }} - {{ maxAmount }} 元之间 )</p>
                 </li>
 
                 <li>
@@ -123,6 +123,7 @@
                             </span>
                         </span>
                     </div>
+                    <p class="desc">( 转让价格 * 0.1% )</p>
                 </li>
 
                 <li>
