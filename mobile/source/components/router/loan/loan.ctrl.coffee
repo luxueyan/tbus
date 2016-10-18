@@ -84,7 +84,7 @@ do (_, angular, moment, Math, Date) ->
         invest_percent_int = Math.max 1, (item.investPercent * 100) | 0
         invest_percent_int = 0 if item.investPercent is 0
 
-        invest_percent_int = 100 if item.status in _.split 'SETTLED FINISHED'
+        invest_percent_int = 100 if item.status not in _.split 'OPENED SCHEDULED'
 
         balance = item.balance
         balance = 0 if item.status not in _.split 'OPENED SCHEDULED'
