@@ -40,6 +40,11 @@
   margin-top: 15px;
   margin-right: 21px;
 }
+.button {
+  float: right;
+  color: #c09c69;
+  margin-right: 21px;
+}
 .pro_content{
   padding: 30px;
 }
