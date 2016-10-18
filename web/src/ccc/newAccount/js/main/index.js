@@ -69,9 +69,14 @@ var homeRactive = new Ractive({
             var amoutArray = investAmount.split('.');
             self.set('investAmount', parseInt(amoutArray[0]));
             self.set('iAmount', amoutArray[1]);
+
             var amoutArray = investInterestAmount.split('.');
-            self.set('investInterestAmount', parseInt(amoutArray[0]));
-            self.set('iMore', amoutArray[1]);
+            //console.log(amoutArray)
+            //console.log(amoutArray)
+            //self.set('investInterestAmount', parseInt(amoutArray[0]));
+            //console.log(parseInt(amoutArray[0]))
+            //console.log(parseInt(amoutArray[0]))
+            //self.set('iMore', amoutArray[1]);
             var amoutArray = outstandingInterest.split('.');
             self.set('outstandingInterest', parseInt(amoutArray[0]));
             self.set('oMore', amoutArray[1]);

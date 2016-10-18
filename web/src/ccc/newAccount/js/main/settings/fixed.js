@@ -187,10 +187,13 @@ function init(type) {
                                     }else{
                                         datas[i].Fstatus = '资金冻结';
                                     }
-                                }
-                                ;
+                                };
                                 if (datas[i].status == 'FROZEN') {
                                     datas[i].Fstatus = '资金冻结';
+                                }
+                                ;
+                                if (datas[i].status == 'OVERDUE') {
+                                    datas[i].Fstatus = '待收款';
                                 }
                                 ;
                                 break;

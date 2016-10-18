@@ -51,10 +51,10 @@ function initailEasyPieChart() {
     $(function () {
         var oldie = /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase());
         $(".easy-pie-chart").each(function () {
-            var percentage = $(this).data("percent");
             var status = $(this).data("status");
+            var percentage = $(this).data("percent");
             // 100%进度条颜色显示为背景色
-
+            
             //var color = percentage != 100 && (status==='SETTLED'|| status==='CLEARED') ? "#f58220" : '#009ada';
             var color = (status === 'OPENED') ? '#ff0000' : "#ff0000";
 
