@@ -54,7 +54,7 @@ function initailEasyPieChart() {
             var status = $(this).data("status");
             var percentage = $(this).data("percent");
             // 100%进度条颜色显示为背景色
-            
+
             //var color = percentage != 100 && (status==='SETTLED'|| status==='CLEARED') ? "#f58220" : '#009ada';
             var color = (status === 'OPENED') ? '#ff0000' : "#ff0000";
 
