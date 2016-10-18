@@ -1,23 +1,27 @@
-.pro_box{
+.pro_box {
   width: 1200px;
   margin: auto;
   background: #fff;
   margin-top: 24px;
 }
-.pro_header{
+
+.pro_header {
   overflow: hidden;
   padding: 10px 20px;
-    box-shadow:0px 15px 10px -15px #ccc;
+  box-shadow: 0px 15px 10px -15px #ccc;
 }
-.pro_title{
+
+.pro_title {
   float: left;
   width: 500px;
 }
-.pro_title img{
+
+.pro_title img {
   float: left;
   width: 7%;
 }
-.pro_title h2{
+
+.pro_title h2 {
   float: left;
   font-size: 20px;
   color: #e4262b;
@@ -26,7 +30,8 @@
   margin-left: 24px;
   margin-top: 6px;
 }
-.pro_title span{
+
+.pro_title span {
   font-size: 14px;
   color: #999;
   margin-left: 30px;
@@ -34,50 +39,66 @@
   display: block;
   float: left;
 }
-.pro_header a{
+
+.pro_header a {
   float: right;
   color: #c09c69;
   margin-top: 15px;
   margin-right: 21px;
 }
-.pro_content{
+
+.button {
+  float: right;
+  color: #c09c69;
+  margin-right: 21px;
+}
+
+.pro_content {
   padding: 30px;
 }
 
 /*产品详情*/
-.loanItemWrapper{
+
+.loanItemWrapper {
   border: 1px solid #c9c9c9;
   margin: 0 12px;
   height: 167px;
   margin-bottom: 20px;
 }
-.loanItemWrapper:hover{
+
+.loanItemWrapper:hover {
   border: 1px solid #e4262b;
 }
-.loanItemWrapper .loan_left{
+
+.loanItemWrapper .loan_left {
   float: left;
   position: relative;
 }
-.loan_title{
+
+.loan_title {
   margin: 0 16px;
   border-bottom: 1px solid #c9c9c9;
   width: 630px;
   overflow: hidden;
 }
-.loan_title .title_info{
+
+.loan_title .title_info {
   float: left;
   padding-left: 32px;
   margin: 10px 0;
 }
-.loan_title .title_info h2{
+
+.loan_title .title_info h2 {
   font-size: 24px;
   color: #e4262b;
 }
-.loan_title .title_info p{
+
+.loan_title .title_info p {
   font-size: 14px;
   color: #999;
 }
-.loan_title a{
+
+.loan_title a {
   float: right;
   width: 94px;
   height: 28px;
@@ -89,13 +110,15 @@
   margin-top: 14px;
   margin-right: 35px;
 }
-.loan_info{
+
+.loan_info {
   margin-top: 20px;
   margin-bottom: 14px;
   overflow: hidden;
   position: relative;
 }
-.loan_info .info_box{
+
+.loan_info .info_box {
   border-right: 1px solid #c9c9c9;
   float: left;
   height: 80px;
@@ -103,42 +126,51 @@
   width: 200px;
   padding-left: 50px;
 }
-.loan_info .info_box .assign_time{
+
+.loan_info .info_box .assign_time {
   font-size: 12px;
   color: #e4262b;
   text-decoration: underline;
   margin-left: 10px;
   cursor: pointer;
 }
-.loan_info .rate_box{
+
+.loan_info .rate_box {
   /*padding: 5px 100px 0 50px;*/
   width: 200px;
 }
-.loan_info .info_box:last-child{
-  border-right:none;
+
+.loan_info .info_box:last-child {
+  border-right: none;
 }
-.loan_info .info_box .title{
+
+.loan_info .info_box .title {
   color: #666;
   font-size: 14px;
   margin-top: 10px;
 }
-.loan_info .info_box div{
+
+.loan_info .info_box div {
   font-size: 14px;
   color: #666;
   margin-top: 8px;
 }
-.loan_info .info_box div span{
+
+.loan_info .info_box div span {
   font-size: 24px;
 }
-.loan_info .info_box .rate{
+
+.loan_info .info_box .rate {
   color: #e60012;
   margin-top: 0;
   font-size: 16px;
 }
-.loan_info .info_box .rate span{
+
+.loan_info .info_box .rate span {
   font-size: 30px;
 }
-.loanItemWrapper .loan_right{
+
+.loanItemWrapper .loan_right {
   float: right;
   border-left: 1px solid #c9c9c9;
   margin: 20px 0;
@@ -146,55 +178,63 @@
   padding-left: 90px;
   color: #666;
 }
-.leftTime{
+
+.leftTime {
   overflow: hidden;
 }
 
-.leftTime img{
+.leftTime img {
   float: left;
   margin-right: 12px;
   width: 20px;
 }
-.leftTime .time{
+
+.leftTime .time {
   float: left;
 }
-.leftAmount{
+
+.leftAmount {
   padding-left: 33px;
   padding-bottom: 10px;
 }
-.leftAmount span{
+
+.leftAmount span {
   font-size: 18px;
   color: #e4262b;
 }
-.percentage{
+
+.percentage {
   overflow: hidden;
 }
-.percentage .word{
+
+.percentage .word {
   float: left;
   margin-right: 10px;
   color: #7e8c8d;
   font-size: 12px;
 }
-.percentage .progress{
+
+.percentage .progress {
   width: 240px;
   height: 10px;
   border-radius: 0;
   border: 1px solid #b5b5b5;
   margin-top: 5px;
-
 }
-.percentage .progress-bar{
+
+.percentage .progress-bar {
   background: #e4262b;
 }
-.percentage .progress-bar-word{
+
+.percentage .progress-bar-word {
   position: absolute;
   margin-left: 250px;
   color: #7e8c8d;
   font-size: 12px;
   margin-top: -5px;
-
 }
-.investBtn a{
+
+.investBtn a {
   width: 212px;
   height: 36px;
   display: block;
@@ -207,18 +247,21 @@
   margin-left: 33px;
   font-size: 18px;
 }
-.investBtn .open{
+
+.investBtn .open {
   background: #e4262b;
 }
-.bottom_ad{
+
+.bottom_ad {
   width: 1200px;
   margin: 30px auto 80px;
 }
-.bottom_ad img{
+
+.bottom_ad img {
   width: 100%;
 }
 
-.assign_tip{
+.assign_tip {
   clear: both;
   position: absolute;
   width: 202px;
@@ -231,7 +274,8 @@
   font-size: 12px;
   display: none;
 }
-.assign_tip a{
+
+.assign_tip a {
   color: #e4262b;
   text-decoration: underline;
 }
