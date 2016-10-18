@@ -46,7 +46,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="item in invite_list">
+                                    <tr ng-repeat="item in invite_list | orderBy: '-user.registerDate'">
                                         <td>
                                             {{
                                                 item.user.name
