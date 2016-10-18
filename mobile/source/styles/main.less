@@ -3653,10 +3653,13 @@ a {
 
     .info-list {
         > li {
-            padding: 16px 20px;
             background-color: #FFF;
             color: #717071;
             line-height: 1.1;
+
+            &:not(.omit-padding) {
+                padding: 16px 20px;
+            }
 
             + li {
                 border-top: 1px solid #C3C3C3;
@@ -3680,10 +3683,39 @@ a {
             .action {
                 margin: 0 35px;
             }
+
+            .panel {
+                #dashboard .summary .panel;
+
+                &-body {
+                    border-top: 1px solid #C3C3C3;
+                }
+
+                .info .value {
+                    text-align: left;
+                    color: inherit;
+                }
+
+                .content {
+                    .table {
+                        margin: 0;
+
+                        th {
+                            border-bottom: 1px solid #D2D2D2 !important;
+                        }
+
+                        th, td {
+                            text-align: center;
+                            font-size: 13px;
+                            color: #999;
+                        }
+                    }
+                }
+            }
         }
     }
 
-    .panel {
+    section.panel {
         border: 0;
         border-radius: 0;
         background-color: #FFF;

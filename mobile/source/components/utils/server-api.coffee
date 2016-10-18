@@ -484,6 +484,15 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
+            get_user_invite_list: (cache = false) ->
+
+                @$http
+                    .get '/api/v2/user/MYSELF/invite', {cache}
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
             get_user_available_withdraw_amount: (cache = false) ->
 
                 convert_to_day = (date) ->
