@@ -185,12 +185,6 @@ IndexService.getLoanSummary(function (res) {
     //console.log(listFixed)
     //console.log(listFloat)
     //console.log("1111")
-    var listOpen = [];     //在售中  OPENED
-    var listNone = [];     //计息中  SETTLED
-    var listSchedul = [];  //即将发布  SCHEDULED
-    var listFinish = [];     //已售罄 FINISHED
-    var liststatus = [];   //放排序后的产品 ： 在售中》即将发布》已售罄》计息中
-
     var compare = function (obj1, obj2) {
         var val1 = obj1.timeOpen;
         var val2 = obj2.timeOpen;
@@ -203,24 +197,62 @@ IndexService.getLoanSummary(function (res) {
         }
     }
 
-    productKey.sort(compare);
 
-    if (productKey[0]) {
-        liststatus = liststatus.concat(productKey.shift());
-    }
-
+    //推荐
+    var cptjOpen = [];     //在售中  OPENED
+    var cptjNone = [];     //计息中  SETTLED
+    var cptjSchedul = [];  //即将发布  SCHEDULED
+    var cptjFinish = [];     //已售罄 FINISHED
+    var cptjstatus = [];   //放排序后的产品 ： 在售中》即将发布》已售罄》计息中
     for (var i = 0; i < productKey.length; i++) {
         if (productKey[i].status == "OPENED") {
-            listOpen.push(productKey[i]);
-        } else if (productKey[i].status == "SCHEDULED") {
-            listSchedul.push(productKey[i]);
-        } else if (productKey[i].status == "FINISHED") {
-            listFinish.push(productKey[i]);
-        } else if (productKey[i].status == "SETTLED") {
-            listNone.push(productKey[i]);
+            cptjOpen.push(productKey[i]);
+        }else if(productKey[i].status == "SCHEDULED"){
+            cptjSchedul.push(productKey[i]);
+        }else if(productKey[i].status == "FINISHED"){
+            cptjFinish.push(productKey[i]);
+        }else if(productKey[i].status == "SETTLED"){
+            cptjNone.push(productKey[i]);
         }
 
     }
+    cptjOpen.sort(compare);
+    cptjNone.sort(compare);
+    cptjSchedul.sort(compare);
+    cptjFinish.sort(compare);
+
+    cptjstatus=cptjstatus.concat(cptjOpen);
+    cptjstatus=cptjstatus.concat(cptjSchedul);
+    cptjstatus=cptjstatus.concat(cptjFinish);
+    cptjstatus=cptjstatus.concat(cptjNone);
+
+
+    //固定
+    var listOpen = [];     //在售中  OPENED
+    var listNone = [];     //计息中  SETTLED
+    var listSchedul = [];  //即将发布  SCHEDULED
+    var listFinish = [];     //已售罄 FINISHED
+    var liststatus = [];   //放排序后的产品 ： 在售中》即将发布》已售罄》计息中
+
+    productKey.sort(compare);
+    //将推荐产品第一位放在首位
+    if (cptjstatus[0]) {
+        liststatus = liststatus.concat(cptjstatus.shift());
+    }
+
+    for (var i = 0; i < cptjstatus.length; i++) {
+        if (cptjstatus[i].status == "OPENED") {
+            listOpen.push(cptjstatus[i]);
+        } else if (cptjstatus[i].status == "SCHEDULED") {
+            listSchedul.push(cptjstatus[i]);
+        } else if (cptjstatus[i].status == "FINISHED") {
+            listFinish.push(cptjstatus[i]);
+        } else if (cptjstatus[i].status == "SETTLED") {
+            listNone.push(cptjstatus[i]);
+        }
+
+    }
+
 
 
     for (var i = 0; i < listFixed.length; i++) {
@@ -242,8 +274,6 @@ IndexService.getLoanSummary(function (res) {
     listSchedul.sort(compare);
     listFinish.sort(compare);
 
-    console.log(listOpen);
-    console.log(listOpen);
     liststatus = liststatus.concat(listOpen);
     liststatus = liststatus.concat(listSchedul);
     liststatus = liststatus.concat(listFinish);

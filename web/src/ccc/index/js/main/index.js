@@ -61,6 +61,48 @@ IndexService.getLoanSummary(function (list) {
             listHOT.push(list[i]);
         };
     }
+
+    var compare = function (obj1, obj2) {
+        var val1 = obj1.timeOpen;
+        var val2 = obj2.timeOpen;
+        if (val1 < val2) {
+            return 1;
+        } else if (val1 > val2) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+
+    //推荐
+    var cptjOpen = [];     //在售中  OPENED
+    var cptjNone = [];     //计息中  SETTLED
+    var cptjSchedul = [];  //即将发布  SCHEDULED
+    var cptjFinish = [];     //已售罄 FINISHED
+    var cptjstatus = [];   //放排序后的产品 ： 在售中》即将发布》已售罄》计息中
+    for (var i = 0; i < productKey.length; i++) {
+        if (productKey[i].status == "OPENED") {
+            cptjOpen.push(productKey[i]);
+        }else if(productKey[i].status == "SCHEDULED"){
+            cptjSchedul.push(productKey[i]);
+        }else if(productKey[i].status == "FINISHED"){
+            cptjFinish.push(productKey[i]);
+        }else if(productKey[i].status == "SETTLED"){
+            cptjNone.push(productKey[i]);
+        }
+
+    }
+    cptjOpen.sort(compare);
+    cptjNone.sort(compare);
+    cptjSchedul.sort(compare);
+    cptjFinish.sort(compare);
+
+    cptjstatus=cptjstatus.concat(cptjOpen);
+    cptjstatus=cptjstatus.concat(cptjSchedul);
+    cptjstatus=cptjstatus.concat(cptjFinish);
+    cptjstatus=cptjstatus.concat(cptjNone);
+
+    //固定
     var listOpen = [];     //在售中  OPENED
     var listNone = [];     //计息中  SETTLED
     var listSchedul = [];  //即将发布  SCHEDULED
@@ -78,25 +120,17 @@ IndexService.getLoanSummary(function (list) {
         }
 
     }
-    var compare = function (obj1, obj2) {
-        var val1 = obj1.timeOpen;
-        var val2 = obj2.timeOpen;
-        if (val1 < val2) {
-            return 1;
-        } else if (val1 > val2) {
-            return -1;
-        } else {
-            return 0;
-        }
-    }
+
 
     productKey.sort(compare);
     listOpen.sort(compare);
     listNone.sort(compare);
     listSchedul.sort(compare);
     listFinish.sort(compare);
-    if(productKey[0]){
-        liststatus=liststatus.concat(productKey[0]);
+
+
+    if(cptjstatus[0]){
+        liststatus=liststatus.concat(cptjstatus[0]);
     }
 
     liststatus=liststatus.concat(listOpen);
