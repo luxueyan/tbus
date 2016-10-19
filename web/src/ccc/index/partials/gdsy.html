@@ -47,15 +47,15 @@
 
             {{/if}} {{#if status === 'FINISHED'}}
             <a href="/loan/{{id}}">
-                <div class="investbtn">已满标</div>
+                <div class="investbtn">已售罄</div>
             </a>
             {{/if}} {{#if status === 'SETTLED'}}
             <a href="/loan/{{id}}">
-                <div class="investbtn">已抢完</div>
+                <div class="investbtn">计息中</div>
             </a>
             {{/if}} {{#if status === 'CLEARED'}}
             <a href="/loan/{{id}}">
-                <div class="investbtn">还款结束</div>
+                <div class="investbtn">已结息</div>
             </a>
             {{/if}} {{#if status === 'FAKESETTLED'}}
             <a href="/loan/{{id}}">
