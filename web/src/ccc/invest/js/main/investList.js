@@ -333,7 +333,12 @@ if (CC.key) {
             var that = this;
             var key = that.get('key');
             var Boolean = "true";
-            var api = '/api/v2/loan/summaryTotal?recommedInFront=true&product=';
+            if (status == "OPENED" || status == "SETTLED" || status == "CLEARED") {
+                Boolean = "false";
+            } else {
+                Boolean = "true";
+            }
+            var api = '/api/v2/loan/summaryTotal?recommedInFront='+Boolean+'&product=';
             request.get(api + key + '&product=CPTJ')
                 .end()
                 .then(function (r) {
@@ -341,12 +346,7 @@ if (CC.key) {
 
                 });
 
-            if (status == "OPENED" || status == "SETTLED" || status == "CLEARED") {
-                Boolean = "false";
-                console.log(Boolean)
-            } else {
-                Boolean = "true";
-            }
+
             InvestListService.getLoanListWithCondition(jsonToParams(params), Boolean, function (res) {
                 that.set('list', parseLoanList(res.results));
                 that.renderPager(res, params.currentPage, that)
@@ -397,30 +397,33 @@ if (CC.key) {
             pagerRactive.on('previous', function (e) {
                 e.original.preventDefault();
                 var current = this.get('current');
+                var status = $(".selected").data("status");
                 currentPage = current - 1;
                 if (current > 1) {
                     current -= 1;
                     this.set('current', current);
                     params.currentPage = current;
-                    obj.onrender();
+                    obj.onrender(status);
                 }
                 location.href = "#href"
 
             });
             pagerRactive.on('next', function (e) {
                 e.original.preventDefault();
+                var status = $(".selected").data("status");
                 var current = this.get('current');
                 currentPage = current + 1;
                 if (current < this.get('totalPage')[this.get('totalPage').length - 1]) {
                     current += 1;
                     this.set('current', current);
                     params.currentPage = current;
-                    obj.onrender();
+                    obj.onrender(status);
                 }
                 location.href = "#href"
             });
             pagerRactive.on('page', function (e, page) {
                 e.original.preventDefault();
+                var status = $(".selected").data("status");
                 if (page) {
                     currentPage = page;
                 } else {
@@ -428,7 +431,7 @@ if (CC.key) {
                 }
                 this.set('current', currentPage);
                 params.currentPage = currentPage;
-                obj.onrender();
+                obj.onrender(status);
                 location.href = "#href"
             });
         },
