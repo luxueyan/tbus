@@ -532,6 +532,7 @@ select::-ms-expand { display: none; }
     border-radius: 0;
     padding-left: 10px;
     color: #999;
+    font-size: 14px;
 }
 #userBlock span.down {
     width: 47px;
