@@ -531,7 +531,7 @@ select::-ms-expand { display: none; }
     border: 1px solid #ccc;
     border-radius: 0;
     padding-left: 10px;
-    color: #999;
+    color: #000;
     font-size: 14px;
 }
 #userBlock span.down {
