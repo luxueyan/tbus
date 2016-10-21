@@ -92,7 +92,7 @@
 
                             {{#each selectOption}}
                             {{#if !hide}}
-                            <option {{#if disabled}}disabled{{/if}} value="{{ id }}">{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest}}
+                            <option {{#if disabled}}disabled class="disabled"{{/if}} value="{{ id }}">{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest}}
                             </option>
                             {{/if}}
                             {{/each}}
