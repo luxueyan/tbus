@@ -73,13 +73,15 @@ payRactive.on("invest-submit", function (e) {
     if (paymentPassword === '') {
         showErrors('请输入交易密码!');
         return false;
+        myFunc();
     } else {
         accountService.checkPassword(paymentPassword, function (r) {
             if (!r) {
                 showErrors('请输入正确的交易密码');
+                myFunc();
             } else {
                 disableErrors();
-
+                $(".submit_btn").attr("disabled", "true");
                 //if (document.getElementById('agree').checked == true) {
                 //    $('.agree-error').css('visibility', 'hidden');
                     $.post('/api/v2/invest/user/MYSELF/creditAssign/invest', {
@@ -95,6 +97,7 @@ payRactive.on("invest-submit", function (e) {
                             setTimeout(function(){
                               window.location.href = '/creditList';
                             },5000);
+                            myFunc();
                         } else {
                             payRactive.set('step1',false);
                             payRactive.set('step2',false);
@@ -104,7 +107,7 @@ payRactive.on("invest-submit", function (e) {
                             }else{
                                 payRactive.set('failerror',res.error[0].message);
                             }
-
+                            myFunc();
                         }
                     });
 
@@ -115,6 +118,11 @@ payRactive.on("invest-submit", function (e) {
             }
         });
     };
+    function myFunc() {
+        //code
+        //执行某段代码后可选择移除disabled属性，让button可以再次被点击
+        $(".submit_btn").removeAttr("disabled");
+    }
 });
 
 function showErrors(error) {
