@@ -246,7 +246,8 @@ ractive.on('recharge_submit', function (e) {
                             ractive.set('step2', false);
                             ractive.set('step3', true);
                             //alert('充值失败');
-                            ractive.set('failError', msg[r.body.error[0].message]);
+                            console.log(r)
+                            ractive.set('failError', r.body.error[0].message);
                             $('.submit_btn').text('确认充值');
                             myFunc()
                         }
