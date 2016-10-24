@@ -168,6 +168,6 @@ do (_, angular, moment, Math, Date) ->
             total_months: item.duration.totalMonths
 
             chart_options: _.merge CHART_OPTIONS(), do (data = {}) ->
-                data.barColor = '#9E9E9F' unless item.status in _.split 'OPENED FINISHED FAKESETTLED'
+                data.barColor = '#9E9E9F' unless item.status in _.split 'OPENED FINISHED FAKESETTLED FAILED'
                 return data
         }
