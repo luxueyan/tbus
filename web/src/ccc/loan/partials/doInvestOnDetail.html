@@ -1,7 +1,7 @@
-{{#if loan.status == "FINISHED"||loan.status == "SETTLED"||loan.status == "CLEARED"||loan.status == "SCHEDULED"||loan.status == "FAKESETTLED"}}
+{{#if loan.status == "FINISHED"||loan.status == "SETTLED"||loan.status == "CLEARED"||loan.status == "SCHEDULED"||loan.status == "FAKESETTLED" || loan.status === 'FAILED'}}
     {{#if hasID}}
         <img src="/ccc/loan/img/unlogin.png" class="unlogin_img" style="display: block;">
-        {{#if loan.status == "FINISHED"||loan.status === 'FAKESETTLED'}}
+        {{#if loan.status == "FINISHED"||loan.status === 'FAKESETTLED' || loan.status === 'FAILED'}}
         <button class="finished-btn">已售罄</button>
         {{/if}}
         {{#if loan.status == "SETTLED"}}
