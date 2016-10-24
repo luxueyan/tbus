@@ -85,6 +85,11 @@
                     >已售罄</a>
 
                     <a class="btn btn-plain btn-sm"
+                       ng-switch-when="FAILED"
+                       ng-href="loan/{{ item.id }}"
+                    >已售罄</a>
+
+                    <a class="btn btn-plain btn-sm"
                        ng-switch-when="SETTLED"
                        ng-href="loan/{{ item.id }}"
                     >计息中</a>
