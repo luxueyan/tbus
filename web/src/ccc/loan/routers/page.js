@@ -176,7 +176,7 @@ function parseLoan(loan) {
     console.log(loan)
     var SinvestPercent = (loan.investPercent * 100)+'';
     var SinvestPercentString = SinvestPercent.split('.');
-    if(loan.status=='SETTLED' || loan.status === 'FINISHED'){
+    if(loan.status=='SETTLED' || loan.status === 'FINISHED' || loan.status === 'FAILED'){
         loan.investPercent = "100";
     }else{
         if(SinvestPercentString[1]){
