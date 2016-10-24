@@ -121,6 +121,9 @@ do (_, angular) ->
                             detail = _.get data, 'error[0].value', ''
                             msg += if detail then "，#{ detail }" else ''
 
+                        if msg.indexOf('TRADE_FAILED') > -1
+                            msg = msg.replace('TRADE_FAILED', @$scope.msg['TRADE_FAILED'])
+
                         @$window.alert msg
                 )
 
