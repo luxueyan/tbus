@@ -912,7 +912,7 @@ select::-ms-expand { display: none; }
 }
 .payment-content .bank .bank-box {
     float: left;
-    width: 804px;
+    width: 830px;
     padding: 30px;
     border: 1px solid #c9c9c9;
     background-position: 50px center;

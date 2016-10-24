@@ -38,11 +38,9 @@
           <div class="rate">在售中</div>
           {{/if}} {{#if status === 'SCHEDULED'}}
           <div>即将开始</div>
-          {{/if}} {{#if status === 'FINISHED'||status === 'FAKESETTLED'}}
+          {{/if}} {{#if status === 'FINISHED'||status === 'FAKESETTLED' || status === 'FAILED'}}
           <div>已售罄</div>
-          {{/if}} {{#if status === 'FAILED'}}
-          <div>流标</div>
-          {{/if}} {{#if status === 'SETTLED'}}
+          {{/if}}  {{#if status === 'SETTLED'}}
           <div>计息中</div>
           {{/if}} {{#if status === 'CLEARED'}}
           <div>已结息</div>

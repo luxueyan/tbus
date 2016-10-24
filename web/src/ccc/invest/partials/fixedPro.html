@@ -73,10 +73,8 @@
             {{/if}} {{#if status === 'SCHEDULED'}}
             <a href="/loan/{{id}}">即将开始</a>
             <!--<div class="investbtn-time" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}" data-serv="{{ serverDate }}" style="margin-top:5px;color: black;width: 180px;text-align: center;"></div>-->
-            {{/if}} {{#if status === 'FINISHED'||status === 'FAKESETTLED'}}
+            {{/if}} {{#if status === 'FINISHED'||status === 'FAKESETTLED' || status === 'FAILED'}}
             <a href="/loan/{{id}}">已售罄</a>
-            {{/if}} {{#if status === 'FAILED'}}
-            <a href="/loan/{{id}}">流标</a>
             {{/if}} {{#if status === 'SETTLED'}}
             <a href="/loan/{{id}}">计息中</a>
             {{/if}} {{#if status === 'CLEARED'}}
