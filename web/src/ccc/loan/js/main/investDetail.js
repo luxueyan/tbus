@@ -25,10 +25,11 @@ var statusMap = {
     OPENED: '',
     FINISHED: '',
     CLEARED: '',
-    FAKESETTLED:''
+    FAKESETTLED:'',
+    FAILED:''
 };
 var template = statusMap[CC.loan.status];
-
+console.log(template)
 var pagesize = 10;
 
 
