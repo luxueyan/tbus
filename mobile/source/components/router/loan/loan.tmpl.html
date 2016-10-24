@@ -36,7 +36,10 @@
         <span class="date" ng-switch="loan.status">
             <span ng-switch-when="SCHEDULED">
                 距离开标时间:<br>
-                <timer interval="1000" end-time="loan.time_open">
+                <timer interval="1000"
+                       end-time="loan.time_open"
+                       finish-callback="self.$window.location.reload()"
+                >
                     <span class="num">{{ days }}</span> 天
                     <span class="num">{{ hhours }}</span> 小时
                     <span class="num">{{ mminutes }}</span> 分
@@ -45,7 +48,10 @@
             </span>
             <span ng-switch-when="OPENED">
                 距离结束购买还有：<br>
-                <timer interval="1000" end-time="loan.time_close">
+                <timer interval="1000"
+                       end-time="loan.time_close"
+                       finish-callback="self.$window.location.reload()"
+                >
                     <span class="num">{{ days }}</span> 天
                     <span class="num">{{ hhours }}</span> 小时
                     <span class="num">{{ mminutes }}</span> 分
