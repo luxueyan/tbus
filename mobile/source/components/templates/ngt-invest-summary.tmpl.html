@@ -54,7 +54,11 @@
                     {{
                         (
                             item.raw.creditAssignId
-                            ? item.raw.dueInPrincipal
+                            ? (
+                                item.status == 'CLEARED'
+                                ? item.raw.inPrincipal
+                                : item.raw.dueInPrincipal
+                              )
                             : item.amount
                         ) | number: 2
                     }}
