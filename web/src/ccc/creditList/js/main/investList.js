@@ -231,7 +231,7 @@ var totalRactive = new Ractive({
                 var num = r.body.data;
                 //console.log(num)
                 var totalDealAmount = utils.format.amount((num.totalDealAmount-1000000), 2);
-                var totalNumber = utils.format.amount((num.totalNumber-100), 2);
+                var totalNumber = utils.format.amount((num.totalNumber-100));
                 self.set('totalDealAmount', totalDealAmount);
                 self.set('totalNumber', totalNumber);
             })
