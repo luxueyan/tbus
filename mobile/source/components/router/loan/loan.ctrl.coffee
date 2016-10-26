@@ -27,18 +27,18 @@ do (_, angular, moment, Math, Date) ->
                     )
 
 
-                time_open_left = @loan.timeOpen - @loan.serverDate
+                # time_open_left = @loan.timeOpen - @loan.serverDate
 
-                if time_open_left > 0
+                # if time_open_left > 0
 
-                    @$timeout =>
-                        if @$routeParams.id is @loan.id
-                            @$window.location.reload()
-                    , time_open_left, false
+                #     @$timeout =>
+                #         if @$routeParams.id is @loan.id
+                #             @$window.location.reload()
+                #     , time_open_left, false
 
-                else if @loan.status is 'SCHEDULED'
+                # else if @loan.status is 'SCHEDULED'
 
-                    @$window.location.reload()
+                #     @$window.location.reload()
 
 
 
@@ -168,6 +168,6 @@ do (_, angular, moment, Math, Date) ->
             total_months: item.duration.totalMonths
 
             chart_options: _.merge CHART_OPTIONS(), do (data = {}) ->
-                data.barColor = '#9E9E9F' unless item.status in _.split 'OPENED FINISHED FAKESETTLED'
+                data.barColor = '#9E9E9F' unless item.status in _.split 'OPENED FINISHED FAKESETTLED FAILED'
                 return data
         }

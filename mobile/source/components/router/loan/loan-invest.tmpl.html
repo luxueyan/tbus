@@ -187,6 +187,11 @@
             >已售罄</button>
 
             <button type="submit" class="btn btn-plain btn-lg btn-block"
+                    ng-switch-when="FAILED"
+                    disabled
+            >已售罄</button>
+
+            <button type="submit" class="btn btn-plain btn-lg btn-block"
                     ng-switch-when="SETTLED"
                     disabled
             >计息中</button>

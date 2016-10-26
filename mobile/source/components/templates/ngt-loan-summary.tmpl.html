@@ -12,7 +12,7 @@
         <div class="name">预期年收益率</div>
     </div>
 
-    <div class="info text-center">
+    <div class="info" style="padding-left: 20px;">
         <div class="duration">
             <span ng-if="loan.raw.duration.days">
                 <span class="num">{{ loan.total_days }}</span><span class="unit">天</span>
@@ -20,6 +20,7 @@
             <span ng-if="!loan.raw.duration.days">
                 <span class="num">{{ loan.total_months }}</span><span class="unit">个月</span>
             </span>
+            <span class="u-color-main" style="margin-left: 10px;">7天可转</span>
         </div>
         <div class="min-amount"
              ng-init="min_amount = loan.raw.loanRequest.investRule.minAmount"
@@ -44,6 +45,7 @@
             <span ng-switch-when="OPENED" class="u-color-main">抢购</span>
             <span ng-switch-when="FINISHED" class="u-color-main">已售罄</span>
             <span ng-switch-when="FAKESETTLED" class="u-color-main">已售罄</span>
+            <span ng-switch-when="FAILED" class="u-color-main">已售罄</span>
             <span ng-switch-when="SETTLED">计息中</span>
             <span ng-switch-when="CLEARED">已结息</span>
         </span>
