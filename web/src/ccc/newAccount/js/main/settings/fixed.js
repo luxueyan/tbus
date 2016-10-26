@@ -203,6 +203,7 @@ function init(type) {
                                 datas[i].Famount = utils.format.amount(o.amount, 2);
                                 datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true : false;
                                 datas[i].submitTime = moment(o.submitTime).format('YYYY-MM-DD');
+                                datas[i].inPrincipal = utils.format.amount(o.inPrincipal, 2);
                                 break;
                         }
 
