@@ -485,6 +485,11 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                         templateUrl: 'components/router/more/more.tmpl.html'
                     }
 
+                    .when '/feature/:feature?', {
+                        controller: 'FeatureCtrl as self'
+                        templateUrl: 'components/router/feature/feature.tmpl.html'
+                    }
+
                     .when '/about', {
                         controller: 'AboutCtrl as self'
                         templateUrl: 'components/router/about/about.tmpl.html'
