@@ -1,10 +1,10 @@
 
-<div id="feature">
+<div id="feature" ng-class="'feature-' + feature">
 
     <div class="head" ng-switch="feature">
         <h2 ng-switch-when="safety">安全——银行级风控 专款专项专用</h2>
         <h2 ng-switch-when="information">信息披露充分 风控措施透明</h2>
-        <h2 ng-switch-when="3A">AAA级底层资产震撼来袭</h2>
+        <h2 ng-switch-when="AAA">AAA级底层资产震撼来袭</h2>
         <h2 ng-switch-when="profession">专业——360°项目审核 优中选优</h2>
         <h2 ng-switch-when="trusty">可靠——系统五维防护 历史100%兑付</h2>
         <h2 ng-switch-when="advantage">太合汇·汇财富六大核心优势</h2>
@@ -16,36 +16,241 @@
 
         <div ng-switch-when="safety">
             <section class="white">
-                <h3 class="title">资深银行级的风险管理团队</h3>
+                <div class="subject">
+                    <h3 class="title">资深银行级的风险管理团队</h3>
 
-                <div class="content">
                     <div class="media">
-                        <div class="media-left">
+                        <div class="media-left media-middle">
+                            <param class="icon icon-1">
                         </div>
-                        <div class="media-body">
+                        <div class="media-body media-middle">
+                            <h4>深发展原行长、平安银行原董事长肖遂宁领衔</h4>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="content media-divider">
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <param class="avatar avatar-1">
+                        </div>
+                        <div class="media-body media-middle">
+                            <h5>肖遂宁</h5>
+                            <p>先生现任太合汇资本的董事局主席兼风险管理委员会主席，他也是太盟投资集团的合伙人兼中国区主席。</p>
+                            <p>在加入太盟投资集团之前，肖先生也曾担任平安银行股份有限公司董事长和深圳发展银行董事、行长等职务。</p>
+                            <p><em>肖先生现任海通证券独立董事。</em></p>
+                        </div>
+                    </div>
+
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <param class="avatar avatar-2">
+                        </div>
+                        <div class="media-body media-middle">
+                            <h5>程　文</h5>
+                            <p>女士是太合汇资本风险管理委员会委员。她也是太盟投资集团的董事总经理及中国区首席财务官。</p>
+                            <p>她将在<em>平台和项目的结构搭建、财富管理、风险控制、退出方案</em>等环节提出建议。</p>
+                        </div>
+                    </div>
+
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <param class="avatar avatar-3">
+                        </div>
+                        <div class="media-body media-middle">
+                            <h5>张　君</h5>
+                            <p>先生现任太合汇资本首席执行官兼风险管理委员会委员。</p>
+                            <p>他在<em>平台业务营销、渠道建设、项目管理、财富管理、资产管理</em>等方面具有丰富的实战经验。</p>
+                        </div>
+                    </div>
+
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <param class="avatar avatar-4">
+                        </div>
+                        <div class="media-body media-middle">
+                            <h5>杨晓莹</h5>
+                            <p>女士是太合汇资本风险管理委员会委员。她也是太盟投资集团绝对回报策略的中国区法律顾问。</p>
+                            <p>她将从<em>股权投资、结构化贷款、不良资产收购、证券投资业务</em>等方面提出建议。</p>
+                        </div>
+                    </div>
+
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <param class="avatar avatar-5">
+                        </div>
+                        <div class="media-body media-middle">
+                            <h5>陈　潇</h5>
+                            <p>女士现任太合汇资本首席风控官兼风险管理委员会委员。</p>
+                            <p>她对公司<em>治理制度、风险控制管理、信用评级、投资项目的风险评审</em>等方面具有较强的把控能力。</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             <section class="red">
-                <h3 class="title">资金专款专用 账户全程监管</h3>
+                <div class="subject">
+                    <h3 class="title">资金专款专用 账户全程监管</h3>
+
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <param class="icon icon-2">
+                        </div>
+                        <div class="media-body media-middle">
+                            <ul class="list">
+                                <li>实名认证同卡进出
+                                <li>投资资金直接划转
+                                <li>双重加密防止盗刷
+                                <li>四要素预审核机制
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="content">
+                    <div
+                        class="container"
+                        style="padding: 15px 15px 15px 2px;"
+                    >
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <p>客户认证时真实姓名、身份证号、手机号和银行卡号（即四要素）必须与银行预留信息一致，如不一致则无法认证成功。</p>
+                            </div>
+                            <div class="col-xs-6">
+                                <img class="img-responsive" ng-src="assets/image/feature/safety/1.png">
+                            </div>
+                        </div>
+                    </div>
 
+                    <div
+                        class="text-center"
+                        style="padding: 10px 0;"
+                    >
+                        <p>客户资金通过支付平台直达企业账户，<br>确保投资资金专款专项专用。</p>
+                        <img class="img-responsive" ng-src="assets/image/feature/safety/2.png">
+                    </div>
                 </div>
             </section>
         </div>
 
 
         <div ng-switch-when="information">
+            <section class="white">
+                <div class="subject">
+                    <h3 class="title">信息充分披露 践行监管要求</h3>
 
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <param class="icon icon-1">
+                        </div>
+                        <div class="media-body media-middle">
+                            <ul class="list">
+                                <li>交易信息充分披露
+                                <li>资金投向充分披露
+                                <li>风控措施充分披露
+                                <li>交易合同客户随时调阅
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <div
+                        class="media"
+                        style="padding-top: 20px;"
+                    >
+                        <div class="media-body">
+                            <p>充分披露<em>资金用途、市场风险、法律与政策风险、经营及财务风险、发行人到期偿付及信用风险、流动性风险、资金挪用风险、不可抗力及其他风险</em>等信息。</p>
+                        </div>
+                        <div class="media-right">
+                            <img width="201" ng-src="assets/image/feature/information/1.png">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="red">
+                <div class="subject">
+                    <h3 class="title">风控公开透明 保障客户权益</h3>
+
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <param class="icon icon-2">
+                        </div>
+                        <div class="media-body media-middle">
+                            <ul class="list">
+                                <li>上市公司担保增信措施及时公告
+                                <li>大型集团保证担保落实到位
+                                <li>风控措施多管齐下
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <div
+                        class="media"
+                        style="padding-top: 20px;"
+                    >
+                        <div
+                            class="media-body media-middle"
+                            style="padding-right: 15px;"
+                        >
+                            <p>2016年7月16日，阳光城集团在深圳证券交易所官网发布《阳光城：关于为子公司宇特顺房地产提供担保的公告》。</p>
+                        </div>
+                        <div
+                            class="media-right media-middle"
+                            style="padding-left: 0; width: 50%;"
+                        >
+                            <img class="img-responsive" ng-src="assets/image/feature/information/2.png">
+                        </div>
+                    </div>
+
+                    <div
+                        class="media"
+                        style="padding: 20px 0;"
+                    >
+                        <div
+                           class="media-left media-middle"
+                           style="padding-right: 0; width: 50%;"
+                        >
+                            <img class="img-responsive" ng-src="assets/image/feature/information/3.png">
+                        </div>
+                        <div
+                            class="media-body media-middle"
+                            style="padding-left: 30px;"
+                        >
+                            <p>海航集团对海航产业并购投资私募基金承担差额补足义务。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
 
 
-        <div ng-switch-when="3A">
+        <div ng-switch-when="AAA">
+            <section class="white">
+                <div class="subject">
+                    <h3 class="title">严选交易对手 优中选优</h3>
 
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <param class="icon icon-1">
+                        </div>
+                        <div class="media-body media-middle">
+                            <ul class="list">
+                                <li>世界500强企业
+                                <li>信用评级AA+及以上企业
+                                <li>精选优质上市公司
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content media-divider">
+
+                </div>
+            </section>
         </div>
 
 

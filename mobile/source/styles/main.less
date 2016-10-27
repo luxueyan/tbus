@@ -3916,20 +3916,14 @@ a {
 ----*/
 
 #feature {
-
-    &, .head, .main, .foot {
-        position: absolute;
-        left: 0;
-        right: 0;
-    }
-
-    & {
-        top: 0;
-        bottom: 0;
-    }
+    padding-top: 42px;
 
     .head {
+        position: fixed;
+        left: 0;
+        right: 0;
         top: 0;
+        z-index: 9;
         height: 42px;
         background-color: #D8232A;
         text-align: center;
@@ -3964,18 +3958,17 @@ a {
     }
 
     .main {
-        top: 42px;
-        bottom: 42px;
-        overflow: auto;
         padding-bottom: 10px;
 
         section {
             position: relative;
+            padding-left: 13px;
+            padding-right: 13px;
 
             &:before {
                 content: "";
                 position: absolute;
-                top: 0;
+                top: -1px;
                 left: 34px;
                 width: 0;
                 height: 0;
@@ -3990,27 +3983,105 @@ a {
                 }
             }
 
-            .title {
-                position: relative;
-                margin: 0 0 10px;
-                padding: 15px;
-                font-size: 14px;
-                line-height: 1.5;
-                text-align: center;
+            .subject {
+                .title {
+                    position: relative;
+                    margin: 0;
+                    padding: 20px 15px 15px;
+                    font-size: 14px;
+                    line-height: 1.5;
+                    text-align: center;
 
-                &:before {
-                    .transform(translateX(-50%));
-                    content: "";
-                    position: absolute;
-                    left: 50%;
-                    width: 15px;
-                    height: 3px;
-                    bottom: 10px;
+                    &:before {
+                        .transform(translateX(-50%));
+                        content: "";
+                        position: absolute;
+                        left: 50%;
+                        width: 15px;
+                        height: 3px;
+                        bottom: 10px;
+                    }
+                }
+            }
+
+            .media {
+                margin-top: 0;
+
+                &-left {
+                    padding-right: 13px;
+                }
+
+                h4 {
+                    margin: 0;
+                    font-size: 14px;
+                    color: #EE474D;
+                }
+
+                h5 {
+                    float: left;
+                    position: relative;
+                    top: 2px;
+                    margin: 0 14px 0 0;
+                    color: #C19769;
+                    font-size: 15px;
+                }
+
+                p {
+                    margin-bottom: 4px;
                 }
             }
 
             .content {
                 padding-bottom: 10px;
+
+                .media-body {
+                    padding: 12px 0 6px;
+                    text-align: justify;
+                }
+
+                &.media-divider .media + .media {
+                    .media-body {
+                        position: relative;
+
+                        &:before {
+                            content: "";
+                            position: absolute;
+                            left: 0;
+                            right: 0;
+                            top: 2px;
+                            height: 1px;
+                            background-color: #CAA780;
+                        }
+
+                        &:after {
+                            content: "";
+                            position: absolute;
+                            right: 0;
+                            top: 0;
+                            width: 4px;
+                            height: 4px;
+                            background-color: #CAA780;
+                            border-radius: 50%;
+                        }
+                    }
+                }
+            }
+
+            .list {
+                margin: 10px 0;
+                padding: 0;
+                list-style: none;
+
+                > li {
+                    padding-left: 16px;
+                    background-repeat: no-repeat;
+                    background-position: 0 5px;
+                    background-size: 10px 10px;
+
+                    + li {
+                        margin-top: 5px;
+                    }
+                }
             }
 
             &.white {
@@ -4020,35 +4091,62 @@ a {
                     border-top: 5px solid #EE474D;
                 }
 
-                .title {
-                    color: #EE474D;
+                .subject {
+                    .title {
+                        color: #EE474D;
 
-                    &:before {
-                        background-color: #EE474D;
+                        &:before {
+                            background-color: #EE474D;
+                        }
+                    }
+                }
+
+                .list {
+                    > li {
+                        background-image: url("@{path-image}/feature/ok-1.png");
                     }
                 }
             }
 
             &.red {
                 background-color: #EE474D;
+                color: #FFF;
 
                 &:before {
                     border-top: 5px solid #FFF;
                 }
 
-                .title {
-                    color: #FFF;
+                .subject {
+                    .title {
+                        color: #FFF;
 
-                    &:before {
-                        background-color: #FFF;
+                        &:before {
+                            background-color: #FFF;
+                        }
+                    }
+                }
+
+                .list {
+                    > li {
+                        background-image: url("@{path-image}/feature/ok-2.png");
                     }
                 }
             }
         }
+
+        em {
+            font-style: normal;
+            color: #C19769;
+        }
+
+        strong {
+            font-weight: normal;
+            color: #EE474D;
+        }
     }
 
     .foot {
-        bottom: 0;
+        position: relative;
         height: 42px;
         background-color: #FFF;
 
@@ -4057,6 +4155,110 @@ a {
             position: absolute;
             top: 50%;
             left: 50%;
+        }
+    }
+
+    &.feature {
+        &-safety {
+            .icon {
+                display: block;
+                background: url("@{path-image}/feature/safety/icons.png") no-repeat;
+                background-size: 98px/2 196px/2;
+                width: 98px/2;
+                height: 98px/2;
+                overflow: hidden;
+
+                &-1 {
+                    background-position: 0 0;
+                }
+
+                &-2 {
+                    background-position: 0 -98px/2;
+                }
+            }
+
+            .avatar {
+                display: block;
+                background: url("@{path-image}/feature/safety/avatars.png") no-repeat;
+                background-size: 98px/2 490px/2;
+                width: 98px/2;
+                height: 98px/2;
+                overflow: hidden;
+
+                &-1 {
+                    background-position: 0 0;
+                }
+
+                &-2 {
+                    background-position: 0 -98px/2;
+                }
+
+                &-3 {
+                    background-position: 0 -196px/2;
+                }
+
+                &-4 {
+                    background-position: 0 -294px/2;
+                }
+
+                &-5 {
+                    background-position: 0 -392px/2;
+                }
+            }
+        }
+
+        &-information {
+            .icon {
+                display: block;
+                background: url("@{path-image}/feature/information/icons.png") no-repeat;
+                background-size: 100px/2 200px/2;
+                width: 100px/2;
+                height: 100px/2;
+                overflow: hidden;
+
+                &-1 {
+                    background-position: 0 0;
+                }
+
+                &-2 {
+                    background-position: 0 -100px/2;
+                }
+            }
+        }
+
+        &-AAA {
+            .icon {
+                display: block;
+                background: url("@{path-image}/feature/AAA/icons.png") no-repeat;
+                background-size: 100px/2 100px/2;
+                width: 100px/2;
+                height: 100px/2;
+                overflow: hidden;
+
+                &-1 {
+                    background-position: 0 0;
+                }
+            }
+        }
+
+        &-profession {
+
+        }
+
+        &-trusty {
+
+        }
+
+        &-advantage {
+
+        }
+
+        &-contrast {
+
+        }
+
+        &-product {
+
         }
     }
 
