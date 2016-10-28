@@ -3954,7 +3954,7 @@ a {
             font-size: 16px;
             line-height: 42px;
             color: #FFF;
-            overflow: hidden;
+            // overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
             text-align: center;
@@ -4316,10 +4316,81 @@ a {
                     }
                 }
             }
+
+            .number-list {
+                > div {
+                    float: left;
+                    white-space: pre;
+
+                    &:first-child {
+                        margin-right: 20px;
+                    }
+                }
+            }
         }
 
         &-trusty {
+            .icon {
+                background: url("@{path-image}/feature/trusty/icons.png") no-repeat;
+                background-size: 102px/2 204px/2;
+                width: 102px/2;
+                height: 102px/2;
 
+                &-2 {
+                    background-position: 0 -102px/2;
+                }
+            }
+
+            section {
+                padding-bottom: 10px;
+            }
+
+            .table {
+                font-size: 13px;
+                background-color: #F2F2F2;
+
+                &-wrap {
+                    overflow: auto;
+                    padding: 0 0 5px;
+                    background-color: #FFF;
+                }
+
+                th, td {
+                    border: 2px solid #BCB9B9;
+                    white-space: nowrap;
+                }
+
+                thead th {
+                    &:not(:first-child) {
+                        text-align: center;
+                    }
+                }
+
+                tbody td {
+                    line-height: 2.1;
+                    padding-right: 4px;
+
+                    &:not(:first-child) {
+                        padding-left: 4px;
+                    }
+
+                    &:last-child {
+                        text-align: center;
+                    }
+
+                    > div {
+                        white-space: pre;
+                    }
+                }
+
+                tfoot td {
+                    padding-right: 15px;
+
+                    a {
+                        color: #EE474D;
+                    }
+                }
+            }
         }
 
         &-advantage {
