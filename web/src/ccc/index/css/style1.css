@@ -596,6 +596,9 @@
     line-height: 44px;
     color: #999;
 }
+.header_info h2 a{
+    text-decoration:none;
+}
 .header_info .word{
     float: left;
     margin-left: 10px;
