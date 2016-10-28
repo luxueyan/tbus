@@ -3,12 +3,20 @@ do (_, angular) ->
 
     angular.module('controller').controller 'HelpCtrl',
 
-        _.ai '            @api, @$scope, @$rootScope, @$window', class
-            constructor: (@api, @$scope, @$rootScope, @$window) ->
+        _.ai '            @api, @$scope, @$rootScope, @$window, @$routeParams', class
+            constructor: (@api, @$scope, @$rootScope, @$window, @$routeParams) ->
 
                 @$window.scrollTo 0, 0
 
-                @$rootScope.state = 'more'
+                {from} = @$routeParams
+
+                is_from_app = from == 'app'
+
+                angular.extend @$scope, {
+                    is_from_app
+                }
+
+                @$rootScope.state = 'more' unless is_from_app
 
                 EXTEND_API @api
 
