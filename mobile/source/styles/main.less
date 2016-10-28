@@ -4083,7 +4083,7 @@ a {
                 > li {
                     padding-left: 20px;
                     background-repeat: no-repeat;
-                    background-position: left center;
+                    background-position: left 3px;
                     background-size: 13px 13px;
 
                     + li {
@@ -4394,7 +4394,41 @@ a {
         }
 
         &-advantage {
+            .icon {
+                background: url("@{path-image}/feature/advantage/icons.png") no-repeat;
+                background-size: 100px/2 600px/2;
+                width: 100px/2;
+                height: 100px/2;
 
+                &-2 {
+                    background-position: 0 -100px/2;
+                }
+
+                &-3 {
+                    background-position: 0 -200px/2;
+                }
+
+                &-4 {
+                    background-position: 0 -300px/2;
+                }
+
+                &-5 {
+                    background-position: 0 -400px/2;
+                }
+
+                &-6 {
+                    background-position: 0 -500px/2;
+                }
+            }
+
+            section {
+                padding-bottom: 15px;
+
+                .media-left {
+                    padding-left: 15px;
+                    padding-right: 25px;
+                }
+            }
         }
 
         &-contrast {
