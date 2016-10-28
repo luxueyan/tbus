@@ -4432,7 +4432,142 @@ a {
         }
 
         &-contrast {
+            .table {
+                margin: 0;
 
+                &-wrap {
+                    padding-left: 0;
+                    padding-right: 0;
+                    overflow: auto;
+                }
+
+                th, td {
+                    &:first-child {
+                        white-space: nowrap;
+                    }
+                }
+
+                thead {
+                    th {
+                        border: 0;
+                        color: #FFF;
+                        font-weight: normal;
+                        text-align: center;
+
+                        &:nth-child(1) {
+                            background-color: #F09C9F;
+                        }
+
+                        &:nth-child(2) {
+                            background-color: #EF7A7E;
+                        }
+
+                        &:nth-child(3) {
+                            background-color: #EE585D;
+                        }
+                    }
+                }
+
+                tbody {
+                    tr:first-child {
+                        td {
+                            border: 0;
+                            white-space: nowrap;
+                        }
+                    }
+
+                    td {
+                        border-color: #F2F2F2;
+                        padding-top: 14px;
+                        padding-bottom: 14px;
+
+                        &:first-child {
+                            padding-left: 20px;
+                            padding-right: 20px;
+                            color: #EE474D;
+                            text-align: center;
+
+                            &:before {
+                                content: "";
+                                display: inline-block;
+                                vertical-align: baseline;
+                                margin-right: 5px;
+                                width: 4px;
+                                height: 11px;
+                                background-color: #EE474D;
+                                line-height: 1;
+                            }
+                        }
+
+                        h6 {
+                            margin-top: 30px;
+                            margin-bottom: 0;
+                            font-size: 13px;
+                            color: #666;
+                            line-height: 1.5;
+                        }
+                    }
+                }
+            }
+
+            .weak-icon,
+            .strong-icon {
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: 7px;
+                height: 14px;
+                overflow: hidden;
+
+                > span {
+                    float: left;
+                    width: 14px;
+                    height: 14px;
+
+                    &:nth-child(1) {
+                        background-color: #FDECED;
+                    }
+
+                    &:nth-child(2) {
+                        background-color: #FCDADB;
+                    }
+
+                    &:nth-child(3) {
+                        background-color: #FAC7C9;
+                    }
+
+                    &:nth-child(4) {
+                        background-color: #F8B5B8;
+                    }
+
+                    &:nth-child(5) {
+                        background-color: #F6A3A6;
+                    }
+
+                    &:nth-child(6) {
+                        background-color: #F59194;
+                    }
+
+                    &:nth-child(7) {
+                        background-color: #F37E82;
+                    }
+
+                    &:nth-child(8) {
+                        background-color: #F16C71;
+                    }
+
+                    &:nth-child(9) {
+                        background-color: #F0595E;
+                    }
+                }
+            }
+
+            .weak-icon {
+                width: 42px;
+            }
+
+            .strong-icon {
+                width: 126px;
+            }
         }
 
         &-product {
