@@ -4571,7 +4571,30 @@ a {
         }
 
         &-product {
+            .detail {
+                &-wrap {
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 42px;
+                    bottom: 52px;
+                    padding: 15px;
+                    overflow: auto;
+                }
+            }
 
+            .foot {
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+            }
+
+            .not-found {
+                .icon {
+                    display: inline-block;
+                }
+            }
         }
     }
 

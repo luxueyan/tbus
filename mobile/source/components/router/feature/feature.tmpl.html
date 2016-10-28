@@ -783,7 +783,22 @@
 
 
         <div ng-switch-when="product">
+            <section class="white detail-wrap">
+                <div class="detail" ng-if="data.content">
+                    <div ng-bind-html="data.content | sanitize"></div>
+                </div>
 
+                <p class="text-center loading" ng-show="loading">
+                    <img src="assets/image/spinner.gif">
+                </p>
+
+                <div class="container not-found" ng-if="!data.content" ng-hide="loading">
+                    <div class="icon-wrap">
+                        <img class="icon" height="51" ng-src="assets/image/not-found-icon.png">
+                    </div>
+                    <p class="desc">暂无数据</p>
+                </div>
+            </section>
         </div>
 
     </div>
