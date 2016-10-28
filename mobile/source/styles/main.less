@@ -3912,6 +3912,157 @@ a {
 }
 
 /*=============================================================================
+                                                               [Router] Feature
+----*/
+
+#feature {
+
+    &, .head, .main, .foot {
+        position: absolute;
+        left: 0;
+        right: 0;
+    }
+
+    & {
+        top: 0;
+        bottom: 0;
+    }
+
+    .head {
+        top: 0;
+        height: 42px;
+        background-color: #D8232A;
+        text-align: center;
+
+        h2 {
+            position: relative;
+            margin: 0;
+            font-size: 15px;
+            line-height: 42px;
+            color: #FFF;
+
+            &:before,
+            &:after {
+                .transform(translateY(-50%));
+                content: "";
+                position: absolute;
+                top: 50%;
+                width: 5px;
+                height: 5px;
+                background-color: #FFF;
+                border-radius: 50%;
+            }
+
+            &:before {
+                left: 22px;
+            }
+
+            &:after {
+                right: 22px;
+            }
+        }
+    }
+
+    .main {
+        top: 42px;
+        bottom: 42px;
+        overflow: auto;
+        padding-bottom: 10px;
+
+        section {
+            position: relative;
+
+            &:before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 34px;
+                width: 0;
+                height: 0;
+                border-right: 5px solid transparent;
+                border-left: 5px solid transparent;
+                border-bottom: 0;
+            }
+
+            &:first-child {
+                &:before {
+                    display: none;
+                }
+            }
+
+            .title {
+                position: relative;
+                margin: 0 0 10px;
+                padding: 15px;
+                font-size: 14px;
+                line-height: 1.5;
+                text-align: center;
+
+                &:before {
+                    .transform(translateX(-50%));
+                    content: "";
+                    position: absolute;
+                    left: 50%;
+                    width: 15px;
+                    height: 3px;
+                    bottom: 10px;
+                }
+            }
+
+            .content {
+                padding-bottom: 10px;
+            }
+
+            &.white {
+                background-color: #FFF;
+
+                &:before {
+                    border-top: 5px solid #EE474D;
+                }
+
+                .title {
+                    color: #EE474D;
+
+                    &:before {
+                        background-color: #EE474D;
+                    }
+                }
+            }
+
+            &.red {
+                background-color: #EE474D;
+
+                &:before {
+                    border-top: 5px solid #FFF;
+                }
+
+                .title {
+                    color: #FFF;
+
+                    &:before {
+                        background-color: #FFF;
+                    }
+                }
+            }
+        }
+    }
+
+    .foot {
+        bottom: 0;
+        height: 42px;
+        background-color: #FFF;
+
+        img {
+            .transform(translateX(-50%) translateY(-50%));
+            position: absolute;
+            top: 50%;
+            left: 50%;
+        }
+    }
+
+}
+
+/*=============================================================================
                                                                  [Router] About
 ----*/
 

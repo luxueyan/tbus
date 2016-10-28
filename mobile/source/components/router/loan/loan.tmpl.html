@@ -106,7 +106,7 @@
                     {{
                         min_amount >= 10000
                         ? (min_amount / 10000 + '万')
-                        : (min_amount | number)
+                        : min_amount
                     }}元
                 </span>
             </li>
@@ -236,7 +236,7 @@
             {{
                 min_amount >= 10000
                 ? (min_amount / 10000 + '万')
-                : (min_amount | number)
+                : min_amount
             }}
         </div>
         <div class="status" ng-switch="loan.status">
