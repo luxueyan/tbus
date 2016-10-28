@@ -3924,36 +3924,40 @@ a {
         right: 0;
         top: 0;
         z-index: 9;
+        padding-left: 30px;
+        padding-right: 30px;
         height: 42px;
         background-color: #D8232A;
-        text-align: center;
+
+        &:before,
+        &:after {
+            .transform(translateY(-50%));
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 5px;
+            height: 5px;
+            background-color: #FFF;
+            border-radius: 50%;
+        }
+
+        &:before {
+            left: 22px;
+        }
+
+        &:after {
+            right: 22px;
+        }
 
         h2 {
-            position: relative;
             margin: 0;
-            font-size: 15px;
+            font-size: 16px;
             line-height: 42px;
             color: #FFF;
-
-            &:before,
-            &:after {
-                .transform(translateY(-50%));
-                content: "";
-                position: absolute;
-                top: 50%;
-                width: 5px;
-                height: 5px;
-                background-color: #FFF;
-                border-radius: 50%;
-            }
-
-            &:before {
-                left: 22px;
-            }
-
-            &:after {
-                right: 22px;
-            }
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            text-align: center;
         }
     }
 
@@ -3984,11 +3988,11 @@ a {
             }
 
             .subject {
-                .title {
+                h3 {
                     position: relative;
                     margin: 0;
                     padding: 20px 15px 15px;
-                    font-size: 14px;
+                    font-size: 15px;
                     line-height: 1.5;
                     text-align: center;
 
@@ -4013,8 +4017,7 @@ a {
 
                 h4 {
                     margin: 0;
-                    font-size: 14px;
-                    color: #EE474D;
+                    font-size: 15px;
                 }
 
                 h5 {
@@ -4022,8 +4025,13 @@ a {
                     position: relative;
                     top: 2px;
                     margin: 0 14px 0 0;
-                    color: #C19769;
                     font-size: 15px;
+                }
+
+                h6 {
+                    margin: 15px 0 5px;
+                    font-size: 13px;
+                    line-height: 1.4;
                 }
 
                 p {
@@ -4073,10 +4081,10 @@ a {
                 list-style: none;
 
                 > li {
-                    padding-left: 16px;
+                    padding-left: 20px;
                     background-repeat: no-repeat;
-                    background-position: 0 5px;
-                    background-size: 10px 10px;
+                    background-position: left center;
+                    background-size: 13px 13px;
 
                     + li {
                         margin-top: 5px;
@@ -4092,7 +4100,7 @@ a {
                 }
 
                 .subject {
-                    .title {
+                    h3 {
                         color: #EE474D;
 
                         &:before {
@@ -4101,10 +4109,34 @@ a {
                     }
                 }
 
+                .media {
+                    h4 {
+                        color: #EE474D;
+                    }
+
+                    h5 {
+                        color: #C19769;
+                    }
+
+                    h6 {
+                        color: #EE474D;
+                    }
+                }
+
                 .list {
                     > li {
                         background-image: url("@{path-image}/feature/ok-1.png");
                     }
+                }
+
+                em {
+                    font-style: normal;
+                    color: #C19769;
+                }
+
+                strong {
+                    font-weight: normal;
+                    color: #EE474D;
                 }
             }
 
@@ -4117,7 +4149,7 @@ a {
                 }
 
                 .subject {
-                    .title {
+                    h3 {
                         color: #FFF;
 
                         &:before {
@@ -4132,16 +4164,6 @@ a {
                     }
                 }
             }
-        }
-
-        em {
-            font-style: normal;
-            color: #C19769;
-        }
-
-        strong {
-            font-weight: normal;
-            color: #EE474D;
         }
     }
 
@@ -4158,19 +4180,22 @@ a {
         }
     }
 
+    .icon, .avatar {
+        display: block;
+        overflow: hidden;
+
+        &-1 {
+            background-position: 0 0;
+        }
+    }
+
     &.feature {
         &-safety {
             .icon {
-                display: block;
                 background: url("@{path-image}/feature/safety/icons.png") no-repeat;
                 background-size: 98px/2 196px/2;
                 width: 98px/2;
                 height: 98px/2;
-                overflow: hidden;
-
-                &-1 {
-                    background-position: 0 0;
-                }
 
                 &-2 {
                     background-position: 0 -98px/2;
@@ -4178,16 +4203,10 @@ a {
             }
 
             .avatar {
-                display: block;
                 background: url("@{path-image}/feature/safety/avatars.png") no-repeat;
                 background-size: 98px/2 490px/2;
                 width: 98px/2;
                 height: 98px/2;
-                overflow: hidden;
-
-                &-1 {
-                    background-position: 0 0;
-                }
 
                 &-2 {
                     background-position: 0 -98px/2;
@@ -4209,16 +4228,10 @@ a {
 
         &-information {
             .icon {
-                display: block;
                 background: url("@{path-image}/feature/information/icons.png") no-repeat;
                 background-size: 100px/2 200px/2;
                 width: 100px/2;
                 height: 100px/2;
-                overflow: hidden;
-
-                &-1 {
-                    background-position: 0 0;
-                }
 
                 &-2 {
                     background-position: 0 -100px/2;
@@ -4228,21 +4241,81 @@ a {
 
         &-AAA {
             .icon {
-                display: block;
                 background: url("@{path-image}/feature/AAA/icons.png") no-repeat;
                 background-size: 100px/2 100px/2;
                 width: 100px/2;
                 height: 100px/2;
-                overflow: hidden;
+            }
 
-                &-1 {
-                    background-position: 0 0;
+            .content .media {
+                &-left {
+                    padding-top: 17px;
+                }
+
+                &-body {
+                    padding-top: 20px !important;
+                }
+
+                h4 {
+                    margin-bottom: 10px;
+                    border-left: 1px solid #EE474D;
+                    padding-left: 5px;
+                }
+
+                p {
+                    text-indent: 2em;
                 }
             }
         }
 
         &-profession {
+            .icon {
+                background: url("@{path-image}/feature/profession/icons.png") no-repeat;
+                background-size: 100px/2 400px/2;
+                width: 100px/2;
+                height: 100px/2;
 
+                &-2 {
+                    background-position: 0 -100px/2;
+                }
+
+                &-3 {
+                    background-position: 0 -200px/2;
+                }
+
+                &-4 {
+                    background-position: 0 -300px/2;
+                }
+            }
+
+            .avatar {
+                background: url("@{path-image}/feature/profession/avatars.png") no-repeat;
+                background-size: 102px/2 306px/2;
+                width: 102px/2;
+                height: 102px/2;
+
+                &-2 {
+                    background-position: 0 -102px/2;
+                }
+
+                &-3 {
+                    background-position: 0 -204px/2;
+                }
+            }
+
+            .subject {
+                padding-bottom: 15px;
+
+                .media {
+                    margin-top: 15px;
+
+                    h4 {
+                        border-left: 1px solid #FFF;
+                        padding-left: 5px;
+                        font-size: 14px;
+                    }
+                }
+            }
         }
 
         &-trusty {
