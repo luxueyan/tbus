@@ -4321,13 +4321,24 @@ a {
                 }
             }
 
-            .number-list {
-                > div {
-                    float: left;
-                    white-space: pre;
+            .table {
+                display: none;
+
+                &-wrap {
+                    margin-left: 63px;
+                    overflow: auto;
+                }
+
+                tbody td {
+                    > div {
+                        white-space: pre;
+                    }
+
+                    border-top: 0;
+                    padding-top: 0;
 
                     &:first-child {
-                        margin-right: 20px;
+                        padding-left: 0;
                     }
                 }
             }
@@ -4350,12 +4361,25 @@ a {
             }
 
             .table {
+                display: none;
                 font-size: 13px;
 
                 &-wrap {
                     overflow: auto;
                     padding: 0 0 5px;
                     background-color: #FFF;
+
+                    .product-link {
+                        .transform(translateY(-100%));
+                        padding: 3px 5px;
+                        text-align: right;
+
+                        a {
+                            font-size: 14px;
+                            font-weight: bold;
+                            color: #EE474D;
+                        }
+                    }
                 }
 
                 th, td {
