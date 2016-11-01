@@ -92,7 +92,7 @@ module.exports = function (router) {
 
 
             var user = res.locals.user;
-            res.locals.title='汇财富';
+            res.locals.title='汇财富-卓越金融，财富人生';
 
             req.uest('/api/v2/cms/category/' + cateMap[req.params.tab] + '/name/' + encodeURIComponent(nameMap[req.params.tab])).end().then(function (r) {
                 if (r.body.length > 1) {

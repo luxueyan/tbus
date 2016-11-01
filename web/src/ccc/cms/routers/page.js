@@ -53,7 +53,7 @@ router.get('/cfjt/:id', function (req, res) {
         '/api/v2/cms/article/' + req.params.id)
         .end()
         .then(function (r) {
-            res.locals.title = '汇财富';
+            res.locals.title = '汇财富-卓越金融，财富人生';
             res.locals.description = r.body.content.replace(/<\/?[^>]*>/g, '').slice(0,100);
             res.render('detail', {
                 detail: formatDetail(r.body)
@@ -72,7 +72,7 @@ router.get('/fwxy/:id', function (req, res) {
         '/api/v2/cms/article/' + req.params.id)
         .end()
         .then(function (r) {
-            res.locals.title = '汇财富';
+            res.locals.title = '汇财富-卓越金融，财富人生';
             res.locals.description = r.body.content.replace(/<\/?[^>]*>/g, '').slice(0,100);
             res.render('detail', {
                 detail: formatDetail(r.body)
@@ -91,7 +91,7 @@ router.get('/mtbd/:id', function (req, res) {
         '/api/v2/cms/article/' + req.params.id)
         .end()
         .then(function (r) {
-            res.locals.title = '汇财富';
+            res.locals.title = '汇财富-卓越金融，财富人生';
             res.locals.description = r.body.content.replace(/<\/?[^>]*>/g, '').slice(0,100);
             res.render('detail', {
                 detail: formatDetail(r.body)
