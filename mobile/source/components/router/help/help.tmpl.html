@@ -1,7 +1,7 @@
 
-<div id="help">
+<div id="help" ng-class="{ from_app: is_from_app }">
 
-    <nav class="omit-margin container page-nav">
+    <nav class="omit-margin container page-nav" ng-if="!is_from_app">
     <div class="row">
         <a class="col-xs-3 back" x-go-back>
             <param class="glyphicon glyphicon-menu-left">
@@ -10,7 +10,6 @@
         <span class="col-xs-3">&nbsp;</span>
     </div>
     </nav>
-
 
     <div>
         <param ng-model="groups" ng-init="groups = [
@@ -22,7 +21,7 @@
         ]">
     </div>
 
-    <section class="help-detail">
+    <section class="omit-margin help-detail">
         <uib-accordion close-others="true">
             <uib-accordion-group ng-repeat="group in groups" is-open="group.open">
                 <uib-accordion-heading>
