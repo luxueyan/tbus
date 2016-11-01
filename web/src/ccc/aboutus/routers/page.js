@@ -15,7 +15,7 @@ module.exports = function (router) {
             console.log(data)
                 return data;
             });
-        res.locals.title = '汇财富';
+        res.locals.title = '汇财富-卓越金融，财富人生';
         res.render('aboutus');
     });
 }

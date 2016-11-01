@@ -21,7 +21,7 @@ require('./node-global')
 var port = Number(process.env.PORT || config.port) || 4000;
 app.locals.dsLayoutPath = 'ccc/global/views/layouts/default';
 
-app.locals.title = '太合汇';
+app.locals.title = '汇财富-卓越金融，财富人生';
 app.locals.keywords = '';
 app.locals.description = '';
 
