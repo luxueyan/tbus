@@ -61,9 +61,15 @@
                             {{/if}}
                             {{/if}}
                         </div>
+                        {{#if loans.status==OPENED}}
                         <div class="end_time">
                             剩余可投资：<span>{{loans.balance}}</span>元
                         </div>
+                        {{else}}
+                        <div class="end_time">
+                            剩余可投资：<span>0</span>元
+                        </div>
+                        {{/if}}
                     </div>
 
                 </div>
