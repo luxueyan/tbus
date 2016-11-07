@@ -1082,7 +1082,7 @@ select::-ms-expand { display: none; }
     top: 40%;
     left: 40%;
     background: #fff;
-    z-index: 3000;
+    z-index: 4000;
     display: none;
 }
 
