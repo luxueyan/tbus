@@ -165,8 +165,21 @@ do (_, angular, Math) ->
                 return unless good_to_go
 
                 @submit_sending = true
+                
+                (@$q.resolve()
 
-                (@popup_payment_password()
+                    .then =>
+                        return if @$scope.store.coupon
+                        
+                        has_not_available_coupon = _.every( 
+                            @$scope.coupon_list, 
+                            (item) -> amount < item.minimum
+                        )
+                        return if has_not_available_coupon
+                        
+                        return @use_coupon_confirm()    
+
+                    .then => @popup_payment_password()
 
                     .then (data) =>
                         @$scope.store.password = data
@@ -282,7 +295,7 @@ do (_, angular, Math) ->
 
             select_coupon: (event, store) ->
 
-                do event.preventDefault
+                do event.preventDefault if event
 
                 prompt = @$uibModal.open {
                     size: 'lg'
@@ -306,6 +319,43 @@ do (_, angular, Math) ->
                     do once
 
                 return prompt.result
+                
+                
+            use_coupon_confirm: ->
+                
+                self = @
+                store = @$scope.store
+
+                prompt = @$uibModal.open {
+                    size: 'sm'
+                    keyboard: false
+                    backdrop: 'static'
+                    windowClass: 'center modal-confirm'
+                    animation: false 
+                    template: '''
+                        <div class="modal-body text-center">
+                           您有红包未使用，是否使用红包？
+                        </div>
+
+                        <div class="modal-buttons">
+                            <div class="modal-button" ng-click="$dismiss('cancel'); select_coupon()">是</div>
+                            <div class="modal-button" ng-click="$close()">否</div>
+                        </div> 
+                    ''' 
+
+                    controller: _.ai '$scope',
+                        (             $scope) ->
+                            angular.extend $scope, {
+                                select_coupon: -> self.select_coupon(null, store)
+                            }
+                }
+
+                once = @$scope.$on '$locationChangeStart', ->
+                    prompt?.dismiss('cancel')
+                    do once
+
+                return prompt.result
+
 
 
 
