@@ -140,8 +140,10 @@
 /*轮播注册*/
 .banner-account－box{
     position: absolute;
-    top: 15px;
-    left: 1200px
+    top: 50%;
+    margin-top: -160px;
+    left: 50%;
+    margin-left: 292px;
 }
 
 .banner-account {
@@ -177,4 +179,18 @@
     background: #e60012;
     text-align: center;
     line-height: 42px;
+}
+
+.carousel-wrapper .carousel .carousel-indicators li {
+    width: 70px;
+    height: 10px;
+    margin: 5px;
+    border: 1px #fff solid;
+    background: transparent;
+    border-radius: 0px;
+}
+
+.carousel-wrapper .carousel .carousel-indicators .active {
+    background-color: #fff;
+    margin: 5px;
 }

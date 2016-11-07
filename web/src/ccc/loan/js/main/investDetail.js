@@ -26,7 +26,8 @@ var statusMap = {
     FINISHED: '',
     CLEARED: '',
     FAKESETTLED:'',
-    FAILED:''
+    FAILED:'',
+    OVERDUE:''
 };
 var template = statusMap[CC.loan.status];
 console.log(template)
