@@ -1071,3 +1071,54 @@ select::-ms-expand { display: none; }
     color: #e4262b;
     text-decoration: underline;
 }
+
+
+/*弹框样式*/
+.debank {
+    border: 1px solid #cfa972;
+    width: 400px;
+    padding: 40px;
+    position: fixed;
+    top: 40%;
+    left: 40%;
+    background: #fff;
+    z-index: 3000;
+    display: none;
+}
+
+.debank input {
+    border: none;
+    background: #cfa972;
+    color: #fff;
+    width: 100px;
+    height: 30px;
+    margin: 20px 100px 0px;
+}
+
+.debank p span {
+    color: #e4262b;
+}
+
+.debank p a {
+    color: #e4262b;
+}
+
+.debank .confirm {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.debank .debank_btn {
+    margin: 0 auto;
+    width: 100px;
+}
+
+.debank .debank_btn button {
+    border: none;
+    background: #cfa972;
+    color: #fff;
+    padding: 8px;
+}
+.debank .debank_btn .no{
+    float: right;
+}

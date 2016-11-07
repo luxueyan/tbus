@@ -61,7 +61,7 @@
                             {{/if}}
                             {{/if}}
                         </div>
-                        {{#if loans.status==OPENED}}
+                        {{#if loans.status=="OPENED"}}
                         <div class="end_time">
                             剩余可投资：<span>{{loans.balance}}</span>元
                         </div>
@@ -303,6 +303,8 @@
 <div id="mask-layer-wraper"></div>
 <div id="big-pic-container">
 </div>
+
+
 
 
 <!--<div style="width:600px;word-break:break-all;"></div>-->
