@@ -239,6 +239,10 @@ setTimeout((function () {
         var couponSelection = $("#couponSelection").find("option:selected").text();
         var indexnum = couponSelection.indexOf("最低投资额：");
         var minnum = couponSelection.substring(indexnum + 6, couponSelection.length - 1);
+        var couponSelection =$('#couponSelection').val();
+        var selectOption = this.get('selectOption').length;
+        console.log(couponSelection);
+        console.log(selectOption);
         if (num < minnum) {
             showErrors('投资额小于奖券最低投资额');
             return false;
@@ -283,7 +287,11 @@ setTimeout((function () {
             showErrors('单次投标金额不可超过' + CC.loan.rule.max + '元!');
             return false;
         }
-
+        if(couponSelection==""&&selectOption!="0"){
+            $("#mask").css("display", "inline");
+            $(".debank").css("display", "inline");
+            return false;
+        }
         //if (num > CC.user.availableAmount) {
         //    showErrors('账户余额不足，请先充值 !');
         //    return false;
@@ -291,7 +299,18 @@ setTimeout((function () {
 
         window.location.href = '/loan/payment?num='+num+'&loanId='+CC.loan.id+'&placementId='+$('#couponSelection').val()
         //window.open('/loan/payment?num='+num+'&loanId='+CC.loan.id);
+
     });
+    //关闭弹窗
+    investRactive.on('makeSure', function () {
+        $("#mask").css("display", "none");
+        $(".debank").css("display", "none");
+    })
+    //跳转
+    investRactive.on('delete-card', function () {
+        var num = parseInt(this.get('inputNum'), 10); // 输入的值
+        window.location.href = '/loan/payment?num='+num+'&loanId='+CC.loan.id+'&placementId='+$('#couponSelection').val()
+    })
 
     // 初始化倒计时
     if (CC.loan.timeOpen > 0) {
