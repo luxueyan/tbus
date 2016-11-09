@@ -215,6 +215,7 @@
     color: #666;
     font-size: 12px;
     overflow: hidden;
+    line-height: 20px;
 }
 .couponWrapper .couponTitle {
     position: absolute;
