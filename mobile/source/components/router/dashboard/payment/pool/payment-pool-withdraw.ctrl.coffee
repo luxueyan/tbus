@@ -38,7 +38,7 @@ do (_, angular) ->
                         .then ({totalFee, withdrawAmount}) =>
                             @$scope.totalFee = totalFee
 
-                            if withdrawAmount >= 0
+                            if withdrawAmount > 0
                                 @$q.resolve()
                             else
                                 @$q.reject()
