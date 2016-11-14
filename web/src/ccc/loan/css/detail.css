@@ -759,7 +759,7 @@ select::-ms-expand { display: none; }
 }
 .big-pic-wrapper .prev-big {
     left: 0;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0, rgba(0, 0, 0, 0.0001) 100%);
+    /*background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0, rgba(0, 0, 0, 0.0001) 100%);*/
     background-repeat: repeat-x;
 }
 .big-pic-wrapper .control {
@@ -782,7 +782,7 @@ select::-ms-expand { display: none; }
 }
 .big-pic-wrapper .next-big {
     right: 0;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0, rgba(0, 0, 0, 0.5) 100%);
+    /*background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0, rgba(0, 0, 0, 0.5) 100%);*/
     background-repeat: repeat-x;
 }
 
