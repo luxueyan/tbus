@@ -1,7 +1,8 @@
 
 <div id="about" ng-class="{ from_app: is_from_app }">
 
-    <style> body { background-color: #FFF; } </style>
+    <style ng-if="!is_from_app"> body { background-color: #FFF; } </style>
+    <style ng-if="is_from_app"> body { background-color: #FAFAFA; } </style>
 
     <nav class="omit-margin container page-nav" ng-if="!is_from_app">
     <div class="row">
@@ -18,7 +19,7 @@
     <section class="omit-margin detail" ng-switch-when="index">
         <div class="banner" ng-class="{ shadow: !is_from_app }">
             <img class="img-responsive"
-                 ng-src="assets/image/about-banner-03{{ is_from_app ? '-app' : '' }}.jpg"
+                 ng-src="assets/image/about-banner-03.jpg"
             >
         </div>
 
