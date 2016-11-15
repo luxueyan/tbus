@@ -145,6 +145,36 @@ do (_, angular) ->
                 _.every @user.bank_account_list, (item) -> item.account.account isnt value
 
 
+            agreement: (name) ->
+
+                api_path = '/api/v2/cms/category/DECLARATION/name/' + name
+
+                prompt = @$uibModal.open {
+                    size: 'lg'
+                    backdrop: 'static'
+                    windowClass: 'center'
+                    animation: true
+                    templateUrl: 'ngt-payment-agreement.tmpl'
+
+                    resolve: {
+                        content: _.ai '$http', ($http) ->
+                            $http
+                                .get api_path, {cache: true}
+                                .then (response) -> _.get response.data, '[0].content'
+                    }
+
+                    controller: _.ai '$scope, content',
+                        (             $scope, content) ->
+                            angular.extend $scope, {content}
+                }
+
+                once = @$scope.$on '$locationChangeStart', ->
+                    prompt?.dismiss()
+                    do once
+
+                return prompt.result
+
+
             select_bank: (event, store) ->
 
                 do event.preventDefault
