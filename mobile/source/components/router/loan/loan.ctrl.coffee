@@ -78,8 +78,8 @@ do (_, angular, moment, Math, Date) ->
         loanRequest = item.loanRequest
 
         rate = parseFloat (item.rate / 100).toFixed(2)
-        deduction_rate = parseFloat (loanRequest.deductionRate / 100).toFixed(2)
-        basic_rate = rate - deduction_rate
+        # deduction_rate = parseFloat (loanRequest.deductionRate / 100).toFixed(2)
+        # basic_rate = rate - deduction_rate
 
         invest_percent_int = Math.max 1, (item.investPercent * 100) | 0
         invest_percent_int = 0 if item.investPercent is 0
@@ -144,15 +144,15 @@ do (_, angular, moment, Math, Date) ->
             raw: item
 
             rate
-            basic_rate
-            deduction_rate
+            # basic_rate
+            # deduction_rate
             invest_percent_int
             finished_date
 
             time_open: item.timeOpen
             time_close: item.timeLeft + item.serverDate
 
-            corporate_name: item.corporationShortName
+            # corporate_name: item.corporationShortName
             product_key: loanRequest.productKey
             product_type: loanRequest.productKey?.trim().match(/^\w+/)?[0] or 'UNKNOWN'
 
