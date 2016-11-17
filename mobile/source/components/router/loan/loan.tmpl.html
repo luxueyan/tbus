@@ -14,7 +14,11 @@
     <section class="omit-margin container loan-summary-1">
         <div class="row text-center">
             <div class="col-xs-6 rate">
-                <div class="value">{{ loan.rate | number: 1 }}<small>%</small></div>
+                <div class="value">{{
+                    (loan.rate + '').indexOf('.') == -1
+                    ? (loan.rate | number: 1)
+                    : loan.rate
+                }}<small>%</small></div>
                 <div class="name">预期年收益率</div>
             </div>
 
