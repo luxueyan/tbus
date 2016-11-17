@@ -75,7 +75,7 @@ do (_, angular) ->
                     @$scope.store.captcha = '' if reset
 
 
-            signup: ({password, mobile, captcha, mobile_captcha, referral}) ->
+            signup: ({password, mobile, mobile_captcha, referral}) ->
                 @submit_sending = true
 
                 optional = {}
@@ -92,7 +92,7 @@ do (_, angular) ->
                         socialId: bind_social_weixin
                     }
 
-                (@api.register(password, mobile, mobile_captcha, @img_captcha.token, captcha, optional)
+                (@api.register(password, mobile, mobile_captcha, optional)
 
                     .then @api.process_response
 
