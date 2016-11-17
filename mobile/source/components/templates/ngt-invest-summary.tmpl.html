@@ -14,7 +14,11 @@
 
     <div class="body">
         <div class="rate">
-            <div class="value">{{ item.rate | number: 1 }}%</div>
+            <div class="value">{{
+                (item.rate + '').indexOf('.') == -1
+                ? (item.rate | number: 1)
+                : item.rate
+            }}%</div>
             <div class="name">预期年收益率</div>
         </div>
         <div class="info-list">
