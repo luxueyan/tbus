@@ -329,7 +329,7 @@ do (_, angular, moment, Array, Date) ->
             login: (loginName, password) ->
 
                 @$http
-                    .post '/api/web/login', {loginName, password, source: 'mobile'}
+                    .post '/api/web/login', {loginName, password, source: 'MOBILE'}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
