@@ -14,9 +14,13 @@ module.exports = oauth2orize.exchange.password(function (client, username, passw
         loginName: username,
         password: password
     };
-    if (allowSources.indexOf(client.name) > -1) {
-        body.source = client.name.toUpperCase();
-    };
+	if (body.source && body.source != '') {
+        body.source = body.source.toUpperCase();
+    } else {
+        if (allowSources.indexOf(client.name) > -1) {
+            body.source = client.name.toUpperCase();
+        }
+    }
     if ('channel' in client && allowChannels.indexOf(client.channel) > -1) {
         body.channel = client.channel;
     }
