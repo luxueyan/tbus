@@ -96,6 +96,7 @@ exports.doLogin = conext(function *(req, res) {
             grant_type: 'password',
             client_id: config.oauth2client.id,
             client_secret: config.oauth2client.secret,
+            source: req.body.source
         },
     };
     var mobileClient;
