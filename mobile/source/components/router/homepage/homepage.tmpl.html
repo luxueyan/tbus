@@ -32,7 +32,11 @@
                         <h4 class="title">{{ item.title }}</h4>
                         <div class="rate">
                             <span class="value">
-                                <span class="num">{{ item.rate }}</span>
+                                <span class="num">{{
+                                    (item.rate + '').indexOf('.') == -1
+                                    ? (item.rate | number: 1)
+                                    : item.rate
+                                }}</span>
                                 <span class="unit">%</span>
                             </span>
                             <span class="name">预期年化</span>
