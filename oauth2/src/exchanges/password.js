@@ -9,13 +9,13 @@ oauth2orize = require('oauth2orize');
 token = require('../token');
 var allowSources = 'web mobile back batch ccam'.split(' ');
 var allowChannels = 'H5 PC IOS ANDROID'.split(' ');
-module.exports = oauth2orize.exchange.password(function (client, username, password, scope, done) {
+module.exports = oauth2orize.exchange.password(function (client, username, password, scope, req.body, done) {
     var body = {
         loginName: username,
         password: password
     };
-	if (body.source && body.source != '') {
-        body.source = body.source.toUpperCase();
+	if (req.body.source && req.body.source != '') {
+        body.source = req.body.source.toUpperCase();
     } else {
         if (allowSources.indexOf(client.name) > -1) {
             body.source = client.name.toUpperCase();
