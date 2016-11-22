@@ -45,6 +45,7 @@ $('#loginForm').submit(function (e) {
     $postBtn.addClass('disabled').html('登录中...');
 
     request.post('/api/web/login').type('form').send($this.serialize()).end().get('body').then(function (r) {
+        console.log($this.serialize())
         if (r.success) {
             console.log('--', r)
             $postBtn.text('登录成功');
