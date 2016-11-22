@@ -50,7 +50,7 @@ exports.puta = function(token, obj, done){
 exports.posta = function(obj, done){
     obj.createdAt = Date.now();
     return ef(done, crypt.generateToken, function(token){
-        return db.setex('access_token:' + token, 24 * 60 * 60, JSON.stringify(obj), errto(done, done.bind(null, null, token)));
+        return db.setex('access_token:' + token, config.tokenExpireSeconds, JSON.stringify(obj), errto(done, done.bind(null, null, token)));
     });
 };
 function bind$(obj, key, target){

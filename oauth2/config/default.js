@@ -94,6 +94,9 @@ module.exports = {
     after: [], // 会添加到 endpoints 之后的 middlewares
     openApiRules: false, // 打开api代理规则(读写分离)
 
+    // access_token过期时间(s)
+    tokenExpireSeconds: 24 * 60 * 60, // 24小时
+
     //WWW-Authenticate
     authenticate: 'Basic realm="oauth2"'
 }
