@@ -5,6 +5,7 @@ errto = require('errto');
 errs = require('errs');
 db = require('@cc/redis');
 crypt = require('./crypt');
+var config = require('config');
 exports.geta = function(token, done){
     function denied(){
         return done(errs.create({
