@@ -1055,6 +1055,7 @@ p.tips {
   top: 40%;
   left: 40%;
   background: #fff;
+  z-index:3000;
   display: none;
 }
 
