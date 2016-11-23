@@ -235,12 +235,19 @@ function init(type) {
 init(getCurrentType());
 
 window.redeemCoupon = function (btn) {
-    var id = $(btn).data("id");
-    $.post("/api/v2/coupon/MYSELF/redeemCouponIgnoreApproval", {placementId: id}, function (res) {
+  var $btn = $(btn);
+  var id = $btn.data("id");
+  if ($btn.hasClass('disabled')) {
+    return;
+  }
+  $btn.addClass('disabled');
+    $.post("/api/v2/coupon/MYSELF/redeemCouponIgnoreApproval",
+      {placementId: id}, function (res) {
         if (res) {
             alert("兑现成功!");
             location.reload();
         } else {
+          $btn.removeClass('disabled');
             alert("兑现失败!");
         }
     });
