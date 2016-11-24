@@ -1,82 +1,103 @@
 <!--{{JSON.stringify(list)}}-->
 {{#list}}
 <div class="loanItemWrapper">
-  <div class="loan_left">
-    <div class="loan_title">
-      <div class="title_info">
-        <h2>{{title}}</h2>
-      </div>
-      <a href="/loan/{{ id }}">查看详情</a>
-    </div>
-    <div class="loan_info">
-      <div class="info_box rate_box">
-        <div class="rate"><span>{{rate}}</span>%</div>
-        <p class="title">预期收益率</p>
-      </div>
-      <div class="info_box">
-          <div>
-              <span>{{fduration}}</span>{{fdurunit}}
-              <span class="assign_time">7天可转</span>
-          </div>
-
-        <p class="title">投资期限</p>
-      </div>
-      <div class="info_box">
-        <div><span>{{minAmount}}</span></div>
-        <p class="title">起投金额 ({{minAmountUnit}})</p>
-      </div>
-
-    </div>
-      <div class="assign_tip">
-          产品计息后持有7天以上可进行转让（具体转让规则可查看
-          <a href="/help/transfer" target="_blank">帮助中心</a>）
-      </div>
-  </div>
-  <div class="loan_right">
-    <div class="leftTime">
-      <img src="/ccc/high/img/clock_icon.png" alt="" />
-      <div class="time">
-          {{#if status === 'SCHEDULED'}}
-          <div class="investbtn-time" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}" data-serv="{{ serverDate }}">
-          </div>
-          {{else}}
-          <div class="investbtn-time" data-status="{{ status }}" data-id="{{id}}" data-open="{{ timeLeft }}" data-serv="0" style=""></div>
-          {{/if}}
-     </div>
-   </div>
-   <div class="leftAmount">
-     剩余可投资 (元)：<span>{{Fbalance}}</span>
-   </div>
-   <!-- <div class="process">
-       <div class="rate-chart">
-           <div class="easy-pie-chart pie" data-percent="{{ investPercent }}" data-status='{{status}}'>
-               <span class="percentageNum">{{ investPercent }} </span>
-           </div>
-       </div>
-   </div> -->
-    <div class="percentage">
-        <p class="word">进度</p>
-        <div class="progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ investPercent }}%;">
+    <div class="loan_left">
+        <div class="loan_title">
+            <div class="title_info">
+                <h2>{{title}}</h2>
             </div>
-            <p class="progress-bar-word">{{ investPercent }}%</p>
+            <a href="/loan/{{ id }}">查看详情</a>
+        </div>
+        <div class="loan_info">
+            <div class="info_box rate_box">
+                <div class="rate"><span>{{rate}}</span>%</div>
+                <p class="title">预期收益率</p>
+            </div>
+            <div class="info_box">
+                <div>
+                    <span>{{fduration}}</span>{{fdurunit}}
+                    <span class="assign_time">7天可转</span>
+                </div>
+
+                <p class="title">投资期限</p>
+            </div>
+            <div class="info_box">
+                <div><span>{{minAmount}}</span></div>
+                <p class="title">起投金额 ({{minAmountUnit}})</p>
+            </div>
+
+        </div>
+        <div class="assign_tip">
+            产品计息后持有7天以上可进行转让（具体转让规则可查看
+            <a href="/help/transfer" target="_blank">帮助中心</a>）
         </div>
     </div>
-    <div class="investBtn">
-        {{#if status === 'OPENED'}}
-        <a class="open" href="/loan/{{id}}">立即投资</a>
-        {{/if}} {{#if status === 'SCHEDULED'}}
-        <a href="/loan/{{id}}">即将开始</a>
-        <!--<div class="investbtn-time" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}" data-serv="{{ serverDate }}" style="margin-top:5px;color: black;width: 180px;text-align: center;"></div>-->
-        {{/if}} {{#if status === 'FINISHED'||status === 'FAKESETTLED' || status === 'FAILED'}}
-        <a href="/loan/{{id}}">已售罄</a>
-        {{/if}}{{#if status === 'SETTLED'}}
-        <a href="/loan/{{id}}">计息中</a>
-        {{/if}} {{#if status === 'CLEARED'}}
-        <a href="/loan/{{id}}">已结息</a>
-        {{/if}}
+    <div class="loan_right">
+        <div class="leftTime">
+            {{#if status=== 'FINISHED' ||status=== 'SETTLED'}}
+            <div style="height: 20px"></div>
+            {{else}}
+            <img src="/ccc/high/img/clock_icon.png" alt=""/>
+            {{/if}}
+            <div class="time">
+                {{#if status === 'SCHEDULED'}}
+                <div class="investbtn-time" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}"
+                     data-serv="{{ serverDate }}">
+                </div>
+                {{else}}
+                <div class="investbtn-time" data-status="{{ status }}" data-id="{{id}}" data-open="{{ timeLeft }}"
+                     data-serv="0" style=""></div>
+                {{/if}}
+            </div>
+        </div>
+        <div class="leftAmount">
+            剩余可投资 (元)：<span>
+            {{#if status=== 'FINISHED' ||status=== 'SETTLED'}}
+            0.00
+            {{else}}
+            {{Fbalance}}
+            {{/if}}
+        </span>
+        </div>
+        <!-- <div class="process">
+            <div class="rate-chart">
+                <div class="easy-pie-chart pie" data-percent="{{ investPercent }}" data-status='{{status}}'>
+                    <span class="percentageNum">{{ investPercent }} </span>
+                </div>
+            </div>
+        </div> -->
+        <div class="percentage">
+            <p class="word">进度</p>
+
+            <div class="progress">
+                {{#if status=== 'FINISHED'}}
+                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+                         style="width: 100%;">
+                    </div>
+                    <p class="progress-bar-word">100%</p>
+                {{else}}
+                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+                         style="width: {{ investPercent }}%;">
+                    </div>
+                    <p class="progress-bar-word">{{ investPercent }}%</p>
+                {{/if}}
+            </div>
+        </div>
+        <div class="investBtn">
+            {{#if status === 'OPENED'}}
+            <a class="open" href="/loan/{{id}}">立即投资</a>
+            {{/if}} {{#if status === 'SCHEDULED'}}
+            <a href="/loan/{{id}}">即将开始</a>
+            <!--<div class="investbtn-time" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}" data-serv="{{ serverDate }}" style="margin-top:5px;color: black;width: 180px;text-align: center;"></div>-->
+            {{/if}} {{#if status === 'FINISHED'||status === 'FAKESETTLED' || status === 'FAILED'}}
+            <a href="/loan/{{id}}">已售罄</a>
+            {{/if}}{{#if status === 'SETTLED'}}
+            <a href="/loan/{{id}}">计息中</a>
+            {{/if}} {{#if status === 'CLEARED'}}
+            <a href="/loan/{{id}}">已结息</a>
+            {{/if}}
+        </div>
     </div>
-  </div>
 </div>
 
 {{/list}}
