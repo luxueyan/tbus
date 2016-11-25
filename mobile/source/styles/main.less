@@ -1310,9 +1310,26 @@ a {
 
         .detail {
             padding: 30px 25px 20px;
+            color: #696969;
+
+            .subject, .feature, .rule {
+                position: relative;
+                padding: 25px 0;
+
+                &:before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 10px;
+                    right: 10px;
+                    height: 1px;
+                    background-color: #D9D9D9;
+                }
+            }
 
             .subject {
                 h3 {
+                    margin: 10px 0 15px;
                     font-size: 16px;
                     color: #C58E2E;
                     text-align: center;
@@ -1321,7 +1338,6 @@ a {
                 p {
                     font-size: 13px;
                     line-height: 1.8;
-                    color: #696969;
                     text-indent: 2em;
                     text-align: justify;
                 }
@@ -1329,9 +1345,39 @@ a {
 
             .feature {
                 h2 {
+                    position: relative;
                     font-size: 20px;
                     color: #C58E2E;
                     text-align: center;
+
+                    &:before, &:after {
+                        .transform(translateY(-50%));
+                        content: "";
+                        position: absolute;
+                        top: 50%;
+                        width: 22px;
+                        height: 2px;
+                        background-color: #C58E2E;
+                    }
+
+                    &:before {
+                        left: 0;
+                    }
+
+                    &:after {
+                        right: 0;
+                    }
+                }
+
+                .list {
+                    > li {
+                        margin-top: 25px;
+                        font-size: 13px;
+                    }
+                }
+
+                .media-left {
+                    padding-right: 15px;
                 }
 
                 .icon {
@@ -1358,10 +1404,41 @@ a {
                         background-position: 0 -432px/2;
                     }
                 }
+
+                h4 {
+                    margin: 0 0 10px;
+                    font-size: 16px;
+                    color: #F30404;
+                }
+
+                em {
+                    font-style: normal;
+                    color: #C58E2E
+                }
             }
 
             .rule {
+                h3 {
+                    margin: 0 0 5px;
+                    font-size: 18px;
+                }
 
+                h4 {
+                    margin: 0 0 5px;
+                    font-size: 15px;
+                    color: #F30404;
+                }
+
+                p {
+                    font-size: 13px;
+                }
+
+                .list {
+                    > li {
+                        margin-top: 15px;
+                        text-align: justify;
+                    }
+                }
             }
 
             .qrcode {
@@ -1370,7 +1447,6 @@ a {
                 p {
                     margin-top: 10px;
                     font-size: 12px;
-                    color: #696969;
                 }
             }
         }
