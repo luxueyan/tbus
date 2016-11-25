@@ -8,8 +8,6 @@ do (_, angular) ->
 
                 @$window.scrollTo 0, 0
 
-                @$rootScope.state = 'dashboard'
-
                 {next} = @$routeParams
 
                 @next_path = next
@@ -25,6 +23,8 @@ do (_, angular) ->
 
                 @$scope.has_referral = !!@$scope.store.referral
                 @submit_sending = false
+
+                @$rootScope.state = 'dashboard' unless @$scope.has_referral
 
 
             get_verification_code: ({mobile, captcha}) ->
