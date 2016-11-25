@@ -812,6 +812,54 @@ a {
         }
     }
 
+    .download-app {
+        position: fixed;
+        z-index: 9;
+        top: 40px;
+        left: 0;
+        right: 0;
+        padding: 8px 15px;
+        background-color: #FFF;
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+
+        .list {
+            .flex-display(center; space-between);
+
+            > .item {
+                &.text-wrap {
+                    .flex(1);
+                }
+
+                + .item {
+                    padding-left: 7px;
+                }
+            }
+        }
+
+        h4 {
+            margin: 4px 0;
+            font-size: 15px;
+            color: @color-theme-main;
+            white-space: nowrap;
+
+            .desc {
+                font-size: 13px;
+                color: #C79F62;
+            }
+        }
+
+        p {
+            margin: 0;
+            font-size: 12px;
+            white-space: nowrap;
+            color: #585858;
+        }
+
+        .btn {
+            .button-size(1px; 8px; 14px; 1.5; 3px);
+        }
+    }
+
     .announcement {
         padding: 3px 15px;
         height: 23px;

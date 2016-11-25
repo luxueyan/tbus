@@ -20,6 +20,26 @@
 
     <div class="banner" x-carousel-banner data-delay-in-seconds="4"></div>
 
+    <div class="download-app" ng-hide="hide_download_app">
+        <div class="list">
+            <div class="item" ng-click="hide_download_app = true">
+                <img width="18" ng-src="assets/image/close-icon.png">
+            </div>
+            <div class="item">
+                <img width="35" ng-src="assets/image/logo-sm.png">
+            </div>
+            <div class="item text-wrap">
+                <h4>汇财富  <span class="desc">卓越金融 财富人生</span></h4>
+                <p>下载APP <span class="desc">随时随地安全理财</span></p>
+            </div>
+            <div class="item">
+                <a class="btn btn-theme btn-sm"
+                   href="http://a.app.qq.com/o/simple.jsp?pkgname=com.tahone.client"
+                >立即下载</a>
+            </div>
+        </div>
+    </div>
+
     <section class="announcement omit-margin">
         <div class="content">我们为您选择最安全，最适合的理财产品</div>
     </section>
