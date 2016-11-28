@@ -22,22 +22,17 @@ var ractive = new Ractive({
             self.set("listD",res.questions.slice(9,10));
             riskId=res.id;
         });
-        request('GET', '/api/v2/user/MYSELF/userinfo')
-            .end()
-            .then(function (r) {
-                console.log(r.body);
-                self.set("timeLastUpdated", moment(r.body.surveyFilling.timeLastUpdated).format('YYYY-MM-DD HH:mm:ss'));
-                rank=r.body.surveyScore.rank;
-                if(rank){
-                    self.set('question',false);
-                    self.set('result',true);
-                }
-                self.set('type',r.body.surveyScore.name);
-            });
     },
     oncomplete:function(){
         var self = this;
         accountService.getUserInfo(function (userinfo) {
+            self.set("timeLastUpdated", moment(userinfo.surveyFilling.timeLastUpdated).format('YYYY-MM-DD HH:mm:ss'));
+            rank=userinfo.surveyScore.rank;
+            if(rank){
+                self.set('question',false);
+                self.set('result',true);
+            }
+            self.set('type',userinfo.surveyScore.name);
             if(userinfo.userInfo.user.idNumber) {
                 self.on('getScore', function () {
                     var sum = 0;
