@@ -24,7 +24,28 @@ do (_, angular) ->
                 @$scope.has_referral = !!@$scope.store.referral
                 @submit_sending = false
 
-                @$rootScope.state = 'dashboard' unless @$scope.has_referral
+                EXTEND_API @api
+
+                if @$scope.has_referral
+                    @get_referral_info(referral)
+                else
+                    @$rootScope.state = 'dashboard'
+
+
+            get_referral_info: (referral) ->
+
+                @$scope.loading_referral_info = true
+
+                (@api.get_referral_info(referral)
+
+                    .then @api.process_response
+
+                    .then (response) =>
+                        @$scope.referral_info = _.get(response, 'data')
+
+                    .finally =>
+                        @$scope.loading_referral_info = false
+                )
 
 
             get_verification_code: ({mobile, captcha}) ->
@@ -192,3 +213,19 @@ do (_, angular) ->
                 do once
 
             return prompt.result
+
+
+
+
+
+    EXTEND_API = (api) ->
+
+        api.__proto__.get_referral_info= (inviteCode) ->
+
+            @$http
+                .post '/api/v2/users/getReferralInfo', {inviteCode}
+
+                .then @TAKE_RESPONSE_DATA
+                .catch @TAKE_RESPONSE_ERROR
+
+

@@ -1299,13 +1299,86 @@ a {
         padding-bottom: 80px;
         background: url("@{path-image}/register/footer.png") no-repeat center bottom;
         background-size: 100% auto;
+        background-color: #FFF;
 
         .banner {
 
         }
 
         .form-wrap {
+            padding: 30px 25px 0;
+        }
 
+        .form-flatten {
+            .inputs {
+                margin-bottom: 10px;
+                overflow: auto;
+            }
+
+            .form-group.merge {
+                margin-bottom: 10px;
+
+                .form-group-inner {
+                    border: 1px solid #D29DA6;
+                    border-radius: 4px;
+                    overflow: hidden;
+                }
+
+                label {
+                    position: relative;
+                    margin: 0 10px;
+                    text-align: left;
+
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        right: -10px;
+                        top: 5px;
+                        bottom: 5px;
+                        width: 1px;
+                        background-color: #B9B7B7;
+                    }
+                }
+
+                input.form-control {
+                    padding-left: 10px;
+
+                    &::-webkit-input-placeholder {
+                        font-size: 13px;
+                    }
+                }
+
+                &.mobile-captcha {
+                    .btn-action {
+                        .button-size(4px; 6px; 12px; 1; 2px);
+                        right: 10px;
+                    }
+                }
+            }
+
+            .password-toggle {
+                right: -2px;
+            }
+
+            .agreement {
+                label {
+                    white-space: nowrap;
+                }
+            }
+
+            .btn-submit-wrap {
+                margin-left: 35px;
+                margin-right: 35px;
+            }
+
+            button[type="submit"] {
+                .button-size(11px; 9px; 14px; 1; 2px);
+            }
+        }
+
+        .referral_info {
+            margin-bottom: 10px;
+            font-size: 13px;
         }
 
         .detail {
@@ -1330,9 +1403,10 @@ a {
             .subject {
                 h3 {
                     margin: 10px 0 15px;
-                    font-size: 16px;
+                    font-size: 15px;
                     color: #C58E2E;
                     text-align: center;
+                    white-space: nowrap;
                 }
 
                 p {
