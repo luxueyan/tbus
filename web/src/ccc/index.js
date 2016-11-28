@@ -22,9 +22,6 @@ var port = Number(process.env.PORT || config.port) || 4000;
 import {app, server} from 'dysonshell/instance';
 
 app.locals.dsLayoutPath = 'ccc/global/views/layouts/default';
-app.locals.title = '汇财富-卓越金融，财富人生';
-app.locals.keywords = '';
-app.locals.description = '';
 if (config.startOAuthServer) {
     config.urlBackend = 'http://127.0.0.1:' + port + '/';
 }

@@ -94,25 +94,6 @@ var infoRactive = new Ractive({
 		accountService.checkAuthenticate(function (r) {
 			infoRactive.set('paymentPasswordHasSet', r.paymentAuthenticated);
 			infoRactive.set('emailAuthenticated', r.emailAuthenticated);
-
-			accountService.getUserInfo(function (res) {
-				//console.log(res)
-				//infoRactive.set('user', res.user);
-
-				if (res.userInfo.user.name) {
-					safetyProgress += 25;
-				}
-				if (r.emailAuthenticated) {
-					safetyProgress += 25;
-				}
-				if (infoRactive.get('paymentPasswordHasSet')) {
-					safetyProgress += 25;
-				}
-				infoRactive.set('safetyProgress', safetyProgress)
-				if (safetyProgress > 75) {
-					infoRactive.set('riskText', '高');
-				}
-			});
 		});
 
 		//accountService.getGroupMedal(function (r) {
