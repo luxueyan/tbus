@@ -131,7 +131,14 @@ do (_, angular) ->
 
                             .then (user) =>
 
-                                @$location.path 'download-app'
+                                @$scope.$on '$locationChangeStart', (event, new_path) =>
+                                    event.preventDefault()
+                                    @$window.location = new_path
+
+                                @$location
+                                    .path 'download-app'
+                                    .search {}
+
                                 return
 
                                 if user.has_bank_card and user.has_payment_password
