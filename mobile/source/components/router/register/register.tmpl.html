@@ -1,5 +1,28 @@
 
-<div id="register">
+<div>
+    <param ng-model="msg" ng-init="msg = {
+        MOBILE_EXISTS: '手机号已被占用',
+        MOBILE_USED: '手机号已被占用',
+        CAPTCHA_INVALID: '手机验证码不匹配',
+        SMS_LOGIN_ERROR: '手机验证码不匹配',
+        MOBILE_CAPTCHA_INVALID: '手机验证码不匹配',
+        MOBILE_CAPTCHA_ALREADY_SENT: '验证码已发送',
+        MOBILE_SMS_CAPTCHA_ALREADY_SEND: '验证码已发送',
+        SEND_SMS_CAPTCHA_FAILED: '验证码发送失败',
+        LOGINNAME_EXISTS: '用户名已被占用',
+        INVALID_CAPTCHA: '图形验证码错误或已失效',
+        IMG_CAPTCHA_NULL: '请输入图形验证码',
+        IMG_CAPTCHA_REQUIRED: '请输入图形验证码',
+        INVITECODE_INVALID: '邀请码无效',
+        USERINVITECODE_INVALID: '推荐码不存在',
+
+        SUCCEED: '注册成功',
+        UNKNOWN: '系统繁忙，请稍后重试！',
+    }">
+</div>
+
+
+<div id="register" ng-if="!has_referral">
     <style> body { background-color: #FFF; } </style>
 
     <nav class="omit-margin container page-nav">
@@ -11,29 +34,6 @@
         <span class="col-xs-3">&nbsp;</span>
     </div>
     </nav>
-
-    <div>
-      <param ng-model="msg" ng-init="msg = {
-          MOBILE_EXISTS: '手机号已被占用',
-          MOBILE_USED: '手机号已被占用',
-          CAPTCHA_INVALID: '手机验证码不匹配',
-          SMS_LOGIN_ERROR: '手机验证码不匹配',
-          MOBILE_CAPTCHA_INVALID: '手机验证码不匹配',
-          MOBILE_CAPTCHA_ALREADY_SENT: '验证码已发送',
-          MOBILE_SMS_CAPTCHA_ALREADY_SEND: '验证码已发送',
-          SEND_SMS_CAPTCHA_FAILED: '验证码发送失败',
-          LOGINNAME_EXISTS: '用户名已被占用',
-          INVALID_CAPTCHA: '图形验证码错误或已失效',
-          IMG_CAPTCHA_NULL: '请输入图形验证码',
-          IMG_CAPTCHA_REQUIRED: '请输入图形验证码',
-          INVITECODE_INVALID: '邀请码无效',
-          USERINVITECODE_INVALID: '推荐码不存在',
-
-          SUCCEED: '注册成功',
-          UNKNOWN: '系统繁忙，请稍后重试！',
-      }">
-    </div>
-
     <div class="page-content">
 
     <div class="logo shadow"><img height="60" ng-src="assets/image/logo-2.png"></div>
@@ -289,6 +289,277 @@
     </form>
     </div>
 </div>
+
+
+
+
+
+<div id="register" class="has_referral" ng-if="has_referral">
+    <div class="banner">
+        <img class="img-responsive" ng-src="assets/image/register/banner.png">
+    </div>
+
+    <div class="form-wrap">
+    <form class="form form-flatten form-horizontal" name="form"
+          autocapitalize="none"
+          autocomplete="off"
+          autocorrect="off"
+          novalidate
+          ng-submit="self.signup(store)"
+    >
+        <div class="inputs container">
+            <div class="form-group merge"
+                 ng-class="{
+                    'has-error': form.mobile.$invalid && form.mobile.$dirty,
+                 }"
+            >
+                <div class="form-group-inner">
+                    <label for="mobile">手机号</label>
+                    <div class="form-control-wrap">
+                        <input class="form-control input-target input-lg cell" type="tel"
+                               id="mobile"
+                               name="mobile"
+                               ng-model="store.mobile"
+                               ng-model-options="{
+                                   updateOn: 'blur default',
+                                   debounce: {blur: 0, default: 1000}
+                               }"
+                               ng-pattern="/^1\d{10}$/"
+                               placeholder="请输入手机号码"
+                               maxlength="11"
+                               required
+                        >
+                    </div>
+                </div>
+
+                <div class="help-block"
+                     ng-show="form.mobile.$invalid && form.mobile.$dirty"
+                >
+                    <span ng-show="form.mobile.$error.required">必须填写</span>
+                    <span ng-show="form.mobile.$error.pattern">填写中国大陆正确的 11 位手机号</span>
+                </div>
+            </div>
+
+            <div class="form-group merge mobile-captcha"
+                 ng-class="{
+                    'has-error': form.mobile_captcha.$invalid && form.mobile_captcha.$dirty,
+                    init: !self.captcha.has_sent,
+                 }"
+            >
+                <div class="form-group-inner">
+                    <label for="mobile_captcha">短信验证码</label>
+                    <div class="form-control-wrap">
+                        <input class="form-control input-target input-lg captcha" type="tel"
+                               id="mobile_captcha"
+                               name="mobile_captcha"
+                               x-focus-on="self.captcha.buffering"
+                               ng-model="store.mobile_captcha"
+                               ng-model-options="{
+                                   updateOn: 'blur default',
+                                   debounce: {blur: 0, default: 1000}
+                               }"
+                               pattern="^\d{6}$"
+                               autocapitalize="none"
+                               autocomplete="off"
+                               autocorrect="off"
+                               placeholder="请输入短信验证码"
+                               maxlength="6"
+                               required
+                        >
+
+                        <button class="btn btn-sm btn-action btn-plain" type="button"
+                                ng-click="self.get_verification_code(store)"
+                                ng-disabled="!store.mobile || (self.img_captcha.token && !store.captcha) || self.captcha.buffering"
+                        >
+                            <span class="text">获取验证码</span>
+                            <span class="count" ng-show="self.captcha.buffering">
+                                {{ self.captcha.count | number: 0 }}秒
+                            </span>
+                            <span class="icon" ng-hide="self.captcha.buffering">重发</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="help-block"
+                     ng-show="form.mobile_captcha.$invalid && form.mobile_captcha.$dirty"
+                >
+                    <span ng-show="form.mobile_captcha.$error.required">必须填写</span>
+                    <span ng-show="form.mobile_captcha.$error.pattern">请输入6位数字</span>
+                </div>
+            </div>
+
+            <div class="form-group merge"
+                 ng-class="{'has-error': form.password.$invalid && form.password.$dirty}"
+                 ng-init="is_password_visible = false"
+            >
+                <div class="form-group-inner">
+                    <label for="password">密码</label>
+                    <div class="form-control-wrap">
+                        <input class="form-control input-target input-lg"
+                               type="{{ is_password_visible ? 'text' : 'password' }}"
+                               id="password"
+                               name="password"
+                               ng-model="store.password"
+                               ng-model-options="{
+                                   updateOn: 'blur default',
+                                   debounce: {blur: 0, default: 1000}
+                               }"
+                               ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,}$/"
+                               minlength="8"
+                               ng-maxlength="20"
+                               placeholder="至少8位数字字母组合"
+                               required
+                        >
+
+                        <button type="button" class="btn btn-link password-toggle"
+                                ng-click="is_password_visible = !is_password_visible"
+                        >
+                            <span ng-show="!is_password_visible">查看</span>
+                            <span ng-show="is_password_visible">隐藏</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="help-block"
+                      ng-show="form.password.$invalid && form.password.$dirty"
+                >
+                    <span ng-show="form.password.$error.pattern">至少8位数字字母组合</span>
+                    <span ng-show="form.password.$error.maxlength">不能超过20位</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="referral_info">
+            <div ng-hide="loading_referral_info" ng-if="referral_info">
+                邀请人：{{ referral_info.mobile }} {{ referral_info.name }}
+            </div>
+
+            <p class="text-center loading" ng-show="loading_referral_info">
+                <img src="assets/image/spinner.gif">
+            </p>
+        </div>
+
+        <div class="agreement">
+            <label>
+                <input type="checkbox" ng-init="agreement = true" ng-model="agreement" required>
+                我阅读并同意
+                <a href="#" ng-click="self.agreement('网站注册协议')">《网站注册协议》</a>、<a href="#" ng-click="self.agreement('服务协议')">《服务协议》</a>
+            </label>
+        </div>
+
+        <p class="btn-submit-wrap">
+            <button type="submit" class="btn btn-theme btn-block"
+                    ng-disabled="form.$invalid || self.submit_sending"
+            >{{ self.submit_sending ? '注册中...' : '立即注册' }}</button>
+        </p>
+    </form>
+    </div>
+
+    <div class="detail">
+        <div class="subject">
+            <h3>深发展银行原行长、平安银行原董事长领衔</h3>
+            <p>太合汇·汇财富是由太合汇资本倾力打造的互联网金融资产交易服务平台，专门为白领、中产精英等高潜力人群提供专业、可信赖的财富管理服务，实现财富增值。</p>
+        </div>
+
+        <div class="feature">
+            <h2>太合汇•汇财富四大优势</h2>
+            <ul class="list-unstyled list">
+                <li>
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <param class="icon icon-1">
+                        </div>
+                        <div class="media-body media-middle">
+                            <h4>够安全</h4>
+                            <ul class="list-unstyled">
+                                <li>资深银行级的风险管理团队
+                                <li>资金专款专用央行指定机构监管
+                                <li><em>精选世界500强/优质上市公司/</em>
+                                <li><em>信用评级AA+以上企业</em>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <param class="icon icon-2">
+                        </div>
+                        <div class="media-body media-middle">
+                            <h4>够专业</h4>
+                            <ul class="list-unstyled">
+                                <li>来自银行、信托等经验丰富的投资决策团队
+                                <li><em>全员通过金融行业资格认证</em>
+                                <li>360度项目审核 优中选优
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <param class="icon icon-3">
+                        </div>
+                        <div class="media-body media-middle">
+                            <h4>够便捷</h4>
+                            <ul class="list-unstyled">
+                                <li>PC/APP/微信一站式理财
+                                <li><em>投资自由转让  提现即时到账</em>
+                                <li>支持16家国内主要银行
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <param class="icon icon-4">
+                        </div>
+                        <div class="media-body media-middle">
+                            <h4>收益高</h4>
+                            <ul class="list-unstyled">
+                                <li>优选项目 多种期限灵活配置
+                                <li><em>预期收益率是银行活期的16.8倍</em>
+                                <li>历史到期本息100%兑付
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="rule">
+            <h3>活动规则</h3>
+            <p>即日起，在太合汇•汇财富上注册/绑卡就有多重好礼等你！</p>
+
+            <ul class="list-unstyled list">
+                <li>
+                    <h4>第一重</h4>
+                    <p>新用户注册就送两大红包，分别是面值为10元的返现券一张（投资后可直接兑换提现）和面值为1000元的增值券一张；</p>
+                </li>
+                <li>
+                    <h4>第二重</h4>
+                    <p>所有注册用户绑定银行卡就送面值为18元的返现券一张；</p>
+                </li>
+                <li>
+                    <h4>第三重</h4>
+                    <p>所有用户首次投资就送面值为0.2%/年的加息券一张；</p>
+                </li>
+                <li>
+                    <h4>第四重</h4>
+                    <p>老用户每邀请1位用户注册就送面值为0.2%/年的加息券一张。多邀多得，数量5000张，发完为止。</p>
+                    <p>相关红包使用细则可在“我的-我的红包”中查看。</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="qrcode">
+            <img width="200" ng-src="assets/image/register/qrcode.png">
+            <p>长按二维码关注太合汇微信公众号</p>
+        </div>
+    </div>
+</div>
+
 
 
 

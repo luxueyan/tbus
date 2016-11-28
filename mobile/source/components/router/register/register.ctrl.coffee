@@ -8,8 +8,6 @@ do (_, angular) ->
 
                 @$window.scrollTo 0, 0
 
-                @$rootScope.state = 'dashboard'
-
                 {next} = @$routeParams
 
                 @next_path = next
@@ -25,6 +23,29 @@ do (_, angular) ->
 
                 @$scope.has_referral = !!@$scope.store.referral
                 @submit_sending = false
+
+                EXTEND_API @api
+
+                if @$scope.has_referral
+                    @get_referral_info(referral)
+                else
+                    @$rootScope.state = 'dashboard'
+
+
+            get_referral_info: (referral) ->
+
+                @$scope.loading_referral_info = true
+
+                (@api.get_referral_info(referral)
+
+                    .then @api.process_response
+
+                    .then (response) =>
+                        @$scope.referral_info = _.get(response, 'data')
+
+                    .finally =>
+                        @$scope.loading_referral_info = false
+                )
 
 
             get_verification_code: ({mobile, captcha}) ->
@@ -109,6 +130,10 @@ do (_, angular) ->
                         (@api.fetch_current_user()
 
                             .then (user) =>
+
+                                @$location.path 'download-app'
+                                return
+
                                 if user.has_bank_card and user.has_payment_password
 
                                     unless @next_path
@@ -192,3 +217,19 @@ do (_, angular) ->
                 do once
 
             return prompt.result
+
+
+
+
+
+    EXTEND_API = (api) ->
+
+        api.__proto__.get_referral_info= (inviteCode) ->
+
+            @$http
+                .post '/api/v2/users/getReferralInfo', {inviteCode}
+
+                .then @TAKE_RESPONSE_DATA
+                .catch @TAKE_RESPONSE_ERROR
+
+

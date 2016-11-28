@@ -510,6 +510,25 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                         templateUrl: 'components/router/help/help.tmpl.html'
                     }
 
+                    .when '/download-app', {
+                        controller: 'DownloadAppCtrl as self'
+                        templateUrl: 'components/router/download/app.tmpl.html'
+                        resolve:
+                            wx: _.ai 'api, $location, $route, $q, $window',
+                                (     api, $location, $route, $q, $window) ->
+                                    deferred = do $q.defer
+
+                                    is_wechat = /MicroMessenger/.test $window.navigator.userAgent
+
+                                    if is_wechat
+                                        $script '//res.wx.qq.com/open/js/jweixin-1.0.0.js', ->
+                                            deferred.resolve $window.wx or {}
+                                    else
+                                        deferred.resolve {}
+
+                                    return deferred.promise
+                    }
+
                     .otherwise redirectTo: '/'
 
 
