@@ -6,12 +6,10 @@ var log = require('bunyan-hub-logger')({
     app: 'web',
     name: 'payment'
 });
-var protocol = config.useHttps ? 'https://' : (config.payment && config.payment
-    .pnr && config.payment.pnr.protocol || 'http://');
+var protocol = config.useHttps ? 'https://' : (config.payment && config.payment.pnr && config.payment.pnr.protocol || 'http://');
 var postUrl = (config.payment && config.payment.pnr && config.payment.pnr.postUrl) ||
-    ((process.env.NODE_ENV || 'development') === 'development' || process.env.NODE_APP_INSTANCE === 'uat' ?
-    'http://mertest.chinapnr.com/muser/publicRequests' :
-    'https://lab.chinapnr.com/muser/publicRequests');
+    ((process.env.NODE_ENV || 'development') === 'development' || process.env.NODE_APP_INSTANCE === 'uat' ? 'http://mertest.chinapnr.com/muser/publicRequests' : 'https://lab.chinapnr.com/muser/publicRequests');
+
 module.exports = function (router) {
     router.get('/payment/return', function (req, res) {
         var layoutHidden = !config.paymentReturnLayout;

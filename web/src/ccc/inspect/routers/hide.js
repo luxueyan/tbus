@@ -6,8 +6,8 @@ var httpProxy = require('http-proxy');
 var APP_ROOT = config.dsAppRoot;
 
 var viewPaths = glob.sync('ccc/*/views/**/*.html', {
-        cwd: APP_ROOT,
-    })
+    cwd: APP_ROOT,
+})
     .map(function (viewPath) {
         return viewPath.split('/').slice(3).join('/')
             .replace(/\.html$/, '')
@@ -21,7 +21,7 @@ module.exports = function (router) {
         res.set('Content-Type', 'text/html; charset=utf-8');
         res.write('<!doctype html><p>以下是所有页面模板路径（不一定所有路径都可以直接访问</p><ul>');
         viewPaths.forEach(function (viewPath) {
-            res.write('<li><a href="'+viewPath+'" target="_blank">'+escape(viewPath)+'</a></li>');
+            res.write('<li><a href="' + viewPath + '" target="_blank">' + escape(viewPath) + '</a></li>');
         });
         res.end('</ul>');
     });
@@ -44,4 +44,4 @@ module.exports = function (router) {
         }
         proxyApi.web(req, res, {}, next);
     });
-}
+};
