@@ -130,6 +130,10 @@ do (_, angular) ->
                         (@api.fetch_current_user()
 
                             .then (user) =>
+
+                                @$location.path 'download-app'
+                                return
+
                                 if user.has_bank_card and user.has_payment_password
 
                                     unless @next_path
