@@ -124,22 +124,22 @@ do (_, angular) ->
                     .then (data) =>
                         @$scope.is_register_successful = true
 
+                        @$scope.$on '$locationChangeStart', (event, new_path) =>
+                            event.preventDefault()
+                            @$window.location = new_path
+
+                        @$location
+                            .path 'download-app'
+                            .search {}
+
+                        return
+
                         # @$rootScope.$on '$locationChangeSuccess', =>
                         #     @$window.location.reload()
 
                         (@api.fetch_current_user()
 
                             .then (user) =>
-
-                                @$scope.$on '$locationChangeStart', (event, new_path) =>
-                                    event.preventDefault()
-                                    @$window.location = new_path
-
-                                @$location
-                                    .path 'download-app'
-                                    .search {}
-
-                                return
 
                                 if user.has_bank_card and user.has_payment_password
 
