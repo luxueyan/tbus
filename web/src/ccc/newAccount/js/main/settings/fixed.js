@@ -24,6 +24,13 @@ var fixedRactive = new Ractive({
         var amoutArray = holdTotalAmount.split('.');
         this.set('holdTotalAmount', parseInt(amoutArray[0]));
         this.set('hMore', amoutArray[1]);
+
+        $.get('/api/v2/creditassign/list/user/MYSELF?status=OPEN&status=FINISHED', function (o) {
+            that.set('ASSIGN', o.totalSize);
+        });
+        $.get('/api/v2/user/MYSELF/invest/list/1/4?status=CLEARED', function (o) {
+            that.set('CLEARED', o.result.totalSize);
+        });
     }
 });
 
@@ -123,6 +130,7 @@ function init(type) {
                     this.set('total', o.result.totalSize);
                     this.set('pageOne', o.result.results);
                     this.set('list', o.result.results);
+                    fixedRactive.set(type,o.result.totalSize);
                 }
                 this.renderPager();
             },
