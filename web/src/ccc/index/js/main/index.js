@@ -166,12 +166,8 @@ IndexService.getLoanSummary(function (list) {
     //});
     initailEasyPieChart();
     ininconut();
-
-});
-
-IndexService.getLatestScheduled(function (loan) {
-    var serverDate = loan.serverDate;
-    var leftTime = utils.countDown.getCountDownTime2(loan.timeOpen,
+    var serverDate = list.serverDate;
+    var leftTime = utils.countDown.getCountDownTime2(list.timeOpen,
         serverDate);
     var countDownRactive = new Ractive({
         el: ".next-time",
@@ -187,7 +183,7 @@ IndexService.getLatestScheduled(function (loan) {
 
     setInterval((function () {
         serverDate += 1000;
-        var leftTime = utils.countDown.getCountDownTime2(loan.timeOpen,
+        var leftTime = utils.countDown.getCountDownTime2(list.timeOpen,
             serverDate);
         countDownRactive.set('countDown', {
             hours: leftTime.hour,
@@ -195,7 +191,38 @@ IndexService.getLatestScheduled(function (loan) {
             seconds: leftTime.sec
         });
     }), 1000);
+
+
 });
+
+//IndexService.getLatestScheduled(function (loan) {
+//    var serverDate = loan.serverDate;
+//    var leftTime = utils.countDown.getCountDownTime2(loan.timeOpen,
+//        serverDate);
+//    var countDownRactive = new Ractive({
+//        el: ".next-time",
+//        template: require('ccc/index/partials/countdown.html'),
+//        data: {
+//            countDown: {
+//                hours: leftTime.hour,
+//                minutes: leftTime.min,
+//                seconds: leftTime.sec,
+//            }
+//        }
+//    });
+//
+//    setInterval((function () {
+//        serverDate += 1000;
+//        var leftTime = utils.countDown.getCountDownTime2(loan.timeOpen,
+//            serverDate);
+//        countDownRactive.set('countDown', {
+//            hours: leftTime.hour,
+//            minutes: leftTime.min,
+//            seconds: leftTime.sec
+//        });
+//    }), 1000);
+//
+//});
 
 $("#btn-login-on-carousel").click(function(e){
     window.HeaderRactive.fire('maskLogin',{
@@ -350,17 +377,17 @@ request.get(encodeURI('/api/v2/cms/category/COOPERATION/name/合作伙伴'))
         });
     });
 //友情链接
-request.get(encodeURI('/api/v2/cms/category/LINK/name/友情链接'))
-    .end()
-    .then(function (res) {
-        var count = new Ractive({
-            el: '.firendLink',
-            template: '<span class="friend-left" style="margin-right:16px;">友情链接</span><span class="friend-right">{{#each items}}<a href="http://{{url}}" target="_blank">{{{title}}}</a>{{/each}}</span>',
-            data: {
-                items: res.body
-            }
-        });
-    });
+//request.get(encodeURI('/api/v2/cms/category/LINK/name/友情链接'))
+//    .end()
+//    .then(function (res) {
+//        var count = new Ractive({
+//            el: '.firendLink',
+//            template: '<span class="friend-left" style="margin-right:16px;">友情链接</span><span class="friend-right">{{#each items}}<a href="http://{{url}}" target="_blank">{{{title}}}</a>{{/each}}</span>',
+//            data: {
+//                items: res.body
+//            }
+//        });
+//    });
 
 //底部鼠标滑过显示公司链接
 $('.icon-grounp .company-intro').hide();

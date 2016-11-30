@@ -6,26 +6,24 @@ var config = require('config');
 var conext = require('conext');
 var proagent = require('promisingagent');
 var crypto = require('crypto');
-//var xml2json = require('xml2json');
-// var wxrequest = require('./wxrequest');
 var db = require('@cc/redis');
-var log = require('bunyan-hub-logger')({ app: 'web', name: 'wx' })
+var log = require('bunyan-hub-logger')({app: 'web', name: 'wx'})
 module.exports = function (router) {
     router.get('/', function (req, res) {
         _.assign(res.locals, {
-            title : '登录_太合汇平台'
+            title: '登录_太合汇平台'
         });
         res.render();
     });
     router.get('/quickLogin/:mobile/:currentTime/:md5key', function *(req, res) {
 
-        var r = yield req.uest('/api/v2/quickLogin/'+req.params.mobile+'/'+req.params.currentTime+'/'+req.params.md5key);
-        if(!r.body.success){
+        var r = yield req.uest('/api/v2/quickLogin/' + req.params.mobile + '/' + req.params.currentTime + '/' + req.params.md5key);
+        if (!r.body.success) {
             res.redirect('/');
             return;
         }
 
-        if(!r.body.data.isNewUser){
+        if (!r.body.data.isNewUser) {
             var signInUser = Promise.coroutine(function *(user) {
                 var obj = {
                     user: user,
@@ -45,7 +43,7 @@ module.exports = function (router) {
             });
             res.redirect('/');
         }
-        if(r.body.data.isNewUser) {
+        if (r.body.data.isNewUser) {
             res.redirect('/newAccount/setpassword?mobile=' + req.params.mobile + '&currentTime=' + req.params.currentTime + '&md5key=' + req.params.md5key);
         }
 

@@ -7,16 +7,16 @@ module.exports = function (router) {
         var user = res.locals.user;
         if (user) {
             res.redirect('/newAccount/home/index');
-        };
+        }
 
         _.assign(res.locals, {
-            title : '注册_太合汇平台'
+            title: '注册_太合汇平台'
         });
         res.expose('/api/web/register/smsCaptcha', 'registerSmsCaptchaApi');
         res.expose('/api/web/register/voiceCaptcha', 'CC.registerVoiceCaptchaApi');
         res.expose('/api/web/register/submit', 'registerSubmit');
         res.expose(req.query.refm, 'registerRel');
-		res.expose(req.query.UID, 'channelRel');
+        res.expose(req.query.UID, 'channelRel');
         next();
     }, middlewares.registerPage);
 

@@ -1,21 +1,17 @@
 'use strict';
 module.exports = function (router) {
-    router.get('/', function (req,res) {
+    router.get('/', async function (req, res) {
         var user = res.locals.user;
         if (user && user.idNumber) {
-                delete user.idNumber;
+            delete user.idNumber;
         }
         res.expose(user, 'user');
-        res.locals.CMSggtd = req.uest(
-            '/api/v2/cms/category/INTRODUCTION/name/' + encodeURIComponent('高管团队'))
+        res.locals.CMSggtd = await req.uest('/api/v2/cms/category/INTRODUCTION/name/' + encodeURIComponent('高管团队'))
             .end()
             .get('body')
             .then(function (data) {
-            console.log("_____data")
-            console.log(data)
                 return data;
             });
-        res.locals.title = '汇财富-卓越金融，财富人生';
         res.render('aboutus');
     });
-}
+};

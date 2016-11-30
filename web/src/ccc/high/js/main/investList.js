@@ -198,6 +198,11 @@ IndexService.getLoanSummary(function (res) {
     liststatus=liststatus.concat(listSchedul);
     liststatus=liststatus.concat(listFinish);
     liststatus=liststatus.concat(listNone);
+    liststatus.forEach(function(item){
+        if(item.status=='SCHEDULED'){
+            ininconut();
+        }
+    })
     //console.log(listNone);
     // 固定收益
     var listRactive = new Ractive({
@@ -226,7 +231,6 @@ IndexService.getLoanSummary(function (res) {
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });
-    ininconut();
 });
 
 
