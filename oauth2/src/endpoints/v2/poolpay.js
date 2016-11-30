@@ -40,8 +40,7 @@ router.post('/api/v2/invest/tender/:userId/loan/:loanId',
         try {
           // 更新标的缓存 LOAN_LIST
           cache.del('LOAN_LIST');
-          var loanId = r.body.data.merPriv.split('#')[0];
-          cache.del(loanId + '_LOAN_INVEST_LIST');
+          cache.del(req.body.loanId + '_LOAN_INVEST_LIST');
         } catch (e) {}
       }
       res.send(r.body);
