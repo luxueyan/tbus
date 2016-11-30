@@ -36,7 +36,6 @@ exports.loanService = {
                 principalAmount: principalAmount
             })
             .end(function (res) {
-                console.log(res);
                 var returnMap = {
                     'CREDIT_ASSIGN_DISABLED': "没有开启债权转让功能",
                     'NOT_FOUND': "债转不存在",

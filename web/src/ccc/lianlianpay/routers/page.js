@@ -42,7 +42,6 @@ module.exports = function (router) {
 	            req.body.userId = res.locals.user.id;
 	            var data = qs.stringify(req.body);
 	            req.bodyStr = data.replace(/%5B\d+%5D/g, '');
-                console.log(req.bodyStr);
 	            next();
 	        },
 	        function (req, res) {
@@ -67,7 +66,6 @@ module.exports = function (router) {
                 next();
             },
             function (req, res) {
-                console.log(req.body);
                 req.uest.post('/api/v2/lianlianpay' + api + '/MYSELF')
                     .type('form')
                     .send(req.body)

@@ -91,7 +91,6 @@ ractive.on('recharge_submit', function (e){
     });
 
     if (amount === '') {
-        console.log(amount=== '');
         e.original.preventDefault();
         this.$amount.focus();
         this.set('msg.AMOUNT_NULL', true);

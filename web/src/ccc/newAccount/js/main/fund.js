@@ -191,7 +191,7 @@ ractive.loadData = function (obj) {
         return;
     }
     this.set('loading', true);
-    console.log(obj)
+    // console.log(obj)
     size = obj.pageSize || size;
     var status = true;
     var operation = true;
@@ -360,7 +360,7 @@ function renderPage(total, obj) {
     var self = ractive;
     var status = true;
     var operation = true;
-    console.log(obj)
+    // console.log(obj)
     if(obj.status==true){
         status = true;
     }else if(obj.status==false){

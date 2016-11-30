@@ -264,9 +264,7 @@ ractive.on("bind-card-submit", function (e) {
         IDNUMBER_EXISTS: '身份证已被认证',
         SUCCEED: '银行卡绑定成功'
     };
-    console.log("@@@@@")
     if (!paymentAuthenticated) {
-        console.log("1");
         accountService.initialPassword(pwd, function (r) {
             if (r.success) {
                 $('.btn-box button').text('绑卡中,请稍等...');
@@ -294,7 +292,6 @@ ractive.on("bind-card-submit", function (e) {
     } else {
         //accountService.checkPassword(pwd, function (r) {
         //if (r) {
-        console.log("!!!!!")
         $('.btn-box button').text('绑卡中,请稍等...');
         $.post('/api/v2/baofoo/MYSELF/confirmBindCard', sendCard, function (res) { //bindCard
             if (res.success) {
@@ -337,7 +334,6 @@ ractive.on('sendCode', function () {
     var accountNumber = this.get('cardNo');
     var cardPhone = this.get('mobile');
     var bankName = this.get('bankval');
-    console.log(bankName)
     //校验表单
     this.fire('validatePersonal');
     this.fire('validateIdNo');

@@ -55,7 +55,6 @@ module.exports = function (router) {
     });
 
     function renderPostOrReturn(res, body) {
-        console.log('body', body);
         if (body.success) {
             res.render('payment/post', {
                 data: body.data,

@@ -206,7 +206,6 @@ ractive.on('withdrawForm', function (e) {
 			} else {
 				ractive.set('submitMessage', null);
 				if (ractive.confirm(amount)) {
-					console.log(111);
 					isAcess = true;
 				}
 

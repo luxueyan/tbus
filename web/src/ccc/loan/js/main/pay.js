@@ -15,7 +15,7 @@ var payRactive = new Ractive({
         step1: true,
         step2: false,
         step3: false,
-        failreason:false,
+        failreason: false,
         user: CC.user,
         useBankCard: true,
         investNum: parseInt(CC.investNum),
@@ -138,7 +138,7 @@ payRactive.on("invest-submit", function (e) {
             }
         });
     }
-    ;
+
     function myFunc() {
         //code
         //执行某段代码后可选择移除disabled属性，让button可以再次被点击
@@ -147,17 +147,9 @@ payRactive.on("invest-submit", function (e) {
 });
 
 function showErrors(error) {
-    payRactive
-        .set('errors', {
-            visible: true,
-            msg: error
-        });
+    payRactive.set('errors', {visible: true, msg: error});
 }
 
 function disableErrors() {
-    payRactive
-        .set('errors', {
-            visible: false,
-            msg: ''
-        });
+    payRactive.set('errors', {visible: false, msg: ''});
 }

@@ -30,7 +30,7 @@ setCurrentMonth();
 accountService.getUserInfo(
     
     function(o){
-        console.log(o);
+        // console.log(o);
         $(".username").text(o.name);
     }
 );

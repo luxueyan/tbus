@@ -27,9 +27,7 @@ var ractive = new Ractive({
 
   ractive.on('deleted-card',function(event){
     var $dom = $(event.node);
-    console.log($dom);
     var _arg = $dom.attr("lala");
-    console.log(_arg);
     var cardNo = _arg;
     var sendNo={
       cardNo:cardNo

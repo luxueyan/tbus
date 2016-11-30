@@ -35,7 +35,7 @@ emailRactive.on("setEmail", function (event) {
                 userId: CC.user.id,
                 emailAddress: email
             }, function (o) {
-                console.log(o);
+                // console.log(o);
                 if (o.success) {
                     //emailRactive.set("step",2);
                     CccOk.create({
