@@ -25,12 +25,11 @@ var statusMap = {
     OPENED: '',
     FINISHED: '',
     CLEARED: '',
-    FAKESETTLED:'',
-    FAILED:'',
-    OVERDUE:''
+    FAKESETTLED: '',
+    FAILED: '',
+    OVERDUE: ''
 };
 var template = statusMap[CC.loan.status];
-console.log(template)
 var pagesize = 10;
 
 
@@ -43,7 +42,6 @@ new Ractive({
         timeSettled: CC.loan.timeSettled
     }
 });
-
 
 
 function initailEasyPieChart() {
@@ -92,10 +90,10 @@ $("[data-toggle=tooltip]")
                     .find('.tooltip-container')
             });
     });
-$('.assign_time').mouseover(function(){
+$('.assign_time').mouseover(function () {
     $('.assign_tip').fadeIn(200);
 })
-$('.assign_tip').mouseleave(function(){
+$('.assign_tip').mouseleave(function () {
     $(this).fadeOut(200);
 })
 
@@ -127,7 +125,6 @@ setTimeout((function () {
                 CC.loan.lastRepaymentsDate = CC.repayments[i].dueDate;
             }
         }
-        ;
     }
 
     var investRactive = new Ractive({
@@ -179,8 +176,8 @@ setTimeout((function () {
             //})
 
         },
-        oncomplete:function(){
-            this.on('getConpon',function(e){
+        oncomplete: function () {
+            this.on('getConpon', function (e) {
                 showSelect(parseInt(e.node.value));
                 // var amount = e.node.value;
                 // if(isNaN(amount)){
@@ -239,10 +236,10 @@ setTimeout((function () {
         var couponSelection = $("#couponSelection").find("option:selected").text();
         var indexnum = couponSelection.indexOf("最低投资额：");
         var minnum = couponSelection.substring(indexnum + 6, couponSelection.length - 1);
-        var couponSelection =$('#couponSelection').val();
+        var couponSelection = $('#couponSelection').val();
         var selectOption = this.get('selectOption').length;
-        console.log(couponSelection);
-        console.log(selectOption);
+        // console.log(couponSelection);
+        // console.log(selectOption);
         if (num < minnum) {
             showErrors('投资额小于奖券最低投资额');
             return false;
@@ -287,7 +284,7 @@ setTimeout((function () {
             showErrors('单次投标金额不可超过' + CC.loan.rule.max + '元!');
             return false;
         }
-        if(couponSelection==""&&selectOption!="0"){
+        if (couponSelection == "" && selectOption != "0") {
             $("#mask").css("display", "inline");
             $(".debank").css("display", "inline");
             return false;
@@ -297,7 +294,7 @@ setTimeout((function () {
         //    return false;
         //}
 
-        window.location.href = '/loan/payment?num='+num+'&loanId='+CC.loan.id+'&placementId='+$('#couponSelection').val()
+        window.location.href = '/loan/payment?num=' + num + '&loanId=' + CC.loan.id + '&placementId=' + $('#couponSelection').val()
         //window.open('/loan/payment?num='+num+'&loanId='+CC.loan.id);
 
     });
@@ -309,7 +306,7 @@ setTimeout((function () {
     //跳转
     investRactive.on('delete-card', function () {
         var num = parseInt(this.get('inputNum'), 10); // 输入的值
-        window.location.href = '/loan/payment?num='+num+'&loanId='+CC.loan.id+'&placementId='+$('#couponSelection').val()
+        window.location.href = '/loan/payment?num=' + num + '&loanId=' + CC.loan.id + '&placementId=' + $('#couponSelection').val()
     })
 
     // 初始化倒计时
@@ -383,23 +380,15 @@ setTimeout((function () {
 
 
     function showErrors(error) {
-        investRactive
-            .set('errors', {
-                visible: true,
-                msg: error
-            });
+        investRactive.set('errors', {visible: true, msg: error});
     }
 
     function disableErrors() {
-        investRactive
-            .set('errors', {
-                visible: false,
-                msg: ''
-            });
+        investRactive.set('errors', {visible: false, msg: ''});
     }
 
     function showSelect(amount) {
-        var months = Math.ceil(CC.loan.durationdays/30);
+        var months = Math.ceil(CC.loan.durationdays / 30);
         investRactive.set('inum', parseFloat(amount));
         disableErrors();
         loanService.getMyCouponlist(amount, months, function (coupon) {
@@ -424,11 +413,11 @@ setTimeout((function () {
         if (parseInt(inputNum) > parseInt(mout)) {
             this.set('inputNum', mout);
             inputNum = mout;
-            if(inputNum ==  CC.loan.rule.max){
-                showErrors('投标金额最大为'+CC.loan.rule.max+'元');
+            if (inputNum == CC.loan.rule.max) {
+                showErrors('投标金额最大为' + CC.loan.rule.max + '元');
             }
-            if(inputNum == amount){
-                showErrors('剩余可投标金额为'+amount+'元');
+            if (inputNum == amount) {
+                showErrors('剩余可投标金额为' + amount + '元');
             }
 
         }
@@ -438,7 +427,6 @@ setTimeout((function () {
             return false;
         }
 
-
         showSelect(inputNum)
     });
     investRactive.on('addNum', function () {
@@ -446,12 +434,12 @@ setTimeout((function () {
         var inputNums = this.get('inputNum');
         var minAmount = parseInt($("#minAmount").html());
         var stepAmount = parseInt($("#stepAmount").html());
-        if(inputNums===""){
-            investRactive.set('inputNum',minAmount);
-        }else if(inputNum<minAmount){
-            investRactive.set('inputNum',minAmount);
-        }else if(inputNum>0){
-            investRactive.set('inputNum',inputNum+stepAmount);
+        if (inputNums === "") {
+            investRactive.set('inputNum', minAmount);
+        } else if (inputNum < minAmount) {
+            investRactive.set('inputNum', minAmount);
+        } else if (inputNum > 0) {
+            investRactive.set('inputNum', inputNum + stepAmount);
         }
         //console.log(inputNum)
     });
@@ -459,19 +447,10 @@ setTimeout((function () {
 }), 100);
 
 
-$('.nav-tabs > li')
-    .click(function () {
-        $(this)
-            .addClass('active')
-            .siblings()
-            .removeClass('active');
-        $('.tab-panel')
-            .eq($(this)
-                .data('step'))
-            .addClass('active')
-            .siblings()
-            .removeClass('active');
-    });
+$('.nav-tabs > li').click(function () {
+    $(this).addClass('active').siblings().removeClass('active');
+    $('.tab-panel').eq($(this).data('step')).addClass('active').siblings().removeClass('active');
+});
 
 
 var recordRactive = new Ractive({
@@ -491,108 +470,40 @@ var recordRactive = new Ractive({
     getRecord: function () {
         var self = this;
         var api = self.api;
-        request(api)
-            .end()
-            .get('body')
-            .then(function (r) {
-                //self.setData(r);
-                var parseResult = self.parseData(r);
-                self.setData(parseResult, r.length);
-            });
+        request(api).end().get('body').then(function (r) {
+            //self.setData(r);
+            var parseResult = self.parseData(r);
+            self.setData(parseResult, r.length);
+        });
     },
-    setData: function (r,totalSize) {
+    setData: function (r, totalSize) {
         var self = this;
         //self.set('totalSize', r.totalSize);
         self.set('loading', false);
-        self.set('list', r.slice(0,pagesize));
-        this.renderPager(r,totalSize);
+        self.set('list', r.slice(0, pagesize));
+        this.renderPager(r, totalSize);
         //self.renderPager();
     },
     parseData: function (list) {
         for (var i = 0, l = list.length; i < l; i++) {
             list[i].submitTime = moment(list[i].submitTime)
                 .format('YYYY-MM-DD HH:mm:ss');
-            list[i].mobile = list[i].mobile.replace(/(\d{3})\d{4}(\d{4})/,'$1****$2');
+            list[i].mobile = list[i].mobile.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2');
         }
         return list;
     },
-    renderPager: function (r,totalSize) {
+    renderPager: function (r, totalSize) {
         var self = this;
-        console.log("!!!!!!!")
-        //var totalSize = self.get('totalSize');
-        //
-        //if (totalSize != 0) {
-        //    self.totalPage = Math.ceil(totalSize / self.pageSize);
-        //}
-        //
-        //var totalPage = [];
-        ////console.log("===>> totalPage = " + self.totalPage);
-        //for (var i = 0; i < self.totalPage; i++) {
-        //    totalPage.push(i + 1);
-        //}
         new RenderPage().page({
-            pageSize:pagesize,
-            totalSize:totalSize,
-            results:r,
-            callback:function(r){
-                self.set('list',r)
+            pageSize: pagesize,
+            totalSize: totalSize,
+            results: r,
+            callback: function (r) {
+                self.set('list', r)
             }
         });
-
-        //renderPager(totalPage, self.page);
     }
 });
-
-//function renderPager(totalPage, current) {
-//    //console.log("===>render")
-//    if (!current) {
-//        current = 1;
-//    }
-//    var pagerRactive = new Ractive({
-//        el: '#record-pager',
-//        template: require('ccc/loan/partials/pagerRecord.html'),
-//        data: {
-//            totalPage: totalPage,
-//            current: current
-//        }
-//    });
-//
-//    pagerRactive.on('previous', function (e) {
-//        e.original.preventDefault();
-//        var current = this.get('current');
-//        if (current > 1) {
-//            current -= 1;
-//            this.set('current', current);
-//            recordRactive.page = current;
-//            recordRactive.getRecord();
-//
-//        }
-//    });
-//
-//    pagerRactive.on('page', function (e, page) {
-//        e.original.preventDefault();
-//        if (page) {
-//            current = page;
-//        } else {
-//            current = e.context;
-//        }
-//        this.set('current', current);
-//        recordRactive.page = current;
-//        recordRactive.getRecord();
-//
-//    });
-//    pagerRactive.on('next', function (e) {
-//        e.original.preventDefault();
-//        var current = this.get('current');
-//        if (current < this.get('totalPage')[this.get('totalPage')
-//                .length - 1]) {
-//            current += 1;
-//            this.set('current', current);
-//            recordRactive.page = current;
-//            recordRactive.getRecord();
-//        }
-//    });
-//}
 
 function mask(str, s, l) {
     if (!str) {
@@ -618,7 +529,6 @@ function mask(str, s, l) {
 }
 
 
-
 //产品介绍图片
 //loanService.getLoanProof(CC.loan.requestId, function (imgs) {
 loanService.getLoanDetail(CC.loan.id, function (res) {
@@ -635,13 +545,14 @@ loanService.getLoanDetail(CC.loan.id, function (res) {
             stageLen: 5,
             imgLen: imgs.length
         },
-        onrender:function(){
-            this.set('imgs',this.parseData(res.data.proof.proofImages));
+        onrender: function () {
+            this.set('imgs', this.parseData(res.data.proof.proofImages));
         },
-        parseData:function(res){
-            for(var i = 0;i<res.length;i++){
-                res[i].proof.content =res[i].proof.content.split('.')[0];
-            };
+        parseData: function (res) {
+            for (var i = 0; i < res.length; i++) {
+                res[i].proof.content = res[i].proof.content.split('.')[0];
+            }
+            ;
             return res;
         }
     });

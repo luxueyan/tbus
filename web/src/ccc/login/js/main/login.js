@@ -47,7 +47,6 @@ $('#loginForm').submit(function (e) {
     request.post('/api/web/login').type('form').send($this.serialize()).end().get('body').then(function (r) {
         //console.log($this.serialize())
         if (r.success) {
-            console.log('--', r)
             $postBtn.text('登录成功');
             var url = /(loan)/;
             if (url.test(document.referrer)) {

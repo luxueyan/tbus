@@ -35,7 +35,7 @@ exports.popupBigPic = {
         // 大图浏览时切换
         var timer;
         popupBigPicRactive.on("prev-big next-big", function (e) {
-            console.log(this.get("currentIndex"));
+            // console.log(this.get("currentIndex"));
 
             if (e.name === "prev-big") {
                 this.set("currentIndex", this.get("currentIndex") - 1);
@@ -47,7 +47,7 @@ exports.popupBigPic = {
                 clearTimeout(timer);
             }
             
-             console.log(this.get("currentIndex"));
+             // console.log(this.get("currentIndex"));
 
             // 定时隐藏
             this.set("showTip", true);
@@ -60,7 +60,7 @@ exports.popupBigPic = {
     },
 
     show: function (options,postCloseHook) {
-        console.log(options);
+        // console.log(options);
         if (!this.instance) {
             this.init();
             this.instance = true;

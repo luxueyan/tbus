@@ -201,7 +201,7 @@ window.redeemCoupon = function(btn) {
     $.post("/api/v2/coupon/MYSELF/redeemCoupon", {
     	placementId: id
     }, function (res) {
-    	console.log(res);
+    	// console.log(res);
         if (res) {
             alert("使用成功");
             location.reload();

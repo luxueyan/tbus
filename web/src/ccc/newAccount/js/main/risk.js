@@ -26,7 +26,7 @@ var ractive = new Ractive({
     oncomplete: function () {
         var self = this;
         accountService.getUserInfo(function (userinfo) {
-            console.log(userinfo)
+            // console.log(userinfo)
             if (userinfo.surveyFilling) {
                 self.set("timeLastUpdated", moment(userinfo.surveyFilling.timeLastUpdated).format('YYYY-MM-DD HH:mm:ss'));
                 rank = userinfo.surveyScore.rank;

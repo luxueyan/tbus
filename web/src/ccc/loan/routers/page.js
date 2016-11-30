@@ -156,7 +156,7 @@ module.exports = function (router) {
             'CORPORATION': '企业融资',
             'OTHER': '其它借款'
         };
-        console.log(loan)
+        // console.log(loan)
         var SinvestPercent = (loan.investPercent * 100) + '';
         var SinvestPercentString = SinvestPercent.split('.');
         if (loan.status == 'SETTLED' || loan.status === 'FINISHED' || loan.status === 'FAILED') {

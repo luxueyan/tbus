@@ -7,7 +7,6 @@ $(function(){
 	$(".toggleBtn")
 		.click(function (){
 			if ( !isClicked ) {
-				console.log($(this).parent().siblings('div.content').text());
 				$(this)
 					.siblings('div.content')
 					.slideDown();
