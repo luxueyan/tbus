@@ -7,15 +7,47 @@ cache = require('../../cache');
 router = require('express').Router();
 module.exports = router;
 config = require('config');
+
+var request = require('promisingagent');
+var ccBody = require('cc-body');
+var marketPrefix = require('config').proxy.market;
+
 router.post('/api/v2/chinapay/bindCard/:userId', auth.owner());
 router.post('/api/v2/chinapay/bindCardReturn', auth.pass());
 router.post('/api/v2/chinapay/deposit/:userId', auth.owner());
 router.post('/api/v2/chinapay/withdraw/:userId', auth.owner());
 router.post('/api/v2/invest/tender/:userId', auth.owner());
+
+/*
 // 带 /loan/:loanId 的是限流接口
 router.post('/api/v2/invest/tender/:userId/loan/:loanId', auth.owner(), sn(function (req) {
-        req.url = req.url.replace(/\/loan\/.*$/, '');
+  req.url = req.url.replace(/\/loan\/.*$/, '');
 }), require('../../investor-limit'));
+*/
+router.post('/api/v2/invest/tender/:userId/loan/:loanId',
+  auth.owner(),
+  require('../../investor-limit'),
+  ccBody,
+  function(req, res, next){
+    var url = req.url.replace(/\/loan\/.*$/, '');
+    request
+    .post(marketPrefix + url)
+    .type('form')
+    .send(req.body)
+    .accept('json')
+    .end(function (err, r) {
+      if (r.body.success) {
+        try {
+          // 更新标的缓存 LOAN_LIST
+          cache.del('LOAN_LIST');
+          var loanId = r.body.data.merPriv.split('#')[0];
+          cache.del(loanId + '_LOAN_INVEST_LIST');
+        } catch (e) {}
+      }
+      res.send(r.body);
+    });
+  });
+
 router.post('/api/v2/chinapay/bindCard/sign', auth.owner());
 router.get('/api/v2/chinapay/cities', auth.pass());
 router.get('/api/v2/chinapay/banks', auth.pass());

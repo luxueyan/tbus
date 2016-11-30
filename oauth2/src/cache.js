@@ -106,6 +106,12 @@ exports.middleware = curry$(function (configKey, subfix, getId) {
         });
     };
 });
+exports.del = function (key, callback) {
+  return db.pipeline().del(key).exec(callback);
+};
+exports.hdel = function (hash, key, callback) {
+  return db.pipeline().hdel(hash, key).exec(callback);
+};
 function bind$(obj, key, target) {
     return function () { return (target || obj)[key].apply(obj, arguments) };
 }
