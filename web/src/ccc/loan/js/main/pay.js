@@ -104,7 +104,8 @@ payRactive.on("invest-submit", function (e) {
             } else {
                 disableErrors();
 
-                $.post('/api/v2/invest/tender/MYSELF', {
+                //$.post('/api/v2/invest/tender/MYSELF', {
+                $.post('/api/v2/invest/tender/MYSELF/loan/' + CC.loanId, {
                     userId: CC.user.id,
                     clientIp: CC.clientIp,
                     loanId: CC.loanId,
