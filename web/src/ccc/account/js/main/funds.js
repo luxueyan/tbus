@@ -99,7 +99,7 @@ $('.date-from-picker,.date-to-picker').datetimepicker({
 });
 
 $('.date-to-picker>input').change(function () {
-    console.log("success");
+    // console.log("success");
 });
 
 ractive.on('select-type', function (e) { // dropdown 选择类型的时候
@@ -144,9 +144,6 @@ ractive.on('do-filter', function () { // 开始筛选数据
     } else {
         preset = tab3Preset;
     }
-    console.log("===============");
-    console.log(type);
-     console.log(preset);
     ractive.loadData({
         type: type,
         status: status,

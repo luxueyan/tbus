@@ -13,7 +13,6 @@
             config: {},
         },
     });
-    console.log(inspectRactive);
     inspectRactive.on('refresh', function () {
         inspectRactive.set('config', {});
         inspectRactive.set('backendStatus', '检测中...');

@@ -83,7 +83,11 @@
                     </div>
                 </div>
 
-                <div class="form-group merge form-group-amount">
+                <div class="form-group merge form-group-amount"
+                     ng-class="{
+                         'has-error': form.amount.$invalid && form.amount.$dirty
+                     }"
+                >
                     <div class="form-group-inner">
                         <label for="amount">请输入充值金额(元)</label>
                         <div class="form-control-wrap">
@@ -92,11 +96,19 @@
                                    id="amount"
                                    name="amount"
                                    ng-model="store.amount"
+                                   min="{{ bank_account.account.minQuota == -1 ? '' : bank_account.account.minQuota }}"
                                    max="{{ bank_account.account.singleQuota == -1 ? '' : bank_account.account.singleQuota }}"
-                                   minlength="1"
                                    placeholder=""
                                    required
                             >
+
+                            <div class="help-block"
+                                 ng-show="form.amount.$invalid && form.amount.$dirty"
+                            >
+                                <span ng-show="form.amount.$error.required">请输入充值金额</span>
+                                <span ng-show="form.amount.$error.min">单笔充值要大于{{ bank_account.account.minQuota }}元</span>
+                                <span ng-show="form.amount.$error.max">超过单笔限额</span>
+                            </div>
                         </div>
                     </div>
                 </div>

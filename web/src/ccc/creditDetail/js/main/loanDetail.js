@@ -408,7 +408,6 @@ var recordRactive = new Ractive({
         }
 
         var totalPage = [];
-        console.log("===>> totalPage = " + self.totalPage);
         for (var i = 0; i < self.totalPage; i++) {
             totalPage.push(i+1);
         }
@@ -418,7 +417,6 @@ var recordRactive = new Ractive({
 });
 
 function renderPager(totalPage, current) {
-    console.log("===>render")
     if (!current) {
         current = 1;
     }

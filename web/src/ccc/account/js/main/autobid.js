@@ -183,7 +183,7 @@ ractive.on('open', function () {
         okText: '开通成功',
         cancelText: '开通失败',
         ok: function() {
-            console.log(CC.backUrl);
+            // console.log(CC.backUrl);
             if (CC.backUrl) {
                 window.location.href = CC.backUrl;
             } else {
@@ -202,7 +202,7 @@ ractive.on('close', function () {
         okText: '关闭成功',
         cancelText: '关闭失败',
         ok: function() {
-            console.log(CC.backUrl);
+            // console.log(CC.backUrl);
             if (CC.backUrl) {
                 window.location.href = CC.backUrl;
             } else {

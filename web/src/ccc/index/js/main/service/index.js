@@ -18,34 +18,34 @@ exports.IndexService = {
             next(parseLoanList(res));
         });
     },
-    getLatestScheduled: function (next) {
-        this.getSummaryData(function (res) {
-            var list = [];
-            for(var p in res){
-                for(var i=0; i<res[p].length; i++){
-                    if(res[p].status == 'SCHEDULED'){
-                        list.push(res[p][i]);
-                    }  
-                }
-            }
-            if (list) {
-                var scheduled = list;
-                if (scheduled.length) {
-                    for (var i = 0; i < scheduled.length; i++) {
-                        for (var j = i + 1; j < scheduled.length; j++) {
-                            if (scheduled[j].timeOpen <
-                                scheduled[i].timeOpen) {
-                                var temp = scheduled[i];
-                                scheduled[i] = scheduled[j];
-                                scheduled[j] = temp;
-                            }
-                        }
-                    }
-                    next(scheduled[0]);
-                }
-            }
-        });
-    },
+    // getLatestScheduled: function (next) {
+    //     this.getSummaryData(function (res) {
+    //         var list = [];
+    //         for(var p in res){
+    //             for(var i=0; i<res[p].length; i++){
+    //                 if(res[p].status == 'SCHEDULED'){
+    //                     list.push(res[p][i]);
+    //                 }
+    //             }
+    //         }
+    //         if (list) {
+    //             var scheduled = list;
+    //             if (scheduled.length) {
+    //                 for (var i = 0; i < scheduled.length; i++) {
+    //                     for (var j = i + 1; j < scheduled.length; j++) {
+    //                         if (scheduled[j].timeOpen <
+    //                             scheduled[i].timeOpen) {
+    //                             var temp = scheduled[i];
+    //                             scheduled[i] = scheduled[j];
+    //                             scheduled[j] = temp;
+    //                         }
+    //                     }
+    //                 }
+    //                 next(scheduled[0]);
+    //             }
+    //         }
+    //     });
+    // },
 };
 
 function parseLoanList(loans) {

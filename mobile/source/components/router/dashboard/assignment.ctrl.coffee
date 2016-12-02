@@ -112,7 +112,7 @@ do (_, angular) ->
                 post_data = {
                     investId: id
                     creditDealRate: creditAssignRate
-                    creditAssignTitle: title
+                    creditAssignTitle: '转让-' + title
                 }
 
                 (@api.payment_pool_creditAssign_create(post_data)

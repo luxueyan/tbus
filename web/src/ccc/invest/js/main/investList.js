@@ -70,21 +70,6 @@ function formatItem(item) {
     item.deductionRate = item.loanRequest.deductionRate / 100;
     item.basicRate = item.rate - item.deductionRate;
     item.purpose = purposeMap[item.purpose];
-    //if (item.investPercent * 100 > 0 && item.investPercent * 100 < 1) {
-    //    item.investPercent = 1;
-    //} else {
-    //    item.investPercent = parseInt(item.investPercent * 100, 10);
-    //}
-
-    //var SinvestPercent = (item.investPercent * 100).toFixed(2)+'';
-    //
-    //if(SinvestPercent.slice(-2)=='00'){
-    //    item.investPercent = (item.investPercent * 100);
-    //}else if(SinvestPercent.slice(-1)=='0'){
-    //    item.investPercent = (item.investPercent * 100).toFixed(1);
-    //}else{
-    //    item.investPercent = (item.investPercent * 100).toFixed(2);
-    //}
 
     var SinvestPercent = (item.investPercent * 100) + '';
     var SinvestPercentString = SinvestPercent.split('.');
@@ -181,10 +166,6 @@ IndexService.getLoanSummary(function (res) {
             listFloat.push(res[i]);
         }
     }
-    //console.log("1111")
-    //console.log(listFixed)
-    //console.log(listFloat)
-    //console.log("1111")
     var compare = function (obj1, obj2) {
         var val1 = obj1.timeOpen;
         var val2 = obj2.timeOpen;
@@ -195,7 +176,7 @@ IndexService.getLoanSummary(function (res) {
         } else {
             return 0;
         }
-    }
+    };
 
 
     //推荐
@@ -207,11 +188,11 @@ IndexService.getLoanSummary(function (res) {
     for (var i = 0; i < productKey.length; i++) {
         if (productKey[i].status == "OPENED") {
             cptjOpen.push(productKey[i]);
-        }else if(productKey[i].status == "SCHEDULED"){
+        } else if (productKey[i].status == "SCHEDULED") {
             cptjSchedul.push(productKey[i]);
-        }else if(productKey[i].status == "FINISHED"){
+        } else if (productKey[i].status == "FINISHED") {
             cptjFinish.push(productKey[i]);
-        }else if(productKey[i].status == "SETTLED"){
+        } else if (productKey[i].status == "SETTLED") {
             cptjNone.push(productKey[i]);
         }
 
@@ -221,10 +202,10 @@ IndexService.getLoanSummary(function (res) {
     cptjSchedul.sort(compare);
     cptjFinish.sort(compare);
 
-    cptjstatus=cptjstatus.concat(cptjOpen);
-    cptjstatus=cptjstatus.concat(cptjSchedul);
-    cptjstatus=cptjstatus.concat(cptjFinish);
-    cptjstatus=cptjstatus.concat(cptjNone);
+    cptjstatus = cptjstatus.concat(cptjOpen);
+    cptjstatus = cptjstatus.concat(cptjSchedul);
+    cptjstatus = cptjstatus.concat(cptjFinish);
+    cptjstatus = cptjstatus.concat(cptjNone);
 
 
     //固定
@@ -254,7 +235,6 @@ IndexService.getLoanSummary(function (res) {
     }
 
 
-
     for (var i = 0; i < listFixed.length; i++) {
         if (listFixed[i].status == "OPENED") {
             listOpen.push(listFixed[i]);
@@ -265,9 +245,7 @@ IndexService.getLoanSummary(function (res) {
         } else if (listFixed[i].status == "SETTLED") {
             listNone.push(listFixed[i]);
         }
-
     }
-
 
     listOpen.sort(compare);
     listNone.sort(compare);
@@ -278,9 +256,7 @@ IndexService.getLoanSummary(function (res) {
     liststatus = liststatus.concat(listSchedul);
     liststatus = liststatus.concat(listFinish);
     liststatus = liststatus.concat(listNone);
-    //console.log("@@@@");
-    //console.log(liststatus);
-    //console.log("@@@@");
+
     // 固定收益
     var listRactive = new Ractive({
         el: ".fixedPro",
@@ -290,13 +266,6 @@ IndexService.getLoanSummary(function (res) {
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         },
         onrender: function () {
-            //var self = this;
-            //if(listOpen.length){
-            //    self.set('list',listOpen.slice(0, 5));
-            //}else{
-            //    self.set('list',listNone.slice(0, 5));
-            //};
-
             $('.assign_time').mouseover(function () {
                 $(this).parent().parent().parent().siblings('.assign_tip').fadeIn(200);
             })
@@ -306,14 +275,14 @@ IndexService.getLoanSummary(function (res) {
         }
     });
     // 浮动收益
-    var listRactive = new Ractive({
-        el: ".floatPro",
-        template: require('ccc/invest/partials/floatPro.html'),
-        data: {
-            list: (listFloat.slice(0, 1)),
-            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
-        }
-    });
+    // var listRactive = new Ractive({
+    //     el: ".floatPro",
+    //     template: require('ccc/invest/partials/floatPro.html'),
+    //     data: {
+    //         list: (listFloat.slice(0, 1)),
+    //         RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+    //     }
+    // });
     ininconut();
 });
 
@@ -338,7 +307,7 @@ if (CC.key) {
             } else {
                 Boolean = "true";
             }
-            var api = '/api/v2/loan/summaryTotal?recommedInFront='+Boolean+'&product=';
+            var api = '/api/v2/loan/summaryTotal?recommedInFront=' + Boolean + '&product=';
             request.get(api + key + '&product=CPTJ')
                 .end()
                 .then(function (r) {
@@ -384,7 +353,7 @@ if (CC.key) {
                     arr[m] = m + 1;
                 }
                 return arr;
-            };
+            }
 
             var pagerRactive = new Ractive({
                 el: '#invest-pager',

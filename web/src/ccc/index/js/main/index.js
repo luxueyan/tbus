@@ -3,63 +3,54 @@
 require('bootstrap/js/transition');
 require('bootstrap/js/carousel');
 $('[data-ride="carousel"]').each(function () {
-  var $carousel = $(this)
-  $(this).carousel($carousel.data())
-})
-
+    var $carousel = $(this)
+    $(this).carousel($carousel.data())
+});
 
 
 require('bootstrap/js/tab');
 var $carousel = $("#my-carousel");
-var IndexService = require('./service')
-    .IndexService;
+var IndexService = require('./service').IndexService;
 var utils = require('ccc/global/js/lib/utils');
 var i18n = require('@ds/i18n')['zh-cn'];
-var loginElement=document.getElementsByClassName?document.getElementsByClassName('info')[0]:$('.info')[0];
+var loginElement = document.getElementsByClassName ? document.getElementsByClassName('info')[0] : $('.info')[0];
 
-require('ccc/global/js/lib/jquery.easy-pie-chart.js')
-
-// $carousel.on('slid.bs.carousel', function (e) {
-//         // slide 完成后
-//     });
-
+require('ccc/global/js/lib/jquery.easy-pie-chart.js');
 
 $(function () {
-    
-    $('.investList ul li').hover(function (){
+    $('.investList ul li').hover(function () {
         $(this).addClass('active').siblings().removeClass('active');
-        
+
         var _this = $(this).parent().parent().parent().children('.listContent');
         _this.find('.productList').eq($(this).index()).addClass('active').siblings().removeClass('active');
     });
 });
 
 
-
-function replaceStr(str){
-	return str.replace(/[^\x00-xff]/g,'xx').length;
+function replaceStr(str) {
+    return str.replace(/[^\x00-xff]/g, 'xx').length;
 }
 
 
 IndexService.getLoanSummary(function (list) {
-    var listGDSY = [],listDQLC = [],listGDLC = [],listHOT = [];
+    var listGDSY = [], listDQLC = [], listGDLC = [], listHOT = [];
     var productKey = [];    //推荐产品放在第一位      CPTJ
-    for(var i=0;i<list.length;i++){
+    for (var i = 0; i < list.length; i++) {
         list[i].method = i18n.enums.RepaymentMethod[list[i].method][0];
         list[i].titleLength = replaceStr(list[i].title);
-        if(list[i].titleLength > 60){
-            list[i].title = list[i].title.substr(0,60)+'...';
+        if (list[i].titleLength > 60) {
+            list[i].title = list[i].title.substr(0, 60) + '...';
         }
 
-        if(list[i].loanRequest.productKey == "CPTJ"){
+        if (list[i].loanRequest.productKey == "CPTJ") {
             productKey.push(list[i]);
-        }else if(list[i].loanRequest.productKey == 'GDSY'){
+        } else if (list[i].loanRequest.productKey == 'GDSY') {
             listGDSY.push(list[i]);
-        }else if(list[i].loanRequest.productKey == 'GDLC'){
+        } else if (list[i].loanRequest.productKey == 'GDLC') {
             listGDLC.push(list[i]);
-        }else if(list[i].loanRequest.productKey == 'HOT'){
+        } else if (list[i].loanRequest.productKey == 'HOT') {
             listHOT.push(list[i]);
-        };
+        }
     }
 
     var compare = function (obj1, obj2) {
@@ -72,7 +63,7 @@ IndexService.getLoanSummary(function (list) {
         } else {
             return 0;
         }
-    }
+    };
 
     //推荐
     var cptjOpen = [];     //在售中  OPENED
@@ -83,11 +74,11 @@ IndexService.getLoanSummary(function (list) {
     for (var i = 0; i < productKey.length; i++) {
         if (productKey[i].status == "OPENED") {
             cptjOpen.push(productKey[i]);
-        }else if(productKey[i].status == "SCHEDULED"){
+        } else if (productKey[i].status == "SCHEDULED") {
             cptjSchedul.push(productKey[i]);
-        }else if(productKey[i].status == "FINISHED"){
+        } else if (productKey[i].status == "FINISHED") {
             cptjFinish.push(productKey[i]);
-        }else if(productKey[i].status == "SETTLED"){
+        } else if (productKey[i].status == "SETTLED") {
             cptjNone.push(productKey[i]);
         }
 
@@ -97,10 +88,10 @@ IndexService.getLoanSummary(function (list) {
     cptjSchedul.sort(compare);
     cptjFinish.sort(compare);
 
-    cptjstatus=cptjstatus.concat(cptjOpen);
-    cptjstatus=cptjstatus.concat(cptjSchedul);
-    cptjstatus=cptjstatus.concat(cptjFinish);
-    cptjstatus=cptjstatus.concat(cptjNone);
+    cptjstatus = cptjstatus.concat(cptjOpen);
+    cptjstatus = cptjstatus.concat(cptjSchedul);
+    cptjstatus = cptjstatus.concat(cptjFinish);
+    cptjstatus = cptjstatus.concat(cptjNone);
 
     //固定
     var listOpen = [];     //在售中  OPENED
@@ -111,16 +102,14 @@ IndexService.getLoanSummary(function (list) {
     for (var i = 0; i < listGDSY.length; i++) {
         if (listGDSY[i].status == "OPENED") {
             listOpen.push(listGDSY[i]);
-        }else if(listGDSY[i].status == "SCHEDULED"){
+        } else if (listGDSY[i].status == "SCHEDULED") {
             listSchedul.push(listGDSY[i]);
-        }else if(listGDSY[i].status == "FINISHED"){
+        } else if (listGDSY[i].status == "FINISHED") {
             listFinish.push(listGDSY[i]);
-        }else if(listGDSY[i].status == "SETTLED"){
+        } else if (listGDSY[i].status == "SETTLED") {
             listNone.push(listGDSY[i]);
         }
-
     }
-
 
     productKey.sort(compare);
     listOpen.sort(compare);
@@ -129,20 +118,20 @@ IndexService.getLoanSummary(function (list) {
     listFinish.sort(compare);
 
 
-    if(cptjstatus[0]){
-        liststatus=liststatus.concat(cptjstatus[0]);
+    if (cptjstatus[0]) {
+        liststatus = liststatus.concat(cptjstatus[0]);
     }
 
-    liststatus=liststatus.concat(listOpen);
-    liststatus=liststatus.concat(listSchedul);
-    liststatus=liststatus.concat(listFinish);
-    liststatus=liststatus.concat(listNone);
+    liststatus = liststatus.concat(listOpen);
+    liststatus = liststatus.concat(listSchedul);
+    liststatus = liststatus.concat(listFinish);
+    liststatus = liststatus.concat(listNone);
     //固定收益
     var investRactive = new Ractive({
         el: ".GDSYproductList",
         template: require('ccc/index/partials/gdsy.html'),
         data: {
-            list: liststatus.slice(0,3),
+            list: liststatus.slice(0, 3),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });
@@ -164,41 +153,37 @@ IndexService.getLoanSummary(function (list) {
     //        RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
     //    }
     //});
-    initailEasyPieChart();
-    ininconut();
-    var serverDate = list.serverDate;
-    var leftTime = utils.countDown.getCountDownTime2(list.timeOpen,
-        serverDate);
-    var countDownRactive = new Ractive({
-        el: ".next-time",
-        template: require('ccc/index/partials/countdown.html'),
-        data: {
-            countDown: {
-                hours: leftTime.hour,
-                minutes: leftTime.min,
-                seconds: leftTime.sec,
-            }
-        }
-    });
-
-    setInterval((function () {
-        serverDate += 1000;
-        var leftTime = utils.countDown.getCountDownTime2(list.timeOpen,
-            serverDate);
-        countDownRactive.set('countDown', {
-            hours: leftTime.hour,
-            minutes: leftTime.min,
-            seconds: leftTime.sec
-        });
-    }), 1000);
-
+    // initailEasyPieChart();
+    // ininconut();
+    // var serverDate = list.serverDate;
+    // var leftTime = utils.countDown.getCountDownTime2(list.timeOpen, serverDate);
+    // var countDownRactive = new Ractive({
+    //     el: ".next-time",
+    //     template: require('ccc/index/partials/countdown.html'),
+    //     data: {
+    //         countDown: {
+    //             hours: leftTime.hour,
+    //             minutes: leftTime.min,
+    //             seconds: leftTime.sec,
+    //         }
+    //     }
+    // });
+    //
+    // setInterval((function () {
+    //     serverDate += 1000;
+    //     var leftTime = utils.countDown.getCountDownTime2(list.timeOpen, serverDate);
+    //     countDownRactive.set('countDown', {
+    //         hours: leftTime.hour,
+    //         minutes: leftTime.min,
+    //         seconds: leftTime.sec
+    //     });
+    // }), 1000);
 
 });
 
 //IndexService.getLatestScheduled(function (loan) {
 //    var serverDate = loan.serverDate;
-//    var leftTime = utils.countDown.getCountDownTime2(loan.timeOpen,
-//        serverDate);
+//    var leftTime = utils.countDown.getCountDownTime2(loan.timeOpen, serverDate);
 //    var countDownRactive = new Ractive({
 //        el: ".next-time",
 //        template: require('ccc/index/partials/countdown.html'),
@@ -224,47 +209,45 @@ IndexService.getLoanSummary(function (list) {
 //
 //});
 
-$("#btn-login-on-carousel").click(function(e){
-    window.HeaderRactive.fire('maskLogin',{
+$("#btn-login-on-carousel").click(function (e) {
+    window.HeaderRactive.fire('maskLogin', {
         original: e
     });
 });
 
-function initailEasyPieChart() {
-    ///////////////////////////////////////////////////////////
-    // 初始化饼状图
-    ///////////////////////////////////////////////////////////
-    $(function () {
-        var oldie = /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase());
-        $(".easy-pie-chart").each(function () {
-            var percentage = $(this).data("percent");
-             var status=$(this).data("status");
-            // 100%进度条颜色显示为背景色
+// function initailEasyPieChart() {
+//     // 初始化饼状图
+//     $(function () {
+//         var oldie = /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase());
+//         $(".easy-pie-chart").each(function () {
+//             var percentage = $(this).data("percent");
+//             var status = $(this).data("status");
+//             // 100%进度条颜色显示为背景色
+//
+//             // var color = percentage != 100 && (status==='SETTLED'|| status==='CLEARED') ? "#f58220" : '#009ada';
+//             var color = (status === 'OPENED') ? '#009ada' : "#f58220";
+//
+//             // var color = percentage === 100 ? "#f58220" : '#f58220';
+//
+//             $(this).easyPieChart({
+//                 barColor: color,
+//                 trackColor: '#ddd',
+//                 scaleColor: false,
+//                 lineCap: 'butt',
+//                 lineWidth: 4,
+//                 animate: oldie ? false : 1000,
+//                 size: 60,
+//                 onStep: function (from, to, percent) {
+//                     $(this.el).find('.percent').text(Math.round(percent));
+//                 }
+//             });
+//             $(this).find("span.percentageNum").html(percentage + "%");
+//         });
+//
+//     });
+// }
 
-           // var color = percentage != 100 && (status==='SETTLED'|| status==='CLEARED') ? "#f58220" : '#009ada';
-             var color = (status==='OPENED') ? '#009ada' : "#f58220";
-
-//            var color = percentage === 100 ? "#f58220" : '#f58220';
-
-            $(this).easyPieChart({
-                barColor: color,
-                trackColor: '#ddd',
-                scaleColor: false,
-                lineCap: 'butt',
-                lineWidth: 4,
-                animate: oldie ? false : 1000,
-                size: 60,
-                onStep: function (from, to, percent) {
-                    $(this.el).find('.percent').text(Math.round(percent));
-                }
-            });
-            $(this).find("span.percentageNum").html(percentage+"%");
-        });
-
-    });
-};
-
-function showError(message){
+function showError(message) {
     var errorMaps = {
         USER_DISABLED: '帐号密码错误次数过多，您的帐户已被锁定，请联系客服400-818-9696解锁。',
         FAILED: '手机号/用户名或密码错误'
@@ -272,34 +255,34 @@ function showError(message){
     var $error = $(".error");
     $error.text(errorMaps[message]);
     $error.addClass('show');
-    setTimeout(function(){
+    setTimeout(function () {
         $error.css({
-            opacity:'1'
+            opacity: '1'
         })
     });
-    setTimeout(function(){
+    setTimeout(function () {
         $error.css({
-            opacity:'0'
+            opacity: '0'
         })
-    },1500);
-    setTimeout(function(){
+    }, 1500);
+    setTimeout(function () {
         $error.removeClass('show');
-    },2000);
-};
+    }, 2000);
+}
 
-function clearError(){
+function clearError() {
     var $error = $(".error");
     $error.text("");
 }
 
-function verifyAndLogin(){
+function verifyAndLogin() {
     var username = $("#loginName").val();
     var password = $("#password").val();
     if (username && password) {
         $.post('/ajaxLogin', {
-            loginName : username,
-            password : password
-        }, function (data){
+            loginName: username,
+            password: password
+        }, function (data) {
             if (!data.success) {
                 showError(data.error_description.result);
             } else {
@@ -307,36 +290,36 @@ function verifyAndLogin(){
                 window.location.reload();
             }
         });
-    }else{
+    } else {
         showError('FAILED');
     }
 }
-$('.loginBtn').click(function (){
-        verifyAndLogin();
-    });
-$('.registerBtn').click(function(){
-    location.href="/register"
-})
-
-$("#my-carousel").hover(function(){
-    $('.carousel-control-box').css('display','block');
-},function(){
-    $('.carousel-control-box').css('display','none');
+$('.loginBtn').click(function () {
+    verifyAndLogin();
+});
+$('.registerBtn').click(function () {
+    location.href = "/register"
 });
 
-window.onscroll=function(){
-    var scrollTopOffset= document.documentElement.scrollTop || document.body.scrollTop,headerEle;
-    if(loginElement){
-        if(scrollTopOffset>=129){
-            loginElement.className='info floating';
-        }else{
-            loginElement.className='info';
+$("#my-carousel").hover(function () {
+    $('.carousel-control-box').css('display', 'block');
+}, function () {
+    $('.carousel-control-box').css('display', 'none');
+});
+
+window.onscroll = function () {
+    var scrollTopOffset = document.documentElement.scrollTop || document.body.scrollTop, headerEle;
+    if (loginElement) {
+        if (scrollTopOffset >= 129) {
+            loginElement.className = 'info floating';
+        } else {
+            loginElement.className = 'info';
         }
     }
-}
+};
 
 $(document).keyup(function (e) {
-    if(e.keyCode == 13) {
+    if (e.keyCode == 13) {
         verifyAndLogin();
     }
 });
@@ -351,28 +334,24 @@ request.get(encodeURI('/api/v2/cms/category/COOPERATION/name/合作伙伴'))
             data: {
                 list: []
             },
-            onrender: function(){
-                
-                if(res.body.length <= 6){
-                    this.set('cooperation',res.body);
-                }else{
+            onrender: function () {
+                if (res.body.length <= 6) {
+                    this.set('cooperation', res.body);
+                } else {
                     var num = 6;
                     var j = num;
                     var length = res.body.length;
-                    var total = Math.ceil(length/j);
-                    this.set('cooperation',res.body.slice(0,num));
-                    
-                    for(var i=0;i<total-1;i++){
+                    var total = Math.ceil(length / j);
+                    this.set('cooperation', res.body.slice(0, num));
 
-                        this.set('cooperationNext',res.body.slice(j,j+num));
-                        j = j+num;
-
-                        var cooperationNext = this.get('cooperationNext');  
+                    for (var i = 0; i < total - 1; i++) {
+                        this.set('cooperationNext', res.body.slice(j, j + num));
+                        j = j + num;
+                        var cooperationNext = this.get('cooperationNext');
                         this.push('list', cooperationNext);
-
-                    }     
+                    }
                 }
-               
+
             }
         });
     });
@@ -390,60 +369,39 @@ request.get(encodeURI('/api/v2/cms/category/COOPERATION/name/合作伙伴'))
 //    });
 
 //底部鼠标滑过显示公司链接
-$('.icon-grounp .company-intro').hide();
-$(' .icon-group1').mouseenter(function(){
-    $(this).children('.company-intro').show(200);
-}).mouseleave(function(){
-    $(this).children('.company-intro').hide(200);
-});
+// $('.icon-grounp .company-intro').hide();
+// $(' .icon-group1').mouseenter(function () {
+//     $(this).children('.company-intro').show(200);
+// }).mouseleave(function () {
+//     $(this).children('.company-intro').hide(200);
+// });
 
 //$('.strengthProtect').click(function(){
 //    var url=$(this).find('a').attr('href');
 //    location.href=url;
 //});
 
-function ininconut () {
-    $(".opre > .investbtn-time").each(function () {
-        var t = $(this);
-        if(t.data("status") === 'SCHEDULED'){
-            var id = t.data("id");
-            var openTime = t.data("open");
-            var serverDate = t.data("serv");
-            var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-            var textDay = leftTime.day ? leftTime.day +'天'+'&nbsp;' : '';
-            var interval = setInterval((function () {
-                serverDate += 1000;
-                var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-                var textDay = leftTime.day ? leftTime.day +'<span style="color:#c6c6c6">天</span>'+'&nbsp;': '';
-                if(!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
-                    clearInterval(interval);
-					t.prev().hide();
-                    t.replaceWith('<a href="/loan/'+id+'" style="text-decoration:none"><div class="investbtn">立即投资</div></a>');
-                }else {
-                    t.html('<span class="text" style="color:#c6c6c6">倒计时<span style="color:#ff7200">'+ textDay + leftTime.hour +'</span>时<span style="color:#ff7200">'+ leftTime.min +'</span>分<span style="color:#ff7200">'+ leftTime.sec +'</span>秒</span>')
-                }
-            }), 1000);
-        }
-    });
-};
-
-
-var sayHello = function () {
-    console.log(`Hello, ${this.name}!`);
-};
-({ name: 'ES7' })::sayHello();
-es6();
-function es6(){
-    //let sym = Symbol('asd');
-    let o = {
-        log: x => console.log(x)
-    }
-    let str = `ccc`;
-    let arr = [1,2,3,4,5,6];
-    let a = (...aaa) => {
-        console.log(aaa.join(''));
-    }
-    console.log(a(1,2,3,4,5))
-    //o.log(typeof sym);
-}
-
+// function ininconut() {
+//     $(".opre > .investbtn-time").each(function () {
+//         var t = $(this);
+//         if (t.data("status") === 'SCHEDULED') {
+//             var id = t.data("id");
+//             var openTime = t.data("open");
+//             var serverDate = t.data("serv");
+//             var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
+//             var textDay = leftTime.day ? leftTime.day + '天' + '&nbsp;' : '';
+//             var interval = setInterval((function () {
+//                 serverDate += 1000;
+//                 var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
+//                 var textDay = leftTime.day ? leftTime.day + '<span style="color:#c6c6c6">天</span>' + '&nbsp;' : '';
+//                 if (!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
+//                     clearInterval(interval);
+//                     t.prev().hide();
+//                     t.replaceWith('<a href="/loan/' + id + '" style="text-decoration:none"><div class="investbtn">立即投资</div></a>');
+//                 } else {
+//                     t.html('<span class="text" style="color:#c6c6c6">倒计时<span style="color:#ff7200">' + textDay + leftTime.hour + '</span>时<span style="color:#ff7200">' + leftTime.min + '</span>分<span style="color:#ff7200">' + leftTime.sec + '</span>秒</span>')
+//                 }
+//             }), 1000);
+//         }
+//     });
+// }

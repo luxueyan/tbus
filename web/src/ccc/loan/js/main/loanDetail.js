@@ -25,42 +25,43 @@ var investRactive = new Ractive({
         backUrl: CC.backUrl
     },
     oninit: function () {
-    	var self = this;
+        var self = this;
 
-      if (!!CC.user) {
-        	accountService.getAuthentication(function (r) {
-              if (!r.serviceError) {
-            		self.set('idauthenticated', r.data.idauthenticated);
-                self.set('paymentPass', r.data.paymentAuthenticated);
-              } else {
-                showErrors(r.error);
-              }
-        	});
-      };
+        if (!!CC.user) {
+            accountService.getAuthentication(function (r) {
+                if (!r.serviceError) {
+                    self.set('idauthenticated', r.data.idauthenticated);
+                    self.set('paymentPass', r.data.paymentAuthenticated);
+                } else {
+                    showErrors(r.error);
+                }
+            });
+        }
+        ;
     }
 });
 
 investRactive.on('checkCoupon', function () {
-  var self = this;
-  if (!self.get('selectInputFirst', true)) {
-    var minCouponAmount = $('#couponSelection').find("option:selected").data('min');
-    self.set('selectCouponFirst', true);
-    self.set('minCouponAmount', minCouponAmount);
-  }
+    var self = this;
+    if (!self.get('selectInputFirst', true)) {
+        var minCouponAmount = $('#couponSelection').find("option:selected").data('min');
+        self.set('selectCouponFirst', true);
+        self.set('minCouponAmount', minCouponAmount);
+    }
 });
 
 investRactive.on("invest-submit", function (e) {
     var self = this;
     e.original.preventDefault();
     if (parseInt(this.get('inputNum'), 10) != this.get('inputNum')) {
-      showErrors('投资金额只能为整数 ');
-      return false;
+        showErrors('投资金额只能为整数 ');
+        return false;
     }
     var num = parseInt(this.get('inputNum'), 10); // 输入的值
     var loanId = this.get('loan.id');
     var placementId = this.get('coupon');
     var paymentPassword = this.get('paymentPassword');
-    if(CC.loan.userId===CC.user.userId){
+    if (CC.loan.userId === CC.user.userId) {
         showErrors('该标为您本人借款，无法投标 ');
         return false;
     }
@@ -71,17 +72,17 @@ investRactive.on("invest-submit", function (e) {
     }
 
     if (CC.loan.rule.balance < CC.loan.rule.min) {
-        if(this.get('inputNum') != CC.loan.rule.balance) {
-             this.set('inputNum', CC.loan.rule.balance);
-             showErrors('投资金额必须为标的剩余金额');
-             return false;
+        if (this.get('inputNum') != CC.loan.rule.balance) {
+            this.set('inputNum', CC.loan.rule.balance);
+            showErrors('投资金额必须为标的剩余金额');
+            return false;
         } else {
-             disableErrors();
+            disableErrors();
         }
     } else {
         if (num < CC.loan.rule.min) {
             showErrors('起投金额为' + CC.loan.rule
-                .min + '元 !');
+                    .min + '元 !');
             return false;
         }
 
@@ -99,14 +100,14 @@ investRactive.on("invest-submit", function (e) {
 
     if (num > CC.loan.rule.max) {
         showErrors('单次投标金额不可超过' + CC.loan.rule
-            .max +
+                .max +
             '元!');
         return false;
     }
 
     if (self.get('selectCouponFirst') && self.get('minCouponAmount') >= 0 && num < parseInt(self.get('minCouponAmount'))) {
-      showErrors('您选用的奖券最低使用金额为 ' + self.get('minCouponAmount') + '元');
-      return false;
+        showErrors('您选用的奖券最低使用金额为 ' + self.get('minCouponAmount') + '元');
+        return false;
     }
 
     if (num > CC.user.availableAmount) {
@@ -128,47 +129,48 @@ investRactive.on("invest-submit", function (e) {
                 disableErrors();
 
                 if (!self.get('tendering')) {
-                  self.set('tendering', true);
-                  $.post('/lianlianpay/tender', {
-                      amount : num,
-                      loanId : investRactive.get('loan.id'),
-                      placementId : investRactive.get('coupon'),
-                      paymentPassword : investRactive.get('paymentPassword')
-                  }, function (res) {
-                      if (res.success) {
-                          CccOk.create({
-                              msg: '恭喜您，投资成功',
-                              okText: '确定',
-                              // cancelText: '重新登录',
-                              ok: function () {
-                                  window.location.reload();
-                              },
-                              cancel: function () {
-                                  window.location.reload();
-                              }
-                          });
-                      } else {
-                          var errType = res.error && res.error[0] && res.error[0].message || '';
-                          var errMsg = {
-                              TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
-                          }[errType] || errType;
-                          CccOk.create({
-                              msg: '投资失败，' + errMsg,
-                              okText: '确定',
-                              // cancelText: '重新登录',
-                              ok: function () {
-                                  window.location.reload();
-                              },
-                              cancel: function () {
-                                  window.location.reload();
-                              }
-                          });
-                      }
-                  });
+                    self.set('tendering', true);
+                    $.post('/lianlianpay/tender', {
+                        amount: num,
+                        loanId: investRactive.get('loan.id'),
+                        placementId: investRactive.get('coupon'),
+                        paymentPassword: investRactive.get('paymentPassword')
+                    }, function (res) {
+                        if (res.success) {
+                            CccOk.create({
+                                msg: '恭喜您，投资成功',
+                                okText: '确定',
+                                // cancelText: '重新登录',
+                                ok: function () {
+                                    window.location.reload();
+                                },
+                                cancel: function () {
+                                    window.location.reload();
+                                }
+                            });
+                        } else {
+                            var errType = res.error && res.error[0] && res.error[0].message || '';
+                            var errMsg = {
+                                    TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
+                                }[errType] || errType;
+                            CccOk.create({
+                                msg: '投资失败，' + errMsg,
+                                okText: '确定',
+                                // cancelText: '重新登录',
+                                ok: function () {
+                                    window.location.reload();
+                                },
+                                cancel: function () {
+                                    window.location.reload();
+                                }
+                            });
+                        }
+                    });
                 }
             }
         });
-    };
+    }
+    ;
 });
 
 function parsedata(o) {
@@ -191,7 +193,8 @@ function parsedata(o) {
             o[i].displayValue = parseInt(o[i].couponPackage.parValue) + "元";
         } else if (o[i].couponPackage.type === 'REBATE') {
             o[i].displayValue = parseInt(o[i].couponPackage.parValue) + "元";
-        };
+        }
+        ;
         o[i].value = parseInt(o[i].couponPackage.parValue);
         o[i].id = o[i].id;
         o[i].typeKey = type[o[i].couponPackage.type];
@@ -203,49 +206,37 @@ function parsedata(o) {
 };
 
 
-
-
-
 function showErrors(error) {
-    investRactive
-        .set('errors', {
-            visible: true,
-            msg: error
-        });
+    investRactive.set('errors', {visible: true, msg: error});
 }
 
 function disableErrors() {
-    investRactive
-        .set('errors', {
-            visible: false,
-            msg: ''
-        });
+    investRactive.set('errors', {visible: false, msg: ''});
 }
 
-$('.benefit-calculator')
-    .on('click', function () {
-        Cal.create();
-    });
+$('.benefit-calculator').on('click', function () {
+    Cal.create();
+});
 
 function showSelect(amount) {
-        $('#couponSelection').val('');
-        var months = CC.loan.duration;
-        investRactive.set('inum', parseFloat(amount));
-        disableErrors();
-        loanService.getMyCoupon(amount, months, function (coupon) {
-            if(coupon.success) {
-                var canUseCoupon = _.filter(coupon.data, function (r) {
-                    return r.disabled === false;
-                })
-                investRactive.set('couponLength', canUseCoupon.length);
-                investRactive.set('selectOption', parsedata(coupon.data));
-            }
-        });
-    }
-    //初始化选项
-if(!!CC.user) {
+    $('#couponSelection').val('');
+    var months = CC.loan.duration;
+    investRactive.set('inum', parseFloat(amount));
+    disableErrors();
+    loanService.getMyCoupon(amount, months, function (coupon) {
+        if (coupon.success) {
+            var canUseCoupon = _.filter(coupon.data, function (r) {
+                return r.disabled === false;
+            });
+            investRactive.set('couponLength', canUseCoupon.length);
+            investRactive.set('selectOption', parsedata(coupon.data));
+        }
+    });
+}
+//初始化选项
+if (!!CC.user) {
     showSelect(CC.loan.rule.balance);
-};
+}
 
 investRactive.on('getCoupon', function () {
     var self = this;
@@ -255,16 +246,15 @@ investRactive.on('getCoupon', function () {
         return false;
     }
     var args = {
-        amountValue : self.get('inputNum'),
-        dueYear : CC.loan.dueYear,
-        dueMonth : CC.loan.dueMonth,
-        dueDay : CC.loan.dueDay,
-        annualRate : CC.loan.rate,
-        paymentMethod : CC.loan.method
+        amountValue: self.get('inputNum'),
+        dueYear: CC.loan.dueYear,
+        dueMonth: CC.loan.dueMonth,
+        dueDay: CC.loan.dueDay,
+        annualRate: CC.loan.rate,
+        paymentMethod: CC.loan.method
     };
 
-    request
-        .post('/api/v2/loan/request/analyse')
+    request.post('/api/v2/loan/request/analyse')
         .type('form')
         .send(args)
         .end()
@@ -274,13 +264,13 @@ investRactive.on('getCoupon', function () {
                 self.set('Earninterest', res.body.data.interest);//只返回收益不返回本金
             }
         });
-    if(!self.get('selectCouponFirst')) {
-      self.set('selectInputFirst', true);
-      var inputNum = this.get('inputNum');
-      var inum = this.get('inum');
-      if (parseFloat(inputNum) !== parseFloat(inum)) {
-         showSelect(inputNum);
-      }
+    if (!self.get('selectCouponFirst')) {
+        self.set('selectInputFirst', true);
+        var inputNum = this.get('inputNum');
+        var inum = this.get('inum');
+        if (parseFloat(inputNum) !== parseFloat(inum)) {
+            showSelect(inputNum);
+        }
     }
 });
 //tab切换
@@ -288,12 +278,12 @@ $('.tablist .tabItem').click(function () {
     var step = $(this).data('step');
 
     $(this)
-    	.addClass('tabItemActive')
+        .addClass('tabItemActive')
         .find('span.jiao')
         .addClass('jiaoActive')
         .parent()
-    	.siblings()
-    	.removeClass('tabItemActive')
+        .siblings()
+        .removeClass('tabItemActive')
         .find('span.jiao')
         .removeClass('jiaoActive');
 
@@ -307,16 +297,16 @@ $('.tablist .tabItem').click(function () {
 //剩余时间倒计时
 var coutDown = function () {
     if (CC.loan.status == 'SCHEDULED') {
-        var timeLeft  = CC.loan.countDownTime;
+        var timeLeft = CC.loan.countDownTime;
         var countDownRactive = new Ractive({
             el: '.countDown',
-            template:require('ccc/loan/partials/countDown.html'),
-            data:{
-                countDown:{
-                    days:timeLeft.dd,
-                    hours:timeLeft.hh,
-                    minutes:timeLeft.mm,
-                    seconds:timeLeft.ss
+            template: require('ccc/loan/partials/countDown.html'),
+            data: {
+                countDown: {
+                    days: timeLeft.dd,
+                    hours: timeLeft.hh,
+                    minutes: timeLeft.mm,
+                    seconds: timeLeft.ss
                 }
             }
         });
@@ -329,29 +319,27 @@ var coutDown = function () {
                     mm = parseInt((timeLeftToal - dd * 60 * 60 * 24 - hh * 60 * 60) / 60, 10),
                     ss = parseInt(timeLeftToal - dd * 60 * 60 * 24 - hh * 60 * 60 - mm * 60, 10);
                 countDownRactive.set('countDown', {
-                    days:dd,
-                    hours:hh,
-                    minutes:mm,
-                    seconds:ss
+                    days: dd,
+                    hours: hh,
+                    minutes: mm,
+                    seconds: ss
                 });
             } else {
                 clearInterval(countDownInterval);
                 window.location.reload();
-
-
             }
         }, 1000);
     }
-}
+};
 
-setTimeout(coutDown,500);
+setTimeout(coutDown, 500);
 
 var recordRactive = new Ractive({
     el: '.invest-record',
     template: require('ccc/loan/partials/record.html'),
     page: 1,
     pageSize: 40,
-    api:'/api/v2/loan/'+ CC.loan.id + '/invests/',
+    api: '/api/v2/loan/' + CC.loan.id + '/invests/',
     data: {
         loading: true,
         list: [],
@@ -407,9 +395,9 @@ var recordRactive = new Ractive({
         }
 
         var totalPage = [];
-        console.log("===>> totalPage = " + self.totalPage);
+        // console.log("===>> totalPage = " + self.totalPage);
         for (var i = 0; i < self.totalPage; i++) {
-            totalPage.push(i+1);
+            totalPage.push(i + 1);
         }
 
         renderPager(totalPage, self.page);
@@ -417,18 +405,18 @@ var recordRactive = new Ractive({
 });
 
 function renderPager(totalPage, current) {
-    console.log("===>render")
+    // console.log("===>render")
     if (!current) {
         current = 1;
     }
-   var pagerRactive = new Ractive({
-       el: '#record-pager',
-       template: require('ccc/loan/partials/pagerRecord.html'),
-       data: {
-           totalPage: totalPage,
-           current: current
-       }
-   });
+    var pagerRactive = new Ractive({
+        el: '#record-pager',
+        template: require('ccc/loan/partials/pagerRecord.html'),
+        data: {
+            totalPage: totalPage,
+            current: current
+        }
+    });
 
     pagerRactive.on('previous', function (e) {
         e.original.preventDefault();
@@ -468,7 +456,7 @@ function renderPager(totalPage, current) {
 }
 
 
-function mask (str, s, l) {
+function mask(str, s, l) {
     if (!str) {
         return '';
     }
@@ -480,13 +468,13 @@ function mask (str, s, l) {
         l = len === 2 ? 1 : len - 2;
     } else if (l > len - 1) {
         l = len - 1;
-        s = !! s ? 1 : 0;
+        s = !!s ? 1 : 0;
     }
     if (s > len) {
         s = len - 1;
     }
     str = str.substring(0, s) + (new Array(l + 1))
-        .join('*') + str.substring(s + l);
+            .join('*') + str.substring(s + l);
     str = str.substring(0, len);
     return str;
 }

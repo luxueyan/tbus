@@ -244,7 +244,7 @@ function init(status) {
                     }
                 },
                 onSelect: function (p, o) {
-                    console.log(p);
+                    // console.log(p);
                     self.set('list', p > 1 ? self.parseData(o).results : self.get('pageOne'));
                     self.tooltip();
                 }
