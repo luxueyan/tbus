@@ -103,7 +103,7 @@
                             >
 
                             <div class="help-block"
-                                ng-show="form.amount.$invalid && form.amount.$dirty"
+                                 ng-show="form.amount.$invalid && form.amount.$dirty"
                             >
                                 <span ng-show="form.amount.$error.required">请输入充值金额</span>
                                 <span ng-show="form.amount.$error.min">单笔充值要大于{{ bank_account.account.minQuota }}元</span>
