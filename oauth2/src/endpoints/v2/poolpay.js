@@ -16,7 +16,27 @@ router.post('/api/v2/chinapay/bindCard/:userId', auth.owner());
 router.post('/api/v2/chinapay/bindCardReturn', auth.pass());
 router.post('/api/v2/chinapay/deposit/:userId', auth.owner());
 router.post('/api/v2/chinapay/withdraw/:userId', auth.owner());
-router.post('/api/v2/invest/tender/:userId', auth.owner());
+router.post('/api/v2/invest/tender/:userId',
+  auth.owner(),
+  require('../../investor-limit'),
+  ccBody,
+  function(req, res, next){
+    request
+    .post(marketPrefix + req.url)
+    .type('form')
+    .send(req.body)
+    .accept('json')
+    .end(function (err, r) {
+      if (r.body.success) {
+        try {
+          // 更新标的缓存 LOAN_LIST
+          cache.del('LOAN_LIST');
+          cache.del(req.body.loanId + '_LOAN_INVEST_LIST');
+        } catch (e) {}
+      }
+      res.send(r.body);
+    });
+  });
 
 /*
 // 带 /loan/:loanId 的是限流接口
