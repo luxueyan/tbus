@@ -36,7 +36,7 @@ var ractive = new Ractive({
         city: '',
         banking: false,
         vara: '请选择开户银行',
-        unionPayErr:false
+        unionPayErr: false
 
     },
     oninit: function () {
@@ -151,9 +151,9 @@ ractive.on("bankfull", function (i) {
         this.set("bankNameError", false);
         accessE = true;
     }
-    if(val == "PSBC"||val =="SHB"){
+    if (val == "PSBC" || val == "SHB") {
         ractive.set('unionPayErr', true);
-    }else{
+    } else {
         ractive.set('unionPayErr', false);
     }
 });
@@ -251,7 +251,7 @@ ractive.on("bind-card-submit", function (e) {
         bankName: bankName,
         smsCode: smsCaptcha,
         userId: CC.user.id,
-    }
+    };
     var msg = {
         SEND_CAPTCHA_FAILED: '验证码发送失败',
         SMSCAPTCHA_IS_NOT_CORRECT: '手机验证码不匹配',
@@ -261,8 +261,14 @@ ractive.on("bind-card-submit", function (e) {
         BIND_CARD_FAILED: '绑卡失败',
         UNKNOWN: '系统繁忙，请稍后重试！',
         ACCESS_DENIED: '登录超时',
+        INCORRECT_PASSWORD: '交易密码不正确',
+        PRE_BIND_CARD_FAILED: '信息验证错误，请检查上述四要素是否填写正确！',
         IDNUMBER_EXISTS: '身份证已被认证',
-        SUCCEED: '银行卡绑定成功'
+        ACCOUNT_DO_NOT_MATCH_BANK: '卡号与开户行不匹配',
+        BANK_ACCOUNT_IS_EXISTED: '银行账户已存在',
+        TRADE_FAILED: '交易失败',
+        WRONG_RESPONSE: '请求返回结果错误，请联系客服。',
+        SUCCEED: '银行卡绑定成功',
     };
     if (!paymentAuthenticated) {
         accountService.initialPassword(pwd, function (r) {
@@ -324,11 +330,28 @@ ractive.on("bind-card-submit", function (e) {
         //}
         //});
     }
-
-
 });
 
 ractive.on('sendCode', function () {
+    var msgN = {
+        SEND_CAPTCHA_FAILED: '验证码发送失败',
+        SMSCAPTCHA_IS_NOT_CORRECT: '手机验证码不匹配',
+        IDNUMBER_ALREADY_EXISTED: '此身份证号已被注册',
+        REGISTER_FAILED: '开户失败',
+        CHECK_CARD_FAILED: '验卡失败',
+        BIND_CARD_FAILED: '绑卡失败',
+        UNKNOWN: '系统繁忙，请稍后重试！',
+        ACCESS_DENIED: '登录超时',
+        INCORRECT_PASSWORD: '交易密码不正确',
+        PRE_BIND_CARD_FAILED: '信息验证错误，请检查上述四要素是否填写正确！',
+        IDNUMBER_EXISTS: '身份证已被认证',
+        ACCOUNT_DO_NOT_MATCH_BANK: '卡号与开户行不匹配',
+        BANK_ACCOUNT_IS_EXISTED: '银行账户已存在',
+        TRADE_FAILED: '交易失败',
+        WRONG_RESPONSE: '请求返回结果错误，请联系客服。',
+        SUCCEED: '银行卡绑定成功',
+    };
+
     var realName = this.get('personal');
     var idNumber = this.get('idNo');
     var accountNumber = this.get('cardNo');
@@ -347,7 +370,8 @@ ractive.on('sendCode', function () {
         accountNumber: accountNumber,
         mobile: cardPhone,
         bankName: bankName
-    }
+    };
+
     if (bankName == undefined) {
         this.set("bankNameError", '请选择开户银行');
         return;
@@ -364,7 +388,7 @@ ractive.on('sendCode', function () {
                 countDown();
             } else {
                 CccOk.create({
-                    msg: '信息验证错误，请检查上述四要素是否填写正确!',
+                    msg: msgN[res.error[0].message],
                     okText: '确定',
                     ok: function () {
                         $('.ccc-box-overlay').remove();
@@ -374,7 +398,6 @@ ractive.on('sendCode', function () {
             }
         });
     }
-
 
 });
 
@@ -390,10 +413,8 @@ function countDown() {
                 .html(msg.replace('$', left--));
         } else {
             ractive.set('isSend', false);
-            $('.sendCode')
-                .html(previousText);
-            $('.sendCode')
-                .removeAttr('disabled');
+            $('.sendCode').html(previousText);
+            $('.sendCode').removeAttr('disabled');
             clearInterval(interval);
         }
     }), 1000);
