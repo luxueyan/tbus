@@ -30,7 +30,7 @@
             <div class="clearfix"></div>
         </div>
 
-        <div class="row">
+        <div class="row pr">
             <div class="card-brame">
                 <div class="img-box">
                     <img src="/ccc/newAccount/img/bankcode.png"/>
@@ -43,11 +43,10 @@
                     <!--</option>-->
                     <!--{{/each}}-->
                 <!--</select>-->
-                <input type="button" class="select" on-click="banking" on-blur="validateBankName" id="select" value="{{vara}}"{{hasCard1?'disabled':''}}/>
-                <div style="position: absolute">
-                    <img src="/ccc/newAccount/img/bank_open.png" alt="" class="open" on-click="banking"/>
+                <input type="button" class="select selectBGN" on-click="banking" on-blur="validateBankName" id="select" value="{{vara}}"{{hasCard1?'disabled':''}}/>
+
                     {{#unionPayErr}}<span class="unionPay">此银行需要开通银联在线支付</span>{{/unionPayErr}}
-                </div>
+
 
             </div>
 
