@@ -136,14 +136,16 @@ ractive.on("validateBankName", function () {
     }
 
 });
-ractive.on("banking", function () {
-    var dis = this.get("banking");
-    if (dis) {
-        ractive.set('banking', false);
-    } else {
-        ractive.set('banking', true);
-    }
-});
+if (!ractive.get('hasCard1')) {
+    ractive.on("banking", function () {
+        var dis = this.get("banking");
+        if (dis) {
+            ractive.set('banking', false);
+        } else {
+            ractive.set('banking', true);
+        }
+    });
+}
 ractive.on("bankfull", function (i) {
     var name = i.context.bankName;
     var val = i.context.bankCode;
@@ -387,7 +389,8 @@ ractive.on('sendCode', function () {
     }
 
     if (accessA && accessB && accessC && accessD && accessE) {
-        $.post('/api/v2/baofoo/MYSELF/preBindCard', params, function (r) {
+        $.post('/api/web/newAccount/preBindCardNew', params).then(function (r) {
+            // console.log(r);
             if (r.success) {
                 ractive.set('hasCardO', true);
                 ractive.set('hasCard1', true);
