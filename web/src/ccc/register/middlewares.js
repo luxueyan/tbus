@@ -72,6 +72,7 @@ exports.doRegister = conext(function *(req, res, next) {
             grant_type: 'password',
             client_id: config.oauth2client.id,
             client_secret: config.oauth2client.secret,
+            source: 'WEB'
         },
     };
     var rl = yield req.uest('POST', '/api/v2/token', loginOpts);
