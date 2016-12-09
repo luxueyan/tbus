@@ -104,16 +104,4 @@ module.exports = function (router, auth) {
         });
     });
 
-    router.post('/api/v2/users/preBindCardNew', auth.user());
-
-    router.post('/api/v2/preBindCardNew', auth.user(), function (req, res) {
-        var data = req.body;
-        req.uest('/api/v2/user/MYSELF').get('body').then(function (user) {
-            data.idNumber = user.idNumber;
-            req.uest.post('/api/v2/baofoo/MYSELF/preBindCard', data).get('body').then(function (r) {
-                console.log(r.body);
-                return r.body;
-            });
-        })
-    });
 };
