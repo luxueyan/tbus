@@ -69,6 +69,7 @@
                                    placeholder="身份证上的姓名"
                                    required
                                    ng-if="is_user_name_init_editable"
+                                   ng-disabled="self.captcha.has_sent"
                             >
 
                             <input id="user-name" class="form-control input-target input-lg" type="text"
@@ -114,6 +115,7 @@
                                    x-id-number
                                    ui-validate-async="{ already_exists: 'self.does_not_exist_id_number($modelValue)' }"
                                    ng-if="is_id_number_init_editable"
+                                   ng-disabled="self.captcha.has_sent"
                             >
 
                             <input id="id-number" class="form-control input-target input-lg" type="text"
@@ -137,7 +139,7 @@
 
             <div class="inputs">
                 <div class="form-group merge form-group-bank">
-                    <div class="form-group-inner" ng-click="self.select_bank($event, store)">
+                    <div class="form-group-inner" ng-click="!self.captcha.has_sent && self.select_bank($event, store)">
                         <label for="bank-name">开户行</label>
                         <select name="bankName" class="form-control input-lg"
                                 id="bank-name"
@@ -148,6 +150,7 @@
                                     track by bank.bankCode
                                 "
                                 required
+                                ng-disabled="self.captcha.has_sent"
                         >
                             <option value="">请选择开户银行</option>
                         </select>
@@ -169,6 +172,7 @@
                                ui-validate="{ already_exists: 'self.does_not_exist_bank($modelValue)' }"
                                placeholder="请输入本人借记卡号"
                                required
+                               ng-disabled="self.captcha.has_sent"
                         >
                     </div>
 
@@ -195,6 +199,7 @@
                                maxlength="11"
                                placeholder="请输入银行预留手机号"
                                required
+                               ng-disabled="self.captcha.has_sent"
                         >
                     </div>
 
