@@ -87,14 +87,20 @@ ractive.on("validatePersonal", function () {
 
 ractive.on("validateIdNo", function () {
     var idNo = this.get("idNo");
-    if (!/^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/.test(idNo)) {
-        this.set("idNoError", '请输入正确的身份证号');
-        return;
-    } else {
-        this.set("idNoError", false);
+
+    if (this.get("hasCardO")) {
         accessB = true;
+    } else {
+        if (!/^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/.test(idNo)) {
+            this.set("idNoError", '请输入正确的身份证号');
+            return;
+        } else {
+            this.set("idNoError", false);
+            accessB = true;
+        }
     }
 });
+
 ractive.on("validateCardNo", function () {
     var cardNo = this.get("cardNo");
     if (cardNo == '') {
@@ -388,7 +394,7 @@ ractive.on('sendCode', function () {
                 countDown();
             } else {
                 CccOk.create({
-                    msg: msgN[res.error[0].message],
+                    msg: msgN[r.error[0].message],
                     okText: '确定',
                     ok: function () {
                         $('.ccc-box-overlay').remove();
