@@ -407,7 +407,13 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         .then -> api.get_loan_detail($route.current.params.id, true)
                                         .then (data) ->
                                             amount = data.balance
-                                            months = _.get data, 'duration.totalMonths'
+
+                                            { days, totalDays, totalMonths } = _.get data, 'duration'
+                                            if days
+                                                months = Math.ceil(totalDays / 30)
+                                            else
+                                                months = totalMonths
+
                                             loan_id = data.id
 
                                             return api.fetch_coupon_list amount, months, loan_id
