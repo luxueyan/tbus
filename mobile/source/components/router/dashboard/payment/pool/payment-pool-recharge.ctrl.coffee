@@ -32,8 +32,8 @@ do (_, angular) ->
 
 
             submit: ({bank_account, amount}) ->
-                if amount <= 1
-                    @$window.alert '单笔充值要大于1元'
+                if amount <= 0
+                    @$window.alert '单笔充值要大于0元'
                     return
 
                 account = _.get bank_account, 'account.account'
