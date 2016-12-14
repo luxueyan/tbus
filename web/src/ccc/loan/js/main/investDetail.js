@@ -373,10 +373,9 @@ setTimeout((function () {
             } else if (o[i].couponPackage.type === 'REBATE') {
                 o[i].displayValue = parseInt(o[i].couponPackage.parValue) + "元";
             }
-            ;
         }
         return o;
-    };
+    }
 
 
     function showErrors(error) {
@@ -388,7 +387,11 @@ setTimeout((function () {
     }
 
     function showSelect(amount) {
-        var months = Math.ceil(CC.loan.durationdays / 30);
+        if (CC.loan.durationdays) {
+            var months = Math.ceil(CC.loan.durationdays / 30);
+        } else {
+            var months = relateDataRactive.get('monthsN');
+        }
         investRactive.set('inum', parseFloat(amount));
         disableErrors();
         loanService.getMyCouponlist(amount, months, function (coupon) {
@@ -547,12 +550,12 @@ loanService.getLoanDetail(CC.loan.id, function (res) {
         },
         onrender: function () {
             this.set('imgs', this.parseData(res.data.proof.proofImages));
+            this.set('monthsN', res.data.loan.duration.totalMonths);
         },
         parseData: function (res) {
             for (var i = 0; i < res.length; i++) {
                 res[i].proof.content = res[i].proof.content.split('.')[0];
             }
-            ;
             return res;
         }
     });

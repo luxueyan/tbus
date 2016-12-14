@@ -16,7 +16,6 @@ var banksabled = _.filter(CC.user.bankCards, function (r) {
 var ractive = new Ractive({
     el: "#ractive-container",
     template: require('ccc/newAccount/partials/settings/bankCards.html'),
-
     data: {
         step1: true,
         step2: false,
@@ -279,29 +278,29 @@ ractive.on("bind-card-submit", function (e) {
         SUCCEED: '银行卡绑定成功',
     };
     if (!paymentAuthenticated) {
-        accountService.initialPassword(pwd, function (r) {
-            if (r.success) {
-                $('.btn-box button').text('绑卡中,请稍等...');
-                $.post('/api/v2/baofoo/MYSELF/confirmBindCard', sendCard, function (res) { //bindCard
-                    if (res.success) {
+        $('.btn-box button').text('绑卡中,请稍等...');
+        $.post('/api/v2/baofoo/MYSELF/confirmBindCard', sendCard, function (res) { //bindCard
+            if (res.success) {
+                accountService.initialPassword(pwd, function (r) {
+                    if (r.success) {
                         ractive.set('step1', false);
                         ractive.set('step2', true);
                         ractive.set('step3', false);
                     } else {
-                        $('.btn-box button').text('绑定');
-                        ractive.set('step1', false);
-                        ractive.set('step2', false);
-                        ractive.set('step3', true);
-                        if (res.error[0].message === 'Something is wrong') {
-                            msg[res.error[0].message] = '请再次确认您的信息'
-                        }
-                        ractive.set('failError', msg[res.error[0].message]);
+                        ractive.set('errMessgaePwd', '支付密码设定失败');
                     }
-
                 });
             } else {
-                ractive.set('errMessgaePwd', '支付密码设定失败');
+                $('.btn-box button').text('绑定');
+                ractive.set('step1', false);
+                ractive.set('step2', false);
+                ractive.set('step3', true);
+                if (res.error[0].message === 'Something is wrong') {
+                    msg[res.error[0].message] = '请再次确认您的信息'
+                }
+                ractive.set('failError', msg[res.error[0].message]);
             }
+
         });
     } else {
         //accountService.checkPassword(pwd, function (r) {
@@ -396,8 +395,9 @@ ractive.on('sendCode', function () {
                 ractive.set('hasCard1', true);
                 countDown();
             } else {
+
                 CccOk.create({
-                    msg: msgN[r.error[0].message],
+                    msg: msgN[r.error[0].message] ? msgN[r.error[0].message] : msgN['PRE_BIND_CARD_FAILED'],
                     okText: '确定',
                     ok: function () {
                         $('.ccc-box-overlay').remove();
