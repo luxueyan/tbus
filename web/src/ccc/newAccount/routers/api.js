@@ -4,7 +4,9 @@ module.exports = function (router) {
 
     router.post('/preBindCardNew', ccBody, function (req, res) {
         req.uest('/api/v2/user/MYSELF').end().get('body').then(function (r) {
-            req.body.idNumber = r.idNumber;
+            if(r.idNumber){
+                req.body.idNumber = r.idNumber;
+            }
             req.uest.post("/api/v2/baofoo/MYSELF/preBindCard")
                 .send(req.body)
                 .end()
