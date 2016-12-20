@@ -12,7 +12,6 @@ var conext = require('conext');
 var ccBody = require('cc-body');
 var db = require('@cc/redis');
 var checkCaptcha = require('../../captcha');
-var middlewares = require('../../middlewares');
 var captchaRequired = exports.captchaRequired = conext(function *(req, res, next) {
     res.set('Content-Type', 'application/json; charset=utf-8');
     if (!req.query.captcha_token) {
@@ -44,7 +43,6 @@ var captchaRequired = exports.captchaRequired = conext(function *(req, res, next
 function pt(token) {
     return 'captcha_token:' + token;
 }
-/*
 router.get('/api/v2/users/smsCaptcha', conext(function *(req, res, next) {
     if ('imgCaptchaRequired' in req.query || config.imgCaptchaRequiredToGetSmsCaptcha || (yield db.get('setting:imgCaptchaRequiredToGetSmsCaptcha'))) {
         return captchaRequired(req, res, function () {
@@ -56,9 +54,8 @@ router.get('/api/v2/users/smsCaptcha', conext(function *(req, res, next) {
     }
     auth.pass()(req, res, next);
 }));
-*/
 router.get('/api/v2/users/smsVoiceCaptcha', auth.pass());
-router.get('/api/v2/users/smsCaptcha', auth.pass(), middlewares.captchaRequired);
+router.get('/api/v2/users/smsCaptcha', auth.pass());
 router.post('/api/v2/users/voiceCaptcha', auth.pass());
 router.get('/api/v2/users/smsCaptcha/changePwd', auth.pass());
 router.post('/api/v2/users/check/id_number', auth.pass());
