@@ -86,6 +86,8 @@ module.exports = function (router, auth, middlewares) {
     router.post('/api/v2/invest/user/:userId/creditAssign/invest', auth.owner());
     //发送短信验证码
     router.post('/api/v2/smsCaptcha', auth.user());
+    //大额充值
+    router.post('/api/v2/baofoo/:userId/batchDepositSplit', auth.owner());
     //银行卡预绑卡
     router.post('/api/v2/baofoo/:userId/preBindCard', auth.owner());
     //银行卡绑卡
