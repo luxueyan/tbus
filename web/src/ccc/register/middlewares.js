@@ -4,6 +4,7 @@ var conext = require('conext');
 var config = require('config');
 var ccBody = require('cc-body');
 
+// captchaRequired部分放到了oauth里做，主要是做防止刷短信验证码接口
 exports.captchaRequired = conext(function *(req, res, next) {
     res.set('Content-Type', 'application/json; charset=utf-8');
     if (!req.query.captcha_token) {
@@ -21,7 +22,7 @@ exports.captchaRequired = conext(function *(req, res, next) {
     }
     var opts = {
         query: {
-            invalidate: 1,
+            //invalidate: 1,
             token: req.query.captcha_token,
         },
         body: {
@@ -91,7 +92,7 @@ exports.doRegister = conext(function *(req, res, next) {
 
 exports.smsCaptcha = conext(function *(req, res, next) {
     req.uest('/api/v2/users/smsCaptcha', {
-        query: {mobile: req.query.mobile}
+        query: req.query
     }).end().get('body').then(res.json.bind(res));
 });
 
