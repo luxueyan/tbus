@@ -54,7 +54,7 @@ var appRoot = path.dirname(module.parent.filename); // which requires /index.js
 var addepath = path.resolve(appRoot + '/additional-endpoints.js');
 if (fs.existsSync(addepath)) {
     var router = express.Router();
-    require(addepath)(router, auth);
+    require(addepath)(router, auth, require('./middlewares'));
     server.use(router);
 }
 

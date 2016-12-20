@@ -3,7 +3,31 @@ var Promise = require('bluebird');
 var request = require('promisingagent');
 var marketPrefix = require('config').proxy.market;
 
-module.exports = function (router, auth) {
+module.exports = function (router, auth, middlewares) {
+
+    /**
+     * 关于图形验证码的说明
+     * 如果有哪个接口需要使用图形验证码校验
+     * 只需要在后边加上 middlewares.captchaRequired 即可
+     * 
+     * middlewares.captchaRequired 是校验图形验证码的中间件
+     * 接收两个参数：
+     *  @captcha_token {String} token
+     *  @captcha_answer {String} answer
+     *
+     * Example:
+     *  router.get('/api/v2/some-api-path', auth.user(), middlewares.captchaRequired);
+     */
+
+    // image captcha checker test
+    router.get('/api/v2/img-captcha-checker-test ',
+        auth.pass(),
+        middlewares.captchaRequired,
+        function (req, res) {
+        res.send({
+            query: req.query
+        });
+    });
 
     router.get('/api/v2/user/:userId/paymentPasswordHasSet', auth.owner());
     router.post('/api/v2/user/:userId/validatePaymentPassword', auth.owner());
@@ -24,9 +48,6 @@ module.exports = function (router, auth) {
     router.post('/api/v2/coupon/:userId/redeemCouponIgnoreApproval', auth.owner());
 
     router.get('/api/v2/baofoo/getBankConstraints', auth.pass());
-
-    //注册
-    router.get('/api/v2/users/smsCaptcha', auth.pass());
 
     //账户中心我要投资接口
     router.get('/api/v2/user/MYSELF/invests/list/:page/:size', auth.user());
