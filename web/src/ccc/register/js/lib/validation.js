@@ -81,7 +81,7 @@ exports.imgCaptcha = {
 exports.smsCaptcha = {
     required: true,
     sync: validator.smsCaptcha,
-    //async: genAsyncValidator('/api/v2/users/smsCaptcha', 'smsCaptcha'),
+    async: genAsyncValidator('/api/v2/users/smsCaptcha', 'smsCaptcha'),
 };
 
 exports.email = {
