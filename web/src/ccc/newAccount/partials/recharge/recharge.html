@@ -37,6 +37,8 @@
                         <input type="text" name="amount" id="rechargeValue" on-blur="changeValue" placeholder="请输入充值金额"
                                value="{{amount}}" class="recharge-input" autocomplete="off">
                         <input style="display:none;">
+
+                        <input type="checkbox" class="recharge-cbx"><span>大额充值</span>
                     </div>
                     <p class="text-danger" style="color:red;">
                         {{#msg.AMOUNT_NULL}}请输入充值金额{{/msg.AMOUNT_NULL}}
