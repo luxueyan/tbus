@@ -7,7 +7,7 @@ require('ccc/global/js/modules/tooltip');
 require('ccc/global/js/modules/cccPaging');
 var couponTpl = require('ccc/newAccount/partials/coupon/coupon.html');
 var RenderPage = require('ccc/global/js/modules/cccPageSuper')
-
+var CccBox = require('ccc/global/js/modules/cccBox');
 
 
 var pagesize = 9;
@@ -236,22 +236,12 @@ init(getCurrentType());
 
 window.redeemCoupon = function (btn) {
   var $btn = $(btn);
-  var id = $btn.data("id");
   if ($btn.hasClass('disabled')) {
     return;
   }
-  $btn.addClass('disabled');
-    $.post("/api/v2/coupon/MYSELF/redeemCouponIgnoreApproval",
-      {placementId: id}, function (res) {
-        if (res) {
-            alert("兑现成功!");
-            location.reload();
-        } else {
-          $btn.removeClass('disabled');
-            alert("兑现失败!");
-        }
-    });
+    Coupon_Box($btn);
 }
+
 
 $('.rule').click(function () {
     $('.coupon-nav-view').hide();
@@ -265,3 +255,80 @@ $('.back').click(function () {
     $('.coupon-content-detail').show();
     $('#coupon-pager').show();
 });
+
+
+function Coupon_Box($btn){
+    new CccBox({
+        title: '现金券兑换',
+        value: 'loading...',
+        autoHeight: true,
+        width: 500,
+        height: 240,
+        showed: function(ele, box){
+            var imgRac = new Ractive({
+                el: $(ele),
+                template: require('ccc/newAccount/partials/coupon/check.html'),
+                data: {
+                    captcha:'',
+                    token:'',
+                    errMsg:''
+                },
+                oninit:function(){
+                    this.getImgCaptcha();
+                },
+                oncomplete: function(){
+                    var _this=this;
+                   _this.on( 'submitCoupon',function(){
+                        $btn.addClass('disabled');
+                        var id = $btn.data("id");
+                       if(!_this.get("errMsg") && _this.get("value")){
+                           $.post("/api/v2/coupon/MYSELF/redeemCouponIgnoreApproval", {placementId: id}, function (res) {
+                               if (res) {
+                                   alert("兑现成功!");
+                               } else {
+                                   $btn.removeClass('disabled');
+                                   alert("兑现失败!");
+                               }
+                               $('.bar .close').click();
+                           });
+                       }
+                       else{
+                           _this.set("errMsg","请输入图形验证码");
+                       }
+                    });
+                    _this.on('exchangeImgCaptcha',function(){
+                        _this. getImgCaptcha();
+                    })
+                    _this.on('checkImgCaptcha',function(){
+                        this.checkImgCaptcha();
+                    })
+                },
+                getImgCaptcha:function(){
+                    var _this=this;
+                    request('GET', '/api/v2/captcha', {query: {v: (new Date).valueOf()}})
+                        .end()
+                        .then(function (r) {
+                            _this.set('captcha',r.body.captcha);
+                            _this.set('token',r.body.token);
+                        });
+                },
+                checkImgCaptcha:function(){
+                    var _this=this;
+                    request('POST', "/api/v2/captcha?token="+_this.get("token"))
+                        .send({captcha:_this.get("value")})
+                        .end()
+                        .then(function (res) {
+                            if (res.body.success) {
+                                _this.set("errMsg","");
+
+                            } else {
+                                _this.set("errMsg","图形验证码错误");
+                            }
+                        });
+                }
+
+
+            })
+        }
+    })
+}

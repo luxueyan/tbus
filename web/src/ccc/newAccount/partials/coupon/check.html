@@ -1,0 +1,39 @@
+<style>
+    .picnum input{
+        width: 200px;
+        height: 42px;
+    }
+    .picnum img{
+        width: 126px;
+        height: 42px;
+    }
+    #refresh-captcha{
+        cursor: pointer;
+    }
+    .tip01{
+        margin-top: 10px;
+        color: #d2252c;
+    }
+    .couButton{
+        width: 120px;
+        margin: 40px 0 0 150px;
+        line-height: 32px;
+        background: #e60012;
+        color: #fff;
+        border: none;
+    }
+</style>
+<div class="payment-nc-wrap" style="margin-top:50px">
+    <div style="margin:0 30px">
+        <div class="rinput picnum">
+            <span class="mdi"></span>
+            <input class="register-test" on-keyup="checkImgCaptcha" value="{{value}}" placeholder="图形验证码">
+            <span class="picspan" on-click='changeImgCaptcha'><img src="{{captcha}}" alt=""></span>
+            <span on-click='exchangeImgCaptcha' id="refresh-captcha">换一个</span>
+        </div>
+        <div class="tip01">
+            {{errMsg}}
+        </div>
+    </div>
+    <button class="couButton" on-click="submitCoupon">确定</button>
+</div>
