@@ -6,6 +6,8 @@ require('ccc/global/js/modules/cccTab');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 
+require('ccc/global/js/lib/jquery.easy-pie-chart');
+
 
 var ractive = new Ractive({
     el: '#ractive-container',
@@ -67,6 +69,12 @@ var ractive = new Ractive({
         this.$amount = $(this.el).find('[name=rechargeValue]');
         this.$form = $(this.el).find('form[name=rechargeForm]');
 
+        this.set('totalTime', 100);
+        this.set('recharge', false);
+        this.set('recharging', false);
+        this.set('rechargeSuc', false);
+        this.set('rechargeErr', false);
+
         this.on('changeValue', function (e) {
             var singleQuota = self.get('singleQuota');
             var minQuota = self.get('minQuota');
@@ -126,7 +134,6 @@ var ractive = new Ractive({
                 self.set('msg.AMOUNT_NULL', true);
                 self.set('msg.CODE_NULL', true);
             }
-
         });
 
         //去除chrome浏览器里的自动填充
@@ -155,7 +162,7 @@ var ractive = new Ractive({
 });
 
 ractive.on('recharge_submit', function (e) {
-    var msg = {
+    var msgRes = {
         "PAYMENT_PWD_NOT_MATCHED": "交易密码错误",
         "INVALID_MOBILE_CAPTCHA": "无效的手机验证码",
         "DEPOSIT_FAILED": "充值失败",
@@ -266,11 +273,6 @@ ractive.on('recharge_submit', function (e) {
         var timestamp = new Date().getTime();
         accountService.checkPassword(password, function (res) {
             if (res) {
-                // console.log(timestamp);
-                // console.log(amount);
-                // console.log(bankcardNo);
-                // console.log(password);
-                // console.log(clientIp);
                 if ($('.recharge-cbx').prop("checked")) {
                     $('.submit_btn').text('正在充值中，请稍等...');
                     request.post('/api/v2/baofoo/' + CC.user.id + '/batchDepositSplit')
@@ -285,17 +287,19 @@ ractive.on('recharge_submit', function (e) {
                         })
                         .end()
                         .then(function (r) {
-                            console.log(r);
+                            ractive.set('recharge', true);
+                            ractive.set('recharging', true);
+
+                            PieChart(Math.ceil(amount / singleQuota) * 1000);
+
                             if (r.body.success) {
-                                ractive.set('step1', false);
-                                ractive.set('step2', true);
-                                ractive.set('step3', false);
+                                ractive.set('recharging', false);
+                                self.set('rechargeSuc', true);
                                 myFunc()
                             } else {
-                                ractive.set('step1', false);
-                                ractive.set('step2', false);
-                                ractive.set('step3', true);
-                                ractive.set('failError', r.body.error[0].message);
+                                ractive.set('recharging', false);
+                                self.set('rechargeErr', true);
+                                // ractive.set('failError', msgRes[r.body.error[0].message]);
                                 $('.submit_btn').text('确认充值');
                                 myFunc()
                             }
@@ -322,9 +326,7 @@ ractive.on('recharge_submit', function (e) {
                                 ractive.set('step1', false);
                                 ractive.set('step2', false);
                                 ractive.set('step3', true);
-                                //alert('充值失败');
-                                console.log(r)
-                                ractive.set('failError', r.body.error[0].message);
+                                ractive.set('failError', msgRes[r.body.error[0].message]);
                                 $('.submit_btn').text('确认充值');
                                 myFunc()
                             }
@@ -337,8 +339,33 @@ ractive.on('recharge_submit', function (e) {
         });
         return false;
     }
+
     function myFunc() {
         //执行某段代码后可选择移除disabled属性，让button可以再次被点击
         $(".submit_btn").removeAttr("disabled");
     }
+
+    function PieChart(seconds) {
+        $(".easy-pie-chart").each(function () {
+            $(this).easyPieChart({
+                barColor: '#ff0000',
+                trackColor: '#ddd',
+                scaleColor: false,
+                lineCap: 'butt',
+                lineWidth: 4,
+                animate: seconds,
+                size: 140,
+                onStep: function (from, to, percent) {
+                    $(this.el).find('.percent').text(Math.round(percent));
+                }
+            });
+        });
+    }
+});
+
+ractive.on('rechargeClose', function (e) {
+    ractive.set('recharge', false);
+    ractive.set('recharging', false);
+    ractive.set('rechargeSuc', false);
+    ractive.set('rechargeErr', false);
 });

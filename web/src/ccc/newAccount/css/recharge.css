@@ -458,3 +458,74 @@ textarea::-webkit-input-placeholder {
     color: #fff;
     background: #db0101;
 }
+/* 大额充值 */
+#popupBig {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 500;
+    background: rgba(0, 0, 0, .3);
+}
+.popupBigDiv {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 501;
+    width: 700px;
+    height: 380px;
+    margin: -190px 0 0 -350px;
+    background: #fff;
+}
+.popupBigDiv h2 {
+    color: #fff;
+    font-size: 16px;
+    line-height: 38px;
+    text-align: center;
+    background: #9d9d9d;
+}
+.popupBigMain {
+    width: 100%;
+    height: 340px;
+    text-align: center;
+    padding: 0 40px;
+}
+.easy-pie-chart {
+    position: relative;
+    margin: 60px auto 44px;
+}
+.rechargeSuc img {
+    width: 166px;
+    margin-top: 40px;
+}
+.rechargeSuc p {
+    color: #e50101;
+    font-size: 20px;
+    line-height: 30px;
+    margin: 15px 0 25px;
+    padding-left: 10px;
+}
+.rechargeErr img {
+    width: 50px;
+    margin-top: 124px;
+}
+.rechargeErr p {
+    color: #666;
+    font-size: 20px;
+    line-height: 30px;
+    margin: 15px 0 25px;
+}
+.popupBigBtn {
+    box-shadow: inset 0 2px 5px #dadada;
+}
+.popupBigBtn button {
+    width: 102px;
+    margin-top: 25px;
+    color: #fbf6f6;
+    line-height: 38px;
+    border-radius: 4px;
+    background: rgba(111, 109, 109, .6);
+    box-shadow: inset 2px 2px 5px #939291;
+    border: none;
+}
