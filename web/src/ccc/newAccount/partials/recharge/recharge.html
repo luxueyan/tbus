@@ -6,7 +6,7 @@
         <div class="space space-40"></div>
         <p>
             <a href="/newAccount/settings/bankCards" style="width: 230px;background-color:#ef9c2c"
-              class="btn btn-orange">立即绑卡</a>
+               class="btn btn-orange">立即绑卡</a>
         </p>
         <div class="space space-40"></div>
     </div>
@@ -25,8 +25,8 @@
 
             {{loadMessage}}
         </div>
-        <form role="form" name="rechargeForm"  method="POST" target="_blank"
-          on-submit="recharge_submit" class="form">
+        <form role="form" name="rechargeForm" method="POST" target="_blank"
+              on-submit="recharge_submit" class="form">
 
             <div class="row">
                 <div class="rows">
@@ -57,7 +57,8 @@
                         <div class="img-box">
                             <img class="recharge_pwd" src="/ccc/newAccount/img/recharge_pwd.png">
                         </div>
-                        <input type="password" name="paymentPassword" id="rechargePassword" on-blur="changeValue" placeholder="请输入交易密码"
+                        <input type="password" name="paymentPassword" id="rechargePassword" on-blur="changeValue"
+                               placeholder="请输入交易密码"
                                value="{{password}}" class="recharge-input" autocomplete="off">
                         <a href="/newAccount/settings/resetPassword" class="forgot-pwd">忘记密码？</a>
                     </div>
@@ -67,62 +68,98 @@
                         {{#msg.CODE_INVALID}}输入的密码有误{{/msg.CODE_INVALID}}
                     </p>
                 </div>
-<!--
-                <div class="rows bring-in">
-                    <input type="text" name="code" id="rechargeCode" on-blur="changeValue" placeholder="请输入手机动态码"
-                      value="{{code}}" class="recharge-input" autocomplete="off">
-                    <button id="get-message">发送验证码</button>
-                    <p class="text-danger" style="color:red;">
-                        {{#msg.AMOUNT_NULL}}请输入手机动态码{{/msg.AMOUNT_NULL}}
-                        {{#msg.AMOUNT_INVALID}}输入的动态码有误{{/msg.AMOUNT_INVALID}}
-                    </p>
-                </div>    
--->
+                <!--
+                    <div class="rows bring-in">
+                        <input type="text" name="code" id="rechargeCode" on-blur="changeValue" placeholder="请输入手机动态码"
+                          value="{{code}}" class="recharge-input" autocomplete="off">
+                        <button id="get-message">发送验证码</button>
+                        <p class="text-danger" style="color:red;">
+                            {{#msg.AMOUNT_NULL}}请输入手机动态码{{/msg.AMOUNT_NULL}}
+                            {{#msg.AMOUNT_INVALID}}输入的动态码有误{{/msg.AMOUNT_INVALID}}
+                        </p>
+                    </div>
+                -->
             </div>
-            
+
             <div class="row">
-<!--                <input type="hidden" name="cardNo" value="{{bankCode}}{{bankCodeEnd}}">-->
+                <!--                <input type="hidden" name="cardNo" value="{{bankCode}}{{bankCodeEnd}}">-->
                 <button type="submit" class="submit_btn">确认充值</button>
                 <p class="warm-tip">预计1分钟到账，以实际到账时间为准</p>
             </div>
         </form>
-        </div>
-        {{/if}}
-        {{#if step2}}
-        <div class="recharge-success">
-            <div class="content">
-                <div class="success-img">
-                    <img src="/ccc/newAccount/img/band-success.png"/>
-                </div>
-                <div class="success-content">
-                    <p>充值成功</p>
-                    <!--<p class="bolder">充值<span>{{amount}}元</span></p>-->
-                    <div class="button">
-                        <!--<button class="close-img btn-after" on-click="close">以后再说</button>-->
-                        <a href="/invest"><button class="btn-after btn-bank">马上去投资</button></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{/if}}
-        {{#if step3}}
-        <div class="recharge-success">
-            <div class="content">
-                <div class="fail-img">
-                    <img src="/ccc/newAccount/img/band-fail.png"/>
-                </div>
-                <div class="success-content">
-                    <p class="fail-msg">充值失败</p>
-                    <div class="fail-reason">{{failError}}</div>
-                    <div class="button">
-                        <!--<button class="close-img btn-after" on-click="close">以后再说</button>-->
-                        <a href="/newAccount/recharge"><button class="btn-after btn-bank">重新充值</button></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{/if}}
     </div>
-
     {{/if}}
-    
+    {{#if step2}}
+    <div class="recharge-success">
+        <div class="content">
+            <div class="success-img">
+                <img src="/ccc/newAccount/img/band-success.png"/>
+            </div>
+            <div class="success-content">
+                <p>充值成功</p>
+                <!--<p class="bolder">充值<span>{{amount}}元</span></p>-->
+                <div class="button">
+                    <!--<button class="close-img btn-after" on-click="close">以后再说</button>-->
+                    <a href="/invest">
+                        <button class="btn-after btn-bank">马上去投资</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+    {{#if step3}}
+    <div class="recharge-success">
+        <div class="content">
+            <div class="fail-img">
+                <img src="/ccc/newAccount/img/band-fail.png"/>
+            </div>
+            <div class="success-content">
+                <p class="fail-msg">充值失败</p>
+                <div class="fail-reason">{{failError}}</div>
+                <div class="button">
+                    <!--<button class="close-img btn-after" on-click="close">以后再说</button>-->
+                    <a href="/newAccount/recharge">
+                        <button class="btn-after btn-bank">重新充值</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+</div>
+{{/if}}
+
+
+<!-- 大额充值 -->
+{{#if recharge}}
+<div id="popupBig">
+    <div class="popupBigDiv">
+        <h2>大额充值</h2>
+        <div class="popupBigMain">
+            {{#if recharging}}
+            <div class="easy-pie-chart" data-percent="{{totalTime}}">
+                <!--<span class="percentageNum">{{totalTime}}</span>-->
+            </div>
+            {{/if}}
+
+            {{#if rechargeSuc}}
+            <div class="rechargeSuc">
+                <img src="/ccc/newAccount/img/band-success.png">
+                <p>支付成功！</p>
+            </div>
+            {{/if}}
+
+            {{#if rechargeErr}}
+            <div class="rechargeErr">
+                <img src="/ccc/newAccount/img/band-fail.png">
+                <p>支付失败</p>
+            </div>
+            {{/if}}
+            <div class="popupBigBtn">
+                <button on-click="rechargeClose">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}}
