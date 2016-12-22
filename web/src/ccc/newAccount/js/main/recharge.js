@@ -75,7 +75,15 @@ var ractive = new Ractive({
         this.set('rechargeSuc', false);
         this.set('rechargeErr', false);
 
+        $('.recharge-cbx').click(function () {
+            changeValue();
+        });
+
         this.on('changeValue', function (e) {
+            changeValue();
+        });
+
+        function changeValue() {
             var singleQuota = self.get('singleQuota');
             var minQuota = self.get('minQuota');
             var value = self.get('amount');
@@ -91,11 +99,10 @@ var ractive = new Ractive({
 
             if (value === '') {
                 ractive.set('msg.AMOUNT_NULL', true);
-                ractive.set('msg.CODE_NULL', true);
                 return false;
             } else {
                 if (Number(value)) {
-                    value = value;
+                    value = Number(value);
                 } else {
                     self.set('msg.AMOUNT_INVALID', true);
                     return false;
@@ -134,7 +141,8 @@ var ractive = new Ractive({
                 self.set('msg.AMOUNT_NULL', true);
                 self.set('msg.CODE_NULL', true);
             }
-        });
+        }
+
 
         //去除chrome浏览器里的自动填充
         if (navigator.userAgent.toLowerCase().indexOf("chrome") != -1 || navigator.userAgent.toLowerCase().indexOf("Safari") == -1) {
@@ -274,8 +282,12 @@ ractive.on('recharge_submit', function (e) {
         accountService.checkPassword(password, function (res) {
             if (res) {
                 if ($('.recharge-cbx').prop("checked")) {
-                    $('.submit_btn').text('正在充值中，请稍等...');
-                    request.post('/api/v2/baofoo/' + CC.user.id + '/batchDepositSplit')
+                    ractive.set('recharge', true);
+                    ractive.set('recharging', true);
+
+                    PieChart(Math.ceil(amount / singleQuota) * 3000);
+
+                    request.post('http://theh.uats.cc:8888/api/v2/baofoo/' + CC.user.id + '/batchDepositSplit')
                         .type("form")
                         .send({
                             batchId: timestamp,//时间戳
@@ -287,11 +299,6 @@ ractive.on('recharge_submit', function (e) {
                         })
                         .end()
                         .then(function (r) {
-                            ractive.set('recharge', true);
-                            ractive.set('recharging', true);
-
-                            PieChart(Math.ceil(amount / singleQuota) * 1000);
-
                             if (r.body.success) {
                                 ractive.set('recharging', false);
                                 self.set('rechargeSuc', true);
@@ -300,7 +307,6 @@ ractive.on('recharge_submit', function (e) {
                                 ractive.set('recharging', false);
                                 self.set('rechargeErr', true);
                                 // ractive.set('failError', msgRes[r.body.error[0].message]);
-                                $('.submit_btn').text('确认充值');
                                 myFunc()
                             }
                         });
