@@ -287,7 +287,7 @@ ractive.on('recharge_submit', function (e) {
 
                     PieChart(Math.ceil(amount / singleQuota) * 3000);
 
-                    request.post('http://theh.uats.cc:8888/api/v2/baofoo/' + CC.user.id + '/batchDepositSplit')
+                    request.post('https://theh.uats.cc:8888/api/v2/baofoo/' + CC.user.id + '/batchDepositSplit')
                         .type("form")
                         .send({
                             batchId: timestamp,//时间戳
