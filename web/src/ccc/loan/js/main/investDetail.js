@@ -445,6 +445,7 @@ setTimeout((function () {
             investRactive.set('inputNum', inputNum + stepAmount);
         }
         //console.log(inputNum)
+        showSelect(inputNum)
     });
 
 }), 100);
