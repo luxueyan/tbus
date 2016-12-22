@@ -76,9 +76,8 @@ var ractive = new Ractive({
         this.set('rechargeErr', false);
 
         $('.recharge-cbx').click(function () {
-
             changeValue();
-        })
+        });
 
         this.on('changeValue', function (e) {
             changeValue();
@@ -103,7 +102,7 @@ var ractive = new Ractive({
                 return false;
             } else {
                 if (Number(value)) {
-                    value = value;
+                    value = Number(value);
                 } else {
                     self.set('msg.AMOUNT_INVALID', true);
                     return false;
