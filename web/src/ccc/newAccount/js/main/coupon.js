@@ -101,7 +101,7 @@ function init(type) {
                 self.getCouponData(function (o) {
                     self.set('total', o.totalSize);
                     var parseResult = self.parseData(o.results);
-                    self.setData(parseResult, o.totalSize,type);
+                    self.setData(parseResult, o.totalSize, type);
                 });
             },
             getCouponData: function (callback) {
@@ -118,12 +118,12 @@ function init(type) {
                     }
                 });
             },
-            setData: function (o,totalSize,type) {
+            setData: function (o, totalSize, type) {
                 var self = this;
                 self.set('loading', false);
                 self.set('list', o);
 
-                this.renderPager(totalSize,type);
+                this.renderPager(totalSize, type);
             },
 
             parseData: function (o) {
@@ -197,24 +197,18 @@ function init(type) {
                 }
                 return o;
             },
-            renderPager: function (totalSize,type) {
+            renderPager: function (totalSize, type) {
                 var self = this;
-                //console.log("!!!!")
-                //console.log(self)
                 new RenderPage().page({
-                    pageSize:pagesize,
-                    totalSize:totalSize,
+                    pageSize: pagesize,
+                    totalSize: totalSize,
                     //api:'/api/v2/coupon/MYSELF/coupons/byStatus?pageNo=$currentPage&pageSize=$pageSize',
-                    api:self.api+"&pageNo=$currentPage&pageSize=$pageSize",
+                    api: self.api + "&pageNo=$currentPage&pageSize=$pageSize",
                     //queryString:{
                     //    pageNo: self.page,
                     //    pageSize: self.size
                     //},
-
-                    callback:function(o){
-                        //console.log(self.page)
-                        //console.log(self.size)
-                        //console.log(o)
+                    callback: function (o) {
                         self.set('list', self.parseData(o.data.results))
                     }
                 });
@@ -235,10 +229,10 @@ function init(type) {
 init(getCurrentType());
 
 window.redeemCoupon = function (btn) {
-  var $btn = $(btn);
-  if ($btn.hasClass('disabled')) {
-    return;
-  }
+    var $btn = $(btn);
+    if ($btn.hasClass('disabled')) {
+        return;
+    }
     Coupon_Box($btn);
 }
 
@@ -257,77 +251,78 @@ $('.back').click(function () {
 });
 
 
-function Coupon_Box($btn){
+function Coupon_Box($btn) {
     new CccBox({
         title: '现金券兑换',
         value: 'loading...',
         autoHeight: true,
         width: 500,
         height: 240,
-        showed: function(ele, box){
+        showed: function (ele, box) {
             var imgRac = new Ractive({
                 el: $(ele),
                 template: require('ccc/newAccount/partials/coupon/check.html'),
                 data: {
-                    captcha:'',
-                    token:'',
-                    errMsg:''
+                    captcha: '',
+                    token: '',
+                    errMsg: ''
                 },
-                oninit:function(){
+                oninit: function () {
                     this.getImgCaptcha();
                 },
-                oncomplete: function(){
-                    var _this=this;
-                   _this.on( 'submitCoupon',function(){
+                oncomplete: function () {
+                    var _this = this;
+                    _this.on('submitCoupon', function () {
                         $btn.addClass('disabled');
                         var id = $btn.data("id");
-                       if(!_this.get("errMsg") && _this.get("value")){
-                           $.post("/api/v2/coupon/MYSELF/redeemCouponIgnoreApproval", {placementId: id}, function (res) {
-                               if (res) {
-                                   alert("兑现成功!");
-                               } else {
-                                   $btn.removeClass('disabled');
-                                   alert("兑现失败!");
-                               }
-                               $('.bar .close').click();
-                           });
-                       }
-                       else{
-                           _this.set("errMsg","请输入图形验证码");
-                       }
+                        if (!_this.get("errMsg") && _this.get("value")) {
+                            $.post("/api/v2/coupon/MYSELF/redeemCouponIgnoreApprovalWithCaptcha", {
+                                placementId: id,
+                                captcha_token: _this.get("token"),
+                                captcha_answer: _this.get("value")
+                            }, function (res) {
+                                if (res) {
+                                    alert("兑现成功!");
+                                } else {
+                                    $btn.removeClass('disabled');
+                                    alert("兑现失败!");
+                                }
+                                $('.bar .close').click();
+                            });
+                        }
+                        else {
+                            _this.set("errMsg", "请输入图形验证码");
+                        }
                     });
-                    _this.on('exchangeImgCaptcha',function(){
-                        _this. getImgCaptcha();
+                    _this.on('exchangeImgCaptcha', function () {
+                        _this.getImgCaptcha();
                     })
-                    _this.on('checkImgCaptcha',function(){
+                    _this.on('checkImgCaptcha', function () {
                         this.checkImgCaptcha();
                     })
                 },
-                getImgCaptcha:function(){
-                    var _this=this;
+                getImgCaptcha: function () {
+                    var _this = this;
                     request('GET', '/api/v2/captcha', {query: {v: (new Date).valueOf()}})
                         .end()
                         .then(function (r) {
-                            _this.set('captcha',r.body.captcha);
-                            _this.set('token',r.body.token);
+                            _this.set('captcha', r.body.captcha);
+                            _this.set('token', r.body.token);
                         });
                 },
-                checkImgCaptcha:function(){
-                    var _this=this;
-                    request('POST', "/api/v2/captcha?token="+_this.get("token"))
-                        .send({captcha:_this.get("value")})
+                checkImgCaptcha: function () {
+                    var _this = this;
+                    request('POST', "/api/v2/captcha?token=" + _this.get("token"))
+                        .send({captcha: _this.get("value")})
                         .end()
                         .then(function (res) {
                             if (res.body.success) {
-                                _this.set("errMsg","");
-
+                                _this.set("errMsg", "");
                             } else {
-                                _this.set("errMsg","图形验证码错误");
+                                _this.set("errMsg", "图形验证码错误");
                             }
                         });
                 }
-
-
             })
         }
     })
