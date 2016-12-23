@@ -50,7 +50,7 @@ module.exports = function (router, auth, middlewares) {
     router.post('/api/v2/coupon/:userId/redeemCouponIgnoreApproval', auth.owner());
     router.post('/api/v2/coupon/:userId/redeemCouponIgnoreApprovalWithCaptcha',
         sn(function(req){
-            return req.url = '/api/v2/coupon/:userId/redeemCouponIgnoreApproval';
+            return req.url = req.url.replace('redeemCouponIgnoreApprovalWithCaptcha', 'redeemCouponIgnoreApproval');
         }),
         auth.owner(),
         middlewares.captchaRequired
