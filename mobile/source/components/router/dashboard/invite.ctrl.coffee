@@ -48,6 +48,16 @@ do (_, angular, Math) ->
                         @$scope.loading_invite_list = false
                 )
 
+                EXTEND_API @api
+
+                (@api.get_invite_title_and_desc()
+
+                    .then ({title, desc}) =>
+                        @$scope.msg ?= {}
+                        @$scope.msg.SOCIAL_TITLE = title if title
+                        @$scope.msg.SOCIAL_DESC = desc if desc
+                )
+
 
             init_wechat: ->
 
@@ -101,4 +111,31 @@ do (_, angular, Math) ->
                             success: _.noop
                             cancel: _.noop
                         }
+
+
+
+
+
+
+    EXTEND_API = (api) ->
+
+        api.__proto__.get_invite_title_and_desc = ->
+
+            encode_name_value = encodeURIComponent('邀请好友')
+
+            @$http
+                .get "/api/v2/cms/category/ACTIVITY/name/#{ encode_name_value }", {cache: false}
+
+                .then @TAKE_RESPONSE_DATA
+
+                .then (data) =>
+                    pick_content = (key) -> _.trim(_.result(_.find(data, {'title': key}), 'content'))
+
+                    return {
+                        title: pick_content('TITLE')
+                        desc:  pick_content('CONTENT')
+                    }
+
+                .catch @TAKE_RESPONSE_ERROR
+
 
