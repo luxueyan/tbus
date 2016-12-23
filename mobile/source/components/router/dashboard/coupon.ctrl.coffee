@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'CouponCtrl',
 
-        _.ai '            @api, @$q, @$scope, @$rootScope, @$window, @$routeParams, @$location', class
-            constructor: (@api, @$q, @$scope, @$rootScope, @$window, @$routeParams, @$location) ->
+        _.ai '            @api, @$q, @$scope, @$rootScope, @$window, @$routeParams, @$location, @popup_captcha', class
+            constructor: (@api, @$q, @$scope, @$rootScope, @$window, @$routeParams, @$location, @popup_captcha) ->
 
                 @$window.scrollTo 0, 0
 
@@ -82,25 +82,32 @@ do (_, angular) ->
 
                 return if item.redeem_sending
 
-                item.redeem_sending = true
+                (@popup_captcha()
 
-                (@api.redeem_coupon(item.id)
+                    .then ({captcha_token, captcha_answer}) =>
+                        item.redeem_sending = true
+                        @api.redeem_coupon({ placementId: item.id }, { captcha_token, captcha_answer })
 
                     .then (data) =>
                         do if data is true then @$q.resolve else @$q.reject
 
                     .then (data) =>
                         @$window.alert @$scope.msg.SUCCEED
+                        @$window.location.reload()
 
                     .catch (data) =>
+                        return if data is 'cancel'
+
                         if _.get(data, 'error') is 'access_denied'
                             @$window.alert @$scope.msg.ACCESS_DENIED
+                            @$window.location.reload()
                             return
 
-                        @$window.alert @$scope.msg.FAILED
+                        key = _.get(data, 'error[0].message')
+                        @$window.alert(@$scope.msg[key] or @$scope.msg.FAILED)
 
                     .finally =>
-                        do @$window.location.reload
+                        item.redeem_sending = false
                 )
 
 
@@ -110,10 +117,10 @@ do (_, angular) ->
 
     EXTEND_API = (api) ->
 
-        api.__proto__.redeem_coupon = (placementId) ->
+        api.__proto__.redeem_coupon = (data, params) ->
 
             @$http
-                .post '/api/v2/coupon/MYSELF/redeemCouponIgnoreApproval', {placementId}
+                .post '/api/v2/coupon/MYSELF/redeemCouponIgnoreApprovalWithCaptcha', data, {params}
 
                 .then @TAKE_RESPONSE_DATA
                 .catch @TAKE_RESPONSE_ERROR
