@@ -444,8 +444,9 @@ setTimeout((function () {
         } else if (inputNum > 0) {
             investRactive.set('inputNum', inputNum + stepAmount);
         }
-        //console.log(inputNum)
-        showSelect(inputNum)
+        // console.log(investRactive.get('inputNum'));
+
+        showSelect(investRactive.get('inputNum'))
     });
 
 }), 100);

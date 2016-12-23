@@ -120,7 +120,7 @@ module.exports = function (router, auth, middlewares) {
     router.get('/api/v2/user/:userId/accountStatus', auth.owner());
 
     //兑换红包新接口加校验
-    router.post('/api/v2/coupon/:userId/redeemCouponIgnoreApprovalWithCaptcha', auth.pass(), middlewares.captchaRequired);
+    router.post('/api/v2/coupon/:userId/redeemCouponIgnoreApprovalWithCaptcha', auth.user(), middlewares.captchaRequired);
 
     router.get('/api/v2/statisticsAll', auth.user(), function (req, res) {
         Promise.all([
