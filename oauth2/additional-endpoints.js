@@ -26,10 +26,10 @@ module.exports = function (router, auth, middlewares) {
         auth.pass(),
         middlewares.captchaRequired,
         function (req, res) {
-        res.send({
-            query: req.query
+            res.send({
+                query: req.query
+            });
         });
-    });
 
     router.get('/api/v2/user/:userId/paymentPasswordHasSet', auth.owner());
     router.post('/api/v2/user/:userId/validatePaymentPassword', auth.owner());
@@ -118,6 +118,9 @@ module.exports = function (router, auth, middlewares) {
 
     router.post('/api/v2/users/getReferralInfo', auth.pass());
     router.get('/api/v2/user/:userId/accountStatus', auth.owner());
+
+    //兑换红包新接口加校验
+    router.post('/api/v2/coupon/:userId/redeemCouponIgnoreApprovalWithCaptcha', auth.pass(), middlewares.captchaRequired);
 
     router.get('/api/v2/statisticsAll', auth.user(), function (req, res) {
         Promise.all([
