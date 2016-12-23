@@ -1,7 +1,9 @@
 'use strict';
 var Promise = require('bluebird');
 var request = require('promisingagent');
+var ccBody = require('cc-body');
 var marketPrefix = require('config').proxy.market;
+var sn = require('./src/sn');
 
 module.exports = function (router, auth, middlewares) {
 
@@ -46,6 +48,13 @@ module.exports = function (router, auth, middlewares) {
     router.post('/api/v2/hundsun/setDefaultAccount/:userId', auth.owner());
 
     router.post('/api/v2/coupon/:userId/redeemCouponIgnoreApproval', auth.owner());
+    router.post('/api/v2/coupon/:userId/redeemCouponIgnoreApprovalWithCaptcha',
+        sn(function(req){
+            return req.url = '/api/v2/coupon/:userId/redeemCouponIgnoreApproval';
+        }),
+        auth.owner(),
+        middlewares.captchaRequired
+    );
 
     router.get('/api/v2/baofoo/getBankConstraints', auth.pass());
 
