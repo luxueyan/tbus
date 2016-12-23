@@ -236,3 +236,84 @@ do (_, angular) ->
                     $rootScope.toast_timer = ''
                 ), 2000
 
+
+
+        .factory 'popup_captcha', _.ai '$uibModal, $rootScope', ($uibModal, $rootScope) ->
+
+            ->
+
+                prompt = $uibModal.open {
+                    size: 'lg'
+                    animation: false
+                    backdrop: 'static'
+                    windowClass: 'center modal-captcha'
+
+                    controller: _.ai '$scope, $http',
+                        (             $scope, $http) ->
+                            store = {}
+
+                            angular.extend $scope, {
+                                store
+
+                                fetch_captcha: ->
+                                    $scope.loading_captcha = true
+
+                                    ($http
+                                        .get '/api/v2/captcha?timestamp=' + _.now()
+                                        .then (response) ->
+                                            $scope.loading_captcha = false
+
+                                            {captcha, token} = response.data
+                                            $scope.captcha_img = captcha
+                                            store.captcha_token = token
+                                    )
+                            }
+
+                    template: """
+                        <div class="modal-header">
+                            <span class="pull-right" ng-click="$dismiss('cancel')">
+                                <param class="glyphicon glyphicon-remove">
+                            </span>
+                            <h4 class="modal-title">请输入图形验证码</h4>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="form-group form-group-captcha">
+                                <input class="form-control input-lg captcha" type="text"
+                                    name="captcha"
+                                    ng-model="store.captcha_answer"
+                                    ng-pattern="/^[A-Za-z0-9]+$/"
+                                    autocapitalize="none"
+                                    autocomplete="off"
+                                    autocorrect="off"
+                                    maxlength="5"
+                                    placeholder=""
+                                    ng-change="store.captcha_answer.length == 5 && $close(store)"
+                                >
+
+                                <div class="action"
+                                    ng-init="fetch_captcha()"
+                                    ng-click="fetch_captcha()"
+                                >
+                                    <img ng-src="{{ captcha_img }}"
+                                        class="captcha-img"
+                                        width="72"
+                                        height="24"
+                                        ng-show="!loading_captcha"
+                                    >
+                                    <img src="assets/image/spinner.gif"
+                                        class="loading"
+                                        ng-show="loading_captcha"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    """
+                }
+
+                once = $rootScope.$on '$locationChangeStart', ->
+                    prompt?.dismiss('cancel')
+                    do once
+
+                return prompt.result
+
