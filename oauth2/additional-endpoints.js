@@ -9,7 +9,7 @@ module.exports = function (router, auth, middlewares) {
      * 关于图形验证码的说明
      * 如果有哪个接口需要使用图形验证码校验
      * 只需要在后边加上 middlewares.captchaRequired 即可
-     * 
+     *
      * middlewares.captchaRequired 是校验图形验证码的中间件
      * 接收两个参数：
      *  @captcha_token {String} token
@@ -108,6 +108,7 @@ module.exports = function (router, auth, middlewares) {
     router.get('/api/v2/creditassign/prepareAssign/step2', auth.user());
 
     router.post('/api/v2/users/getReferralInfo', auth.pass());
+    router.get('/api/v2/user/:userId/accountStatus', auth.owner());
 
     router.get('/api/v2/statisticsAll', auth.user(), function (req, res) {
         Promise.all([
