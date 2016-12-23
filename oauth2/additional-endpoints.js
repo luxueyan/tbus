@@ -110,7 +110,7 @@ module.exports = function (router, auth, middlewares) {
     router.post('/api/v2/users/getReferralInfo', auth.pass());
 
     //兑换红包新接口加校验
-    router.post('/api/v2/coupon/:userId/redeemCouponIgnoreApprovalWithCaptcha', auth.pass(), middlewares.captchaRequired);
+    router.post('/api/v2/coupon/:userId/redeemCouponIgnoreApprovalWithCaptcha', auth.user(), middlewares.captchaRequired);
 
     router.get('/api/v2/statisticsAll', auth.user(), function (req, res) {
         Promise.all([
