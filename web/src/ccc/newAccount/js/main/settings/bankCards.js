@@ -124,6 +124,15 @@ ractive.on("validatePhoneNo", function () {
         accessD = true;
     }
 });
+ractive.on("validateCaptcha",function(){
+    var smsCaptcha = this.get('smsCaptcha');
+    if (smsCaptcha === '') {
+        this.set('SMS_NULL', '请输入手机验证码');
+        return;
+    } else {
+        this.set('SMS_NULL', false);
+    }
+});
 ractive.on("validateBankName", function () {
     var no = this.get("bankName");
     if (no == '') {
