@@ -284,8 +284,9 @@ ractive.on('recharge_submit', function (e) {
                 if ($('.recharge-cbx').prop("checked")) {
                     ractive.set('recharge', true);
                     ractive.set('recharging', true);
+                    var count = Math.ceil(amount / singleQuota);
 
-                    PieChart(Math.ceil(amount / singleQuota) * 3000);
+                    PieChart(count * 3000);
 
                     request.post('/api/v2/baofoo/' + CC.user.id + '/batchDepositSplit')
                         .type("form")
@@ -306,7 +307,12 @@ ractive.on('recharge_submit', function (e) {
                             } else {
                                 ractive.set('recharging', false);
                                 self.set('rechargeErr', true);
-                                // ractive.set('failError', msgRes[r.body.error[0].message]);
+                                var numSuc = Number(r.body.data.numSuccessSplited);
+                                if (numSuc) {
+                                    ractive.set('rechargeErrRes', '成功充值' + numSuc + '笔，失败' + (count - numSuc) + '笔，总共充值成功' + r.body.data.amountSuccessSplited + '元');
+                                } else {
+                                    ractive.set('rechargeErrRes', '支付失败');
+                                }
                                 myFunc()
                             }
                         });

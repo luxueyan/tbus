@@ -42,8 +42,7 @@ var Tab = {
 $('ul.ttabs li a').on('click', function () {
     var type = $(this).parent().data('type');
     init(type);
-    //console.log(type);
-    //console.log(typeof type);
+    // console.log(type);
 });
 
 Date.prototype.Format = function (fmt) { //author: meizz
@@ -276,12 +275,12 @@ function Coupon_Box($btn) {
                         $btn.addClass('disabled');
                         var id = $btn.data("id");
                         if (!_this.get("errMsg") && _this.get("value")) {
-                            $.post("/api/v2/coupon/MYSELF/redeemCouponIgnoreApprovalWithCaptcha", {
-                                placementId: id,
-                                captcha_token: _this.get("token"),
-                                captcha_answer: _this.get("value")
+                            $.post("/api/v2/coupon/MYSELF/redeemCouponIgnoreApprovalWithCaptcha?captcha_token="
+                                + _this.get("token") + "&captcha_answer=" + _this.get("value"), {
+                                placementId: id
                             }, function (res) {
                                 if (res) {
+                                    init('PLACED');
                                     alert("兑现成功!");
                                 } else {
                                     $btn.removeClass('disabled');
