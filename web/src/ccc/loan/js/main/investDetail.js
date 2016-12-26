@@ -27,7 +27,8 @@ var statusMap = {
     CLEARED: '',
     FAKESETTLED: '',
     FAILED: '',
-    OVERDUE: ''
+    OVERDUE: '',
+    BREACH: ''
 };
 var template = statusMap[CC.loan.status];
 var pagesize = 10;
