@@ -48,9 +48,9 @@ ds.apiproxy(app, config.urlBackend);
 
 require('@ccc/inspect/middleware')(app);
 app.use(async function (req, res, next) {
-    res.locals.title = '汇财富-卓越金融，财富人生';
-    res.locals.keywords = '太合汇、汇财富、互金交易平台、理财平台、汇利精选、汇盈理财、高端理财、财富管理';
-    res.locals.description = '太合汇·汇财富是由太合汇资本倾力打造的互联网金融资产交易服务平台，专门为白领、中产精英等高潜力人群提供专业、可信赖的财富管理服务，实现财富增值。';
+    res.locals.title = '汇财富-太合汇资本旗下互联网金融资产交易服务平台';
+    res.locals.keywords = '太合汇,互联网金融,投资理财,财富管理,理财产品';
+    res.locals.description = '汇财富是由太合汇资本倾力打造的互联网金融资产交易服务平台，专门为白领、中产精英等高潜力人群提供专业、可信赖的投资理财，财富管理服务，实现财富增值。汇财富由原深发展总行行长、平安银行原董事长肖遂宁领衔打造，专注于世界500强，优质上市公司和信用评级AA+以上等优质资产，从源头上保证资产安全。投资理财用户在汇财富官网或APP可通过理财产品、高端理财、债权转让等方式进行投资获得稳定收益。';
 
     res.expose(Date.now(), 'serverDate');
 

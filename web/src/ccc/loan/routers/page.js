@@ -68,14 +68,19 @@ module.exports = function (router) {
                 '/api/v2/loan/' + req.params.id)
                 .end()
                 .then(function (r) {
-                    //console.log('==-=-0=11r.body');
-                    //console.log(r.body);
                     var result = parseLoan(r.body);
-                    //console.log(r.body.dueDate+'=====================');
+
+                    console.log('8888888888888888');
+                    console.log(r.body);
+                    console.log('8888888888888888');
+
                     result.userId = result.loanRequest.userId;
                     result.requestId = result.loanRequest.id;
-                    //result.dueDate
-                    res.locals.keywords = '太合汇、汇财富、互金交易平台、理财平台、汇利精选、汇盈理财、高端理财、财富管理';
+
+                    res.locals.title = result.loanRequest.title + '-我的理财-汇财富';
+                    res.locals.keywords = '汇利精选，固定收益，高收益理财产品，定期理财';
+                    res.locals.description = '汇财富-我的理财专注于固定收益理财产品，包括世界500强，优质上市公司和信用评级AA+以上等优质资产，帮助投资投者获得低风险的稳定收益。';
+
                     return result;
 
 
