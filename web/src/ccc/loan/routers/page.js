@@ -69,11 +69,7 @@ module.exports = function (router) {
                 .end()
                 .then(function (r) {
                     var result = parseLoan(r.body);
-
-                    console.log('8888888888888888');
-                    console.log(r.body);
-                    console.log('8888888888888888');
-
+                    // console.log(r.body);
                     result.userId = result.loanRequest.userId;
                     result.requestId = result.loanRequest.id;
 
