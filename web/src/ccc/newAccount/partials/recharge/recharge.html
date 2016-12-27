@@ -138,8 +138,19 @@
         <h2>大额充值</h2>
         <div class="popupBigMain">
             {{#if recharging}}
-            <div class="easy-pie-chart" data-percent="{{totalTime}}">
-                <!--<span class="percentageNum">{{totalTime}}</span>-->
+            <!--<div class="easy-pie-chart" data-percent="{{totalTime}}"></div>-->
+            <div class="recharging">
+                <div class="rechargingL">
+                    <div class="target">
+                        <div class="round">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="rechargingR">
+                    <p>充值正在进行中，预计需要{{rechargingCount}}钟，请耐心等待！</p>
+                    <p>请不要关闭此页面，谢谢！</p>
+                </div>
             </div>
             {{/if}}
 

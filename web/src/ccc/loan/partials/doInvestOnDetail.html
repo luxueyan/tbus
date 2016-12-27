@@ -1,4 +1,4 @@
-{{#if loan.status == "FINISHED"||loan.status == "SETTLED"||loan.status == "CLEARED"||loan.status == "SCHEDULED"||loan.status == "FAKESETTLED" || loan.status === 'FAILED'||loan.status == "OVERDUE"}}
+{{#if loan.status == "FINISHED"||loan.status == "SETTLED"||loan.status == "BREACH"||loan.status == "CLEARED"||loan.status == "SCHEDULED"||loan.status == "FAKESETTLED" || loan.status === 'FAILED'||loan.status == "OVERDUE"}}
     {{#if hasID}}
         <img src="/ccc/loan/img/unlogin.png" class="unlogin_img" style="display: block;">
         {{#if loan.status == "FINISHED"||loan.status === 'FAKESETTLED' || loan.status === 'FAILED'}}
@@ -18,7 +18,7 @@
         {{#if loan.status == "SCHEDULED"}}
         <button class="finished-btn">即将开始</button>
         {{/if}}
-        {{#if loan.status == "OVERDUE"}}
+        {{#if loan.status == "OVERDUE"||loan.status == "BREACH"}}
         <button class="finished-btn">待收款</button>
         {{/if}}
     {{else}}

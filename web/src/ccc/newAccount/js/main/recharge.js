@@ -6,7 +6,7 @@ require('ccc/global/js/modules/cccTab');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 
-require('ccc/global/js/lib/jquery.easy-pie-chart');
+// require('ccc/global/js/lib/jquery.easy-pie-chart');
 
 
 var ractive = new Ractive({
@@ -88,7 +88,6 @@ var ractive = new Ractive({
             var minQuota = self.get('minQuota');
             var value = self.get('amount');
             var dailyQuota = self.get('dailyQuota');
-
             ractive.set('msg', {
                 AMOUNT_NULL: false,
                 AMOUNT_INVALID: false,
@@ -160,14 +159,8 @@ var ractive = new Ractive({
                 }
             }
         }
-    },
-
-    match: function (v) {
-        return v.match(/^[0-9]\d*(\.\d{0,2})?$/);
     }
-
 });
-
 
 ractive.on('recharge_submit', function (e) {
     var msgRes = {
@@ -280,9 +273,9 @@ ractive.on('recharge_submit', function (e) {
                 if ($('.recharge-cbx').prop("checked")) {
                     ractive.set('recharge', true);
                     ractive.set('recharging', true);
-                    var count = Math.ceil(amount / singleQuota);
+                    var count = 3 * Math.ceil(amount / singleQuota);
 
-                    PieChart(count * 3000);
+                    ractive.set('rechargingCount', count + '秒');
 
                     request.post('/api/v2/baofoo/' + CC.user.id + '/batchDepositSplit')
                         .type("form")
@@ -311,7 +304,7 @@ ractive.on('recharge_submit', function (e) {
                                     ractive.set('rechargeSucRes', '充值成功' + numSuc + '笔，充值总额' + r.body.data.amountSuccessSplited + '元');
                                 } else {
                                     self.set('rechargeErr', true);
-                                    ractive.set('rechargeErrRes', msgResBig[r.body.error[0].type]);
+                                    ractive.set('rechargeErrRes', msgResBig[r.body.error[0].type] ? msgResBig[r.body.error[0].type] : r.body.error[0].type);
                                 }
                                 myFunc()
                             }
@@ -357,22 +350,22 @@ ractive.on('recharge_submit', function (e) {
         $(".submit_btn").removeAttr("disabled");
     }
 
-    function PieChart(seconds) {
-        $(".easy-pie-chart").each(function () {
-            $(this).easyPieChart({
-                barColor: '#ff0000',
-                trackColor: '#ddd',
-                scaleColor: false,
-                lineCap: 'butt',
-                lineWidth: 4,
-                animate: seconds,
-                size: 140,
-                onStep: function (from, to, percent) {
-                    $(this.el).find('.percent').text(Math.round(percent));
-                }
-            });
-        });
-    }
+    // function PieChart(seconds) {
+    //     $(".easy-pie-chart").each(function () {
+    //         $(this).easyPieChart({
+    //             barColor: '#ff0000',
+    //             trackColor: '#ddd',
+    //             scaleColor: false,
+    //             lineCap: 'butt',
+    //             lineWidth: 4,
+    //             animate: seconds,
+    //             size: 140,
+    //             onStep: function (from, to, percent) {
+    //                 $(this.el).find('.percent').text(Math.round(percent));
+    //             }
+    //         });
+    //     });
+    // }
 });
 
 ractive.on('rechargeClose', function (e) {

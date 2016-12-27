@@ -491,9 +491,63 @@ textarea::-webkit-input-placeholder {
     text-align: center;
     padding: 0 40px;
 }
-.easy-pie-chart {
+/*.easy-pie-chart {
     position: relative;
     margin: 60px auto 44px;
+}*/
+.recharging {
+    width: 100%;
+    overflow: hidden;
+}
+.rechargingL {
+    width: 140px;
+    height: 140px;
+    float: left;
+    margin: 50px 60px;
+    border: 1px solid #9d9d9d;
+    border-radius: 50%;
+    position: relative;
+}
+.rechargingL .target {
+    position: absolute;
+    top: 11px;
+    left: 11px;
+    width: 114px;
+    height: 114px;
+    z-index: 3;
+    -webkit-animation: anim-name 10s linear infinite;
+    animation: anim-name 10s linear infinite;
+}
+.rechargingL .round {
+    width: 16px;
+    height: 16px;
+    background: #cf000e;
+    border-radius: 50%;
+}
+@-webkit-keyframes anim-name {
+    0% {
+        -webkit-transform: rotate(0);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes anim-name {
+    0% {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+.rechargingR {
+    width: 360px;
+    float: left;
+    text-align: left;
+    margin-top: 100px;
+    color: #666;
+    font-weight: bold;
+    line-height: 24px;
 }
 .rechargeSuc img {
     width: 166px;
