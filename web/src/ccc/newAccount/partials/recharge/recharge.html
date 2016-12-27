@@ -146,14 +146,16 @@
             {{#if rechargeSuc}}
             <div class="rechargeSuc">
                 <img src="/ccc/newAccount/img/band-success.png">
-                <p>支付成功！</p>
+                <h3>{{rechargeSucH}}</h3>
+                <p>{{rechargeSucRes}}</p>
             </div>
             {{/if}}
 
             {{#if rechargeErr}}
             <div class="rechargeErr">
                 <img src="/ccc/newAccount/img/band-fail.png">
-                <p>{{rechargeErrRes}}</p>
+                <h3>支付失败</h3>
+                <p>{{rechargeSucRes}}</p>
             </div>
             {{/if}}
             <div class="popupBigBtn">
