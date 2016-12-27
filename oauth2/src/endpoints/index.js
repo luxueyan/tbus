@@ -18,3 +18,7 @@ router.use(require('./wk/captcha'));
 router.use(require('./v2/poolpay'));
 router.use(require('./v2/message'));
 router.use(require('./v2/creditassign'));
+
+// v3
+router.use(require('./v3/baofoo'));
+router.use(require('./v3/invest'));
