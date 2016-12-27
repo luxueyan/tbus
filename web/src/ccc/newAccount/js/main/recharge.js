@@ -143,7 +143,6 @@ var ractive = new Ractive({
             }
         }
 
-
         //去除chrome浏览器里的自动填充
         if (navigator.userAgent.toLowerCase().indexOf("chrome") != -1 || navigator.userAgent.toLowerCase().indexOf("Safari") == -1) {
             var selectors = document.getElementsByTagName("input");
@@ -168,6 +167,7 @@ var ractive = new Ractive({
     }
 
 });
+
 
 ractive.on('recharge_submit', function (e) {
     var msgRes = {
@@ -198,6 +198,16 @@ ractive.on('recharge_submit', function (e) {
         "PAID_FAILED": "充值失败"
     };
 
+    var msgResBig = {
+        "depsitRecord add failed": "新建充值记录失败",
+        "batchId in batch deposit is necessary": "时间戳不能为空",
+        "this batchId is used": "时间戳已占用",
+        "get baofoo bankConstraint failed": "获取银行限额表失败",
+        "do not need split": "此次交易无需拆单",
+        "amount larger than daily quota": "此次交易金额超过每日限额",
+        "_preBatchDepositSplit is failed": "大额充值预处理失败"
+    };
+
     var amount = this.get('amount');
     var password = this.get('password');
     var bankcardNo = this.get('bankcards');
@@ -215,20 +225,6 @@ ractive.on('recharge_submit', function (e) {
         CODE_INVALID: false
     });
 
-    // if (amount === '') {
-    //     e.original.preventDefault();
-    //     this.$amount.focus();
-    //     this.set('msg.AMOUNT_NULL', true);
-    //     return false;
-    //     myFunc()
-    // } else if (!this.match(amount) || parseFloat(amount) > parseFloat(this.get('singleQuota'))) {
-    //     e.original.preventDefault();
-    //     this.set('msg.AMOUNT_INVALID', true);
-    //     this.$amount.focus();
-    //     return false;
-    //     myFunc()
-    // }
-
     if (amount === '') {
         e.original.preventDefault();
         this.set('msg.AMOUNT_NULL', true);
@@ -238,7 +234,7 @@ ractive.on('recharge_submit', function (e) {
         e.original.preventDefault();
         this.$amount.focus();
         if (Number(amount)) {
-            amount = amount;
+            amount = Number(amount);
         } else {
             this.set('msg.AMOUNT_INVALID', true);
             return false;
@@ -302,16 +298,20 @@ ractive.on('recharge_submit', function (e) {
                         .then(function (r) {
                             if (r.body.success) {
                                 ractive.set('recharging', false);
-                                self.set('rechargeSuc', true);
+                                ractive.set('rechargeSuc', true);
+                                ractive.set('rechargeSucH', '充值成功');
+                                ractive.set('rechargeSucRes', '充值成功' + r.body.data.numSuccessSplited + '笔，充值总额' + r.body.data.amountSuccessSplited + '元');
                                 myFunc()
                             } else {
                                 ractive.set('recharging', false);
-                                self.set('rechargeErr', true);
                                 var numSuc = Number(r.body.data.numSuccessSplited);
                                 if (numSuc) {
-                                    ractive.set('rechargeErrRes', '成功充值' + numSuc + '笔，失败' + (count - numSuc) + '笔，总共充值成功' + r.body.data.amountSuccessSplited + '元');
+                                    ractive.set('rechargeSuc', true);
+                                    ractive.set('rechargeSucH', '部分充值成功');
+                                    ractive.set('rechargeSucRes', '充值成功' + numSuc + '笔，充值总额' + r.body.data.amountSuccessSplited + '元');
                                 } else {
-                                    ractive.set('rechargeErrRes', '支付失败');
+                                    self.set('rechargeErr', true);
+                                    ractive.set('rechargeErrRes', msgResBig[r.body.error[0].type]);
                                 }
                                 myFunc()
                             }
