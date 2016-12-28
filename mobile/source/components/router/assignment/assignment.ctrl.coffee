@@ -18,6 +18,7 @@ do (_, angular) ->
 
             submit: (event) ->
 
+                @submit_sending = true
                 good_to_go = true
 
                 if @assignment.creditassign.userId == @user.info?.id
@@ -29,6 +30,7 @@ do (_, angular) ->
                     @$window.alert "不可以投自己借款的债转标"
 
                 unless good_to_go
+                    @submit_sending = false
                     return event.preventDefault()  # submitting via AJAX
 
                 @$location.path "assignment/#{ @$scope.assignment.id }/invest"
