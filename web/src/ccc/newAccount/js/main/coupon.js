@@ -307,6 +307,7 @@ function Coupon_Box($btn) {
                         .then(function (r) {
                             _this.set('captcha', r.body.captcha);
                             _this.set('token', r.body.token);
+                            _this.set('value', '');
                         });
                 },
                 checkImgCaptcha: function () {
