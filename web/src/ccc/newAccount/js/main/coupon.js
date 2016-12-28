@@ -280,8 +280,8 @@ function Coupon_Box($btn) {
                                 placementId: id
                             }, function (res) {
                                 if (res) {
-                                    init('PLACED');
                                     alert("兑现成功!");
+                                    init('PLACED');
                                 } else {
                                     $btn.removeClass('disabled');
                                     alert("兑现失败!");
