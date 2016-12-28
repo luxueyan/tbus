@@ -368,9 +368,9 @@ ractive.on('recharge_submit', function (e) {
     // }
 });
 
-ractive.on('rechargeClose', function (e) {
-    ractive.set('recharge', false);
-    ractive.set('recharging', false);
-    ractive.set('rechargeSuc', false);
-    ractive.set('rechargeErr', false);
-});
+// ractive.on('rechargeClose', function (e) {
+//     ractive.set('recharge', false);
+//     ractive.set('recharging', false);
+//     ractive.set('rechargeSuc', false);
+//     ractive.set('rechargeErr', false);
+// });
