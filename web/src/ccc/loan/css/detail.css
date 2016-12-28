@@ -55,6 +55,7 @@ select::-ms-expand { display: none; }
     height: 60px;
     line-height: 60px;
     font-size: 24px;
+    font-family: "微软雅黑","Microsoft Yahei","幼圆","YouYuan SimYou?",SimSun,"宋体",Helvetica,Arial,sans-serif;
     color: #666;
     float: left;
     word-break: break-all;
