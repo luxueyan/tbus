@@ -128,10 +128,11 @@
                  ng-switch-when="SCHEDULED"
             >即将开始</div>
 
-            <a class="btn btn-block btn-theme"
-               ng-switch-when="OPENED"
-               ng-click="self.submit($event)"
-            >立即抢购</a>
+            <form ng-submit="self.submit($event)" ng-switch-when="OPENED">
+                <button type="submit" class="btn btn-block btn-theme"
+                        ng-disabled="self.submit_sending"
+                >立即抢购</button>
+            </form>
 
             <div class="btn btn-block btn-theme disabled"
                  ng-switch-when="FINISHED"
