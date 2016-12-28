@@ -131,6 +131,7 @@
             <form ng-submit="self.submit($event)" ng-switch-when="OPENED">
                 <button type="submit" class="btn btn-block btn-theme"
                         ng-disabled="self.submit_sending"
+                        onselectstart="return false;"
                 >立即抢购</button>
             </form>
 
