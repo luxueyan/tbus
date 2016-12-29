@@ -270,7 +270,7 @@ ractive.on('recharge_submit', function (e) {
         var timestamp = new Date().getTime();
         accountService.checkPassword(password, function (res) {
             if (res) {
-                if ($('.recharge-cbx').prop("checked")) {
+                if ($('.recharge-cbx').prop("checked") && amount > singleQuota) {
                     ractive.set('recharge', true);
                     ractive.set('recharging', true);
                     var count = 3 * Math.ceil(amount / singleQuota);
