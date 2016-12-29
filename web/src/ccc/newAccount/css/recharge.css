@@ -265,8 +265,7 @@ table.tinfo tbody tr {
     margin: 50px 0 0 40px;
 }
 .recharge-wrap {
-    /*width: 520px;*/
-    /*margin: auto;*/
+    position: relative;
 }
 .bankcard-nav {
     line-height: 66px;
@@ -389,8 +388,23 @@ table.tinfo tbody tr {
     border-left: none;
     margin-left: -4px;
 }
+.recharge-wrap-tip {
+    position: absolute;
+    top: 105px;
+    left: 525px;
+}
+.recharge-wrap-tip h2 {
+    color: #666;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 25px;
+}
+.recharge-wrap-tip p {
+    color: #666;
+    font-size: 14px;
+    line-height: 25px;
+}
 /*placeholder颜色设置*/
-
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
     color: #d6d6d6;
 }
