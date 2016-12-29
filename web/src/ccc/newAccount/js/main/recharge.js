@@ -275,7 +275,7 @@ ractive.on('recharge_submit', function (e) {
                     ractive.set('recharging', true);
                     var count = 3 * Math.ceil(amount / singleQuota);
 
-                    ractive.set('rechargingCount', count + '秒');
+                    ractive.set('rechargingCount', Math.ceil(count / 60));
 
                     request.post('/api/v2/baofoo/' + CC.user.id + '/batchDepositSplit')
                         .type("form")
