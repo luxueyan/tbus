@@ -14,8 +14,7 @@ module.exports = function (router) {
                 var channels = r.body;
                 var channelName = req.params.channelName;
                 var channelId = '';
-                var current = (req.query.page === undefined) ? 1 : req.query
-                    .page;
+                var current = (req.query.page === undefined) ? 1 : req.query.page;
                 for (var i = 0; i < channels.length; i++) {
                     if (getChannelIdByName(channelName) === channels[i].name && channels[i].category === 'COVERAGE') {
                         channelId = channels[i].id;
@@ -25,12 +24,10 @@ module.exports = function (router) {
                 req.uest('/api/v2/cms/channel/' + channelId + '?page=' + current + '&pagesize=' + pageSize)
                     .end()
                     .then(function (r) {
-
                         res.render(channelName + '/list', {
                             title: getChannelIdByName(channelName),
                             news: formatNews(r.body.results),
-                            totalPage: createList(Math.ceil(r.body.totalSize /
-                                pageSize)),
+                            totalPage: createList(Math.ceil(r.body.totalSize / pageSize)),
                             channelName: getChannelIdByName(channelName),
                             current: parseInt(current, 10)
                         });
@@ -38,7 +35,7 @@ module.exports = function (router) {
             });
     });
 
-//财富讲堂
+    //财富讲堂
     router.get('/cfjt/:id', function (req, res) {
         var user = res.locals.user;
         if (user && user.idNumber) {
@@ -55,7 +52,8 @@ module.exports = function (router) {
                 });
             });
     });
-//服务协议
+
+    //服务协议
     router.get('/fwxy/:id', function (req, res) {
         var user = res.locals.user;
         if (user && user.idNumber) {
@@ -72,7 +70,8 @@ module.exports = function (router) {
                 });
             });
     });
-//媒体报道
+
+    //媒体报道
     router.get('/mtbd/:id', function (req, res) {
         var user = res.locals.user;
         if (user && user.idNumber) {
@@ -101,14 +100,14 @@ module.exports = function (router) {
     function formatNews(news) {
         news = news || [];
         for (var i = 0; i < news.length; i++) {
-            news[i].pubDate = moment(news[i].pubDate)
-                .format('YYYY-MM-DD');
+            news[i].pubDate = moment(news[i].pubDate).format('YYYY-MM-DD');
         }
         return news;
     }
 
     function formatDetail(item) {
-        item.timeRecorded = moment(item.timeRecorded).format('YYYY/MM/DD HH:mm:ss');
+        item.timeRecorded = moment(item.timeRecorded).format('YYYY/MM/DD');
+        // item.timeRecorded = moment(item.timeRecorded).format('YYYY/MM/DD HH:mm:ss');
         return item;
     }
 
