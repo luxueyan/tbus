@@ -1,14 +1,14 @@
 <div class="account-email-wrapper account-email-set">
 	{{#if step==1}}
 	<div class="step2 success">
-		<img src="/ccc/newAccount/img/band-success.png">
+		<img src="/ccc/newAccount/img/band-success.png" alt="太合汇·汇财富">
 		<p>邮箱绑定成功!</p>
 	</div>
 
 	{{/if}}
 	{{#if step==2}}
 	<div class="step2 fail">
-		<img src="/ccc/newAccount/img/band-fail.png"/>
+		<img src="/ccc/newAccount/img/band-fail.png" alt="太合汇·汇财富"/>
 		<h2>绑定邮箱失败</h2>
 		<p>{{message}}</p>
 		<div class="btn-reset" on-click="resetEmail"><a href="/newAccount/bindingEmail">重新绑定</a></div>
