@@ -86,17 +86,33 @@ function formatItem(item) {
         item.investPercent = (item.investPercent * 100);
     }
 
-    if (item.duration.days > 0) {
-        if (typeof item.duration.totalDays === "undefined") {
-            item.fduration = item.duration.days;
-        } else {
-            item.fduration = item.duration.totalDays;
+    if (item.loanRequest.displayDuration) {
+        var YearsNew = item.loanRequest.displayDuration.displayYears;
+        var MonthsNew = item.loanRequest.displayDuration.displayMonths;
+        var DaysNew = item.loanRequest.displayDuration.displayDays;
+        if (YearsNew) {
+            item.YearsNNo = YearsNew;
+            if (MonthsNew) {
+                item.YearsNName = "年零";
+            }else {
+                item.YearsNName = "年";
+            }
         }
-        item.fdurunit = "天";
-    } else {
-        item.fduration = item.duration.totalMonths;
-        item.fdurunit = "个月";
+        if (MonthsNew) {
+            item.MonthsNNo = MonthsNew;
+            if (DaysNew) {
+                item.MonthsNName = "个月零";
+            }else {
+                item.MonthsNName = "个月";
+            }
+        }
+        if (DaysNew) {
+            item.DaysNNo = DaysNew;
+            item.DaysNName = "天";
+        }
     }
+
+
     if (item.amount >= 10000) {
         item.amountUnit = '万';
         item.amount = (item.amount / 10000);

@@ -228,17 +228,33 @@ module.exports = function (router) {
         loan.purpose = purposeMap[loan.purpose];
         //格式化期限
         loan.months = loan.duration.totalMonths;
-        if (loan.duration.days > 0) {
-            if (typeof loan.duration.totalDays === "undefined") {
-                loan.fduration = loan.duration.days;
-            } else {
-                loan.fduration = loan.duration.totalDays;
+
+        if (loan.loanRequest.displayDuration) {
+            var YearsNew = loan.loanRequest.displayDuration.displayYears;
+            var MonthsNew = loan.loanRequest.displayDuration.displayMonths;
+            var DaysNew = loan.loanRequest.displayDuration.displayDays;
+            if (YearsNew) {
+                loan.YearsNNo = YearsNew;
+                if (MonthsNew) {
+                    loan.YearsNName = "年零";
+                }else {
+                    loan.YearsNName = "年";
+                }
             }
-            loan.fdurunit = "天";
-        } else {
-            loan.fduration = loan.duration.totalMonths;
-            loan.fdurunit = "个月";
+            if (MonthsNew) {
+                loan.MonthsNNo = MonthsNew;
+                if (DaysNew) {
+                    loan.MonthsNName = "个月零";
+                }else {
+                    loan.MonthsNName = "个月";
+                }
+            }
+            if (DaysNew) {
+                loan.DaysNNo = DaysNew;
+                loan.DaysNName = "天";
+            }
         }
+
         loan.timeOpen = moment(loan.timeOpen).format('YYYY-MM-DD');
         loan.timeFinished = moment(loan.timeFinished).format('YYYY-MM-DD');
         loan.timeout = loan.timeout / 24;

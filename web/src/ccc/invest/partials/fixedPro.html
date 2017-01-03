@@ -15,7 +15,9 @@
             </div>
             <div class="info_box">
                 <div>
-                    <span>{{fduration}}</span>{{fdurunit}}
+                    {{#if YearsNNo}}<span>{{YearsNNo}}</span>{{YearsNName}}{{/if}}
+                    {{#if MonthsNNo}}<span>{{MonthsNNo}}</span>{{MonthsNName}}{{/if}}
+                    {{#if DaysNNo}}<span>{{DaysNNo}}</span>{{DaysNName}}{{/if}}
                     <span class="assign_time">7天可转</span>
                 </div>
                 <p class="title">投资期限</p>
