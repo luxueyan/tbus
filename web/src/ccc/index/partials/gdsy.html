@@ -25,7 +25,11 @@
                 <p>年收益率</p>
             </div>
             <div class="investNum">
-                <div><span>{{fduration}}</span>{{fdurunit}}</div>
+                <div>
+                    {{#if YearsNNo}}<span>{{YearsNNo}}</span>{{YearsNName}}{{/if}}
+                    {{#if MonthsNNo}}<span>{{MonthsNNo}}</span>{{MonthsNName}}{{/if}}
+                    {{#if DaysNNo}}<span>{{DaysNNo}}</span>{{DaysNName}}{{/if}}
+                </div>
                 <p>期限</p>
             </div>
             <div class="investNum" style="padding-right: 0px">
