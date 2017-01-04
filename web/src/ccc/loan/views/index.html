@@ -19,9 +19,7 @@
                     <div class="inner">
                         <div class="item">
                             <div class="value">
-                                {{#if loans.YearsNNo}}<span>{{loans.YearsNNo}}</span>{{loans.YearsNName}}{{/if}}
-                                {{#if loans.MonthsNNo}}<span>{{loans.MonthsNNo}}</span>{{loans.MonthsNName}}{{/if}}
-                                {{#if loans.DaysNNo}}<span>{{loans.DaysNNo}}</span>{{loans.DaysNName}}{{/if}}
+                                <span>{{loans.durationNewNo}}</span>{{loans.durationNewName}}
                                 <span class="assign_time">7天可转</span>
                             </div>
                             <div class="name">投资期限</div>
@@ -191,7 +189,7 @@
                         </tr>
                         <tr>
                             <th class="title">投资期限</th>
-                            <th class="content">{{loans.fduration}}{{loans.fdurunit}}</th>
+                            <th class="content">{{loans.durationNewNo}}{{loans.durationNewName}}</th>
                         </tr>
                         <tr>
                             <th class="title">预期收益率</th>

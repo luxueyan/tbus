@@ -76,34 +76,31 @@ function formatItem(item) {
     //    item.investPercent = parseInt(item.investPercent * 100, 10);
     //}
 
-    var SinvestPercent = (item.investPercent * 100).toFixed(2)+'';
+    var SinvestPercent = (item.investPercent * 100).toFixed(2) + '';
 
-    if(SinvestPercent.slice(-2)=='00'){
+    if (SinvestPercent.slice(-2) == '00') {
         item.investPercent = (item.investPercent * 100);
-    }else if(SinvestPercent.slice(-1)=='0'){
+    } else if (SinvestPercent.slice(-1) == '0') {
         item.investPercent = (item.investPercent * 100).toFixed(1);
-    }else{
+    } else {
         item.investPercent = (item.investPercent * 100).toFixed(2);
     }
 
+    if (item.loanRequest.displayDuration) {
+        var durationNew = item.loanRequest.displayDuration.frontShowDuration;
+        var reg1 = /(\d{1,3})+(?:\.\d+)?/g;
+        var reg2 = /[\u4e00-\u9fa5]{1,}/g;
 
-    if (item.duration.days > 0) {
-        if (typeof item.duration.totalDays === "undefined") {
-            item.fduration = item.duration.days;
-            } else {
-                item.fduration = item.duration.totalDays;
-            }
-                item.fdurunit = "天";
-            } else {
-                item.fduration = item.duration.totalMonths;
-                item.fdurunit = "个月";
-            }
-            if (item.amount >= 10000) {
-               item.amountUnit = '万';
-                item.amount = (item.amount / 10000);
-            } else {
-                item.amountUnit = '元';
-            }
+        item.durationNewNo = durationNew.match(reg1)[0];
+        item.durationNewName = durationNew.match(reg2)[0];
+    }
+
+    if (item.amount >= 10000) {
+        item.amountUnit = '万';
+        item.amount = (item.amount / 10000);
+    } else {
+        item.amountUnit = '元';
+    }
 
     if (item.status == "OPENED") {
         item.leftTime = formateLeftTime(item.timeLeft);
@@ -136,11 +133,11 @@ function parseLoanList(list) {
         list[i].methodFmt = methodFmt;
         list[i].titleLength = replaceStr(list[i].title);
         //list[i].FminAmount = utils.format.amount(list[i].loanRequest.investRule.minAmount, 2);
-        if(list[i].loanRequest.investRule.minAmount<10000){
+        if (list[i].loanRequest.investRule.minAmount < 10000) {
             list[i].FminAmount = list[i].loanRequest.investRule.minAmount;
             list[i].FminUnit = "元";
-        }else{
-            list[i].FminAmount = (list[i].loanRequest.investRule.minAmount/10000);
+        } else {
+            list[i].FminAmount = (list[i].loanRequest.investRule.minAmount / 10000);
             list[i].FminUnit = "万元";
         }
         list[i].balance = utils.format.amount(list[i].balance, 2);
@@ -170,11 +167,11 @@ IndexService.getLoanSummary(function (res) {
     for (var i = 0; i < listFixed.length; i++) {
         if (listFixed[i].status == "OPENED") {
             listOpen.push(listFixed[i]);
-        }else if(listFixed[i].status == "SCHEDULED"){
+        } else if (listFixed[i].status == "SCHEDULED") {
             listSchedul.push(listFixed[i]);
-        }else if(listFixed[i].status == "FINISHED"){
+        } else if (listFixed[i].status == "FINISHED") {
             listFinish.push(listFixed[i]);
-        }else if(listFixed[i].status == "SETTLED"){
+        } else if (listFixed[i].status == "SETTLED") {
             listNone.push(listFixed[i]);
         }
     }
@@ -194,12 +191,12 @@ IndexService.getLoanSummary(function (res) {
     listNone.sort(compare);
     listSchedul.sort(compare);
     listFinish.sort(compare);
-    liststatus=liststatus.concat(listOpen);
-    liststatus=liststatus.concat(listSchedul);
-    liststatus=liststatus.concat(listFinish);
-    liststatus=liststatus.concat(listNone);
-    liststatus.forEach(function(item){
-        if(item.status=='SCHEDULED'){
+    liststatus = liststatus.concat(listOpen);
+    liststatus = liststatus.concat(listSchedul);
+    liststatus = liststatus.concat(listFinish);
+    liststatus = liststatus.concat(listNone);
+    liststatus.forEach(function (item) {
+        if (item.status == 'SCHEDULED') {
             ininconut();
         }
     })
@@ -212,12 +209,12 @@ IndexService.getLoanSummary(function (res) {
             list: liststatus.slice(0, 5),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         },
-        onrender:function(){
+        onrender: function () {
 
-            $('.assign_time').mouseover(function(){
+            $('.assign_time').mouseover(function () {
                 $(this).parent().parent().parent().siblings('.assign_tip').fadeIn(200);
             })
-            $('.assign_tip').mouseleave(function(){
+            $('.assign_tip').mouseleave(function () {
                 $(this).fadeOut(200);
             })
         }
@@ -249,15 +246,16 @@ if (CC.key) {
             var that = this;
             var key = that.get('key');
             var api = '/api/v2/loan/summaryTotal?product=';
-            request.get(api+ key)
+            request.get(api + key)
                 .end()
-                .then(function(r){
-                    that.set('num',r.body);
+                .then(function (r) {
+                    that.set('num', r.body);
 
                 });
             InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) {
                 that.set('list', parseLoanList(res.results));
                 that.renderPager(res, params.currentPage, that)
+
             });
 
         },
@@ -348,7 +346,7 @@ function ininconut() {
         var id = t.data("id");
         var openTime = t.data("open");
         var serverDate = t.data("serv");
-        var tip= t.data("status")=="SCHEDULED"?"开始":"结束";
+        var tip = t.data("status") == "SCHEDULED" ? "开始" : "结束";
         //var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
         //var textDay = leftTime.day ? leftTime.day + '天' : '';
         var interval = setInterval((function () {
@@ -360,7 +358,7 @@ function ininconut() {
                 t.prev().hide();
                 //t.replaceWith('<a href="/loan/' + id + '" style="text-decoration:none"><div class="investbtn">立即投资</div></a>');
             } else {
-                t.html('<span class="text" style="color:#666">距离'+tip+'：' +
+                t.html('<span class="text" style="color:#666">距离' + tip + '：' +
                     '<span style="color:#e4262b">' + leftTime.day + '</span>天' +
                     '<span style="color:#e4262b">' + leftTime.hour + '</span>时' +
                     '<span style="color:#e4262b">' + leftTime.min + '</span>分' +

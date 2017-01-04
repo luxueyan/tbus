@@ -230,29 +230,12 @@ module.exports = function (router) {
         loan.months = loan.duration.totalMonths;
 
         if (loan.loanRequest.displayDuration) {
-            var YearsNew = loan.loanRequest.displayDuration.displayYears;
-            var MonthsNew = loan.loanRequest.displayDuration.displayMonths;
-            var DaysNew = loan.loanRequest.displayDuration.displayDays;
-            if (YearsNew) {
-                loan.YearsNNo = YearsNew;
-                if (MonthsNew) {
-                    loan.YearsNName = "年零";
-                }else {
-                    loan.YearsNName = "年";
-                }
-            }
-            if (MonthsNew) {
-                loan.MonthsNNo = MonthsNew;
-                if (DaysNew) {
-                    loan.MonthsNName = "个月零";
-                }else {
-                    loan.MonthsNName = "个月";
-                }
-            }
-            if (DaysNew) {
-                loan.DaysNNo = DaysNew;
-                loan.DaysNName = "天";
-            }
+            var durationNew = loan.loanRequest.displayDuration.frontShowDuration;
+            var reg1 = /(\d{1,3})+(?:\.\d+)?/g;
+            var reg2 = /[\u4e00-\u9fa5]{1,}/g;
+
+            loan.durationNewNo = durationNew.match(reg1)[0];
+            loan.durationNewName = durationNew.match(reg2)[0];
         }
 
         loan.timeOpen = moment(loan.timeOpen).format('YYYY-MM-DD');
