@@ -15,9 +15,7 @@
             </div>
             <div class="info_box">
                 <div>
-                    {{#if YearsNNo}}<span>{{YearsNNo}}</span>{{YearsNName}}{{/if}}
-                    {{#if MonthsNNo}}<span>{{MonthsNNo}}</span>{{MonthsNName}}{{/if}}
-                    {{#if DaysNNo}}<span>{{DaysNNo}}</span>{{DaysNName}}{{/if}}
+                    <span>{{durationNewNo}}</span>{{durationNewName}}
                     <span class="assign_time">7天可转</span>
                 </div>
                 <p class="title">投资期限</p>
@@ -26,7 +24,6 @@
                 <div><span>{{minAmount}}</span></div>
                 <p class="title">起投金额 ({{minAmountUnit}})</p>
             </div>
-
         </div>
         <div class="assign_tip">
             产品计息后持有7天以上可进行转让（具体转让规则可查看
