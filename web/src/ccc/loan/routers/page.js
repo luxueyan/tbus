@@ -233,7 +233,6 @@ module.exports = function (router) {
             var durationNew = loan.loanRequest.displayDuration.frontShowDuration;
             var reg1 = /(\d{1,3})+(?:\.\d+)?/g;
             var reg2 = /[\u4e00-\u9fa5]{1,}/g;
-
             loan.durationNewNo = durationNew.match(reg1)[0];
             loan.durationNewName = durationNew.match(reg2)[0];
         }

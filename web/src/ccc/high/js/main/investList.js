@@ -90,7 +90,6 @@ function formatItem(item) {
         var durationNew = item.loanRequest.displayDuration.frontShowDuration;
         var reg1 = /(\d{1,3})+(?:\.\d+)?/g;
         var reg2 = /[\u4e00-\u9fa5]{1,}/g;
-
         item.durationNewNo = durationNew.match(reg1)[0];
         item.durationNewName = durationNew.match(reg2)[0];
     }
@@ -255,7 +254,6 @@ if (CC.key) {
             InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) {
                 that.set('list', parseLoanList(res.results));
                 that.renderPager(res, params.currentPage, that)
-
             });
 
         },
