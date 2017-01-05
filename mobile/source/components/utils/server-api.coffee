@@ -11,8 +11,8 @@ do (_, angular, moment, Array, Date) ->
 
     angular.module('service').service 'api',
 
-        _.ai '            @user, @$http, @$q, @param, @$timeout', class
-            constructor: (@user, @$http, @$q, @param, @$timeout) ->
+        _.ai '            @user, @$http, @$q, @param, @$cookies', class
+            constructor: (@user, @$http, @$q, @param, @$cookies) ->
 
                 @access_token = 'cookie'
                 @user_fetching_promise = null
@@ -33,6 +33,8 @@ do (_, angular, moment, Array, Date) ->
 
             fetch_current_user: ->
 
+                @flush_user_info() unless @$cookies.get('ccat')
+
                 if @user_fetching_promise
                     return @user_fetching_promise
 
@@ -51,10 +53,6 @@ do (_, angular, moment, Array, Date) ->
 
                     .then (response, {api_list} = {}) =>
                         @user.info = response.data
-
-                        @$timeout =>
-                            @flush_user_info()
-                        , 30 * 60 * 1000 + @user.info.lastLoginDate - Date.now()
 
                         api_list = _.split '
                             statistics/invest

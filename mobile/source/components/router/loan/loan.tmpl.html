@@ -23,14 +23,7 @@
             </div>
 
             <div class="col-xs-6 duration">
-                <div class="value">
-                    <span ng-if="loan.raw.duration.days">
-                        {{ loan.total_days }}天
-                    </span>
-                    <span ng-if="!loan.raw.duration.days">
-                        {{ loan.total_months }}个月
-                    </span>
-                </div>
+                <div class="value">{{ loan.raw.loanRequest.displayDuration.frontShowDuration }}</div>
                 <div class="name">投资期限</div>
             </div>
         </div>
