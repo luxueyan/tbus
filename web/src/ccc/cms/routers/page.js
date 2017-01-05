@@ -89,6 +89,23 @@ module.exports = function (router) {
             });
     });
 
+    router.get('/hzhbjs/:id', function (req, res) {
+        var user = res.locals.user;
+        if (user && user.idNumber) {
+            delete user.idNumber;
+        }
+        res.expose(user, 'user');
+
+        req.uest('/api/v2/cms/article/' + req.params.id)
+            .end()
+            .then(function (r) {
+                res.locals.description = r.body.content.replace(/<\/?[^>]*>/g, '').slice(0, 100);
+                res.render('detail', {
+                    detail: formatDetail(r.body)
+                });
+            });
+    });
+
     function getChannelIdByName(channel) {
         var channelMap = {
             news: '最新公告',
