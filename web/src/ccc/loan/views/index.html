@@ -129,8 +129,9 @@
         {{/if}}
     </div>
     <div class="expected_date">
+        下一工作日
         <!--{{loans.dueDate}}-->
-        {{#if loans.dueDate !== 'Invalid date'}}
+        <!--{{#if loans.dueDate !== 'Invalid date'}}
             {{loans.dueDates}}
         {{else}}
             {{#if loans.timeFinished !== 'Invalid date'}}
@@ -138,7 +139,7 @@
             {{else}}
             {{loans.end2}}
             {{/if}}
-        {{/if}}
+        {{/if}}-->
     </div>
 </div>
 
