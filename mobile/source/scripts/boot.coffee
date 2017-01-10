@@ -437,6 +437,22 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
 
                                                 return $q.reject()
                                     )
+
+                            _survey: _.ai 'api, $q, $window',
+                                (          api, $q, $window) ->
+                                    (api.fetch_current_user()
+                                        .then (user) ->
+                                            return if !user.has_bank_card or !user.has_payment_password
+
+                                            (api.get_user_surveys()
+                                                .then (data) ->
+                                                    return if _.isArray(data) and !_.isEmpty(data)
+
+                                                    $window.alert('请下载或直接登录汇财富APP进行风险测评！')
+                                                    $window.history.back()
+                                                    return $q.reject()
+                                            )
+                                    )
                     }
 
                     .when '/assignment/:id', {
@@ -472,6 +488,22 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                 (       api, $location, $route) ->
                                     api.get_assignment_detail($route.current.params.id, false)
                                         .then (result) -> api.get_loan_detail(result.creditassign.loanId, false)
+
+                            _survey: _.ai 'api, $q, $window',
+                                (          api, $q, $window) ->
+                                    (api.fetch_current_user()
+                                        .then (user) ->
+                                            return if !user.has_bank_card or !user.has_payment_password
+
+                                            (api.get_user_surveys()
+                                                .then (data) ->
+                                                    return if _.isArray(data) and !_.isEmpty(data)
+
+                                                    $window.alert('请下载或直接登录汇财富APP进行风险测评！')
+                                                    $window.history.back()
+                                                    return $q.reject()
+                                            )
+                                    )
 
                             # coupon: _.ai 'api, $route, $q',
                             #     (         api, $route, $q) ->
