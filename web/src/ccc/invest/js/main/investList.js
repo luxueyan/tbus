@@ -86,17 +86,14 @@ function formatItem(item) {
         item.investPercent = (item.investPercent * 100);
     }
 
-    if (item.duration.days > 0) {
-        if (typeof item.duration.totalDays === "undefined") {
-            item.fduration = item.duration.days;
-        } else {
-            item.fduration = item.duration.totalDays;
-        }
-        item.fdurunit = "天";
-    } else {
-        item.fduration = item.duration.totalMonths;
-        item.fdurunit = "个月";
+    if (item.loanRequest.displayDuration) {
+        var durationNew = item.loanRequest.displayDuration.frontShowDuration;
+        var reg1 = /(\d{1,3})+(?:\.\d+)?/g;
+        var reg2 = /[\u4e00-\u9fa5]{1,}/g;
+        item.durationNewNo = durationNew.match(reg1)[0];
+        item.durationNewName = durationNew.match(reg2)[0];
     }
+
     if (item.amount >= 10000) {
         item.amountUnit = '万';
         item.amount = (item.amount / 10000);

@@ -9,9 +9,7 @@
             <img src="/ccc/loan/img/line.png">
             <div class="investContainer">
                 <div class="investTitle">
-                    <div class="title">
-                        {{loans.title}}
-                    </div>
+                    <h1 class="title">{{loans.title}}</h1>
                     <div class="rate">
                         预期收益率
                         <span class="color">{{loans.rate}}<span>%</span></span>
@@ -21,14 +19,12 @@
                     <div class="inner">
                         <div class="item">
                             <div class="value">
-                                <span>{{loans.fduration}}</span>
-                                {{loans.fdurunit}}
+                                <span>{{loans.durationNewNo}}</span>{{loans.durationNewName}}
                                 <span class="assign_time">7天可转</span>
                             </div>
                             <div class="name">投资期限</div>
                         </div>
                         <div class="item">
-
                             <div class="value">
                                 <span>{{loans.amount}}</span>
                                 {{loans.aUnit}}
@@ -133,8 +129,9 @@
         {{/if}}
     </div>
     <div class="expected_date">
+        下一工作日
         <!--{{loans.dueDate}}-->
-        {{#if loans.dueDate !== 'Invalid date'}}
+        <!--{{#if loans.dueDate !== 'Invalid date'}}
             {{loans.dueDates}}
         {{else}}
             {{#if loans.timeFinished !== 'Invalid date'}}
@@ -142,7 +139,7 @@
             {{else}}
             {{loans.end2}}
             {{/if}}
-        {{/if}}
+        {{/if}}-->
     </div>
 </div>
 
@@ -192,7 +189,7 @@
                         </tr>
                         <tr>
                             <th class="title">投资期限</th>
-                            <th class="content">{{loans.fduration}}{{loans.fdurunit}}</th>
+                            <th class="content">{{loans.durationNewNo}}{{loans.durationNewName}}</th>
                         </tr>
                         <tr>
                             <th class="title">预期收益率</th>
@@ -272,11 +269,11 @@
                     <!--</div>-->
                 </div>
             </div>
-            
+
             <div class="tab-panel">
-    
+
                 {{#if user}}
-                
+
                     <div class="invest-record"></div>
                     <div style="height:50px;"></div>
                     <div class="" id="record-pager" style="text-align:center"></div>

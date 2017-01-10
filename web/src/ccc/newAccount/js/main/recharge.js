@@ -6,7 +6,7 @@ require('ccc/global/js/modules/cccTab');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 
-require('ccc/global/js/lib/jquery.easy-pie-chart');
+// require('ccc/global/js/lib/jquery.easy-pie-chart');
 
 
 var ractive = new Ractive({
@@ -88,7 +88,6 @@ var ractive = new Ractive({
             var minQuota = self.get('minQuota');
             var value = self.get('amount');
             var dailyQuota = self.get('dailyQuota');
-
             ractive.set('msg', {
                 AMOUNT_NULL: false,
                 AMOUNT_INVALID: false,
@@ -143,7 +142,6 @@ var ractive = new Ractive({
             }
         }
 
-
         //去除chrome浏览器里的自动填充
         if (navigator.userAgent.toLowerCase().indexOf("chrome") != -1 || navigator.userAgent.toLowerCase().indexOf("Safari") == -1) {
             var selectors = document.getElementsByTagName("input");
@@ -161,12 +159,7 @@ var ractive = new Ractive({
                 }
             }
         }
-    },
-
-    match: function (v) {
-        return v.match(/^[0-9]\d*(\.\d{0,2})?$/);
     }
-
 });
 
 ractive.on('recharge_submit', function (e) {
@@ -198,6 +191,16 @@ ractive.on('recharge_submit', function (e) {
         "PAID_FAILED": "充值失败"
     };
 
+    var msgResBig = {
+        "depsitRecord add failed": "新建充值记录失败",
+        "batchId in batch deposit is necessary": "时间戳不能为空",
+        "this batchId is used": "时间戳已占用",
+        "get baofoo bankConstraint failed": "获取银行限额表失败",
+        "do not need split": "此次交易无需拆单",
+        "amount larger than daily quota": "此次交易金额超过每日限额",
+        "_preBatchDepositSplit is failed": "大额充值预处理失败"
+    };
+
     var amount = this.get('amount');
     var password = this.get('password');
     var bankcardNo = this.get('bankcards');
@@ -215,20 +218,6 @@ ractive.on('recharge_submit', function (e) {
         CODE_INVALID: false
     });
 
-    // if (amount === '') {
-    //     e.original.preventDefault();
-    //     this.$amount.focus();
-    //     this.set('msg.AMOUNT_NULL', true);
-    //     return false;
-    //     myFunc()
-    // } else if (!this.match(amount) || parseFloat(amount) > parseFloat(this.get('singleQuota'))) {
-    //     e.original.preventDefault();
-    //     this.set('msg.AMOUNT_INVALID', true);
-    //     this.$amount.focus();
-    //     return false;
-    //     myFunc()
-    // }
-
     if (amount === '') {
         e.original.preventDefault();
         this.set('msg.AMOUNT_NULL', true);
@@ -238,7 +227,7 @@ ractive.on('recharge_submit', function (e) {
         e.original.preventDefault();
         this.$amount.focus();
         if (Number(amount)) {
-            amount = amount;
+            amount = Number(amount);
         } else {
             this.set('msg.AMOUNT_INVALID', true);
             return false;
@@ -281,12 +270,12 @@ ractive.on('recharge_submit', function (e) {
         var timestamp = new Date().getTime();
         accountService.checkPassword(password, function (res) {
             if (res) {
-                if ($('.recharge-cbx').prop("checked")) {
+                if ($('.recharge-cbx').prop("checked") && amount > singleQuota) {
                     ractive.set('recharge', true);
                     ractive.set('recharging', true);
-                    var count = Math.ceil(amount / singleQuota);
+                    var count = 3 * Math.ceil(amount / singleQuota);
 
-                    PieChart(count * 3000);
+                    ractive.set('rechargingCount', Math.ceil(count / 60));
 
                     request.post('/api/v2/baofoo/' + CC.user.id + '/batchDepositSplit')
                         .type("form")
@@ -302,16 +291,20 @@ ractive.on('recharge_submit', function (e) {
                         .then(function (r) {
                             if (r.body.success) {
                                 ractive.set('recharging', false);
-                                self.set('rechargeSuc', true);
+                                ractive.set('rechargeSuc', true);
+                                ractive.set('rechargeSucH', '充值成功');
+                                ractive.set('rechargeSucRes', '充值成功' + r.body.data.numSuccessSplited + '笔，充值总额' + r.body.data.amountSuccessSplited + '元');
                                 myFunc()
                             } else {
                                 ractive.set('recharging', false);
-                                self.set('rechargeErr', true);
                                 var numSuc = Number(r.body.data.numSuccessSplited);
                                 if (numSuc) {
-                                    ractive.set('rechargeErrRes', '成功充值' + numSuc + '笔，失败' + (count - numSuc) + '笔，总共充值成功' + r.body.data.amountSuccessSplited + '元');
+                                    ractive.set('rechargeSuc', true);
+                                    ractive.set('rechargeSucH', '部分充值成功');
+                                    ractive.set('rechargeSucRes', '充值成功' + numSuc + '笔，充值总额' + r.body.data.amountSuccessSplited + '元');
                                 } else {
-                                    ractive.set('rechargeErrRes', '支付失败');
+                                    self.set('rechargeErr', true);
+                                    ractive.set('rechargeErrRes', msgResBig[r.body.error[0].type] ? msgResBig[r.body.error[0].type] : r.body.error[0].type);
                                 }
                                 myFunc()
                             }
@@ -357,27 +350,27 @@ ractive.on('recharge_submit', function (e) {
         $(".submit_btn").removeAttr("disabled");
     }
 
-    function PieChart(seconds) {
-        $(".easy-pie-chart").each(function () {
-            $(this).easyPieChart({
-                barColor: '#ff0000',
-                trackColor: '#ddd',
-                scaleColor: false,
-                lineCap: 'butt',
-                lineWidth: 4,
-                animate: seconds,
-                size: 140,
-                onStep: function (from, to, percent) {
-                    $(this.el).find('.percent').text(Math.round(percent));
-                }
-            });
-        });
-    }
+    // function PieChart(seconds) {
+    //     $(".easy-pie-chart").each(function () {
+    //         $(this).easyPieChart({
+    //             barColor: '#ff0000',
+    //             trackColor: '#ddd',
+    //             scaleColor: false,
+    //             lineCap: 'butt',
+    //             lineWidth: 4,
+    //             animate: seconds,
+    //             size: 140,
+    //             onStep: function (from, to, percent) {
+    //                 $(this.el).find('.percent').text(Math.round(percent));
+    //             }
+    //         });
+    //     });
+    // }
 });
 
-ractive.on('rechargeClose', function (e) {
-    ractive.set('recharge', false);
-    ractive.set('recharging', false);
-    ractive.set('rechargeSuc', false);
-    ractive.set('rechargeErr', false);
-});
+// ractive.on('rechargeClose', function (e) {
+//     ractive.set('recharge', false);
+//     ractive.set('recharging', false);
+//     ractive.set('rechargeSuc', false);
+//     ractive.set('rechargeErr', false);
+// });

@@ -36,7 +36,6 @@ var fixedRactive = new Ractive({
 
 
 var Tab = {
-
     // 转让
     ASSIGN: {
         ractive: null,
@@ -52,7 +51,6 @@ var Tab = {
     // 已结清 (CLEARED)
     CLEARED: {
         ractive: null,
-
         api: '/api/v2/user/MYSELF/invest/list/$page/$size?status=CLEARED',
         template: require('ccc/newAccount/partials/invest/cleared.html')
     }
@@ -130,7 +128,7 @@ function init(type) {
                     this.set('total', o.result.totalSize);
                     this.set('pageOne', o.result.results);
                     this.set('list', o.result.results);
-                    fixedRactive.set(type,o.result.totalSize);
+                    fixedRactive.set(type, o.result.totalSize);
                 }
                 this.renderPager();
             },
@@ -182,18 +180,16 @@ function init(type) {
                                 if (datas[i].status == 'SETTLED') {
                                     if (datas[i].loan.loanRequest.valueDate <= nowDate) {
                                         datas[i].Fstatus = '计息中';
-                                    }else{
+                                    } else {
                                         datas[i].Fstatus = '资金冻结';
                                     }
-                                };
+                                }
                                 if (datas[i].status == 'FROZEN') {
                                     datas[i].Fstatus = '资金冻结';
                                 }
-                                ;
-                                if (datas[i].status == 'OVERDUE') {
+                                if (datas[i].status == 'OVERDUE' || datas[i].status == 'BREACH') {
                                     datas[i].Fstatus = '待收款';
                                 }
-                                ;
                                 break;
                             case 'CLEARED':
                                 datas[i].Fduration = utils.format.duration(o.duration);
@@ -282,10 +278,10 @@ function init(type) {
                         unrepay: $(e.node).data('unrepay'),
                         //Funrepay: $(e.node).data('unrepay').toFixed(2)
                         Funrepay: '',
-                        Time:'',
-                        assigneeYieldRate:'',
-                        creditAssignFee:'',
-                        creditAssignRate:''
+                        Time: '',
+                        assigneeYieldRate: '',
+                        creditAssignFee: '',
+                        creditAssignRate: ''
                     }
                     //console.log(data);
                     //console.log(data.Funrepay);
@@ -331,27 +327,27 @@ function init(type) {
                                 },
                                 oncomplete: function () {
                                     var that = this;
-                                    accountService.getStop1(data.investId,function (res) {
-                                        data.Funrepay= res.data.bidValuation.toFixed(2);
-                                        data.Time=res.data.maxTimeOut;
+                                    accountService.getStop1(data.investId, function (res) {
+                                        data.Funrepay = res.data.bidValuation.toFixed(2);
+                                        data.Time = res.data.maxTimeOut;
                                     });
 
                                     this.on('changeVal', function (e) {
-                                        if(/\D/g.test(data.creditDealRate) && data.creditDealRate.indexOf('.') ==-1) return data.error = '请输入正确的转让价格';
-                                        else if(data.creditDealRate == '') return data.error = '请输入转让价格！'
-                                        else if(parseFloat(data.creditDealRate)>parseFloat(that.get("maxarea"))) return data.error = '转让价格必须小于等于'+that.get("maxarea")+'!';
-                                        else if(parseFloat(data.creditDealRate)<parseFloat(that.get("minarea"))) return data.error = '转让价格必须大于等于'+that.get("minarea")+'!';
+                                        if (/\D/g.test(data.creditDealRate) && data.creditDealRate.indexOf('.') == -1) return data.error = '请输入正确的转让价格';
+                                        else if (data.creditDealRate == '') return data.error = '请输入转让价格！'
+                                        else if (parseFloat(data.creditDealRate) > parseFloat(that.get("maxarea"))) return data.error = '转让价格必须小于等于' + that.get("maxarea") + '!';
+                                        else if (parseFloat(data.creditDealRate) < parseFloat(that.get("minarea"))) return data.error = '转让价格必须大于等于' + that.get("minarea") + '!';
                                         else data.error = '';
-                                        accountService.getStop2(data.investId,data.creditDealRate,function (res) {
-                                            data.assigneeYieldRate=(res.data.assigneeYieldRate*100).toFixed(2);
-                                            data.creditAssignFee=(res.data.creditAssignFee*data.creditDealRate).toFixed(2);
-                                            data.creditAssignRate=res.data.creditAssignRate;
+                                        accountService.getStop2(data.investId, data.creditDealRate, function (res) {
+                                            data.assigneeYieldRate = (res.data.assigneeYieldRate * 100).toFixed(2);
+                                            data.creditAssignFee = (res.data.creditAssignFee * data.creditDealRate).toFixed(2);
+                                            data.creditAssignRate = res.data.creditAssignRate;
                                         });
 
                                     })
 
                                     this.on('makeSure', function (e) {
-                                        if(data.error || !data.creditDealRate) return !data.creditDealRate ? data.error = '请输入转让价格！':data.error;
+                                        if (data.error || !data.creditDealRate) return !data.creditDealRate ? data.error = '请输入转让价格！' : data.error;
                                         e.node.disabled = true;
                                         e.node.innerHTML = '转让中...';
                                         //发送请求

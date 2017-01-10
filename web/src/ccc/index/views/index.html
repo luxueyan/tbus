@@ -1,22 +1,17 @@
 <dsBody layout={{dsLayoutPath}}>
-
     <link rel="stylesheet" href="/ccc/index/css/style.css">
     <link rel="stylesheet" href="/ccc/index/css/style1.css">
     <link rel="stylesheet" href="/ccc/index/css/loanlist.css">
 
-
     <!-- 轮播组件 -->
     <div class="carousel-wrapper">
-
         <div id="my-carousel" class="carousel slide" data-ride="carousel" data-interval="5000">
             <!-- Indicators -->
             <ol class="carousel-indicators">
-                <!--{{JSON.stringify(carousel)}}-&#45;&#45;&#45;&#45;-->
+                <!--{{JSON.stringify(carousel)}}-->
                 {{#carousel}}
-
-                <li data-target="#my-carousel" data-slide-to="{{@index}}" class="{{#if @index === 0 }}active{{/if}}">
-                </li>
-
+                <li data-target="#my-carousel" data-slide-to="{{@index}}"
+                    class="{{#if @index === 0 }}active{{/if}}"></li>
                 {{/}}
             </ol>
 
@@ -35,34 +30,38 @@
             <div class="banner-account－box">
                 <div class="banner-account">
                     {{#if user}}
-                        {{#picture[1]}}
-                        <div class="ad">
-                            <a href="{{this.link}}" target="_blank">
-                                <div style="background-image:url({{this.content}});
+                    {{#picture[1]}}
+                    <div class="ad">
+                        <a href="{{this.link}}" target="_blank">
+                            <div style="background-image:url({{this.content}});
                                 background-repeat:no-repeat; background-position:center;
                                 background-size: 100% 200px;padding-top:200px;">
-                                </div>
-                            </a>
-                        </div>
-                        {{/}}
+                            </div>
+                        </a>
+                    </div>
+                    {{/}}
                     {{else}}
-                        {{#picture[2]}}
-                        <div class="ad">
-                            <a href="{{this.link}}" target="_blank">
-                                <div style="background-image:url({{this.content}});
+                    {{#picture[2]}}
+                    <div class="ad">
+                        <a href="{{this.link}}" target="_blank">
+                            <div style="background-image:url({{this.content}});
                                     background-repeat:no-repeat; background-position:center;
                                     background-size: 100% 200px;padding-top:200px;">
-                                </div>
-                            </a>
-                        </div>
-                        {{/}}
+                            </div>
+                        </a>
+                    </div>
+                    {{/}}
                     {{/if}}
 
                     <div class="free-register">
                         {{#if user}}
-                        <a href="/newAccount/home/index"><div class="btn-index">我的账户</div></a>
+                        <a href="/newAccount/home/index">
+                            <div class="btn-index">我的账户</div>
+                        </a>
                         {{else}}
-                        <a href="/register"><div class="btn-index">立即注册</div></a>
+                        <a href="/register">
+                            <div class="btn-index">立即注册</div>
+                        </a>
                         {{/if}}
                     </div>
                     {{#if user}}
@@ -78,7 +77,7 @@
     <div class="banner_header">
         <div class="header_box">
             <div class="header_info">
-                <img src="/ccc/index/img/safe_icon.png">
+                <img src="/ccc/index/img/safe_icon.png" alt="太合汇·汇财富">
                 <h2><a href="http://www.tahone.cn/cms/cfjt/DAD32A76-585F-40CC-9997-4B2794030128">安全</a></h2>
                 <div class="word">
                     <p>银行级风控</p>
@@ -86,7 +85,7 @@
                 </div>
             </div>
             <div class="header_info">
-                <img src="/ccc/index/img/zhy_icon.png">
+                <img src="/ccc/index/img/zhy_icon.png" alt="太合汇·汇财富">
                 <h2><a href="http://www.tahone.cn/cms/cfjt/D425D9BA-AEAB-4297-9376-D3EC21CFBC51">专业</a></h2>
                 <div class="word">
                     <p>360°项目审核</p>
@@ -94,7 +93,7 @@
                 </div>
             </div>
             <div class="header_info">
-                <img src="/ccc/index/img/kk_icon.png">
+                <img src="/ccc/index/img/kk_icon.png" alt="太合汇·汇财富">
                 <h2><a href="http://www.tahone.cn/cms/cfjt/DCABCA2B-057E-4539-87EC-A612C1D48E27">可靠</a></h2>
                 <div class="word">
                     <p>历史到期</p>
@@ -115,7 +114,8 @@
                             <div id="scrollWrap">
                                 <ul id="scrollMsg">
                                     {{#latestNew}}
-                                    <li><a target="_blank" href="/us/transfer" style="text-decoration:none">{{{title}}} <span style="margin-left: 20px;">{{timeRecorded}}</span></a>
+                                    <li><a target="_blank" href="/us/transfer" style="text-decoration:none">{{{title}}}
+                                        <span style="margin-left: 20px;">{{timeRecorded}}</span></a>
                                     </li>
                                     {{/latestNew}}
                                 </ul>
@@ -133,7 +133,7 @@
             <div class="pro_detail">
                 <div class="GDSYproductList"></div>
             </div>
-            <a href="/invest"  style="position: absolute;right: 20px;bottom: -30px;font-weight: 400;">更多产品>></a>
+            <a href="/invest" style="position: absolute;right: 20px;bottom: -30px;font-weight: 400;">更多产品>></a>
         </div>
     </div>
 
@@ -147,7 +147,7 @@
                 <dl>
                     <dt>
                         <a href="/cms/cfjt/{{this.id}}" target="_blank">
-                            <img src="{{url}}">
+                            <img src="{{url}}" alt="太合汇·汇财富">
                         </a>
                     </dt>
                     <dd class="dd01">
@@ -177,7 +177,7 @@
         try {
             var isStoped = false;
             var oScroll = document.getElementById("scrollWrap");
-            with(oScroll) {
+            with (oScroll) {
                 noWrap = true;
             }
             oScroll.onmouseover = new Function('isStoped = true');
@@ -188,7 +188,8 @@
             var oScrollMsg = document.getElementById("scrollMsg");
             oScroll.appendChild(oScrollMsg.cloneNode(true));
             init_srolltext();
-        } catch (e) {}
+        } catch (e) {
+        }
 
         function init_srolltext() {
             oScroll.scrollTop = 0;

@@ -64,11 +64,8 @@
                         <div class="clearfix">
                             <span class="duration pull-left">
                                 <span class="name">投资期限</span>
-                                <span class="value" ng-if="item.raw.duration.days">
-                                    {{ item.total_days }}天
-                                </span>
-                                <span class="value" ng-if="!item.raw.duration.days">
-                                    {{ item.total_months }}个月
+                                <span class="value">
+                                    {{ item.raw.loanRequest.displayDuration.frontShowDuration }}
                                 </span>
                             </span>
                             <span class="min-amount pull-right">

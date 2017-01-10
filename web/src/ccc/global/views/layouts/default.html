@@ -13,8 +13,6 @@
 <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 <script src="/ccc/global-common.js" async></script>
-<link rel="stylesheet" href="/ccc/global/css/base.css" />
-<link rel="stylesheet" href="/ccc/global/css/base1.css" />
 <!--[if IE 8]><link rel="stylesheet" href="/ccc/global/css/ie8.css" /><![endif]-->
 <meta charset="utf-8" />
 <meta name="renderer" content="webkit" />
@@ -34,8 +32,7 @@
         if (match) {
             document.cookie = match[1] + '; Max-Age=1800; Path=/';
         }
-    }((document.cookie || '')
-        .match(/(?:^|;\s*)(ccat=[0-9a-f]{64})/)));
+    }((document.cookie || '').match(/(?:^|;\s*)(ccat=[0-9a-f]{64})/)));
 
 </script>
 <script>
@@ -44,9 +41,7 @@ var _hmt = _hmt || [];
 <meta name="Keywords" content="{{keywords}}">
 <meta name="Description" content="{{description}}">
 
-<!--<script src="http://libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>-->
-
-<!--    页头-->
+<!-- 页头 -->
 <div class="mask" id="mask" style="width: 100%;height: 100%;opacity: .5;background-color: #000;position: fixed;z-index: 2000; display: none"></div>
 <div class="s-header" id="s-header-height">
 
@@ -55,26 +50,16 @@ var _hmt = _hmt || [];
             <div class="float-left">
                 服务热线：400-900-8868
             </div>
-            <!--<a href="http://weibo.com/u/5639831528?refer_flag=1001030101_&is_all=1"><img class="float-img" src="/ccc/global/img/wb_icon.png"></a>-->
             <div class="float-img wx_img">
-                <!--<img src="/ccc/global/img/wx_icon.png">-->
                 <span>太合汇微信</span>
-                <img src="/ccc/global/img/wx_gzh.jpg" class="wx_gzh" >
+                <img src="/ccc/global/img/wx_gzh.jpg" class="wx_gzh" alt="太合汇微信" >
             </div>
             <div class="float-img app">
                 <span>手机太合汇APP</span>
-                <img src="/ccc/global/img/sj_app.png" class="app_img" style="width:120px;">
-                <!--<img src="/ccc/index/img/app.png" class="app_img" style="width:120px;">-->
+                <img src="/ccc/global/img/sj_app.png" class="app_img" alt="手机太合汇APP" style="width:120px;">
             </div>
 
             {{#if user}}
-            <!--<a href="http://www.tahone.com/view-8-1.html" target="_blank" class="text account" style="font-size:12px;margin-left:10px;text-decoration:none">关于我们</a>-->
-            <!--
-                            <a href="/newAccount/message">
-                                <div  style="color:#f58220;position:relative;bottom:4px;" class="text"><img src="/ccc/newAccount/img/message.png" alt="" style="margin:0;width:16px;padding-top:6px;"><span id='head-message-container' style="color:#009ada;font-size:12px;margin:0;position:relative;top:1px;margin-left:5px;"></span>
-                                </div>
-                            </a>
-            -->
             <a href="/logout" class="text" style="margin-right:5px;margin-left:15px;">退出&nbsp;&nbsp;|</a>
             {{#if user.name}}
             <a href="/newAccount/home/index"><div id='head-ractive-container' style="color:#009ada;position:relative;bottom:1px;" class="text"></div>{{user.name}}</a>
@@ -101,7 +86,7 @@ var _hmt = _hmt || [];
     <div class="s-header-menu" id="menu">
         <div class="s-header-menu-content u-pos-r-center">
             <a href="/" alt="太合汇" title="太合汇" class="global_logo">
-                <img class="s-icon" src="/ccc/global/img/logo.png">
+                <img class="s-icon" src="/ccc/global/img/logo.png" alt="太合汇·汇财富">
             </a>
 
             <ul class="u-nolist-ul">
@@ -191,11 +176,11 @@ var _hmt = _hmt || [];
             <div class="footer-info">
                 <div class="right-report">
                     <div class="report-phone">
-                        <img src="/ccc/global/img/sj_app.png" alt="" class="barcode"/>
+                        <img src="/ccc/global/img/sj_app.png" alt="扫描二维码下载APP" class="barcode"/>
                         <p>扫描二维码下载APP</p>
                     </div>
                     <div class="report-wx">
-                        <img src="/ccc/global/img/wx_gzh.jpg" alt="" class="barcode"/>
+                        <img src="/ccc/global/img/wx_gzh.jpg" alt="扫二维码关注公众号" class="barcode"/>
                         <p>扫二维码关注公众号</p>
                     </div>
                 </div>

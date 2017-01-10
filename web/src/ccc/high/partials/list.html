@@ -31,7 +31,9 @@
       <tr>
         <td class="title"><a href="/loan/{{ id }}" class="invest-title">{{title}}</a></td>
         <td class="rate textCenter"><span>{{rate}}</span>%</td>
-        <td class="fdurunit textCenter"><span>{{fduration}}</span>{{fdurunit}}</td>
+        <td class="fdurunit textCenter">
+          <span>{{durationNewNo}}</span>{{durationNewName}}
+        </td>
         <td class="minAmount textCenter"><span>{{FminAmount}}</span>{{FminUnit}}</td>
         <td class="status textCenter">
           {{#if status === 'OPENED'}}

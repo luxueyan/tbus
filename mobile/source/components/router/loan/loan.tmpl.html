@@ -23,14 +23,7 @@
             </div>
 
             <div class="col-xs-6 duration">
-                <div class="value">
-                    <span ng-if="loan.raw.duration.days">
-                        {{ loan.total_days }}天
-                    </span>
-                    <span ng-if="!loan.raw.duration.days">
-                        {{ loan.total_months }}个月
-                    </span>
-                </div>
+                <div class="value">{{ loan.raw.loanRequest.displayDuration.frontShowDuration }}</div>
                 <div class="name">投资期限</div>
             </div>
         </div>
@@ -83,7 +76,7 @@
             </li>
             <li>
                 <div class="name">预计到账日</div>
-                <div class="value">{{ loan.arrival_date | date: 'yyyy-MM-dd' }}</div>
+                <div class="value">下一工作日</div>
             </li>
         </ul>
     </section>
@@ -275,6 +268,10 @@
 
             <div class="btn btn-block btn-theme disabled"
                  ng-switch-when="OVERDUE"
+            >待收款</div>
+
+            <div class="btn btn-block btn-theme disabled"
+                 ng-switch-when="BREACH"
             >待收款</div>
         </div>
     </section>

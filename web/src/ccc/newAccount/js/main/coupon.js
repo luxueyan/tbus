@@ -280,8 +280,8 @@ function Coupon_Box($btn) {
                                 placementId: id
                             }, function (res) {
                                 if (res) {
-                                    init('PLACED');
                                     alert("兑现成功!");
+                                    init('PLACED');
                                 } else {
                                     $btn.removeClass('disabled');
                                     alert("兑现失败!");
@@ -307,6 +307,7 @@ function Coupon_Box($btn) {
                         .then(function (r) {
                             _this.set('captcha', r.body.captcha);
                             _this.set('token', r.body.token);
+                            _this.set('value', '');
                         });
                 },
                 checkImgCaptcha: function () {

@@ -18,12 +18,7 @@
 
     <div class="info" style="padding-left: 20px;">
         <div class="duration">
-            <span ng-if="loan.raw.duration.days">
-                <span class="num">{{ loan.total_days }}</span><span class="unit">天</span>
-            </span>
-            <span ng-if="!loan.raw.duration.days">
-                <span class="num">{{ loan.total_months }}</span><span class="unit">个月</span>
-            </span>
+            <span class="num">{{ loan.raw.loanRequest.displayDuration.frontShowDuration }}</span>
             <span class="u-color-main" style="margin-left: 10px;">7天可转</span>
         </div>
         <div class="min-amount"

@@ -9,7 +9,7 @@ var utils = require('ccc/global/js/lib/utils');
 
 exports.IndexService = {
     getSummaryData: function (next) {
-         request.get('/api/web/index/loans').then(function (res) {
+        request.get('/api/web/index/loans').then(function (res) {
             next(res.body);
         });
     },
@@ -50,7 +50,7 @@ exports.IndexService = {
 
 function parseLoanList(loans) {
     var loanList = [];
-    for(var p in loans){
+    for (var p in loans) {
         addItem(loans[p]);
     }
     function addItem(items) {
@@ -61,6 +61,7 @@ function parseLoanList(loans) {
             loanList.push(formatItem(items[i]));
         }
     }
+
     function formatItem(item) {
         item.rate = item.rate / 100;
         item.deductionRate = item.loanRequest.deductionRate / 100;
@@ -77,34 +78,31 @@ function parseLoanList(loans) {
         //}else{
         //    item.investPercent = (item.investPercent * 100).toFixed(2);
         //}
-        var SinvestPercent = (item.investPercent * 100)+'';
+        var SinvestPercent = (item.investPercent * 100) + '';
         var SinvestPercentString = SinvestPercent.split('.');
 
-        if(SinvestPercentString[1]){
-            if(SinvestPercentString[1].substr(0,2)=='00'){
+        if (SinvestPercentString[1]) {
+            if (SinvestPercentString[1].substr(0, 2) == '00') {
                 item.investPercent = SinvestPercentString[0];
-            }else if(SinvestPercentString[1].substr(1,1)=='0'|| SinvestPercentString[1].substr(1,1)==''){
+            } else if (SinvestPercentString[1].substr(1, 1) == '0' || SinvestPercentString[1].substr(1, 1) == '') {
                 item.investPercent = (item.investPercent * 100).toFixed(1);
-            }else{
+            } else {
                 item.investPercent = (item.investPercent * 100).toFixed(2);
             }
-        }else{
+        } else {
             item.investPercent = (item.investPercent * 100);
         }
         item.Fbalance = utils.format.amount(item.balance, 2);
 
         //格式化期限
-        if (item.duration.days > 0) {
-            if (typeof item.duration.totalDays === "undefined") {
-                item.fduration = item.duration.days;
-            } else {
-                item.fduration = item.duration.totalDays;
-            }
-            item.fdurunit = "天";
-        } else {
-            item.fduration = item.duration.totalMonths;
-            item.fdurunit = "个月";
+        if (item.loanRequest.displayDuration) {
+            var durationNew = item.loanRequest.displayDuration.frontShowDuration;
+            var reg1 = /(\d{1,3})+(?:\.\d+)?/g;
+            var reg2 = /[\u4e00-\u9fa5]{1,}/g;
+            item.durationNewNo = durationNew.match(reg1)[0];
+            item.durationNewName = durationNew.match(reg2)[0];
         }
+
         if (item.amount >= 10000) {
             item.TamountUnit = '万';
             item.amount = (item.amount / 10000);
@@ -147,6 +145,7 @@ function parseLoanList(loans) {
         }
         return item;
     }
+
     return loanList;
 }
 

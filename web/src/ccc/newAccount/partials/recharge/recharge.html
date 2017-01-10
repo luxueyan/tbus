@@ -32,7 +32,7 @@
                 <div class="rows">
                     <div class="card-brame">
                         <div class="img-box">
-                            <img class="" src="/ccc/newAccount/img/recharge_num.png">
+                            <img class="" src="/ccc/newAccount/img/recharge_num.png" alt="太合汇·汇财富">
                         </div>
                         <input type="text" name="amount" id="rechargeValue" on-blur="changeValue" placeholder="请输入充值金额"
                                value="{{amount}}" class="recharge-input" autocomplete="off">
@@ -55,7 +55,7 @@
 
                     <div class="card-brame">
                         <div class="img-box">
-                            <img class="recharge_pwd" src="/ccc/newAccount/img/recharge_pwd.png">
+                            <img class="recharge_pwd" src="/ccc/newAccount/img/recharge_pwd.png" alt="太合汇·汇财富">
                         </div>
                         <input type="password" name="paymentPassword" id="rechargePassword" on-blur="changeValue"
                                placeholder="请输入交易密码"
@@ -87,13 +87,18 @@
                 <p class="warm-tip">预计1分钟到账，以实际到账时间为准</p>
             </div>
         </form>
+        <div class="recharge-wrap-tip">
+            <h2>提示：</h2>
+            <p>选择大额充值，系统将会对充值金额按银行限额进行拆分，</p>
+            <p>分笔充值；可能会部分充值成功，最终结果以银行扣款为准。</p>
+        </div>
     </div>
     {{/if}}
     {{#if step2}}
     <div class="recharge-success">
         <div class="content">
             <div class="success-img">
-                <img src="/ccc/newAccount/img/band-success.png"/>
+                <img src="/ccc/newAccount/img/band-success.png" alt="太合汇·汇财富"/>
             </div>
             <div class="success-content">
                 <p>充值成功</p>
@@ -112,7 +117,7 @@
     <div class="recharge-success">
         <div class="content">
             <div class="fail-img">
-                <img src="/ccc/newAccount/img/band-fail.png"/>
+                <img src="/ccc/newAccount/img/band-fail.png" alt="太合汇·汇财富"/>
             </div>
             <div class="success-content">
                 <p class="fail-msg">充值失败</p>
@@ -138,26 +143,38 @@
         <h2>大额充值</h2>
         <div class="popupBigMain">
             {{#if recharging}}
-            <div class="easy-pie-chart" data-percent="{{totalTime}}">
-                <!--<span class="percentageNum">{{totalTime}}</span>-->
+            <!--<div class="easy-pie-chart" data-percent="{{totalTime}}"></div>-->
+            <div class="recharging">
+                <div class="rechargingL">
+                    <div class="target">
+                        <div class="round"></div>
+                    </div>
+                </div>
+                <div class="rechargingR">
+                    <p>充值正在进行中，预计需要{{rechargingCount}}分钟，请耐心等待！</p>
+                    <p>请不要关闭此页面，谢谢！</p>
+                </div>
             </div>
             {{/if}}
 
             {{#if rechargeSuc}}
             <div class="rechargeSuc">
-                <img src="/ccc/newAccount/img/band-success.png">
-                <p>支付成功！</p>
+                <img src="/ccc/newAccount/img/band-success.png" alt="太合汇·汇财富">
+                <h3>{{rechargeSucH}}</h3>
+                <p>{{rechargeSucRes}}</p>
             </div>
             {{/if}}
 
             {{#if rechargeErr}}
             <div class="rechargeErr">
-                <img src="/ccc/newAccount/img/band-fail.png">
-                <p>{{rechargeErrRes}}</p>
+                <img src="/ccc/newAccount/img/band-fail.png" alt="太合汇·汇财富">
+                <h3>支付失败</h3>
+                <p>{{rechargeSucRes}}</p>
             </div>
             {{/if}}
             <div class="popupBigBtn">
-                <button on-click="rechargeClose">关闭</button>
+                <!--<button on-click="rechargeClose">关闭</button>-->
+                <a href="/newAccount/home/index">关闭</a>
             </div>
         </div>
     </div>
