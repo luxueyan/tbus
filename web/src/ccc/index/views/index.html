@@ -138,28 +138,39 @@
     </div>
 
     <!--财富讲堂-->
-    <div class="partnerList wealthList">
-        <div class="partner">
-            <h4>财富讲堂</h4>
-            <div class="wealth-grounp">
-                {{#latestNews:num}}
-                {{#if num <=2 }}
-                <dl>
-                    <dt>
-                        <a href="/cms/cfjt/{{this.id}}" target="_blank">
-                            <img src="{{url}}" alt="太合汇·汇财富">
-                        </a>
-                    </dt>
-                    <dd class="dd01">
-                        <a href="/cms/cfjt/{{this.id}}" target="_blank">{{this.title}}</a>
-                    </dd>
-                    <dd class="dd02">
-                        <a href="/cms/cfjt/{{this.id}}" target="_blank"> {{{this.content}}}</a>
-                    </dd>
-                </dl>
+    <div class="wealthList">
+        <div class="wealth-grounp">
+            <h2>媒体报道<a href="/us/question">查看更多>></a></h2>
+            <img src="/ccc/index/img/01.jpg" alt="媒体报道">
+            <ul>
+                {{#mtbdNew:num}}
+                {{#if num<5}}
+                <li><a href="/cms/cfjt/{{this.id}}" target="_blank">{{this.title}}</a></li>
                 {{/if}}
-                {{/latestNews}}
-            </div>
+                {{/cfjtNew}}
+            </ul>
+        </div>
+        <div class="wealth-grounp">
+            <h2>公司动态<a href="/us/company">查看更多>></a></h2>
+            <img src="/ccc/index/img/02.jpg" alt="公司动态">
+            <ul>
+                {{#gsdtNew:num}}
+                {{#if num<5}}
+                <li><a href="/cms/cfjt/{{this.id}}" target="_blank">{{this.title}}</a></li>
+                {{/if}}
+                {{/cfjtNew}}
+            </ul>
+        </div>
+        <div class="wealth-grounp">
+            <h2>财富讲堂<a href="/us/wealth">查看更多>></a></h2>
+            <img src="/ccc/index/img/03.jpg" alt="财富讲堂">
+            <ul>
+                {{#cfjtNew:num}}
+                {{#if num<5}}
+                <li><a href="/cms/cfjt/{{this.id}}" target="_blank">{{this.title}}</a></li>
+                {{/if}}
+                {{/cfjtNew}}
+            </ul>
         </div>
     </div>
 

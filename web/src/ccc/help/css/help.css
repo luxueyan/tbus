@@ -70,7 +70,7 @@
 #help-left .active a{
     color:#e4262b;
     text-decoration: none;
-    
+
 }
 
 .page-guide .help-left-body{
@@ -100,28 +100,28 @@
 .help-do ul{
         width: 190px;
         }
-.help-do ul li{ 
+.help-do ul li{
             border-bottom: 1px solid #fff;
     }
 
 
 .help-do ul li a{
-    
+
     line-height: 52px;
     color: #858585;
-    font-size: 15px; 
+    font-size: 15px;
     padding-left: 54px;
     display: block;
     width: 190px;
     text-align: center;
    padding:0;
-    
+
 }
 
 .help-do ul  .active .current-red{
     background-color:#24b2e7;
     color: #fff;
-   
+
     text-decoration: none;
 }
 

@@ -46,7 +46,10 @@ module.exports = function (router) {
         req.uest('/api/v2/cms/article/' + req.params.id)
             .end()
             .then(function (r) {
-                res.locals.description = r.body.content.replace(/<\/?[^>]*>/g, '').slice(0, 100);
+                res.locals.title = r.body.title+'-财富讲堂-汇财富';
+                res.locals.keywords = r.body.keyword;
+                res.locals.description = r.body.description;
+                // res.locals.description = r.body.content.replace(/<\/?[^>]*>/g, '').slice(0, 100);
                 res.render('detail', {
                     detail: formatDetail(r.body)
                 });
@@ -64,7 +67,10 @@ module.exports = function (router) {
         req.uest('/api/v2/cms/article/' + req.params.id)
             .end()
             .then(function (r) {
-                res.locals.description = r.body.content.replace(/<\/?[^>]*>/g, '').slice(0, 100);
+                res.locals.title = r.body.title+'-服务协议-汇财富';
+                res.locals.keywords = r.body.keyword;
+                res.locals.description = r.body.description;
+                // res.locals.description = r.body.content.replace(/<\/?[^>]*>/g, '').slice(0, 100);
                 res.render('detail', {
                     detail: formatDetail(r.body)
                 });
@@ -82,13 +88,17 @@ module.exports = function (router) {
         req.uest('/api/v2/cms/article/' + req.params.id)
             .end()
             .then(function (r) {
-                res.locals.description = r.body.content.replace(/<\/?[^>]*>/g, '').slice(0, 100);
+                res.locals.title = r.body.title+'-媒体报道-汇财富';
+                res.locals.keywords = r.body.keyword;
+                res.locals.description = r.body.description;
+                // res.locals.description = r.body.content.replace(/<\/?[^>]*>/g, '').slice(0, 100);
                 res.render('detail', {
                     detail: formatDetail(r.body)
                 });
             });
     });
 
+    //合作伙伴介绍
     router.get('/hzhbjs/:id', function (req, res) {
         var user = res.locals.user;
         if (user && user.idNumber) {
@@ -99,7 +109,10 @@ module.exports = function (router) {
         req.uest('/api/v2/cms/article/' + req.params.id)
             .end()
             .then(function (r) {
-                res.locals.description = r.body.content.replace(/<\/?[^>]*>/g, '').slice(0, 100);
+                res.locals.title = r.body.title+'-合作伙伴介绍-汇财富';
+                res.locals.keywords = r.body.keyword;
+                res.locals.description = r.body.description;
+                // res.locals.description = r.body.content.replace(/<\/?[^>]*>/g, '').slice(0, 100);
                 res.render('detail', {
                     detail: formatDetail(r.body)
                 });

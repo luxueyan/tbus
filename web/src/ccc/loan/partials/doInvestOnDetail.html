@@ -55,101 +55,98 @@
     <div class="info">
 
         <div class="userBlock" id="userBlock">
-            {{#if user}} {{! 已登录}}
-            {{#if !user.bankCards.length}} {{! 但是没绑定银行卡 }}
-            <p class="shiming">您还未绑定银行卡，绑定后可投资</p>
-            <a class="loginBtn" href="/newAccount/settings/bankCards">去绑定</a>
-            {{else}}
+            {{#if user}}
+                {{#if !user.bankCards.length}}
+                    <p class="shiming">您还未绑定银行卡，绑定后可投资</p>
+                    <a class="loginBtn" href="/newAccount/settings/bankCards">去绑定</a>
+                {{else}}
+                    {{#if !user.paymentPasswordHasSet}}
+                    <p class="shiming">您还未设置交易密码，设置后可投资</p>
+                    <a class="loginBtn" href="/newAccount/settings/password">去设置交易密码</a>
+                    {{else}}
+                        {{#if !hasSurveyScore}}
+                            <p class="shiming">您还未做风险测评，测评后可投资</p>
+                            <a class="loginBtn" href="/newAccount/risk">去做风险测评</a>
+                        {{else}}
+                            <div class="leftMoney-open">
+                                可用余额：<span style="{{#if user.availableAmount>10000000}}font-size:16px;{{/if}}">{{user.availableAmount}}</span>元
+                                <!--<a href="/newAccount/recharge" class="recharge">-->
+                                    <!--<button>充值</button>-->
+                                <!--</a>-->
+                            </div>
+                            <form name="investForm"  class="invest-form">
+                                <div class="calculatorBox">
+                                    <div class="calculator">
+                                        <input type="hidden" name="loanId" value="{{loan.id}}">
+                                        <input placeholder="请输入投资金额" name="amount" type="text" value="{{ inputNum }}"
+                                               autocomplete="off" on-keyup="tenNum" id="tenNum"/>
+                                        <span class="plus" on-click="addNum"></span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <p class="totalInterest">预期收益
+                                            <span>
+                                        <!-- {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}} -->
+                                            {{(loan.durationdays/365 * (isNaN(inputNum)?0 : inputNum) *loan.rate/100).toFixed(2)}}
+                                            </span>元
+                                    </p>
 
-            {{#if !user.paymentPasswordHasSet}} {{! 绑卡，但是没设置交易密码}}
-            <p class="shiming">您还未设置交易密码，设置后可投资</p>
-            <a class="loginBtn" href="/newAccount/settings/password">去设置交易密码</a>
+                                    <div class="selectOption">
+                                        <select name="placementId" id="couponSelection">
+                                            {{#if selectOption}}
+                                            <option selected value="">请选择红包</option>
 
-            {{else}}
-            <div class="leftMoney-open">
-                可用余额：<span style="{{#if user.availableAmount>10000000}}font-size:16px;{{/if}}">{{user.availableAmount}}</span>元
-                <!--<a href="/newAccount/recharge" class="recharge">-->
-                    <!--<button>充值</button>-->
-                <!--</a>-->
-            </div>
-            <form name="investForm"  class="invest-form">
-                <div class="calculatorBox">
-                    <div class="calculator">
-                        <input type="hidden" name="loanId" value="{{loan.id}}">
-                        <input placeholder="请输入投资金额" name="amount" type="text" value="{{ inputNum }}"
-                               autocomplete="off" on-keyup="tenNum" id="tenNum"/>
-                        <span class="plus" on-click="addNum"></span>
-                    </div>
-                    <div class="clearfix"></div>
-                    <p class="totalInterest">预期收益
-                            <span>
-                        <!-- {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}} -->
-                            {{(loan.durationdays/365 * (isNaN(inputNum)?0 : inputNum) *loan.rate/100).toFixed(2)}}
-                            </span>元
-                    </p>
+                                            {{#each selectOption}}
+                                            {{#if !hide}}
+                                            <option {{#if disabled}}disabled class="disabled"{{/if}} value="{{ id }}">{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest}}
+                                            </option>
+                                            {{/if}}
+                                            {{/each}}
 
-                    <div class="selectOption">
-                        <select name="placementId" id="couponSelection">
-                            {{#if selectOption}}
-                            <option selected value="">请选择红包</option>
+                                            <option value="">不使用红包</option>
+                                            {{else}}
+                                            <option value="">暂无可用券</option>
+                                            {{/if}}
+                                        </select>
+                                        <!--<span class="down"></span>-->
+                                    </div>
+                                    <!--<div class="password-box">-->
+                                        <!--<div class="password">-->
+                                            <!--<input class="trade-password" type="password" placeholder="请输入交易密码"-->
+                                                   <!--name="paymentPassword"-->
+                                                   <!--value="{{paymentPassword}}" autocomplete="off"/>-->
+                                        <!--</div>-->
+                                        <!--<p><a href="/newAccount/settings/password" style="font-size:12px">忘记交易密码？</a></p>-->
+                                    <!--</div>-->
+                                    <!--<p class="agree-box">-->
+                                        <!--<input type="checkbox" class="agree" checked id="agree"/>-->
+                                            <!--<span>我同意-->
+                                                <!--<a href="/agreement/mobile/protocolltb" target="_blank">《新抵宝用户投资服务协议》</a>-->
+                                            <!--</span>-->
+                                    <!--</p>-->
+                                    <!--<p class="agree-error"></p>-->
+                                    <!--<input type="submit" class="loginBtn invest-button" value="确认购买"/>-->
+                                    <div class="agree-box">
+                                    确认购买即视为同意<a href="/agreement/risk" target="_blank">《风险提示书》、</a>
+                                    <a href="/api/v2/loan/loanRequest/{{loan.requestId}}/bind/template" target="_blank">《产品购买协议》</a>
+                                    </div>
+                                    <a href="" class="loginBtn invest-button" on-click="invest-submit">同意协议并确认购买</a>
 
-                            {{#each selectOption}}
-                            {{#if !hide}}
-                            <option {{#if disabled}}disabled class="disabled"{{/if}} value="{{ id }}">{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest}}
-                            </option>
-                            {{/if}}
-                            {{/each}}
+                                </div>
 
-                            <option value="">不使用红包</option>
-                            {{else}}
-                            <option value="">暂无可用券</option>
-                            {{/if}}
-                        </select>
-                        <!--<span class="down"></span>-->
-                    </div>
-                    <!--<div class="password-box">-->
-                        <!--<div class="password">-->
-                            <!--<input class="trade-password" type="password" placeholder="请输入交易密码"-->
-                                   <!--name="paymentPassword"-->
-                                   <!--value="{{paymentPassword}}" autocomplete="off"/>-->
-                        <!--</div>-->
-                        <!--<p><a href="/newAccount/settings/password" style="font-size:12px">忘记交易密码？</a></p>-->
-                    <!--</div>-->
-                    <!--<p class="agree-box">-->
-                        <!--<input type="checkbox" class="agree" checked id="agree"/>-->
-                            <!--<span>我同意-->
-                                <!--<a href="/agreement/mobile/protocolltb" target="_blank">《新抵宝用户投资服务协议》</a>-->
-                            <!--</span>-->
-                    <!--</p>-->
-                    <!--<p class="agree-error"></p>-->
-                    <!--<input type="submit" class="loginBtn invest-button" value="确认购买"/>-->
-                    <div class="agree-box">
-                    确认购买即视为同意<a href="/agreement/risk" target="_blank">《风险提示书》、</a>
-                    <a href="/api/v2/loan/loanRequest/{{loan.requestId}}/bind/template" target="_blank">《产品购买协议》</a>
-                    </div>
-                    <a href="" class="loginBtn invest-button" on-click="invest-submit">同意协议并确认购买</a>
-
-                </div>
-
-                {{#if errors.visible}}
-                <div class="tooltip">
-                    <div class="tooltip-inner">
-                        <span class="text">{{ errors.msg }}</span>
-                    </div>
-                </div>
+                                {{#if errors.visible}}
+                                <div class="tooltip">
+                                    <div class="tooltip-inner">
+                                        <span class="text">{{ errors.msg }}</span>
+                                    </div>
+                                </div>
+                                {{/if}}
+                            </form>
+                        {{/if}}
+                    {{/if}}
                 {{/if}}
-            </form>
-
-            {{/if}}
-            {{/if}}
-
             {{else}}
-
-            <p class="shiming">请先登录</p>
-
-            <a href="/login?url={{backUrl}}" class="loginBtn">
-                登录投资
-            </a>
+                <p class="shiming">请先登录</p>
+                <a href="/login?url={{backUrl}}" class="loginBtn">登录投资</a>
             {{/if}}
         </div>
     </div>
