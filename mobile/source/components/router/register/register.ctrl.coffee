@@ -122,46 +122,44 @@ do (_, angular) ->
                     .then @api.process_response
 
                     .then (data) =>
-                        @$scope.is_register_successful = true
+                        (@$q.resolve()
+                            .then =>
+                                return @$q.reject() unless @$scope.has_referral
 
-                        @$scope.$on '$locationChangeStart', (event, new_path) =>
-                            event.preventDefault()
-                            @$window.location = new_path
+                                (@api.get_user_coupons_by_type({type: 'PRINCIPAL'})
 
-                        @$location
-                            .path 'download-app'
-                            .search {}
+                                    .then @api.process_response
+                                    .then @api.TAKE_RESPONSE_DATA
 
-                        return
+                                    .then ({results}) =>
+                                        coupon_8888 = _.find(
+                                            results,
+                                            (item) -> item.couponPackage.parValue is 8888
+                                        )
 
-                        # @$rootScope.$on '$locationChangeSuccess', =>
-                        #     @$window.location.reload()
+                                        return @$q.reject() unless coupon_8888
 
-                        (@api.fetch_current_user()
+                                        @close_form()
 
-                            .then (user) =>
+                                        @show_coupon({
+                                            mobile,
+                                            expire_time: _.get(coupon_8888, 'couponPackage.timeExpire')
+                                        })
+                                )
 
-                                if user.has_bank_card and user.has_payment_password
+                            .catch =>
+                                @$scope.is_register_successful = true
 
-                                    unless @next_path
-                                        @$location
-                                            .path 'dashboard'
-                                            .search t: _.now()
-                                    else
-                                        @$location
-                                            .path @next_path
-                                            .search {}
+                                @$scope.$on '$locationChangeStart', (event, new_path) =>
+                                    event.preventDefault()
+                                    @$window.location = new_path
 
-                                else
-                                    @popup_payment_state {
-                                        user
-                                        page: 'register'
-                                    }
+                                @$location
+                                    .path 'download-app'
+                                    .search {}
                         )
 
                     .catch (data) =>
-                        return if data is 'cancel'
-
                         key = _.get data, 'error[0].message', 'UNKNOWN'
                         @$window.alert @$scope.msg[key] or key
 
@@ -196,6 +194,67 @@ do (_, angular) ->
                     do once
 
 
+            popup_form: ({mobile}) ->
+                @submit_sending = true
+
+                unless mobile
+                    @$window.alert('请输入手机号码')
+                    @submit_sending = false
+                    return
+
+                (@api.check_mobile(mobile)
+
+                    .then @api.process_response
+
+                    .then (data) =>
+                        prompt = @$uibModal.open {
+                            size: 'lg'
+                            backdrop: 'static'
+                            windowClass: 'center modal-register'
+                            animation: true
+                            templateUrl: 'ngt-register-form.tmpl'
+
+                            controller: _.ai '$scope',
+                                (             $scope) =>
+                                    @close_form = -> prompt?.close()
+
+                                    angular.extend $scope, {
+                                        self: @
+                                        store: @$scope.store
+                                    }
+                        }
+
+                        once = @$scope.$on '$locationChangeStart', ->
+                            prompt?.dismiss()
+                            do once
+
+                    .catch (data) =>
+                        key = _.get data, 'error[0].message'
+                        @$window.alert(@$scope.msg[key] or @$scope.msg.UNKNOWN)
+
+                    .finally =>
+                        @submit_sending = false
+                )
+
+
+            show_coupon: (data) ->
+
+                prompt = @$uibModal.open {
+                    size: 'lg'
+                    backdrop: 'static'
+                    windowClass: 'modal-full-page'
+                    openedClass: 'modal-full-page-wrap'
+                    animation: false
+                    templateUrl: 'ngt-register-coupon.tmpl'
+
+                    controller: _.ai '$scope',
+                        (             $scope) =>
+                            angular.extend $scope, data
+                }
+
+                once = @$scope.$on '$locationChangeStart', ->
+                    prompt?.dismiss()
+                    do once
 
 
 
