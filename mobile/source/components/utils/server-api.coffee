@@ -199,6 +199,20 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
+            get_user_coupons_by_type: (query_set = {}) ->
+
+                _.defaults query_set, {
+                    page: 1
+                    size: 10
+                }
+
+                @$http
+                    .post '/api/v2/coupon/MYSELF/coupons', query_set
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
             get_carousel_banners: ->
 
                 @$http
