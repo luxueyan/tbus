@@ -1,0 +1,27 @@
+<dsBody layout={{dsLayoutPath}}>
+    <link rel="stylesheet" href="/ccc/us/css/help.css">
+
+    <div class="page-guide">
+        <div class="help-header">
+            <div class="infoContent">
+                <p id="aboutus-title">首页>关于我们{{navMenu}}</p>
+            </div>
+            <img src="/ccc/newAccount/img/usernav_line.png" alt="太合汇·汇财富">
+        </div>
+
+        <div id="help-left" class="pull-left">
+            {{>list}}
+        </div>
+
+        <div id="help-right" class="pull-right">
+            <div class="invest-container">
+                <div class="invest-wrapper">
+                    <h1 class="article-title">{{detail.title}}<a href="javascript:history.back();">&lt; 返回目录</a></h1>
+                    {{{detail.content}}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/ccc/us/js/main/common.js"></script>
+</dsBody>

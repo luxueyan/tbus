@@ -122,7 +122,6 @@
 .help-do ul .active .current-red {
     background-color: #24b2e7;
     color: #fff;
-
     text-decoration: none;
 }
 /* 右页面*/
@@ -138,6 +137,35 @@
 }
 .invest-wrapper {
     margin: 37px 45px 0;
+}
+.invest-wrapper > ul {
+    list-style: disc;
+    margin-left: 25px;
+}
+.invest-wrapper > ul > li {
+    line-height: 40px;
+    border-bottom: 1px solid #d9d9d9;
+}
+.invest-wrapper > ul > li a {
+    font-size: 14px;
+}
+.invest-wrapper > ul > li a:hover {
+    color: #e4262b
+}
+.article-title {
+    color: #666;
+    font-size: 20px;
+    font-weight: normal;
+    text-align: center;
+    padding-bottom: 20px;
+    line-height: 60px;
+}
+.article-title a {
+    color: #666;
+    font-size: 12px;
+    float: right;
+    padding-top: 20px;
+    line-height: 20px;
 }
 .article-wp {
 

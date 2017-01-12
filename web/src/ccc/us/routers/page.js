@@ -169,11 +169,71 @@ module.exports = function (router) {
         });
     });
 
+    router.get('/article/:id', function (req, res) {
+        var user = res.locals.user;
+        if (user && user.idNumber) {
+            delete user.idNumber;
+        }
+        res.expose(user, 'user');
+
+        var tabs = [{
+            text: '平台简介',
+            url: '/us/account'
+        }, {
+            text: '团队介绍',
+            url: '/us/invest',
+            subTabs: [{
+                text: '管理团队',
+                url: '/us/administration'
+            }, {
+                text: '投资决策委员会',
+                url: '/us/investment'
+            }, {
+                text: '风险管理委员会',
+                url: '/us/risk'
+            }]
+        }, {
+            text: '平台公告',
+            url: '/us/transfer'
+        }, {
+            text: '媒体报道',
+            url: '/us/question',
+
+        }, {
+            text: '公司动态',
+            url: '/us/company',
+
+        }, {
+            text: '财富讲堂',
+            url: '/us/wealth',
+
+        }, {
+            text: '合作伙伴',
+            url: '/us/partner',
+
+        }, {
+            text: '联系我们',
+            url: '/us/protection'
+        }];
+
+        req.uest('/api/v2/cms/article/' + req.params.id)
+            .end()
+            .then(function (r) {
+                res.locals.title = r.body.title + '-财富讲堂-汇财富';
+                res.locals.keywords = r.body.keyword;
+                res.locals.description = r.body.description;
+
+                res.render('help/article', {
+                    tabs: tabs,
+                    detail: r.body
+                });
+            });
+    });
+
     function formatNews(news) {
         news = news || [];
         for (var i = 0; i < news.length; i++) {
-            news[i].pubDate = moment(news[i].pubDate)
-                .format('YYYY-MM-DD');
+            news[i].pubDate = moment(news[i].pubDate).format('YYYY-MM-DD');
         }
         return news;
     }

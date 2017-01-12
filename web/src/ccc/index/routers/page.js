@@ -32,7 +32,7 @@ module.exports = function (router) {
                 return data;
             });
 
-        res.locals.mtbdNew = await req.uest('/api/v2/cms/category/NEWS/name/' + encodeURIComponent('媒体报道'))
+        res.locals.mtbdNew = await req.uest('/api/v2/cms/category/INTRODUCTION/name/' + encodeURIComponent('媒体报道'))
             .end()
             .get('body')
             .then(function (data) {

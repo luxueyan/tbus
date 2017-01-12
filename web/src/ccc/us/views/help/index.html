@@ -1,43 +1,46 @@
 <dsBody layout={{dsLayoutPath}}>
-<link rel="stylesheet" href="/ccc/us/css/help.css">
+    <link rel="stylesheet" href="/ccc/us/css/help.css">
 
-<div class="page-guide">
-    <div class="help-header">
-        <div class="infoContent">
-            <p id="aboutus-title">首页>关于我们{{navMenu}}</p>
+    <div class="page-guide">
+        <div class="help-header">
+            <div class="infoContent">
+                <p id="aboutus-title">首页>关于我们{{navMenu}}</p>
+            </div>
+            <img src="/ccc/newAccount/img/usernav_line.png" alt="太合汇·汇财富">
         </div>
-        <img src="/ccc/newAccount/img/usernav_line.png" alt="太合汇·汇财富">
-    </div>
 
-    <div id="help-left" class="pull-left">
-        {{>list}}
-    </div>
+        <div id="help-left" class="pull-left">
+            {{>list}}
+        </div>
 
-    <div id="help-right" class="pull-right">
-        <div class="invest-container">
-            <div class="invest-wrapper">
-                {{#if tabType}}
-                    {{#each contents:i}}
-                    <div class="article-content">{{& content}}</div>
-                    {{/each}}
-                {{else}}
-                    {{#each contents:i}}
-                    <div class="article-wp">
-                        <div class="ar-title-wp">
-                            <span class="open"></span>
-                            <h2 class="ar-title">{{i+1}}、{{title}}</h2>
-                        </div>
+        <div id="help-right" class="pull-right">
+            <div class="invest-container">
+                <div class="invest-wrapper">
+                    {{#if tabType}}
+                        {{#each contents:i}}
                         <div class="article-content">{{& content}}</div>
-                    </div>
-                    {{/each}}
-                {{/if}}
+                        {{/each}}
+                    {{else}}
+                        <ul>
+                            {{#contents}}
+                            <li><a href="/us/article/{{id}}">{{title}}</a></li>
+                            {{/contents}}
+                        </ul>
+                        <!--{{#each contents:i}}
+                        <div class="article-wp">
+                            <div class="ar-title-wp">
+                                <span class="open"></span>
+                                <h2 class="ar-title">{{i+1}}、{{title}}</h2>
+                            </div>
+                            <div class="article-content">{{& content}}</div>
+                        </div>
+                        {{/each}}-->
+                    {{/if}}
+                </div>
             </div>
         </div>
     </div>
- 
-</div>
 
 
-
-<script src="/ccc/us/js/main/common.js"></script>
+    <script src="/ccc/us/js/main/common.js"></script>
 </dsBody>
