@@ -27,7 +27,6 @@ $('.ar-title-wp').on('click', function () {
     var $contents = $(".ar-title-wp").parents("div.article-wp").children("div.article-content");
     var $arrows = $(".ar-title-wp").find('span');
 
-
      if($arrow.hasClass('open')){
          $contents.css('display','none');
          $arrows.removeClass('stop').addClass('open');
