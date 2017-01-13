@@ -295,6 +295,8 @@
 
 
 <div id="register" class="has_referral" ng-if="has_referral">
+    <style> body { background-color: #FFF; } </style>
+
     <div class="banner">
         <img class="img-responsive" ng-src="assets/image/register/banner-2.png">
     </div>
@@ -362,10 +364,10 @@
         <uib-accordion close-others="true">
             <uib-accordion-group is-open="open" ng-if="true">
                 <uib-accordion-heading>
-                    <param class="glyphicon glyphicon-play"
-                            ng-class="{ rotate: open }"
-                    >
                     了解汇财富
+                    <param class="glyphicon"
+                           ng-class="open ? 'glyphicon-menu-up' : 'glyphicon-menu-down'"
+                    >
                 </uib-accordion-heading>
 
         <div class="subject">
@@ -467,13 +469,13 @@
             <p>相关红包使用细则可在“我的-我的红包”中查看。</p>
         </div>
 
-            </uib-accordion-group>
-        </uib-accordion>
-
         <div class="qrcode">
             <img width="200" ng-src="assets/image/register/qrcode.png">
             <p>长按二维码关注太合汇微信公众号</p>
         </div>
+
+            </uib-accordion-group>
+        </uib-accordion>
     </div>
 </div>
 
