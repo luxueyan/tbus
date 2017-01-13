@@ -218,6 +218,9 @@ do (_, angular) ->
                                 (             $scope) =>
                                     @close_form = -> prompt?.close()
 
+                                    unless @captcha.buffering
+                                        @get_verification_code(@$scope.store)
+
                                     angular.extend $scope, {
                                         self: @
                                         store: @$scope.store
