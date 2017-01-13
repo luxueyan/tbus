@@ -56,25 +56,29 @@
                     <p class="shiming">您还未设置交易密码，设置后可投资</p>
                     <a class="loginBtn" href="/newAccount/settings/password">去设置交易密码</a>
                 {{else}}
+                    {{#if !hasSurveyScore}}
+                        <p class="shiming">您还未做风险测评，测评后可投资</p>
+                        <a class="loginBtn" href="/newAccount/risk">去做风险测评</a>
+                    {{else}}
+                    {{#if errors.visible}}
+                    <div class="tooltip">{{ errors.msg }}</div>
+                    {{/if}}
 
-                        {{#if errors.visible}}
-                        <div class="tooltip">{{ errors.msg }}</div>
-                        {{/if}}
+                    <div>转让价格(元): <span>{{creditassign.creditassign.creditDealAmount}}</span></div>
+                    <input type="hidden" value="{{creditassign.creditassign.creditDealAmount}}" />
+                    <div>预期收益(元): <span>{{profit}}</span></div>
+                    <p class="agree">确认购买即视为同意
+                        <a href="/api/v2/creditassign/template" target="_blank">《金融资产转让协议》、</a>
+                        <a href="/api/v2/loan/loanRequest/{{loan.loanRequest.id}}/bind/template" target="_blank">《转让产品购买协议》、</a>
+                        <a href="/agreement/risk" target="_blank">《风险提示书》</a>
+                    </p>
 
-                        <div>转让价格(元): <span>{{creditassign.creditassign.creditDealAmount}}</span></div>
-                        <input type="hidden" value="{{creditassign.creditassign.creditDealAmount}}" />
-                        <div>预期收益(元): <span>{{profit}}</span></div>
-                        <p class="agree">确认购买即视为同意
-                            <a href="/api/v2/creditassign/template" target="_blank">《金融资产转让协议》、</a>
-                            <a href="/api/v2/loan/loanRequest/{{loan.loanRequest.id}}/bind/template" target="_blank">《转让产品购买协议》、</a>
-                            <a href="/agreement/risk" target="_blank">《风险提示书》</a>
-                        </p>
-
-                        {{#if cstatus=="转让中"}}
-                        <button class="btnT" on-click="invest-submit">同意协议并确认购买</button>
-                        {{else}}
-                        <button class="btnF" disabled>已转让</button>
-                        {{/if}}
+                    {{#if cstatus=="转让中"}}
+                    <button class="btnT" on-click="invest-submit">同意协议并确认购买</button>
+                    {{else}}
+                    <button class="btnF" disabled>已转让</button>
+                    {{/if}}
+                    {{/if}}
                 {{/if}}
                 </div>
             {{else}}

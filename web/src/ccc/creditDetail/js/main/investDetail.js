@@ -331,6 +331,16 @@ var investRactive = new Ractive({
 
 
 });
+if (CC.user) {
+    accountService.getUserInfo(function (res) {
+        investRactive.set('name', res.userInfo.user.name);
+        if (res.surveyScore) {
+            investRactive.set('hasSurveyScore', true);
+        }else {
+            investRactive.set('hasSurveyScore', false);
+        }
+    });
+}
 
 investRactive.on("invest-submit", function (e) {
     e.original.preventDefault();
