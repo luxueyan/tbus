@@ -31,7 +31,7 @@ module.exports = function (router) {
             risk: '风险管理委员会',
             company: '公司动态',
             wealth: '财富讲堂',
-            partner: '合作伙伴',
+            partner: '合作伙伴介绍',
         };
         var indexMap = {
             account: '平台简介',
