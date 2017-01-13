@@ -107,10 +107,12 @@
     width: 1200px;
     margin: auto;
 }
-#footer-color-box > span {
-    display: block;
+#footer-color-box > p {
     text-align: center;
     padding-bottom: 10px;
+}
+#footer-color-box > p a {
+    color: #999;
 }
 .footer-guide {
     float: left;
@@ -138,7 +140,6 @@
 .footer-guide .left-guide {
     float: left;
     margin-left: 60px;
-
 }
 .footer-guide .left-guide .service-phone {
     color: #cfa972;
