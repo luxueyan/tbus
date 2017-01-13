@@ -120,7 +120,7 @@ module.exports = function (router) {
         }
 
         var user = res.locals.user;
-        req.uest('/api/v2/cms/category/' + cateMap[req.params.tab] + '/name/' + encodeURIComponent(nameMap[req.params.tab])).end().then(function (r) {
+        req.uest('/api/v2/cms/category/' + cateMap[req.params.tab] + '/name/' + encodeURIComponent(req.params.tab=="administration"?"团队介绍":nameMap[req.params.tab])).end().then(function (r) {
             if (nameMap[req.params.tab] == '管理团队' || nameMap[req.params.tab] == '投资决策委员会' || nameMap[req.params.tab] == '风险管理委员会') {
                 var navMenu = '>团队介绍>' + nameMap[req.params.tab];
             } else {
