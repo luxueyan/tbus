@@ -121,13 +121,12 @@ module.exports = function (router) {
         }
 
         var user = res.locals.user;
-        req.uest('/api/v2/cms/category/' + cateMap[req.params.tab] + '/name/' + encodeURIComponent(req.params.tab == "administration" ? "团队介绍" : nameMap[req.params.tab])).end().then(function (r) {
+        req.uest('/api/v2/cms/category/' + cateMap[req.params.tab] + '/name/' +
+            encodeURIComponent(req.params.tab == "administration" ? "团队介绍" : nameMap[req.params.tab])).end().then(function (r) {
             if (nameMap[req.params.tab] == '管理团队' || nameMap[req.params.tab] == '投资决策委员会' || nameMap[req.params.tab] == '风险管理委员会') {
-                var navMenu = '>团队介绍>' + nameMap[req.params.tab];
-            } else {
-                var navMenu = '>' + nameMap[req.params.tab];
+                var navMenuNN = 0;
             }
-
+            var navMenu = nameMap[req.params.tab];
             if (r.body.length > 1) {
                 var current = (req.query.page === undefined) ? 1 : req.query.page;
                 req.uest('/api/v2/cms/channel/' + r.body[0].channelId + '?page=' + current + '&pagesize=10').end()
@@ -148,7 +147,8 @@ module.exports = function (router) {
                             },
                             contents: contents,
                             tabType: tabType,
-                            navMenu: navMenu
+                            navMenu: navMenu,
+                            navMenuNN: navMenuNN
                         });
                     });
             } else {
