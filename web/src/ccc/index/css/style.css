@@ -810,16 +810,21 @@ a {
     height: 96px;
 }
 .wealth-grounp ul {
-    list-style: disc;
-    margin-left: 40px;
     margin-top: 20px;
 }
 .wealth-grounp li {
     line-height: 25px;
 }
-.wealth-grounp li a{
+.wealth-grounp li a {
     color: #737373;
     font-size: 12px;
+}
+.wealth-grounp li a:hover {
+    color: #e70d1e;
+}
+.wealth-grounp li em {
+    font-weight: bolder;
+    padding: 0 15px 0 5px;
 }
 /*新手推荐*/
 .newWrapper .contentwrapper {
