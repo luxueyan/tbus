@@ -77,7 +77,6 @@ module.exports = function (router) {
         }, {
             text: '财富讲堂',
             url: '/us/wealth',
-
         }, {
             text: '合作伙伴',
             url: '/us/partner',
@@ -101,6 +100,8 @@ module.exports = function (router) {
                 res.locals.title = '媒体报道-汇财富';
                 res.locals.keywords = '媒体报道,新闻公告,新闻资讯,最新新闻资讯,太合汇,汇财富';
                 res.locals.description = '媒体报道，新闻报道，最新新闻资讯，报道汇财富投资产品汇利精选、汇鑫理财最新新闻资讯、最新活动、获奖名单、奖品等资讯，让您把握最新投资项目新闻资讯。';
+            } else {
+                res.locals.title = nameMap[req.params.tab] + '-汇财富';
             }
 
             if (tab.text === indexMap[req.params.tab]) {
@@ -120,7 +121,7 @@ module.exports = function (router) {
         }
 
         var user = res.locals.user;
-        req.uest('/api/v2/cms/category/' + cateMap[req.params.tab] + '/name/' + encodeURIComponent(req.params.tab=="administration"?"团队介绍":nameMap[req.params.tab])).end().then(function (r) {
+        req.uest('/api/v2/cms/category/' + cateMap[req.params.tab] + '/name/' + encodeURIComponent(req.params.tab == "administration" ? "团队介绍" : nameMap[req.params.tab])).end().then(function (r) {
             if (nameMap[req.params.tab] == '管理团队' || nameMap[req.params.tab] == '投资决策委员会' || nameMap[req.params.tab] == '风险管理委员会') {
                 var navMenu = '>团队介绍>' + nameMap[req.params.tab];
             } else {
@@ -218,7 +219,7 @@ module.exports = function (router) {
         req.uest('/api/v2/cms/article/' + req.params.id)
             .end()
             .then(function (r) {
-                res.locals.title = r.body.title + '-财富讲堂-汇财富';
+                res.locals.title = r.body.title;
                 res.locals.keywords = r.body.keyword;
                 res.locals.description = r.body.description;
 
