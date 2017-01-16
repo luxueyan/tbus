@@ -25,9 +25,12 @@
 }
 #aboutus-title {
     color: #666666;
-    font-size: 16px;
+    font-size: 24px;
     line-height: 84px;
-    padding-left: 36px;
+    padding-left: 64px;
+}
+#aboutus-title a {
+    color: #666666;
 }
 #help-left .title-bg {
     position: absolute;
@@ -71,7 +74,8 @@
     display: none;
 }
 #help-left a {
-    color: #4a4a4a;
+    color: #666;
+    font-size: 18px;
     text-decoration: none;
     font-weight: normal;
 }
@@ -139,8 +143,8 @@
     margin: 37px 45px 0;
 }
 .invest-wrapper > ul {
-    list-style: disc;
-    margin-left: 25px;
+    /*list-style: disc;*/
+    /*margin-left: 25px;*/
 }
 .invest-wrapper > ul > li {
     line-height: 40px;
@@ -148,6 +152,11 @@
 }
 .invest-wrapper > ul > li a {
     font-size: 14px;
+}
+.invest-wrapper > ul > li span {
+    font-size: 18px;
+    padding: 0 5px;
+    font-weight: bolder;
 }
 .invest-wrapper > ul > li a:hover {
     color: #e4262b
