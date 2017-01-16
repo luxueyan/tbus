@@ -97,12 +97,10 @@
 .help-big {
     width: 1003px;
     margin: auto;
-
 }
 .help-do {
     width: 1003px;
     overflow: hidden;
-
     background-color: #fff;
 }
 .help-do ul {
@@ -112,7 +110,6 @@
     border-bottom: 1px solid #fff;
 }
 .help-do ul li a {
-
     line-height: 52px;
     color: #858585;
     font-size: 15px;
@@ -142,21 +139,24 @@
 .invest-wrapper {
     margin: 37px 45px 0;
 }
-.invest-wrapper > ul {
-    /*list-style: disc;*/
-    /*margin-left: 25px;*/
-}
 .invest-wrapper > ul > li {
     line-height: 40px;
     border-bottom: 1px solid #d9d9d9;
 }
 .invest-wrapper > ul > li a {
+    width: 100%;
+    display: block;
     font-size: 14px;
+    text-align: left;
+}
+.invest-wrapper > ul > li em {
+    font-size: 18px;
+    padding: 0 5px 0 15px;
+    font-weight: bolder;
 }
 .invest-wrapper > ul > li span {
-    font-size: 18px;
-    padding: 0 5px;
-    font-weight: bolder;
+    float: right;
+    padding-right: 15px;
 }
 .invest-wrapper > ul > li a:hover {
     color: #e4262b

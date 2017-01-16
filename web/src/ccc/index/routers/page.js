@@ -53,6 +53,29 @@ module.exports = function (router) {
                 return data;
             });
 
+
+        res.locals.mtbdImg = await req.uest('/api/v2/cms/category/IMAGE/name/' + encodeURIComponent('首页媒体报道'))
+            .end()
+            .get('body')
+            .then(function (data) {
+                return data[0];
+            });
+
+        res.locals.gsdtImg = await req.uest('/api/v2/cms/category/IMAGE/name/' + encodeURIComponent('首页公司动态'))
+            .end()
+            .get('body')
+            .then(function (data) {
+                return data[0];
+            });
+
+        res.locals.cfjtImg = await req.uest('/api/v2/cms/category/IMAGE/name/' + encodeURIComponent('首页财富讲堂'))
+            .end()
+            .get('body')
+            .then(function (data) {
+                return data[0];
+            });
+
+
         res.locals.regUser = await req.uest('/api/v2/users/getHomeDynamicData?userDynamicTypes=RIGISTER&userDynamicTypes=COUPON&userDynamicTypes=INVEST')
             .end()
             .get('body')
