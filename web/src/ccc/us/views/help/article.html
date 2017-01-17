@@ -4,7 +4,12 @@
     <div class="page-guide">
         <div class="help-header">
             <div class="infoContent">
-                <p id="aboutus-title">首页>关于我们{{navMenu}}</p>
+                <p id="aboutus-title">
+                    <a href="/">首页</a>&gt;<a href="/us/account">关于我们</a>&gt;<a
+                        href="{{navMenu.url}}">{{navMenu.text}}</a>{{#if navMenu.subTabs}}<a
+                        href="{{navMenu.subTabs[0].url}}">{{navMenu.subTabs[0].text}}</a>{{/if}}&gt;<span>{{detail.title}}</span>
+                </p>
+
             </div>
             <img src="/ccc/newAccount/img/usernav_line.png" alt="太合汇·汇财富">
         </div>
