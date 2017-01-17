@@ -6,85 +6,86 @@ module.exports = function (router) {
     });
 
     var pageSize = 10;
+    var cateMap = {
+        account: 'INTRODUCTION',
+        invest: 'INTRODUCTION',
+        transfer: 'INTRODUCTION',
+        protection: 'INTRODUCTION',
+        question: 'INTRODUCTION',
+        administration: 'INTRODUCTION',
+        investment: 'INTRODUCTION',
+        risk: 'INTRODUCTION',
+        company: 'INTRODUCTION',
+        wealth: 'NEWS',
+        partner: 'COOPERATION',
+    };
+    var nameMap = {
+        account: '平台简介',
+        invest: '团队介绍',
+        transfer: '平台公告',
+        protection: '联系我们',
+        question: '媒体报道',
+        administration: '管理团队',
+        investment: '投资决策委员会',
+        risk: '风险管理委员会',
+        company: '公司动态',
+        wealth: '财富讲堂',
+        partner: '合作伙伴介绍',
+    };
+    var indexMap = {
+        account: '平台简介',
+        invest: '团队介绍',
+        transfer: '平台公告',
+        protection: '联系我们',
+        question: '媒体报道',
+        administration: '管理团队',
+        investment: '投资决策委员会',
+        risk: '风险管理委员会',
+        company: '公司动态',
+        wealth: '财富讲堂',
+        partner: '合作伙伴',
+    };
+
+    var tabs = [{
+        text: '平台简介',
+        url: '/us/account'
+    }, {
+        text: '团队介绍',
+        url: '/us/invest',
+        subTabs: [{
+            text: '管理团队',
+            url: '/us/administration'
+        }, {
+            text: '投资决策委员会',
+            url: '/us/investment'
+        }, {
+            text: '风险管理委员会',
+            url: '/us/risk'
+        }]
+    }, {
+        text: '平台公告',
+        url: '/us/transfer'
+    }, {
+        text: '媒体报道',
+        url: '/us/question',
+
+    }, {
+        text: '公司动态',
+        url: '/us/company',
+
+    }, {
+        text: '财富讲堂',
+        url: '/us/wealth',
+    }, {
+        text: '合作伙伴',
+        url: '/us/partner',
+
+    }, {
+        text: '联系我们',
+        url: '/us/protection'
+    }];
+
     router.get('/:tab', function (req, res) {
-        var cateMap = {
-            account: 'INTRODUCTION',
-            invest: 'INTRODUCTION',
-            transfer: 'INTRODUCTION',
-            protection: 'INTRODUCTION',
-            question: 'INTRODUCTION',
-            administration: 'INTRODUCTION',
-            investment: 'INTRODUCTION',
-            risk: 'INTRODUCTION',
-            company: 'INTRODUCTION',
-            wealth: 'NEWS',
-            partner: 'COOPERATION',
-        };
-        var nameMap = {
-            account: '平台简介',
-            invest: '团队介绍',
-            transfer: '平台公告',
-            protection: '联系我们',
-            question: '媒体报道',
-            administration: '管理团队',
-            investment: '投资决策委员会',
-            risk: '风险管理委员会',
-            company: '公司动态',
-            wealth: '财富讲堂',
-            partner: '合作伙伴介绍',
-        };
-        var indexMap = {
-            account: '平台简介',
-            invest: '团队介绍',
-            transfer: '平台公告',
-            protection: '联系我们',
-            question: '媒体报道',
-            administration: '管理团队',
-            investment: '投资决策委员会',
-            risk: '风险管理委员会',
-            company: '公司动态',
-            wealth: '财富讲堂',
-            partner: '合作伙伴',
-        };
-
-        var tabs = [{
-            text: '平台简介',
-            url: '/us/account'
-        }, {
-            text: '团队介绍',
-            url: '/us/invest',
-            subTabs: [{
-                text: '管理团队',
-                url: '/us/administration'
-            }, {
-                text: '投资决策委员会',
-                url: '/us/investment'
-            }, {
-                text: '风险管理委员会',
-                url: '/us/risk'
-            }]
-        }, {
-            text: '平台公告',
-            url: '/us/transfer'
-        }, {
-            text: '媒体报道',
-            url: '/us/question',
-
-        }, {
-            text: '公司动态',
-            url: '/us/company',
-
-        }, {
-            text: '财富讲堂',
-            url: '/us/wealth',
-        }, {
-            text: '合作伙伴',
-            url: '/us/partner',
-
-        }, {
-            text: '联系我们',
-            url: '/us/protection'
-        }];
         var path = req.path.replace(/\/$/, '');
         var tabIndex, subTabIndex;
         var tabType = null;
@@ -126,7 +127,7 @@ module.exports = function (router) {
             if (nameMap[req.params.tab] == '管理团队' || nameMap[req.params.tab] == '投资决策委员会' || nameMap[req.params.tab] == '风险管理委员会') {
                 var navMenuNN = 0;
             }
-            var navMenu = nameMap[req.params.tab];
+            var navMenu = (nameMap[req.params.tab] == '合作伙伴介绍' ? '合作伙伴' : nameMap[req.params.tab]);
             if (r.body.length > 1) {
                 var current = (req.query.page === undefined) ? 1 : req.query.page;
                 req.uest('/api/v2/cms/channel/' + r.body[0].channelId + '?page=' + current + '&pagesize=10').end()
@@ -176,58 +177,51 @@ module.exports = function (router) {
         }
         res.expose(user, 'user');
 
-        var tabs = [{
-            text: '平台简介',
-            url: '/us/account'
-        }, {
-            text: '团队介绍',
-            url: '/us/invest',
-            subTabs: [{
-                text: '管理团队',
-                url: '/us/administration'
-            }, {
-                text: '投资决策委员会',
-                url: '/us/investment'
-            }, {
-                text: '风险管理委员会',
-                url: '/us/risk'
-            }]
-        }, {
-            text: '平台公告',
-            url: '/us/transfer'
-        }, {
-            text: '媒体报道',
-            url: '/us/question',
+        req.uest('/api/v2/cms/article/' + req.params.id).end().then(function (r) {
+            res.locals.title = r.body.title;
+            res.locals.keywords = r.body.keyword;
+            res.locals.description = r.body.description;
 
-        }, {
-            text: '公司动态',
-            url: '/us/company',
+            var urlAll = {
+                '平台简介': '/us/account',
+                '团队介绍': '/us/invest',
+                '平台公告': '/us/transfer',
+                '联系我们': '/us/protection',
+                '媒体报道': '/us/question',
+                '管理团队': '/us/administration',
+                '投资决策委员会': '/us/investment',
+                '风险管理委员会': '/us/risk',
+                '公司动态': '/us/company',
+                '财富讲堂': '/us/wealth',
+                '合作伙伴': '/us/partner',
+            };
 
-        }, {
-            text: '财富讲堂',
-            url: '/us/wealth',
-
-        }, {
-            text: '合作伙伴',
-            url: '/us/partner',
-
-        }, {
-            text: '联系我们',
-            url: '/us/protection'
-        }];
-
-        req.uest('/api/v2/cms/article/' + req.params.id)
-            .end()
-            .then(function (r) {
-                res.locals.title = r.body.title;
-                res.locals.keywords = r.body.keyword;
-                res.locals.description = r.body.description;
-
+            req.uest('/api/v2/cms/channelInfo/' + r.body.channelId).end().then(function (re) {
+                // console.log(re.body.name)
+                var menuN = (re.body.name == '合作伙伴介绍' ? '合作伙伴' : re.body.name);
+                if (menuN == '管理团队' || menuN == '投资决策委员会' || menuN == '风险管理委员会') {
+                    var navMenu = {
+                        text: '团队介绍',
+                        url: '/us/invest',
+                        subTabs: [{
+                            text: menuN,
+                            url: urlAll[menuN]
+                        }]
+                    };
+                } else {
+                    var navMenu = {
+                        text: menuN,
+                        url: urlAll[menuN]
+                    };
+                }
                 res.render('help/article', {
                     tabs: tabs,
+                    navMenu: navMenu,
                     detail: r.body
                 });
             });
+
+        });
     });
 
     function formatNews(news) {
