@@ -101,6 +101,7 @@ do (_, angular, Math) ->
 
                     {SOCIAL_TITLE, SOCIAL_DESC, SOCIAL_IMG} = @$scope.msg
                     SOCIAL_TITLE = ( @user.info.name ? '好友') + SOCIAL_TITLE
+                    timestamp = _.now()
 
                     _.each api_list, (api) =>
 
@@ -108,7 +109,7 @@ do (_, angular, Math) ->
                             title: SOCIAL_TITLE
                             desc: SOCIAL_DESC
                             link: @$scope.share_link
-                            imgUrl: @baseURI + SOCIAL_IMG
+                            imgUrl: @baseURI + SOCIAL_IMG + "?t=#{ timestamp }"
                             success: _.noop
                             cancel: _.noop
                         }
