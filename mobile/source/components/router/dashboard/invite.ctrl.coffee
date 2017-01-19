@@ -100,7 +100,7 @@ do (_, angular, Math) ->
                 @$scope.$evalAsync =>
 
                     {SOCIAL_TITLE, SOCIAL_DESC, SOCIAL_IMG} = @$scope.msg
-                    SOCIAL_TITLE = ( @user.info.name ? '好友') + SOCIAL_TITLE
+                    SOCIAL_TITLE = ( @user.info.name ? '') + SOCIAL_TITLE
                     timestamp = _.now()
 
                     _.each api_list, (api) =>
