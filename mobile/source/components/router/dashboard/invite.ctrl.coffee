@@ -100,8 +100,7 @@ do (_, angular, Math) ->
                 @$scope.$evalAsync =>
 
                     {SOCIAL_TITLE, SOCIAL_DESC, SOCIAL_IMG} = @$scope.msg
-                    SOCIAL_TITLE = ( @user.info.name ? '太合汇') + SOCIAL_TITLE
-                    timestamp = _.now()
+                    SOCIAL_TITLE = ( @user.info.name ? '小伙伴') + SOCIAL_TITLE
 
                     _.each api_list, (api) =>
 
@@ -109,7 +108,7 @@ do (_, angular, Math) ->
                             title: SOCIAL_TITLE
                             desc: SOCIAL_DESC
                             link: @$scope.share_link
-                            imgUrl: @baseURI + SOCIAL_IMG + "?t=#{ timestamp }"
+                            imgUrl: @baseURI + SOCIAL_IMG
                             success: _.noop
                             cancel: _.noop
                         }
