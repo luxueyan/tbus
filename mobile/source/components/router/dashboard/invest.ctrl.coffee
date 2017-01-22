@@ -172,8 +172,8 @@ do (_, angular) ->
             type: '='
 
 
-        controller: _.ai '@$window, @$location, @$scope, @$rootScope', class
-            constructor: (@$window, @$location, @$scope, @$rootScope) ->
+        controller: _.ai '@$window, @$location, @$scope, @$rootScope, @view_pdf', class
+            constructor: (@$window, @$location, @$scope, @$rootScope, @view_pdf) ->
                 42
 
             goto: (url) ->

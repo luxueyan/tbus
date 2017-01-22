@@ -317,3 +317,59 @@ do (_, angular) ->
 
                 return prompt.result
 
+
+
+        .factory 'view_pdf', _.ai '$uibModal, $rootScope, $window', ($uibModal, $rootScope, $window) ->
+
+            (title, url) ->
+
+                if /iPhone|mac|iPod|iPad/i.test($window.navigator.userAgent)
+                    $window.location.href = url
+                    return
+
+                url = encodeURIComponent(url)
+                url = "static/pdfjs/web/viewer.html?file=#{ url }"
+
+                prompt = $uibModal.open {
+                    size: 'lg'
+                    backdrop: false
+                    animation: false
+                    windowClass: 'modal-full-page'
+                    openedClass: 'modal-full-page-wrap'
+
+                    template: '''
+                        <div id="view-pdf">
+
+                            <nav class="container page-nav">
+                            <div class="row">
+                                <a class="col-xs-3 back" ng-click="$close()">
+                                    <param class="glyphicon glyphicon-menu-left">
+                                </a>
+                                <span class="col-xs-6 title">{{ title }}</span>
+                                <span class="col-xs-3">&nbsp;</span>
+                            </div>
+                            </nav>
+
+                            <section class="pdf-iframe-wrap">
+                                <iframe
+                                    class="pdf-iframe"
+                                    frameborder="0"
+                                    ng-src="{{ url }}">
+                                </iframe>
+                            </section>
+
+                        </div>
+                    '''
+
+                    controller: _.ai '$scope',
+                        (             $scope) =>
+                            angular.extend $scope, {title, url}
+                }
+
+                once = $rootScope.$on '$locationChangeStart', ->
+                    prompt?.dismiss()
+                    do once
+
+                return prompt.result
+
+
