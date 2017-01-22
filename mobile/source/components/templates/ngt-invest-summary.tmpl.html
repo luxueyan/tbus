@@ -96,7 +96,7 @@
                  ].indexOf(item.status) > -1"
             >
                 <a ng-click="
-                        self.goto('/api/v2/user/MYSELF/invest/' + item.id + '/contract');
+                        self.view_pdf('合同', '/api/v2/user/MYSELF/invest/' + item.id + '/contract');
                         $event.stopPropagation();
                     "
                 >查看合同</a>
@@ -163,7 +163,7 @@
                  ng-if="['FINISHED'].indexOf(item.status) > -1"
             >
                 <a ng-click="
-                        self.goto('/api/v2/creditassign/getCreditAssignContract/' + item.id);
+                        self.view_pdf('合同', '/api/v2/creditassign/getCreditAssignContract/' + item.id);
                         $event.stopPropagation();
                     "
                 >查看合同</a>
