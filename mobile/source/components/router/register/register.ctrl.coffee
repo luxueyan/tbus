@@ -233,11 +233,47 @@ do (_, angular) ->
 
                     .catch (data) =>
                         key = _.get data, 'error[0].message'
+
+                        if key in _.split 'MOBILE_EXISTS MOBILE_USED'
+                            @confirm_login(mobile)
+                            return
+
                         @$window.alert(@$scope.msg[key] or @$scope.msg.UNKNOWN)
 
                     .finally =>
                         @submit_sending = false
                 )
+
+
+            confirm_login: (mobile) ->
+
+                prompt = @$uibModal.open {
+                    size: 'sm'
+                    keyboard: false
+                    backdrop: 'static'
+                    windowClass: 'center modal-confirm'
+                    animation: false
+                    template: '''
+                        <div class="modal-body text-center">
+                            该手机号已注册
+                        </div>
+
+                        <div class="modal-buttons">
+                            <div class="modal-button" ng-click="$close()">重新输入</div>
+                            <a class="modal-button" ng-href="login?mobile={{ mobile }}">去登录</a>
+                        </div>
+                    '''
+
+                    controller: _.ai '$scope',
+                        (             $scope) ->
+                            angular.extend $scope, { mobile }
+                }
+
+                once = @$scope.$on '$locationChangeStart', ->
+                    prompt?.dismiss()
+                    do once
+
+                return prompt.result
 
 
             show_coupon: (data) ->
