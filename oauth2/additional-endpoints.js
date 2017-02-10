@@ -116,6 +116,8 @@ module.exports = function (router, auth, middlewares) {
     //获取转让折价率
     router.get('/api/v2/creditassign/prepareAssign/step2', auth.user());
 
+    router.get('/api/v2/user/:userId/isMMC', auth.owner());
+
     router.post('/api/v2/users/getReferralInfo', auth.pass());
     router.get('/api/v2/user/:userId/accountStatus', auth.owner());
 
