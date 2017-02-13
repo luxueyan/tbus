@@ -15,7 +15,7 @@ do (_, angular) ->
                 query_set = {}
 
                 if current_tab is 'loan'
-                    query_set.product = _.split 'GDSY CPTJ'
+                    query_set.product = _.split 'GDSY CPTJ NEW'
                     query_set.recommedInFront = true
 
                 else if current_tab is 'high'
