@@ -18,28 +18,39 @@ do (_, angular) ->
 
                         {open, scheduled, finished, settled} = data
 
-                        list_ALL =
-                            _([open, scheduled, finished, settled])
-                                .flatten()
-                                .compact()
-                                .value()
+                        open_CPTJ = []
+                        open_NEW = []
+                        open_others = []
+                        others_CPTJ = []
+                        others_others = []
 
-                        list_CPTJ =
-                            _(list_ALL)
-                                .filter (item) ->
-                                    item.loanRequest.productKey == 'CPTJ'
-                                .value()
+                        _.each(
+                            open,
+                            (item) ->
+                                key = item.loanRequest.productKey
+                                if key == 'CPTJ'
+                                    open_CPTJ.push(item)
+                                else if key == 'NEW'
+                                    open_NEW.push(item)
+                                else
+                                    open_others.push(item)
+                        )
 
-                        list_OTHERS =
-                            _(list_ALL)
-                                .filter (item) ->
-                                    item.loanRequest.productKey != 'CPTJ'
-                                .value()
+                        _.each(
+                            _.flatten([scheduled, finished, settled]),
+                            (item) ->
+                                key = item.loanRequest.productKey
+                                if key == 'CPTJ'
+                                    others_CPTJ.push(item)
+                                else
+                                    others_others.push(item)
+                        )
 
                         @$scope.list =
-                            _(list_CPTJ.concat(list_OTHERS))
-                                .take 1
-                                .map map_loan_summary
+                            _([open_CPTJ, open_NEW, others_CPTJ, others_others])
+                                .flatten()
+                                .take(1)
+                                .map(map_loan_summary)
                                 .value()
 
                     .finally =>
