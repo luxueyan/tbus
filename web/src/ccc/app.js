@@ -62,6 +62,9 @@ app.use(async function (req, res, next) {
 
     var user = ((await req.uest.get('/api/v2/whoamiplz').end().get('body')) || {}).user;
 
+    // isMMC
+    var isMMC = (await req.uest.get('/api/v2/user/MYSELF/isMMC').end().get('body') || {});
+    user.isMMC = isMMC.success ? isMMC.data.isMMC : false;
     res.expose(user || {}, 'user');
     if (!user) {
         return next();

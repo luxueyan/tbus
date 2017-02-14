@@ -136,6 +136,8 @@ do (_, angular, Math) ->
                 loan_step = loan.raw.loanRequest.investRule.stepAmount
                 user_available = @user.fund.availableAmount
                 coupon_minimum = @$scope.store.coupon?.minimum
+                {singleQuota} = @$scope.default_bank_account.account
+                can_use_balance = if @$scope.store.isUseBalance then user_available else 0
 
                 (if amount > loan_available
                     good_to_go = false
@@ -160,6 +162,10 @@ do (_, angular, Math) ->
                 else if coupon_minimum and amount < coupon_minimum
                     good_to_go = false
                     @$window.alert "该优惠券需要投资额大于 #{ coupon_minimum } 方可使用"
+
+                else if singleQuota != -1 and (amount - can_use_balance) > singleQuota
+                    good_to_go = false
+                    @$window.alert "超过银行卡单笔 #{ singleQuota }元的限额"
                 )
 
                 return unless good_to_go
