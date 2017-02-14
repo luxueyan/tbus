@@ -20,7 +20,6 @@ var ractive = new Ractive({
     },
 });
 
-
 ractive.on('arrowA01', function (e) {
     var status = e.node.dataset.registerdate;
     var rows = ractive.get('financialList');
