@@ -1,0 +1,27 @@
+<h2 class="financialH2">客户信息</h2>
+<div class="financial">
+    <table class="financialTable">
+        <tr>
+            <th>姓名</th>
+            <th>手机号</th>
+            <th class="arrowA01" data-registerDate="{{registerDateData}}" on-click="arrowA01">注册时间</th>
+            <th class="arrowA02" data-totalAssets="{{totalAssetsData}}" on-click="arrowA02">总资产</th>
+            <th class="arrowA03" data-availableAmount="{{availableAmountData}}" on-click="arrowA03">闲置资金</th>
+            <th class="arrowA04" data-previousInvestTime="{{previousInvestTimeData}}" on-click="arrowA04">最近购买时间</th>
+            <th class="arrowA05" data-lastestDueAmount="{{lastestDueAmountData}}" on-click="arrowA05">最近到期金额</th>
+            <th class="arrowA06" data-latestDueTime="{{latestDueTimeData}}" on-click="arrowA06">最近到期时间</th>
+        </tr>
+        {{#financialList}}
+        <tr>
+            <td>{{#if user.name}}{{user.name}}{{else}}未认证{{/if}}</td>
+            <td>{{user.mobile}}</td>
+            <td>{{user.registerDateNew}}</td>
+            <td>{{totalAssets}}</td>
+            <td>{{availableAmount}}</td>
+            <td>{{previousInvestTimeNew}}</td>
+            <td>{{lastestDueAmount}}</td>
+            <td>{{latestDueTimenew}}</td>
+        </tr>
+        {{/financialList}}
+    </table>
+</div>

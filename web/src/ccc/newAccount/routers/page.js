@@ -172,6 +172,16 @@ module.exports = function (router) {
         });
     });
 
+    //理财师
+    router.get('/financial', function (req, res) {
+        // var paymentPasswordHasSet = req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet').end().get('body');
+        // res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet;
+
+        res.render('newAccount/financial', {
+            title: '汇财富'
+        });
+    });
+
     router.get('/recharge', async function (req, res) {
 
         var clientIp = getClientIp(req);
