@@ -1,61 +1,72 @@
-
 <!--<div class="nav-title">我的账户</div>-->
 <ul class="nav-wrapper">
 
-	<li class="nav-li">
-		{{#if index}}
-		<span class="icon-active"></span>
-		{{else}}
-		<span class="icon-common"></span>
-		{{/if}}
-		<span class="nav-text {{#if index}}nav-text-active{{/if}}"><a href="/newAccount/home/index">账户总览</a></span>
-		<!--<span class='nav-toggle-btn {{showAccountToggleMenu?"nav-toggle-btn-up":"nav-toggle-btn-down"}}' data-toggle="showAccountToggleMenu" on-click="toggleMenu"></span>-->
-		<div class="clearfix"></div>
-		{{#if showHomeToggleMenu}}
-		<ul class="nav-toggle-menu">
-			<li class="{{#if fixed}}active{{/if}}"><a href="/newAccount/home/fixed">固定收益</a></li>
-			<li class="{{#if float}}active{{/if}}">
-				<!--<a href="/newAccount/settings/float">浮动收益</a>-->
-				<a href="#">浮动收益</a>
-			</li>
-			<li class="{{#if JXJJ}}active{{/if}}"><a href="#">精选基金</a></li>
-			<!--<li class="{{#if GDLC}}active{{/if}}"><a href="#">高端理财</a></li>-->
-		</ul>
-		{{/if}}
-	</li>
+    <li class="nav-li">
+        {{#if index}}
+        <span class="icon-active"></span>
+        {{else}}
+        <span class="icon-common"></span>
+        {{/if}}
+        <span class="nav-text {{#if index}}nav-text-active{{/if}}"><a href="/newAccount/home/index">账户总览</a></span>
+        <!--<span class='nav-toggle-btn {{showAccountToggleMenu?"nav-toggle-btn-up":"nav-toggle-btn-down"}}' data-toggle="showAccountToggleMenu" on-click="toggleMenu"></span>-->
+        <div class="clearfix"></div>
+        {{#if showHomeToggleMenu}}
+        <ul class="nav-toggle-menu">
+            <li class="{{#if fixed}}active{{/if}}"><a href="/newAccount/home/fixed">固定收益</a></li>
+            <li class="{{#if float}}active{{/if}}">
+                <!--<a href="/newAccount/settings/float">浮动收益</a>-->
+                <a href="#">浮动收益</a>
+            </li>
+            <li class="{{#if JXJJ}}active{{/if}}"><a href="#">精选基金</a></li>
+            <!--<li class="{{#if GDLC}}active{{/if}}"><a href="#">高端理财</a></li>-->
+        </ul>
+        {{/if}}
+    </li>
 
     <li class="nav-li">
-		{{#if userInfo || bindingEmail ||settings ||fund}}
-			<span class="icon-active"></span>
-		{{else}}
-			<span class="icon-common"></span>
-		{{/if}}
-		<span class="nav-text {{#if  userInfo || bindingEmail ||settings||fund}}nav-text-active{{/if}}"><a href="/newAccount/userInfo">个人中心</a></span>
-	</li>
+        {{#if userInfo || bindingEmail ||settings ||fund}}
+        <span class="icon-active"></span>
+        {{else}}
+        <span class="icon-common"></span>
+        {{/if}}
+        <span class="nav-text {{#if  userInfo || bindingEmail ||settings||fund}}nav-text-active{{/if}}"><a
+                href="/newAccount/userInfo">个人中心</a></span>
+    </li>
 
-	<li class="nav-li coupon-nav">
-		{{#if coupon}}
-			<span class="icon-active"></span>
-		{{else}}
-			<span class="icon-common"></span>
-		{{/if}}
-		<span class="nav-text {{#if coupon}}nav-text-active{{/if}}"><a href="/newAccount/coupon">我的红包</a></span>
-	</li>
-	<li class="nav-li">
-		{{#if invite}}
-			<span class="icon-active"></span>
-		{{else}}
-			<span class="icon-common"></span>
-		{{/if}}
-		<span class="nav-text {{#if invite}}nav-text-active{{/if}}"><a href="/newAccount/invite">邀请好友</a></span>
-	</li>
-	<li class="nav-li">
-		{{#if risk}}
-		<span class="icon-active"></span>
-		{{else}}
-		<span class="icon-common"></span>
-		{{/if}}
-		<span class="nav-text {{#if risk}}nav-text-active{{/if}}"><a href="/newAccount/risk">风险测评</a></span>
-	</li>
+    <li class="nav-li coupon-nav">
+        {{#if coupon}}
+        <span class="icon-active"></span>
+        {{else}}
+        <span class="icon-common"></span>
+        {{/if}}
+        <span class="nav-text {{#if coupon}}nav-text-active{{/if}}"><a href="/newAccount/coupon">我的红包</a></span>
+    </li>
+
+    <li class="nav-li">
+        {{#if invite}}
+        <span class="icon-active"></span>
+        {{else}}
+        <span class="icon-common"></span>
+        {{/if}}
+        <span class="nav-text {{#if invite}}nav-text-active{{/if}}"><a href="/newAccount/invite">邀请好友</a></span>
+    </li>
+
+    <li class="nav-li">
+        {{#if risk}}
+        <span class="icon-active"></span>
+        {{else}}
+        <span class="icon-common"></span>
+        {{/if}}
+        <span class="nav-text {{#if risk}}nav-text-active{{/if}}"><a href="/newAccount/risk">风险测评</a></span>
+    </li>
+
+    <li class="nav-li">
+        {{#if financial}}
+        <span class="icon-active"></span>
+        {{else}}
+        <span class="icon-common"></span>
+        {{/if}}
+        <span class="nav-text {{#if financial}}nav-text-active{{/if}}"><a href="/newAccount/financial">理财师</a></span>
+    </li>
 </ul>
 <div class="clearfix"></div>
