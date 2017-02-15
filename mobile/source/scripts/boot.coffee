@@ -431,7 +431,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         .then (loan) ->
                                             if loan.loanRequest.productKey is 'NEW' and is_newbie isnt true
 
-                                                $window.alert '只有新手可以投！'
+                                                $window.alert '该项目为新手专享，请选择其他项目进行购买'
 
                                                 $window.history.back()
 
