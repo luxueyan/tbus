@@ -153,7 +153,7 @@ module.exports = function (router) {
                         });
                     });
             } else {
-                formatNews(r);
+                formatNews(r.body);
                 var contents = r.body.length > 0 ? r.body : null;
                 res.render('help/index', {
                     tabs: tabs,

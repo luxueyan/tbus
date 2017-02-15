@@ -3,6 +3,7 @@ var loanService = require('./service/loans').loanService;
 var utils = require('ccc/global/js/lib/utils');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 var CccOk = require('ccc/global/js/modules/cccOk');
+var CccBox = require('ccc/global/js/modules/cccBox');
 var i18n = require('@ds/i18n')['zh-cn'];
 var format = require('@ds/format')
 var RenderPage = require('ccc/global/js/modules/cccPageSuper');
@@ -146,8 +147,7 @@ setTimeout((function () {
             isSend: false,
             backUrl: CC.backUrl,
             dueDate: (CC.repayments[0] || {}).dueDate,
-            timeSettled: nextDate(CC.loan.timeSettled),
-            isnew: false
+            timeSettled: nextDate(CC.loan.timeSettled)
         },
         oninit: function () {
             var self = this;
@@ -158,12 +158,7 @@ setTimeout((function () {
 //            if (CC.loan.rule.balance < CC.loan.rule.min) {
 //                self.set('inputNum', CC.loan.rule.balance);
 //            };
-            if (self.get('user') && CC.loan.productKey === 'NEW') {
-                if (self.get('user').totalInvest > 0) {
-                    self.set('isnew', true);
-                }
-                ;
-            }
+
             //loanService.getLoanDetail(CC.loan.id, function (res) {
             //    var date = new Date().getTime();
             //    var valueDate = res.data.loan.loanRequest.valueDate;
@@ -236,6 +231,37 @@ setTimeout((function () {
 
     investRactive.on("invest-submit", function (e) {
         e.original.preventDefault();
+
+        if (investRactive.get('user') && CC.loan.productKey === 'NEW') {
+            if (investRactive.get('user').totalInvest > 0) {
+                /*CccOk.create({
+                    msg: '新手专享产品仅限首次投资用户购买，您已有投资，请购买其它产品',
+                    okText: '关闭',
+                    cancelText: '',
+                    ok: function () {
+                        window.location.href='/invest';
+                    }
+                });*/
+                new CccBox({
+                    title: '',
+                    value: 'loading...',
+                    autoHeight: true,
+                    width: 516,
+                    height: 250,
+                    showed: function (ele, box) {
+                        var tipsRactive=new Ractive({
+                            el: $(ele),
+                            template: '<p class="cccBox-content">新手专享产品仅限首次投资用户购买，您已有投资，请购买其它产品</p><img class="cccBox-line" src="/ccc/loan/img/cccbox_line.png"/><button on-click="clickClose" class="cccBox-btn">关闭</button>',
+                        });
+                        tipsRactive.on('clickClose',function(){
+                            $(".ccc-box-wrap .bar .close ").click();
+                        });
+                    }
+                })
+                return false;
+            }
+        }
+
 
         var num = parseInt(this.get('inputNum'), 10); // 输入的值
         var paymentPassword = this.get('paymentPassword');
