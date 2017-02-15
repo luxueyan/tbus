@@ -149,88 +149,92 @@ function replaceStr(str) {
     return str.replace(/[^\x00-xff]/g, 'xx').length;
 }
 
+if (!CC.key) {
+    IndexService.getLoanSummary(function (res) {
+        var listFixed = [], listFloat = [];
+        var productKey = [];    //推荐产品放在第一位      CPTJ
+        for (var i = 0; i < res.length; i++) {
+            if (res[i].loanRequest.productKey == 'GDLC') {
+                listFixed.push(res[i]);
+            }
+        }
 
-IndexService.getLoanSummary(function (res) {
-    //parseLoanList(res)
-    var listFixed = [], listFloat = [];
-    for (var i = 0; i < res.length; i++) {
-        if (res[i].loanRequest.productKey == 'GDLC') {
-            listFixed.push(res[i]);
-        }
-    }
-    var listOpen = [];     //在售中  OPENED
-    var listNone = [];     //计息中  SETTLED
-    var listSchedul = [];  //即将发布  SCHEDULED
-    var listFinish = [];     //已售罄 FINISHED
-    var liststatus = [];   //放排序后的产品 ： 在售中》即将发布》已售罄》计息中
-    for (var i = 0; i < listFixed.length; i++) {
-        if (listFixed[i].status == "OPENED") {
-            listOpen.push(listFixed[i]);
-        } else if (listFixed[i].status == "SCHEDULED") {
-            listSchedul.push(listFixed[i]);
-        } else if (listFixed[i].status == "FINISHED") {
-            listFinish.push(listFixed[i]);
-        } else if (listFixed[i].status == "SETTLED") {
-            listNone.push(listFixed[i]);
-        }
-    }
-    //console.log(listFloat);
-    var compare = function (obj1, obj2) {
-        var val1 = obj1.timeOpen;
-        var val2 = obj2.timeOpen;
-        if (val1 < val2) {
-            return 1;
-        } else if (val1 > val2) {
-            return -1;
-        } else {
-            return 0;
-        }
-    }
-    listOpen.sort(compare);
-    listNone.sort(compare);
-    listSchedul.sort(compare);
-    listFinish.sort(compare);
-    liststatus = liststatus.concat(listOpen);
-    liststatus = liststatus.concat(listSchedul);
-    liststatus = liststatus.concat(listFinish);
-    liststatus = liststatus.concat(listNone);
-    liststatus.forEach(function (item) {
-        if (item.status == 'SCHEDULED') {
-            ininconut();
-        }
-    })
-    //console.log(listNone);
-    // 固定收益
-    var listRactive = new Ractive({
-        el: ".fixedPro",
-        template: require('ccc/high/partials/fixedPro.html'),
-        data: {
-            list: liststatus.slice(0, 5),
-            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
-        },
-        onrender: function () {
+        var compare = function (obj1, obj2) {
+            var val1 = obj1.timeOpen;
+            var val2 = obj2.timeOpen;
+            if (val1 < val2) {
+                return 1;
+            } else if (val1 > val2) {
+                return -1;
+            } else {
+                return 0;
+            }
+        };
 
-            $('.assign_time').mouseover(function () {
-                $(this).parent().parent().parent().siblings('.assign_tip').fadeIn(200);
-            })
-            $('.assign_tip').mouseleave(function () {
-                $(this).fadeOut(200);
-            })
+        var listOpen = [];     //在售中  OPENED
+        var listNone = [];     //计息中  SETTLED
+        var listSchedul = [];  //即将发布  SCHEDULED
+        var listFinish = [];     //已售罄 FINISHED
+        var liststatus = [];   //放排序后的产品 ： 在售中》即将发布》已售罄》计息中
+        for (var i = 0; i < listFixed.length; i++) {
+            if (listFixed[i].status == "OPENED") {
+                listOpen.push(listFixed[i]);
+            } else if (listFixed[i].status == "SCHEDULED") {
+                listSchedul.push(listFixed[i]);
+            } else if (listFixed[i].status == "FINISHED") {
+                listFinish.push(listFixed[i]);
+            } else if (listFixed[i].status == "SETTLED") {
+                listNone.push(listFixed[i]);
+            }
         }
+
+
+        // listOpen.sort(compare);
+        // listNone.sort(compare);
+        // listSchedul.sort(compare);
+        // listFinish.sort(compare);
+
+        liststatus = liststatus.concat(listOpen);
+        liststatus = liststatus.concat(listSchedul);
+        liststatus = liststatus.concat(listFinish);
+        liststatus = liststatus.concat(listNone);
+
+        // liststatus.forEach(function (item) {
+        //     if (item.status == 'SCHEDULED') {
+        //         ininconut();
+        //     }
+        // })
+
+        // 固定收益
+        var listRactive = new Ractive({
+            el: ".fixedPro",
+            template: require('ccc/high/partials/fixedPro.html'),
+            data: {
+                list: liststatus.slice(0, 5),
+                RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+            },
+            onrender: function () {
+
+                $('.assign_time').mouseover(function () {
+                    $(this).parent().parent().parent().siblings('.assign_tip').fadeIn(200);
+                })
+                $('.assign_tip').mouseleave(function () {
+                    $(this).fadeOut(200);
+                })
+            }
+        });
+        // 浮动收益
+        // var listRactive = new Ractive({
+        //     el: ".floatPro",
+        //     template: require('ccc/high/partials/floatPro.html'),
+        //     data: {
+        //         list: (listFloat.slice(0, 1)),
+        //         RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+        //     }
+        // });
+        ininconut();
     });
-    // 浮动收益
-    var listRactive = new Ractive({
-        el: ".floatPro",
-        template: require('ccc/high/partials/floatPro.html'),
-        data: {
-            list: (listFloat.slice(0, 1)),
-            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
-        }
-    });
-});
-
-
-if (CC.key) {
+} else {
     params.product = CC.key;
     var investRactive = new Ractive({
         el: ".list_box",
