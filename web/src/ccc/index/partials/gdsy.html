@@ -1,7 +1,7 @@
-{{#list}}
+{{#listTJ}}
 <div class="proWrapper">
     <div class="header">
-        <div class="header_title">固定收益</div>
+        <div class="header_title">产品推荐</div>
         <p class="word">迄今为止100%安全兑付</p>
         <p class="word">7天-36个月灵活期限</p>
     </div>
@@ -62,7 +62,140 @@
             {{/if}}
         </div>
     </div>
-
 </div>
+{{/listTJ}}
 
-{{/list}}
+{{#listNew}}
+<div class="proWrapper">
+    <div class="header">
+        <div class="header_title">新手标</div>
+        <p class="word">迄今为止100%安全兑付</p>
+        <p class="word">7天-36个月灵活期限</p>
+    </div>
+    <img src="/ccc/index/img/line.png">
+    <div class="infoBox">
+        <div class="infoBox_title">
+            <a href="loan/{{ id }}">
+                {{#if title.length>11}}
+                {{title.substr(0,11)+'...'}}
+                {{else}}
+                {{title}}
+                {{/if}}
+            </a>
+        </div>
+
+        <div class="detail-box">
+            <div class="investNum">
+                <div class="rate"><span>{{rate}}</span>%</div>
+                <p>年收益率</p>
+            </div>
+            <div class="investNum">
+                <div><span>{{durationNewNo}}</span>{{durationNewName}}</div>
+                <p>期限</p>
+            </div>
+            <div class="investNum" style="padding-right: 0px">
+                <div><span>{{minAmount}}</span>{{minAmountUnit}}</div>
+                <p>起投金额</p>
+            </div>
+        </div>
+        <div class="opre">
+            {{#if status === 'OPENED'}}
+            <a href="/loan/{{id}}">
+                <div class="investbtn investbtn-open">立即投资</div>
+            </a>
+            {{/if}} {{#if status === 'SCHEDULED'}}
+
+            <a href="/loan/{{id}}">
+                <div class="investbtn">即将开始</div>
+            </a>
+            <!--<div class="investbtn" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}" data-serv="{{ serverDate }}" style="margin-top:-56px;color: black;width: 180px;text-align: center;margin-left:-30px"></div>-->
+
+            {{/if}} {{#if status === 'FINISHED'}}
+            <a href="/loan/{{id}}">
+                <div class="investbtn">已售罄</div>
+            </a>
+            {{/if}} {{#if status === 'SETTLED'}}
+            <a href="/loan/{{id}}">
+                <div class="investbtn">计息中</div>
+            </a>
+            {{/if}} {{#if status === 'CLEARED'}}
+            <a href="/loan/{{id}}">
+                <div class="investbtn">已结息</div>
+            </a>
+            {{/if}} {{#if status === 'FAKESETTLED'}}
+            <a href="/loan/{{id}}">
+                <div class="investbtn">已售罄</div>
+            </a>
+            {{/if}}
+        </div>
+    </div>
+</div>
+{{/listNew}}
+
+
+{{#listGD}}
+<div class="proWrapper">
+    <div class="header">
+        <div class="header_title">固定收益</div>
+        <p class="word">迄今为止100%安全兑付</p>
+        <p class="word">7天-36个月灵活期限</p>
+    </div>
+    <img src="/ccc/index/img/line.png">
+    <div class="infoBox">
+        <div class="infoBox_title">
+            <a href="loan/{{ id }}">
+                {{#if title.length>11}}
+                {{title.substr(0,11)+'...'}}
+                {{else}}
+                {{title}}
+                {{/if}}
+            </a>
+        </div>
+
+        <div class="detail-box">
+            <div class="investNum">
+                <div class="rate"><span>{{rate}}</span>%</div>
+                <p>年收益率</p>
+            </div>
+            <div class="investNum">
+                <div><span>{{durationNewNo}}</span>{{durationNewName}}</div>
+                <p>期限</p>
+            </div>
+            <div class="investNum" style="padding-right: 0px">
+                <div><span>{{minAmount}}</span>{{minAmountUnit}}</div>
+                <p>起投金额</p>
+            </div>
+        </div>
+        <div class="opre">
+            {{#if status === 'OPENED'}}
+            <a href="/loan/{{id}}">
+                <div class="investbtn investbtn-open">立即投资</div>
+            </a>
+            {{/if}} {{#if status === 'SCHEDULED'}}
+
+            <a href="/loan/{{id}}">
+                <div class="investbtn">即将开始</div>
+            </a>
+            <!--<div class="investbtn" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}" data-serv="{{ serverDate }}" style="margin-top:-56px;color: black;width: 180px;text-align: center;margin-left:-30px"></div>-->
+
+            {{/if}} {{#if status === 'FINISHED'}}
+            <a href="/loan/{{id}}">
+                <div class="investbtn">已售罄</div>
+            </a>
+            {{/if}} {{#if status === 'SETTLED'}}
+            <a href="/loan/{{id}}">
+                <div class="investbtn">计息中</div>
+            </a>
+            {{/if}} {{#if status === 'CLEARED'}}
+            <a href="/loan/{{id}}">
+                <div class="investbtn">已结息</div>
+            </a>
+            {{/if}} {{#if status === 'FAKESETTLED'}}
+            <a href="/loan/{{id}}">
+                <div class="investbtn">已售罄</div>
+            </a>
+            {{/if}}
+        </div>
+    </div>
+</div>
+{{/listGD}}

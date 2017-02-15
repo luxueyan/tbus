@@ -151,17 +151,18 @@ function replaceStr(str) {
 
 if (!CC.key) {
     IndexService.getLoanSummary(function (res) {
-        var listFixed = [], listFloat = [];
+        var listFixed = [], listNew = [];
         var productKey = [];    //推荐产品放在第一位      CPTJ
         for (var i = 0; i < res.length; i++) {
             if (res[i].loanRequest.productKey == "CPTJ") {
                 productKey.push(res[i]);
             } else if (res[i].loanRequest.productKey == 'GDSY') {
                 listFixed.push(res[i]);
-            } else if (res[i].loanRequest.productKey == 'FDSY') {
-                listFloat.push(res[i]);
+            } else if (res[i].loanRequest.productKey == 'NEW') {
+                listNew.push(res[i]);
             }
         }
+
         var compare = function (obj1, obj2) {
             var val1 = obj1.timeOpen;
             var val2 = obj2.timeOpen;
@@ -173,6 +174,29 @@ if (!CC.key) {
                 return 0;
             }
         };
+
+        //新手标
+        var newOpen = [];     //在售中  OPENED
+        var newNone = [];     //计息中  SETTLED
+        var newSchedul = [];  //即将发布  SCHEDULED
+        var newFinish = [];   //已售罄 FINISHED
+        var newList = [];   //放排序后的产品： 在售中》即将发布》已售罄》计息中
+        for (var i = 0; i < listNew.length; i++) {
+            if (listNew[i].status == "OPENED") {
+                newOpen.push(listNew[i]);
+            } else if (listNew[i].status == "SCHEDULED") {
+                newNone.push(listNew[i]);
+            } else if (listNew[i].status == "FINISHED") {
+                newSchedul.push(listNew[i]);
+            } else if (listNew[i].status == "SETTLED") {
+                newFinish.push(listNew[i]);
+            }
+
+        }
+        newList = newList.concat(newOpen);
+        newList = newList.concat(newNone);
+        newList = newList.concat(newSchedul);
+        newList = newList.concat(newFinish);
 
         //推荐
         var cptjOpen = [];     //在售中  OPENED
@@ -192,7 +216,6 @@ if (!CC.key) {
             }
 
         }
-
         cptjstatus = cptjstatus.concat(cptjOpen);
         cptjstatus = cptjstatus.concat(cptjSchedul);
         cptjstatus = cptjstatus.concat(cptjFinish);
@@ -244,6 +267,24 @@ if (!CC.key) {
         liststatus = liststatus.concat(listFinish);
         liststatus = liststatus.concat(listNone);
 
+        // 新手标
+        var listNewRactive = new Ractive({
+            el: ".fixedProNew",
+            template: require('ccc/invest/partials/fixedPro.html'),
+            data: {
+                list: newList.slice(0, 1),
+                RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+            },
+            onrender: function () {
+                $('.assign_time').mouseover(function () {
+                    $(this).parent().parent().parent().siblings('.assign_tip').fadeIn(200);
+                })
+                $('.assign_tip').mouseleave(function () {
+                    $(this).fadeOut(200);
+                })
+            }
+        });
+
         // 固定收益
         var listRactive = new Ractive({
             el: ".fixedPro",
@@ -261,15 +302,6 @@ if (!CC.key) {
                 })
             }
         });
-        // 浮动收益
-        // var listRactive = new Ractive({
-        //     el: ".floatPro",
-        //     template: require('ccc/invest/partials/floatPro.html'),
-        //     data: {
-        //         list: (listFloat.slice(0, 1)),
-        //         RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
-        //     }
-        // });
         ininconut();
     });
 } else {

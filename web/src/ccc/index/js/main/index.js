@@ -33,219 +33,89 @@ function replaceStr(str) {
 
 
 IndexService.getLoanSummary(function (list) {
-    var listGDSY = [], listDQLC = [], listGDLC = [], listHOT = [];
-    var productKey = [];    //推荐产品放在第一位      CPTJ
+    var listGDSY = [],
+        listNEW = [],
+        listTJ = [];//CPTJ
+
     for (var i = 0; i < list.length; i++) {
         list[i].method = i18n.enums.RepaymentMethod[list[i].method][0];
         list[i].titleLength = replaceStr(list[i].title);
+
         if (list[i].titleLength > 60) {
             list[i].title = list[i].title.substr(0, 60) + '...';
         }
 
         if (list[i].loanRequest.productKey == "CPTJ") {
-            productKey.push(list[i]);
+            listTJ.push(list[i]);
         } else if (list[i].loanRequest.productKey == 'GDSY') {
             listGDSY.push(list[i]);
-        } else if (list[i].loanRequest.productKey == 'GDLC') {
-            listGDLC.push(list[i]);
-        } else if (list[i].loanRequest.productKey == 'HOT') {
-            listHOT.push(list[i]);
+        } else if (list[i].loanRequest.productKey == 'NEW') {
+            listNEW.push(list[i]);
         }
     }
+    var listTJNew = listAll(listTJ);//推荐
+    var listNewNew = listAll(listNEW);//新手
+    var listGDNew = listAll(listGDSY);//固定
 
-    var compare = function (obj1, obj2) {
-        var val1 = obj1.timeOpen;
-        var val2 = obj2.timeOpen;
-        if (val1 < val2) {
-            return 1;
-        } else if (val1 > val2) {
-            return -1;
-        } else {
-            return 0;
+    function listAll(listOld) {
+        var compare = function (obj1, obj2) {
+            var val1 = obj1.timeOpen;
+            var val2 = obj2.timeOpen;
+            if (val1 < val2) {
+                return 1;
+            } else if (val1 > val2) {
+                return -1;
+            } else {
+                return 0;
+            }
+        };
+
+        var listOpen = [];     //在售中  OPENED
+        var listNone = [];     //计息中  SETTLED
+        var listSchedul = [];  //即将发布  SCHEDULED
+        var listFinish = [];   //已售罄 FINISHED
+        var listNew = [];   //放排序后的产品 ： 在售中》即将发布》已售罄》计息中
+
+        for (var i = 0; i < listOld.length; i++) {
+            if (listOld[i].status == "OPENED") {
+                listOpen.push(listOld[i]);
+            } else if (listOld[i].status == "SCHEDULED") {
+                listSchedul.push(listOld[i]);
+            } else if (listOld[i].status == "FINISHED") {
+                listFinish.push(listOld[i]);
+            } else if (listOld[i].status == "SETTLED") {
+                listNone.push(listOld[i]);
+            }
         }
-    };
+        listOpen.sort(compare);
+        listNone.sort(compare);
+        listSchedul.sort(compare);
+        listFinish.sort(compare);
+        listNew = listNew.concat(listOpen);
+        listNew = listNew.concat(listSchedul);
+        listNew = listNew.concat(listFinish);
+        listNew = listNew.concat(listNone);
 
-    //推荐
-    var cptjOpen = [];     //在售中  OPENED
-    var cptjNone = [];     //计息中  SETTLED
-    var cptjSchedul = [];  //即将发布  SCHEDULED
-    var cptjFinish = [];     //已售罄 FINISHED
-    var cptjstatus = [];   //放排序后的产品 ： 在售中》即将发布》已售罄》计息中
-    for (var i = 0; i < productKey.length; i++) {
-        if (productKey[i].status == "OPENED") {
-            cptjOpen.push(productKey[i]);
-        } else if (productKey[i].status == "SCHEDULED") {
-            cptjSchedul.push(productKey[i]);
-        } else if (productKey[i].status == "FINISHED") {
-            cptjFinish.push(productKey[i]);
-        } else if (productKey[i].status == "SETTLED") {
-            cptjNone.push(productKey[i]);
-        }
-
-    }
-    cptjOpen.sort(compare);
-    cptjNone.sort(compare);
-    cptjSchedul.sort(compare);
-    cptjFinish.sort(compare);
-
-    cptjstatus = cptjstatus.concat(cptjOpen);
-    cptjstatus = cptjstatus.concat(cptjSchedul);
-    cptjstatus = cptjstatus.concat(cptjFinish);
-    cptjstatus = cptjstatus.concat(cptjNone);
-
-    //固定
-    var listOpen = [];     //在售中  OPENED
-    var listNone = [];     //计息中  SETTLED
-    var listSchedul = [];  //即将发布  SCHEDULED
-    var listFinish = [];     //已售罄 FINISHED
-    var liststatus = [];   //放排序后的产品 ： 在售中》即将发布》已售罄》计息中
-    for (var i = 0; i < listGDSY.length; i++) {
-        if (listGDSY[i].status == "OPENED") {
-            listOpen.push(listGDSY[i]);
-        } else if (listGDSY[i].status == "SCHEDULED") {
-            listSchedul.push(listGDSY[i]);
-        } else if (listGDSY[i].status == "FINISHED") {
-            listFinish.push(listGDSY[i]);
-        } else if (listGDSY[i].status == "SETTLED") {
-            listNone.push(listGDSY[i]);
-        }
+        return listNew;
     }
 
-    productKey.sort(compare);
-    listOpen.sort(compare);
-    listNone.sort(compare);
-    listSchedul.sort(compare);
-    listFinish.sort(compare);
 
-
-    if (cptjstatus[0]) {
-        liststatus = liststatus.concat(cptjstatus[0]);
-    }
-
-    liststatus = liststatus.concat(listOpen);
-    liststatus = liststatus.concat(listSchedul);
-    liststatus = liststatus.concat(listFinish);
-    liststatus = liststatus.concat(listNone);
-    //固定收益
     var investRactive = new Ractive({
         el: ".GDSYproductList",
         template: require('ccc/index/partials/gdsy.html'),
         data: {
-            list: liststatus.slice(0, 3),
-            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+            listTJ: listTJNew.slice(0, 1),
+            listNew: listNewNew.slice(0, 1),
+            listGD: listGDNew.slice(0, 1),
         }
     });
-    ////浮动收益
-    //var investRactive = new Ractive({
-    //    el: ".DQLCproductList",
-    //    template: require('ccc/global/partials/singleInvest.html'),
-    //    data: {
-    //        list: listDQLC.slice(0,3),
-    //        RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
-    //    }
-    //});
-    ////精选基金
-    //var investRactive = new Ractive({
-    //    el: ".XELCproductList",
-    //    template: require('ccc/global/partials/singleInvest.html'),
-    //    data: {
-    //        list: listXELC.slice(0,3),
-    //        RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
-    //    }
-    //});
-    // initailEasyPieChart();
-    // ininconut();
-    // var serverDate = list.serverDate;
-    // var leftTime = utils.countDown.getCountDownTime2(list.timeOpen, serverDate);
-    // var countDownRactive = new Ractive({
-    //     el: ".next-time",
-    //     template: require('ccc/index/partials/countdown.html'),
-    //     data: {
-    //         countDown: {
-    //             hours: leftTime.hour,
-    //             minutes: leftTime.min,
-    //             seconds: leftTime.sec,
-    //         }
-    //     }
-    // });
-    //
-    // setInterval((function () {
-    //     serverDate += 1000;
-    //     var leftTime = utils.countDown.getCountDownTime2(list.timeOpen, serverDate);
-    //     countDownRactive.set('countDown', {
-    //         hours: leftTime.hour,
-    //         minutes: leftTime.min,
-    //         seconds: leftTime.sec
-    //     });
-    // }), 1000);
-
 });
-
-//IndexService.getLatestScheduled(function (loan) {
-//    var serverDate = loan.serverDate;
-//    var leftTime = utils.countDown.getCountDownTime2(loan.timeOpen, serverDate);
-//    var countDownRactive = new Ractive({
-//        el: ".next-time",
-//        template: require('ccc/index/partials/countdown.html'),
-//        data: {
-//            countDown: {
-//                hours: leftTime.hour,
-//                minutes: leftTime.min,
-//                seconds: leftTime.sec,
-//            }
-//        }
-//    });
-//
-//    setInterval((function () {
-//        serverDate += 1000;
-//        var leftTime = utils.countDown.getCountDownTime2(loan.timeOpen,
-//            serverDate);
-//        countDownRactive.set('countDown', {
-//            hours: leftTime.hour,
-//            minutes: leftTime.min,
-//            seconds: leftTime.sec
-//        });
-//    }), 1000);
-//
-//});
 
 $("#btn-login-on-carousel").click(function (e) {
     window.HeaderRactive.fire('maskLogin', {
         original: e
     });
 });
-
-// function initailEasyPieChart() {
-//     // 初始化饼状图
-//     $(function () {
-//         var oldie = /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase());
-//         $(".easy-pie-chart").each(function () {
-//             var percentage = $(this).data("percent");
-//             var status = $(this).data("status");
-//             // 100%进度条颜色显示为背景色
-//
-//             // var color = percentage != 100 && (status==='SETTLED'|| status==='CLEARED') ? "#f58220" : '#009ada';
-//             var color = (status === 'OPENED') ? '#009ada' : "#f58220";
-//
-//             // var color = percentage === 100 ? "#f58220" : '#f58220';
-//
-//             $(this).easyPieChart({
-//                 barColor: color,
-//                 trackColor: '#ddd',
-//                 scaleColor: false,
-//                 lineCap: 'butt',
-//                 lineWidth: 4,
-//                 animate: oldie ? false : 1000,
-//                 size: 60,
-//                 onStep: function (from, to, percent) {
-//                     $(this.el).find('.percent').text(Math.round(percent));
-//                 }
-//             });
-//             $(this).find("span.percentageNum").html(percentage + "%");
-//         });
-//
-//     });
-// }
 
 function showError(message) {
     var errorMaps = {
@@ -325,83 +195,31 @@ $(document).keyup(function (e) {
 });
 
 //合作伙伴
-request.get(encodeURI('/api/v2/cms/category/COOPERATION/name/合作伙伴'))
-    .end()
-    .then(function (res) {
-        var partnerRactive = new Ractive({
-            el: '.partner .icon-grounp',
-            template: require('ccc/index/partials/partner.html'),
-            data: {
-                list: []
-            },
-            onrender: function () {
-                if (res.body.length <= 6) {
-                    this.set('cooperation', res.body);
-                } else {
-                    var num = 6;
-                    var j = num;
-                    var length = res.body.length;
-                    var total = Math.ceil(length / j);
-                    this.set('cooperation', res.body.slice(0, num));
+request.get(encodeURI('/api/v2/cms/category/COOPERATION/name/合作伙伴')).end().then(function (res) {
+    var partnerRactive = new Ractive({
+        el: '.partner .icon-grounp',
+        template: require('ccc/index/partials/partner.html'),
+        data: {
+            list: []
+        },
+        onrender: function () {
+            if (res.body.length <= 6) {
+                this.set('cooperation', res.body);
+            } else {
+                var num = 6;
+                var j = num;
+                var length = res.body.length;
+                var total = Math.ceil(length / j);
+                this.set('cooperation', res.body.slice(0, num));
 
-                    for (var i = 0; i < total - 1; i++) {
-                        this.set('cooperationNext', res.body.slice(j, j + num));
-                        j = j + num;
-                        var cooperationNext = this.get('cooperationNext');
-                        this.push('list', cooperationNext);
-                    }
+                for (var i = 0; i < total - 1; i++) {
+                    this.set('cooperationNext', res.body.slice(j, j + num));
+                    j = j + num;
+                    var cooperationNext = this.get('cooperationNext');
+                    this.push('list', cooperationNext);
                 }
-
             }
-        });
+
+        }
     });
-//友情链接
-//request.get(encodeURI('/api/v2/cms/category/LINK/name/友情链接'))
-//    .end()
-//    .then(function (res) {
-//        var count = new Ractive({
-//            el: '.firendLink',
-//            template: '<span class="friend-left" style="margin-right:16px;">友情链接</span><span class="friend-right">{{#each items}}<a href="http://{{url}}" target="_blank">{{{title}}}</a>{{/each}}</span>',
-//            data: {
-//                items: res.body
-//            }
-//        });
-//    });
-
-//底部鼠标滑过显示公司链接
-// $('.icon-grounp .company-intro').hide();
-// $(' .icon-group1').mouseenter(function () {
-//     $(this).children('.company-intro').show(200);
-// }).mouseleave(function () {
-//     $(this).children('.company-intro').hide(200);
-// });
-
-//$('.strengthProtect').click(function(){
-//    var url=$(this).find('a').attr('href');
-//    location.href=url;
-//});
-
-// function ininconut() {
-//     $(".opre > .investbtn-time").each(function () {
-//         var t = $(this);
-//         if (t.data("status") === 'SCHEDULED') {
-//             var id = t.data("id");
-//             var openTime = t.data("open");
-//             var serverDate = t.data("serv");
-//             var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-//             var textDay = leftTime.day ? leftTime.day + '天' + '&nbsp;' : '';
-//             var interval = setInterval((function () {
-//                 serverDate += 1000;
-//                 var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-//                 var textDay = leftTime.day ? leftTime.day + '<span style="color:#c6c6c6">天</span>' + '&nbsp;' : '';
-//                 if (!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
-//                     clearInterval(interval);
-//                     t.prev().hide();
-//                     t.replaceWith('<a href="/loan/' + id + '" style="text-decoration:none"><div class="investbtn">立即投资</div></a>');
-//                 } else {
-//                     t.html('<span class="text" style="color:#c6c6c6">倒计时<span style="color:#ff7200">' + textDay + leftTime.hour + '</span>时<span style="color:#ff7200">' + leftTime.min + '</span>分<span style="color:#ff7200">' + leftTime.sec + '</span>秒</span>')
-//                 }
-//             }), 1000);
-//         }
-//     });
-// }
+});
