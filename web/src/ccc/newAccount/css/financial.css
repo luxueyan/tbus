@@ -1,11 +1,10 @@
 .financialH2 {
-    font-size: 24px;
-    color: #ad8a58;
-    padding-bottom: 15px;
-    padding-left: 10px;
-    border-bottom: 1px solid #dcdcdc;
     margin-right: 27px;
     margin-left: 45px;
+    padding: 15px 10px;
+    color: #ad8a58;
+    font-size: 24px;
+    border-bottom: 1px solid #dcdcdc;
 }
 .financial {
     margin: 20px 0;
