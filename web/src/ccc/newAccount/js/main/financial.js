@@ -121,7 +121,7 @@ function formatList(data) {
             data[i].previousInvestTimeNew = moment(data[i].previousInvestTime).format('YYYY-MM-DD');
         }
         if (data[i].latestDueTime) {
-            data[i].latestDueTimenew = moment(data[i].latestDueTime).format('YYYY-MM-DD');
+            data[i].latestDueTimeNew = moment(data[i].latestDueTime).format('YYYY-MM-DD');
         }
     }
     return data;

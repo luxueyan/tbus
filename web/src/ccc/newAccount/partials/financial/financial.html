@@ -18,9 +18,9 @@
             <td>{{user.registerDateNew}}</td>
             <td>{{totalAssets}}</td>
             <td>{{availableAmount}}</td>
-            <td>{{previousInvestTimeNew}}</td>
+            <td>{{previousInvestTimeNew?previousInvestTimeNew:'－'}}</td>
             <td>{{latestDueAmount}}</td>
-            <td>{{latestDueTimenew}}</td>
+            <td>{{latestDueTimeNew?latestDueTimeNew:'－'}}</td>
         </tr>
         {{/financialList}}
     </table>
