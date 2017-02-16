@@ -16,7 +16,7 @@
     {{#each bankcards}}
     <div class="bank-box {{account.bank}}">
         <span>******** {{Faccount}}</span>
-        <span class="limit">单笔限额10万</span>
+        <span class="limit">单笔限额{{#if singleQuota == -1}} 无限额{{else}}{{singleQuota}}元{{/if}}</span>
     </div>
     {{/each}}
 

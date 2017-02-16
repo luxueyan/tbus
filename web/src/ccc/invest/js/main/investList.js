@@ -151,13 +151,13 @@ function replaceStr(str) {
 
 if (!CC.key) {
     IndexService.getLoanSummary(function (res) {
-        var listFixed = [], listNew = [];
-        var productKey = [];    //推荐产品放在第一位      CPTJ
+        var listNew = [], listCPTJ = [], listGDSY = [];
+
         for (var i = 0; i < res.length; i++) {
             if (res[i].loanRequest.productKey == "CPTJ") {
-                productKey.push(res[i]);
+                listCPTJ.push(res[i]);
             } else if (res[i].loanRequest.productKey == 'GDSY') {
-                listFixed.push(res[i]);
+                listGDSY.push(res[i]);
             } else if (res[i].loanRequest.productKey == 'NEW') {
                 listNew.push(res[i]);
             }
@@ -176,50 +176,26 @@ if (!CC.key) {
         };
 
         //新手标
-        var newOpen = [];     //在售中  OPENED
-        var newNone = [];     //计息中  SETTLED
-        var newSchedul = [];  //即将发布  SCHEDULED
-        var newFinish = [];   //已售罄 FINISHED
-        var newList = [];   //放排序后的产品： 在售中》即将发布》已售罄》计息中
+        var newOpen = [];//在售中  OPENED
+        var newList = [];
         for (var i = 0; i < listNew.length; i++) {
             if (listNew[i].status == "OPENED") {
                 newOpen.push(listNew[i]);
-            } else if (listNew[i].status == "SCHEDULED") {
-                newNone.push(listNew[i]);
-            } else if (listNew[i].status == "FINISHED") {
-                newSchedul.push(listNew[i]);
-            } else if (listNew[i].status == "SETTLED") {
-                newFinish.push(listNew[i]);
             }
-
         }
-        newList = newList.concat(newOpen);
-        newList = newList.concat(newNone);
-        newList = newList.concat(newSchedul);
-        newList = newList.concat(newFinish);
+        if (newOpen) {
+            newList = newOpen;
+        } else {
+            newList = listNew[0];
+        }
 
         //推荐
-        var cptjOpen = [];     //在售中  OPENED
-        var cptjNone = [];     //计息中  SETTLED
-        var cptjSchedul = [];  //即将发布  SCHEDULED
-        var cptjFinish = [];     //已售罄 FINISHED
-        var cptjstatus = [];   //放排序后的产品 ： 在售中》即将发布》已售罄》计息中
-        for (var i = 0; i < productKey.length; i++) {
-            if (productKey[i].status == "OPENED") {
-                cptjOpen.push(productKey[i]);
-            } else if (productKey[i].status == "SCHEDULED") {
-                cptjSchedul.push(productKey[i]);
-            } else if (productKey[i].status == "FINISHED") {
-                cptjFinish.push(productKey[i]);
-            } else if (productKey[i].status == "SETTLED") {
-                cptjNone.push(productKey[i]);
+        var cptjList = [];     //在售中  OPENED
+        for (var i = 0; i < cptjList.length; i++) {
+            if (listCPTJ[i].status == "OPENED") {
+                cptjList.push(listCPTJ[i]);
             }
-
         }
-        cptjstatus = cptjstatus.concat(cptjOpen);
-        cptjstatus = cptjstatus.concat(cptjSchedul);
-        cptjstatus = cptjstatus.concat(cptjFinish);
-        cptjstatus = cptjstatus.concat(cptjNone);
 
 
         //固定
@@ -229,36 +205,22 @@ if (!CC.key) {
         var listFinish = [];     //已售罄 FINISHED
         var liststatus = [];   //放排序后的产品 ： 在售中》即将发布》已售罄》计息中
 
-        productKey.sort(compare);
+        listGDSY.sort(compare);
 
         //将推荐产品第一位放在首位
-        if (cptjstatus[0]) {
-            liststatus = liststatus.concat(cptjstatus.shift());
+        if (cptjList[0]) {
+            liststatus = liststatus.concat(cptjList.shift());
         }
 
-        for (var i = 0; i < cptjstatus.length; i++) {
-            if (cptjstatus[i].status == "OPENED") {
-                listOpen.push(cptjstatus[i]);
-            } else if (cptjstatus[i].status == "SCHEDULED") {
-                listSchedul.push(cptjstatus[i]);
-            } else if (cptjstatus[i].status == "FINISHED") {
-                listFinish.push(cptjstatus[i]);
-            } else if (cptjstatus[i].status == "SETTLED") {
-                listNone.push(cptjstatus[i]);
-            }
-
-        }
-
-
-        for (var i = 0; i < listFixed.length; i++) {
-            if (listFixed[i].status == "OPENED") {
-                listOpen.push(listFixed[i]);
-            } else if (listFixed[i].status == "SCHEDULED") {
-                listSchedul.push(listFixed[i]);
-            } else if (listFixed[i].status == "FINISHED") {
-                listFinish.push(listFixed[i]);
-            } else if (listFixed[i].status == "SETTLED") {
-                listNone.push(listFixed[i]);
+        for (var i = 0; i < listGDSY.length; i++) {
+            if (listGDSY[i].status == "OPENED") {
+                listOpen.push(listGDSY[i]);
+            } else if (listGDSY[i].status == "SETTLED") {
+                listNone.push(listGDSY[i]);
+            } else if (listGDSY[i].status == "SCHEDULED") {
+                listSchedul.push(listGDSY[i]);
+            } else if (listGDSY[i].status == "FINISHED") {
+                listFinish.push(listGDSY[i]);
             }
         }
 

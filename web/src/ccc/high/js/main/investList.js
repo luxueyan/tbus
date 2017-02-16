@@ -151,11 +151,11 @@ function replaceStr(str) {
 
 if (!CC.key) {
     IndexService.getLoanSummary(function (res) {
-        var listFixed = [], listFloat = [];
-        var productKey = [];    //推荐产品放在第一位      CPTJ
+        var listGDSY = [];
+
         for (var i = 0; i < res.length; i++) {
             if (res[i].loanRequest.productKey == 'GDLC') {
-                listFixed.push(res[i]);
+                listGDSY.push(res[i]);
             }
         }
 
@@ -176,34 +176,23 @@ if (!CC.key) {
         var listSchedul = [];  //即将发布  SCHEDULED
         var listFinish = [];     //已售罄 FINISHED
         var liststatus = [];   //放排序后的产品 ： 在售中》即将发布》已售罄》计息中
-        for (var i = 0; i < listFixed.length; i++) {
-            if (listFixed[i].status == "OPENED") {
-                listOpen.push(listFixed[i]);
-            } else if (listFixed[i].status == "SCHEDULED") {
-                listSchedul.push(listFixed[i]);
-            } else if (listFixed[i].status == "FINISHED") {
-                listFinish.push(listFixed[i]);
-            } else if (listFixed[i].status == "SETTLED") {
-                listNone.push(listFixed[i]);
+
+        for (var i = 0; i < listGDSY.length; i++) {
+            if (listGDSY[i].status == "OPENED") {
+                listOpen.push(listGDSY[i]);
+            } else if (listGDSY[i].status == "SETTLED") {
+                listNone.push(listGDSY[i]);
+            } else if (listGDSY[i].status == "SCHEDULED") {
+                listSchedul.push(listGDSY[i]);
+            } else if (listGDSY[i].status == "FINISHED") {
+                listFinish.push(listGDSY[i]);
             }
         }
-
-
-        // listOpen.sort(compare);
-        // listNone.sort(compare);
-        // listSchedul.sort(compare);
-        // listFinish.sort(compare);
 
         liststatus = liststatus.concat(listOpen);
         liststatus = liststatus.concat(listSchedul);
         liststatus = liststatus.concat(listFinish);
         liststatus = liststatus.concat(listNone);
-
-        // liststatus.forEach(function (item) {
-        //     if (item.status == 'SCHEDULED') {
-        //         ininconut();
-        //     }
-        // })
 
         // 固定收益
         var listRactive = new Ractive({
@@ -223,15 +212,6 @@ if (!CC.key) {
                 })
             }
         });
-        // 浮动收益
-        // var listRactive = new Ractive({
-        //     el: ".floatPro",
-        //     template: require('ccc/high/partials/floatPro.html'),
-        //     data: {
-        //         list: (listFloat.slice(0, 1)),
-        //         RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
-        //     }
-        // });
         ininconut();
     });
 } else {

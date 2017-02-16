@@ -33,9 +33,7 @@ function replaceStr(str) {
 
 
 IndexService.getLoanSummary(function (list) {
-    var listGDSY = [],
-        listNEW = [],
-        listTJ = [];//CPTJ
+    var listGDSY = [], listNEW = [], listTJ = [];
 
     for (var i = 0; i < list.length; i++) {
         list[i].method = i18n.enums.RepaymentMethod[list[i].method][0];
@@ -53,63 +51,39 @@ IndexService.getLoanSummary(function (list) {
             listNEW.push(list[i]);
         }
     }
+
+
     var listTJNew = listAll(listTJ);//推荐
     var listNewNew = listAll(listNEW);//新手
     var listGDNew = listAll(listGDSY);//固定
 
     function listAll(listOld) {
-        var compare = function (obj1, obj2) {
-            var val1 = obj1.timeOpen;
-            var val2 = obj2.timeOpen;
-            if (val1 < val2) {
-                return 1;
-            } else if (val1 > val2) {
-                return -1;
-            } else {
-                return 0;
-            }
-        };
-
         var listOpen = [];     //在售中  OPENED
-        var listNone = [];     //计息中  SETTLED
-        var listSchedul = [];  //即将发布  SCHEDULED
-        var listFinish = [];   //已售罄 FINISHED
-        var listNew = [];   //放排序后的产品 ： 在售中》即将发布》已售罄》计息中
-
+        var listNew = [];
         for (var i = 0; i < listOld.length; i++) {
             if (listOld[i].status == "OPENED") {
                 listOpen.push(listOld[i]);
-            } else if (listOld[i].status == "SCHEDULED") {
-                listSchedul.push(listOld[i]);
-            } else if (listOld[i].status == "FINISHED") {
-                listFinish.push(listOld[i]);
-            } else if (listOld[i].status == "SETTLED") {
-                listNone.push(listOld[i]);
             }
         }
-        listOpen.sort(compare);
-        listNone.sort(compare);
-        listSchedul.sort(compare);
-        listFinish.sort(compare);
-        listNew = listNew.concat(listOpen);
-        listNew = listNew.concat(listSchedul);
-        listNew = listNew.concat(listFinish);
-        listNew = listNew.concat(listNone);
-
+        if (listOpen.length) {
+            listNew = listOpen[0];
+        } else {
+            listNew = listOld[0]
+        }
         return listNew;
     }
-
 
     var investRactive = new Ractive({
         el: ".GDSYproductList",
         template: require('ccc/index/partials/gdsy.html'),
         data: {
-            listTJ: listTJNew.slice(0, 1),
-            listNew: listNewNew.slice(0, 1),
-            listGD: listGDNew.slice(0, 1),
+            listTJ: listTJNew,
+            listNew: listNewNew,
+            listGD: listGDNew,
         }
     });
 });
+
 
 $("#btn-login-on-carousel").click(function (e) {
     window.HeaderRactive.fire('maskLogin', {
