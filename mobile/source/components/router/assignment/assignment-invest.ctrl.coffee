@@ -90,6 +90,10 @@ do (angular, _) ->
                 #     good_to_go = false
                 #     @$window.alert "投资金额超出项目剩余金额，请重新输入"
 
+                user_available = @user.fund.availableAmount
+                {singleQuota} = @$scope.default_bank_account.account
+                can_use_balance = if @$scope.store.isUseBalance then user_available else 0
+
                 if @assignment.creditassign.userId == @user.info.id
                     good_to_go = false
                     @$window.alert "不可以投自己转让的债权标"
@@ -97,6 +101,10 @@ do (angular, _) ->
                 else if @loan.loanRequest.userId == @user.info.id
                     good_to_go = false
                     @$window.alert "不可以投自己借款的债转标"
+
+                else if singleQuota != -1 and (@assignment.creditassign.creditDealAmount - can_use_balance) > singleQuota
+                    good_to_go = false
+                    @$window.alert "超过银行卡单笔 #{ singleQuota }元的限额"
 
                 # else if coupon_minimum and amount < coupon_minimum
                 #     good_to_go = false
