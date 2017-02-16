@@ -13,7 +13,7 @@ var ractive = new Ractive({
                 ractive.set('totalAssetsData', 'up');
                 ractive.set('availableAmountData', 'up');
                 ractive.set('previousInvestTimeData', 'up');
-                ractive.set('lastestDueAmountData', 'up');
+                ractive.set('latestDueAmountData', 'up');
                 ractive.set('latestDueTimeData', 'up');
             }
         });
@@ -41,7 +41,6 @@ ractive.on('arrowA02', function (e) {
     var rows = ractive.get('financialList');
     rows.sort(function (a, b) {
         return a.totalAssets - b.totalAssets;//时间正序
-        // return Date.parse(a.time) - Date.parse(b.time);//时间正序
     });
     if (status == 'up') {
         ractive.set('financialList', rows);
@@ -57,7 +56,6 @@ ractive.on('arrowA03', function (e) {
     var rows = ractive.get('financialList');
     rows.sort(function (a, b) {
         return a.availableAmount - b.availableAmount;//时间正序
-        // return Date.parse(a.time) - Date.parse(b.time);//时间正序
     });
     if (status == 'up') {
         ractive.set('financialList', rows);
@@ -73,7 +71,6 @@ ractive.on('arrowA04', function (e) {
     var rows = ractive.get('financialList');
     rows.sort(function (a, b) {
         return a.previousInvestTime - b.previousInvestTime;//时间正序
-        // return Date.parse(a.time) - Date.parse(b.time);//时间正序
     });
     if (status == 'up') {
         ractive.set('financialList', rows);
@@ -85,18 +82,17 @@ ractive.on('arrowA04', function (e) {
 });
 
 ractive.on('arrowA05', function (e) {
-    var status = e.node.dataset.lastestdueamount;
+    var status = e.node.dataset.latestdueamount;
     var rows = ractive.get('financialList');
     rows.sort(function (a, b) {
-        return a.lastestDueAmount - b.lastestDueAmount;//时间正序
-        // return Date.parse(a.time) - Date.parse(b.time);//时间正序
+        return a.latestDueAmount - b.latestDueAmount;//时间正序
     });
     if (status == 'up') {
         ractive.set('financialList', rows);
-        ractive.set('lastestDueAmountData', 'down');
+        ractive.set('latestDueAmountData', 'down');
     } else {
         ractive.set('financialList', rows.reverse());
-        ractive.set('lastestDueAmountData', 'up');
+        ractive.set('latestDueAmountData', 'up');
     }
 });
 
@@ -105,7 +101,6 @@ ractive.on('arrowA06', function (e) {
     var rows = ractive.get('financialList');
     rows.sort(function (a, b) {
         return a.latestDueTime - b.latestDueTime;//时间正序
-        // return Date.parse(a.time) - Date.parse(b.time);//时间正序
     });
     if (status == 'up') {
         ractive.set('financialList', rows);

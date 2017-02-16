@@ -12,6 +12,9 @@ var navRactive = new Ractive({
     },
     oninit: function () {
         var location = window.location.pathname.split('/');
+
+        this.set('isMMC', CC.user.isMMC);
+
         if (location.length <= 3) {
             var tab = location[location.length - 1];
             this.set(tab, true);
@@ -38,7 +41,7 @@ navRactive.on('toggleMenu', function (event) {
     this.set(toggleMenu, !this.get(toggleMenu));
 });
 
-if (location.pathname!='/newAccount/userInfo') {
+if (location.pathname != '/newAccount/userInfo') {
 // 可用余额
     var avaAmount = parseFloat(CC.user.availableAmount).toFixed(2);
     var banksabled = _.filter(CC.user.bankCards, function (r) {
