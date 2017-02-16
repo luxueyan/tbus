@@ -16,6 +16,10 @@ do (_, angular) ->
 
                     .then (data) =>
 
+                        _.forOwn(data, (value, key) ->
+                            data[key] = _.sortByOrder(value, ['timeOpen'], ['desc'])
+                        )
+
                         {open, scheduled, finished, settled} = data
 
                         open_CPTJ = []
