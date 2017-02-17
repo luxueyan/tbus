@@ -12,15 +12,7 @@ require('ccc/global/js/jquery.page.js');
 var params = {
     pageSize: 8,
     status: '',
-    //minDuration: 0,
-    //maxDuration: 100,
-    //minRate: 0,
-    //maxRate: 100,
     currentPage: 1,
-    //minAmount: 0,
-    //maxAmount: 100000000,
-    //minInvestAmount: 1,
-    //maxInvestAmount: 100000000,
 };
 
 function jsonToParams(params) {
@@ -70,11 +62,6 @@ function formatItem(item) {
     item.deductionRate = item.loanRequest.deductionRate / 100;
     item.basicRate = item.rate - item.deductionRate;
     item.purpose = purposeMap[item.purpose];
-    //if (item.investPercent * 100 > 0 && item.investPercent * 100 < 1) {
-    //    item.investPercent = 1;
-    //} else {
-    //    item.investPercent = parseInt(item.investPercent * 100, 10);
-    //}
 
     var SinvestPercent = (item.investPercent * 100).toFixed(2) + '';
 
@@ -150,70 +137,93 @@ function replaceStr(str) {
 }
 
 if (!CC.key) {
-    IndexService.getLoanSummary(function (res) {
-        var listGDSY = [];
+    // IndexService.getLoanSummary(function (res) {
+    //     var listGDSY = [];
+    //
+    //     for (var i = 0; i < res.length; i++) {
+    //         if (res[i].loanRequest.productKey == 'GDLC') {
+    //             listGDSY.push(res[i]);
+    //         }
+    //     }
+    //
+    //     var compare = function (obj1, obj2) {
+    //         var val1 = obj1.timeOpen;
+    //         var val2 = obj2.timeOpen;
+    //         if (val1 < val2) {
+    //             return 1;
+    //         } else if (val1 > val2) {
+    //             return -1;
+    //         } else {
+    //             return 0;
+    //         }
+    //     };
+    //
+    //     var listOpen = [];     //在售中  OPENED
+    //     var listNone = [];     //计息中  SETTLED
+    //     var listSchedul = [];  //即将发布  SCHEDULED
+    //     var listFinish = [];     //已售罄 FINISHED
+    //     var liststatus = [];   //放排序后的产品 ： 在售中》即将发布》已售罄》计息中
+    //
+    //     for (var i = 0; i < listGDSY.length; i++) {
+    //         if (listGDSY[i].status == "OPENED") {
+    //             listOpen.push(listGDSY[i]);
+    //         } else if (listGDSY[i].status == "SETTLED") {
+    //             listNone.push(listGDSY[i]);
+    //         } else if (listGDSY[i].status == "SCHEDULED") {
+    //             listSchedul.push(listGDSY[i]);
+    //         } else if (listGDSY[i].status == "FINISHED") {
+    //             listFinish.push(listGDSY[i]);
+    //         }
+    //     }
+    //
+    //     liststatus = liststatus.concat(listOpen);
+    //     liststatus = liststatus.concat(listSchedul);
+    //     liststatus = liststatus.concat(listFinish);
+    //     liststatus = liststatus.concat(listNone);
+    //
+    //     // 固定收益
+    //     var listRactive = new Ractive({
+    //         el: ".fixedPro",
+    //         template: require('ccc/high/partials/fixedPro.html'),
+    //         data: {
+    //             list: liststatus.slice(0, 5),
+    //             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+    //         },
+    //         onrender: function () {
+    //
+    //             $('.assign_time').mouseover(function () {
+    //                 $(this).parent().parent().parent().siblings('.assign_tip').fadeIn(200);
+    //             })
+    //             $('.assign_tip').mouseleave(function () {
+    //                 $(this).fadeOut(200);
+    //             })
+    //         }
+    //     });
+    //     ininconut();
+    // });
 
-        for (var i = 0; i < res.length; i++) {
-            if (res[i].loanRequest.productKey == 'GDLC') {
-                listGDSY.push(res[i]);
-            }
+
+    var listRactive = new Ractive({
+        el: ".fixedPro",
+        template: require('ccc/high/partials/fixedPro.html'),
+        oncomplete: function () {
+            var that = this;
+            params.pageSize = 5;
+            params.product = 'GDLC';
+            InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) {
+                that.set('list', parseLoanList(res.results));
+            });
+
+            $('.assign_time').mouseover(function () {
+                $(this).parent().parent().parent().siblings('.assign_tip').fadeIn(200);
+            });
+
+            $('.assign_tip').mouseleave(function () {
+                $(this).fadeOut(200);
+            });
         }
-
-        var compare = function (obj1, obj2) {
-            var val1 = obj1.timeOpen;
-            var val2 = obj2.timeOpen;
-            if (val1 < val2) {
-                return 1;
-            } else if (val1 > val2) {
-                return -1;
-            } else {
-                return 0;
-            }
-        };
-
-        var listOpen = [];     //在售中  OPENED
-        var listNone = [];     //计息中  SETTLED
-        var listSchedul = [];  //即将发布  SCHEDULED
-        var listFinish = [];     //已售罄 FINISHED
-        var liststatus = [];   //放排序后的产品 ： 在售中》即将发布》已售罄》计息中
-
-        for (var i = 0; i < listGDSY.length; i++) {
-            if (listGDSY[i].status == "OPENED") {
-                listOpen.push(listGDSY[i]);
-            } else if (listGDSY[i].status == "SETTLED") {
-                listNone.push(listGDSY[i]);
-            } else if (listGDSY[i].status == "SCHEDULED") {
-                listSchedul.push(listGDSY[i]);
-            } else if (listGDSY[i].status == "FINISHED") {
-                listFinish.push(listGDSY[i]);
-            }
-        }
-
-        liststatus = liststatus.concat(listOpen);
-        liststatus = liststatus.concat(listSchedul);
-        liststatus = liststatus.concat(listFinish);
-        liststatus = liststatus.concat(listNone);
-
-        // 固定收益
-        var listRactive = new Ractive({
-            el: ".fixedPro",
-            template: require('ccc/high/partials/fixedPro.html'),
-            data: {
-                list: liststatus.slice(0, 5),
-                RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
-            },
-            onrender: function () {
-
-                $('.assign_time').mouseover(function () {
-                    $(this).parent().parent().parent().siblings('.assign_tip').fadeIn(200);
-                })
-                $('.assign_tip').mouseleave(function () {
-                    $(this).fadeOut(200);
-                })
-            }
-        });
-        ininconut();
     });
+    ininconut();
 } else {
     params.product = CC.key;
     var investRactive = new Ractive({
