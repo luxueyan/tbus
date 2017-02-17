@@ -200,6 +200,7 @@ if (!CC.key) {
 
             InvestListService.getLoanListWithCondition(jsonToParams(paramsGD), 'true', function (ress) {
                 listRactive.set('list', parseLoanList(ress.results));
+                
                 ininconut();
             });
 
