@@ -80,9 +80,11 @@ payRactive.on("invest-submit", function (e) {
     var creditassign = that.get('creditassign');
     var isUseB = that.get('useBankCard');
     e.original.preventDefault();
-    var num = this.get('creditAmount');
+    var num = this.get('investNum');
     var isUseB = that.get('useBankCard');
     var singleQuota = that.get('singleQuota');
+
+    console.log(num,CC.user.availableAmount)
     if (isUseB) {//当勾选使用余额，投标金额 - 余额 > 银行卡单笔限额时
         if (num - CC.user.availableAmount > singleQuota) {
             alert("超过银行卡单笔" + singleQuota + "元的限额");
