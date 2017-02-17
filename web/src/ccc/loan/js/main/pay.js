@@ -89,16 +89,15 @@ payRactive.on("invest-submit", function (e) {
     var num = that.get('investNum'); // 输入的值
     var paymentPassword = that.get('paymentPassword');
     var isUseB = that.get('useBankCard');
-    console.log(isUseB)
     var singleQuota = that.get('singleQuota');
     if (isUseB) {//当勾选使用余额，投标金额 - 余额 > 银行卡单笔限额时
         if (num - CC.user.availableAmount > singleQuota) {
-            alert("超过银行卡单笔 xx元的限额");
+            alert("超过银行卡单笔" + singleQuota + "元的限额");
             return false;
         }
     } else {//当没有勾选使用余额，投标金额 > 银行卡单笔限额时
         if (num > singleQuota) {
-            alert("超过银行卡单笔 xx元的限额");
+            alert("超过银行卡单笔" + singleQuota + "元的限额");
             return false;
         }
     }
