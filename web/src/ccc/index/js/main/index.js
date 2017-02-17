@@ -32,63 +32,15 @@ function replaceStr(str) {
 }
 
 
-IndexService.getLoanSummary(function (list) {
-    var listGDSY = [], listNEW = [], listTJ = [];
-
-    for (var i = 0; i < list.length; i++) {
-        list[i].method = i18n.enums.RepaymentMethod[list[i].method][0];
-        list[i].titleLength = replaceStr(list[i].title);
-
-        if (list[i].titleLength > 60) {
-            list[i].title = list[i].title.substr(0, 60) + '...';
-        }
-
-        if (list[i].loanRequest.productKey == "CPTJ") {
-            listTJ.push(list[i]);
-        } else if (list[i].loanRequest.productKey == 'GDSY') {
-            listGDSY.push(list[i]);
-        } else if (list[i].loanRequest.productKey == 'NEW') {
-            listNEW.push(list[i]);
-        }
-    }
-
-    var listTJNew = listAll(listTJ);//推荐
-    var listNewNew = listAll(listNEW);//新手
-    var listGDNew = listAll(listGDSY);//固定
-
-    // console.log(JSON.stringify(listTJ));
-
-    function listAll(listOld) {
-        var listOpen = [];     //在售中  OPENED
-        var listNew = [];
-        for (var i = 0; i < listOld.length; i++) {
-            if (listOld[i].status == "OPENED") {
-                listOpen.push(listOld[i]);
-            }
-        }
-        if (listOpen.length) {
-            listOpen.sort(function (a, b) {
-                return a.timeOpen - b.timeOpen;//时间正序
-            });
-            // listOpen.reverse()
-            listNew = listOpen.reverse()[0];
-        } else {
-            listOld.sort(function (a, b) {
-                return a.timeOpen - b.timeOpen;//时间正序
-            });
-            listNew = listOld.reverse()[0];
-        }
-        return listNew;
-    }
-
+IndexService.getLoansForHomePage(function (res) {
     var investRactive = new Ractive({
         el: ".GDSYproductList",
         template: require('ccc/index/partials/gdsy.html'),
         data: {
-            listTJ: listTJNew,
-            listNew: listNewNew,
-            listGD: listGDNew,
-        }
+            listTJ: res['CPTJ'],
+            listNew: res['NEW'],
+            listGD: res['GDSY'][0],
+        },
     });
 });
 

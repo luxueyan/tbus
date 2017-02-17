@@ -18,6 +18,11 @@ exports.IndexService = {
             next(parseLoanList(res));
         });
     },
+    getLoansForHomePage: function (next) {
+        request.get('/api/v2/loans/getLoansForHomePage').then(function (res) {
+            next(res.body);
+        });
+    },
     // getLatestScheduled: function (next) {
     //     this.getSummaryData(function (res) {
     //         var list = [];
