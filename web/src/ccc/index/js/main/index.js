@@ -52,10 +52,11 @@ IndexService.getLoanSummary(function (list) {
         }
     }
 
-
     var listTJNew = listAll(listTJ);//推荐
     var listNewNew = listAll(listNEW);//新手
     var listGDNew = listAll(listGDSY);//固定
+
+    // console.log(JSON.stringify(listTJ));
 
     function listAll(listOld) {
         var listOpen = [];     //在售中  OPENED
@@ -66,9 +67,16 @@ IndexService.getLoanSummary(function (list) {
             }
         }
         if (listOpen.length) {
-            listNew = listOpen[0];
+            listOpen.sort(function (a, b) {
+                return a.timeOpen - b.timeOpen;//时间正序
+            });
+            // listOpen.reverse()
+            listNew = listOpen.reverse()[0];
         } else {
-            listNew = listOld[0]
+            listOld.sort(function (a, b) {
+                return a.timeOpen - b.timeOpen;//时间正序
+            });
+            listNew = listOld.reverse()[0];
         }
         return listNew;
     }

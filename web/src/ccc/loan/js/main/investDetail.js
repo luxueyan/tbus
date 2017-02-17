@@ -234,14 +234,6 @@ setTimeout((function () {
 
         if (investRactive.get('user') && CC.loan.productKey === 'NEW') {
             if (investRactive.get('user').totalInvest > 0) {
-                /*CccOk.create({
-                    msg: '新手专享产品仅限首次投资用户购买，您已有投资，请购买其它产品',
-                    okText: '关闭',
-                    cancelText: '',
-                    ok: function () {
-                        window.location.href='/invest';
-                    }
-                });*/
                 new CccBox({
                     title: '',
                     value: 'loading...',
@@ -251,7 +243,7 @@ setTimeout((function () {
                     showed: function (ele, box) {
                         var tipsRactive=new Ractive({
                             el: $(ele),
-                            template: '<p class="cccBox-content">新手专享产品仅限首次投资用户购买，您已有投资，请购买其它产品</p><img class="cccBox-line" src="/ccc/loan/img/cccbox_line.png"/><button on-click="clickClose" class="cccBox-btn">关闭</button>',
+                            template: '<p class="cccBox-content">该项目为新手专享，请选择其他项目进行购买</p><img class="cccBox-line" src="/ccc/loan/img/cccbox_line.png"/><button on-click="clickClose" class="cccBox-btn">关闭</button>',
                         });
                         tipsRactive.on('clickClose',function(){
                             $(".ccc-box-wrap .bar .close ").click();

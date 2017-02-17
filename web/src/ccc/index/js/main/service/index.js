@@ -67,17 +67,6 @@ function parseLoanList(loans) {
         item.deductionRate = item.loanRequest.deductionRate / 100;
         item.basicRate = item.rate - item.deductionRate;
 
-        //格式化百分比
-        //item.investPercent =parseInt(item.investPercent * 100, 10);
-        //var SinvestPercent = (item.investPercent * 100).toFixed(2)+'';
-        //
-        //if(SinvestPercent.slice(-2)=='00'){
-        //    item.investPercent = (item.investPercent * 100);
-        //}else if(SinvestPercent.slice(-1)=='0'){
-        //    item.investPercent = (item.investPercent * 100).toFixed(1);
-        //}else{
-        //    item.investPercent = (item.investPercent * 100).toFixed(2);
-        //}
         var SinvestPercent = (item.investPercent * 100) + '';
         var SinvestPercentString = SinvestPercent.split('.');
 
