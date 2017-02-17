@@ -30,6 +30,21 @@ exports.InvestListService = {
             });
         }
     },
+    getLoanListWithConditionNew: function (params, next) {
+        try {
+            return request
+                .get('/api/v2/loans/getLoanWithPage?' + params)
+                .end()
+                .then(function (res) {
+                    next(res.body);
+                });
+        } catch (e) {
+            next({
+                totalSize: 0,
+                results: []
+            });
+        }
+    },
     getProductKey: function (next, params) {
         request
             .get('/api/v2/loan/getLoanProduct/productKey/' + params)

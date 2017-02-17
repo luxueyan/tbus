@@ -12,15 +12,7 @@ require('ccc/global/js/jquery.page.js');
 var params = {
     pageSize: 8,
     status: '',
-    //minDuration: 0,
-    //maxDuration: 100,
-    //minRate: 0,
-    //maxRate: 100,
     currentPage: 1,
-    //minAmount: 0,
-    //maxAmount: 100000000,
-    //minInvestAmount: 1,
-    //maxInvestAmount: 100000000,
 };
 
 function jsonToParams(params) {
@@ -150,122 +142,65 @@ function replaceStr(str) {
 }
 
 if (!CC.key) {
-    IndexService.getLoanSummary(function (res) {
-        var listNew = [], listCPTJ = [], listGDSY = [];
-
-        for (var i = 0; i < res.length; i++) {
-            if (res[i].loanRequest.productKey == "CPTJ") {
-                listCPTJ.push(res[i]);
-            } else if (res[i].loanRequest.productKey == 'GDSY') {
-                listGDSY.push(res[i]);
-            } else if (res[i].loanRequest.productKey == 'NEW') {
-                listNew.push(res[i]);
-            }
+    // 新手标
+    var listNewRactive = new Ractive({
+        el: ".fixedProNew",
+        template: require('ccc/invest/partials/fixedPro.html'),
+        oncomplete: function () {
+            var paramsNew = {
+                status: '',
+                pageSize: 1,
+                currentPage: 1,
+                product: 'NEW'
+            };
+            InvestListService.getLoanListWithConditionNew(jsonToParams(paramsNew), function (res) {
+                listNewRactive.set('list', parseLoanList(res.results));
+            });
+            $('.assign_time').mouseover(function () {
+                $(this).parent().parent().parent().siblings('.assign_tip').fadeIn(200);
+            });
+            $('.assign_tip').mouseleave(function () {
+                $(this).fadeOut(200);
+            })
         }
-
-        var compare = function (obj1, obj2) {
-            var val1 = obj1.timeOpen;
-            var val2 = obj2.timeOpen;
-            if (val1 < val2) {
-                return 1;
-            } else if (val1 > val2) {
-                return -1;
-            } else {
-                return 0;
-            }
-        };
-
-        //新手标
-        var newOpen = [];//在售中  OPENED
-        var newList = [];
-        for (var i = 0; i < listNew.length; i++) {
-            if (listNew[i].status == "OPENED") {
-                newOpen.push(listNew[i]);
-            }
-        }
-        if (newOpen) {
-            newList = newOpen;
-        } else {
-            newList = listNew[0];
-        }
-
-        //推荐
-        var cptjList = [];     //在售中  OPENED
-        for (var i = 0; i < cptjList.length; i++) {
-            if (listCPTJ[i].status == "OPENED") {
-                cptjList.push(listCPTJ[i]);
-            }
-        }
-
-
-        //固定
-        var listOpen = [];     //在售中  OPENED
-        var listNone = [];     //计息中  SETTLED
-        var listSchedul = [];  //即将发布  SCHEDULED
-        var listFinish = [];     //已售罄 FINISHED
-        var liststatus = [];   //放排序后的产品 ： 在售中》即将发布》已售罄》计息中
-
-        listGDSY.sort(compare);
-
-        //将推荐产品第一位放在首位
-        if (cptjList[0]) {
-            liststatus = liststatus.concat(cptjList.shift());
-        }
-
-        for (var i = 0; i < listGDSY.length; i++) {
-            if (listGDSY[i].status == "OPENED") {
-                listOpen.push(listGDSY[i]);
-            } else if (listGDSY[i].status == "SETTLED") {
-                listNone.push(listGDSY[i]);
-            } else if (listGDSY[i].status == "SCHEDULED") {
-                listSchedul.push(listGDSY[i]);
-            } else if (listGDSY[i].status == "FINISHED") {
-                listFinish.push(listGDSY[i]);
-            }
-        }
-
-        liststatus = liststatus.concat(listOpen);
-        liststatus = liststatus.concat(listSchedul);
-        liststatus = liststatus.concat(listFinish);
-        liststatus = liststatus.concat(listNone);
-
-        // 新手标
-        var listNewRactive = new Ractive({
-            el: ".fixedProNew",
-            template: require('ccc/invest/partials/fixedPro.html'),
-            data: {
-                list: newList.slice(0, 1),
-                RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
-            },
-            onrender: function () {
-                $('.assign_time').mouseover(function () {
-                    $(this).parent().parent().parent().siblings('.assign_tip').fadeIn(200);
-                })
-                $('.assign_tip').mouseleave(function () {
-                    $(this).fadeOut(200);
-                })
-            }
-        });
-
-        // 固定收益
-        var listRactive = new Ractive({
-            el: ".fixedPro",
-            template: require('ccc/invest/partials/fixedPro.html'),
-            data: {
-                list: liststatus.slice(0, 5),
-                RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
-            },
-            onrender: function () {
-                $('.assign_time').mouseover(function () {
-                    $(this).parent().parent().parent().siblings('.assign_tip').fadeIn(200);
-                })
-                $('.assign_tip').mouseleave(function () {
-                    $(this).fadeOut(200);
-                })
-            }
-        });
-        ininconut();
     });
+
+    // 固定收益
+    var listRactive = new Ractive({
+        el: ".fixedPro",
+        template: require('ccc/invest/partials/fixedPro.html'),
+        oncomplete: function () {
+            var paramsTJ = {
+                status: '',
+                pageSize: 1,
+                currentPage: 1,
+                product: 'CPTJ',
+            };
+            var paramsGD = {
+                status: '',
+                pageSize: 3,
+                currentPage: 1,
+                product: 'GDSY',
+            };
+            var listAll = [];
+            InvestListService.getLoanListWithConditionNew(jsonToParams(paramsTJ), function (res) {
+                listAll = parseLoanList(res.results)
+                InvestListService.getLoanListWithConditionNew(jsonToParams(paramsGD), function (ress) {
+                    listAll = listAll.concat(parseLoanList(ress.results));
+                    listRactive.set('list', listAll);
+                    ininconut();
+                });
+            });
+
+            $('.assign_time').mouseover(function () {
+                $(this).parent().parent().parent().siblings('.assign_tip').fadeIn(200);
+            });
+            $('.assign_tip').mouseleave(function () {
+                $(this).fadeOut(200);
+            })
+        }
+    });
+
 } else {
     params.product = CC.key;
     var investRactive = new Ractive({
