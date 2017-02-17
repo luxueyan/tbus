@@ -170,26 +170,38 @@ if (!CC.key) {
         el: ".fixedPro",
         template: require('ccc/invest/partials/fixedPro.html'),
         oncomplete: function () {
-            var paramsTJ = {
-                status: '',
-                pageSize: 1,
-                currentPage: 1,
-                product: 'CPTJ',
-            };
+            // var paramsTJ = {
+            //     status: '',
+            //     pageSize: 1,
+            //     currentPage: 1,
+            //     product: 'CPTJ',
+            // };
             var paramsGD = {
                 status: '',
-                pageSize: 3,
+                pageSize: 4,
                 currentPage: 1,
                 product: 'GDSY',
             };
-            var listAll = [];
-            InvestListService.getLoanListWithConditionNew(jsonToParams(paramsTJ), function (res) {
-                listAll = parseLoanList(res.results)
-                InvestListService.getLoanListWithConditionNew(jsonToParams(paramsGD), function (ress) {
-                    listAll = listAll.concat(parseLoanList(ress.results));
-                    listRactive.set('list', listAll);
-                    ininconut();
-                });
+            // var listAll = [];
+            // InvestListService.getLoanListWithConditionNew(jsonToParams(paramsTJ), function (res) {
+            //     listAll = parseLoanList(res.results);
+            //     var idTJ = res.results[0].id;
+            //     InvestListService.getLoanListWithCondition(jsonToParams(paramsGD), 'true', function (ress) {
+            //         var listGD = parseLoanList(ress.results);
+            //         for (var i = 0; i < listGD.length; i++) {
+            //             if (listGD[i].id !== idTJ) {
+            //                 listAll = listAll.concat(listGD[i]);
+            //             }
+            //         }
+            //         listRactive.set('list', listAll);
+            //         ininconut();
+            //     });
+            // });
+
+            InvestListService.getLoanListWithCondition(jsonToParams(paramsGD), 'true', function (ress) {
+                listRactive.set('list', parseLoanList(ress.results));
+                
+                ininconut();
             });
 
             $('.assign_time').mouseover(function () {
