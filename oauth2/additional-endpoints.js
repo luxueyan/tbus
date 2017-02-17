@@ -124,6 +124,8 @@ module.exports = function (router, auth, middlewares) {
     //兑换红包新接口加校验
     router.post('/api/v2/coupon/:userId/redeemCouponIgnoreApprovalWithCaptcha', auth.user(), middlewares.captchaRequired);
 
+    router.get('/api/v2/loans/getLoansForHomePage', auth.pass());
+
     router.get('/api/v2/statisticsAll', auth.user(), function (req, res) {
         Promise.all([
             request(marketPrefix + '/api/v2/user/' + req.user.id + '/statistics').get('body'),
