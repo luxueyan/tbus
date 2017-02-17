@@ -202,7 +202,6 @@ if (!CC.key) {
     //     ininconut();
     // });
 
-
     var listRactive = new Ractive({
         el: ".fixedPro",
         template: require('ccc/high/partials/fixedPro.html'),
@@ -212,18 +211,16 @@ if (!CC.key) {
             params.product = 'GDLC';
             InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) {
                 that.set('list', parseLoanList(res.results));
+                ininconut();
             });
-
             $('.assign_time').mouseover(function () {
                 $(this).parent().parent().parent().siblings('.assign_tip').fadeIn(200);
             });
-
             $('.assign_tip').mouseleave(function () {
                 $(this).fadeOut(200);
             });
         }
     });
-    ininconut();
 } else {
     params.product = CC.key;
     var investRactive = new Ractive({
