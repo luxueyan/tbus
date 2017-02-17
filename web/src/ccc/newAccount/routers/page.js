@@ -38,12 +38,9 @@ module.exports = function (router) {
                     if (!email) {
                         return false;
                     }
-
-                    if (email ===
-                        'notavailable@qilerong.com') {
+                    if (email === 'notavailable@qilerong.com') {
                         return false;
                     }
-
                     return true;
                 },
 
@@ -60,30 +57,10 @@ module.exports = function (router) {
                 },
                 authenticates: req.uest('/api/v2/user/MYSELF/authenticates').end().get('body'),
                 isEnterprise: res.locals.user.enterprise,
-                //groupMedal: req.uest('/api/v2/users/MYSELF/groupMedal')
-                //    .end()
-                //    .then(function(r) {
-                //        var results = r.body.results;
-                //        if (results) {
-                //            for (var i = 0; i < results.length; i++) {
-                //
-                //                results[i] = results[i] +
-                //                    "!3";
-                //            }
-                //
-                //            return results;
-                //        } else {
-                //            return [];
-                //        }
-                //    })
-
             });
 
-
             // safetyProgress
-            var items = ['checkMobile', 'checkEmail', 'checkCard',
-                'checkUmpay'
-            ];
+            var items = ['checkMobile', 'checkEmail', 'checkCard', 'checkUmpay'];
             var avail = items.reduce(function (ret, item) {
                 if (res.locals[item]()) {
                     ret += 1;
@@ -126,10 +103,8 @@ module.exports = function (router) {
 
     // 特定页面的
     router.get('/coupon', function (req, res) {
-        var paymentPasswordHasSet = req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
-            .end().get('body');
-        res.locals.user.paymentPasswordHasSet =
-            paymentPasswordHasSet;
+        var paymentPasswordHasSet = req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet').end().get('body');
+        res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet;
 
         res.render('newAccount/coupon', {
             title: '汇财富'
@@ -152,20 +127,16 @@ module.exports = function (router) {
         });
     });
     router.get('/invite', function (req, res) {
-        var paymentPasswordHasSet = req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
-            .end().get('body');
-        res.locals.user.paymentPasswordHasSet =
-            paymentPasswordHasSet;
+        var paymentPasswordHasSet = req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet').end().get('body');
+        res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet;
 
         res.render('newAccount/invite', {
             title: '汇财富'
         });
     });
     router.get('/risk', function (req, res) {
-        var paymentPasswordHasSet = req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
-            .end().get('body');
-        res.locals.user.paymentPasswordHasSet =
-            paymentPasswordHasSet;
+        var paymentPasswordHasSet = req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet').end().get('body');
+        res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet;
 
         res.render('newAccount/risk', {
             title: '汇财富'
@@ -174,16 +145,16 @@ module.exports = function (router) {
 
     //理财师
     router.get('/financial', function (req, res) {
-        // var paymentPasswordHasSet = req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet').end().get('body');
-        // res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet;
-
-        res.render('newAccount/financial', {
-            title: '汇财富'
-        });
+        if (res.locals.user.isMMC) {
+            res.render('newAccount/financial', {
+                title: '汇财富'
+            });
+        } else {
+            res.redirect('/newAccount/home/index');
+        }
     });
 
     router.get('/recharge', async function (req, res) {
-
         var clientIp = getClientIp(req);
         res.expose(clientIp, 'clientIp');
 
@@ -193,13 +164,11 @@ module.exports = function (router) {
             paymentPasswordHasSet;
         var banks = _.filter(res.locals.user.bankCards, r => r.deleted === false);
         if (!banks.length) {
-            res.redirect(
-                '/newAccount/settings/bankCards');
+            res.redirect('/newAccount/settings/bankCards');
         }
 
         if (!paymentPasswordHasSet) {
-            res.redirect(
-                '/newAccount/settings/password');
+            res.redirect('/newAccount/settings/password');
         }
 
         res.render('newAccount/recharge', {
@@ -234,10 +203,8 @@ module.exports = function (router) {
     });
 
     router.get('/userInfo', function (req, res) {
-        var paymentPasswordHasSet = req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
-            .end().get('body');
-        res.locals.user.paymentPasswordHasSet =
-            paymentPasswordHasSet;
+        var paymentPasswordHasSet = req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet').end().get('body');
+        res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet;
 
         res.render('newAccount/userInfo', {
             title: '汇财富'
@@ -263,28 +230,15 @@ module.exports = function (router) {
     ].forEach(function (tabName) {
         router.get('/home/' + tabName, function (req, res) {
             Promise.join(
-                req.uest('/api/v2/user/MYSELF/statistics/invest')
-                    .end().get('body'),
-                req.uest(
-                    '/api/v2/user/MYSELF/authenticates')
-                    .end().get('body'),
-                req.uest(
-                    '/api/v2/user/MYSELF/paymentPasswordHasSet')
-                    .end().get('body'),
-                req.uest(
-                    '/api/v2/user/MYSELF/fundaccountsMap')
-                    .end().get('body'),
-                function (investStatistics, authenticates,
-                          paymentPasswordHasSet,
-                          fundaccountsMap) {
-                    res.locals.user.investStatistics =
-                        investStatistics;
-                    res.locals.user.authenticates =
-                        authenticates;
-                    res.locals.user.paymentPasswordHasSet =
-                        paymentPasswordHasSet;
-                    res.locals.user.fundaccountsMap =
-                        fundaccountsMap;
+                req.uest('/api/v2/user/MYSELF/statistics/invest').end().get('body'),
+                req.uest('/api/v2/user/MYSELF/authenticates').end().get('body'),
+                req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet').end().get('body'),
+                req.uest('/api/v2/user/MYSELF/fundaccountsMap').end().get('body'),
+                function (investStatistics, authenticates, paymentPasswordHasSet, fundaccountsMap) {
+                    res.locals.user.investStatistics = investStatistics;
+                    res.locals.user.authenticates = authenticates;
+                    res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet;
+                    res.locals.user.fundaccountsMap = fundaccountsMap;
                     res.render('newAccount/home', {
                         tabName: tabName,
                     });
