@@ -37,9 +37,9 @@ IndexService.getLoansForHomePage(function (res) {
         el: ".GDSYproductList",
         template: require('ccc/index/partials/gdsy.html'),
         data: {
-            listTJ: res['CPTJ'],
-            listNew: res['NEW'],
-            listGD: res['GDSY'][0],
+            listTJ: formatItemNew(res['CPTJ']),
+            listNew: formatItemNew(res['NEW']),
+            listGD: formatItem(res['GDSY'])[0],
         },
     });
 });
@@ -157,3 +157,53 @@ request.get(encodeURI('/api/v2/cms/category/COOPERATION/name/合作伙伴')).end
         }
     });
 });
+
+
+function formatItem(item) {
+    for (var i = 0; i < item.length; i++) {
+        item[i].rate = item[i].rate / 100;
+
+        //格式化期限
+        if (item[i].loanRequest.displayDuration) {
+            var durationNew = item[i].loanRequest.displayDuration.frontShowDuration;
+            var reg1 = /(\d{1,3})+(?:\.\d+)?/g;
+            var reg2 = /[\u4e00-\u9fa5]{1,}/g;
+            item[i].durationNewNo = durationNew.match(reg1)[0];
+            item[i].durationNewName = durationNew.match(reg2)[0];
+        }
+
+        item[i].FminAmount = utils.format.amount(item[i].loanRequest.investRule.minAmount);
+        if (item[i].loanRequest.investRule.minAmount >= 10000) {
+            item[i].minAmountUnit = '万元';
+            item.minAmount = utils.format.amount((item[i].loanRequest.investRule.minAmount / 10000));
+        } else {
+            item[i].minAmount = utils.format.amount(item[i].loanRequest.investRule.minAmount);
+            item[i].minAmountUnit = '元';
+        }
+    }
+    console.log(item)
+    return item;
+}
+
+function formatItemNew(item) {
+        item.rate = item.rate / 100;
+
+        //格式化期限
+        if (item.loanRequest.displayDuration) {
+            var durationNew = item.loanRequest.displayDuration.frontShowDuration;
+            var reg1 = /(\d{1,3})+(?:\.\d+)?/g;
+            var reg2 = /[\u4e00-\u9fa5]{1,}/g;
+            item.durationNewNo = durationNew.match(reg1)[0];
+            item.durationNewName = durationNew.match(reg2)[0];
+        }
+
+        item.FminAmount = utils.format.amount(item.loanRequest.investRule.minAmount);
+        if (item.loanRequest.investRule.minAmount >= 10000) {
+            item.minAmountUnit = '万元';
+            item.minAmount = utils.format.amount((item.loanRequest.investRule.minAmount / 10000));
+        } else {
+            item.minAmount = utils.format.amount(item.loanRequest.investRule.minAmount);
+            item.minAmountUnit = '元';
+        }
+    return item;
+}

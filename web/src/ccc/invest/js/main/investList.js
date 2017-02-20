@@ -116,7 +116,6 @@ function formatItem(item) {
 }
 
 function parseLoanList(list) {
-    //console.log(list)
     for (var i = 0; i < list.length; i++) {
         list[i] = formatItem(list[i]);
         var method = list[i].method;
@@ -147,14 +146,8 @@ if (!CC.key) {
         el: ".fixedProNew",
         template: require('ccc/invest/partials/fixedPro.html'),
         oncomplete: function () {
-            var paramsNew = {
-                status: '',
-                pageSize: 1,
-                currentPage: 1,
-                product: 'NEW'
-            };
-            InvestListService.getLoanListWithConditionNew(jsonToParams(paramsNew), function (res) {
-                listNewRactive.set('list', parseLoanList(res.results));
+            IndexService.getLoansForHomePage(function (res) {
+                listNewRactive.set('list', formatItem(res['NEW']));
             });
             $('.assign_time').mouseover(function () {
                 $(this).parent().parent().parent().siblings('.assign_tip').fadeIn(200);
@@ -170,40 +163,16 @@ if (!CC.key) {
         el: ".fixedPro",
         template: require('ccc/invest/partials/fixedPro.html'),
         oncomplete: function () {
-            // var paramsTJ = {
-            //     status: '',
-            //     pageSize: 1,
-            //     currentPage: 1,
-            //     product: 'CPTJ',
-            // };
             var paramsGD = {
                 status: '',
                 pageSize: 4,
                 currentPage: 1,
                 product: 'GDSY',
             };
-            // var listAll = [];
-            // InvestListService.getLoanListWithConditionNew(jsonToParams(paramsTJ), function (res) {
-            //     listAll = parseLoanList(res.results);
-            //     var idTJ = res.results[0].id;
-            //     InvestListService.getLoanListWithCondition(jsonToParams(paramsGD), 'true', function (ress) {
-            //         var listGD = parseLoanList(ress.results);
-            //         for (var i = 0; i < listGD.length; i++) {
-            //             if (listGD[i].id !== idTJ) {
-            //                 listAll = listAll.concat(listGD[i]);
-            //             }
-            //         }
-            //         listRactive.set('list', listAll);
-            //         ininconut();
-            //     });
-            // });
-
             InvestListService.getLoanListWithCondition(jsonToParams(paramsGD), 'true', function (ress) {
                 listRactive.set('list', parseLoanList(ress.results));
-                
                 ininconut();
             });
-
             $('.assign_time').mouseover(function () {
                 $(this).parent().parent().parent().siblings('.assign_tip').fadeIn(200);
             });
@@ -240,8 +209,6 @@ if (!CC.key) {
                     that.set('num', r.body);
 
                 });
-
-
             InvestListService.getLoanListWithCondition(jsonToParams(params), Boolean, function (res) {
                 that.set('list', parseLoanList(res.results));
                 that.renderPager(res, params.currentPage, that)
@@ -333,7 +300,6 @@ if (!CC.key) {
     });
 
 }
-
 
 //剩余时间
 function ininconut() {
