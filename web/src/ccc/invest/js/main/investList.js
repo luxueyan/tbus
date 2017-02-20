@@ -134,7 +134,7 @@ function parseLoanList(list) {
             list[i].FminAmount = (list[i].loanRequest.investRule.minAmount / 10000);
             list[i].FminUnit = "万元";
         }
-        list[i].balance = utils.format.amount(list[i].balance, 2);
+        list[i].Fbalance = utils.format.amount(list[i].balance, 2);
         list[i].investPercent = utils.format.amount(list[i].investPercent, 1);
     }
     return list;
@@ -142,7 +142,7 @@ function parseLoanList(list) {
 
 function formatItemNew(item) {
     item.rate = item.rate / 100;
-
+    item[i].Fbalance = utils.format.amount(item[i].balance, 2);
     //格式化期限
     if (item.loanRequest.displayDuration) {
         var durationNew = item.loanRequest.displayDuration.frontShowDuration;
