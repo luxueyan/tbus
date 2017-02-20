@@ -198,10 +198,8 @@ if (!CC.key) {
             };
             InvestListService.getLoanListWithCondition(jsonToParams(paramsGD), 'true', function (res) {
                 var listALL = [];
-                console.log(res.results)
-
                 for (var i = 0; i < res.results.length; i++) {
-                    if (res.results[i].status !== 'NEW') {
+                    if (res.results[i].loanRequest.productKey !== 'NEW') {
                         listALL.push(res.results[i])
                     }
                 }
