@@ -142,7 +142,7 @@ function parseLoanList(list) {
 
 function formatItemNew(item) {
     item.rate = item.rate / 100;
-    item[i].Fbalance = utils.format.amount(item[i].balance, 2);
+    item.Fbalance = utils.format.amount(item.balance, 2);
     //格式化期限
     if (item.loanRequest.displayDuration) {
         var durationNew = item.loanRequest.displayDuration.frontShowDuration;
