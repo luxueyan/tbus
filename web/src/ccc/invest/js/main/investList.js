@@ -78,6 +78,11 @@ function formatItem(item) {
         item.investPercent = (item.investPercent * 100);
     }
 
+    if (item.status === 'FINISHED' || item.status === 'FAKESETTLED' || item.status === 'FAILED') {
+        item.investPercent = 100;
+    }
+
+
     if (item.loanRequest.displayDuration) {
         var durationNew = item.loanRequest.displayDuration.frontShowDuration;
         var reg1 = /(\d{1,3})+(?:\.\d+)?/g;
@@ -122,7 +127,6 @@ function parseLoanList(list) {
         var methodFmt = i18n.enums.RepaymentMethod[method][0];
         list[i].methodFmt = methodFmt;
         list[i].titleLength = replaceStr(list[i].title);
-        //list[i].FminAmount = utils.format.amount(list[i].loanRequest.investRule.minAmount, 2);
         if (list[i].loanRequest.investRule.minAmount < 10000) {
             list[i].FminAmount = list[i].loanRequest.investRule.minAmount;
             list[i].FminUnit = "元";
@@ -136,6 +140,29 @@ function parseLoanList(list) {
     return list;
 }
 
+function formatItemNew(item) {
+    item.rate = item.rate / 100;
+
+    //格式化期限
+    if (item.loanRequest.displayDuration) {
+        var durationNew = item.loanRequest.displayDuration.frontShowDuration;
+        var reg1 = /(\d{1,3})+(?:\.\d+)?/g;
+        var reg2 = /[\u4e00-\u9fa5]{1,}/g;
+        item.durationNewNo = durationNew.match(reg1)[0];
+        item.durationNewName = durationNew.match(reg2)[0];
+    }
+
+    item.FminAmount = utils.format.amount(item.loanRequest.investRule.minAmount);
+    if (item.loanRequest.investRule.minAmount >= 10000) {
+        item.FminAmount = utils.format.amount((item.loanRequest.investRule.minAmount / 10000));
+        item.FminUnit = '万元';
+    } else {
+        item.FminAmount = utils.format.amount(item.loanRequest.investRule.minAmount);
+        item.FminUnit = '元';
+    }
+    return item;
+}
+
 function replaceStr(str) {
     return str.replace(/[^\x00-xff]/g, 'xx').length;
 }
@@ -147,7 +174,7 @@ if (!CC.key) {
         template: require('ccc/invest/partials/fixedPro.html'),
         oncomplete: function () {
             IndexService.getLoansForHomePage(function (res) {
-                listNewRactive.set('list', formatItem(res['NEW']));
+                listNewRactive.set('list', formatItemNew(res['NEW']));
             });
             $('.assign_time').mouseover(function () {
                 $(this).parent().parent().parent().siblings('.assign_tip').fadeIn(200);
@@ -165,14 +192,23 @@ if (!CC.key) {
         oncomplete: function () {
             var paramsGD = {
                 status: '',
-                pageSize: 4,
+                pageSize: 5,
                 currentPage: 1,
                 product: 'GDSY',
             };
-            InvestListService.getLoanListWithCondition(jsonToParams(paramsGD), 'true', function (ress) {
-                listRactive.set('list', parseLoanList(ress.results));
+            InvestListService.getLoanListWithCondition(jsonToParams(paramsGD), 'true', function (res) {
+                var listALL = [];
+                console.log(res.results)
+
+                for (var i = 0; i < res.results.length; i++) {
+                    if (res.results[i].status !== 'NEW') {
+                        listALL.push(res.results[i])
+                    }
+                }
+                listRactive.set('list', parseLoanList(listALL.slice(0, 4)));
                 ininconut();
             });
+
             $('.assign_time').mouseover(function () {
                 $(this).parent().parent().parent().siblings('.assign_tip').fadeIn(200);
             });
