@@ -271,6 +271,7 @@ if (!CC.key) {
                 currentPage = 1;
             }
 
+
             function createList(len) {
                 var arr = [];
                 var i = parseInt(len / params.pageSize);
