@@ -103,6 +103,7 @@ function parseLoanList(loans) {
         } else {
             item.TamountUnit = '元';
         }
+
         if (item.balance >= 10000) {
             item.amountUnit = '万';
             item.balance = (item.balance / 10000);
@@ -111,6 +112,7 @@ function parseLoanList(loans) {
         }
 
         item.FminAmount = utils.format.amount(item.loanRequest.investRule.minAmount);
+
         if (item.loanRequest.investRule.minAmount >= 10000) {
             item.minAmountUnit = '万元';
             item.minAmount = utils.format.amount((item.loanRequest.investRule.minAmount / 10000));

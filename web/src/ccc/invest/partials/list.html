@@ -1,70 +1,70 @@
 <!--{{JSON.stringify(list)}}-->
 
 <div class="list_header" id="href">
-  <div class="list_title">
-    <a href="/invest">我要理财</a> > <span>{{#if key === 'GDSY'}}固定收益{{elseif key=== 'FDSY'}}浮动收益{{/if}}</span>
-  </div>
-  <div class="getstatusNum">
-    <ul class="sStatus">
-      <li class="selected" data-status="">全部产品（{{num.total}}）</li>
-      <li data-status="OPENED">在售中（{{num.opened}}）</li>
-      <li data-status="SETTLED">计息中（{{num.settled}}）</li>
-      <li data-status="CLEARED">已结息（{{num.cleared}}）</li>
-    </ul>
-  </div>
+    <div class="list_title">
+        <a href="/invest">我要理财</a> > <span>{{#if key === 'GDSY'}}固定收益{{elseif key=== 'FDSY'}}浮动收益{{/if}}</span>
+    </div>
+    <div class="getstatusNum">
+        <ul class="sStatus">
+            <li class="selected" data-status="">全部产品（{{num.total}}）</li>
+            <li data-status="OPENED">在售中（{{num.opened}}）</li>
+            <li data-status="SETTLED">计息中（{{num.settled}}）</li>
+            <li data-status="CLEARED">已结息（{{num.cleared}}）</li>
+        </ul>
+    </div>
 </div>
 <div class="list_content">
-  <div class="invest-list-wrapper">
-    <table>
-      <thead>
-      <tr>
-        <th >产品名称</th>
-        <th class="textCenter">预期收益率</th>
-        <th class="textCenter">投资期限</th>
-        <th class="textCenter">起投金额</th>
-        <th class="textCenter">状态</th>
-        <th class="textCenter"></th>
-      </tr>
-      </thead>
-      <tbody>
-      {{#list}}
-      <tr>
-        <td class="title"><a href="/loan/{{ id }}" class="invest-title">{{title}}</a></td>
-        <td class="rate textCenter"><span>{{rate}}</span>%</td>
-        <td class="fdurunit textCenter">
-          <span>{{durationNewNo}}</span>{{durationNewName}}
-        </td>
-        <td class="minAmount textCenter">
-          <span>{{FminAmount}}</span>{{FminUnit}}
-        </td>
-        <td class="status textCenter">
-          {{#if status === 'OPENED'}}
-          <div class="rate">在售中</div>
-          {{/if}} {{#if status === 'SCHEDULED'}}
-          <div>即将开始</div>
-          {{/if}} {{#if status === 'FINISHED'||status === 'FAKESETTLED' || status === 'FAILED'}}
-          <div>已售罄</div>
-          {{/if}}  {{#if status === 'SETTLED'}}
-          <div>计息中</div>
-          {{/if}} {{#if status === 'CLEARED'}}
-          <div>已结息</div>
-          {{/if}}
-        </td>
-        <td class="operate">
-          {{#if status === 'OPENED'}}
-          <a href="/loan/{{id}}" class="investbtn investbtn-open">查看详情</a>
-          {{else}}
-          <a href="/loan/{{id}}" class="investbtn">查看详情</a>
-          {{/if}}
-        </td>
-      </tr>
-      {{/list}}
-      </tbody>
-    </table>
-    {{#if list}}
-    <div class="invest-pager-wrapper" id="invest-pager"></div>
-    {{/if}}
-  </div>
+    <div class="invest-list-wrapper">
+        <table>
+            <thead>
+            <tr>
+                <th>产品名称</th>
+                <th class="textCenter">预期收益率</th>
+                <th class="textCenter">投资期限</th>
+                <th class="textCenter">起投金额</th>
+                <th class="textCenter">状态</th>
+                <th class="textCenter"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#list}}
+            <tr>
+                <td class="title"><a href="/loan/{{ id }}" class="invest-title">{{title}}</a></td>
+                <td class="rate textCenter"><span>{{rate}}</span>%</td>
+                <td class="fdurunit textCenter">
+                    <span>{{durationNewNo}}</span>{{durationNewName}}
+                </td>
+                <td class="minAmount textCenter">
+                    <span>{{FminAmount}}</span>{{FminUnit}}
+                </td>
+                <td class="status textCenter">
+                    {{#if status === 'OPENED'}}
+                    <div class="rate">在售中</div>
+                    {{/if}} {{#if status === 'SCHEDULED'}}
+                    <div>即将开始</div>
+                    {{/if}} {{#if status === 'FINISHED'||status === 'FAKESETTLED' || status === 'FAILED'}}
+                    <div>已售罄</div>
+                    {{/if}} {{#if status === 'SETTLED'}}
+                    <div>计息中</div>
+                    {{/if}} {{#if status === 'CLEARED'}}
+                    <div>已结息</div>
+                    {{/if}}
+                </td>
+                <td class="operate">
+                    {{#if status === 'OPENED'}}
+                    <a href="/loan/{{id}}" class="investbtn investbtn-open">查看详情</a>
+                    {{else}}
+                    <a href="/loan/{{id}}" class="investbtn">查看详情</a>
+                    {{/if}}
+                </td>
+            </tr>
+            {{/list}}
+            </tbody>
+        </table>
+        {{#if list}}
+        <div class="invest-pager-wrapper" id="invest-pager"></div>
+        {{/if}}
+    </div>
 </div>
 
 
