@@ -33,25 +33,27 @@ function replaceStr(str) {
 
 
 IndexService.getLoansForHomePage(function (res) {
+    var GDSY=formatItem(res['GDSY']);
     var investRactive = new Ractive({
             el: ".GDSYproductList",
             template: require('ccc/index/partials/gdsy.html'),
             data: {
-                listTJ: formatItemNew(res['CPTJ']),
-                listNew: formatItemNew(res['NEW']),
-                listGD: formatItem(res['GDSY'])[0],
+                listTJ: {},
+                listNew: {},
+                listGD: GDSY[0],
             },
-            oninit: function () {
+            oncomplete: function () {
                 if (res['CPTJ'] == null || res['CPTJ'] == "null") {
-                    if (res['GDSY'][2]) {
-                        this.set('listTJ', formatItem(res['GDSY'])[2]);
-                    }
+                    this.set('listTJ', GDSY[2]);
 
+                } else {
+                    this.set('listTJ', formatItemNew(res['CPTJ']));
                 }
-                if (res['NEW'] = null || res['NEW'] == "null") {
-                    if (res['GDSY'][1]){
-                        this.set('listTJ', formatItem(res['GDSY'])[1]);
-                    }
+                if (res['NEW'] == null || res['NEW'] == "null") {
+                    this.set('listNew', GDSY[1]);
+                } else {
+                    this.set('listNew', formatItemNew(res['NEW']));
+
                 }
             }
         })
@@ -176,7 +178,7 @@ request.get(encodeURI('/api/v2/cms/category/COOPERATION/name/合作伙伴')).end
 
 function formatItem(item) {
     for (var i = 0; i < item.length; i++) {
-        item[i].rate = item[i].rate / 100;
+        item[i].rate = Number(item[i].rate / 100).toFixed(2)
 
         //格式化期限
         if (item[i].loanRequest.displayDuration) {
@@ -200,7 +202,7 @@ function formatItem(item) {
 }
 
 function formatItemNew(item) {
-    item.rate = item.rate / 100;
+    item.rate = Number(item.rate / 100).toFixed(2);
 
     //格式化期限
     if (item.loanRequest.displayDuration) {
