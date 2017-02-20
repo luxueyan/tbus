@@ -197,12 +197,9 @@ if (!CC.key) {
                 product: 'GDSY',
             };
             InvestListService.getLoanListWithCondition(jsonToParams(paramsGD), 'true', function (res) {
-                var listALL = res.results;
-                for (var i = listALL - 1; i >= 0; i--) {
-                    if (listALL[i].loanRequest.productKey == 'NEW') {
-                        listALL.del(i);
-                        break;
-                    }
+                var listALL = [];
+                for (var i =1; i < res.results.length; i++) {
+                    listALL.push(res.results[i]);
                 }
                 listRactive.set('list', parseLoanList(listALL.slice(0, 4)));
                 ininconut();
@@ -365,12 +362,3 @@ function ininconut() {
         }), 1000);
     });
 };
-
-Array.prototype.del = function (n) {
-    if (n < 0) {
-        return this;
-    } else {
-        return this.slice(0, n).concat(this.slice(n + 1, this.length));
-    }
-
-}
