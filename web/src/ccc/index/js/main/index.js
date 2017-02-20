@@ -34,23 +34,30 @@ function replaceStr(str) {
 
 IndexService.getLoansForHomePage(function (res) {
     var investRactive = new Ractive({
-        el: ".GDSYproductList",
-        template: require('ccc/index/partials/gdsy.html'),
-        data: {
-            listTJ: formatItemNew(res['CPTJ']),
-            listNew: formatItemNew(res['NEW']),
-            listGD: formatItem(res['GDSY'])[0],
-        },
-        oninit: function () {
-            if(isEmptyObject(res['CPTJ'])){
-                this.set('listTJ',formatItem(res['GDSY'])[2]);
+            el: ".GDSYproductList",
+            template: require('ccc/index/partials/gdsy.html'),
+            data: {
+                listTJ: formatItemNew(res['CPTJ']),
+                listNew: formatItemNew(res['NEW']),
+                listGD: formatItem(res['GDSY'])[0],
+            },
+            oninit: function () {
+                if (res['CPTJ'] == null || res['CPTJ'] == "null") {
+                    if (res['GDSY'][2]) {
+                        this.set('listTJ', formatItem(res['GDSY'])[2]);
+                    }
+
+                }
+                if (res['NEW'] = null || res['NEW'] == "null") {
+                    if (res['GDSY'][1]){
+                        this.set('listTJ', formatItem(res['GDSY'])[1]);
+                    }
+                }
             }
-            if (isEmptyObject(res['NEW'])) {
-                this.set('listTJ',formatItem(res['GDSY'])[1]);
-            }
-        }
-    });
-});
+        })
+        ;
+})
+;
 
 
 $("#btn-login-on-carousel").click(function (e) {
@@ -189,36 +196,28 @@ function formatItem(item) {
             item[i].minAmountUnit = '元';
         }
     }
-    console.log(item)
     return item;
 }
 
 function formatItemNew(item) {
-        item.rate = item.rate / 100;
+    item.rate = item.rate / 100;
 
-        //格式化期限
-        if (item.loanRequest.displayDuration) {
-            var durationNew = item.loanRequest.displayDuration.frontShowDuration;
-            var reg1 = /(\d{1,3})+(?:\.\d+)?/g;
-            var reg2 = /[\u4e00-\u9fa5]{1,}/g;
-            item.durationNewNo = durationNew.match(reg1)[0];
-            item.durationNewName = durationNew.match(reg2)[0];
-        }
-
-        item.FminAmount = utils.format.amount(item.loanRequest.investRule.minAmount);
-        if (item.loanRequest.investRule.minAmount >= 10000) {
-            item.minAmountUnit = '万元';
-            item.minAmount = utils.format.amount((item.loanRequest.investRule.minAmount / 10000));
-        } else {
-            item.minAmount = utils.format.amount(item.loanRequest.investRule.minAmount);
-            item.minAmountUnit = '元';
-        }
-    return item;
-}
-
-function isEmptyObject(obj) {
-    for (var key in obj) {
-        return false;
+    //格式化期限
+    if (item.loanRequest.displayDuration) {
+        var durationNew = item.loanRequest.displayDuration.frontShowDuration;
+        var reg1 = /(\d{1,3})+(?:\.\d+)?/g;
+        var reg2 = /[\u4e00-\u9fa5]{1,}/g;
+        item.durationNewNo = durationNew.match(reg1)[0];
+        item.durationNewName = durationNew.match(reg2)[0];
     }
-    return true;
+
+    item.FminAmount = utils.format.amount(item.loanRequest.investRule.minAmount);
+    if (item.loanRequest.investRule.minAmount >= 10000) {
+        item.minAmountUnit = '万元';
+        item.minAmount = utils.format.amount((item.loanRequest.investRule.minAmount / 10000));
+    } else {
+        item.minAmount = utils.format.amount(item.loanRequest.investRule.minAmount);
+        item.minAmountUnit = '元';
+    }
+    return item;
 }
