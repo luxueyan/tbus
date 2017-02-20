@@ -41,6 +41,14 @@ IndexService.getLoansForHomePage(function (res) {
             listNew: formatItemNew(res['NEW']),
             listGD: formatItem(res['GDSY'])[0],
         },
+        oninit: function () {
+            if(!isEmptyObject(res['CPTJ'])){
+                investRactive.set('listTJ',formatItem(res['GDSY'])[2]);
+            }
+            if (!isEmptyObject(res['NEW'])) {
+                investRactive.set('listTJ',formatItem(res['GDSY'])[1]);
+            }
+        }
     });
 });
 
@@ -206,4 +214,11 @@ function formatItemNew(item) {
             item.minAmountUnit = '元';
         }
     return item;
+}
+
+function isEmptyObject(obj) {
+    for (var key in obj) {
+        return false;
+    }
+    return true;
 }
