@@ -236,7 +236,7 @@ if (!CC.key) {
                 Boolean = "true";
             }
             var api = '/api/v2/loan/summaryTotal?recommedInFront=' + Boolean + '&product=';
-            request.get(api + key + '&product=CPTJ')
+            request.get(api + key + '&product=CPTJ&product=NEW')
                 .end()
                 .then(function (r) {
                     that.set('num', r.body);
