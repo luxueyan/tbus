@@ -109,7 +109,6 @@ ractive.on('arrowA06', function (e) {
     rows.sort(function (a, b) {
         return a.latestDueTime < b.latestDueTime ? -1 : 1;//时间正序
     });
-    console.log(rows)
 
     if (status == 'up') {
         ractive.set('financialList', rows);
