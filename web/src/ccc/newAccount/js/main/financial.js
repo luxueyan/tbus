@@ -102,7 +102,6 @@ ractive.on('arrowA05', function (e) {
     }
 });
 
-
 ractive.on('arrowA06', function (e) {
     ractive.set('financialList', null);
     var status = e.node.dataset.latestduetime;
