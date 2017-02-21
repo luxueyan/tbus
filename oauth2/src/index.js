@@ -71,4 +71,5 @@ server.use(require('api-pass')(config.proxy.market, {
         return onresponse(response, res);
     }
 }));
+console.log('config:', JSON.stringify(require('config'), null, '    '));
 use(server, require('@os/oauth2-errorhandlers')(os));

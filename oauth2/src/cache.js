@@ -16,6 +16,14 @@ resolvingPromises = {};
 function ku(key, method, url) {
     return key + "::" + method + "::" + url;
 }
+
+// rewrite config
+var _ = require('lodash');
+_.assign(config.cache, {
+  tender: false,
+  loan: false
+});
+
 rp = require('request-promise');
 function createRequestPromise(configKey, key, method, url) {
     var cacheTtl, ref$, p;
