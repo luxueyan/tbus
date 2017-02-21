@@ -1,3 +1,5 @@
+
+
 /**
  * @file 账户数据对接模块交互逻辑
  * @author xushusheng(jason.xu@creditcloud.com)
@@ -30,7 +32,7 @@ exports.accountService = {
         var api = '/api/v2/user/MYSELF/loan/count';
         api = api+status;
         request('GET', api)
-        .end()
+            .end()
             .then(function (r) {
                 if( r.body.data > 0 ){
                     next(r.body.data);
@@ -93,7 +95,7 @@ exports.accountService = {
             });
     },
     feedback:function(userId,params,next){
-          request('POST', '/api/v2/user/'+userId+'/feedback')
+        request('POST', '/api/v2/user/'+userId+'/feedback')
             .type('form')
             .send(params)
             .end()
@@ -102,7 +104,7 @@ exports.accountService = {
             });
 
     },
-        saveAutoBidConfig: function(params, next){
+    saveAutoBidConfig: function(params, next){
         $.post('/api/v2/'+CC.user.id+'/save_autobid_config', params, function(r){
             next(r);
             return r;
@@ -118,7 +120,7 @@ exports.accountService = {
 //            });
 //    },
     getTotalInters:function(next){
-         request('GET', '/api/v2/points/user/'+CC.user.id+'/getTotalPoints')
+        request('GET', '/api/v2/points/user/'+CC.user.id+'/getTotalPoints')
             .end()
             .then(function (r) {
                 next(r.body);
@@ -159,19 +161,19 @@ exports.accountService = {
     },
     getGroupMedal: function (next) {
         request('GET', '/api/v2/users/MYSELF/groupMedal')
-                .end()
-                .then(function (r) {
-                    var results = r.body.results;
-                    if (results) {
-                        for(var i = 0; i < results.length; i ++) {
+            .end()
+            .then(function (r) {
+                var results = r.body.results;
+                if (results) {
+                    for(var i = 0; i < results.length; i ++) {
 
-                            results[i] = results[i] + "!3";
-                        }
-
-                        next(results);
-                    } else {
-                        next([]);
+                        results[i] = results[i] + "!3";
                     }
+
+                    next(results);
+                } else {
+                    next([]);
+                }
             })
     },
     updatePersonalInfo:function(male,educationLevel,maritalStatus,next) {
@@ -197,7 +199,7 @@ exports.accountService = {
     },
     getCurrentMonthLoan:function(to,from,next){
         request('GET','/api/v2/user/MYSELF/investRepayments/1/10?to='+to+'&from='+from)
-        .end().then(function(res){
+            .end().then(function(res){
             next(res.body);
         });
     },
@@ -206,9 +208,9 @@ exports.accountService = {
             .end()
             .then(function(res){
                 next(res.body);
-        });
+            });
     },
-    	createCreditAssign: function (investId, creditDealRate, creditAssignTitle, next) {
+    createCreditAssign: function (investId, creditDealRate, creditAssignTitle, next) {
         var url = "/api/v2/creditassign/create/MYSELF/$investId/$creditDealRate";
         url = url.replace("$investId", investId);
         url = url.replace("$creditDealRate", creditDealRate);
@@ -293,3 +295,4 @@ exports.accountService = {
     },
 
 };
+
