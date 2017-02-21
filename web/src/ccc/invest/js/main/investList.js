@@ -168,22 +168,22 @@ function replaceStr(str) {
 }
 
 if (!CC.key) {
-    // 新手标
-    var listNewRactive = new Ractive({
-        el: ".fixedProNew",
-        template: require('ccc/invest/partials/fixedPro.html'),
-        oncomplete: function () {
-            IndexService.getLoansForHomePage(function (res) {
-                listNewRactive.set('list', formatItemNew(res['NEW']));
-            });
-            $('.assign_time').mouseover(function () {
-                $(this).parent().parent().parent().siblings('.assign_tip').fadeIn(200);
-            });
-            $('.assign_tip').mouseleave(function () {
-                $(this).fadeOut(200);
-            })
-        }
-    });
+    // // 新手标
+    // var listNewRactive = new Ractive({
+    //     el: ".fixedProNew",
+    //     template: require('ccc/invest/partials/fixedPro.html'),
+    //     oncomplete: function () {
+    //         IndexService.getLoansForHomePage(function (res) {
+    //             listNewRactive.set('list', formatItemNew(res['NEW']));
+    //         });
+    //         $('.assign_time').mouseover(function () {
+    //             $(this).parent().parent().parent().siblings('.assign_tip').fadeIn(200);
+    //         });
+    //         $('.assign_tip').mouseleave(function () {
+    //             $(this).fadeOut(200);
+    //         })
+    //     }
+    // });
 
     // 固定收益
     var listRactive = new Ractive({
@@ -197,11 +197,12 @@ if (!CC.key) {
                 product: 'GDSY',
             };
             InvestListService.getLoanListWithCondition(jsonToParams(paramsGD), 'true', function (res) {
-                var listALL = [];
-                for (var i =1; i < res.results.length; i++) {
-                    listALL.push(res.results[i]);
-                }
-                listRactive.set('list', parseLoanList(listALL.slice(0, 4)));
+                // var listALL = [];
+                // for (var i =1; i < res.results.length; i++) {
+                //     listALL.push(res.results[i]);
+                // }
+                // listRactive.set('list', parseLoanList(listALL.slice(0, 5)));
+                listRactive.set('list', parseLoanList(res.results));
                 ininconut();
             });
 

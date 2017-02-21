@@ -33,33 +33,31 @@ function replaceStr(str) {
 
 
 IndexService.getLoansForHomePage(function (res) {
-    var GDSY=formatItem(res['GDSY']);
+    var GDSY = formatItem(res['GDSY']);
     var investRactive = new Ractive({
-            el: ".GDSYproductList",
-            template: require('ccc/index/partials/gdsy.html'),
-            data: {
-                listTJ: {},
-                listNew: {},
-                listGD: GDSY[0],
-            },
-            oncomplete: function () {
-                if (res['CPTJ'] == null || res['CPTJ'] == "null") {
-                    this.set('listTJ', GDSY[2]);
+        el: ".GDSYproductList",
+        template: require('ccc/index/partials/gdsy.html'),
+        data: {
+            listTJ: {},
+            listNew: {},
+            listGD: GDSY[0],
+        },
+        oncomplete: function () {
+            if (res['CPTJ'] == null || res['CPTJ'] == "null") {
+                this.set('listTJ', GDSY[2]);
 
-                } else {
-                    this.set('listTJ', formatItemNew(res['CPTJ']));
-                }
-                if (res['NEW'] == null || res['NEW'] == "null") {
-                    this.set('listNew', GDSY[1]);
-                } else {
-                    this.set('listNew', formatItemNew(res['NEW']));
-
-                }
+            } else {
+                this.set('listTJ', formatItemNew(res['CPTJ']));
             }
-        })
-        ;
-})
-;
+            if (res['NEW'] == null || res['NEW'] == "null") {
+                this.set('listNew', GDSY[1]);
+            } else {
+                this.set('listNew', formatItemNew(res['NEW']));
+
+            }
+        }
+    });
+});
 
 
 $("#btn-login-on-carousel").click(function (e) {
