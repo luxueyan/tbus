@@ -350,21 +350,17 @@ function init(type) {
                                         if (data.error || !data.creditDealRate) return !data.creditDealRate ? data.error = '请输入转让价格！' : data.error;
                                         e.node.disabled = true;
                                         e.node.innerHTML = '转让中...';
-                                        console.log(e);
-                                        console.log(data.investId);
-                                        console.log(data.creditAssignRate);
-                                        console.log(data.assignTitle);
                                         //发送请求
-                                        // accountService.createNewCreditAssign(data.investId, data.creditAssignRate, data.assignTitle, function (o) {
-                                        //     if (o.success) {
-                                        //         alert("债转创建成功!");
-                                        //         window.location.reload();
-                                        //     } else {
-                                        //         alert("债转创建失败，" + o.error[0].message);
-                                        //         window.location.reload();
-                                        //     }
-                                        //
-                                        // });
+                                        accountService.createCreditAssign(data.investId, data.creditAssignRate, data.assignTitle, function (o) {
+                                            if (o.success) {
+                                                alert("债转创建成功!");
+                                                window.location.reload();
+                                            } else {
+                                                alert("债转创建失败，" + o.error[0].message);
+                                                window.location.reload();
+                                            }
+
+                                        });
                                     })
                                 },
                             })
