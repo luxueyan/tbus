@@ -45,8 +45,18 @@
                                         <th>注册时间</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr ng-repeat="item in invite_list | orderBy: '-user.registerDate'">
+                                <tbody
+                                    ui-scrollpoint
+                                    ui-scrollpoint-edge="bottom"
+                                    ui-scrollpoint-action="self.infinite_scroll"
+                                    ui-scrollpoint-enabled="{{
+                                           open
+                                        && !loading_invite_list
+                                        && invite_list.length >= query_set.pageSize
+                                        && invite_list.length < invite_list.totalSize
+                                    }}"
+                                >
+                                    <tr ng-repeat="item in invite_list">
                                         <td>
                                             {{
                                                 item.user.name
