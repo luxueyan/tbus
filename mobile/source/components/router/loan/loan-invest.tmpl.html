@@ -157,7 +157,14 @@
                 <input type="checkbox" ng-init="agreement = true" ng-model="agreement" required>
                 我阅读并同意
                 <a href="#" ng-click="self.agreement('风险提示书')">《风险提示书》</a>、
-                <a ng-href="/api/v2/loan/loanRequest/{{ loan.raw.loanRequest.id }}/bind/template" target="_blank">《产品购买协议》</a>
+                <a href="#"
+                   ng-click="
+                       self.view_pdf(
+                           '产品购买协议',
+                           '/api/v2/loan/loanRequest/' + loan.raw.loanRequest.id + '/bind/template'
+                       )
+                   "
+                >《产品购买协议》</a>
             </label>
         </section>
 

@@ -134,7 +134,9 @@
                     <p class="desc">( 如果到期无人购买，申请将自动撤销 )</p>
                     <h5>
                         确认转让即视为同意
-                        <a href="/api/v2/creditassign/template" target="_blank">《金融资产转让协议》</a>
+                        <a href="#"
+                           ng-click="self.view_pdf('金融资产转让协议', '/api/v2/creditassign/template')"
+                        >《金融资产转让协议》</a>
                     </h5>
                 </li>
             </ul>
