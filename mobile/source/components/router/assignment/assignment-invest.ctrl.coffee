@@ -3,8 +3,8 @@ do (angular, _) ->
 
     angular.module('controller').controller 'AssignmentInvestCtrl',
 
-        _.ai '            @api, @user, @assignment, @loan, @$scope, @$rootScope, @$q, @$location, @$window, map_assignment_summary, @$uibModal, @popup_payment_state, @popup_payment_password', class
-            constructor: (@api, @user, @assignment, @loan, @$scope, @$rootScope, @$q, @$location, @$window, map_assignment_summary, @$uibModal, @popup_payment_state, @popup_payment_password) ->
+        _.ai '            @api, @user, @assignment, @loan, @$scope, @$rootScope, @$q, @$location, @$window, map_assignment_summary, @$uibModal, @popup_payment_state, @popup_payment_password, @view_pdf', class
+            constructor: (@api, @user, @assignment, @loan, @$scope, @$rootScope, @$q, @$location, @$window, map_assignment_summary, @$uibModal, @popup_payment_state, @popup_payment_password, @view_pdf) ->
 
                 @$window.scrollTo 0, 0
 

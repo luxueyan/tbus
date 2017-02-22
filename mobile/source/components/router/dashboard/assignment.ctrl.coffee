@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'DashboardAssignmentCtrl',
 
-        _.ai '            @api, @$scope, @$rootScope, @$window, @$routeParams, @$q', class
-            constructor: (@api, @$scope, @$rootScope, @$window, @$routeParams, @$q) ->
+        _.ai '            @api, @$scope, @$rootScope, @$window, @$routeParams, @$q, @view_pdf', class
+            constructor: (@api, @$scope, @$rootScope, @$window, @$routeParams, @$q, @view_pdf) ->
 
                 @$window.scrollTo 0, 0
 
