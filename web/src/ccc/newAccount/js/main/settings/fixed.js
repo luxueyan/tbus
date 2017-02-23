@@ -350,8 +350,9 @@ function init(type) {
                                         if (data.error || !data.creditDealRate) return !data.creditDealRate ? data.error = '请输入转让价格！' : data.error;
                                         e.node.disabled = true;
                                         e.node.innerHTML = '转让中...';
+
                                         //发送请求
-                                        accountService.createCreditAssign(data.investId, data.creditAssignRate, data.assignTitle, function (o) {
+                                        accountService.createNewCreditAssign(data.investId, data.creditAssignRate, this.get('creditDealRate'), data.assignTitle, function (o) {
                                             if (o.success) {
                                                 alert("债转创建成功!");
                                                 window.location.reload();
