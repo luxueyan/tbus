@@ -351,9 +351,7 @@ function init(type) {
                                         e.node.disabled = true;
                                         e.node.innerHTML = '转让中...';
 
-                                        console.log(this.get('creditDealRate'));
                                         //发送请求
-                                        // investId, creditDealRate, creditDealAmount, creditAssignTitle,
                                         accountService.createNewCreditAssign(data.investId, data.creditAssignRate, this.get('creditDealRate'), data.assignTitle, function (o) {
                                             if (o.success) {
                                                 alert("债转创建成功!");
