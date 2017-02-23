@@ -1,9 +1,7 @@
-
 /**
  * @file 账户数据对接模块交互逻辑
  * @author xushusheng(jason.xu@creditcloud.com)
  */
-
 'use strict';
 
 exports.accountService = {
@@ -16,7 +14,7 @@ exports.accountService = {
                 next(r.body);
             });
     },
-    bindAgrement: function(agreementList,next) {
+    bindAgrement: function (agreementList, next) {
         request('POST', '/api/v2/upayment/bindAgreement/MYSELF')
             .type('form')
             .send({agreementList: agreementList})
@@ -27,21 +25,21 @@ exports.accountService = {
 
     },
 
-    getLoanCount: function(status,next){
+    getLoanCount: function (status, next) {
         var api = '/api/v2/user/MYSELF/loan/count';
-        api = api+status;
+        api = api + status;
         request('GET', api)
             .end()
             .then(function (r) {
-                if( r.body.data > 0 ){
+                if (r.body.data > 0) {
                     next(r.body.data);
                 } else {
                     next(0);
                 }
             });
     },
-    authenticateUser: function(user, next) {
-        request('POST', '/api/v2/guozhengtong/authenticateUser/'+CC.user.id)
+    authenticateUser: function (user, next) {
+        request('POST', '/api/v2/guozhengtong/authenticateUser/' + CC.user.id)
             .type('form')
             .send(user)
             .end()
@@ -49,7 +47,7 @@ exports.accountService = {
                 next(r.body);
             });
     },
-    checkId: function(user, next) {
+    checkId: function (user, next) {
         request('POST', '/api/v2/user/MYSELF/checkId')
             .type('form')
             .send(user)
@@ -93,8 +91,8 @@ exports.accountService = {
                 next(r.body);
             });
     },
-    feedback:function(userId,params,next){
-        request('POST', '/api/v2/user/'+userId+'/feedback')
+    feedback: function (userId, params, next) {
+        request('POST', '/api/v2/user/' + userId + '/feedback')
             .type('form')
             .send(params)
             .end()
@@ -103,8 +101,8 @@ exports.accountService = {
             });
 
     },
-    saveAutoBidConfig: function(params, next){
-        $.post('/api/v2/'+CC.user.id+'/save_autobid_config', params, function(r){
+    saveAutoBidConfig: function (params, next) {
+        $.post('/api/v2/' + CC.user.id + '/save_autobid_config', params, function (r) {
             next(r);
             return r;
         });
@@ -118,8 +116,8 @@ exports.accountService = {
 //                next(r.body);
 //            });
 //    },
-    getTotalInters:function(next){
-        request('GET', '/api/v2/points/user/'+CC.user.id+'/getTotalPoints')
+    getTotalInters: function (next) {
+        request('GET', '/api/v2/points/user/' + CC.user.id + '/getTotalPoints')
             .end()
             .then(function (r) {
                 next(r.body);
@@ -128,7 +126,7 @@ exports.accountService = {
     initialPassword: function (password, next) {
         request('POST', '/api/v2/user/MYSELF/setPaymentPassword')
             .type('form')
-            .send({password : password})
+            .send({password: password})
             .end()
             .then(function (r) {
                 next(r.body);
@@ -138,8 +136,8 @@ exports.accountService = {
         request('POST', '/api/v2/user/MYSELF/updatePaymentPassword')
             .type('form')
             .send({
-                oldPassword : oldPassword,
-                newPassword : newPassword
+                oldPassword: oldPassword,
+                newPassword: newPassword
             })
             .end()
             .then(function (r) {
@@ -150,8 +148,8 @@ exports.accountService = {
         request('POST', '/api/v2/user/MYSELF/resetPaymentPassword')
             .type('form')
             .send({
-                password : password,
-                smsCaptcha : smsCaptcha
+                password: password,
+                smsCaptcha: smsCaptcha
             })
             .end()
             .then(function (r) {
@@ -164,7 +162,7 @@ exports.accountService = {
             .then(function (r) {
                 var results = r.body.results;
                 if (results) {
-                    for(var i = 0; i < results.length; i ++) {
+                    for (var i = 0; i < results.length; i++) {
 
                         results[i] = results[i] + "!3";
                     }
@@ -175,7 +173,7 @@ exports.accountService = {
                 }
             })
     },
-    updatePersonalInfo:function(male,educationLevel,maritalStatus,next) {
+    updatePersonalInfo: function (male, educationLevel, maritalStatus, next) {
         request('PUT', '/api/v2/user/MYSELF/personal')
             .type('form')
             .send({
@@ -186,7 +184,7 @@ exports.accountService = {
             .end()
             .then(next);
     },
-    updateCareerInfo:function(companyIndustry,salary,next) {
+    updateCareerInfo: function (companyIndustry, salary, next) {
         request('PUT', '/api/v2/user/MYSELF/career')
             .type('form')
             .send({
@@ -196,16 +194,16 @@ exports.accountService = {
             .end()
             .then(next);
     },
-    getCurrentMonthLoan:function(to,from,next){
-        request('GET','/api/v2/user/MYSELF/investRepayments/1/10?to='+to+'&from='+from)
-            .end().then(function(res){
+    getCurrentMonthLoan: function (to, from, next) {
+        request('GET', '/api/v2/user/MYSELF/investRepayments/1/10?to=' + to + '&from=' + from)
+            .end().then(function (res) {
             next(res.body);
         });
     },
     getVipLevel: function (next) {
-        request('GET','/api/v2/user/MYSELF/membership')
+        request('GET', '/api/v2/user/MYSELF/membership')
             .end()
-            .then(function(res){
+            .then(function (res) {
                 next(res.body);
             });
     },
@@ -218,6 +216,19 @@ exports.accountService = {
             .type('form')
             .send({
                 'creditAssignTitle': creditAssignTitle
+            })
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
+    },
+    createNewCreditAssign: function (investId, creditDealRate, creditDealAmount, creditAssignTitle, next) {
+        request('POST', "/api/v2/creditassign/createNew/MYSELF/" + investId)
+            .type('form')
+            .send({
+                'creditDealRate': creditDealRate,
+                'creditDealAmount': creditDealAmount,
+                'creditAssignTitle': creditAssignTitle,
             })
             .end()
             .then(function (r) {
@@ -238,7 +249,7 @@ exports.accountService = {
     checkPassword: function (password, next) {
         request('POST', '/api/v2/user/MYSELF/validatePaymentPassword')
             .type('form')
-            .send({password : password})
+            .send({password: password})
             .end()
             .then(function (r) {
                 next(r.body);
@@ -263,9 +274,9 @@ exports.accountService = {
             });
     },
     getQuestion: function (next) {
-        request('GET','/api/v2/survey/99F6776A-DE40-4030-9C64-481CDD3E15BA')
+        request('GET', '/api/v2/survey/99F6776A-DE40-4030-9C64-481CDD3E15BA')
             .end()
-            .then(function(res){
+            .then(function (res) {
                 next(res.body);
             });
     },
@@ -278,17 +289,17 @@ exports.accountService = {
                 next(r.body);
             });
     },
-    getStop1: function (investId,next) {
-        request('GET','/api/v2/creditassign/prepareAssign/step1/?investId='+investId)
+    getStop1: function (investId, next) {
+        request('GET', '/api/v2/creditassign/prepareAssign/step1/?investId=' + investId)
             .end()
-            .then(function(res){
+            .then(function (res) {
                 next(res.body);
             });
     },
-    getStop2: function (investId,creditAssignAmount,next) {
-        request('GET','/api/v2/creditassign/prepareAssign/step2?investId='+investId +"&creditAssignAmount=" + creditAssignAmount)
+    getStop2: function (investId, creditAssignAmount, next) {
+        request('GET', '/api/v2/creditassign/prepareAssign/step2?investId=' + investId + "&creditAssignAmount=" + creditAssignAmount)
             .end()
-            .then(function(res){
+            .then(function (res) {
                 next(res.body);
             });
     },
