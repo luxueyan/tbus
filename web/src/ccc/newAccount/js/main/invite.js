@@ -82,7 +82,8 @@ new Ractive({
     setData: function (o,totalSize) {
         var self = this;
         self.set('loading', false);
-        self.set('list', o.slice(0,pagesize));
+        self.set('list', o);
+        // self.set('list', o.slice(0,pagesize));
 
         this.renderPager(o,totalSize);
     },
