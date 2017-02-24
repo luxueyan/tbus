@@ -406,6 +406,9 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                     api.fetch_current_user()
                                         .then -> api.get_loan_detail($route.current.params.id, true)
                                         .then (data) ->
+                                            if _.get(data, 'loanRequest.productKey') is 'NEW'
+                                                return {data: []}
+
                                             amount = data.balance
 
                                             { days, totalDays, totalMonths } = _.get data, 'duration'
