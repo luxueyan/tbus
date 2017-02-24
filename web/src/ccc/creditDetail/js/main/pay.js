@@ -81,6 +81,7 @@ payRactive.on("invest-submit", function (e) {
     var isUseB = that.get('useBankCard');
     e.original.preventDefault();
     var num = this.get('investNum');
+    var creditAmountOld = this.get('creditAmount');
     var isUseB = that.get('useBankCard');
     var singleQuota = that.get('singleQuota');
 
@@ -113,7 +114,7 @@ payRactive.on("invest-submit", function (e) {
                 //    $('.agree-error').css('visibility', 'hidden');
                 $.post('/api/v2/invest/user/MYSELF/creditAssign/invest', {
                     clientIp: CC.clientIp,
-                    amount: num,
+                    amount: creditAmountOld,
                     creditAssignId: creditassignId,
                     isUseBalance: isUseB
                 }, function (res) {
