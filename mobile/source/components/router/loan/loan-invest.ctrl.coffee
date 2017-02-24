@@ -175,7 +175,6 @@ do (_, angular, Math) ->
                 (@$q.resolve()
 
                     .then =>
-                        return if loan.product_key is 'NEW'
                         return unless @$scope.coupon_list.length
                         return if @$scope.store.coupon
 
