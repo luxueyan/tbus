@@ -828,6 +828,27 @@ p.tips {
 .home-intrest .home-tab-amount .one {
     color: #e60012;
 }
+.fixedUl {
+    width: 100%;
+    margin-top: 20px;
+    overflow: hidden;
+    padding-left: 15px;
+}
+.fixedUl li {
+    width: 120px;
+    height: 30px;
+    float: left;
+    color: #666;
+    font-size: 18px;
+    margin-right: 20px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+.fixedUl .activeUl {
+    color: #fff;
+    background: #e60012;
+}
 .fixed-invest {
     margin-left: 10px;
     margin-right: 32px;

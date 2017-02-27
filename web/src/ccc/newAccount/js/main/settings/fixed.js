@@ -402,3 +402,19 @@ function init(type) {
     //else {}
 }
 init(getCurrentType());
+
+fixedRactive.on('offline', function (e) {
+    fixedRactive.set('offline', true);
+    var pageNo = 1, pageSize = 10;
+    var ractiveOffline = new Ractive({
+        el: ".panel-offline",
+        template: require('ccc/newAccount/partials/invest/offline.html'),
+        oncomplete: function () {
+            $.get('/api/v2/offlineData/offline/MYSELF?offset=' + pageNo + '&size=' + pageSize, function (r) {
+                ractiveOffline.set('list', true);
+            }).error(function () {
+                ractiveOffline.set('list', false);
+            })
+        }
+    });
+});

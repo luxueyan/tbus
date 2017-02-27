@@ -6,96 +6,137 @@ var Tips = require('ccc/global/js/modules/cccTips');
 require('ccc/global/js/modules/tooltip');
 require('ccc/global/js/modules/cccPaging');
 
-// 可用余额
-var avaAmount = CC.user.availableAmount;
-// 累计收益
-var investInterestAmount = parseFloat(CC.user.investStatistics.investInterestAmount || 0).toFixed(2);
-// 预计当前收益
-var outstandingInterest = CC.user.investStatistics.outstandingInterest || 0;
-// 当前收益
-var currentIncome = CC.user.investStatistics.uncollectedIncome || 0;
-//全部收益
-var interest = parseFloat(CC.user.investStatistics.investStatistics.dueAmount.interest || 0).toFixed(2);
-// 冻结金额
-var frozenAmount = CC.user.frozenAmount || 0;
-// 冻结中的投标金额
-var investFrozenAmount = CC.user.investStatistics.investFrozenAmount || 0;
-// 在投本金(待收本金)
-var investAmounted = CC.user.investStatistics.investStatistics.dueAmount.principal || 0;
-//// 在投本金(待收本金)+冻结金额
-var investAmount = investAmounted;
-// 总资产
-var totalAmount = parseFloat(avaAmount + currentIncome + investAmount+frozenAmount).toFixed(2);
+// 线上可用余额
+var onlineAmount = CC.user.availableAmount,
+
+    // 线上累计收益
+    onlineInvestInterestAmount = CC.user.investStatistics.investInterestAmount || 0,
+    onlineInvestInterestAmountI = parseInt(onlineInvestInterestAmount),
+    onlineInvestInterestAmountF = parseFloatNew(onlineInvestInterestAmount),
+
+    // 线上预计当前收益
+    onlineOutstandingInterest = CC.user.investStatistics.outstandingInterest || 0,
+
+    // 线上当前收益
+    onlineCurrentIncome = CC.user.investStatistics.uncollectedIncome || 0,
+    onlineCurrentIncomeI = parseInt(onlineCurrentIncome),
+    onlineCurrentIncomeF = parseFloatNew(onlineCurrentIncome),
+
+    // 线上全部收益
+    onlineInterest = CC.user.investStatistics.investStatistics.dueAmount.interest || 0,
+
+    // 线上冻结金额
+    onlineFrozenAmount = CC.user.frozenAmount || 0,
+    onlineFrozenAmountI = parseInt(onlineFrozenAmount),
+    onlineFrozenAmountF = parseFloatNew(onlineFrozenAmount),
+
+    // 线上冻结中的投标金额
+    onlineInvestFrozenAmount = CC.user.investStatistics.investFrozenAmount || 0,
+
+    // 线上在投本金(待收本金)
+    onlineInvestAmount = CC.user.investStatistics.investStatistics.dueAmount.principal || 0,
+    onlineInvestAmountI = parseInt(onlineInvestAmount),
+    onlineInvestAmountF = parseFloatNew(onlineInvestAmount),
+
+    // 线上在投本金(待收本金)+冻结金额
+    onlineInvestAmountAll = onlineInvestAmount + onlineInvestFrozenAmount,
+
+    // 线上总资产
+    onlineAmount = onlineAmount + onlineCurrentIncome + onlineInvestAmount + onlineFrozenAmount,
+    onlineAmountI = parseInt(onlineAmount),
+    onlineAmountF = parseFloatNew(onlineAmount),
+
+    // 线下投资总额
+    offlineDataInvestAmount = CC.user.investStatistics.offlineDataInvestAmount,
+    offlineDataInvestAmountI = parseInt(offlineDataInvestAmount),
+    offlineDataInvestAmountF = parseFloatNew(offlineDataInvestAmount),
+
+    // 线下资产收益总额
+    offlineDataRevenueAmount = CC.user.investStatistics.offlineDataRevenueAmount,
+    offlineDataRevenueAmountI = parseInt(offlineDataRevenueAmount),
+    offlineDataRevenueAmountF = parseFloatNew(offlineDataRevenueAmount),
+
+    // 线下总额
+    offlineAmount = offlineDataInvestAmount + offlineDataRevenueAmount,
+    offlineAmountI = parseInt(offlineAmount),
+    offlineAmountF = parseFloatNew(offlineAmount),
+
+    // 总本金
+    totalInvestAmount = offlineDataInvestAmount + onlineInvestAmount,
+    totalInvestAmountI = parseInt(totalInvestAmount),
+    totalInvestAmountF = parseFloatNew(totalInvestAmount),
+
+    // 总收益
+    totalInvest = offlineDataRevenueAmount + onlineInterest,
+    totalInvestI = parseInt(totalInvest),
+    totalInvestF = parseFloatNew(totalInvest),
+
+    // 总额
+    totalAmount = onlineAmount + offlineAmount,
+    totalAmountI = parseInt(totalAmount),
+    totalAmountF = parseFloatNew(totalAmount),
+    allNone = '0.00';
+
+function parseFloatNew(data) {
+    var dataNew = parseFloat(data).toFixed(2);
+    return dataNew.split('.')[1];
+}
 
 var homeRactive = new Ractive({
     el: '.account-home-wrapper',
     template: require('ccc/newAccount/partials/home/home.html'),
     data: {
         user: CC.user,
-        currentIncome: parseFloat(currentIncome).toFixed(2),
-        investInterestAmount: investInterestAmount,
-        outstandingInterest: parseFloat(outstandingInterest).toFixed(2),
-        totalAmount: totalAmount,
-        investAmount: parseFloat(investAmount).toFixed(2),
-        frozenAmount: parseFloat(frozenAmount).toFixed(2)
+        allNone: allNone,
+        onlineFrozenAmountI: onlineFrozenAmountI,
+        onlineFrozenAmountF: onlineFrozenAmountF,
+        onlineInvestAmountI: onlineInvestAmountI,
+        onlineInvestAmountF: onlineInvestAmountF,
+        onlineInvestInterestAmountI: onlineInvestInterestAmountI,
+        onlineInvestInterestAmountF: onlineInvestInterestAmountF,
+        onlineCurrentIncomeI: onlineCurrentIncomeI,
+        onlineCurrentIncomeF: onlineCurrentIncomeF,
+        onlineAmountI: onlineAmountI,
+        onlineAmountF: onlineAmountF,
+        offlineDataRevenueAmountI: offlineDataRevenueAmountI,
+        offlineDataRevenueAmountF: offlineDataRevenueAmountF,
+        offlineDataInvestAmountI: offlineDataInvestAmountI,
+        offlineDataInvestAmountF: offlineDataInvestAmountF,
+        offlineAmountI: offlineAmountI,
+        offlineAmountF: offlineAmountF,
+        totalCurrentIncomeI: parseInt(onlineCurrentIncome + offlineDataRevenueAmount),
+        totalCurrentIncomeF: parseFloatNew(onlineCurrentIncome + offlineDataRevenueAmount),
+        totalInvestAmountI: parseInt(onlineInvestAmount + offlineDataInvestAmount),
+        totalInvestAmountF: parseFloatNew(onlineInvestAmount + offlineDataInvestAmount),
+        totalInvestI: totalInvestI,
+        totalInvestF: totalInvestF,
+        totalAmountI: totalAmountI,
+        totalAmountF: totalAmountF,
+        showOther: false
     },
     parseData: function () {
         var self = this;
-        var investInterestAmount = self.get('investInterestAmount') + '';
-        var totalAmount = self.get('totalAmount') + '';
-        var investAmount = self.get('investAmount') + '';
-        var outstandingInterest = self.get('outstandingInterest') + '';
-        var currentIncome = self.get('currentIncome') + '';
-
-        var check = investInterestAmount.indexOf('.');
-        if (check == -1) {
-            self.set('currentIncome', parseInt(currentIncome));
-            self.set('totalAmount', parseInt(totalAmount));
-            self.set('investInterestAmount', parseInt(investInterestAmount));
-            self.set('outstandingInterest', parseInt(outstandingInterest));
-            self.set('investAmount', parseInt(investAmount));
-        } else {
-            var amoutArray = currentIncome.split('.');
-            self.set('currentIncome', parseInt(amoutArray[0]));
-            self.set('cMore', amoutArray[1]);
-
-            var interested = interest.split('.');
-            self.set('interest', parseInt(interested[0]));
-            self.set('cMored', interested[1]);
-
-            var amoutArray = totalAmount.split('.');
-            self.set('totalAmount', parseInt(amoutArray[0]));
-            self.set('tAmount', amoutArray[1]);
-            var amoutArray = investAmount.split('.');
-            self.set('investAmount', parseInt(amoutArray[0]));
-            self.set('iAmount', amoutArray[1]);
-
-            var amoutArray = investInterestAmount.split('.');
-            //console.log(amoutArray)
-            //console.log(amoutArray)
-            //self.set('investInterestAmount', parseInt(amoutArray[0]));
-            //console.log(parseInt(amoutArray[0]))
-            //console.log(parseInt(amoutArray[0]))
-            //self.set('iMore', amoutArray[1]);
-            var amoutArray = outstandingInterest.split('.');
-            self.set('outstandingInterest', parseInt(amoutArray[0]));
-            self.set('oMore', amoutArray[1]);
-        }
 
         $.get('/api/v2/cms/category/IMAGE/name/' + encodeURIComponent('我的账户页广告栏'), function (data) {
-            //console.log(data[0].content)
             self.set('advertisement', data[0].content)
-        })
+        });
+
         accountService.getUserInfo(function (res) {
             if (res.surveyScore) {
                 self.set('riskBear', res.surveyScore.name);
             }
         });
-
     }
 });
 homeRactive.parseData();
 
+homeRactive.on('countToggle', function () {
+    if (homeRactive.get('showOther')) {
+        homeRactive.set('showOther', false);
+    } else {
+        homeRactive.set('showOther', true);
+    }
+});
 
 homeRactive.on({
     'showTip': function (event) {
@@ -105,14 +146,14 @@ homeRactive.on({
     hideTip: function (event) {
         $($(event)[0].node.nextElementSibling).fadeOut(0);
     }
-})
+});
 
 var dataHigh = [{
     name: '浮动收益',
     y: 0,
 }, {
     name: '固定收益',
-    y: investAmount,
+    y: totalInvest,
 }, {
     name: '精选基金',
     y: 0,
@@ -122,7 +163,7 @@ var dataHigh = [{
 var colorHigh = ["#9b8579", "#db0716", "#cea784", "#a40000"];
 var statusHigh = true;
 
-if (!investAmount) {
+if (!totalInvest) {
     dataHigh = [{name: '浮动收益', y: 100,}];
     colorHigh = ["#999"];
     statusHigh = false;
