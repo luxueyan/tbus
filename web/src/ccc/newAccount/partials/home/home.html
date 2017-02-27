@@ -1,40 +1,66 @@
-
 <div class="home-count">
     <div class="home-num">
+        <div class="countTip">
+            <h2 class="{{#if showOther}}countToggleOn{{/if}}" on-click="countToggle"></h2>
+            <h3>总额</h3>
+            {{#if showOther}}
+            <h3>线上</h3>
+            <h3>线下</h3>
+            {{/if}}
+        </div>
         <div class="home-total common">
-            <div class="home-tab-info total" on-mouseover="showTip" on-mouseleave="hideTip">总资产(元)</div>
+            <div class="home-tab-info" on-mouseover="showTip" on-mouseleave="hideTip">总资产(元)</div>
             <p class="info-tip" style="width: 280px;">在投本金＋冻结资金＋当前收益＋可用余额</p>
-            <div class="home-tab-amount">{{totalAmount}}.{{tAmount}}</div>
+            <div class="home-tab-amount">{{totalAmountI}}.{{totalAmountF}}</div>
+            {{#if showOther}}
+            <div class="home-tab-amount">{{onlineAmountI}}.{{onlineAmountF}}</div>
+            <div class="home-tab-amount">{{offlineAmountI}}.{{offlineAmountF}}</div>
+            {{/if}}
         </div>
 
         <div class="home-expect common">
             <div class="home-tab-info" on-mouseover="showTip" on-mouseleave="hideTip">冻结资金(元)</div>
             <p class="info-tip" style="width: 250px;">未计息的投资金额＋提现审批中的金额</p>
-            <div class="home-tab-amount">{{frozenAmount}}</div>
+            <div class="home-tab-amount">{{onlineFrozenAmountI}}.{{onlineFrozenAmountF}}</div>
+            {{#if showOther}}
+            <div class="home-tab-amount">{{onlineFrozenAmountI}}.{{onlineFrozenAmountF}}</div>
+            <div class="home-tab-amount">{{allNone}}</div>
+            {{/if}}
         </div>
 
         <div class="home-expect common">
             <div class="home-tab-info" on-mouseover="showTip" on-mouseleave="hideTip">在投本金(元)</div>
             <p class="info-tip" style="width: 94px;left: 20px;">已计息的本金</p>
-            <div class="home-tab-amount">{{investAmount}}.{{iAmount}}</div>
+            <div class="home-tab-amount">{{totalInvestAmountI}}.{{totalInvestAmountF}}</div>
+            {{#if showOther}}
+            <div class="home-tab-amount">{{onlineInvestAmountI}}.{{onlineInvestAmountF}}</div>
+            <div class="home-tab-amount">{{offlineDataInvestAmountI}}.{{offlineDataInvestAmountF}}</div>
+            {{/if}}
         </div>
 
         <div class="home-expect common">
             <div class="home-tab-info" on-mouseover="showTip" on-mouseleave="hideTip">当前收益(元)</div>
             <p class="info-tip" style="width: 165px;left: 20px;">截止到当天的未结息利息</p>
-            <div class="home-tab-amount">{{currentIncome}}.{{cMore}}</div>
+            <div class="home-tab-amount">{{totalCurrentIncomeI}}.{{totalCurrentIncomeF}}</div>
+            {{#if showOther}}
+            <div class="home-tab-amount">{{onlineCurrentIncomeI}}.{{onlineCurrentIncomeF}}</div>
+            <div class="home-tab-amount">{{offlineDataRevenueAmountI}}.{{offlineDataRevenueAmountF}}</div>
+            {{/if}}
         </div>
 
         <div class="home-interest common">
-            <div class="home-tab-info"  on-mouseover="showTip" on-mouseleave="hideTip">累计收益(元)</div>
+            <div class="home-tab-info" on-mouseover="showTip" on-mouseleave="hideTip">累计收益(元)</div>
             <p class="info-tip" style="width: 140px;">已经结息的全部收益</p>
-            <div class="home-tab-amount">{{investInterestAmount}}</div>
-            <!--<div class="home-tab-amount">{{investInterestAmount}}.{{iMore}}</div>-->
+            <div class="home-tab-amount">{{onlineInvestInterestAmountI}}.{{onlineInvestInterestAmountF}}</div>
+            {{#if showOther}}
+            <div class="home-tab-amount">{{onlineInvestInterestAmountI}}.{{onlineInvestInterestAmountF}}</div>
+            <div class="home-tab-amount">{{allNone}}</div>
+            {{/if}}
         </div>
 
         <div class="home-interest common" style="margin-right: 0">
             <div class="home-tab-info">我的风险承受能力</div>
-            <div class="home-tab-amount"><span>{{#if riskBear}}{{riskBear}}{{else}}系统默认{{/if}}</span></div>
+            <div class="home-tab-amount"><span>（ {{#if riskBear}}{{riskBear}}{{else}}系统默认{{/if}} ）</span></div>
         </div>
     </div>
 </div>
@@ -49,12 +75,14 @@
                     <div class="label">固定收益</div>
                     <div class="total">
                         <div class="t_box">
-                            <p>{{investAmount}}.<span>{{iAmount}}</span></p>
+                            <p>{{totalInvestAmountI}}.<span>{{totalInvestAmountF}}</span></p>
                             <span>在投本金(元)</span>
                         </div>
                     </div>
                     <div class="detail">
-                        <p><span class="d_lab">预期收益(元)</span><span class="d_num">{{interest}}.<em>{{cMored}}</em></span></p>
+                        <p><span class="d_lab">预期收益(元)</span><span
+                                class="d_num">{{totalInvestI}}.<em>{{totalInvestF}}</em></span>
+                        </p>
                     </div>
                 </div>
             </a>
@@ -87,18 +115,18 @@
                 </div>
             </a>
             <!--<a class="asset_box" href="#">-->
-                <!--<div class="box box_4">-->
-                    <!--<div class="label">高端理财</div>-->
-                    <!--<div class="total">-->
-                        <!--<div class="t_box">-->
-                            <!--<p>0.<em>00</em></p>-->
-                            <!--<span>在投本金(元)</span>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="detail">-->
-                        <!--<p><span class="d_lab">预计当前收益(元)</span><span class="d_num">0.<em>00</em></span></p>-->
-                    <!--</div>-->
-                <!--</div>-->
+            <!--<div class="box box_4">-->
+            <!--<div class="label">高端理财</div>-->
+            <!--<div class="total">-->
+            <!--<div class="t_box">-->
+            <!--<p>0.<em>00</em></p>-->
+            <!--<span>在投本金(元)</span>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="detail">-->
+            <!--<p><span class="d_lab">预计当前收益(元)</span><span class="d_num">0.<em>00</em></span></p>-->
+            <!--</div>-->
+            <!--</div>-->
             <!--</a>-->
         </div>
         <div class="svg_cont" id="svg_cont">
@@ -131,35 +159,35 @@
 
 
 <!--<div class="ccc-tab invest_status" data-header-selector=".header-text">-->
-    <!--<div class="title">资产配置</div>-->
-    <!--<ul class="tabs">-->
+<!--<div class="title">资产配置</div>-->
+<!--<ul class="tabs">-->
 
-        <!--<li class="active" data-type="ALL">-->
-            <!--<a href="#">全部</a>-->
-        <!--</li>-->
+<!--<li class="active" data-type="ALL">-->
+<!--<a href="#">全部</a>-->
+<!--</li>-->
 
-        <!--<li class="active" data-type="INHAND">-->
-            <!--<a href="#">投资中</a>-->
-        <!--</li>-->
-        <!--<li data-type="HOLDING">-->
-            <!--<a href="#">回款中</a>-->
-        <!--</li>-->
-        <!--<li data-type="CLEARED">-->
-            <!--<a href="#">已结束</a>-->
-        <!--</li>-->
-    <!--</ul>-->
+<!--<li class="active" data-type="INHAND">-->
+<!--<a href="#">投资中</a>-->
+<!--</li>-->
+<!--<li data-type="HOLDING">-->
+<!--<a href="#">回款中</a>-->
+<!--</li>-->
+<!--<li data-type="CLEARED">-->
+<!--<a href="#">已结束</a>-->
+<!--</li>-->
+<!--</ul>-->
 <!--</div>-->
 
 <!--<div class="ccc-tab-panels index-invest">-->
 
-    <!--<div class="tab-panel panel-ALL active">-->
-        <!--<p class="loading">加载中...</p>-->
-    <!--</div>-->
+<!--<div class="tab-panel panel-ALL active">-->
+<!--<p class="loading">加载中...</p>-->
+<!--</div>-->
 
-    <!--<div class="tab-panel panel-INHAND active">-->
-        <!--<p class="loading">加载中...</p>-->
-    <!--</div>-->
-    <!--<div class="tab-panel panel-HOLDING "></div>-->
+<!--<div class="tab-panel panel-INHAND active">-->
+<!--<p class="loading">加载中...</p>-->
+<!--</div>-->
+<!--<div class="tab-panel panel-HOLDING "></div>-->
 
-    <!--<div class="tab-panel panel-CLEARED"></div>-->
+<!--<div class="tab-panel panel-CLEARED"></div>-->
 <!--</div>-->
