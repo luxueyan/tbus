@@ -186,6 +186,11 @@
     text-align: center;
     padding: 8px 0;
 }
+.footer-copy span {
+    float: right;
+    color: #cfa972;
+    padding-right: 25px;
+}
 .firend-link {
     background: #5d6163;
 }
