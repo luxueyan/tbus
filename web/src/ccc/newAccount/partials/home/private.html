@@ -11,50 +11,50 @@
         <div class="home-total common">
             <div class="home-tab-info" on-mouseover="showTip" on-mouseleave="hideTip">总资产(元)</div>
             <p class="info-tip" style="width: 280px;">在投本金＋冻结资金＋当前收益＋可用余额</p>
-            <div class="home-tab-amount">{{totalAmountI}}.<em>{{totalAmountF}}</em></div>
+            <div class="home-tab-amount">{{totalAmountI}}.{{totalAmountF}}</div>
             {{#if showOther}}
-            <div class="home-tab-amount">{{onlineAmountI}}.<em>{{onlineAmountF}}</em></div>
-            <div class="home-tab-amount">{{offlineAmountI}}.<em>{{offlineAmountF}}</em></div>
+            <div class="home-tab-amount">{{onlineAmountI}}.{{onlineAmountF}}</div>
+            <div class="home-tab-amount">{{offlineAmountI}}.{{offlineAmountF}}</div>
             {{/if}}
         </div>
 
         <div class="home-expect common">
             <div class="home-tab-info" on-mouseover="showTip" on-mouseleave="hideTip">冻结资金(元)</div>
             <p class="info-tip" style="width: 250px;">未计息的投资金额＋提现审批中的金额</p>
-            <div class="home-tab-amount">{{onlineFrozenAmountI}}.<em>{{onlineFrozenAmountF}}</em></div>
+            <div class="home-tab-amount">{{onlineFrozenAmountI}}.{{onlineFrozenAmountF}}</div>
             {{#if showOther}}
-            <div class="home-tab-amount">{{onlineFrozenAmountI}}.<em>{{onlineFrozenAmountF}}</em></div>
-            <div class="home-tab-amount">{{allNoneI}}.<em>{{allNoneF}}</em></div>
+            <div class="home-tab-amount">{{onlineFrozenAmountI}}.{{onlineFrozenAmountF}}</div>
+            <div class="home-tab-amount">{{allNone}}</div>
             {{/if}}
         </div>
 
         <div class="home-expect common">
             <div class="home-tab-info" on-mouseover="showTip" on-mouseleave="hideTip">在投本金(元)</div>
             <p class="info-tip" style="width: 94px;left: 20px;">已计息的本金</p>
-            <div class="home-tab-amount">{{totalInvestAmountI}}.<em>{{totalInvestAmountF}}</em></div>
+            <div class="home-tab-amount">{{totalInvestAmountI}}.{{totalInvestAmountF}}</div>
             {{#if showOther}}
-            <div class="home-tab-amount">{{onlineInvestAmountI}}.<em>{{onlineInvestAmountF}}</em></div>
-            <div class="home-tab-amount">{{offlineDataInvestAmountI}}.<em>{{offlineDataInvestAmountF}}</em></div>
+            <div class="home-tab-amount">{{onlineInvestAmountI}}.{{onlineInvestAmountF}}</div>
+            <div class="home-tab-amount">{{offlineDataInvestAmountI}}.{{offlineDataInvestAmountF}}</div>
             {{/if}}
         </div>
 
         <div class="home-expect common">
             <div class="home-tab-info" on-mouseover="showTip" on-mouseleave="hideTip">当前收益(元)</div>
             <p class="info-tip" style="width: 165px;left: 20px;">截止到当天的未结息利息</p>
-            <div class="home-tab-amount">{{totalCurrentIncomeI}}.<em>{{totalCurrentIncomeF}}</em></div>
+            <div class="home-tab-amount">{{totalCurrentIncomeI}}.{{totalCurrentIncomeF}}</div>
             {{#if showOther}}
-            <div class="home-tab-amount">{{onlineCurrentIncomeI}}.<em>{{onlineCurrentIncomeF}}</em></div>
-            <div class="home-tab-amount">{{offlineDataRevenueAmountI}}.<em>{{offlineDataRevenueAmountF}}</em></div>
+            <div class="home-tab-amount">{{onlineCurrentIncomeI}}.{{onlineCurrentIncomeF}}</div>
+            <div class="home-tab-amount">{{offlineDataRevenueAmountI}}.{{offlineDataRevenueAmountF}}</div>
             {{/if}}
         </div>
 
         <div class="home-interest common">
             <div class="home-tab-info" on-mouseover="showTip" on-mouseleave="hideTip">累计收益(元)</div>
             <p class="info-tip" style="width: 140px;">已经结息的全部收益</p>
-            <div class="home-tab-amount">{{onlineInvestInterestAmountI}}.<em>{{onlineInvestInterestAmountF}}</em></div>
+            <div class="home-tab-amount">{{onlineInvestInterestAmountI}}.{{onlineInvestInterestAmountF}}</div>
             {{#if showOther}}
-            <div class="home-tab-amount">{{onlineInvestInterestAmountI}}.<em>{{onlineInvestInterestAmountF}}</em></div>
-            <div class="home-tab-amount">{{allNoneI}}.<em>{{allNoneF}}</em></div>
+            <div class="home-tab-amount">{{onlineInvestInterestAmountI}}.{{onlineInvestInterestAmountF}}</div>
+            <div class="home-tab-amount">{{allNone}}</div>
             {{/if}}
         </div>
 
@@ -80,11 +80,10 @@
                         </div>
                     </div>
                     <div class="detail">
-                        <p><span class="d_lab">预期收益(元)</span>
-                            <span class="d_num">{{totalInvestI}}.<em>{{totalInvestF}}</em></span>
+                        <p><span class="d_lab">预期收益(元)</span><span
+                                class="d_num">{{totalInvestI}}.<em>{{totalInvestF}}</em></span>
                         </p>
                     </div>
-                    <div class="detailList">查看明细</div>
                 </div>
             </a>
             <a class="asset_box" href="#">
@@ -99,10 +98,9 @@
                     <div class="detail">
                         <p><span class="d_lab">预期收益(元)</span><span class="d_num">0.<em>00</em></span></p>
                     </div>
-                    <div class="detailList">查看明细</div>
                 </div>
             </a>
-            <a class="asset_box" href="/newAccount/home/private">
+            <a class="asset_box" href="#">
                 <div class="box box_3">
                     <div class="label">私人订制</div>
                     <div class="total">
@@ -114,7 +112,6 @@
                     <div class="detail">
                         <p><span class="d_lab">预期收益(元)</span><span class="d_num">0.<em>00</em></span></p>
                     </div>
-                    <div class="detailList">查看明细</div>
                 </div>
             </a>
             <!--<a class="asset_box" href="#">-->

@@ -75,7 +75,9 @@ var onlineAmount = CC.user.availableAmount,
     totalAmount = onlineAmount + offlineAmount,
     totalAmountI = parseInt(totalAmount),
     totalAmountF = parseFloatNew(totalAmount),
-    allNone = '0.00';
+
+    allNoneI = '0',
+    allNoneF = '00';
 
 function parseFloatNew(data) {
     var dataNew = parseFloat(data).toFixed(2);
@@ -87,7 +89,8 @@ var homeRactive = new Ractive({
     template: require('ccc/newAccount/partials/home/home.html'),
     data: {
         user: CC.user,
-        allNone: allNone,
+        allNoneI: allNoneI,
+        allNoneF: allNoneF,
         onlineFrozenAmountI: onlineFrozenAmountI,
         onlineFrozenAmountF: onlineFrozenAmountF,
         onlineInvestAmountI: onlineInvestAmountI,
@@ -155,7 +158,7 @@ var dataHigh = [{
     name: '固定收益',
     y: totalInvest,
 }, {
-    name: '精选基金',
+    name: '私人订制',
     y: 0,
     sliced: true,
     selected: true

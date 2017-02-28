@@ -1,34 +1,39 @@
 <dsBody layout={{dsLayoutPath}}>
-<link rel="stylesheet" href="/ccc/newAccount/css/common.css">
-<link rel="stylesheet" href="/ccc/newAccount/css/index.css">
-<link rel="stylesheet" href="/ccc/global/css/modules/cccTips.css">
-<link rel="stylesheet" href="/ccc/newAccount/css/settings.css">
-<div class="account-wrapper">
-    <div class="user-nav"></div>
-	<div class="account-container">
-		<div class="account-nav"></div>
-		<div class="account-content-wrapper">
-			<div class="account-content account-home-wrapper">
-				加载中...
-			</div>
-		</div>
-		<div class="clearfix"></div>
-	</div>
-</div>
-<div class="space space-50">&nbsp;</div>
+    <link rel="stylesheet" href="/ccc/newAccount/css/common.css">
+    <link rel="stylesheet" href="/ccc/newAccount/css/index.css">
+    <link rel="stylesheet" href="/ccc/global/css/modules/cccTips.css">
+    <link rel="stylesheet" href="/ccc/newAccount/css/settings.css">
+    <div class="account-wrapper">
+        <div class="user-nav"></div>
+        <div class="account-container">
+            <div class="account-nav"></div>
+            <div class="account-content-wrapper">
+                <div class="account-content account-home-wrapper">
+                    加载中...
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="space space-50">&nbsp;</div>
 
-<script src="/ccc/newAccount/js/main/highcharts.js"></script>
-<script src="/ccc/newAccount/js/main/common.js"></script>
+    <script src="/ccc/newAccount/js/main/highcharts.js"></script>
+    <script src="/ccc/newAccount/js/main/common.js"></script>
 
 
-{{#if tabName === 'index'}}
-<script src="/ccc/newAccount/js/main/index.js"></script>
-{{/if}}
-{{#if tabName === 'fixed'}}
-<script src="/ccc/newAccount/js/main/settings/fixed.js"></script>
-{{/if}}
-{{#if tabName === 'float'}}
-<script src="/ccc/newAccount/js/main/settings/float.js"></script>
-{{/if}}
+    {{#if tabName === 'index'}}
+    <script src="/ccc/newAccount/js/main/index.js"></script>
+    {{/if}}
 
+    {{#if tabName === 'private'}}
+    <script src="/ccc/newAccount/js/main/index.js"></script>
+    {{/if}}
+
+    {{#if tabName === 'fixed'}}
+    <script src="/ccc/newAccount/js/main/settings/fixed.js"></script>
+    {{/if}}
+
+    {{#if tabName === 'float'}}
+    <script src="/ccc/newAccount/js/main/settings/float.js"></script>
+    {{/if}}
 </dsBody>

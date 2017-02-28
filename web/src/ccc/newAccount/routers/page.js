@@ -225,6 +225,7 @@ module.exports = function (router) {
 
     [
         "index",
+        "private",
         "fixed",
         "float"
     ].forEach(function (tabName) {

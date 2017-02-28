@@ -13,7 +13,7 @@
 
 <div class="fixedUl">
     <ul>
-        <li class="activeUl">线上投资</li>
+        <li class="activeUl" id="online" on-click="online">线上投资</li>
         <li on-click="offline">线下投资</li>
     </ul>
 </div>
@@ -43,6 +43,16 @@
 </div>
 
 {{else}}
+<div class="ccc-tab fixed-nav">
+    <ul class="tabs">
+        <li class="active" data-type="INHAND">
+            <a href="#" class="inhand_pro">在投产品({{offlineInhand}})</a>
+        </li>
+        <li data-type="CLEARED">
+            <a href="#" class="clear_pro">安全兑付({{offlineCleared}})</a>
+        </li>
+    </ul>
+</div>
 <div class="ccc-tab-panels fixed-invest">
     <div class="tab-panel panel-offline" style="display:block "></div>
 </div>
