@@ -13,7 +13,8 @@
     <tr>
         <td>
             <!--产品名称-->
-            <p><a class="table-title" href="/creditDetail/{{ id }}/{{loanId}}" target="_blank" rel="nofollow">{{title}}</a></p>
+            <p><a class="table-title" href="/creditDetail/{{ id }}/{{loanId}}" target="_blank"
+                  rel="nofollow">{{title}}</a></p>
         </td>
         <td>
             <!--转让利率-->
@@ -36,17 +37,6 @@
             <p class="table-invest-common">{{Fstatus}}</p>
         </td>
         <!--操作-->
-        {{#if status == "FINISHED"}}
-        <td>
-            <p class="table-invest-common">
-                <a href="/api/v2/creditassign/getCreditAssignContract/{{id}}" target="_blank">查看合同</a>
-            </p>
-        </td>
-        {{else}}
-        <td>
-            <p class="table-invest-common"></p>
-        </td>
-        {{/if}}
     </tr>
     {{/if}}
 </table>
