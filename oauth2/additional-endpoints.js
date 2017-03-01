@@ -22,7 +22,7 @@ module.exports = function (router, auth, middlewares) {
      */
 
     // image captcha checker test
-    router.get('/api/v2/img-captcha-checker-test ',
+    router.get('/api/v2/img-captcha-checker-test',
         auth.pass(),
         middlewares.captchaRequired,
         function (req, res) {

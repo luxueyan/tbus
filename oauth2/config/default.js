@@ -98,5 +98,13 @@ module.exports = {
     tokenExpireSeconds: 24 * 60 * 60, // 24小时
 
     //WWW-Authenticate
-    authenticate: 'Basic realm="oauth2"'
+    authenticate: 'Basic realm="oauth2"',
+
+    // 三方接入相关
+    thirdParty: {
+      open: false, // 是否开启三方接入验证
+      mark: 'X-THIRD-PARTY', // 标识改请求为第三方请求
+      client: 'X-CLIENT', // 第三方请求头携带的client id的KEY
+      signExpireSeconds: 10 // 第三方验签过期时间
+    }
 }

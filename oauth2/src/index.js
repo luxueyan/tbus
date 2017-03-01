@@ -20,6 +20,13 @@ redis.on('error', function(err){
   throw err;
 });
 
+var bodyParser = require('body-parser');
+server.use(bodyParser.json())
+server.use(bodyParser.urlencoded({ extended: true }));
+
+// 加入第三方接入白名单
+server.use(require('./thirdparty'));
+
 require('./middlewares/encpass').forEach(function (mid) {
     server.use(mid);
 });
@@ -29,6 +36,7 @@ server.use(require('./exchange'));
 use(server, (config.before || []).map(function (m) {
     return path.resolve(__dirname, 'middlewares', m);
 }));
+
 server.use(require('./endpoints'));
 use(server, (config.additionalEndpoints || []).map(function (m) {
     return path.resolve(__dirname, 'endpoints', m);
