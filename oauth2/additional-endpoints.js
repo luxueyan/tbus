@@ -144,4 +144,5 @@ module.exports = function (router, auth, middlewares) {
         });
     });
 
+    router.get('/api/v2/offlineData/offline/:userId', auth.pass());
 };

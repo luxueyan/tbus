@@ -109,8 +109,17 @@
             <label>
                 <input type="checkbox" ng-init="agreement = true" ng-model="agreement" required>
                 我阅读并同意
-                <a ng-href="/api/v2/creditassign/template" target="_blank">《金融资产转让协议》</a>、
-                <a ng-href="/api/v2/loan/loanRequest/{{ self.loan.loanRequest.id }}/bind/template" target="_blank">《转让产品购买协议》</a>、
+                <a href="#"
+                   ng-click="self.view_pdf('金融资产转让协议', '/api/v2/creditassign/template')"
+                >《金融资产转让协议》</a>、
+                <a href="#"
+                   ng-click="
+                       self.view_pdf(
+                           '转让产品购买协议',
+                           '/api/v2/loan/loanRequest/' + self.loan.loanRequest.id + '/bind/template'
+                       )
+                   "
+                >《转让产品购买协议》</a>、
                 <a href="#" ng-click="self.agreement('风险提示书')">《风险提示书》</a>
             </label>
         </section>

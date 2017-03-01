@@ -1,5 +1,4 @@
-
-<div class="home-count">
+<!--<div class="home-count">
     <div class="common home-intrest">
         <div class="home-tab-info">预期收益(元)</div>
         <div class="home-tab-amount">{{outstandingInterest}}<span class="one">.{{oMore}}</span></div>
@@ -10,9 +9,16 @@
         <div class="home-tab-amount">{{holdTotalAmount}}<span class="two">.{{hMore}}</span></div>
 
     </div>
+</div>-->
+
+<div class="fixedUl">
+    <ul>
+        <li class="activeUl" id="online" on-click="online">线上投资</li>
+        <li on-click="offline">线下投资</li>
+    </ul>
 </div>
 
-
+{{#if !offline}}
 <div class="ccc-tab fixed-nav" data-header-selector=".header-text">
     <ul class="tabs">
         <li class="active" data-type="INHAND">
@@ -36,6 +42,21 @@
     <div class="tab-panel panel-CLEARED"></div>
 </div>
 
+{{else}}
+<div class="ccc-tab fixed-nav">
+    <ul class="tabs">
+        <li class="active" data-type="INHAND">
+            <a href="#" class="inhand_pro">在投产品({{offlineInhand}})</a>
+        </li>
+        <li data-type="CLEARED">
+            <a href="#" class="clear_pro">安全兑付({{offlineCleared}})</a>
+        </li>
+    </ul>
+</div>
+<div class="ccc-tab-panels fixed-invest">
+    <div class="tab-panel panel-offline" style="display:block "></div>
+</div>
+{{/if}}
 
 <!--广告位-->
 <div class="ad"></div>

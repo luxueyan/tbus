@@ -88,6 +88,9 @@ $('ul.tabs li a').on('click', function () {
     init(type);
 });
 
+$('.fixedUl li').on('click', function () {
+    $(this).addClass('activeUl').siblings().removeClass('activeUl');
+});
 
 function init(type) {
     var tab = Tab[type];
@@ -350,8 +353,9 @@ function init(type) {
                                         if (data.error || !data.creditDealRate) return !data.creditDealRate ? data.error = '请输入转让价格！' : data.error;
                                         e.node.disabled = true;
                                         e.node.innerHTML = '转让中...';
+
                                         //发送请求
-                                        accountService.createCreditAssign(data.investId, data.creditAssignRate, data.assignTitle, function (o) {
+                                        accountService.createNewCreditAssign(data.investId, data.creditAssignRate, this.get('creditDealRate'), data.assignTitle, function (o) {
                                             if (o.success) {
                                                 alert("债转创建成功!");
                                                 window.location.reload();
@@ -401,3 +405,27 @@ function init(type) {
     //else {}
 }
 init(getCurrentType());
+
+
+fixedRactive.on('online', function (e) {
+    window.location.reload();
+});
+
+fixedRactive.on('offline', function (e) {
+    fixedRactive.set('offline', true);
+    fixedRactive.set('offlineInhand', 0);
+    fixedRactive.set('offlineCleared', 0);
+    var pageNo = 1, pageSize = 10;
+    var ractiveOffline = new Ractive({
+        el: ".panel-offline",
+        template: require('ccc/newAccount/partials/invest/offline.html'),
+        oncomplete: function () {
+            $.get('/api/v2/offlineData/offline/MYSELF?offset=' + pageNo + '&size=' + pageSize, function (r) {
+                ractiveOffline.set('list', true);
+
+            }).error(function (r) {
+                ractiveOffline.set('list', false);
+            })
+        }
+    });
+});

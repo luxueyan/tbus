@@ -221,7 +221,7 @@ setTimeout((function () {
             investRactive.set('name', res.userInfo.user.name);
             if (res.surveyScore) {
                 investRactive.set('hasSurveyScore', true);
-            }else {
+            } else {
                 investRactive.set('hasSurveyScore', false);
             }
         });
@@ -241,11 +241,11 @@ setTimeout((function () {
                     width: 516,
                     height: 250,
                     showed: function (ele, box) {
-                        var tipsRactive=new Ractive({
+                        var tipsRactive = new Ractive({
                             el: $(ele),
                             template: '<p class="cccBox-content">该项目为新手专享，请选择其他项目进行购买</p><img class="cccBox-line" src="/ccc/loan/img/cccbox_line.png"/><button on-click="clickClose" class="cccBox-btn">关闭</button>',
                         });
-                        tipsRactive.on('clickClose',function(){
+                        tipsRactive.on('clickClose', function () {
                             $(".ccc-box-wrap .bar .close ").click();
                         });
                     }
@@ -308,7 +308,7 @@ setTimeout((function () {
             showErrors('单次投标金额不可超过' + CC.loan.rule.max + '元!');
             return false;
         }
-        if (couponSelection == "" && selectOption != "0") {
+        if (couponSelection == "" && selectOption != "0" && CC.loan.productKey !== 'NEW') {
             $("#mask").css("display", "inline");
             $(".debank").css("display", "inline");
             return false;
@@ -424,6 +424,11 @@ setTimeout((function () {
                 list.sort(function (a, b) {
                     return a.couponPackage.timeExpire - b.couponPackage.timeExpire;
                 });
+                if (CC.loan.productKey == 'NEW') {
+                    for (var i = 0; i < list.length; i++) {
+                        list[i].disabled = true;
+                    }
+                }
                 investRactive.set('selectOption', list);
             }
         });

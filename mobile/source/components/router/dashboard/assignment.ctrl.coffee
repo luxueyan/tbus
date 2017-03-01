@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'DashboardAssignmentCtrl',
 
-        _.ai '            @api, @$scope, @$rootScope, @$window, @$routeParams, @$q', class
-            constructor: (@api, @$scope, @$rootScope, @$window, @$routeParams, @$q) ->
+        _.ai '            @api, @$scope, @$rootScope, @$window, @$routeParams, @$q, @view_pdf', class
+            constructor: (@api, @$scope, @$rootScope, @$window, @$routeParams, @$q, @view_pdf) ->
 
                 @$window.scrollTo 0, 0
 
@@ -112,10 +112,11 @@ do (_, angular) ->
                 post_data = {
                     investId: id
                     creditDealRate: creditAssignRate
+                    creditDealAmount: @$scope.store.amount
                     creditAssignTitle: '转让-' + title
                 }
 
-                (@api.payment_pool_creditAssign_create(post_data)
+                (@api.payment_pool_creditAssign_create_v2(post_data)
 
                     .then @api.process_response
 
@@ -169,6 +170,16 @@ do (_, angular) ->
 
             @$http
                 .post "/api/v2/creditassign/create/MYSELF/#{ investId }/#{ creditDealRate }", { creditAssignTitle }
+
+                .then @TAKE_RESPONSE_DATA
+                .catch @TAKE_RESPONSE_ERROR
+
+
+        api.__proto__.payment_pool_creditAssign_create_v2 = ({investId, creditDealRate, creditDealAmount,  creditAssignTitle}) ->
+
+            @$http
+                .post "/api/v2/creditassign/createNew/MYSELF/#{ investId }",
+                    { creditDealRate, creditDealAmount, creditAssignTitle }
 
                 .then @TAKE_RESPONSE_DATA
                 .catch @TAKE_RESPONSE_ERROR

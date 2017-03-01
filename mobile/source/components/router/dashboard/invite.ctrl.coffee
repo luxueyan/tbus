@@ -37,6 +37,7 @@ do (_, angular, Math) ->
                         @$scope.loading_have_invited = false
                 )
 
+                ###
                 @$scope.loading_invite_list = true
 
                 (@api.get_user_invite_list()
@@ -47,6 +48,7 @@ do (_, angular, Math) ->
                     .finally =>
                         @$scope.loading_invite_list = false
                 )
+                ###
 
                 EXTEND_API @api
 
@@ -57,6 +59,42 @@ do (_, angular, Math) ->
                         @$scope.msg.SOCIAL_TITLE = title if title
                         @$scope.msg.SOCIAL_DESC = desc if desc
                 )
+
+                query_set = {}
+                angular.extend(@$scope, { query_set })
+                @query_invite_list(query_set)
+
+
+            query_invite_list: (query_set, options = {}) ->
+
+                if options.on_next_page
+                    query_set.pageNo++
+                else
+                    query_set.pageNo = 1
+                    @$scope.invite_list = []
+
+                @$scope.loading_invite_list = true
+
+                (@api.get_user_invite_list_v2(query_set, false)
+
+                    .then @api.TAKE_RESPONSE_DATA
+
+                    .then ({results, totalSize}) =>
+                        @$scope.invite_list = @$scope.invite_list.concat results
+                        angular.extend @$scope.invite_list, {totalSize}
+
+                    .finally =>
+                        @$scope.loading_invite_list = false
+                )
+
+
+            infinite_scroll: (distance) =>
+
+                return if distance >= 0
+
+                @$scope.$evalAsync =>
+                    @query_invite_list(@$scope.query_set, {on_next_page: true})
+                        .then => @$scope.$broadcast('scrollpointShouldReset')
 
 
             init_wechat: ->

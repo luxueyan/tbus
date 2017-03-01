@@ -514,6 +514,22 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
+            get_user_invite_list_v2: (query_set = {}, cache = false) ->
+
+                _.defaults query_set, {
+                    pageNo: 1
+                    pageSize: 10
+                }
+
+                @$http
+                    .get '/api/v2/user/MYSELF/inviteNew',
+                        params: query_set
+                        cache: cache
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
             get_user_available_withdraw_amount: (cache = false) ->
 
                 convert_to_day = (date) ->
