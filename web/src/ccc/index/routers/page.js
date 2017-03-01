@@ -29,7 +29,8 @@ module.exports = function (router) {
                 _.forEach(data, function (userInfo) {
                     userInfo.timeRecorded = moment(userInfo.pubDate).format('YYYY-MM-DD');
                 });
-                return data;
+                console.log(data[0]);
+                return data[0];
             });
 
         res.locals.mtbdNew = await req.uest('/api/v2/cms/category/INTRODUCTION/name/' + encodeURIComponent('媒体报道'))

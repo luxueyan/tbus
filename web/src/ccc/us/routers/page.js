@@ -217,12 +217,17 @@ module.exports = function (router) {
                 res.render('help/article', {
                     tabs: tabs,
                     navMenu: navMenu,
-                    detail: r.body
+                    detail: formatDetail(r.body)
                 });
             });
 
         });
     });
+
+    function formatDetail(item) {
+        item.timeRecorded = moment(item.timeRecorded).format('YYYY/MM/DD');
+        return item;
+    }
 
     function formatNews(news) {
         news = news || [];

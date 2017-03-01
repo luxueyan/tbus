@@ -683,7 +683,7 @@ input[type=button] {
     margin: 60px;
     line-height: 30px;
 }
-.pop_content h2 {
+.pop_content div {
     font-size: 14px;
     text-align: center;
 }

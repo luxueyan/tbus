@@ -166,15 +166,23 @@
     font-size: 20px;
     font-weight: normal;
     text-align: center;
-    padding-bottom: 20px;
-    line-height: 60px;
+    /*padding-bottom: 20px;*/
+    line-height: 40px;
+    position: relative;
 }
 .article-title a {
+    position: absolute;
+    right: 0;
     color: #666;
     font-size: 12px;
-    float: right;
-    padding-top: 20px;
+    /*float: right;*/
+    padding-top: 10px;
     line-height: 20px;
+}
+.article-time {
+    line-height: 30px;
+    text-align: center;
+    padding-bottom: 10px;
 }
 .article-wp {
 
