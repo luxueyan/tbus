@@ -93,7 +93,9 @@
             </li>
             <li>
                 <span class="name">可否转让</span>
-                <span class="value">7天之后可转让</span>
+                <span class="value">
+                    {{ loan.product_key === 'NEW' ? '不可转让' : '7天之后可转让' }}
+                </span>
             </li>
             <li>
                 <span class="name">起投金额</span>
