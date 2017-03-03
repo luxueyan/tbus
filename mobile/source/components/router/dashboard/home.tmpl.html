@@ -1,6 +1,22 @@
 
 <div id="dashboard">
 
+    <style>
+        .tooltip {
+            left: 20px !important;
+        }
+
+        .tooltip-arrow {
+            display: none;
+        }
+
+        .tooltip-inner {
+            padding: 5px 10px;
+            max-width: none;
+            font-size: 14px;
+        }
+    </style>
+
     <nav class="omit-margin container page-nav">
     <div class="row">
         <span class="col-xs-12 title">我的账户</span>
@@ -46,7 +62,18 @@
                            ng-class="open ? 'glyphicon-menu-up' : 'glyphicon-menu-down'"
                     >
                     <div class="info">
-                        <span class="name">总资产 (元)</span>
+                        <span class="name">
+                            总资产 (元)
+                            <img
+                                width="12"
+                                class="info-icon"
+                                ng-src="assets/image/info-icon.png"
+                                uib-tooltip="持有本金 + 冻结资金 + 当前收益 + 可用余额"
+                                tooltip-placement="top-left"
+                                tooltip-trigger="outsideClick"
+                                ng-click="$event.stopPropagation()"
+                            >
+                        </span>
                         <span class="value">{{ total | number: 2 }}</span>
                     </div>
                 </uib-accordion-heading>
@@ -67,13 +94,29 @@
                         </li>
                         <li>
                             <div class="info">
+                                <span class="name">持有本金 (元)</span>
+                                <span class="value">{{ principal | number: 2 }}</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="info">
                                 <span class="name">当前收益 (元)</span>
                                 <span class="value">{{ outstandingInterest | number: 2 }}</span>
                             </div>
                         </li>
                         <li>
-                            <div class="info">
-                                <span class="name">累计收益 (元)</span>
+                            <div class="info emphasis">
+                                <span class="name">
+                                    累计收益 (元)
+                                    <img
+                                        width="12"
+                                        class="info-icon"
+                                        ng-src="assets/image/info-icon.png"
+                                        uib-tooltip="已经结息的全部收益"
+                                        tooltip-placement="left"
+                                        tooltip-trigger="outsideClick"
+                                    >
+                                </span>
                                 <span class="value">{{ investInterestAmount | number: 2 }}</span>
                             </div>
                         </li>
@@ -115,7 +158,7 @@
             </li>
             <li>
                 <div class="info-row info-row-fund">
-                    <div class="info-col title">精选基金</div>
+                    <div class="info-col title">私人定制</div>
                     <div class="info-col">
                         <div class="value">{{ 0 | number: 2 }}</div>
                         <div class="name">持有本金</div>

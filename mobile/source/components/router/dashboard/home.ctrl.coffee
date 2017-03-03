@@ -13,8 +13,10 @@ do (_, angular) ->
                 @$scope.now = Date.now()
 
                 {availableAmount, frozenAmount} = @user.fund
-                {investInterestAmount, outstandingInterest} = @user.statistics
+                {investInterestAmount, outstandingInterest, offlineDataInvestAmount} = @user.statistics
                 {principal, interest} = @user.statistics.investStatistics.dueAmount
+
+                principal = principal + offlineDataInvestAmount
 
                 total = availableAmount + frozenAmount + principal + outstandingInterest
 
