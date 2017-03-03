@@ -112,14 +112,15 @@
                         <div class="newest">
                             <div class="small">最新公告:</div>
                             <div id="scrollWrap">
-                                <ul id="scrollMsg">
+                                <!--<ul id="scrollMsg">-->
                                     {{#latestNew}}
-                                    <li><a target="_blank" href="/us/transfer" style="text-decoration:none">{{{title}}}
-                                        <span style="margin-left: 20px;">{{timeRecorded}}</span></a>
+                                    <li>
+                                        <a target="_blank" href="/us/transfer" style="text-decoration:none">{{{title}}}
+                                        <span style="margin-left: 20px;">{{timeRecorded}}</span>
+                                        </a>
                                     </li>
                                     {{/latestNew}}
-                                </ul>
-
+                                <!--</ul>-->
                             </div>
                         </div>
                     </div>

@@ -19,7 +19,13 @@
     <div class="info" style="padding-left: 20px;">
         <div class="duration">
             <span class="num">{{ loan.raw.loanRequest.displayDuration.frontShowDuration }}</span>
-            <span class="u-color-main" style="margin-left: 10px;">7天可转</span>
+            <span
+                class="u-color-main"
+                style="margin-left: 10px;"
+                ng-if="loan.product_key !== 'NEW'"
+            >
+                7天可转
+            </span>
         </div>
         <div class="min-amount"
              ng-init="min_amount = loan.raw.loanRequest.investRule.minAmount"
