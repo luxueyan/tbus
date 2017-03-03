@@ -11,6 +11,8 @@ $('[data-ride="carousel"]').each(function () {
 require('bootstrap/js/tab');
 var $carousel = $("#my-carousel");
 var IndexService = require('./service').IndexService;
+var InvestListServiceG = require('ccc/invest/js/main/service/list').InvestListService;
+var InvestListServiceH = require('ccc/high/js/main/service/list').InvestListService;
 var utils = require('ccc/global/js/lib/utils');
 var i18n = require('@ds/i18n')['zh-cn'];
 var loginElement = document.getElementsByClassName ? document.getElementsByClassName('info')[0] : $('.info')[0];
@@ -26,38 +28,72 @@ $(function () {
     });
 });
 
-
 function replaceStr(str) {
     return str.replace(/[^\x00-xff]/g, 'xx').length;
 }
 
-
-IndexService.getLoansForHomePage(function (res) {
-    var GDSY = formatItem(res['GDSY']);
-    var investRactive = new Ractive({
-        el: ".GDSYproductList",
-        template: require('ccc/index/partials/gdsy.html'),
-        data: {
-            listTJ: {},
-            listNew: {},
-            listGD: GDSY[0],
-        },
-        oncomplete: function () {
-            if (res['CPTJ'] == null || res['CPTJ'] == "null") {
-                this.set('listTJ', GDSY[2]);
-
-            } else {
-                this.set('listTJ', formatItemNew(res['CPTJ']));
-            }
-            if (res['NEW'] == null || res['NEW'] == "null") {
-                this.set('listNew', GDSY[1]);
-            } else {
-                this.set('listNew', formatItemNew(res['NEW']));
-
-            }
+function jsonToParams(params) {
+    var str = '';
+    for (var key in params) {
+        if (params.hasOwnProperty(key)) {
+            str += '&' + key + '=' + params[key];
         }
-    });
+    }
+    return str;
+}
+
+var investRactive = new Ractive({
+    el: ".GDSYproductList",
+    template: require('ccc/index/partials/gdsy.html'),
+    oncomplete: function () {
+        var paramsI = {
+            status: '',
+            pageSize: 2,
+            currentPage: 1,
+            product: 'GDSY',
+        };
+        var paramsH = {
+            status: '',
+            pageSize: 1,
+            currentPage: 1,
+            product: 'GDLC',
+        };
+        InvestListServiceG.getLoanListWithCondition(jsonToParams(paramsI), 'true', function (res) {
+            investRactive.set('listTJ', formatItem(res.results.slice(0, 1)));
+            investRactive.set('listNew', formatItem(res.results.slice(1, 2)));
+        });
+
+        InvestListServiceH.getLoanListWithCondition(jsonToParams(paramsH), function (res) {
+            investRactive.set('listGD', formatItem(res.results));
+        });
+    }
 });
+
+
+// IndexService.getLoansForHomePage(function (res) {
+//     var GDSY = formatItem(res['GDSY']);
+//     var investRactive = new Ractive({
+//         el: ".GDSYproductList",
+//         template: require('ccc/index/partials/gdsy.html'),
+//         data: {
+//             listTJ: {},
+//             listNew: {},
+//             listGD: GDSY[0],
+//         },
+//         oncomplete: function () {
+//             if (res['CPTJ'] == null || res['CPTJ'] == "null") {
+//                 this.set('listTJ', GDSY[2]);
+//             } else {
+//                 this.set('listTJ', formatItemNew(res['CPTJ']));
+//             }
+//             if (res['NEW'] == null || res['NEW'] == "null") {
+//                 this.set('listNew', GDSY[1]);
+//             } else {
+//                 this.set('listNew', formatItemNew(res['NEW']));
+//             }
+//         }
+//     });
+// });
 
 
 $("#btn-login-on-carousel").click(function (e) {
