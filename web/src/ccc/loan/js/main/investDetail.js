@@ -261,9 +261,10 @@ setTimeout((function () {
         var indexnum = couponSelection.indexOf("最低投资额：");
         var minnum = couponSelection.substring(indexnum + 6, couponSelection.length - 1);
         var couponSelection = $('#couponSelection').val();
-        var selectOption = this.get('selectOption').length;
-        // console.log(couponSelection);
-        // console.log(selectOption);
+        var selectOption = 0;
+        if (this.get('selectOption')) {
+            selectOption = this.get('selectOption').length;
+        }
         if (num < minnum) {
             showErrors('投资额小于奖券最低投资额');
             return false;
