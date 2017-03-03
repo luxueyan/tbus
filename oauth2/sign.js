@@ -1,30 +1,38 @@
+var crypto = require('crypto');
+// client secret (API密钥)
+var secret = 'c0d37e0a5931b7029ee7a9f13e647a28970b84d4e509bddeb8d80d9f31e4c366';
 
-//var dict = {c: 'missile-123x', b:1, a:2, z:333, m: 345};
-//xx=111&zz=222&aa=232&dd=missile&sign=adfasdfasdfasdf
 var time = Date.now();
-var dict = {
+var params = {
   xx: 111,
   zz: 222,
   aa: 232,
-  dd: 'missile',
-  timestamp: time
+  dd: 'some-string'
 }
+// 把timestamp作为参数之一加入sign的计算中去
+params.timestamp = time;
 
-console.log(dict)
-var strs = [], str = '';
-for (var key of Object.keys(dict).sort()) {
-  //console.log(key, dict[key]);
-  //str += key + '=' + dict[key];
-  strs.push(key + '=' + dict[key])
+// 如果是get请求，则参数是 ?xx=111&zz=222&aa=232&dd=some-string 这样的
+// 整体来说post和get方式做法一样
+
+// 对字段名做字典排序
+var strs = [], paramsString = '', readyToSign = '', signature = '';
+for (var key of Object.keys(params).sort()) {
+  strs.push(key + '=' + params[key])
 }
-str = strs.join('&');
-console.log('strs: ', strs)
-console.log('str: ', str)
+// 把排好序的字段和值用 & 符号连接，比如 aa=111&bb=222&cc=333
+paramsString = strs.join('&');
 
-var crypto = require('crypto');
-var secret = 'c0d37e0a5931b7029ee7a9f13e647a28970b84d4e509bddeb8d80d9f31e4c366';
-var params = 'name=xx&key=missile&time=234234&xxx=234sf';
-var ssr = crypto.createHmac('sha1', secret).update(params).digest().toString('base64');
-console.log('ssr:', ssr)
-console.log('###time:', time)
-console.log('md5:', crypto.createHash('md5').update(str + '&sign=' + 'client-secret-for-xxxx-dev').digest('hex'));
+// 在拼接好参数后边再拼接上API密钥，注意需要加上 &sign=
+readyToSign = paramsString + '&sign=' + secret;
+
+// 对生成的readyToSign子串做md5操作，结果即sign签名值
+signature = crypto.createHash('md5').update(readyToSign).digest('hex');
+console.log('sign: ', signature);
+
+// 最终请求的url
+var url = paramsString + '&sign=' + signature;
+console.log('url: ', url);
+
+// 输出结果
+// url:  aa=232&dd=some-string&timestamp=1488527789495&xx=111&zz=222&sign=0104046412972c4ce650535569a4a486
