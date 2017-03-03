@@ -3346,6 +3346,33 @@ a {
 ----*/
 
 #dashboard-invest {
+    .page-nav {
+        .links {
+            .flex-display();
+            text-align: center;
+
+            a {
+                .flex(1);
+                color: #F69375;
+
+                &.selected {
+                    position: relative;
+                    color: #FFF;
+
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        bottom: -8px;
+                        height: 2px;
+                        background-color: #FFF;
+                    }
+                }
+            }
+        }
+    }
+
     .tab-links {
         #dashboard-coupon .tab-links;
     }
