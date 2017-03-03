@@ -28,7 +28,7 @@ module.exports = [
 
   // 登录
   {
-    url: '/api/v2/users/register',
+    url: '/api/v2/auth/login',
     method: 'POST',
     signature: true
   },
