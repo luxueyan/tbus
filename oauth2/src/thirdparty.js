@@ -25,7 +25,7 @@ module.exports = function (req, res, next) {
   }
 
   // 非第三方请求直接next
-  if (!req.headers[config.thirdParty.mark.toLowerCase()]) {
+  if (!req.headers[config.thirdParty.mark.toLowerCase()] === 'true') {
     return next();
   }
 
