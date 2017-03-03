@@ -20,7 +20,9 @@
                         <div class="item">
                             <div class="value">
                                 <span>{{loans.durationNewNo}}</span>{{loans.durationNewName}}
+                                {{#if loans.loanRequest.productKey!="NEW"}}
                                 <span class="assign_time">7天可转</span>
+                                {{/if}}
                             </div>
                             <div class="name">投资期限</div>
                         </div>
@@ -40,10 +42,12 @@
                             </div>
                             <div class="name">起投金额</div>
                         </div>
+                        {{#if loans.loanRequest.productKey!="NEW"}}
                         <div class="assign_tip">
                             产品计息后持有7天以上可进行转让（具体转让规则可查看
                             <a href="/help/transfer" target="_blank">帮助中心</a>）
                         </div>
+                        {{/if}}
                     </div>
                     <div class="innerBottom">
                         <div class="start_time">
