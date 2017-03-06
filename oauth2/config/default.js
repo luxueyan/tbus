@@ -104,6 +104,7 @@ module.exports = {
     thirdParty: {
       open: false, // 是否开启三方接入验证
       mark: 'X-THIRD-PARTY', // 标识改请求为第三方请求
+      devmark: 'X-DEV', // 三方开发模式标识，只在dev和uat环境有效
       client: 'X-CLIENT', // 第三方请求头携带的client id的KEY
       signExpireSeconds: 10 // 第三方验签过期时间
     }

@@ -50,6 +50,12 @@ thirdParty: {
 需要注意的是，平台部分需要在nginx上做第三方请求的转发，假定第三方的注册IP为xx.xx.xx.xx，
 那从该IP发起的请求都需要经过nginx转发，同时请求头中附带上config.thirdParty.mark，默认为 "X-THIRD-PARTY"，值随便写
 
+------
+
+oauth中调试这部分的时候，本地可以添加NODE_APP_THIRD=true参数，此时系统会把所有请求都认为是第三方请求处理，方便调试。
+作为第三方开发，联调我方uat环境时，如果第三方在请求header里加入X-DEV参数，值任意(比如值为1)，我方oauth即认为是第三方请求，跳过nginx上的IP限制，
+而nginx上注册的IP只在生产环境上生效。
+也就是说，第三方在本地开发的时候，处理在请求的header里加入X-CLIENT外，还可以再加入一个X-DEV，测试系统将不做IP限制，方便三方开发调试。
 
 ------
 

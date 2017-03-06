@@ -6,9 +6,21 @@ var debug = require('debug')('whitelist');
 var _ = require('lodash');
 var pathToRegexp = require('path-to-regexp');
 var crypto = require('crypto');
+var ccBody = require('cc-body');
 var WHITELIST = require('../whitelist');
 
-module.exports = function (req, res, next) {
+module.exports = router;
+
+router.all('*', function(req, res, next){
+  // 被授权的第三方接入支持跨域
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type, X-CLIENT, X-THIRD-PARTY, X-DEV');
+  next();
+});
+router.get('*', thirdPartyMiddleware)
+router.post('*', ccBody, thirdPartyMiddleware);
+
+function thirdPartyMiddleware (req, res, next) {
   var Url = url.parse(req.url);
   var current = getCurrentUrl(req, Url);
 
@@ -16,16 +28,8 @@ module.exports = function (req, res, next) {
     return next();
   }
 
-  // 被授权的第三方接入支持跨域
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type, X-CLIENT, X-THIRD-PARTY');
-
-  if (req.method.toUpperCase() === 'OPTIONS') {
-    return res.send();
-  }
-
   // 非第三方请求直接next
-  if (!req.headers[config.thirdParty.mark.toLowerCase()] === 'true') {
+  if (!isThirdPartyReq(req)) {
     return next();
   }
 
@@ -128,4 +132,36 @@ function buildParams (params) {
     strs.push(key + '=' + params[key])
   }
   return strs.join('&');
+}
+
+function isThirdPartyReq (req) {
+  // super model, for local test
+  if (process.env.NODE_APP_THIRD) {
+    return true;
+  }
+
+  // local dev
+  if (!process.env.NODE_ENV) {
+    return false;
+  }
+
+  // uat环境并且header中有三方dev标识
+  if (process.env.NODE_APP_INSTANCE === 'uat') {
+    // 如果三方在请求中注明dev则判为三方请求
+    return req.headers[config.thirdParty.devmark.toLowerCase()] ? true : false;
+  } else {
+    // 生产环境要依赖nginx上注册的第三方IP来判断是否是第三方请求
+    return req.headers[config.thirdParty.mark.toLowerCase()] === 'true' ? true : false;
+  }
+
+  /*
+  // others
+  var referer = req.headers['referer'];
+  var u = referer ? url.parse(referer) : null;
+  if (!u || ['localhost', '127.0.0.1'].indexOf(u.hostname) > -1) {
+    return false;
+  }
+
+  return true;
+  */
 }
