@@ -20,12 +20,14 @@ redis.on('error', function(err){
   throw err;
 });
 
+/*
 var bodyParser = require('body-parser');
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({ extended: true }));
+*/
 
 // 加入第三方接入白名单
-server.use(require('./thirdparty'));
+//server.use(require('./thirdparty'));
 
 require('./middlewares/encpass').forEach(function (mid) {
     server.use(mid);
