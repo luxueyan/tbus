@@ -14,6 +14,7 @@ var navRactive = new Ractive({
         var location = window.location.pathname.split('/');
 
         this.set('isMMC', CC.user.isMMC);
+        this.set('financialShow', false);
 
         if (location.length <= 3) {
             var tab = location[location.length - 1];
@@ -39,6 +40,43 @@ var navRactive = new Ractive({
 navRactive.on('toggleMenu', function (event) {
     var toggleMenu = event.node.getAttribute('data-toggle');
     this.set(toggleMenu, !this.get(toggleMenu));
+});
+
+navRactive.on('financialShow', function () {
+    navRactive.set('mobileNew', CC.user.mobile.slice(0, 3) + '****' + CC.user.mobile.slice(7, 11));
+    navRactive.set('financialShow', true);
+    // location.href='/newAccount/financial';
+});
+
+// 获取进入理财师密码
+navRactive.on('getSMS', function () {
+    $('#getSMS').attr("disabled", true);
+    var msg = '$秒后重新发送';
+    var left = 59;
+    var interval = setInterval((function () {
+        if (left > 0) {
+            $('#getSMS').val(msg.replace('$', left--));
+        } else {
+            $('#getSMS').val('获取验证码');
+            $('#getSMS').removeAttr("disabled");
+            clearInterval(interval);
+        }
+    }), 1000);
+
+    $.post('/api/v2/user/MYSELF/sendMMCCaptcha', {}, function (r) {
+        console.log(r);
+    });
+});
+
+// 验证进入理财师密码
+navRactive.on('financialSMSS', function () {
+
+});
+
+// 取消验证
+navRactive.on('financialSMSN', function () {
+    navRactive.set('mobileNew', null);
+    navRactive.set('financialShow', false);
 });
 
 if (location.pathname != '/newAccount/userInfo') {

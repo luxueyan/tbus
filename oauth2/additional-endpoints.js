@@ -144,5 +144,12 @@ module.exports = function (router, auth, middlewares) {
         });
     });
 
+    // 获取线下记录
     router.get('/api/v2/offlineData/offline/:userId', auth.pass());
+
+    // 获取理财师验证码
+    router.get('/api/v2/user/:userId/sendMMCCaptcha', auth.pass());
+
+    // 验证理财师验证码
+    router.get('api/v2/checkSMSCaptcha/:userId', auth.pass());
 };

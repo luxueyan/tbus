@@ -67,8 +67,23 @@
         {{else}}
         <span class="icon-common"></span>
         {{/if}}
-        <span class="nav-text {{#if financial}}nav-text-active{{/if}}"><a href="/newAccount/financial">理财师</a></span>
+        <span class="nav-text {{#if financial}}nav-text-active{{/if}}"><a href="javascript:;" on-click="financialShow">理财师</a></span>
     </li>
     {{/if}}
 </ul>
 <div class="clearfix"></div>
+
+{{#if financialShow}}
+<div class="financialSMS">
+    <div class="financialSMSBody">
+        <h6>请用手机验证码登录</h6>
+        <div class="financialSMSMain">
+            <label>已绑定：{{mobileNew}}</label>
+            <input type="button" id="getSMS" on-click="getSMS" value="获取验证码">
+        </div>
+        <input type="text" class="financialSMSIpt" placeholder="验证码">
+        <button type="button" on-click="financialSMSS">确定</button>
+        <button type="button" on-click="financialSMSN" class="btn">取消</button>
+    </div>
+</div>
+{{/if}}
