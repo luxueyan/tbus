@@ -4,6 +4,16 @@
 
 var i18n = require('@ds/i18n')['zh-cn'];
 
+i18n.enums.RepaymentMethod={
+    "MonthlyInterest": ["按月付息到期还本", "还款压力小"],
+        "EqualInstallment": ["按月等额本息", "还款便捷"],
+        "EqualPrincipal": ["按月等额本金", "总利息最低"],
+        "BulletRepayment": ["一次性还本付息", "短期首选"],
+        "EqualInterest": ["月平息", "实际利率最高"],
+        "YearlyInterest": ["按年付息到期还本", "还款压力小"],
+        "CycleInterest":["按循环周期付息到期还本", "还款压力小"]
+}
+
 var InvestListService = require('ccc/invest/js/main/service/list').InvestListService;
 var IndexService = require('ccc/index/js/main/service/index').IndexService;
 var utils = require('ccc/global/js/lib/utils');

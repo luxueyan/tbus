@@ -81,7 +81,8 @@ payRactive.on("invest-submit", function (e) {
         "COUPON_REDEEM_FAILED": "使用奖券失败",
         "NO_ENOUGH_BALANCE": "标的余额不足",
         "CALL_WITHDRAWREQUEST_FAILED": "提现申请失败",
-        "PAID_FAILED": "充值失败"
+        "PAID_FAILED": "充值失败",
+        "LOAN_SELL_OUT":"标的已售罄"
     };
     var that = this;
     $("#subBtn").attr("disabled", "true");
