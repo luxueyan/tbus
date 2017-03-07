@@ -145,7 +145,7 @@ module.exports = function (router, auth, middlewares) {
     });
 
     // 获取线下记录
-    router.get('/api/v2/offlineData/offline/:userId', auth.pass());
+    router.get('/api/v2/offlineData/offline/:userId', auth.user());
 
     // 获取理财师验证码
     router.post('/api/v2/user/:userId/sendMMCCaptcha', auth.owner());

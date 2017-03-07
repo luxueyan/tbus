@@ -45,34 +45,43 @@ navRactive.on('toggleMenu', function (event) {
 navRactive.on('financialShow', function () {
     navRactive.set('mobileNew', CC.user.mobile.slice(0, 3) + '****' + CC.user.mobile.slice(7, 11));
     navRactive.set('financialShow', true);
-    // location.href='/newAccount/financial';
+
 });
 
 // 获取进入理财师密码
 navRactive.on('getSMS', function () {
-    $('#getSMS').attr("disabled", true);
-    var msg = '$秒后重新发送';
-    var left = 59;
-    var interval = setInterval((function () {
-        if (left > 0) {
-            $('#getSMS').val(msg.replace('$', left--));
+    $.post('/api/v2/user/' + CC.user.id + '/sendMMCCaptcha', {sMSType: 'CREDITMARKET_CHECK_MONEYMANAGING'}, function (r) {
+        if (r.success == true) {
+            $('#getSMS').attr("disabled", true);
+            var msg = '$秒后重新发送';
+            var left = 59;
+            var interval = setInterval((function () {
+                if (left > 0) {
+                    $('#getSMS').val(msg.replace('$', left--));
+                } else {
+                    $('#getSMS').val('获取验证码');
+                    $('#getSMS').removeAttr("disabled");
+                    clearInterval(interval);
+                }
+            }), 1000);
         } else {
-            $('#getSMS').val('获取验证码');
-            $('#getSMS').removeAttr("disabled");
-            clearInterval(interval);
+            alert('获取验证码失败');
         }
-    }), 1000);
-
-    $.post('/api/v2/user/MYSELF/sendMMCCaptcha', {'sMSType': 'CREDITMARKET_CHECK_MONEYMANAGING'}, function (r) {
-        console.log(r);
     });
 });
 
 // 验证进入理财师密码
 navRactive.on('financialSMSS', function () {
     console.log(this.get('smsCaptcha'));
-    $.post('/api/v2/user/'+CC.user.id+'/sendMMCCaptcha', {'smsType': 'CREDITMARKET_CHECK_MONEYMANAGING', smsCaptcha: this.get('smsCaptcha')}, function (r) {
-        console.log(r);
+    $.post('/api/v2/checkSMSCaptcha/' + CC.user.id, {
+        smsType: 'CREDITMARKET_CHECK_MONEYMANAGING',
+        smsCaptcha: this.get('smsCaptcha')
+    }, function (r) {
+        if(r.success){
+            location.href='/newAccount/financial';
+        }else {
+            alert('验证码错误，请重新输入');
+        }
     });
 });
 
