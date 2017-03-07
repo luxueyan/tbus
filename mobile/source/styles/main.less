@@ -2828,6 +2828,22 @@ a {
                     .flex(1);
                     text-align: right;
                 }
+
+                &.emphasis {
+                    color: @color-theme-main;
+
+                    .name {
+                        .flex(1);
+                        border-left: none;
+                        padding-left: 0;
+                        padding-right: 20px;
+                        text-align: right;
+                    }
+
+                    .value {
+                        .flex(none);
+                    }
+                }
             }
 
             &-default {
@@ -2838,8 +2854,16 @@ a {
                 }
             }
 
+            .info-icon {
+                margin-left: 5px;
+            }
+
             &-heading {
                 padding: 15px 20px;
+
+                .info-icon {
+                    vertical-align: -1px;
+                }
             }
 
             &-title {
@@ -2865,8 +2889,17 @@ a {
                             color: #717071;
                             line-height: 1.1;
 
-                            + li {
-                                border-top: 1px dashed #CFCFCF;
+                            + li:last-child {
+                                position: relative;
+
+                                &:before {
+                                    content: "";
+                                    position: absolute;
+                                    top: 0;
+                                    left: 20px;
+                                    right: 50px;
+                                    border-top: 1px dashed #CFCFCF;
+                                }
                             }
                         }
                     }
@@ -2893,24 +2926,24 @@ a {
 
             .info-col {
                 display: table-cell;
-                text-align: center;
                 vertical-align: middle;
 
                 &:nth-child(1) {
                     width: 30%;
                     font-size: 16px;
                     color: #FFF;
+                    text-align: center;
                 }
 
                 &:nth-child(2) {
-                    width: 30%;
+                    padding-left: 5%;
+                    width: 35%;
                     font-size: 14px;
                 }
 
                 &:nth-child(3) {
-                    width: 40%;
+                    width: 35%;
                     font-size: 14px;
-                    text-align: left;
                 }
 
                 .name {
@@ -3313,6 +3346,33 @@ a {
 ----*/
 
 #dashboard-invest {
+    .page-nav {
+        .links {
+            .flex-display();
+            text-align: center;
+
+            a {
+                .flex(1);
+                color: #F69375;
+
+                &.selected {
+                    position: relative;
+                    color: #FFF;
+
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        bottom: -8px;
+                        height: 2px;
+                        background-color: #FFF;
+                    }
+                }
+            }
+        }
+    }
+
     .tab-links {
         #dashboard-coupon .tab-links;
     }

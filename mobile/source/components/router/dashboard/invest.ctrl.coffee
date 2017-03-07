@@ -10,32 +10,42 @@ do (_, angular) ->
 
                 @$rootScope.state = 'dashboard'
 
-                current_tab = @$routeParams.tab or 'INHAND'
+                {tab1, tab2} = @$routeParams
+                tab1 = tab1 or 'online'
+                tab2 = tab2 or 'INHAND'
 
-                type_status_map = {
-                    INHAND : _.split 'FINISHED PROPOSED FROZEN SETTLED OVERDUE BREACH'
-                    ASSIGN: _.split 'OPEN FINISHED'
-                    CLEARED: _.split 'CLEARED'
-                }
+                query_set = {}
 
-                query_set = {
-                    status: type_status_map[current_tab]
-                }
+                if tab1 is 'online'
+                    type_status_map = {
+                        INHAND : _.split 'FINISHED PROPOSED FROZEN SETTLED OVERDUE BREACH'
+                        ASSIGN: _.split 'OPEN FINISHED'
+                        CLEARED: _.split 'CLEARED'
+                    }
+                    query_set.status = type_status_map[tab2]
+
+                else if tab1 is 'offline'
+                    type_status_map = {
+                        INHAND : 'INTERESTED'
+                        CLEARED: 'REDEMPTION'
+                    }
+                    query_set.status = type_status_map[tab2]
 
                 angular.extend @$scope, {
-                    current_tab
+                    tab1
+                    tab2
                     query_set
                 }
 
                 @query(query_set)
 
 
-            goto_tab: (new_tab) ->
+            goto_tab: (params) ->
 
                 @$location
                     .replace()
-                    .path @$location.path()
-                    .search tab: new_tab
+                    .path(@$location.path())
+                    .search(params)
 
 
             query: (query_set, options = {}) ->
@@ -48,7 +58,7 @@ do (_, angular) ->
 
                 @$scope.loading = true
 
-                if @$scope.current_tab is 'ASSIGN'
+                if @$scope.tab2 is 'ASSIGN'
 
                     (@api.get_user_creditassign_list(query_set)
 
@@ -67,7 +77,7 @@ do (_, angular) ->
                             @$scope.loading = false
                     )
 
-                else
+                else if @$scope.tab1 is 'online'
 
                     (@api.get_user_investments(query_set)
 
@@ -89,6 +99,26 @@ do (_, angular) ->
                         .finally =>
                             @$scope.loading = false
                     )
+
+                else if @$scope.tab1 is 'offline'
+
+                    (@api.get_user_offline_list(query_set)
+
+                        .then ({results, totalSize}) =>
+                            @$scope.list = @$scope.list.concat results
+                            angular.extend @$scope.list, {totalSize}
+
+                        .catch (data) =>
+                            if _.get(data, 'error') is 'access_denied'
+                                @$window.alert @$scope.msg.ACCESS_DENIED
+                                @$window.location.reload()
+
+                        .finally =>
+                            @$scope.loading = false
+                    )
+
+                else
+                    @$scope.loading = false
 
 
             infinite_scroll: (distance) =>
@@ -169,7 +199,8 @@ do (_, angular) ->
 
         scope:
             item: '='
-            type: '='
+            tab1: '='
+            tab2: '='
 
 
         controller: _.ai '@$window, @$location, @$scope, @$rootScope, @view_pdf', class

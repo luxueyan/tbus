@@ -5,7 +5,18 @@
         <a class="col-xs-3 back" x-go-back>
             <param class="glyphicon glyphicon-menu-left">
         </a>
-        <span class="col-xs-6 title">我的投资</span>
+        <span class="col-xs-6">
+            <span class="links">
+                <a
+                    ng-class="{ selected: tab1 === 'online' }"
+                    ng-click="self.goto_tab({tab1: 'online'})"
+                >线上投资</a>
+                <a
+                    ng-class="{ selected: tab1 === 'offline' }"
+                    ng-click="self.goto_tab({tab1: 'offline'})"
+                >线下投资</a>
+            </span>
+        </span>
         <span class="col-xs-3">&nbsp;</span>
     </div>
     </nav>
@@ -20,16 +31,17 @@
         <div class="text-center btn-group-wrap">
             <div class="btn-group">
                 <a class="btn btn-tab"
-                   ng-class="{ selected: current_tab === 'INHAND' }"
-                   ng-click="self.goto_tab('INHAND')"
+                   ng-class="{ selected: tab2 === 'INHAND' }"
+                   ng-click="self.goto_tab({tab1: tab1, tab2: 'INHAND'})"
                 >在投产品</a>
                 <a class="btn btn-tab"
-                   ng-class="{ selected: current_tab === 'ASSIGN' }"
-                   ng-click="self.goto_tab('ASSIGN')"
+                   ng-class="{ selected: tab2 === 'ASSIGN' }"
+                   ng-click="self.goto_tab({tab1: tab1, tab2: 'ASSIGN'})"
+                   ng-if="tab1 === 'online'"
                 >我的转让</a>
                 <a class="btn btn-tab"
-                   ng-class="{ selected: current_tab === 'CLEARED' }"
-                   ng-click="self.goto_tab('CLEARED')"
+                   ng-class="{ selected: tab2 === 'CLEARED' }"
+                   ng-click="self.goto_tab({tab1: tab1, tab2: 'CLEARED'})"
                 >安全兑付</a>
             </div>
         </div>
@@ -47,7 +59,12 @@
             }}"
         >
             <li ng-repeat="item in list">
-                <div x-invest-summary data-item="item" data-type="current_tab"></div>
+                <div
+                    x-invest-summary
+                    data-item="item"
+                    data-tab1="tab1"
+                    data-tab2="tab2"
+                ></div>
             </li>
         </ul>
 
