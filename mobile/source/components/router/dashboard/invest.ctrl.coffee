@@ -24,6 +24,13 @@ do (_, angular) ->
                     }
                     query_set.status = type_status_map[tab2]
 
+                else if tab1 is 'offline'
+                    type_status_map = {
+                        INHAND : 'INTERESTED'
+                        CLEARED: 'REDEMPTION'
+                    }
+                    query_set.status = type_status_map[tab2]
+
                 angular.extend @$scope, {
                     tab1
                     tab2
