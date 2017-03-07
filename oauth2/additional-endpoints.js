@@ -148,8 +148,8 @@ module.exports = function (router, auth, middlewares) {
     router.get('/api/v2/offlineData/offline/:userId', auth.pass());
 
     // 获取理财师验证码
-    router.get('/api/v2/user/:userId/sendMMCCaptcha', auth.pass());
+    router.post('/api/v2/user/:userId/sendMMCCaptcha', auth.owner());
 
     // 验证理财师验证码
-    router.get('api/v2/checkSMSCaptcha/:userId', auth.pass());
+    router.post('api/v2/checkSMSCaptcha/:userId', auth.owner());
 };

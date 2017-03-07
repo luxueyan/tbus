@@ -63,14 +63,17 @@ navRactive.on('getSMS', function () {
         }
     }), 1000);
 
-    $.post('/api/v2/user/MYSELF/sendMMCCaptcha', {}, function (r) {
+    $.post('/api/v2/user/MYSELF/sendMMCCaptcha', {'sMSType': 'CREDITMARKET_CHECK_MONEYMANAGING'}, function (r) {
         console.log(r);
     });
 });
 
 // 验证进入理财师密码
 navRactive.on('financialSMSS', function () {
-
+    console.log(this.get('smsCaptcha'));
+    $.post('/api/v2/user/'+CC.user.id+'/sendMMCCaptcha', {'smsType': 'CREDITMARKET_CHECK_MONEYMANAGING', smsCaptcha: this.get('smsCaptcha')}, function (r) {
+        console.log(r);
+    });
 });
 
 // 取消验证
