@@ -3432,23 +3432,27 @@ a {
                         font-size: 18px;
                         color: @color-theme-main;
                     }
+
+                    + .info-list {
+                        position: relative;
+                        margin-left: 10px;
+                        padding-left: 10px;
+
+                        &:after {
+                            content: "";
+                            position: absolute;
+                            top: 0;
+                            bottom: 0;
+                            left: 0;
+                            width: 1px;
+                            background-color: #B6B6B7;
+                        }
+                    }
                 }
 
                 .info-list {
                     .flex(1);
-                    position: relative;
-                    margin-left: 10px;
-                    padding-left: 10px;
-
-                    &:after {
-                        content: "";
-                        position: absolute;
-                        top: 0;
-                        bottom: 0;
-                        left: 0;
-                        width: 1px;
-                        background-color: #B6B6B7;
-                    }
+                    margin-left: 5px;
 
                     > .info {
                         color: #717071;

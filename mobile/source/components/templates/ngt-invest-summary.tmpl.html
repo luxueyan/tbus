@@ -182,87 +182,39 @@
 
 <div ng-if="tab1 === 'offline'">
     <div class="head">
-        <h4 class="title">{{ item.title }}</h4>
+        <h4 class="title">{{ item.productName }}</h4>
         <span class="date">
-            <span class="item">起息日：{{ item.settled_date | date: "yyyy-MM-dd" }}</span>
-            <span class="item">到期日：{{ item.end_date | date: "yyyy-MM-dd" }}</span>
+            <span class="item">起息日：{{ item.valueDate | date: "yyyy-MM-dd" }}</span>
+            <span class="item">到期日：{{ item.dueDate | date: "yyyy-MM-dd" }}</span>
         </span>
     </div>
 
     <div class="body">
-        <div class="rate">
-            <div class="value">{{
-                (item.rate + '').indexOf('.') == -1
-                ? (item.rate | number: 1)
-                : item.rate
-            }}%</div>
+        <div class="rate" ng-if="item.rate">
+            <div class="value">{{ item.rate / 100 }}%</div>
             <div class="name">预期年收益率</div>
         </div>
 
         <div class="info-list">
-            <div class="info"
-                 ng-if="[
-                    'FINISHED',
-                    'FAKESETTLED',
-                    'PROPOSED',
-                    'FROZEN',
-                    'SETTLED',
-                    'OVERDUE',
-                    'BREACH'
-                 ].indexOf(item.status) > -1"
-            >
-                <span class="name">预期收益(元)</span>
-                <span class="value">
-                    {{
-                        (
-                            item.status == 'FROZEN'
-                            ? item.raw.expectedInterest
-                            : item.raw.dueInInterest
-                        ) | number: 2
-                    }}
+            <div class="info">
+                <span class="name">
+                    {{ item.status == 'REDEMPTION' ? '实际' : '预期' }}收益(元)
                 </span>
-            </div>
-
-            <div class="info"
-                 ng-if="['CLEARED'].indexOf(item.status) > -1"
-            >
-                <span class="name">实际收益(元)</span>
-                <span class="value">{{ item.raw.inInterest | number: 2 }}</span>
+                <span class="value">{{ item.revenue | number: 2 }}</span>
             </div>
 
             <div class="info">
                 <span class="name">投资金额(元)</span>
                 <span class="value">
-                    {{
-                        (
-                            item.raw.creditAssignId
-                            ? (
-                                item.status == 'CLEARED'
-                                ? item.raw.inPrincipal
-                                : item.raw.dueInPrincipal
-                              )
-                            : item.amount
-                        ) | number: 2
-                    }}
+                    {{ item.investAmount | number: 2 }}
                 </span>
             </div>
         </div>
 
         <div class="status-contract">
             <div class="status" ng-switch="item.status">
-                <span ng-switch-when="PROPOSED">申请投标</span>
-                <span ng-switch-when="FROZEN">资金冻结</span>
-                <span ng-switch-when="FROZEN_FAILED">资金冻结失败</span>
-                <span ng-switch-when="FAILED">流标</span>
-                <span ng-switch-when="FINISHED">资金冻结</span>
-                <span ng-switch-when="FAKESETTLED">资金冻结</span>
-                <span ng-switch-when="CANCELED">已取消</span>
-                <span ng-switch-when="SETTLED">
-                    {{ item.have_begun_to_settled ? '计息中' : '资金冻结' }}
-                </span>
-                <span ng-switch-when="CLEARED">已兑付</span>
-                <span ng-switch-when="OVERDUE">待收款</span>
-                <span ng-switch-when="BREACH">待收款</span>
+                <span ng-switch-when="INTERESTED">计息中</span>
+                <span ng-switch-when="REDEMPTION">已兑付</span>
             </div>
         </div>
     </div>
