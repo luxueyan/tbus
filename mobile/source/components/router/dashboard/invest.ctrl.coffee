@@ -104,6 +104,9 @@ do (_, angular) ->
 
                     (@api.get_user_offline_list(query_set)
 
+                        .then @api.process_response
+                        .then @api.TAKE_RESPONSE_DATA
+
                         .then ({results, totalSize}) =>
                             @$scope.list = @$scope.list.concat results
                             angular.extend @$scope.list, {totalSize}
