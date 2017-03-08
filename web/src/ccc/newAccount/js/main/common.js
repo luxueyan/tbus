@@ -43,9 +43,12 @@ navRactive.on('toggleMenu', function (event) {
 });
 
 navRactive.on('financialShow', function () {
-    navRactive.set('mobileNew', CC.user.mobile.slice(0, 3) + '****' + CC.user.mobile.slice(7, 11));
-    navRactive.set('financialShow', true);
-
+    if (location.pathname == "/newAccount/financial") {
+        location.href = '/newAccount/financial';
+    } else {
+        navRactive.set('mobileNew', CC.user.mobile.slice(0, 3) + '****' + CC.user.mobile.slice(7, 11));
+        navRactive.set('financialShow', true);
+    }
 });
 
 // 获取进入理财师密码
@@ -68,6 +71,7 @@ navRactive.on('getSMS', function () {
             alert('获取验证码失败');
         }
     });
+
 });
 
 // 验证进入理财师密码
@@ -77,9 +81,9 @@ navRactive.on('financialSMSS', function () {
         smsType: 'CREDITMARKET_CHECK_MONEYMANAGING',
         smsCaptcha: this.get('smsCaptcha')
     }, function (r) {
-        if(r.success){
-            location.href='/newAccount/financial';
-        }else {
+        if (r.success) {
+            location.href = '/newAccount/financial';
+        } else {
             alert('验证码错误，请重新输入');
         }
     });
