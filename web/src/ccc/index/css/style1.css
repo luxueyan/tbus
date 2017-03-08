@@ -86,7 +86,6 @@
     margin-top: 36px;
     margin-bottom: 30px;
     margin-left: 50px;
-    width:
 }
 .essential-left {
     width: 560px;
@@ -611,14 +610,38 @@
 }
 .proWrapper .header {
     padding: 20px 30px;
-    height: 104px;
+    height: 125px;
     background: url("/ccc/index/img/fixed_icon.png") no-repeat right center;
     background-size: 30%;
+    position: relative;
 }
 .proWrapper .header_title {
     color: #e4262b;
     font-size: 24px;
-    margin-bottom: 10px;
+}
+.proWrapper .header_tags {
+    margin-bottom: 5px;
+    height: 20px;
+}
+.proWrapper .header_tags span {
+    padding: 2px 4px;
+    margin-right: 4px;
+    color: #e4262b;
+    font-size: 12px;
+    border: 1px solid #e4262b;
+}
+.proWrapper .header_tags02 {
+    position: absolute;
+    top: 83px;
+    left: 270px;
+    width: 74px;
+    color: #fff;
+    line-height: 26px;
+    text-align: center;
+    background: #e4262b;
+}
+.proWrapper .word {
+    font-size: 12px;
 }
 .proWrapper .infoBox_title {
     font-size: 30px;
