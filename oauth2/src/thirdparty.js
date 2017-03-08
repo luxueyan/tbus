@@ -17,8 +17,8 @@ router.all('*', function(req, res, next){
   res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type, X-CLIENT, X-THIRD-PARTY, X-DEV');
   next();
 });
-router.get('*', thirdPartyMiddleware)
-router.post('*', ccBody, thirdPartyMiddleware);
+router.get('*', thirdPartyMiddleware);
+router.post('*', thirdPartyMiddleware);
 
 function thirdPartyMiddleware (req, res, next) {
   var Url = url.parse(req.url);
@@ -100,6 +100,7 @@ function getCurrentUrl (req, Url) {
 
 function checkeSignature (client, req) {
   var catchedSign, params;
+  /*
   if (req.method.toUpperCase() === 'GET') {
     catchedSign = req.query.sign;
     delete req.query.sign;
@@ -109,6 +110,10 @@ function checkeSignature (client, req) {
     delete req.body.sign;
     params = buildParams(req.body);
   }
+  */
+  catchedSign = req.query.sign;
+  delete req.query.sign;
+  params = buildParams(req.query);
 
   var timestamp = parseInt(req.query.timestamp, 10);
 

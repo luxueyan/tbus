@@ -19,6 +19,12 @@ module.exports = [
     signature: true
   },
 
+  {
+    url: '/api/v2/register/check_mobile',
+    method: 'POST',
+    signature: true
+  },
+
   // 注册账号
   {
     url: '/api/v2/users/register',
