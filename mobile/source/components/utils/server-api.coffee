@@ -149,7 +149,7 @@ do (_, angular, moment, Array, Date) ->
                     .get '/api/v2/offlineData/offline/MYSELF',
                         params: {
                             status: query_set.status
-                            offset: query_set.page - 1
+                            offset: query_set.page
                             size: query_set.pageSize
                         }
                         cache: cache
