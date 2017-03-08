@@ -9,18 +9,23 @@ var crypto = require('crypto');
 var ccBody = require('cc-body');
 var WHITELIST = require('../whitelist');
 
-module.exports = router;
+//module.exports = router;
 
+/*
 router.all('*', function(req, res, next){
   // 被授权的第三方接入支持跨域
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type, X-CLIENT, X-THIRD-PARTY, X-DEV');
   next();
 });
-router.get('*', thirdPartyMiddleware);
-router.post('*', thirdPartyMiddleware);
+//router.get('*', thirdPartyMiddleware);
+//router.post('*', thirdPartyMiddleware);
+*/
 
-function thirdPartyMiddleware (req, res, next) {
+// function thirdPartyMiddleware (req, res, next) {
+module.exports = function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type, X-CLIENT, X-THIRD-PARTY, X-DEV');
   var Url = url.parse(req.url);
   var current = getCurrentUrl(req, Url);
 

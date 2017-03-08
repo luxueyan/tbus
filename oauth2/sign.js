@@ -1,6 +1,7 @@
 var crypto = require('crypto');
 // client secret (API密钥)
-var secret = 'c0d37e0a5931b7029ee7a9f13e647a28970b84d4e509bddeb8d80d9f31e4c366';
+//var secret = 'c0d37e0a5931b7029ee7a9f13e647a28970b84d4e509bddeb8d80d9f31e4c366';
+var secret = 'client-secret-for-xxxx-dev'
 
 var time = Date.now();
 var params = {
