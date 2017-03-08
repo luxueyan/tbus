@@ -191,7 +191,11 @@
 
     <div class="body">
         <div class="rate" ng-if="item.yield">
-            <div class="value">{{ item.yield / 100 }}%</div>
+            <div class="value" ng-init="rate = item.yield / 100">{{
+                (rate + '').indexOf('.') == -1
+                ? (rate | number: 1)
+                : rate
+             }}%</div>
             <div class="name">预期年收益率</div>
         </div>
 
