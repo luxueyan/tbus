@@ -139,7 +139,12 @@ function checkeSignature (client, req) {
 function buildParams (params) {
   var strs = [], str = '';
   for (var key of Object.keys(params).sort()) {
-    strs.push(key + '=' + params[key])
+    var isarr = _.isArray(params[key]);
+    if (isarr) {
+      params[key].join('&' + key + '=')
+    }
+    //strs.push(key + '=' + params[key])
+    strs.push(key + '=' + (isarr ? params[key].join('&' + key + '=') : params[key]));
   }
   return strs.join('&');
 }

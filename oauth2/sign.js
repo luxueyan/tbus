@@ -1,14 +1,15 @@
 var crypto = require('crypto');
 // client secret (API密钥)
 //var secret = 'c0d37e0a5931b7029ee7a9f13e647a28970b84d4e509bddeb8d80d9f31e4c366';
-var secret = 'client-secret-for-xxxx-dev'
+//var secret = 'client-secret-for-xxxx-dev'
+var secret = 'b965e6ea4b4a242fc3161dcc8e795b87ba1963b11a58d7c3c5643353782de30a'
 
 var time = Date.now();
 var params = {
-  xx: 111,
-  zz: 222,
-  aa: 232,
-  dd: 'some-string'
+  //xx: 111,
+  //zz: 222,
+  //aa: 232,
+  //dd: 'some-string'
 }
 // 把timestamp作为参数之一加入sign的计算中去
 params.timestamp = time;
