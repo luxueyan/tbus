@@ -137,6 +137,27 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
+            get_user_offline_list: (query_set = {}, cache = false) ->
+
+                _.defaults query_set, {
+                    status: 'ALL'
+                    page: 1
+                    pageSize: 10
+                }
+
+                @$http
+                    .get '/api/v2/offlineData/offline/MYSELF',
+                        params: {
+                            status: query_set.status
+                            offset: query_set.page
+                            size: query_set.pageSize
+                        }
+                        cache: cache
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
             get_user_repayments: (query_set = {}, cache = true) ->
 
                 convert_to_day = (date) ->

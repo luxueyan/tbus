@@ -1,5 +1,7 @@
 
-<div ng-if="type !== 'ASSIGN'"
+<div ng-if="tab1 === 'online'">
+
+<div ng-if="tab2 !== 'ASSIGN'"
      ng-click="self.$location.path('loan/' + item.loan_id)"
 >
     <div class="head">
@@ -120,7 +122,7 @@
 </div>
 
 
-<div ng-if="type === 'ASSIGN'"
+<div ng-if="tab2 === 'ASSIGN'"
      ng-click="self.$location.path('assignment/' + item.id)"
 >
     <div class="head">
@@ -167,6 +169,52 @@
                         $event.stopPropagation();
                     "
                 >查看合同</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+
+
+
+<div ng-if="tab1 === 'offline'">
+    <div class="head">
+        <h4 class="title">{{ item.productName }}</h4>
+        <span class="date">
+            <span class="item">起息日：{{ item.valueDate | date: "yyyy-MM-dd" }}</span>
+            <span class="item">到期日：{{ item.dueDate | date: "yyyy-MM-dd" }}</span>
+        </span>
+    </div>
+
+    <div class="body">
+        <div class="rate" ng-if="item.rate">
+            <div class="value">{{ item.rate / 100 }}%</div>
+            <div class="name">预期年收益率</div>
+        </div>
+
+        <div class="info-list">
+            <div class="info">
+                <span class="name">
+                    {{ item.status == 'REDEMPTION' ? '实际' : '预期' }}收益(元)
+                </span>
+                <span class="value">{{ item.revenue | number: 2 }}</span>
+            </div>
+
+            <div class="info">
+                <span class="name">投资金额(元)</span>
+                <span class="value">
+                    {{ item.investAmount | number: 2 }}
+                </span>
+            </div>
+        </div>
+
+        <div class="status-contract">
+            <div class="status" ng-switch="item.status">
+                <span ng-switch-when="INTERESTED">计息中</span>
+                <span ng-switch-when="REDEMPTION">已兑付</span>
             </div>
         </div>
     </div>

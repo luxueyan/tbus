@@ -189,7 +189,7 @@
                         </tr>
                         <tr>
                             <th class="title">可否转让</th>
-                            <th class="content">7天之后可转让</th>
+                            <th class="content">{{#if loans.loanRequest.productKey!="NEW"}}7天之后可转让{{else}}不可转让{{/if}}</th>
                         </tr>
                         <tr>
                             <th class="title">投资期限</th>
