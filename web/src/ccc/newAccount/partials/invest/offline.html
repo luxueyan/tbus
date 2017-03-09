@@ -6,47 +6,43 @@
         <th>转让价格(元)</th>
         <th>挂牌日</th>
         <th>状态</th>
-        <th>操作</th>
     </tr>
 
-    {{#if list}}
+    {{#if list2}}
+    {{#each list2}}
     <tr>
         <td>
             <!--产品名称-->
             <p><a class="table-title" href="/creditDetail/{{ id }}/{{loanId}}" target="_blank"
-                  rel="nofollow">{{title}}</a></p>
+                  rel="nofollow">{{productName}}</a></p>
         </td>
         <td>
             <!--转让利率-->
-            <p class="table-invest-rate">{{(actualRate*100).toFixed(2)}}%</p>
+            <p class="table-invest-rate">{{yield}}%</p>
         </td>
         <td>
             <!--投资金额（元）-->
-            <p class="table-invest-common">{{originalInvestAmount}}</p>
+            <p class="table-invest-common">{{investAmount}}</p>
         </td>
         <td>
             <!--转让价格（元）-->
-            <p class="table-invest-common">{{creditDealAmount.toFixed(2)}}</p>
+            <p class="table-invest-common">{{creditDealAmount}}</p>
         </td>
         <td>
             <!--挂牌日-->
             <p class="table-invest-common">{{timeOpen}}</p>
         </td>
-        <td>
-            <!--状态-->
-            <p class="table-invest-common">{{Fstatus}}</p>
-        </td>
-        <!--操作-->
     </tr>
+    {{/each}}
     {{/if}}
 </table>
-{{#if list}}
+{{#if list2}}
 <div class="space-40"></div>
 <div class="total_invest_num">共{{total}}条记录</div>
 <div class="ccc-paging">
 </div>
 {{else}}
 <div class="null">
-    您目前暂无转让产品
+    暂无数据
 </div>
 {{/if}}

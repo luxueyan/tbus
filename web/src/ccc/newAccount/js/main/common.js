@@ -70,7 +70,7 @@ navRactive.on('getSMS', function () {
                 }
             }), 1000);
         } else {
-            alert('获取验证码失败');
+            alert('验证码获取太过频繁，请稍后再次获取');
         }
     });
 

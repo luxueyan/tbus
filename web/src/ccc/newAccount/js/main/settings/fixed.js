@@ -53,8 +53,13 @@ var Tab = {
         ractive: null,
         api: '/api/v2/user/MYSELF/invest/list/$page/$size?status=CLEARED',
         template: require('ccc/newAccount/partials/invest/cleared.html')
+    },
+    // 线下在线投资 (INTERESTED)
+    INTERESTED: {
+        ractive: null,
+        api: '/api/v2/offlineData/offline/MYSELF?status=INTERESTED&page=1&',
+        template: require('ccc/newAccount/partials/invest/offline.html')
     }
-    // REALIZATION (可变现)
 };
 
 var STATUS = ["SETTLED", "CLEARED", "OVERDUE", "BREACH"];
@@ -119,7 +124,6 @@ function init(type) {
                 }).error(function (o) {
                     console.info('请求出现错误，' + o.statusText);
                 });
-                //console.log(utils.i18n.InvestStatus)
             },
             setData: function (o) {
                 this.set('loading', false);
@@ -210,10 +214,6 @@ function init(type) {
                             datas[i].Frepayed = utils.format.amount(repay.repayed, 2);
                             datas[i].intrest = (o.amount * (o.rate / 10000) * (parseInt(datas[i].holdDay)) / 365).toFixed(2);
                             datas[i].unrepay = o.amount + parseFloat(datas[i].intrest);
-                            //console.log(o.amount)
-                            //console.log(datas[i].holdDay)
-                            //console.log(datas[i].intrest)
-                            //console.log(datas[i].unrepay)
                         }
                     }
                     return res;
@@ -268,8 +268,6 @@ function init(type) {
 
 
                 this.on('showFixed', function (e) {
-
-                    //console.log(e)
                     var alertTip = new AlertBox();
                     var data = {
                         amount: $(e.node).data('amount'),
@@ -286,8 +284,6 @@ function init(type) {
                         creditAssignFee: '',
                         creditAssignRate: ''
                     }
-                    //console.log(data);
-                    //console.log(data.Funrepay);
                     var returnMap = {
                         "CREDIT_ASSIGN_DISABLED": "没有开启债权转让功能",
                         "REASSIGN_DISABLED": "二次转让功能关闭",
@@ -411,21 +407,92 @@ fixedRactive.on('online', function (e) {
     window.location.reload();
 });
 
-fixedRactive.on('offline', function (e) {
+
+function init2(type) {
     fixedRactive.set('offline', true);
     fixedRactive.set('offlineInhand', 0);
     fixedRactive.set('offlineCleared', 0);
-    var pageNo = 1, pageSize = 10;
-    var ractiveOffline = new Ractive({
-        el: ".panel-offline",
-        template: require('ccc/newAccount/partials/invest/offline.html'),
-        oncomplete: function () {
-            $.get('/api/v2/offlineData/offline/MYSELF?offset=' + pageNo + '&size=' + pageSize, function (r) {
-                ractiveOffline.set('list', true);
+    var tab = Tab[type];
+    if (tab.ractive === null) {
+        tab.ractive = new Ractive({
+            el: '.panel-' + type,
+            template: tab.template,
+            size: 10, // pageSize
+            data: {
+                loading: true,
+                total: 0,
+                list2: [],
+                pageOne: null // 第一次加载的数据
+            },
+            getData: function (callback) {
+                var self = this;
+                $.get(tab.api + '&size=' + self.size, function (o) {
+                        callback(o);
+                    }
+                ).error(function (o) {
+                        console.info('请求出现错误，' + o.statusText);
+                    })
+            },
+            setData: function (o) {
+                this.set('loading', false);
+                this.set('total', o.data.totalSize);
+                this.set('pageOne', o.data.results);
+                this.set('list2', o.data.results);
+                this.renderPager();
+            },
+            parseData: function (res) {
+                var datas = res.data.results;
+                var assignStatus = {
+                    "INTERESTED": "计息中",
+                    "REDEMPTION": "已兑付"
+                };
+                for (var i = 0; i < datas.length; i++) {
+                    var o = datas[i];
+                    datas[i].yield = (datas[i].yield / 100).toFixed(2);
+                    datas[i].creditDealAmount = Number(datas[i].creditDealAmount).toFixed(2);
+                    datas[i].timeOpen = moment(datas[i].timeOpen).format('YYYY-MM-DD');
+                    datas[i].Fstatus = assignStatus[o.status];
+                }
+                return res;
+            },
+            renderPager: function () {
+                var self = this;
 
-            }).error(function (r) {
-                ractiveOffline.set('list', false);
-            })
-        }
-    });
+                this.tooltip();
+                $(this.el).find(".ccc-paging").cccPaging({
+                    total: self.get('total'),
+                    perpage: self.size,
+                    api: tab.api.replace('$size', self.size),
+                    params: {
+                        type: 'GET',
+                        error: function (o) {
+                            console.info('请求出现错误，' + o.statusText);
+                        }
+                    },
+                    onSelect: function (p, o) {
+                        self.set('list2', p > 1 ? self.parseData(o).data.results : self.get('pageOne'));
+                        self.tooltip();
+                    }
+                });
+                console.log(this.get('list2'));
+            },
+            onrender: function () {
+                var self = this;
+                self.getData(function (o) {
+                    self.setData(self.parseData(o));
+                });
+            },
+            tooltip: function () {
+                $('.tips-top').tooltip({
+                    container: 'body',
+                    placement: 'top'
+                });
+            }
+
+        });
+    }
+    //else {}
+}
+fixedRactive.on('offline', function (e) {
+    init2('INTERESTED');
 });

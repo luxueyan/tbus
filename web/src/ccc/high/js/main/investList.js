@@ -130,7 +130,7 @@ function parseLoanList(list) {
             list[i].FminAmount = (list[i].loanRequest.investRule.minAmount / 10000);
             list[i].FminUnit = "万元";
         }
-        list[i].balance = utils.format.amount(list[i].balance, 2);
+        list[i].Fbalance = utils.format.amount(list[i].balance, 2);
         list[i].investPercent = utils.format.amount(list[i].investPercent, 1);
     }
     return list;
