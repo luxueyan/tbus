@@ -51,6 +51,8 @@ navRactive.on('financialShow', function () {
     }
 });
 
+var interval = null;
+
 // 获取进入理财师密码
 navRactive.on('getSMS', function () {
     $.post('/api/v2/user/' + CC.user.id + '/sendMMCCaptcha', {sMSType: 'CREDITMARKET_CHECK_MONEYMANAGING'}, function (r) {
@@ -58,7 +60,7 @@ navRactive.on('getSMS', function () {
             $('#getSMS').attr("disabled", true);
             var msg = '$秒后重新发送';
             var left = 59;
-            var interval = setInterval((function () {
+            interval = setInterval((function () {
                 if (left > 0) {
                     $('#getSMS').val(msg.replace('$', left--));
                 } else {
@@ -93,6 +95,9 @@ navRactive.on('financialSMSS', function () {
 navRactive.on('financialSMSN', function () {
     navRactive.set('mobileNew', null);
     navRactive.set('financialShow', false);
+    $('#getSMS').val('获取验证码');
+    $('#getSMS').removeAttr("disabled");
+    clearInterval(interval);
 });
 
 if (location.pathname != '/newAccount/userInfo') {

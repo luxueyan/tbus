@@ -10,6 +10,17 @@
             <div class="investContainer">
                 <div class="investTitle">
                     <h1 class="title">{{loans.title}}</h1>
+                    <div class="title_tags">
+                        {{#if loans.loanRequest.brightSpot}}
+                        <span>{{loans.loanRequest.brightSpot}}</span>
+                        {{/if}}
+                        {{#if loans.loanRequest.brightSpot2}}
+                        <span>{{loans.loanRequest.brightSpot2}}</span>
+                        {{/if}}
+                        {{#if loans.loanRequest.brightSpot3}}
+                        <span>{{loans.loanRequest.brightSpot3}}</span>
+                        {{/if}}
+                    </div>
                     <div class="rate">
                         预期收益率
                         <span class="color">{{loans.rate}}<span>%</span></span>
@@ -146,6 +157,14 @@
         {{/if}}-->
     </div>
 </div>
+{{#if loans.loanRequest.specialInstruction}}
+    <div class="invest-tips">
+        <span class="invest-tips-title">特别提示</span>
+    <span class="invest-tips-content">
+        {{{loans.loanRequest.specialInstruction}}}
+    </span>
+    </div>
+{{/if}}
 
 <div class="invest-detail-wrapper">
     <div class="current-container">

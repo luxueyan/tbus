@@ -67,12 +67,12 @@ var onlineAmount = CC.user.availableAmount,
     totalInvestAmountF = parseFloatNew(totalInvestAmount),
 
     // 总收益
-    totalInvest = offlineDataRevenueAmount + onlineInterest,
+    totalInvest = onlineInterest,
     totalInvestI = parseInt(totalInvest),
     totalInvestF = parseFloatNew(totalInvest),
 
     // 总额
-    totalAmount = onlineAmount + offlineAmount,
+    totalAmount = onlineAmount,
     totalAmountI = parseInt(totalAmount),
     totalAmountF = parseFloatNew(totalAmount),
 
@@ -107,7 +107,7 @@ var homeRactive = new Ractive({
         offlineDataInvestAmountF: offlineDataInvestAmountF,
         offlineAmountI: offlineAmountI,
         offlineAmountF: offlineAmountF,
-        totalCurrentIncomeI: parseInt(onlineCurrentIncome + offlineDataRevenueAmount),
+        totalCurrentIncomeI: parseInt(onlineCurrentIncome),
         totalCurrentIncomeF: parseFloatNew(onlineCurrentIncome + offlineDataRevenueAmount),
         totalInvestAmountI: parseInt(onlineInvestAmount + offlineDataInvestAmount),
         totalInvestAmountF: parseFloatNew(onlineInvestAmount + offlineDataInvestAmount),

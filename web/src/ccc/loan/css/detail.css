@@ -46,14 +46,14 @@ select::-ms-expand { display: none; }
     /*  margin: 0 25px;*/
 }
 .invest-data-wrapper .investContainer .investTitle {
-    overflow: hidden;
+    height: 80px;
     border-bottom: 1px solid #dcdcdc;
     margin: 0 10px;
     padding: 6px 0 12px;
+    position: relative;
 }
 .invest-data-wrapper .investContainer .investTitle .title {
     height: 60px;
-    line-height: 60px;
     font-size: 24px;
     font-family: "微软雅黑","Microsoft Yahei","幼圆","YouYuan SimYou?",SimSun,"宋体",Helvetica,Arial,sans-serif;
     color: #666;
@@ -168,7 +168,7 @@ select::-ms-expand { display: none; }
 /*资金状态*/
 .invest-status{
     width: 1200px;
-    margin: 25px auto;
+    margin: 12px auto;
     background: #fff;
     padding: 20px 0;
     position: relative;
@@ -1147,4 +1147,46 @@ select::-ms-expand { display: none; }
     background-color: #a6a5a5;
     border-radius: 2px;
     color: #fff;
+}
+/**/
+.investTitle .title_tags {
+    width: 100%;
+    padding-left: 32px;
+    margin-bottom: 5px;
+    height: 20px;
+    position: absolute;
+    top: 45px;
+}
+
+.investTitle .title_tags span {
+    padding: 2px 4px;
+    margin-right: 4px;
+    color: #e4262b;
+    font-size: 12px;
+    border: 1px solid #e4262b;
+}
+
+.invest-tips{
+    width: 1200px;
+    margin: 12px auto;
+    background: #fff;
+    padding: 10px 50px;
+    position: relative;
+    color: #828282;
+    font-size: 14px;
+    overflow: hidden;
+}
+.invest-tips .invest-tips-title{
+    float: left;
+    font-size: 16px;
+    padding: 6px 12px;
+    color: #fff;
+    background-color: #cfa972;
+}
+.invest-tips .invest-tips-content{
+    float: right;
+    width: 980px;
+    font-size: 14px;
+    line-height: 18px;
+    margin-left: 24px;
 }
