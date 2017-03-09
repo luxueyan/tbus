@@ -22,11 +22,9 @@ var navRactive = new Ractive({
         } else {
             var tab = location[location.length - 2];
             var menu = location[location.length - 1];
-            //console.log('tab111'+tab);
-            //console.log(menu)
             this.set(tab, true);
             this.set(menu, true);
-            if (tab === 'home') {
+            if (tab === 'home' || tab === 'fixed') {
                 this.set('showHomeToggleMenu', true);
             } else if (tab === 'fund') {
                 this.set('showFundToggleMenu', true);
@@ -78,21 +76,26 @@ navRactive.on('getSMS', function () {
 
 // 验证进入理财师密码
 navRactive.on('financialSMSS', function () {
-    console.log(this.get('smsCaptcha'));
-    $.post('/api/v2/checkSMSCaptcha/' + CC.user.id, {
-        smsType: 'CREDITMARKET_CHECK_MONEYMANAGING',
-        smsCaptcha: this.get('smsCaptcha')
-    }, function (r) {
-        if (r.success) {
-            location.href = '/newAccount/financial';
-        } else {
-            alert('验证码错误，请重新输入');
-        }
-    });
+    if(this.get('smsCaptcha')){
+        $.post('/api/v2/checkSMSCaptcha/' + CC.user.id, {
+            smsType: 'CREDITMARKET_CHECK_MONEYMANAGING',
+            smsCaptcha: this.get('smsCaptcha')
+        }, function (r) {
+            if (r.success) {
+                location.href = '/newAccount/financial';
+            } else {
+                alert('验证码错误，请重新输入');
+            }
+        });
+    }
+    else{
+        alert('验证码不能为空，请输入验证码');
+    }
 });
 
 // 取消验证
 navRactive.on('financialSMSN', function () {
+    navRactive.set('smsCaptcha','');
     navRactive.set('mobileNew', null);
     navRactive.set('financialShow', false);
     $('#getSMS').val('获取验证码');

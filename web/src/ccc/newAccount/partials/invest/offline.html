@@ -1,48 +1,84 @@
-<table class="table has-padding">
-    <tr>
-        <th>产品名称</th>
-        <th>转让利率</th>
-        <th>投资金额(元)</th>
-        <th>转让价格(元)</th>
-        <th>挂牌日</th>
-        <th>状态</th>
-    </tr>
+<div class="fixedUl">
+    <ul>
+        <li id="online"><a href="/newAccount/home/fixed/online">线上投资</a></li>
+        <li class="activeUl"><a href="/newAccount/home/fixed/offline" style="color: #fff;">线下投资</a></li>
+    </ul>
+</div>
+<div class="ccc-tab fixed-nav">
+    <ul class="tabs">
+        <li class="active" data-type="INTERESTED"  on-click="changeType">
+            <a href="#" class="inhand_pro">在投产品({{offlineInhand}})</a>
+        </li>
+        <li data-type="REDEMPTION" on-click="changeType">
+            <a href="#" class="clear_pro">安全兑付({{offlineCleared}})</a>
+        </li>
+    </ul>
+</div>
+<div class="ccc-tab-panels fixed-invest">
+    <div class="tab-panel panel-INTERESTED active">
+        <table class="table has-padding">
+            <thead>
+            <tr>
+                <th>产品名称</th>
+                <th>年化收益率</th>
+                <th>投资金额(元)</th>
+                <th>预期收益(元)</th>
+                <th>起息日</th>
+                <th>到期日</th>
+                <th>状态</th>
 
-    {{#if list2}}
-    {{#each list2}}
-    <tr>
-        <td>
-            <!--产品名称-->
-            <p><a class="table-title" href="/creditDetail/{{ id }}/{{loanId}}" target="_blank"
-                  rel="nofollow">{{productName}}</a></p>
-        </td>
-        <td>
-            <!--转让利率-->
-            <p class="table-invest-rate">{{yield}}%</p>
-        </td>
-        <td>
-            <!--投资金额（元）-->
-            <p class="table-invest-common">{{investAmount}}</p>
-        </td>
-        <td>
-            <!--转让价格（元）-->
-            <p class="table-invest-common">{{creditDealAmount}}</p>
-        </td>
-        <td>
-            <!--挂牌日-->
-            <p class="table-invest-common">{{timeOpen}}</p>
-        </td>
-    </tr>
-    {{/each}}
-    {{/if}}
-</table>
-{{#if list2}}
-<div class="space-40"></div>
-<div class="total_invest_num">共{{total}}条记录</div>
-<div class="ccc-paging">
+            </tr>
+            </thead>
+            {{#if list}}
+            <tbody>
+
+            {{#each list}}
+            <tr>
+                <td>
+                    <!--产品名称-->
+                    <p><a class="table-title" href="/creditDetail/{{ id }}/{{loanId}}" target="_blank" rel="nofollow">{{productName}}</a></p>
+                </td>
+                <td>
+                    <!--转让利率-->
+                    <p class="table-invest-common">{{rate}}</p>
+                </td>
+                <td>
+                    <!--投资金额（元）-->
+                    <p class="table-invest-common">{{investAmount}}</p>
+                </td>
+                <td>
+                    <!--转让价格（元）-->
+                    <p class="table-invest-common">{{revenue}}</p>
+                </td>
+                <td>
+                    <!--挂牌日-->
+                    <p class="table-invest-common">{{valueDate}}</p>
+                </td>
+                <td>
+                    <p class="table-invest-common">{{dueDate}}</p>
+                </td>
+                <td>
+                    <!--状态-->
+                    <p class="table-invest-common">{{Fstatus}}</p>
+                </td>
+            </tr>
+            {{/each}}
+            </tbody>
+            {{/if}}
+        </table>
+        {{#if list}}
+        <div class="space-40"></div>
+        <div class="total_invest_num">共{{total}}条记录</div>
+        <div class="ccc-paging">
+        </div>
+        {{else}}
+        <div class="null">
+            暂无数据
+        </div>
+        {{/if}}
+    </div>
 </div>
-{{else}}
-<div class="null">
-    暂无数据
-</div>
-{{/if}}
+
+<!--广告位-->
+<div class="ad"></div>
+

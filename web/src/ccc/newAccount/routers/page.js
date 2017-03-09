@@ -222,11 +222,19 @@ module.exports = function (router) {
             title: '汇财富'
         });
     });
-
+    router.get('/home/fixed/online', function (req, res) {
+        res.render('newAccount/home', {
+            tabName: 'online',
+        });
+    });
+    router.get('/home/fixed/offline', function (req, res) {
+        res.render('newAccount/home', {
+            tabName: 'offline',
+        });
+    });
     [
         "index",
         "private",
-        "fixed",
         "float"
     ].forEach(function (tabName) {
         router.get('/home/' + tabName, function (req, res) {
