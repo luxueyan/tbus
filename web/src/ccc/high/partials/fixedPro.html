@@ -6,6 +6,20 @@
             <div class="title_info">
                 <h2>{{title}}</h2>
             </div>
+            <div class="title_tags">
+                {{#if loanRequest.brightSpot}}
+                <span>{{loanRequest.brightSpot}}</span>
+                {{/if}}
+                {{#if loanRequest.brightSpot2}}
+                <span>{{loanRequest.brightSpot2}}</span>
+                {{/if}}
+                {{#if loanRequest.brightSpot3}}
+                <span>{{loanRequest.brightSpot3}}</span>
+                {{/if}}
+            </div>
+            {{#if loanRequest.activityInfo}}
+            <div class="title_tags02">{{loanRequest.activityInfo}}</div>
+            {{/if}}
             <a href="/loan/{{ id }}">查看详情</a>
         </div>
         <div class="loan_info">
@@ -51,7 +65,7 @@
         </div>
         <div class="leftAmount">
             剩余可投资 (元)：<span>
-            {{#if status=== 'FINISHED' ||status=== 'SETTLED'}}
+            {{#if status=== 'FINISHED' ||status=== 'SETTLED' || status==='FAILED'}}
             0.00
             {{else}}
             {{Fbalance}}

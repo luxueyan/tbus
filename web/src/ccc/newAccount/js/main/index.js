@@ -72,7 +72,7 @@ var onlineAmount = CC.user.availableAmount,
     totalInvestF = parseFloatNew(totalInvest),
 
     // 总额
-    totalAmount = onlineAmount,
+    totalAmount = onlineAmount + offlineDataInvestAmount,
     totalAmountI = parseInt(totalAmount),
     totalAmountF = parseFloatNew(totalAmount),
 

@@ -226,7 +226,7 @@ function formatItem(item) {
         item[i].FminAmount = utils.format.amount(item[i].loanRequest.investRule.minAmount);
         if (item[i].loanRequest.investRule.minAmount >= 10000) {
             item[i].minAmountUnit = '万元';
-            item.minAmount = utils.format.amount((item[i].loanRequest.investRule.minAmount / 10000));
+            item[i].minAmount = utils.format.amount((item[i].loanRequest.investRule.minAmount / 10000));
         } else {
             item[i].minAmount = utils.format.amount(item[i].loanRequest.investRule.minAmount);
             item[i].minAmountUnit = '元';
