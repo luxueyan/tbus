@@ -1168,7 +1168,6 @@ select::-ms-expand { display: none; }
 
 .invest-tips{
     width: 1200px;
-    height: 54px;
     margin: 12px auto;
     background: #fff;
     padding: 10px 50px;
@@ -1177,16 +1176,16 @@ select::-ms-expand { display: none; }
     font-size: 14px;
     overflow: hidden;
 }
-.invest-tips span{
-    float: left;
-}
 .invest-tips .invest-tips-title{
+    float: left;
     font-size: 16px;
     padding: 6px 12px;
     color: #fff;
     background-color: #cfa972;
 }
 .invest-tips .invest-tips-content{
+    float: right;
+    width: 980px;
     font-size: 14px;
     line-height: 18px;
     margin-left: 24px;

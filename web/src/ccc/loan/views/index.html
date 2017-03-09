@@ -157,15 +157,14 @@
         {{/if}}-->
     </div>
 </div>
-
-<div class="invest-tips">
-    <span class="invest-tips-title">特别提示</span>
+{{#if loans.loanRequest.specialInstruction}}
+    <div class="invest-tips">
+        <span class="invest-tips-title">特别提示</span>
     <span class="invest-tips-content">
-        1.“新手专享”是为首次投资定期理财产品的用户定制的稳定高收益理财产品。
-        <br/>
-        2.&nbsp;&nbsp;&nbsp;新用户购买“新手专享”产品限额10,000元。本产品收益构成中的3%年化利率为平台额外奖励。
+        {{{loans.loanRequest.specialInstruction}}}
     </span>
-</div>
+    </div>
+{{/if}}
 
 <div class="invest-detail-wrapper">
     <div class="current-container">
