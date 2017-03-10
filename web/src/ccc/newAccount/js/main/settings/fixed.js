@@ -99,7 +99,7 @@ function init(type) {
         tab.ractive = new Ractive({
             el: '.panel-' + type,
             template: tab.template,
-            size: 4, // pageSize
+            size: 10, // pageSize
             data: {
                 loading: true,
                 total: 0,
