@@ -8,7 +8,7 @@ var accountService = require('ccc/newAccount/js/main/service/account').accountSe
 var AlertBox = require('ccc/global/js/modules/cccPromiseBox');
 
 var type = 'INTERESTED';//  REDEMPTION
-var api = '/api/v2/offlineData/offline/MYSELF?status=' + type + '&page=1&size=$size'
+var api = '/api/v2/offlineData/offline/MYSELF?status=' + type + '&page=$page&size=$size'
 
 var offractive = new Ractive({
     el: '.account-home-wrapper',
@@ -31,7 +31,6 @@ var offractive = new Ractive({
     },
     oninit: function () {
         this.setData();
-
     },
     setData: function () {
         var self = this;
@@ -41,14 +40,14 @@ var offractive = new Ractive({
                 if (o.body.success) {
                     self.set('loading', false);
                     self.set('total', o.body.data.totalSize);
-                    self.set('pageOne', o.body.data.results);
-                    self.set('list', self.parseData(o.body));
+                    self.set('pageOne', self.parseData(o.body.data.results));
+                    self.set('list', self.parseData(o.body.data.results));
                     self.renderPager();
                 }
             });
     },
     parseData: function (res) {
-        var datas = res.data.results;
+        var datas = res;
         var assignStatus = {
             "INTERESTED": "计息中",
             "REDEMPTION": "已兑付"
@@ -77,7 +76,9 @@ var offractive = new Ractive({
                 }
             },
             onSelect: function (p, o) {
-                self.set('list', p > 1 ? self.parseData(o).data.results : self.get('pageOne'));
+                //console.log(o.data.results)
+                //console.log(p)
+                self.set('list', p > 1 ? self.parseData(o.data.results) : self.get('pageOne'));
                 self.tooltip();
             }
         });
