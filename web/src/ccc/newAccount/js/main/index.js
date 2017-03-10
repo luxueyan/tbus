@@ -57,7 +57,7 @@ var onlineAmount = CC.user.availableAmount,
     offlineDataRevenueAmountF = parseFloatNew(offlineDataRevenueAmount),
 
     // 线下总额
-    offlineAmount = offlineDataInvestAmount + offlineDataRevenueAmount,
+    offlineAmount = offlineDataInvestAmount,
     offlineAmountI = parseInt(offlineAmount),
     offlineAmountF = parseFloatNew(offlineAmount),
 
