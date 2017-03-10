@@ -55,7 +55,9 @@ var offractive = new Ractive({
         };
         for (var i = 0; i < datas.length; i++) {
             var o = datas[i];
-            datas[i].rate = (datas[i].rate / 100).toFixed(2);
+            if (datas[i].rate > 100) {
+                datas[i].rate = (datas[i].rate / 100).toFixed(2);
+            }
             datas[i].valueDate = moment(datas[i].valueDate).format('YYYY-MM-DD');
             datas[i].dueDate = moment(datas[i].dueDate).format('YYYY-MM-DD');
             datas[i].Fstatus = assignStatus[o.status];
