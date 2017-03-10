@@ -134,10 +134,13 @@
     background: url("/ccc/newAccount/img/icon_jian.png") center no-repeat;
 }
 .home-count .countTip h3 {
+    height: 36px;
     margin-top: 10px;
     font-size: 12px;
     text-align: center;
-    line-height: 18px;
+    line-height: 14px;
+    padding-top: 2px;
+    background: #f5f5f4;
 }
 .home-count .common {
     width: 160px;
@@ -336,7 +339,7 @@
     border: #e4262b 1px solid;
     border-left: none;
 }
-.detailList{
+.detailList {
     position: absolute;
     bottom: 6px;
     right: 6px;

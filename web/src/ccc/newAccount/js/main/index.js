@@ -205,7 +205,7 @@ $('#svg_cont').highcharts({
             colors: colorHigh,
             dataLabels: {
                 enabled: statusHigh,
-                distance: 10,
+                distance: 18,
                 connectorWidth: 0,
                 formatter: function () {
                     return this.point.name + ' ' + Math.round(this.percentage) + '%';

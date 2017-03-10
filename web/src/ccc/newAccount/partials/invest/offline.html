@@ -22,16 +22,18 @@
                 <th>产品名称</th>
                 <th>年化收益率</th>
                 <th>投资金额(元)</th>
+                {{#if typeS=='INTERESTED'}}
+                <th>预期收益(元)</th>
+                {{else}}
                 <th>实际收益(元)</th>
+                {{/if}}
                 <th>起息日</th>
                 <th>到期日</th>
                 <th>状态</th>
-
             </tr>
             </thead>
             {{#if list}}
             <tbody>
-
             {{#each list}}
             <tr>
                 <td>
