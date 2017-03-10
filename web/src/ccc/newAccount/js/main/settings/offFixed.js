@@ -8,7 +8,7 @@ var accountService = require('ccc/newAccount/js/main/service/account').accountSe
 var AlertBox = require('ccc/global/js/modules/cccPromiseBox');
 
 var type = 'INTERESTED';//  REDEMPTION
-var api = '/api/v2/offlineData/offline/MYSELF?status=' + type + '&page=$page&size=$size'
+
 
 var offractive = new Ractive({
     el: '.account-home-wrapper',
@@ -30,19 +30,20 @@ var offractive = new Ractive({
         });
     },
     oninit: function () {
-        this.setData();
+        this.setData(type);
     },
-    setData: function () {
+    setData: function (type) {
         var self = this;
         request.get('/api/v2/offlineData/offline/MYSELF?status=' + type + '&page=1&size=' + self.size)
             .end()
             .then(function (o) {
                 if (o.body.success) {
                     self.set('loading', false);
+                    self.set('typeS', type);
                     self.set('total', o.body.data.totalSize);
                     self.set('pageOne', self.parseData(o.body.data.results));
                     self.set('list', self.parseData(o.body.data.results));
-                    self.renderPager();
+                    self.renderPager(type);
                 }
             });
     },
@@ -61,8 +62,9 @@ var offractive = new Ractive({
         }
         return datas;
     },
-    renderPager: function () {
+    renderPager: function (type) {
         var self = this;
+        var api = '/api/v2/offlineData/offline/MYSELF?status=' + type + '&page=$page&size=$size';
 
         this.tooltip();
         $(this.el).find(".ccc-paging").cccPaging({
@@ -76,8 +78,6 @@ var offractive = new Ractive({
                 }
             },
             onSelect: function (p, o) {
-                //console.log(o.data.results)
-                //console.log(p)
                 self.set('list', p > 1 ? self.parseData(o.data.results) : self.get('pageOne'));
                 self.tooltip();
             }
@@ -97,5 +97,5 @@ offractive.on('changeType', function (e) {
     type = $this.data('type');
     $(".tabs li").removeClass('active');
     $this.addClass('active');
-    offractive.setData();
+    offractive.setData(type);
 })
