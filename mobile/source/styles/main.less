@@ -1049,6 +1049,7 @@ a {
         &-list {
             > li {
                 position: relative;
+                overflow: hidden;
 
                 + li {
                     margin-top: 10px;
@@ -1071,6 +1072,36 @@ a {
                 .title {
                     margin-top: 5px;
                     font-size: 14px;
+                }
+
+                .label-activity {
+                    .transform(rotate(-45deg));
+                    -webkit-transform-origin: 0 0;
+                            transform-origin: 0 0;
+                    position: absolute;
+                    left: -1.6em;
+                    top: 4em;
+                    background-color: @color-theme-main;
+                    width: 8em;
+                    height: 18px;
+                    line-height: 18px;
+                    color: #FFF;
+                }
+
+                .tag-list {
+                    .tag {
+                        display: inline-block;
+                        vertical-align: middle;
+                        margin-bottom: 10px;
+                        border: 1px solid #C79F62;
+                        border-radius: 3px;
+                        padding: 0.1em 0.5em;
+                        color: #C79F62;
+
+                        + .tag {
+                            margin-left: 3px;
+                        }
+                    }
                 }
 
                 .rate {
@@ -1296,6 +1327,55 @@ a {
 
                 &.status-FINISHED:after {
                     background-color: #B4B4B5;
+                }
+            }
+
+            .label-activity {
+                .transform(scale(0.8));
+                -webkit-transform-origin: 100% 0;
+                        transform-origin: 100% 0;
+                position: absolute;
+                right: 0;
+                top: 0;
+                background-color: #C79F62;
+                padding: 0.4em 0.5em 1em;
+                width: 3em;
+                line-height: 14px;
+                text-align: center;
+                color: #FFF;
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    border-top: 0;
+                    border-right: 1.5em solid transparent;
+                    border-left: 1.5em solid transparent;
+                    border-bottom: 0.6em solid #FFF;
+                    width: 0;
+                    height: 0;
+                }
+
+                + .info-list {
+                    margin-right: 10px;
+                }
+            }
+
+            .tag-list {
+                display: inline-block;
+                vertical-align: middle;
+
+                .tag {
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin-left: 3px;
+                    border: 1px solid #C79F62;
+                    border-radius: 3px;
+                    padding: 0.1em 0.5em;
+                    color: #C79F62;
+                    font-size: 12px;
+                    line-height: 15px;
                 }
             }
 
@@ -2096,6 +2176,7 @@ a {
     }
 
     .loan-summary-1 {
+        position: relative;
         border-bottom: 1px solid #B8B8B8;
         padding: 25px 30px 13px;
         background: #FFF url("@{path-image}/graph-lg.png") no-repeat 0 0;
@@ -2104,6 +2185,35 @@ a {
         overflow: hidden;
         font-size: 14px;
         color: #717071;
+
+        .label-activity {
+            .transform(scale(0.8));
+            -webkit-transform-origin: 0 0;
+                    transform-origin: 0 0;
+            position: absolute;
+            top: 0;
+            left: 15px;
+            background-color: #C79F62;
+            padding: 0.4em 0.5em 1em;
+            width: 3em;
+            line-height: 14px;
+            text-align: center;
+            font-size: 12px;
+            color: #FFF;
+
+            &:after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                border-top: 0;
+                border-right: 1.5em solid transparent;
+                border-left: 1.5em solid transparent;
+                border-bottom: 0.6em solid #FFF;
+                width: 0;
+                height: 0;
+            }
+        }
 
         .rate {
             .value {
