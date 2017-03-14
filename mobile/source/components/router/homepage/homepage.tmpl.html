@@ -50,6 +50,29 @@
                 <a ng-href="loan/{{ item.id }}">
                     <div class="inner">
                         <h4 class="title">{{ item.title }}</h4>
+
+                        <div
+                            class="label-activity"
+                            ng-if="item.raw.loanRequest.activityInfo"
+                        >
+                            {{ item.raw.loanRequest.activityInfo | limitTo: 4 }}
+                        </div>
+
+                        <div class="tag-list">
+                            <span
+                                class="tag"
+                                ng-if="item.raw.loanRequest.brightSpot"
+                            >
+                                {{ item.raw.loanRequest.brightSpot }}
+                            </span>
+                            <span
+                                class="tag"
+                                ng-if="item.raw.loanRequest.brightSpot2"
+                            >
+                                {{ item.raw.loanRequest.brightSpot2 }}
+                            </span>
+                        </div>
+
                         <div class="rate">
                             <span class="value">
                                 <span class="num">{{

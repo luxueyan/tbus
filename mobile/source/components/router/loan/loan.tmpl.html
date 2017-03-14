@@ -12,6 +12,13 @@
     </nav>
 
     <section class="omit-margin container loan-summary-1">
+        <div
+            class="label-activity"
+            ng-if="loan.raw.loanRequest.activityInfo"
+        >
+            {{ loan.raw.loanRequest.activityInfo | limitTo: 4 }}
+        </div>
+
         <div class="row text-center">
             <div class="col-xs-6 rate">
                 <div class="value">{{
@@ -134,6 +141,12 @@
                 <span class="name">资金用途</span>
                 <span class="value"
                       ng-bind-html="loan.raw.loanRequest.fundUsage | sanitize"
+                ></span>
+            </li>
+            <li ng-if="loan.raw.loanRequest.specialInstruction">
+                <span class="name">特别提示</span>
+                <span class="value"
+                      ng-bind-html="loan.raw.loanRequest.specialInstruction | sanitize"
                 ></span>
             </li>
         </ul>

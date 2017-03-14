@@ -2,7 +2,31 @@
 <h4 class="title"
     data-after-content="{{ { HOT: 'HOT' }[loan.product_key] }}"
     ng-class="{ HOT: 'HOT' }[loan.product_key]"
->{{ loan.title }}</h4>
+>
+    {{ loan.title }}
+
+    <div class="tag-list">
+        <span
+            class="tag"
+            ng-if="loan.raw.loanRequest.brightSpot"
+        >
+            {{ loan.raw.loanRequest.brightSpot }}
+        </span>
+        <span
+            class="tag"
+            ng-if="loan.raw.loanRequest.brightSpot2"
+        >
+            {{ loan.raw.loanRequest.brightSpot2 }}
+        </span>
+    </div>
+</h4>
+
+<div
+    class="label-activity"
+    ng-if="loan.raw.loanRequest.activityInfo"
+>
+    {{ loan.raw.loanRequest.activityInfo | limitTo: 4 }}
+</div>
 
 <div class="info-list">
     <div class="info rate">
