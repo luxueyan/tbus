@@ -53,7 +53,7 @@
             {{#banking}}
             <ul id="bank">
                 {{#each newbanks}}
-                <li on-click="bankfull" value="{{bankCode}}" style="background-image: url('/ccc/global/img/bank-icons/{{bankCode}}.png');">
+                <li on-click="bankfull" value="{{bankCode}}" style="background-image: url('/ccc/global/img/bank-icons/{{bankCode.toLowerCase()}}.png');">
                     {{bankName}}
                     <p>单笔 {{#if singleQuota == -1}}无限额{{else}}{{singleQuota}}元{{/if}}/日限额 {{#if dailyQuota == -1}}无限额{{else}}{{dailyQuota}}元{{/if}}</p>
                 </li>
