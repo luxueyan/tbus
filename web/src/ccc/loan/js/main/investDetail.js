@@ -68,7 +68,7 @@ function initailEasyPieChart() {
                 lineCap: 'butt',
                 lineWidth: 4,
                 animate: oldie ? false : 1000,
-                size: 130,
+                size: 92,
                 onStep: function (from, to, percent) {
                     $(this.el).find('.percent').text(Math.round(percent));
                 }
@@ -136,8 +136,7 @@ setTimeout((function () {
             name: '',
             user: CC.user,
             loan: CC.loan,
-            rate: utils.format.percent(CC.loan.investPercent *
-                100, 2),
+            rate: utils.format.percent(CC.loan.investPercent * 100, 2),
             errors: {
                 visible: false,
                 msg: ''
@@ -153,41 +152,10 @@ setTimeout((function () {
             var self = this;
             var inputNum = self.get('inputNum');
             self.set('inputNum', '');
-//            alert(inputNum);
-//            alert(self.get('inputNum'));
-//            if (CC.loan.rule.balance < CC.loan.rule.min) {
-//                self.set('inputNum', CC.loan.rule.balance);
-//            };
-
-            //loanService.getLoanDetail(CC.loan.id, function (res) {
-            //    var date = new Date().getTime();
-            //    var valueDate = res.data.loan.loanRequest.valueDate;
-            //    if (date>valueDate){
-            //        self.set('valueDate',true);
-            //        console.log("1")
-            //    }else{
-            //        self.set('valueDate',false);
-            //        console.log("2")
-            //    }
-            //})
-
         },
         oncomplete: function () {
             this.on('getConpon', function (e) {
                 showSelect(parseInt(e.node.value));
-                // var amount = e.node.value;
-                // if(isNaN(amount)){
-                //     return;
-                // }
-                // var newSelectOption = [];
-                // var selectOption = this.get('selectOption');
-                // for (var i = 0; i < selectOption.length; i++) {
-                //     if(parseInt(amount)>=parseInt(selectOption[i].minimumInvest)){
-                //         newSelectOption.push(selectOption[i]);
-                //     }
-                // }
-
-                // this.set('selectOption',newSelectOption);
             })
         }
     });
@@ -318,8 +286,30 @@ setTimeout((function () {
         //    showErrors('账户余额不足，请先充值 !');
         //    return false;
         //}
+        var isCycleProduct = false;
+        if (CC.loan.cycleProduct) {
+            new CccBox({
+                title: '循环确认',
+                value: 'loading...',
+                autoHeight: true,
+                width: 516,
+                height: 250,
+                showed: function (ele, box) {
+                    var tipsRactive = new Ractive({
+                        el: $(ele),
+                        template: '<h1 class="cycleTitle">循环确认</h1><p class="cycleContent">此产品可循环投资，如果你启用循环，产品将在结息日兑付利息，本金将继续投资本产品，直到赎回或产品到期日（xxx），这将最大程度提高资金使用效率。</p><p class="cycleRadio"><input type="radio" name="cycle" value="true" checked="checked">循环<input type="radio" name="cycle" value="false">不循环</p><img class="cccBox-line" src="/ccc/loan/img/cccbox_line.png"/><button on-click="clickOk" class="cycleBtn">确定</button>',
+                    });
+                    tipsRactive.on('clickOk', function () {
+                        isCycleProduct = $('input:radio:checked').val();
+                        $(".ccc-box-wrap .bar .close ").click();
+                        window.location.href = '/loan/payment?num=' + num + '&loanId=' + CC.loan.id + '&placementId=' + $('#couponSelection').val() + '&isCycleProduct=' + isCycleProduct;
+                    });
+                }
+            })
+        }else{
+            window.location.href = '/loan/payment?num=' + num + '&loanId=' + CC.loan.id + '&placementId=' + $('#couponSelection').val() + '&isCycleProduct=' + isCycleProduct;
+        }
 
-        window.location.href = '/loan/payment?num=' + num + '&loanId=' + CC.loan.id + '&placementId=' + $('#couponSelection').val()
         //window.open('/loan/payment?num='+num+'&loanId='+CC.loan.id);
 
     });

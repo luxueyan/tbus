@@ -19,6 +19,7 @@ var payRactive = new Ractive({
         user: CC.user,
         useBankCard: true,
         investNum: parseInt(CC.investNum),
+        isCycleProduct: CC.isCycleProduct,
         loanId: CC.loanId,
     },
     oninit: function () {
@@ -125,7 +126,8 @@ payRactive.on("invest-submit", function (e) {
                     smsCaptcha: false,
                     placementId: CC.placementId,
                     paymentPassword: paymentPassword,
-                    isUseBalance: isUseB
+                    isUseBalance: isUseB,
+                    isCycleProduct: CC.isCycleProduct
                 }, function (res) {
                     if (res.success) {
                         payRactive.set('step1', false);
