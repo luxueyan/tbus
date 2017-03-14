@@ -600,6 +600,8 @@ p.tips {
 .row ul {
     display: inline-block;
     width: 380px;
+    height: 400px;
+    overflow-y: scroll;
     border: 1px solid #ccc;
     position: absolute;
     background: #fff;
