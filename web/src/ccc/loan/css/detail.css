@@ -86,15 +86,13 @@ select::-ms-expand { display: none; }
 }
 .invest-data-wrapper .investContainer .content .inner {
     overflow: hidden;
-    margin: 20px 30px;
+    margin: 0px 20px;
     border-bottom: 1px solid #dcdcdc;
     padding-bottom: 25px;
-    margin-bottom: 0;
 }
 .invest-data-wrapper .investContainer .content .inner .item {
     float: left;
-    /*width: 168px;*/
-    padding-right: 55px;
+    width: 168px;
 }
 .invest-data-wrapper .investContainer .content .inner .item:last-child{
     padding-right: 0px;
@@ -102,7 +100,6 @@ select::-ms-expand { display: none; }
 .invest-data-wrapper .investContainer .content .inner .item .name {
     color: #999;
     font-size: 16px;
-    margin-top: 25px;
 }
 
 .invest-data-wrapper .investContainer .content .inner .item .value {
@@ -124,7 +121,7 @@ select::-ms-expand { display: none; }
     overflow: hidden;
     color: #666;
     font-size: 16px;
-    padding: 30px 0;
+    padding: 10px 0;
 }
 
 .invest-data-wrapper .investContainer .content .innerBottom .start_time {
@@ -145,10 +142,10 @@ select::-ms-expand { display: none; }
 }
 .process{
     color: #a0a0a0;
-    margin-top: 46px;
+    margin-top: 18px;
     float: right;
-    width: 130px;
-    margin-right: 34px;
+    width: 92px;
+    margin-right: 46px;
 }
 .process .percentageNum {
     color: #666;
@@ -160,56 +157,46 @@ select::-ms-expand { display: none; }
 }
 .process p{
     text-align: center;
-    font-size: 24px;
+    font-size: 17px;
     color: #999;
     margin-top: 10px;
 }
 
 /*资金状态*/
 .invest-status{
-    width: 1200px;
-    margin: 12px auto;
+    width: 100%;
     background: #fff;
-    padding: 20px 0;
     position: relative;
     color: #828282;
     font-size: 14px;
     overflow: hidden;
-    padding-bottom: 40px;
-}
-.invest-status span{
-    font-size: 24px;
-    color: #666;
-    margin-left: 35px;
-    margin-right: 100px;
-    margin-top: 26px;
-    display: block;
-    float: left;
+    padding: 20px 0px 40px 50px;
+    border-top: 1px solid #dcdcdc;
 }
 .invest-status .open_time{
     position: absolute;
-    top: 85px;
-    left: 274px;
+    top: 65px;
+    left: 166px;
 }
 .invest-status .start_date{
     position: absolute;
-    top: 85px;
-    left: 435px;
+    top: 65px;
+    left: 280px;
 }
 .invest-status .end_date{
     position: absolute;
-    top: 85px;
-    right: 340px;
+    top: 65px;
+    left: 520px;
 }
 .invest-status .expected_date{
     position: absolute;
-    top: 85px;
-    right: 175px;
+    top: 65px;
+    right: 55px;
 }
 /*信息详情*/
 .invest-detail-wrapper {
     width: 1200px;
-    margin: auto;
+    margin: 10px auto 0;
     overflow: hidden;
     background: #fff;
 }
@@ -1189,4 +1176,35 @@ select::-ms-expand { display: none; }
     font-size: 14px;
     line-height: 18px;
     margin-left: 24px;
+}
+
+.cycleTitle{
+    text-align: center;
+    margin: 30px 0 10px;
+    font-size: 20px;
+    color: #a6a5a5;
+}
+.cycleContent{
+    margin: 0px 52px 8px 52px;
+    font-size: 15px;
+    line-height: 29px;
+    color: #a6a5a5;
+}
+.cycleRadio{
+    text-align: center;
+}
+.cycleRadio input:last-child{
+    margin-left: 40px;
+}
+.cycleBtn{
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+    height: 34px;
+    line-height: 30px;
+    text-align: center;
+    border: none;
+    background-color: #e60012;
+    border-radius: 2px;
+    color: #fff;
 }
