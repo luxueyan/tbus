@@ -1,7 +1,11 @@
 
 <h4 class="title"
+    data-before-content="{{ loan.raw.loanRequest.cycleProduct ? '循' : ''  }}"
     data-after-content="{{ { HOT: 'HOT' }[loan.product_key] }}"
-    ng-class="{ HOT: 'HOT' }[loan.product_key]"
+    ng-class="{
+        CYCLE: loan.raw.loanRequest.cycleProduct,
+        HOT: loan.product_key == 'HOT'
+    }"
 >
     {{ loan.title }}
 
@@ -46,9 +50,16 @@
             <span
                 class="u-color-main"
                 style="margin-left: 10px;"
-                ng-if="loan.product_key !== 'NEW'"
             >
-                7天可转
+                {{
+                    loan.raw.loanRequest.cycleProduct
+                    ? '循环'
+                    : (
+                        loan.product_key !== 'NEW'
+                        ? '7天可转'
+                        : ''
+                    )
+                }}
             </span>
         </div>
         <div class="min-amount"
