@@ -128,8 +128,7 @@
                     <div class="info">
                         <span class="name">红包</span>
                         <span class="value">
-                            <div class="coupon-wrap"
-                                 ng-class="{ rsaquo: coupon_list.length }"
+                            <div class="coupon-wrap rsaquo"
                                  ng-click="coupon_list.length && self.select_coupon($event, store)"
                             >
                                 <select name="placementId" class="form-control"
@@ -140,12 +139,15 @@
                                             for coupon in coupon_list
                                             track by coupon.id
                                         "
-                                        ng-if="coupon_list.length"
                                 >
-                                    <option value="">{{ coupon_list.length }}个红包</option>
+                                    <option value="">
+                                        {{
+                                            coupon_list.length
+                                            ? (coupon_list.length + '个红包')
+                                            : '暂无红包可用'
+                                        }}
+                                    </option>
                                 </select>
-
-                                <div class="hint" ng-if="!coupon_list.length">暂无红包可用</div>
                             </div>
                         </span>
                     </div>

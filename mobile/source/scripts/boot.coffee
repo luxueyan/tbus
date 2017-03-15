@@ -400,7 +400,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                                 .path '/login'
                                                 .search next: "loan/#{ $route.current.params.id }/invest"
                                             return $q.reject()
-
+                            ###
                             coupon: _.ai 'api, $route, $q',
                                 (         api, $route, $q) ->
                                     api.fetch_current_user()
@@ -420,6 +420,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                             loan_id = data.id
 
                                             return api.fetch_coupon_list amount, months, loan_id
+                            ###
 
                             _newbie: _.ai 'api, $route, $q, $window',
                                 (          api, $route, $q, $window) ->

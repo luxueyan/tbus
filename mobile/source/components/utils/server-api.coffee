@@ -327,6 +327,15 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
+            fetch_coupon_list_v2: (amount, days) ->
+
+                @$http
+                    .post '/api/v2/coupon/MYSELF/listCouponNew', {amount, days}
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
             get_loan_investors: (id) ->
 
                 @$http
