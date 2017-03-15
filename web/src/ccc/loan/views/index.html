@@ -21,6 +21,9 @@
                         <span>{{loans.loanRequest.brightSpot3}}</span>
                         {{/if}}
                     </div>
+                    {{#if loans.loanRequest.activityInfo}}
+                    <div class="title_tags02">{{loans.loanRequest.activityInfo}}</div>
+                    {{/if}}
                     <div class="rate">
                         预期收益率
                         <span class="color">{{loans.rate}}<span>%</span></span>
@@ -103,7 +106,7 @@
                     <p>进度</p>
                 </div>
                 <div class="invest-status">
-                    {{#if cycleProduct}}
+                    {{#if loans.loanRequest.cycleProduct}}
                     <img src="/ccc/loan/img/fund_status_cicle.png">
                     {{else}}
                     <img src="/ccc/loan/img/fund_status.png">
@@ -372,7 +375,8 @@
         rate: {{loans.rate}},
         durationdays: {{loans.duration.totalDays}},
         enterprise:{{loans.loanRequest.user.enterprise}},
-        cycleProduct:{{loans.loanRequest.cycleProduct}}
+        cycleProduct:{{loans.loanRequest.cycleProduct}},
+        dueDate:{{loans.dueDate}},
     };
     if('{{loans.timeFinished}}'){
         CC.loan.timeFinished='{{loans.timeFinished}}';

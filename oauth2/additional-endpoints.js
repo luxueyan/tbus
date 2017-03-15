@@ -152,4 +152,6 @@ module.exports = function (router, auth, middlewares) {
 
     // 验证理财师验证码
     router.post('api/v2/checkSMSCaptcha/:userId', auth.owner());
+
+    router.post('/api/v2/coupon/:userId/listCouponNew', auth.pass());
 };

@@ -13,7 +13,11 @@ module.exports = function (router) {
         res.expose(req.query.num, 'investNum')
         res.expose(req.query.loanId, 'loanId')
         res.expose(req.query.placementId, 'placementId')
+        res.expose(req.query.isCycleProduct, 'isCycleProduct')
         res.expose(user, 'user');
+
+        console.log("==========",req.query.isCycleProduct)
+        console.log("========")
         res.render('payment', {
             investNum: req.query.num,
             loanId: req.query.loanId,

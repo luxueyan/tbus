@@ -288,30 +288,9 @@ setTimeout((function () {
         //}
         var isCycleProduct = false;
         if (CC.loan.cycleProduct) {
-            new CccBox({
-                title: '循环确认',
-                value: 'loading...',
-                autoHeight: true,
-                width: 516,
-                height: 250,
-                showed: function (ele, box) {
-                    var tipsRactive = new Ractive({
-                        el: $(ele),
-                        template: '<h1 class="cycleTitle">循环确认</h1><p class="cycleContent">此产品可循环投资，如果你启用循环，产品将在结息日兑付利息，本金将继续投资本产品，直到赎回或产品到期日（xxx），这将最大程度提高资金使用效率。</p><p class="cycleRadio"><input type="radio" name="cycle" value="true" checked="checked">循环<input type="radio" name="cycle" value="false">不循环</p><img class="cccBox-line" src="/ccc/loan/img/cccbox_line.png"/><button on-click="clickOk" class="cycleBtn">确定</button>',
-                    });
-                    tipsRactive.on('clickOk', function () {
-                        isCycleProduct = $('input:radio:checked').val();
-                        $(".ccc-box-wrap .bar .close ").click();
-                        window.location.href = '/loan/payment?num=' + num + '&loanId=' + CC.loan.id + '&placementId=' + $('#couponSelection').val() + '&isCycleProduct=' + isCycleProduct;
-                    });
-                }
-            })
-        }else{
-            window.location.href = '/loan/payment?num=' + num + '&loanId=' + CC.loan.id + '&placementId=' + $('#couponSelection').val() + '&isCycleProduct=' + isCycleProduct;
+            isCycleProduct = true;
         }
-
-        //window.open('/loan/payment?num='+num+'&loanId='+CC.loan.id);
-
+        window.location.href = '/loan/payment?num=' + num + '&loanId=' + CC.loan.id + '&placementId=' + $('#couponSelection').val() + '&isCycleProduct=' + isCycleProduct;
     });
     //关闭弹窗
     investRactive.on('makeSure', function () {
@@ -403,13 +382,13 @@ setTimeout((function () {
 
     function showSelect(amount) {
         if (CC.loan.durationdays) {
-            var months = Math.ceil(CC.loan.durationdays / 30);
+            var days = CC.loan.durationdays;
         } else {
-            var months = relateDataRactive.get('monthsN');
+            var days = relateDataRactive.get('daysN');
         }
         investRactive.set('inum', parseFloat(amount));
         disableErrors();
-        loanService.getMyCouponlist(amount, months, function (coupon) {
+        loanService.getMyCouponlist(amount, days, function (coupon) {
             if (coupon.success) {
                 var list = parsedata(coupon.data);
                 list.sort(function (a, b) {
@@ -572,7 +551,8 @@ loanService.getLoanDetail(CC.loan.id, function (res) {
         },
         onrender: function () {
             this.set('imgs', this.parseData(res.data.proof.proofImages));
-            this.set('monthsN', res.data.loan.duration.totalMonths);
+            console.log(res.data.loan.duration)
+            this.set('daysN', res.data.loan.duration.totalDays);
         },
         parseData: function (res) {
             for (var i = 0; i < res.length; i++) {

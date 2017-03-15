@@ -36,12 +36,12 @@ exports.loanService = {
             })
 
     },
-    getMyCouponlist: function (amount, totalMonths, next) {
+    getMyCouponlist: function (amount, totalDays, next) {
         var sendObj = {
             amount: amount,
-            months: totalMonths
+            days: totalDays
         };
-        request('POST', '/api/v2/coupon/MYSELF/listCoupon')
+        request('POST', '/api/v2/coupon/MYSELF/listCouponNew')
             .type('form')
             .send(sendObj)
             .end()
