@@ -1,81 +1,96 @@
 <table class="table has-padding">
     <thead>
-        <tr>
-            <th>产品名称</th>
-            <th>年收益率</th>
-            <th>投资金额（元）</th>
-            <th>预期收益（元）</th>
-            <th>起息日</th>
-            <th>到期日</th>
-            <th>状态</th>
-            <th>操作</th>
-        </tr>
+    <tr>
+        <th>产品名称</th>
+        <th>年收益率</th>
+        <th>投资金额（元）</th>
+        <th>预期收益（元）</th>
+        <th>起息日</th>
+        <th>到期日</th>
+        <th>状态</th>
+        <th>操作</th>
+    </tr>
     </thead>
     {{#if list}}
     <tbody>
-        {{#each list}}
-        <tr>
-            <td>
-                <!--<p class="table-title">产品名称</p>-->
-                <p><a class="table-title" href="/loan/{{loanId}}" target="_blank" rel="nofollow">{{loanTitle}}</a></p>
-            </td>
-            <td>
-                <!--<p class="table-title">年收益率</p>-->
-                <p class="table-invest-rate">{{Frate}}%</p>
-            </td>
-            <td>
-                <!--<p class="table-title">投资金额（元）</p>-->
-                {{#if creditAssignId}}
-                <p class="table-invest-common">{{dueInPrincipal}}</p>
+    {{#each list}}
+    <tr>
+        <td {{#if loan.loanRequest.cycleProduct}}class="cycleProduct"{{/if}}>
+            <!--<p class="table-title">产品名称</p>-->
+            <a class="table-title" href="/loan/{{loanId}}" target="_blank" rel="nofollow">{{loanTitle}}</a>
+        </td>
+        <td>
+            <!--<p class="table-title">年收益率</p>-->
+            <p class="table-invest-rate">{{Frate}}%</p>
+        </td>
+        <td>
+            <!--<p class="table-title">投资金额（元）</p>-->
+            {{#if creditAssignId}}
+            <p class="table-invest-common">{{dueInPrincipal}}</p>
+            {{else}}
+            <p class="table-invest-common">{{Famount}}</p>
+            {{/if}}
+        </td>
+        <td>
+            <!--<p class="table-title">预期收益（元）</p>-->
+            {{#if status==="FROZEN"}}
+            <p class="table-invest-common">{{expectedInterest}}</p>
+            {{else}}
+            <p class="table-invest-common">{{dueInInterest}}</p>
+            {{/if}}
+        </td>
+        <td>
+            <!--<p class="table-title">起息日</p>-->
+            <p class="table-invest-common">
+                {{FvalueDate}}
+            </p>
+        </td>
+        <td>
+            <!--<p class="table-title">到息日</p>-->
+            <p class="table-invest-common">
+                {{FdueDate}}
+            </p>
+        </td>
+        <td>
+            <!--<p class="table-title">状态</p>-->
+            <p class="table-invest-common">{{Fstatus}}</p>
+        </td>
+        <td>
+            <!--<p class="table-title">操作</p>-->
+            <p class="table-invest-common">
+                {{#if loan.loanRequest.cycleProduct}}
+
+                {{#if canRedeem}}
+                <span class="red" data-investId="{{repayments[0].investId}}" data-title="{{loanTitle}}"
+                      data-amount="{{amount}}" on-click="redeemFixed">退出</span>
                 {{else}}
-                <p class="table-invest-common">{{Famount}}</p>
+                <span class="grey">退出</span>
                 {{/if}}
-            </td>
-            <td>
-                <!--<p class="table-title">预期收益（元）</p>-->
-                {{#if status==="FROZEN"}}
-                <p class="table-invest-common">{{expectedInterest}}</p>
+
+                <a href="/account/invest/allContracts/{{id}}" class="look_contact">查看合同</a>
                 {{else}}
-                <p class="table-invest-common">{{dueInInterest}}</p>
+
+                {{#if canBeAssign}}
+                <span class="operation" data-request="{{requestId}}" data-invest="{{id}}" data-amount="{{amount}}"
+                      data-title="转让-{{loanTitle}}" data-unrepay="{{unrepay}}" on-click="showFixed">转让</span>
+                <a href="/account/invest/allContracts/{{id}}" class="look_contact">查看合同</a>
+                {{elseif status == 'SETTLED'||status == 'OVERDUE'||status == 'BREACH'}}
+                <a href="/account/invest/allContracts/{{id}}" class="look_contact">查看合同</a>
                 {{/if}}
-            </td>
-            <td>
-                <!--<p class="table-title">起息日</p>-->
-                <p class="table-invest-common">
-                    {{FvalueDate}}
-                </p>
-            </td>
-            <td>
-                <!--<p class="table-title">到息日</p>-->
-                <p class="table-invest-common">
-                    {{FdueDate}}
-                </p>
-            </td>
-            <td>
-                <!--<p class="table-title">状态</p>-->
-                <p class="table-invest-common">{{Fstatus}}</p>
-            </td>
-            <td>
-                <!--<p class="table-title">操作</p>-->
-                <p class="table-invest-common">
-                    {{#if canBeAssign}}
-                    <span class="operation" data-request="{{requestId}}" data-invest="{{id}}" data-amount="{{amount}}" on-click="showFixed"  data-title="转让-{{loanTitle}}"  data-unrepay="{{unrepay}}">转让</span>
-                    <a href="/account/invest/allContracts/{{id}}" class="look_contact">查看合同</a>
-                    {{elseif status == 'SETTLED'||status == 'OVERDUE'||status == 'BREACH'}}
-                    <a href="/account/invest/allContracts/{{id}}" class="look_contact">查看合同</a>
-                    {{/if}}
-                </p>
-            </td>
-            <!--<td>-->
-                <!--<p class="table-title">投资日期</p>-->
-                <!--<p class="table-invest-time">{{submitTime}}</p>-->
-            <!--</td>-->
-            <!--<td>-->
-                <!--<p class="table-title">预计收益（元）</p>-->
-                <!--<p class="table-invest-expect">{{expectYield}}</p>-->
-            <!--</td>-->
-        </tr>
-        {{/each}}
+
+                {{/if}}
+            </p>
+        </td>
+        <!--<td>-->
+        <!--<p class="table-title">投资日期</p>-->
+        <!--<p class="table-invest-time">{{submitTime}}</p>-->
+        <!--</td>-->
+        <!--<td>-->
+        <!--<p class="table-title">预计收益（元）</p>-->
+        <!--<p class="table-invest-expect">{{expectYield}}</p>-->
+        <!--</td>-->
+    </tr>
+    {{/each}}
     </tbody>
     {{/if}}
 </table>
@@ -95,20 +110,40 @@
     <div id="popup-close"></div>
     <h1 id="form-data-title"></h1>
     <img src="/ccc/newAccount/img/pop_line.png">
+
     <div class="formWrapper">
         <p>标的估值(元)<span class="form-data assignAmount"></span></p>
+
         <p>转让折价率
-            <input type="text" name="creditDealRate" id="creditDealRate" />
+            <input type="text" name="creditDealRate" id="creditDealRate"/>
             <span class="tip">（支持溢价，折价率必须大于等于0.95；小于等于1.05）</span>
             <span class="tip error"></span>
         </p>
+
         <p>转让价格(元)<span class="form-data" id="form-num"></span></p>
+
         <p>转让期限
             <span class="form-time">24小时</span>
             <span class="tip">（如果到期无人购买，申请将自动撤销）</span>
         </p>
 
-
         <button id="btn-confirm">确认转让</button>
     </div>
 </div>
+
+
+{{#if redeemShow}}
+<div class="canRedeem">
+    <h3>确认赎回</h3>
+
+    <p>产品名称：<em>{{redeemTitle}}</em></p>
+
+    <p>赎回金额：<em>XXX元</em></p>
+
+    <p>到期日：<em>XX年XX月XX日</em></p>
+
+    <p>预计到账日期：下一工作日</p>
+    <button type="button" on-click="">确定</button>
+    <button type="button" on-click="">取消</button>
+</div>
+{{/if}}

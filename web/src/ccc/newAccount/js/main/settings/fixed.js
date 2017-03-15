@@ -12,19 +12,19 @@ var fixedRactive = new Ractive({
     template: require('ccc/newAccount/partials/home/fixed.html'),
     data: {
         bankCards: CC.user.bankCards,
-        offline:false
+        offline: false
     },
     onrender: function () {
         var that = this;
         /*var outstandingInterest = parseFloat(CC.user.investStatistics.investStatistics.dueAmount.interest || 0).toFixed(2);
-        var amoutArray = outstandingInterest.split('.');
-        this.set('outstandingInterest', parseInt(amoutArray[0]));
-        this.set('oMore', amoutArray[1]);
+         var amoutArray = outstandingInterest.split('.');
+         this.set('outstandingInterest', parseInt(amoutArray[0]));
+         this.set('oMore', amoutArray[1]);
 
-        var holdTotalAmount = parseFloat(CC.user.investStatistics.investStatistics.dueAmount.totalAmount || 0).toFixed(2);
-        var amoutArray = holdTotalAmount.split('.');
-        this.set('holdTotalAmount', parseInt(amoutArray[0]));
-        this.set('hMore', amoutArray[1]);*/
+         var holdTotalAmount = parseFloat(CC.user.investStatistics.investStatistics.dueAmount.totalAmount || 0).toFixed(2);
+         var amoutArray = holdTotalAmount.split('.');
+         this.set('holdTotalAmount', parseInt(amoutArray[0]));
+         this.set('hMore', amoutArray[1]);*/
 
         $.get('/api/v2/creditassign/list/user/MYSELF?status=OPEN&status=FINISHED', function (o) {
             that.set('ASSIGN', o.totalSize);
@@ -132,6 +132,7 @@ function init(type) {
                     this.set('total', o.result.totalSize);
                     this.set('pageOne', o.result.results);
                     this.set('list', o.result.results);
+                    console.log(o.result.results)
                     fixedRactive.set(type, o.result.totalSize);
                 }
                 this.renderPager();
@@ -371,6 +372,12 @@ function init(type) {
                             })
                         }
                     });
+                });
+
+                //退出
+                this.on('redeemFixed', function (e) {
+                    this.set('redeemShow', true);
+                    this.set('redeemShow', true);
                 });
             },
             tooltip: function () {
