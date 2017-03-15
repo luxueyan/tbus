@@ -878,6 +878,20 @@ p.tips {
     border: none;
     background: #e60012;
 }
+.cycleProduct {
+    background: url("/ccc/newAccount/img/cycleProduct.png") left center no-repeat;
+}
+.cycleProduct a {
+    padding-left: 10px;
+}
+.fixed-invest .table-invest-common .red {
+    font-size: 12px;
+    background: #e60012;
+}
+.fixed-invest .table-invest-common .grey {
+    font-size: 12px;
+    background: #6f6d6d;
+}
 .fixed-invest .table-invest-common a {
     color: #e60012;
     /* padding: 5px; */
@@ -924,7 +938,7 @@ p.tips {
     height: 20px;
 }
 #popup .formWrapper {
-    /*    padding: 20px 0 20px 25px;*/
+    /*padding: 20px 0 20px 25px;*/
     text-align: left;
     font-size: 18px;
     color: #666;
@@ -985,6 +999,29 @@ p.tips {
     margin-left: 74px;
     border: none;
     color: #fff;
+}
+.canRedeem {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 810px;
+    height: 310px;
+    margin-top: -155px;
+    margin-left: -305px;
+    padding: 30px 40px;
+    background: #fff;
+}
+.canRedeem h3 {
+    color: #666;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 30px;
+}
+.canRedeem p {
+    color: #666;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 28px;
 }
 /*固定收益 结束*/
 
