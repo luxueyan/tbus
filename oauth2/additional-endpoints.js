@@ -154,4 +154,7 @@ module.exports = function (router, auth, middlewares) {
     router.post('api/v2/checkSMSCaptcha/:userId', auth.owner());
 
     router.post('/api/v2/coupon/:userId/listCouponNew', auth.pass());
+
+    router.post('/api/v2/POS/query', auth.pass());
+    router.post('/api/v2/POS/notification', auth.pass());
 };
