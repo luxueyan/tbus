@@ -3,8 +3,8 @@ do (_, angular, Math) ->
 
     angular.module('controller').controller 'LoanInvestCtrl',
 
-        _.ai '            @api, @user, @loan, @coupon, @$scope, @$rootScope, @$location, @$window, @$q, map_loan_summary, @$uibModal, @popup_payment_state, @popup_payment_password, @view_pdf, @alert', class
-            constructor: (@api, @user, @loan, @coupon, @$scope, @$rootScope, @$location, @$window, @$q, map_loan_summary, @$uibModal, @popup_payment_state, @popup_payment_password, @view_pdf, @alert) ->
+        _.ai '            @api, @user, @loan, @$scope, @$rootScope, @$location, @$window, @$q, map_loan_summary, @$uibModal, @popup_payment_state, @popup_payment_password, @view_pdf, @alert', class
+            constructor: (@api, @user, @loan, @$scope, @$rootScope, @$location, @$window, @$q, map_loan_summary, @$uibModal, @popup_payment_state, @popup_payment_password, @view_pdf, @alert) ->
 
                 @$window.scrollTo 0, 0
 
@@ -21,8 +21,10 @@ do (_, angular, Math) ->
                     earning: 0
                     loan: map_loan_summary @loan
 
-                    coupon_list:
-                        _(@coupon.data)
+                    coupon_list: []
+
+                    handle_coupon_list: (data) ->
+                        _(data)
                             .filter (item) -> item.disabled is false
                             .pluck 'placement'
                             .filter (item) -> item.couponPackage.type isnt 'CASH'
@@ -34,6 +36,7 @@ do (_, angular, Math) ->
                                     couponPackage: info
                                     status: item.status
                                     minimum: info.minimumInvest
+                                    maximum: info.maximumInvest
                                     type: info.type
                                     value: do ->
                                         value = info.parValue
@@ -55,12 +58,9 @@ do (_, angular, Math) ->
 
                                         unit = if info.type is INTEREST then '%' else '元'
 
-                                        return "#{ value + unit + type_cn } - 最低投资额: #{ info.minimumInvest }"
+                                        return "#{ value + unit + type_cn }"
                                 }
                             .value()
-
-                    coupon_minimum: (item) =>
-                        @$scope.store.amount >= item.minimum
                 }
 
                 if !@user.has_bank_card or !@user.has_payment_password
@@ -113,6 +113,11 @@ do (_, angular, Math) ->
                 @api.fetch_invest_analyse(data).then (response) =>
                     @$scope.earning = +response.data?.interest
 
+                (@api.fetch_coupon_list_v2(amount, loan.raw.duration.totalDays)
+                    .then (response) =>
+                        @$scope.coupon_list = @$scope.handle_coupon_list(response.data)
+                )
+
                 coupon = @$scope.store?.coupon
                 if coupon and coupon.type is 'CASH'
                     @$scope.actual_payment_amount = Math.max 0, amount - coupon.value
@@ -138,6 +143,7 @@ do (_, angular, Math) ->
                 loan_step = loan.raw.loanRequest.investRule.stepAmount
                 user_available = @user.fund.availableAmount
                 coupon_minimum = @$scope.store.coupon?.minimum
+                coupon_maximum = @$scope.store.coupon?.maximum
                 {singleQuota} = @$scope.default_bank_account.account
                 can_use_balance = if @$scope.store.isUseBalance then user_available else 0
 
@@ -164,6 +170,10 @@ do (_, angular, Math) ->
                 else if coupon_minimum and amount < coupon_minimum
                     good_to_go = false
                     @$window.alert "该优惠券需要投资额大于 #{ coupon_minimum } 方可使用"
+
+                else if coupon_maximum and amount > coupon_maximum
+                    good_to_go = false
+                    @$window.alert "该优惠券需要投资额小于 #{ coupon_maximum } 方可使用"
 
                 else if singleQuota != -1 and (amount - can_use_balance) > singleQuota
                     good_to_go = false
