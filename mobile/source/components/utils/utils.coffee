@@ -222,6 +222,34 @@ do (_, angular) ->
 
 
 
+        .factory 'alert', _.ai '$uibModal, $rootScope', ($uibModal, $rootScope) ->
+
+            (message) ->
+
+                prompt = $uibModal.open {
+                    size: 'lg'
+                    animation: false
+                    backdrop: 'static'
+                    windowClass: 'center modal-alert'
+                    template: '''
+                        <div class="modal-body text-center" ng-bind-html="message | sanitize"></div>
+                        <div class="modal-footer">
+                            <a ng-click="$close()">确定</a>
+                        </div>
+                    '''
+                    controller: _.ai '$scope',
+                        (             $scope) ->
+                            angular.extend $scope, {message}
+                }
+
+                once = $rootScope.$on '$locationChangeStart', ->
+                    prompt?.dismiss('cancel')
+                    do once
+
+                return prompt.result
+
+
+
         .factory 'toast', _.ai '$rootScope, $timeout', ($rootScope, $timeout) ->
 
             (message) ->

@@ -93,27 +93,28 @@ a {
         }
     }
 
-    &.modal-alert {
-        left: 10%;
-        right: 10%;
-        margin: 0;
-
-        .modal-footer {
-            padding: 3px;
-
-            .btn-theme {
-                color: #1A7FF2;
-                font-size: 16px;
-            }
+    &-alert {
+        .modal-content {
+            margin: 0 6%;
+            border: 0;
+            border-radius: 0;
+            -webkit-box-shadow: none;
+                    box-shadow: none;
         }
 
         .modal-body {
-            text-align: center;
+            padding: 15px 30px;
+        }
 
-            .alert-title {
+        .modal-footer {
+            padding: 0;
+
+            a {
                 display: block;
-                font-size: 16px;
-                color: @color-gray-dark-double;
+                font-size: 14px;
+                line-height: 40px;
+                text-align: center;
+                color: @color-theme-main;
             }
         }
     }
