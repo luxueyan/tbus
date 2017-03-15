@@ -93,27 +93,28 @@ a {
         }
     }
 
-    &.modal-alert {
-        left: 10%;
-        right: 10%;
-        margin: 0;
-
-        .modal-footer {
-            padding: 3px;
-
-            .btn-theme {
-                color: #1A7FF2;
-                font-size: 16px;
-            }
+    &-alert {
+        .modal-content {
+            margin: 0 6%;
+            border: 0;
+            border-radius: 0;
+            -webkit-box-shadow: none;
+                    box-shadow: none;
         }
 
         .modal-body {
-            text-align: center;
+            padding: 15px 30px;
+        }
 
-            .alert-title {
+        .modal-footer {
+            padding: 0;
+
+            a {
                 display: block;
-                font-size: 16px;
-                color: @color-gray-dark-double;
+                font-size: 14px;
+                line-height: 40px;
+                text-align: center;
+                color: @color-theme-main;
             }
         }
     }
@@ -1303,8 +1304,28 @@ a {
             }
 
             .title {
-                margin: 0 2em 0 0;
+                margin: 0 3em 0 0;
                 font-size: 14px;
+
+                &.CYCLE {
+                    padding-left: 3px;
+
+                    &:before {
+                        .transform(scale(0.7));
+                        content: attr(data-before-content);
+                        position: absolute;
+                        left: -15px;
+                        top: 12px;
+                        border: 1px solid @color-theme-main;
+                        border-radius: 50%;
+                        width: 18px;
+                        height: 18px;
+                        line-height: 16px;
+                        text-align: center;
+                        font-size: 12px;
+                        color: @color-theme-main;
+                    }
+                }
 
                 &:after {
                     .transform(scale(0.7));
@@ -1366,7 +1387,8 @@ a {
                 .tag {
                     display: inline-block;
                     vertical-align: middle;
-                    margin-left: 3px;
+                    margin-right: 3px;
+                    margin-bottom: 3px;
                     border: 1px solid #C79F62;
                     border-radius: 3px;
                     padding: 0.1em 0.5em;
@@ -2179,37 +2201,43 @@ a {
         background: #FFF url("@{path-image}/graph-lg.png") no-repeat 0 0;
         background-size: cover;
         height: 184px/2;
-        overflow: hidden;
+        overflow: auto;
         font-size: 14px;
         color: #717071;
 
         .label-activity {
-            .transform(scale(0.8));
+            .transform(rotate(-45deg));
             -webkit-transform-origin: 0 0;
                     transform-origin: 0 0;
             position: absolute;
-            top: 0;
-            left: 15px;
-            background-color: #C79F62;
-            padding: 0.4em 0.5em 1em;
-            width: 3em;
-            min-height: 3.75em;
-            line-height: 14px;
+            left: -1.6em;
+            top: 4em;
+            background-color: @color-theme-main;
+            width: 8em;
+            height: 18px;
+            line-height: 18px;
+            color: #FFF;
             text-align: center;
             font-size: 12px;
-            color: #FFF;
+        }
 
-            &:after {
-                content: "";
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                border-top: 0;
-                border-right: 1.5em solid transparent;
-                border-left: 1.5em solid transparent;
-                border-bottom: 0.6em solid #FFF;
-                width: 0;
-                height: 0;
+        .tag-list {
+            height: 32px;
+            white-space: nowrap;
+
+            .tag {
+                display: inline-block;
+                vertical-align: middle;
+                margin-top: 5px;
+                border: 1px solid #C79F62;
+                border-radius: 3px;
+                padding: 0.1em 0.5em;
+                color: #C79F62;
+                font-size: 12px;
+
+                + .tag {
+                    margin-left: 3px;
+                }
             }
         }
 
@@ -2226,6 +2254,8 @@ a {
         }
 
         .duration {
+            white-space: nowrap;
+
             .value {
                 line-height: 64px/2;
             }
@@ -2312,11 +2342,19 @@ a {
                         background-color: #CFA972;
                     }
 
-                    &:after {
+                    &:not(.cycle):after {
                         width: 5px;
                         height: 5px;
                         background-color: #F4F4F4;
                         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+                    }
+
+                    &.cycle:after {
+                        .transform(translateX(-50%) translateY(-50%) scale(0.6));
+                        border-radius: 0;
+                        font-family: "Glyphicons Halflings";
+                        content: "\e031";
+                        color: #FFF;
                     }
                 }
 

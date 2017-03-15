@@ -29,9 +29,45 @@
                 <div class="name">预期年收益率</div>
             </div>
 
-            <div class="col-xs-6 duration">
-                <div class="value">{{ loan.raw.loanRequest.displayDuration.frontShowDuration }}</div>
-                <div class="name">投资期限</div>
+            <div class="col-xs-6 text-left" style="padding-left: 0;">
+                <div class="tag-list">
+                    <span
+                        class="tag"
+                        ng-if="loan.raw.loanRequest.brightSpot"
+                    >
+                        {{ loan.raw.loanRequest.brightSpot }}
+                    </span>
+                    <span
+                        class="tag"
+                        ng-if="loan.raw.loanRequest.brightSpot2"
+                    >
+                        {{ loan.raw.loanRequest.brightSpot2 }}
+                    </span>
+                </div>
+
+                <div class="duration">
+                    投资期限:
+                    <span
+                        ng-class="{'u-color-main': loan.raw.loanRequest.cycleProduct}"
+                        style="margin-left: 3px;"
+                    >
+                        {{ loan.raw.loanRequest.displayDuration.frontShowDuration }}
+                    </span>
+                    <span
+                        class="u-color-main"
+                        style="margin-left: 5px;"
+                    >
+                        {{
+                            loan.raw.loanRequest.cycleProduct
+                            ? '循环'
+                            : (
+                                loan.product_key !== 'NEW'
+                                ? '7天可转'
+                                : ''
+                            )
+                        }}
+                    </span>
+                </div>
             </div>
         </div>
     </section>
@@ -78,18 +114,27 @@
                 <div class="value">{{ loan.value_date | date: 'yyyy-MM-dd' }}</div>
             </li>
             <li>
-                <div class="name">预计结息日</div>
+                <div class="name">预计{{ loan.raw.loanRequest.cycleProduct ? '首次' : '' }}到期日</div>
                 <div class="value">{{ loan.due_date | date: 'yyyy-MM-dd' }}</div>
             </li>
             <li>
-                <div class="name">预计到账日</div>
-                <div class="value">下一工作日</div>
+                <div class="name">预计{{ loan.raw.loanRequest.cycleProduct ? '首次' : '' }}到账日</div>
+                <div
+                    class="value"
+                    ng-class="{cycle: loan.raw.loanRequest.cycleProduct}"
+                >下一工作日</div>
             </li>
         </ul>
     </section>
 
     <section class="loan-info">
         <ul class="list-unstyled u-off-margin-bottom list">
+            <li ng-if="loan.raw.loanRequest.specialInstruction">
+                <span class="name u-color-main">特别提示</span>
+                <span class="value"
+                      ng-bind-html="loan.raw.loanRequest.specialInstruction | sanitize"
+                ></span>
+            </li>
             <li>
                 <span class="name">产品总额</span>
                 <span class="value">
@@ -101,7 +146,11 @@
             <li>
                 <span class="name">可否转让</span>
                 <span class="value">
-                    {{ loan.product_key === 'NEW' ? '不可转让' : '7天之后可转让' }}
+                    {{
+                        loan.product_key === 'NEW' || loan.raw.loanRequest.cycleProduct
+                        ? '不可转让'
+                        : '7天之后可转让'
+                    }}
                 </span>
             </li>
             <li>
@@ -142,12 +191,6 @@
                 <span class="name">资金用途</span>
                 <span class="value"
                       ng-bind-html="loan.raw.loanRequest.fundUsage | sanitize"
-                ></span>
-            </li>
-            <li ng-if="loan.raw.loanRequest.specialInstruction">
-                <span class="name">特别提示</span>
-                <span class="value"
-                      ng-bind-html="loan.raw.loanRequest.specialInstruction | sanitize"
                 ></span>
             </li>
         </ul>

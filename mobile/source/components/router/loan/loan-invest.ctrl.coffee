@@ -3,8 +3,8 @@ do (_, angular, Math) ->
 
     angular.module('controller').controller 'LoanInvestCtrl',
 
-        _.ai '            @api, @user, @loan, @coupon, @$scope, @$rootScope, @$location, @$window, @$q, map_loan_summary, @$uibModal, @popup_payment_state, @popup_payment_password, @view_pdf', class
-            constructor: (@api, @user, @loan, @coupon, @$scope, @$rootScope, @$location, @$window, @$q, map_loan_summary, @$uibModal, @popup_payment_state, @popup_payment_password, @view_pdf) ->
+        _.ai '            @api, @user, @loan, @coupon, @$scope, @$rootScope, @$location, @$window, @$q, map_loan_summary, @$uibModal, @popup_payment_state, @popup_payment_password, @view_pdf, @alert', class
+            constructor: (@api, @user, @loan, @coupon, @$scope, @$rootScope, @$location, @$window, @$q, map_loan_summary, @$uibModal, @popup_payment_state, @popup_payment_password, @view_pdf, @alert) ->
 
                 @$window.scrollTo 0, 0
 
@@ -127,6 +127,8 @@ do (_, angular, Math) ->
 
                 loan = @$scope.loan
 
+                isCycleProduct = loan.raw.loanRequest.cycleProduct
+
                 # {password} = @$scope.store
                 coupon = @$scope.store?.coupon
                 amount = @$scope.store.amount or 0
@@ -211,6 +213,7 @@ do (_, angular, Math) ->
                             placementId: coupon?.id or ''
                             paymentPassword: @$scope.store.password
                             isUseBalance: @$scope.store.isUseBalance
+                            isCycleProduct
                         }
 
                         @api.payment_pool_tender(post_data)
@@ -220,6 +223,16 @@ do (_, angular, Math) ->
                     .then =>
                         @api.flush_user_info()
                         @$scope.action_result = { success: true }
+
+                        if isCycleProduct
+                            cycle_tip = '''
+                                <h4><strong>温馨提示</strong></h4>
+                                <p class="text-left text-justify">
+                                    该产品为可循环产品，默认本金自动循环。
+                                    “开放日（T日）”指每期产品的到期日，份额持有人在T-10日前点击“赎回”按钮，则当期赎回本金，否则顺延投资至下一期。
+                                </p>
+                            '''
+                            @alert(cycle_tip)
 
                         # @$scope.show_invest_result = true
 
