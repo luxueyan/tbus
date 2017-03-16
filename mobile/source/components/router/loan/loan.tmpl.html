@@ -14,9 +14,9 @@
     <section class="omit-margin container loan-summary-1">
         <div
             class="label-activity"
-            ng-if="loan.raw.loanRequest.activityInfo"
+            ng-if="loan.activity_info"
         >
-            {{ loan.raw.loanRequest.activityInfo | limitTo: 4 }}
+            {{ loan.activity_info }}
         </div>
 
         <div class="row text-center">
