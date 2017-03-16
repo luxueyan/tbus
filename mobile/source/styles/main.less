@@ -3671,7 +3671,43 @@ a {
 }
 
 /*=============================================================================
-                                                    [Router] [Dashboard] Invest
+                                                    [Router] [Dashboard] Redeem
+----*/
+
+#dashboard-redeem {
+    .form-redeem {
+        .list {
+            > li {
+                border-bottom: 1px solid #EFEFEF;
+                padding: 12px 15px;
+                color: #585858;
+            }
+        }
+
+        .info {
+            .flex-display(center; space-between);
+
+            .name {
+            }
+
+            .value {
+                .flex(1);
+                text-align: right;
+            }
+        }
+
+        button[type="submit"] {
+            .button-size(10px; 10px; 14px; 1; 4px);
+        }
+
+        .btn-submit-wrap {
+            margin: 32px 20%;
+        }
+    }
+}
+
+/*=============================================================================
+                                                [Router] [Dashboard] Assignment
 ----*/
 
 #dashboard-assignment {

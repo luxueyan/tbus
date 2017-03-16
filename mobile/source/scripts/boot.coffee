@@ -230,6 +230,20 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         return $q.reject()
                     }
 
+                    .when '/dashboard/redeem/:id', {
+                        controller: 'DashboardRedeemCtrl as self'
+                        templateUrl: 'components/router/dashboard/redeem.tmpl.html'
+                        resolve:
+                            user: _.ai 'api, $location, $route, $q',
+                                (       api, $location, $route, $q) ->
+                                    api.fetch_current_user().catch ->
+                                        $location
+                                            .replace()
+                                            .path '/login'
+                                            .search next: "dashboard/redeem/#{ $route.current.params.id }"
+                                        return $q.reject()
+                    }
+
                     # .when '/dashboard/repayment', {
                     #     controller: 'RepaymentCtrl as self'
                     #     templateUrl: 'components/router/dashboard/repayment.tmpl.html'

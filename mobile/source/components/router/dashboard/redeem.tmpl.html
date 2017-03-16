@@ -1,0 +1,67 @@
+
+<div id="dashboard-redeem">
+    <style> body { background-color: #FFF; } </style>
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" x-go-back>
+            <param class="glyphicon glyphicon-menu-left">
+        </a>
+        <span class="col-xs-6 title">确认赎回</span>
+        <span class="col-xs-3">&nbsp;</span>
+    </div>
+    </nav>
+
+    <div>
+        <param ng-model="msg" ng-init="msg = {
+            SUCCESSFUL: '赎回成功!',
+            UNKNOWN: '系统繁忙，请稍后重试！',
+            ACCESS_DENIED: '登录超时',
+        }">
+    </div>
+
+    <form class="form-horizontal form-redeem"
+          name="form"
+          autocapitalize="none"
+          autocomplete="off"
+          autocorrect="off"
+          novalidate
+          ng-submit="self.submit(item)"
+    >
+        <section>
+            <ul class="list-unstyled u-off-margin-bottom list">
+                <li>
+                    <div class="info">
+                        <span class="name">产品名称</span>
+                        <span class="value">{{ item.title }}</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="info">
+                        <span class="name">赎回金额</span>
+                        <span class="value">{{ item.amount | number: 2 }}元</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="info">
+                        <span class="name">到期日</span>
+                        <span class="value">{{ item.end_date | date: "yyyy年MM月dd日" }}</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="info">
+                        <span class="name">预计到账日期</span>
+                        <span class="value">下一工作日</span>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <section class="btn-submit-wrap">
+            <button type="submit" class="btn btn-theme btn-lg btn-block"
+                    ng-disabled="self.submit_sending"
+            >{{ self.submit_sending ? '提交中...' : '确认' }}</button>
+        </section>
+    </form>
+
+</div>
