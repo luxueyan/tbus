@@ -159,5 +159,5 @@ module.exports = function (router, auth, middlewares) {
     router.post('/api/v2/POS/notification', auth.pass());
 
     //循环产品-赎回
-    router.post('/api/v2/invest/redeem', auth.owner());
+    router.post('/api/v2/invest/redeem', auth.user());
 };
