@@ -132,7 +132,6 @@ function init(type) {
                     this.set('total', o.result.totalSize);
                     this.set('pageOne', o.result.results);
                     this.set('list', o.result.results);
-                    console.log(o.result.results)
                     fixedRactive.set(type, o.result.totalSize);
                 }
                 this.renderPager();
@@ -212,10 +211,6 @@ function init(type) {
                             datas[i].Frepayed = utils.format.amount(repay.repayed, 2);
                             datas[i].intrest = (o.amount * (o.rate / 10000) * (parseInt(datas[i].holdDay)) / 365).toFixed(2);
                             datas[i].unrepay = o.amount + parseFloat(datas[i].intrest);
-                            //console.log(o.amount)
-                            //console.log(datas[i].holdDay)
-                            //console.log(datas[i].intrest)
-                            //console.log(datas[i].unrepay)
                         }
                     }
                     return res;
@@ -376,8 +371,25 @@ function init(type) {
 
                 //退出
                 this.on('redeemFixed', function (e) {
+                    var ee = e.context;
                     this.set('redeemShow', true);
-                    this.set('redeemShow', true);
+                    this.set('redeemTitle', ee.loanTitle);
+                    this.set('redeemInvestId', ee.repayments[0].investId);
+                    this.set('redeemCurrentPeriod', ee.currentPeriod);
+                    this.set('redeemAmount', ee.amount);
+                    this.set('redeemDate', moment(ee.loan.loanRequest.dueDate).format('YYYY年MM月DD日'));
+                });
+
+                //退出--取消
+                this.on('redeemCancel', function (e) {
+                    this.set('redeemShow', false);
+                });
+
+                //退出--确定
+                this.on('redeemSure', function (e) {
+                    accountService.redeemSure(this.get('redeemInvestId'), this.get('redeemCurrentPeriod'), function (res) {
+                        console.log(res);
+                    });
                 });
             },
             tooltip: function () {

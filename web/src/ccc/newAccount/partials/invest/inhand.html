@@ -15,7 +15,7 @@
     <tbody>
     {{#each list}}
     <tr>
-        <td {{#if loan.loanRequest.cycleProduct}}class="cycleProduct"{{/if}}>
+        <td class="{{loan.loanRequest.cycleProduct?'cycleProduct':'noProduct'}}">
             <!--<p class="table-title">产品名称</p>-->
             <a class="table-title" href="/loan/{{loanId}}" target="_blank" rel="nofollow">{{loanTitle}}</a>
         </td>
@@ -61,8 +61,7 @@
                 {{#if loan.loanRequest.cycleProduct}}
 
                 {{#if canRedeem}}
-                <span class="red" data-investId="{{repayments[0].investId}}" data-title="{{loanTitle}}"
-                      data-amount="{{amount}}" on-click="redeemFixed">退出</span>
+                <span class="red" on-click="redeemFixed">退出</span>
                 {{else}}
                 <span class="grey">退出</span>
                 {{/if}}
@@ -138,12 +137,15 @@
 
     <p>产品名称：<em>{{redeemTitle}}</em></p>
 
-    <p>赎回金额：<em>XXX元</em></p>
+    <p>赎回金额：<em>{{redeemAmount}}元</em></p>
 
-    <p>到期日：<em>XX年XX月XX日</em></p>
+    <p>到期日：<em>{{redeemDate}}</em></p>
 
     <p>预计到账日期：下一工作日</p>
-    <button type="button" on-click="">确定</button>
-    <button type="button" on-click="">取消</button>
+    <hr>
+    <div class="canRedeemBtn">
+        <button type="button" on-click="redeemSure">确定</button>
+        <button type="button" on-click="redeemCancel">取消</button>
+    </div>
 </div>
 {{/if}}
