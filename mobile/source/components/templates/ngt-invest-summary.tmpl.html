@@ -5,12 +5,21 @@
      ng-click="self.$location.path('loan/' + item.loan_id)"
 >
     <div class="head">
-        <h4 class="title">
+        <h4 class="title"
+            data-before-content="{{ item.is_cycle_product ? '循' : '' }}"
+            ng-class="{ CYCLE: item.is_cycle_product }"
+        >
             <a ng-href="loan/{{ item.loan_id }}">{{ item.title }}</a>
         </h4>
         <span class="date">
             <span class="item">起息日：{{ item.settled_date | date: "yyyy-MM-dd" }}</span>
-            <span class="item">到期日：{{ item.end_date | date: "yyyy-MM-dd" }}</span>
+            <span class="item">
+                {{
+                    item.status != 'CLEARED' && item.is_cycle_product && item.raw.canRedeem
+                    ? '每期派息'
+                    : ('到期日：' + (item.end_date | date: "yyyy-MM-dd"))
+                }}
+            </span>
         </span>
     </div>
 
@@ -106,17 +115,33 @@
         </div>
 
         <div class="action" ng-if="item.status != 'CLEARED'">
-            <button class="btn btn-theme btn-xs"
-                    ng-click="
-                        self.$location.path('dashboard/assignment/' + item.id);
-                        $event.stopPropagation();
-                    "
-                    ng-if="item.raw.canBeAssign"
-            >转让</button>
-            <button class="btn btn-disabled btn-xs"
-                    ng-click="$event.stopPropagation()"
-                    ng-if="!item.raw.canBeAssign"
-            >转让</button>
+            <div ng-if="!item.is_cycle_product">
+                <button class="btn btn-theme btn-xs"
+                        ng-click="
+                            self.$location.path('dashboard/assignment/' + item.id);
+                            $event.stopPropagation();
+                        "
+                        ng-if="item.raw.canBeAssign"
+                >转让</button>
+                <button class="btn btn-disabled btn-xs"
+                        ng-click="$event.stopPropagation()"
+                        ng-if="!item.raw.canBeAssign"
+                >转让</button>
+            </div>
+
+            <div ng-if="item.is_cycle_product">
+                <button class="btn btn-theme btn-xs"
+                        ng-click="
+                            self.$location.path('dashboard/redeem/' + item.id);
+                            $event.stopPropagation();
+                        "
+                        ng-if="item.raw.canRedeem"
+                >赎回</button>
+                <button class="btn btn-disabled btn-xs"
+                        ng-click="$event.stopPropagation()"
+                        ng-if="!item.raw.canRedeem"
+                >赎回</button>
+            </div>
         </div>
     </div>
 </div>
