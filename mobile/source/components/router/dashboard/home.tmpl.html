@@ -100,7 +100,17 @@
                         </li>
                         <li>
                             <div class="info">
-                                <span class="name">当前收益 (元)</span>
+                                <span class="name">
+                                    当前收益 (元)
+                                    <img
+                                        width="12"
+                                        class="info-icon"
+                                        ng-src="assets/image/info-icon.png"
+                                        uib-tooltip="截至到当天未结息利息（不含线下投资）"
+                                        tooltip-placement="bottom-left"
+                                        tooltip-trigger="outsideClick"
+                                    >
+                                </span>
                                 <span class="value">{{ outstandingInterest | number: 2 }}</span>
                             </div>
                         </li>
