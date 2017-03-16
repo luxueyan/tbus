@@ -79,6 +79,10 @@
                 <input name="amount"
                        id="amount"
                        ng-model="store.amount"
+                       ng-model-options="{
+                           updateOn: 'blur default',
+                           debounce: {blur: 0, default: 600}
+                       }"
                        ng-change="form.amount.$valid && self.fetch_analyse(store.amount)"
                        type="number"
                        class="form-control"
