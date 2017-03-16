@@ -197,8 +197,8 @@ exports.accountService = {
     getCurrentMonthLoan: function (to, from, next) {
         request('GET', '/api/v2/user/MYSELF/investRepayments/1/10?to=' + to + '&from=' + from)
             .end().then(function (res) {
-            next(res.body);
-        });
+                next(res.body);
+            });
     },
     getVipLevel: function (next) {
         request('GET', '/api/v2/user/MYSELF/membership')
@@ -303,6 +303,18 @@ exports.accountService = {
                 next(res.body);
             });
     },
-
+    //循环产品赎回
+    redeemSure: function (investId, currentPeriod, next) {
+        request('POST', '/api/v2/invest/redeem')
+            .type('form')
+            .send({
+                'investId': investId,
+                'currentPeriod': currentPeriod,
+            })
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
+    },
 };
 
