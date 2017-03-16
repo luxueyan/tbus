@@ -133,7 +133,7 @@ payRactive.on("invest-submit", function (e) {
                         payRactive.set('step2', true);
                         payRactive.set('step3', false);
                         setTimeout(function(){
-                            if (CC.isCycleProduct) {
+                            if (CC.isCycleProduct == "true") {
                                 new CccBox({
                                     title: '循环确认',
                                     value: 'loading...',
@@ -154,7 +154,7 @@ payRactive.on("invest-submit", function (e) {
                             }else{
                                 window.location.href = '/loan/' + CC.loanId;
                             }
-                        },2000)
+                        },1000)
 
                     } else {
                         payRactive.set('step1', false);
