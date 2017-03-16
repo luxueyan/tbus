@@ -140,7 +140,7 @@ do (_, angular, moment, Math, Date) ->
         arrival_date = new Date( +moment(due_date).add(3, 'd'))
 
         activity_info = loanRequest.activityInfo or ''
-        sub_activity_info_length = if /\w/.test(activity_info) then 5 else 4
+        sub_activity_info_length = if /^\w/.test(activity_info) then 5 else 4
         activity_info = activity_info.substr(0, sub_activity_info_length)
 
         return _.merge result, {
