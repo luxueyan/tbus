@@ -1,9 +1,9 @@
 
 <h4 class="title"
-    data-before-content="{{ loan.raw.loanRequest.cycleProduct ? '循' : ''  }}"
+    data-before-content="{{ loan.is_cycle_product ? '循' : ''  }}"
     data-after-content="{{ { HOT: 'HOT' }[loan.product_key] }}"
     ng-class="{
-        CYCLE: loan.raw.loanRequest.cycleProduct,
+        CYCLE: loan.is_cycle_product,
         HOT: loan.product_key == 'HOT'
     }"
 >
@@ -52,7 +52,7 @@
                 style="margin-left: 10px;"
             >
                 {{
-                    loan.raw.loanRequest.cycleProduct
+                    loan.is_cycle_product
                     ? '循环'
                     : (
                         loan.product_key !== 'NEW'

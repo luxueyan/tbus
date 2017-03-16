@@ -170,4 +170,6 @@ do (_, angular, moment, Math, Date) ->
             chart_options: _.merge CHART_OPTIONS(), do (data = {}) ->
                 data.barColor = '#9E9E9F' unless item.status in _.split 'OPENED FINISHED FAKESETTLED FAILED'
                 return data
+
+            is_cycle_product: loanRequest.cycleProduct
         }

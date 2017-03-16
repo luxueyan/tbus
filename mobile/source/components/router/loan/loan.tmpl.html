@@ -48,7 +48,7 @@
                 <div class="duration">
                     投资期限:
                     <span
-                        ng-class="{'u-color-main': loan.raw.loanRequest.cycleProduct}"
+                        ng-class="{'u-color-main': loan.is_cycle_product}"
                         style="margin-left: 3px;"
                     >
                         {{ loan.raw.loanRequest.displayDuration.frontShowDuration }}
@@ -58,7 +58,7 @@
                         style="margin-left: 5px;"
                     >
                         {{
-                            loan.raw.loanRequest.cycleProduct
+                            loan.is_cycle_product
                             ? '循环'
                             : (
                                 loan.product_key !== 'NEW'
@@ -114,14 +114,14 @@
                 <div class="value">{{ loan.value_date | date: 'yyyy-MM-dd' }}</div>
             </li>
             <li>
-                <div class="name">预计{{ loan.raw.loanRequest.cycleProduct ? '首次' : '' }}到期日</div>
+                <div class="name">预计{{ loan.is_cycle_product ? '首次' : '' }}到期日</div>
                 <div class="value">{{ loan.due_date | date: 'yyyy-MM-dd' }}</div>
             </li>
             <li>
-                <div class="name">预计{{ loan.raw.loanRequest.cycleProduct ? '首次' : '' }}到账日</div>
+                <div class="name">预计{{ loan.is_cycle_product ? '首次' : '' }}到账日</div>
                 <div
                     class="value"
-                    ng-class="{cycle: loan.raw.loanRequest.cycleProduct}"
+                    ng-class="{cycle: loan.is_cycle_product}"
                 >下一工作日</div>
             </li>
         </ul>
@@ -147,7 +147,7 @@
                 <span class="name">可否转让</span>
                 <span class="value">
                     {{
-                        loan.product_key === 'NEW' || loan.raw.loanRequest.cycleProduct
+                        loan.product_key === 'NEW' || loan.is_cycle_product
                         ? '不可转让'
                         : '7天之后可转让'
                     }}

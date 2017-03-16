@@ -187,6 +187,8 @@ do (_, angular) ->
             repayments: item.repayments
 
             have_begun_to_settled: item.loan.serverDate > item.loan.loanRequest.valueDate
+
+            is_cycle_product: item.loan.loanRequest.cycleProduct
         }
 
 

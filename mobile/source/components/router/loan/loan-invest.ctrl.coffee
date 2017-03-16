@@ -132,7 +132,7 @@ do (_, angular, Math) ->
 
                 loan = @$scope.loan
 
-                isCycleProduct = loan.raw.loanRequest.cycleProduct
+                isCycleProduct = loan.is_cycle_product
 
                 # {password} = @$scope.store
                 coupon = @$scope.store?.coupon
