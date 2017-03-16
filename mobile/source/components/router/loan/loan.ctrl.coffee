@@ -139,6 +139,10 @@ do (_, angular, moment, Math, Date) ->
 
         arrival_date = new Date( +moment(due_date).add(3, 'd'))
 
+        activity_info = loanRequest.activityInfo or ''
+        sub_activity_info_length = if /\w/.test(activity_info) then 5 else 4
+        activity_info = activity_info.substr(0, sub_activity_info_length)
+
         return _.merge result, {
 
             raw: item
@@ -171,5 +175,6 @@ do (_, angular, moment, Math, Date) ->
                 data.barColor = '#9E9E9F' unless item.status in _.split 'OPENED FINISHED FAKESETTLED FAILED'
                 return data
 
+            activity_info
             is_cycle_product: loanRequest.cycleProduct
         }
