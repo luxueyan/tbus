@@ -50,6 +50,23 @@ var ractive = new Ractive({
         });
         $.get('/api/v2/baofoo/getBankConstraints', function (r) {
             if (r.success) {
+                for (var i = 0; i < r.data.length; i++) {
+                    if (r.data[i].singleQuota >= 10000) {
+                        r.data[i].singleQuota = r.data[i].singleQuota / 10000 + '万元';
+                    } else if (r.data[i].singleQuota < 0) {
+                        r.data[i].singleQuota = '无限额';
+                    } else {
+                        r.data[i].singleQuota = r.data[i].singleQuota + '元';
+                    }
+
+                    if (r.data[i].dailyQuota >= 10000) {
+                        r.data[i].dailyQuota = r.data[i].dailyQuota / 10000 + '万元';
+                    } else if (r.data[i].dailyQuota < 0) {
+                        r.data[i].dailyQuota = '无限额';
+                    } else {
+                        r.data[i].dailyQuota = r.data[i].dailyQuota + '元';
+                    }
+                }
                 ractive.set('newbanks', r.data);
             }
 
@@ -124,7 +141,7 @@ ractive.on("validatePhoneNo", function () {
         accessD = true;
     }
 });
-ractive.on("validateCaptcha",function(){
+ractive.on("validateCaptcha", function () {
     var smsCaptcha = this.get('smsCaptcha');
     if (smsCaptcha === '') {
         this.set('SMS_NULL', '请输入手机验证码');

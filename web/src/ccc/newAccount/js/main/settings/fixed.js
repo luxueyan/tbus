@@ -372,6 +372,7 @@ function init(type) {
                 //退出
                 this.on('redeemFixed', function (e) {
                     var ee = e.context;
+                    console.log(ee)
                     this.set('redeemShow', true);
                     this.set('redeemTitle', ee.loanTitle);
                     this.set('redeemInvestId', ee.repayments[0].investId);

@@ -119,8 +119,8 @@ function parseLoanList(list) {
     for (var i = 0; i < list.length; i++) {
         list[i] = formatItem(list[i]);
         var method = list[i].method;
-        var methodFmt = i18n.enums.RepaymentMethod[method][0];
-        list[i].methodFmt = methodFmt;
+        //var methodFmt = i18n.enums.RepaymentMethod[method][0];
+        //list[i].methodFmt = methodFmt;
         list[i].titleLength = replaceStr(list[i].title);
         //list[i].FminAmount = utils.format.amount(list[i].loanRequest.investRule.minAmount, 2);
         if (list[i].loanRequest.investRule.minAmount < 10000) {
