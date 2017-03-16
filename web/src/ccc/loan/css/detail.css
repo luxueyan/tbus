@@ -86,7 +86,7 @@ select::-ms-expand { display: none; }
 }
 .invest-data-wrapper .investContainer .content .inner {
     overflow: hidden;
-    margin: 0px 20px;
+    margin: 0px 20px 0 36px;
     border-bottom: 1px solid #dcdcdc;
     padding-bottom: 25px;
 }
@@ -170,28 +170,28 @@ select::-ms-expand { display: none; }
     color: #828282;
     font-size: 14px;
     overflow: hidden;
-    padding: 20px 0px 40px 50px;
+    padding: 20px 0px 40px 36px;
     border-top: 1px solid #dcdcdc;
 }
 .invest-status .open_time{
     position: absolute;
     top: 65px;
-    left: 166px;
+    left: 150px;
 }
 .invest-status .start_date{
     position: absolute;
     top: 65px;
-    left: 280px;
+    left: 262px;
 }
 .invest-status .end_date{
     position: absolute;
     top: 65px;
-    left: 520px;
+    left: 502px;
 }
 .invest-status .expected_date{
     position: absolute;
     top: 65px;
-    right: 55px;
+    right: 65px;
 }
 /*信息详情*/
 .invest-detail-wrapper {
