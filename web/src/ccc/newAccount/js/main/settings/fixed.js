@@ -147,7 +147,9 @@ function init(type) {
                             "FINISHED": "已转让",
                             "OPEN": "转让中",
                             "FAILED": "转让未满",
-                            "CANCELED": "已取消"
+                            "CANCELED": "已取消",
+                            "REDEEMING": "计息中",
+                            "REDEEMED": "已兑付"
                         };
                         datas[i].id = o.id;
                         //datas[i].creditDealRate = o.creditDealRate * 100;
@@ -190,6 +192,9 @@ function init(type) {
                                 }
                                 if (datas[i].status == 'FROZEN') {
                                     datas[i].Fstatus = '资金冻结';
+                                }
+                                if (datas[i].status == 'REDEEMING') {
+                                    datas[i].Fstatus = '计息中';
                                 }
                                 if (datas[i].status == 'OVERDUE' || datas[i].status == 'BREACH') {
                                     datas[i].Fstatus = '待收款';
@@ -401,6 +406,7 @@ function init(type) {
                             self.set('redeemCurrentPeriod', '');
                             self.set('redeemAmount', '');
                             self.set('redeemDate', '');
+                            window.location.reload();
                         } else {
                             alert(res.error[0].message);
                             self.set('redeemShow', false);
