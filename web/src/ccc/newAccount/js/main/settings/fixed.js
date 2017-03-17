@@ -392,16 +392,18 @@ function init(type) {
 
                 //退出--确定
                 this.on('redeemSure', function (e) {
+                    var self = this;
                     accountService.redeemSure(this.get('redeemInvestId'), this.get('redeemCurrentPeriod'), function (res) {
-                        if(res.success){
-                            this.set('redeemShow', false);
-                            this.set('redeemTitle', '');
-                            this.set('redeemInvestId', '');
-                            this.set('redeemCurrentPeriod', '');
-                            this.set('redeemAmount', '');
-                            this.set('redeemDate', '');
-                        }else{
+                        if (res.success) {
+                            self.set('redeemShow', false);
+                            self.set('redeemTitle', '');
+                            self.set('redeemInvestId', '');
+                            self.set('redeemCurrentPeriod', '');
+                            self.set('redeemAmount', '');
+                            self.set('redeemDate', '');
+                        } else {
                             alert(res.error[0].message);
+                            self.set('redeemShow', false);
                         }
                     });
                 });
