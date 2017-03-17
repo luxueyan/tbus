@@ -18,9 +18,9 @@ do (_, angular) ->
 
                 if tab1 is 'online'
                     type_status_map = {
-                        INHAND : _.split 'FINISHED PROPOSED FROZEN SETTLED OVERDUE BREACH'
+                        INHAND : _.split 'FINISHED PROPOSED FROZEN SETTLED OVERDUE BREACH REDEEMING'
                         ASSIGN: _.split 'OPEN FINISHED'
-                        CLEARED: _.split 'CLEARED'
+                        CLEARED: _.split 'CLEARED REDEEMED'
                     }
                     query_set.status = type_status_map[tab2]
 
