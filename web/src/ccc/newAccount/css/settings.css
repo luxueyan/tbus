@@ -1001,16 +1001,45 @@ p.tips {
     border: none;
     color: #fff;
 }
+.tableTip {
+    position: relative;
+    background: url("/ccc/newAccount/img/icon_tip.png") 65px center no-repeat;
+}
+.tableTip p {
+    display: none;
+    position: absolute;
+    top: -5px;
+    left: 5px;
+    width: 188px;
+    color: #fff;
+    padding: 0 10px;
+    font-size: 12px;
+    line-height: 20px;
+    background: #6f6d6d;
+    border-radius: 5px;
+}
+.tableTip:hover p {
+    display: block;
+}
 .canRedeem {
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 810px;
+    width: 600px;
     height: 310px;
     margin-top: -155px;
     margin-left: -305px;
-    padding: 30px 40px;
+    padding: 10px 40px 30px;
+    /*background: #f00;*/
     background: #fff;
+}
+.canRedeem .tip {
+    width: 20px;
+    height: 20px;
+    float: right;
+    margin-right: -25px;
+    cursor: pointer;
+    background: url("/ccc/newAccount/img/icon_close.png") center no-repeat;
 }
 .canRedeem h3 {
     color: #666;

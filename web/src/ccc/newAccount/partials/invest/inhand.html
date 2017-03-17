@@ -6,7 +6,7 @@
         <th>投资金额（元）</th>
         <th>预期收益（元）</th>
         <th>起息日</th>
-        <th>到期日</th>
+        <th class="tableTip">到期日<p>循环产品未赎回前不显示到期日</p></th>
         <th>状态</th>
         <th>操作</th>
     </tr>
@@ -48,7 +48,11 @@
         <td>
             <!--<p class="table-title">到息日</p>-->
             <p class="table-invest-common">
+                {{#if canRedeem}}
+                每期分配
+                {{else}}
                 {{FdueDate}}
+                {{/if}}
             </p>
         </td>
         <td>
@@ -133,6 +137,7 @@
 
 {{#if redeemShow}}
 <div class="canRedeem">
+    <div class="tip" on-click="redeemCancel"></div>
     <h3>确认赎回</h3>
 
     <p>产品名称：<em>{{redeemTitle}}</em></p>
