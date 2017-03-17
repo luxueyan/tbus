@@ -115,7 +115,13 @@
             </li>
             <li>
                 <div class="name">预计{{ loan.is_cycle_product ? '首次' : '' }}到期日</div>
-                <div class="value">{{ loan.due_date | date: 'yyyy-MM-dd' }}</div>
+                <div class="value">
+                    {{
+                        loan.is_cycle_product
+                        ? (loan.raw.firstDueDate | date: 'yyyy-MM-dd')
+                        : (loan.due_date | date: 'yyyy-MM-dd')
+                    }}
+                </div>
             </li>
             <li>
                 <div class="name">预计{{ loan.is_cycle_product ? '首次' : '' }}到账日</div>
