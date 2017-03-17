@@ -372,7 +372,6 @@ function init(type) {
                 //退出
                 this.on('redeemFixed', function (e) {
                     var ee = e.context;
-                    console.log(ee)
                     this.set('redeemShow', true);
                     this.set('redeemTitle', ee.loanTitle);
                     this.set('redeemInvestId', ee.repayments[0].investId);
@@ -384,12 +383,26 @@ function init(type) {
                 //退出--取消
                 this.on('redeemCancel', function (e) {
                     this.set('redeemShow', false);
+                    this.set('redeemTitle', '');
+                    this.set('redeemInvestId', '');
+                    this.set('redeemCurrentPeriod', '');
+                    this.set('redeemAmount', '');
+                    this.set('redeemDate', '');
                 });
 
                 //退出--确定
                 this.on('redeemSure', function (e) {
                     accountService.redeemSure(this.get('redeemInvestId'), this.get('redeemCurrentPeriod'), function (res) {
-                        console.log(res);
+                        if(res.success){
+                            this.set('redeemShow', false);
+                            this.set('redeemTitle', '');
+                            this.set('redeemInvestId', '');
+                            this.set('redeemCurrentPeriod', '');
+                            this.set('redeemAmount', '');
+                            this.set('redeemDate', '');
+                        }else{
+                            alert(res.error[0].message);
+                        }
                     });
                 });
             },
