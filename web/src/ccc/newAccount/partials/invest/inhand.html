@@ -70,7 +70,10 @@
                 <span class="grey">赎回</span>
                 {{/if}}
 
+                {{#if Fstatus!=='资金冻结'}}
                 <a href="/account/invest/allContracts/{{id}}" class="look_contact">查看合同</a>
+                {{/if}}
+                
                 {{else}}
 
                 {{#if canBeAssign}}
