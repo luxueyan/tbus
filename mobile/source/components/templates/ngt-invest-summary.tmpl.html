@@ -97,6 +97,9 @@
                     'REDEEMING',
                     'REDEEMED'
                  ].indexOf(item.status) > -1"
+                 ng-hide="
+                    item.status === 'SETTLED' && !item.have_begun_to_settled
+                 "
             >
                 <a ng-click="
                         self.view_pdf('合同', '/api/v2/user/MYSELF/invest/' + item.id + '/contract');
