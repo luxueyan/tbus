@@ -15,7 +15,7 @@
             <span class="item">起息日：{{ item.settled_date | date: "yyyy-MM-dd" }}</span>
             <span class="item">
                 {{
-                    item.status != 'CLEARED' && item.is_cycle_product && item.raw.canRedeem
+                    item.raw.canRedeem
                     ? '每期派息'
                     : ('到期日：' + (item.end_date | date: "yyyy-MM-dd"))
                 }}
@@ -33,17 +33,7 @@
             <div class="name">预期年收益率</div>
         </div>
         <div class="info-list">
-            <div class="info"
-                 ng-if="[
-                    'FINISHED',
-                    'FAKESETTLED',
-                    'PROPOSED',
-                    'FROZEN',
-                    'SETTLED',
-                    'OVERDUE',
-                    'BREACH'
-                 ].indexOf(item.status) > -1"
-            >
+            <div class="info" ng-if="tab2 === 'INHAND'">
                 <span class="name">预期收益(元)</span>
                 <span class="value">
                     {{
@@ -56,9 +46,7 @@
                 </span>
             </div>
 
-            <div class="info"
-                 ng-if="['CLEARED'].indexOf(item.status) > -1"
-            >
+            <div class="info" ng-if="tab2 === 'CLEARED'">
                 <span class="name">实际收益(元)</span>
                 <span class="value">{{ item.raw.inInterest | number: 2 }}</span>
             </div>
@@ -93,6 +81,8 @@
                 <span ng-switch-when="SETTLED">
                     {{ item.have_begun_to_settled ? '计息中' : '资金冻结' }}
                 </span>
+                <span ng-switch-when="REDEEMING">计息中</span>
+                <span ng-switch-when="REDEEMED">已兑付</span>
                 <span ng-switch-when="CLEARED">已兑付</span>
                 <span ng-switch-when="OVERDUE">待收款</span>
                 <span ng-switch-when="BREACH">待收款</span>
@@ -103,7 +93,9 @@
                     'SETTLED',
                     'CLEARED',
                     'OVERDUE',
-                    'BREACH'
+                    'BREACH',
+                    'REDEEMING',
+                    'REDEEMED'
                  ].indexOf(item.status) > -1"
             >
                 <a ng-click="
@@ -114,7 +106,7 @@
             </div>
         </div>
 
-        <div class="action" ng-if="item.status != 'CLEARED'">
+        <div class="action" ng-if="tab2 === 'INHAND'">
             <div ng-if="!item.is_cycle_product">
                 <button class="btn btn-theme btn-xs"
                         ng-click="
