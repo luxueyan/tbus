@@ -343,8 +343,8 @@
         </div>
 
         <div class="referral_info">
-            <div ng-hide="loading_referral_info" ng-if="referral_info">
-                好友：{{ referral_info.mobile }} {{ referral_info.name }}
+            <div ng-hide="loading_referral_info" ng-if="referral_info && referral_info.name">
+                好友：{{ referral_info.name }}
             </div>
 
             <p class="text-center loading" ng-show="loading_referral_info">
