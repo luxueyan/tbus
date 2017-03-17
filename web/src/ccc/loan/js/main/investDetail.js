@@ -277,7 +277,7 @@ setTimeout((function () {
             showErrors('单次投标金额不可超过' + CC.loan.rule.max + '元!');
             return false;
         }
-        if (couponSelection == "" && selectOption != "0" && CC.loan.productKey !== 'NEW') {
+        if (couponSelection == "0" && selectOption != "0" && CC.loan.productKey !== 'NEW') {
             $("#mask").css("display", "inline");
             $(".debank").css("display", "inline");
             return false;
@@ -300,7 +300,11 @@ setTimeout((function () {
     //跳转
     investRactive.on('delete-card', function () {
         var num = parseInt(this.get('inputNum'), 10); // 输入的值
-        window.location.href = '/loan/payment?num=' + num + '&loanId=' + CC.loan.id + '&placementId=' + $('#couponSelection').val()
+        var isCycleProduct = false;
+        if (CC.loan.cycleProduct) {
+            isCycleProduct = true;
+        }
+        window.location.href = '/loan/payment?num=' + num + '&loanId=' + CC.loan.id + '&placementId=' + $('#couponSelection').val()+ '&isCycleProduct=' + isCycleProduct;
     })
 
     // 初始化倒计时
