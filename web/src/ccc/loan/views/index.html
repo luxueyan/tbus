@@ -126,9 +126,7 @@
                         {{/if}}
                     </div>
                     <div class="end_date">
-                        {{#if loans.loanRequest.cycleProduct}}
-                        {{loans.timeEnd}}
-                        {{else}}
+
                         {{#if loans.dueDate !== 'Invalid date'}}
                         {{loans.dueDate}}
                         {{else}}
@@ -136,7 +134,6 @@
                         {{loans.end1}}
                         {{else}}
                         {{loans.end2}}
-                        {{/if}}
                         {{/if}}
                         {{/if}}
                     </div>
