@@ -46,13 +46,13 @@ var Tab = {
     // 进行中/申请中 (FINISHED/PROPOSED/FROZEN) 全部 (SETTLED/OVERDUE/BREACH/FINISHED/PROPOSED/FROZEN/CLEARED)
     INHAND: {
         ractive: null,
-        api: '/api/v2/user/MYSELF/invest/list/$page/$size?status=SETTLED&status=OVERDUE&status=BREACH&status=FINISHED&status=PROPOSED&status=FROZEN',
+        api: '/api/v2/user/MYSELF/invest/list/$page/$size?status=SETTLED&status=OVERDUE&status=BREACH&status=FINISHED&status=PROPOSED&status=FROZEN&status=REDEEMING',
         template: require('ccc/newAccount/partials/invest/inhand.html')
     },
     // 已结清 (CLEARED)
     CLEARED: {
         ractive: null,
-        api: '/api/v2/user/MYSELF/invest/list/$page/$size?status=CLEARED',
+        api: '/api/v2/user/MYSELF/invest/list/$page/$size?status=CLEARED&status=REDEEMED',
         template: require('ccc/newAccount/partials/invest/cleared.html')
     }
     // REALIZATION (可变现)
