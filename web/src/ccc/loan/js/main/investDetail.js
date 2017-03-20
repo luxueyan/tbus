@@ -228,7 +228,7 @@ setTimeout((function () {
         var couponSelection = $("#couponSelection").find("option:selected").text();
         var indexnum = couponSelection.indexOf("最低投资额：");
         var minnum = couponSelection.substring(indexnum + 6, couponSelection.length - 1);
-        var couponSelection = $('#couponSelection').val();
+
         var selectOption = 0;
         if (this.get('selectOption')) {
             selectOption = this.get('selectOption').length;
@@ -277,10 +277,13 @@ setTimeout((function () {
             showErrors('单次投标金额不可超过' + CC.loan.rule.max + '元!');
             return false;
         }
-        if (couponSelection == "0" && selectOption != "0" && CC.loan.productKey !== 'NEW') {
-            $("#mask").css("display", "inline");
-            $(".debank").css("display", "inline");
-            return false;
+        if(couponSelection != "不使用红包"){
+            var  couponSelectionVal=$("#couponSelection").find("option:selected").val();
+            if (couponSelectionVal == "" && selectOption != "0" && CC.loan.productKey !== 'NEW') {
+                $("#mask").css("display", "inline");
+                $(".debank").css("display", "inline");
+                return false;
+            }
         }
         //if (num > CC.user.availableAmount) {
         //    showErrors('账户余额不足，请先充值 !');
