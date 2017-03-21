@@ -126,15 +126,18 @@
                         {{/if}}
                     </div>
                     <div class="end_date">
-
-                        {{#if loans.dueDate !== 'Invalid date'}}
-                        {{loans.dueDate}}
+                        {{#if loans.loanRequest.cycleProduct}}
+                            {{loans.firstDueDate}}
                         {{else}}
-                        {{#if loans.timeFinished !== 'Invalid date'}}
-                        {{loans.end1}}
-                        {{else}}
-                        {{loans.end2}}
-                        {{/if}}
+                            {{#if loans.dueDate !== 'Invalid date'}}
+                                {{loans.dueDate}}
+                            {{else}}
+                                {{#if loans.timeFinished !== 'Invalid date'}}
+                                {{loans.end1}}
+                                {{else}}
+                                {{loans.end2}}
+                                {{/if}}
+                            {{/if}}
                         {{/if}}
                     </div>
                     <div class="expected_date">
