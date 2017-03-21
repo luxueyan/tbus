@@ -1003,7 +1003,7 @@ p.tips {
 }
 .tableTip {
     position: relative;
-    background: url("/ccc/newAccount/img/icon_tip.png") 65px center no-repeat;
+    background:#fff url("/ccc/newAccount/img/icon_tip.png") 65px center no-repeat;
 }
 .tableTip p {
     display: none;
