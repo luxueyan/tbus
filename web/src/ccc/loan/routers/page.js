@@ -16,7 +16,7 @@ module.exports = function (router) {
         res.expose(req.query.isCycleProduct, 'isCycleProduct')
         res.expose(user, 'user');
 
-        console.log("==========",req.query.isCycleProduct)
+        console.log("==========", req.query.isCycleProduct)
         console.log("========")
         res.render('payment', {
             investNum: req.query.num,
@@ -215,6 +215,10 @@ module.exports = function (router) {
         } else {
             loan.minAmount = loan.loanRequest.investRule.minAmount;
             loan.minAmountUnit = '元';
+        }
+
+        if (loan.firstDueDate) {
+            loan.firstDueDate = moment(loan.firstDueDate).format('YYYY-MM-DD');
         }
 
         loan.loanRequest.timeSubmit = moment(loan.loanRequest.timeSubmit)
