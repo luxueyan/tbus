@@ -155,8 +155,10 @@ module.exports = function (router, auth, middlewares) {
 
     router.post('/api/v2/coupon/:userId/listCouponNew', auth.pass());
 
-    router.post('/api/v2/POS/query', auth.user());
-    router.post('/api/v2/POS/notification', auth.user());
+    router.post('/api/v2/POS/query', auth.pass());
+    router.post('/api/v2/POS/notification', auth.pass());
+
+    router.get('/api/v2/POS/generateBarcode/:userId/:orderId', auth.user());
 
     //循环产品-赎回
     router.post('/api/v2/invest/redeem', auth.user());
