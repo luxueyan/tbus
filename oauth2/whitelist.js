@@ -25,6 +25,25 @@ module.exports = [
     signature: true
   },
 
+  // 获取图片验证码
+  {
+    url: '/api/v2/captcha',
+    method: 'GET',
+    signature: false
+  },
+  // 验证图片验证码
+  {
+    url: '/api/v2/captcha',
+    method: 'POST',
+    signature: false
+  },
+  // 发送短信验证码
+  {
+    url: '/api/web/register/smsCaptcha',
+    method: 'POST',
+    signature: false
+  },
+
   // 注册账号
   {
     url: '/api/v2/users/register',

@@ -70,6 +70,7 @@
     "stop": "pm2 stop os",
     "delete": "pm2 stop os && pm2 delete os",
     "build": "echo 'nothing to do here for oauth2' && exit 0",
+    "dev-sign": "NODE_APP_THIRD=true supervisor index",
     "dev": "NODE_ENV=production PORT=4100 node index.js"
   },
   "version": "1.17.1"
