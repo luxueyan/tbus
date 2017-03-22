@@ -175,6 +175,7 @@ function init(type) {
                                 datas[i].submitTime = moment(o.submitTime).format('YYYY-MM-DD');
                                 datas[i].Fduration = utils.format.duration(o.duration);
                                 datas[i].Fstatus = utils.i18n.InvestStatus[o.status];
+
                                 datas[i].Frate = utils.format.percent(o.rate / 100, 2);
                                 datas[i].Famount = utils.format.amount(o.amount, 2);
                                 datas[i].dueInPrincipal = utils.format.amount(o.dueInPrincipal, 2);
@@ -382,6 +383,7 @@ function init(type) {
                     this.set('redeemInvestId', ee.repayments[0].investId);
                     this.set('redeemCurrentPeriod', ee.currentPeriod);
                     this.set('redeemAmount', ee.amount);
+                    //console.log(ee.loan)
                     this.set('redeemDate', moment(ee.loan.loanRequest.dueDate).format('YYYY年MM月DD日'));
                 });
 
