@@ -383,8 +383,7 @@ function init(type) {
                     this.set('redeemInvestId', ee.repayments[0].investId);
                     this.set('redeemCurrentPeriod', ee.currentPeriod);
                     this.set('redeemAmount', ee.amount);
-                    //console.log(ee.loan)
-                    this.set('redeemDate', moment(ee.loan.loanRequest.dueDate).format('YYYY年MM月DD日'));
+                    this.set('redeemDate', moment(ee.dueDate).format('YYYY年MM月DD日'));
                 });
 
                 //退出--取消
