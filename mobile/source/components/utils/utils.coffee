@@ -59,6 +59,7 @@ do (_, angular, Math) ->
                 'FEE_BIND_CARD': '用户绑卡手续费'
                 'FSS': '生利宝'
                 'OFFLINE_DEPOSIT': '线下补录'
+                'INVEST_REDEEM_REPAY': '投资赎回还款'
             }
 
             (type) ->
