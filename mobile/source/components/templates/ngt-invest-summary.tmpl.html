@@ -17,7 +17,12 @@
                 {{
                     item.raw.canRedeem
                     ? '每期派息'
-                    : ('到期日：' + (item.end_date | date: "yyyy-MM-dd"))
+                    : ('到期日：' +
+                        (
+                            (item.is_cycle_product ? item.raw.endDate : item.end_date)
+                            | date: "yyyy-MM-dd"
+                        )
+                      )
                 }}
             </span>
         </span>
