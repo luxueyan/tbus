@@ -358,7 +358,7 @@ setTimeout((function () {
             } else if (o[i].couponPackage.type === 'REBATE') {
                 o[i].displayValue = parseInt(o[i].couponPackage.parValue) + "元";
             }
-            if(!o[i].disabled){
+            if(!o[i] && !o[i].disabled){
                 selectLength=true;
             }
         }

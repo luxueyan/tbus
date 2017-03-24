@@ -151,7 +151,7 @@ select::-ms-expand { display: none; }
     color: #666;
     position: absolute;
     top: 2px;
-    font-size: 32px;
+    font-size: 22px;
     left: 50%;
     transform: translateX(-50%);
 }
