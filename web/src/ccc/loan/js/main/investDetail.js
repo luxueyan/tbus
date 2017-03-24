@@ -257,7 +257,7 @@ setTimeout((function () {
             showErrors('投标金额不可超过剩余额度 !');
             return false;
         }
-
+console.log("selectLength=",selectLength)
         if (num > CC.loan.rule.max) {
             showErrors('单次投标金额不可超过' + CC.loan.rule.max + '元!');
             return false;
@@ -358,7 +358,7 @@ setTimeout((function () {
             } else if (o[i].couponPackage.type === 'REBATE') {
                 o[i].displayValue = parseInt(o[i].couponPackage.parValue) + "元";
             }
-            if(!o[i] && !o[i].disabled){
+            if(!o[i].hide && !o[i].disabled){
                 selectLength=true;
             }
         }
