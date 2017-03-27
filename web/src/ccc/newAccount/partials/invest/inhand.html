@@ -2,7 +2,7 @@
     <thead>
     <tr>
         <th>产品名称</th>
-        <th>年收益率</th>
+        <th class="tableTipS">年收益率<p>尊享理财产品的年收益率为业绩比较基准</p></th>
         <th>投资金额（元）</th>
         <th>预期收益（元）</th>
         <th>起息日</th>
@@ -49,13 +49,13 @@
             <!--<p class="table-title">到息日</p>-->
             <p class="table-invest-common">
                 {{#if loan.loanRequest.cycleProduct}}
-                    {{#if canRedeem}}
-                    每期派息
-                    {{else}}
-                    {{moment(endDate).format('YYYY-MM-DD')}}
-                    {{/if}}
+                {{#if canRedeem}}
+                每期派息
                 {{else}}
-                    {{FdueDate}}
+                {{moment(endDate).format('YYYY-MM-DD')}}
+                {{/if}}
+                {{else}}
+                {{FdueDate}}
                 {{/if}}
             </p>
         </td>
