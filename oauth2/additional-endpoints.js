@@ -125,6 +125,7 @@ module.exports = function (router, auth, middlewares) {
     router.post('/api/v2/coupon/:userId/redeemCouponIgnoreApprovalWithCaptcha', auth.user(), middlewares.captchaRequired);
 
     router.get('/api/v2/loans/getLoansForHomePage', auth.pass());
+    router.get('/api/v3/loans/getMobileHomepageLoans', auth.pass());
 
     router.get('/api/v2/statisticsAll', auth.user(), function (req, res) {
         Promise.all([
