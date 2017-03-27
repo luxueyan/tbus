@@ -48,8 +48,12 @@
         <td>
             <!--<p class="table-title">到息日</p>-->
             <p class="table-invest-common">
+                {{#if loan.loanRequest.cycleProduct}}
                 {{#if canRedeem}}
                 每期派息
+                {{else}}
+                {{moment(endDate).format('YYYY-MM-DD')}}
+                {{/if}}
                 {{else}}
                 {{FdueDate}}
                 {{/if}}
