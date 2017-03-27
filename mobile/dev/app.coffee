@@ -28,6 +28,7 @@ try
         /wx/signature
 
         GET/getClientIp
+        GET/api/v3/loans/getMobileHomepageLoans
     '
 catch
     app.use require('cookie-parser')()

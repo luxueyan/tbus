@@ -3,15 +3,39 @@ do (_, angular) ->
 
     angular.module('controller').controller 'HomepageCtrl',
 
-        _.ai '            @api, @user, @$scope, @$rootScope, @$window, map_loan_summary', class
-            constructor: (@api, @user, @$scope, @$rootScope, @$window, map_loan_summary) ->
+        _.ai '            @api, @user, @$scope, @$rootScope, @$window, @map_loan_summary', class
+            constructor: (@api, @user, @$scope, @$rootScope, @$window, @map_loan_summary) ->
 
                 @$window.scrollTo 0, 0
 
                 @$rootScope.state = 'landing'
 
+                EXTEND_API @api
+
+                @query()
+
+
+            query: ->
+
                 @$scope.loading = true
 
+                (@api.get_homepage_loans()
+
+                    .then @api.process_response
+                    .then @api.TAKE_RESPONSE_DATA
+
+                    .then (data) =>
+                        @$scope.list =
+                            _.groupBy(
+                                data.map(@map_loan_summary),
+                                'product_key'
+                            )
+
+                    .finally =>
+                        @$scope.loading = false
+                )
+
+                ###
                 (@api.get_loan_list()
 
                     .then (data) =>
@@ -27,7 +51,6 @@ do (_, angular) ->
                         open_others = []
                         others_CPTJ = []
                         others_others = []
-
                         _.each(
                             open,
                             (item) ->
@@ -60,4 +83,19 @@ do (_, angular) ->
                     .finally =>
                         @$scope.loading = false
                 )
+                ###
+
+
+
+
+
+    EXTEND_API = (api) ->
+
+        api.__proto__.get_homepage_loans = ->
+
+            @$http
+                .get '/api/v3/loans/getMobileHomepageLoans'
+
+                .then @TAKE_RESPONSE_DATA
+                .catch @TAKE_RESPONSE_ERROR
 
