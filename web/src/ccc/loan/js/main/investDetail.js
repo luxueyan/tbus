@@ -257,7 +257,6 @@ setTimeout((function () {
             showErrors('投标金额不可超过剩余额度 !');
             return false;
         }
-console.log("selectLength=",selectLength)
         if (num > CC.loan.rule.max) {
             showErrors('单次投标金额不可超过' + CC.loan.rule.max + '元!');
             return false;
@@ -437,7 +436,6 @@ console.log("selectLength=",selectLength)
         } else if (inputNum > 0) {
             investRactive.set('inputNum', inputNum + stepAmount);
         }
-        // console.log(investRactive.get('inputNum'));
 
         showSelect(investRactive.get('inputNum'))
     });
@@ -531,7 +529,6 @@ function mask(str, s, l) {
 //loanService.getLoanProof(CC.loan.requestId, function (imgs) {
 loanService.getLoanDetail(CC.loan.id, function (res) {
     var imgs = res.data.proof.proofImages;
-    //console.log(imgs);
     var relateDataRactive = new Ractive({
         // insurance 担保
         el: ".insurance-wrapper",
@@ -545,7 +542,6 @@ loanService.getLoanDetail(CC.loan.id, function (res) {
         },
         onrender: function () {
             this.set('imgs', this.parseData(res.data.proof.proofImages));
-            console.log(res.data.loan.duration)
             this.set('daysN', res.data.loan.duration.totalDays);
         },
         parseData: function (res) {
@@ -562,7 +558,6 @@ loanService.getLoanDetail(CC.loan.id, function (res) {
 
     // 开始大图浏览
     relateDataRactive.on('begin-big-pic', function (e) {
-        //console.log(e.index.i)
         relateDataRactive.set('currentIndex', e.index.i);
         var options = {
             imgs: imgs,

@@ -26,10 +26,10 @@ var fixedRactive = new Ractive({
          this.set('holdTotalAmount', parseInt(amoutArray[0]));
          this.set('hMore', amoutArray[1]);*/
 
-        $.get('/api/v2/creditassign/list/user/MYSELF?status=OPEN&status=FINISHED', function (o) {
-            that.set('ASSIGN', o.totalSize);
+        $.get('/api/v2/user/MYSELF/invest/list/1/100?status=SETTLED&status=OVERDUE&status=BREACH&status=FINISHED&status=PROPOSED&status=FROZEN&status=REDEEMING', function (o) {
+            that.set('ASSIGN', o.result.totalSize);
         });
-        $.get('/api/v2/user/MYSELF/invest/list/1/4?status=CLEARED', function (o) {
+        $.get('/api/v2/user/MYSELF/invest/list/1/100?status=CLEARED&status=REDEEMED', function (o) {
             that.set('CLEARED', o.result.totalSize);
         });
     }
@@ -383,7 +383,7 @@ function init(type) {
                     this.set('redeemInvestId', ee.repayments[0].investId);
                     this.set('redeemCurrentPeriod', ee.currentPeriod);
                     this.set('redeemAmount', ee.amount);
-                    this.set('redeemDate', moment(ee.dueDate).format('YYYY年MM月DD日'));
+                    this.set('redeemDate', moment(ee.endDate).format('YYYY年MM月DD日'));
                 });
 
                 //退出--取消
