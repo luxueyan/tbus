@@ -81,7 +81,9 @@
                                     : item.rate
                                 }}</span><span class="unit">%</span>
                             </div>
-                            <div class="name">预期年化收益率</div>
+                            <div class="name">
+                                {{ item.product_key === 'ZXLC' ? '业绩比较基准' : '预期年化收益率' }}
+                            </div>
                         </div>
 
                         <div class="rule">
@@ -153,7 +155,9 @@
                                     : item.rate
                                 }}</span><span class="unit">%</span>
                             </div>
-                            <div class="name">预期年化收益率</div>
+                            <div class="name">
+                                {{ item.product_key === 'ZXLC' ? '业绩比较基准' : '预期年化收益率' }}
+                            </div>
                         </div>
 
                         <div class="content">

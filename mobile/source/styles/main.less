@@ -3148,8 +3148,21 @@ a {
     .detail {
         .list {
             > li {
+                position: relative;
+
                 + li {
                     margin-top: 10px;
+                }
+
+                &:after {
+                    .transform(translateY(-50%));
+
+                    position: absolute;
+                    right: 20px;
+                    top: 50%;
+                    font-family: "Glyphicons Halflings";
+                    content: "\e258";
+                    color: #C79F62;
                 }
             }
         }
