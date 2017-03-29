@@ -73,7 +73,7 @@ function formatItem(item) {
         item.investPercent = (item.investPercent * 100).toFixed(2);
     }
 
-    if (item.status === 'FINISHED' || item.status === 'FAKESETTLED' || item.status === 'FAILED') {
+    if (item.status === 'SETTLED' || item.status === 'FINISHED' || item.status === 'FAKESETTLED' || item.status === 'FAILED') {
         item.investPercent = 100;
     }
 
