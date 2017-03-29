@@ -41,7 +41,9 @@
                 : loan.rate
             }}</span><span class="unit">%</span>
         </div>
-        <div class="name">预期年收益率</div>
+        <div class="name">
+            {{ loan.product_key === 'ZXLC' ? '业绩比较基准' : '预期年收益率' }}
+        </div>
     </div>
 
     <div class="info" style="padding-left: 20px;">
@@ -55,7 +57,7 @@
                     loan.is_cycle_product
                     ? '循环'
                     : (
-                        loan.product_key !== 'NEW'
+                        loan.product_key !== 'NEW' && loan.product_key !== 'ZXLC'
                         ? '7天可转'
                         : ''
                     )

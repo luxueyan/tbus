@@ -35,7 +35,9 @@
                 ? (item.rate | number: 1)
                 : item.rate
             }}%</div>
-            <div class="name">预期年收益率</div>
+            <div class="name">
+                {{ item.raw.loan.loanRequest.productKey === 'ZXLC' ? '业绩比较基准' : '预期年收益率' }}
+            </div>
         </div>
         <div class="info-list">
             <div class="info" ng-if="tab2 === 'INHAND'">
