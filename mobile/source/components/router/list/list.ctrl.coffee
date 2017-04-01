@@ -117,7 +117,7 @@ do (_, angular) ->
                     backdrop: 'static'
                     windowClass: 'center'
                     animation: false
-                    template: '''
+                    template: """
                         <div class="modal-body"
                              style="max-height: 300px; overflow-y: auto;"
                              ng-bind-html="content | sanitize"
@@ -132,12 +132,12 @@ do (_, angular) ->
                                 </div>
                                 <div class="col-xs-6">
                                     <a class="btn btn-block btn-theme"
-                                       href="login?next=list?tab=high"
+                                       href="login?next=list?tab=#{ type }"
                                     >确认</a>
                                 </div>
                             </div>
                         </div>
-                    '''
+                    """
 
                     controller: _.ai '$scope',
                         (             $scope) ->
