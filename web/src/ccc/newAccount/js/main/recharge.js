@@ -285,10 +285,12 @@ ractive.on('recharge_submit', function (e) {
         var timestamp = new Date().getTime();
         accountService.checkPassword(password, function (res) {
             if (res) {
-                if (this.get('posPayMain')) {
+                if (self.get('posPayMain')) {
                     accountService.posRecord(amount, password, function (r) {
-                        if(r){
-
+                        if (r.success) {
+                            self.set('step1', false);
+                            self.set('posPaySuc', true);
+                            self.set('posPayOrderID', r.data);
                         }
                     })
                 } else {
