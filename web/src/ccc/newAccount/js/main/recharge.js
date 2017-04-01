@@ -25,7 +25,8 @@ var ractive = new Ractive({
         minAmount: 100,
         step1: true,
         step2: false,
-        step3: false
+        step3: false,
+        posPayMain: false
     },
     oninit: function () {
         var self = this;
@@ -81,6 +82,20 @@ var ractive = new Ractive({
 
         this.on('changeValue', function (e) {
             changeValue();
+        });
+
+        this.on('onlinePay', function (e) {
+            this.set('step1', true);
+            this.set('step2', false);
+            this.set('step3', false);
+            this.set('posPayMain', false);
+        });
+
+        this.on('posPay', function (e) {
+            this.set('step1', true);
+            this.set('step2', false);
+            this.set('step3', false);
+            this.set('posPayMain', true);
         });
 
         function changeValue() {
@@ -270,72 +285,80 @@ ractive.on('recharge_submit', function (e) {
         var timestamp = new Date().getTime();
         accountService.checkPassword(password, function (res) {
             if (res) {
-                if ($('.recharge-cbx').prop("checked") && amount > singleQuota) {
-                    ractive.set('recharge', true);
-                    ractive.set('recharging', true);
-                    var count = 3 * Math.ceil(amount / singleQuota);
+                if (this.get('posPayMain')) {
+                    accountService.posRecord(amount, password, function (r) {
+                        if(r){
 
-                    ractive.set('rechargingCount', Math.ceil(count / 60));
-
-                    request.post('/api/v2/baofoo/' + CC.user.id + '/batchDepositSplit')
-                        .type("form")
-                        .send({
-                            batchId: timestamp,//时间戳
-                            totalAmount: amount,//总金额
-                            accountNumber: bankcardNo[0].account.account,//是银行卡号
-                            bankCode: bankcardNo[0].account.bank,//是银行缩写
-                            paymentPassword: password,//支付密码
-                            clientIp: clientIp//ip地址
-                        })
-                        .end()
-                        .then(function (r) {
-                            if (r.body.success) {
-                                ractive.set('recharging', false);
-                                ractive.set('rechargeSuc', true);
-                                ractive.set('rechargeSucH', '充值成功');
-                                ractive.set('rechargeSucRes', '充值成功' + r.body.data.numSuccessSplited + '笔，充值总额' + r.body.data.amountSuccessSplited + '元');
-                                myFunc()
-                            } else {
-                                ractive.set('recharging', false);
-                                var numSuc = Number(r.body.data.numSuccessSplited);
-                                if (numSuc) {
-                                    ractive.set('rechargeSuc', true);
-                                    ractive.set('rechargeSucH', '部分充值成功');
-                                    ractive.set('rechargeSucRes', '充值成功' + numSuc + '笔，充值总额' + r.body.data.amountSuccessSplited + '元');
-                                } else {
-                                    self.set('rechargeErr', true);
-                                    ractive.set('rechargeErrRes', msgResBig[r.body.error[0].type] ? msgResBig[r.body.error[0].type] : r.body.error[0].type);
-                                }
-                                myFunc()
-                            }
-                        });
+                        }
+                    })
                 } else {
-                    $('.submit_btn').text('正在充值中，请稍等...');
-                    request.post('/api/v2/baofoo/charge')
-                        .type("form")
-                        .send({
-                            userId: CC.user.id,
-                            txn_amt: amount,
-                            paymentPasswd: password,
-                            //cardNo: cardNo
-                            clientIp: clientIp
-                        })
-                        .end()
-                        .then(function (r) {
-                            if (r.body.success) {
-                                ractive.set('step1', false);
-                                ractive.set('step2', true);
-                                ractive.set('step3', false);
-                                myFunc()
-                            } else {
-                                ractive.set('step1', false);
-                                ractive.set('step2', false);
-                                ractive.set('step3', true);
-                                ractive.set('failError', msgRes[r.body.error[0].message]);
-                                $('.submit_btn').text('确认充值');
-                                myFunc()
-                            }
-                        });
+                    if ($('.recharge-cbx').prop("checked") && amount > singleQuota) {
+                        ractive.set('recharge', true);
+                        ractive.set('recharging', true);
+                        var count = 3 * Math.ceil(amount / singleQuota);
+
+                        ractive.set('rechargingCount', Math.ceil(count / 60));
+
+                        request.post('/api/v2/baofoo/' + CC.user.id + '/batchDepositSplit')
+                            .type("form")
+                            .send({
+                                batchId: timestamp,//时间戳
+                                totalAmount: amount,//总金额
+                                accountNumber: bankcardNo[0].account.account,//是银行卡号
+                                bankCode: bankcardNo[0].account.bank,//是银行缩写
+                                paymentPassword: password,//支付密码
+                                clientIp: clientIp//ip地址
+                            })
+                            .end()
+                            .then(function (r) {
+                                if (r.body.success) {
+                                    ractive.set('recharging', false);
+                                    ractive.set('rechargeSuc', true);
+                                    ractive.set('rechargeSucH', '充值成功');
+                                    ractive.set('rechargeSucRes', '充值成功' + r.body.data.numSuccessSplited + '笔，充值总额' + r.body.data.amountSuccessSplited + '元');
+                                    myFunc()
+                                } else {
+                                    ractive.set('recharging', false);
+                                    var numSuc = Number(r.body.data.numSuccessSplited);
+                                    if (numSuc) {
+                                        ractive.set('rechargeSuc', true);
+                                        ractive.set('rechargeSucH', '部分充值成功');
+                                        ractive.set('rechargeSucRes', '充值成功' + numSuc + '笔，充值总额' + r.body.data.amountSuccessSplited + '元');
+                                    } else {
+                                        self.set('rechargeErr', true);
+                                        ractive.set('rechargeErrRes', msgResBig[r.body.error[0].type] ? msgResBig[r.body.error[0].type] : r.body.error[0].type);
+                                    }
+                                    myFunc()
+                                }
+                            });
+                    } else {
+                        $('.submit_btn').text('正在充值中，请稍等...');
+                        request.post('/api/v2/baofoo/charge')
+                            .type("form")
+                            .send({
+                                userId: CC.user.id,
+                                txn_amt: amount,
+                                paymentPasswd: password,
+                                //cardNo: cardNo
+                                clientIp: clientIp
+                            })
+                            .end()
+                            .then(function (r) {
+                                if (r.body.success) {
+                                    ractive.set('step1', false);
+                                    ractive.set('step2', true);
+                                    ractive.set('step3', false);
+                                    myFunc()
+                                } else {
+                                    ractive.set('step1', false);
+                                    ractive.set('step2', false);
+                                    ractive.set('step3', true);
+                                    ractive.set('failError', msgRes[r.body.error[0].message]);
+                                    $('.submit_btn').text('确认充值');
+                                    myFunc()
+                                }
+                            });
+                    }
                 }
             } else {
                 self.set('msg.CODE_INVALID', true);
