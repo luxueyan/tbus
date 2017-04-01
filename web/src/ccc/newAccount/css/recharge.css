@@ -414,6 +414,27 @@ table.tinfo tbody tr {
 .rechargeTip li {
     line-height: 25px;
 }
+.posPaySucDiv {
+    width: 300px;
+}
+.posPaySucDiv img {
+    display: block;
+    width: auto;
+    margin: 10px auto;
+}
+.posPaySucDiv a {
+    display: block;
+    width: 100%;
+    color: #fff;
+    font-size: 12px;
+    line-height: 30px;
+    text-align: center;
+    background: #e4252a;
+    text-decoration: none;
+}
+.posPaySucDiv a:hover {
+    text-decoration: none;
+}
 /*placeholder颜色设置*/
 :-moz-placeholder {
     /* Mozilla Firefox 4 to 18 */
