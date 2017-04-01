@@ -316,5 +316,26 @@ exports.accountService = {
                 next(r.body);
             });
     },
+    //pos生成订单
+    posRecord: function (depositAmount, paymentPasswd, next) {
+        request('POST', '/api/v2/POS/'+CC.user.id+'/deposit')
+            .type('form')
+            .send({
+                'depositAmount': depositAmount,
+                'paymentPasswd': paymentPasswd,
+            })
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
+    },
+    //pos生成支付条形码
+    generateBarcode: function (orderId,next) {
+        request('GET', '/api/v2/POS/generateBarcode/'+CC.user.id+'/'+orderId)
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
+    },
 };
 
