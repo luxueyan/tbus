@@ -649,10 +649,10 @@ textarea::-webkit-input-placeholder {
     float: left;
     line-height: 35px;
     text-align: center;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #eee;
 }
 .banksTab .active {
-    border: 1px solid #000;
+    border: 1px solid #eee;
     border-bottom: none;
 }
 .banksTab div {
@@ -660,5 +660,5 @@ textarea::-webkit-input-placeholder {
     height: 1px;
     float: left;
     margin-top: 35px;
-    background: #000;
+    background: #eee;
 }

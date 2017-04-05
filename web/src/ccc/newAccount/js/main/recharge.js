@@ -89,6 +89,7 @@ var ractive = new Ractive({
             this.set('step2', false);
             this.set('step3', false);
             this.set('posPayMain', false);
+            this.set('posPaySuc', false);
         });
 
         this.on('posPay', function (e) {
@@ -96,6 +97,7 @@ var ractive = new Ractive({
             this.set('step2', false);
             this.set('step3', false);
             this.set('posPayMain', true);
+            this.set('posPaySuc', false);
         });
 
         function changeValue() {
@@ -291,6 +293,8 @@ ractive.on('recharge_submit', function (e) {
                             self.set('step1', false);
                             self.set('posPaySuc', true);
                             self.set('posPayOrderID', r.data);
+                            self.set('amount', '');
+                            self.set('password', '');
                         }
                     })
                 } else {
