@@ -686,6 +686,7 @@ input[type=button] {
 .pop_content div {
     font-size: 14px;
     text-align: center;
+    background-color: transparent;
 }
 .pop_btn {
     margin-left: 150px;
