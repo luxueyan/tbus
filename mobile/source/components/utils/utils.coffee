@@ -30,6 +30,7 @@ do (_, angular, Math) ->
                 'LOAN_REPAY': '贷款还款'
                 'DISBURSE': '垫付还款'
                 'INVEST_REPAY': '回款'
+                'INVEST_REDEEM_REPAY': '回款'
                 'CREDIT_ASSIGN': '债权转让'
                 'TRANSFER': '平台奖励'
                 'REWARD_REGISTER': '注册奖励'

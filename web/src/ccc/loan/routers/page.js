@@ -160,7 +160,8 @@ module.exports = function (router) {
         // console.log(loan)
         var SinvestPercent = (loan.investPercent * 100) + '';
         var SinvestPercentString = SinvestPercent.split('.');
-        if (loan.status == 'SETTLED' || loan.status === 'FINISHED' || loan.status === 'FAILED') {
+
+        if (loan.status !== 'OPENED' && loan.status !== 'SCHEDULED') {
             loan.investPercent = "100";
         } else {
             if (SinvestPercentString[1]) {

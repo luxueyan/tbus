@@ -29,7 +29,10 @@
                 <div class="info_box">
                     <div>
                         <span>{{durationNewNo}}</span>{{durationNewName}}
-                        <span class="assign_time">{{#if loanRequest.productKey!="NEW" && !loanRequest.activityInfo}}7天可转{{/if}}</span>
+                        <span class="assign_time">{{#if loanRequest.productKey!="NEW" && !loanRequest.activityInfo && !loanRequest.cycleProduct}}7天可转{{/if}}</span>
+                        {{#if loanRequest.cycleProduct}}
+                        <em class="loop">循环</em>
+                        {{/if}}
                     </div>
                     <p class="title">投资期限</p>
                 </div>
@@ -79,7 +82,7 @@
                 <p class="word">进度</p>
 
                 <div class="progress">
-                    {{#if status === 'FINISHED'||status === 'FAKESETTLED' || status === 'FAILED'}}
+                    {{#if status !== 'OPENED' && status !== 'SCHEDULED'}}
                     <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
                          aria-valuemax="100"
                          style="width: 100%;">

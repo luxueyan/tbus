@@ -26,10 +26,10 @@ var fixedRactive = new Ractive({
          this.set('holdTotalAmount', parseInt(amoutArray[0]));
          this.set('hMore', amoutArray[1]);*/
 
-        $.get('/api/v2/creditassign/list/user/MYSELF?status=OPEN&status=FINISHED', function (o) {
+        $.get('/api/v2/creditassign/list/user/MYSELF?status=OPEN&status=FINISHED&page=1&pageSize=100', function (o) {
             that.set('ASSIGN', o.totalSize);
         });
-        $.get('/api/v2/user/MYSELF/invest/list/1/4?status=CLEARED', function (o) {
+        $.get('/api/v2/user/MYSELF/invest/list/1/100?status=CLEARED&status=REDEEMED', function (o) {
             that.set('CLEARED', o.result.totalSize);
         });
     }
@@ -175,6 +175,7 @@ function init(type) {
                                 datas[i].submitTime = moment(o.submitTime).format('YYYY-MM-DD');
                                 datas[i].Fduration = utils.format.duration(o.duration);
                                 datas[i].Fstatus = utils.i18n.InvestStatus[o.status];
+
                                 datas[i].Frate = utils.format.percent(o.rate / 100, 2);
                                 datas[i].Famount = utils.format.amount(o.amount, 2);
                                 datas[i].dueInPrincipal = utils.format.amount(o.dueInPrincipal, 2);
@@ -382,7 +383,7 @@ function init(type) {
                     this.set('redeemInvestId', ee.repayments[0].investId);
                     this.set('redeemCurrentPeriod', ee.currentPeriod);
                     this.set('redeemAmount', ee.amount);
-                    this.set('redeemDate', moment(ee.loan.loanRequest.dueDate).format('YYYY年MM月DD日'));
+                    this.set('redeemDate', moment(ee.endDate).format('YYYY年MM月DD日'));
                 });
 
                 //退出--取消

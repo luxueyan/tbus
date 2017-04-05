@@ -26,7 +26,9 @@
                     ? (loan.rate | number: 1)
                     : loan.rate
                 }}<small>%</small></div>
-                <div class="name">预期年收益率</div>
+                <div class="name">
+                    {{ loan.product_key === 'ZXLC' ? '业绩比较基准' : '预期年收益率' }}
+                </div>
             </div>
 
             <div class="col-xs-6 text-left" style="padding-left: 0;">
@@ -61,7 +63,7 @@
                             loan.is_cycle_product
                             ? '循环'
                             : (
-                                loan.product_key !== 'NEW'
+                                loan.product_key !== 'NEW' && loan.product_key !== 'ZXLC'
                                 ? '7天可转'
                                 : ''
                             )
@@ -153,7 +155,7 @@
                 <span class="name">可否转让</span>
                 <span class="value">
                     {{
-                        loan.product_key === 'NEW' || loan.is_cycle_product
+                        loan.product_key === 'NEW' || loan.product_key === 'ZXLC' || loan.is_cycle_product
                         ? '不可转让'
                         : '7天之后可转让'
                     }}

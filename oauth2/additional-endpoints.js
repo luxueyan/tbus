@@ -125,6 +125,7 @@ module.exports = function (router, auth, middlewares) {
     router.post('/api/v2/coupon/:userId/redeemCouponIgnoreApprovalWithCaptcha', auth.user(), middlewares.captchaRequired);
 
     router.get('/api/v2/loans/getLoansForHomePage', auth.pass());
+    router.get('/api/v3/loans/getMobileHomepageLoans', auth.pass());
 
     router.get('/api/v2/statisticsAll', auth.user(), function (req, res) {
         Promise.all([
@@ -162,4 +163,9 @@ module.exports = function (router, auth, middlewares) {
 
     //循环产品-赎回
     router.post('/api/v2/invest/redeem', auth.user());
+
+    //pos支付生成订单
+    router.post('/api/v2/POS/:userId/deposit', auth.user());
+    //pos支付生成条形码
+    router.get('/api/v2/POS/generateBarcode/:userId/:orderId', auth.user());
 };

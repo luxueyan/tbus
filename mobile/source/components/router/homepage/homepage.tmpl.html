@@ -45,8 +45,8 @@
     </section>
 
     <section class="loan">
-        <ul class="list-unstyled u-off-margin-bottom loan-list text-center">
-            <li ng-repeat="item in list">
+        <ul class="list-unstyled loan-list loan-list-NEW text-center">
+            <li ng-repeat="item in list.NEW | limitTo: 1">
                 <a ng-href="loan/{{ item.id }}">
                     <div class="inner">
                         <h4 class="title">{{ item.title }}</h4>
@@ -74,71 +74,168 @@
                         </div>
 
                         <div class="rate">
-                            <span class="value">
+                            <div class="value">
                                 <span class="num">{{
                                     (item.rate + '').indexOf('.') == -1
                                     ? (item.rate | number: 1)
                                     : item.rate
-                                }}</span>
-                                <span class="unit">%</span>
-                            </span>
-                            <span class="name">预期年化</span>
+                                }}</span><span class="unit">%</span>
+                            </div>
+                            <div class="name">
+                                {{ item.product_key === 'ZXLC' ? '业绩比较基准' : '预期年化收益率' }}
+                            </div>
                         </div>
-                        <div class="clearfix">
-                            <span class="duration pull-left">
-                                <span class="name">投资期限</span>
-                                <span class="value">
-                                    {{ item.raw.loanRequest.displayDuration.frontShowDuration }}
-                                </span>
+
+                        <div class="rule">
+                            <span class="duration">
+                                期限{{ item.raw.loanRequest.displayDuration.frontShowDuration }}
                             </span>
-                            <span class="min-amount pull-right">
-                                <span class="name">起投金额(元)</span>
-                                <span class="value"
-                                      ng-init="min_amount = item.raw.loanRequest.investRule.minAmount"
-                                >
-                                    {{
-                                        min_amount >= 10000
-                                        ? (min_amount / 10000 + '万')
-                                        : (min_amount | number)
-                                    }}
-                                </span>
+                            <span
+                                class="min-amount"
+                                ng-init="min_amount = item.raw.loanRequest.investRule.minAmount"
+                            >
+                                {{
+                                    min_amount >= 10000
+                                    ? (min_amount / 10000 + '万')
+                                    : (min_amount | number)
+                                }}元起投
                             </span>
                         </div>
                     </div>
                 </a>
 
                 <div class="status" ng-switch="item.status">
-                    <a class="btn btn-plain btn-sm"
+                    <a class="btn btn-theme disabled btn-block"
                        ng-switch-when="SCHEDULED"
                        ng-href="loan/{{ item.id }}"
                     >预热</a>
 
-                    <a class="btn btn-theme btn-sm"
+                    <a class="btn btn-theme btn-block"
                        ng-switch-when="OPENED"
                        ng-href="loan/{{ item.id }}/invest"
-                    >抢购</a>
+                    >立即抢购</a>
 
-                    <a class="btn btn-plain btn-sm"
+                    <a class="btn btn-gray btn-block"
                        ng-switch-when="FINISHED"
                        ng-href="loan/{{ item.id }}"
                     >已售罄</a>
 
-                    <a class="btn btn-plain btn-sm"
+                    <a class="btn btn-gray btn-block"
                        ng-switch-when="FAKESETTLED"
                        ng-href="loan/{{ item.id }}"
                     >已售罄</a>
 
-                    <a class="btn btn-plain btn-sm"
+                    <a class="btn btn-gray btn-block"
                        ng-switch-when="FAILED"
                        ng-href="loan/{{ item.id }}"
                     >已售罄</a>
 
-                    <a class="btn btn-plain btn-sm"
+                    <a class="btn btn-gray btn-block"
                        ng-switch-when="SETTLED"
                        ng-href="loan/{{ item.id }}"
                     >计息中</a>
 
+                    <a class="btn btn-gray btn-block"
+                       ng-switch-when="CLEARED"
+                       ng-href="loan/{{ item.id }}"
+                    >已结息</a>
+                </div>
+            </li>
+        </ul>
+
+        <ul class="list-unstyled loan-list loan-list-CPTJ">
+            <li ng-repeat="item in list.CPTJ | limitTo: 2">
+                <a ng-href="loan/{{ item.id }}">
+                    <div class="inner">
+                        <div class="rate">
+                            <div class="value">
+                                <span class="num">{{
+                                    (item.rate + '').indexOf('.') == -1
+                                    ? (item.rate | number: 1)
+                                    : item.rate
+                                }}</span><span class="unit">%</span>
+                            </div>
+                            <div class="name">
+                                {{ item.product_key === 'ZXLC' ? '业绩比较基准' : '预期年化收益率' }}
+                            </div>
+                        </div>
+
+                        <div class="content">
+                            <h4 class="title">{{ item.title }}</h4>
+
+                            <div class="rule">
+                                <span class="duration">
+                                    {{ item.raw.loanRequest.displayDuration.frontShowDuration }}
+                                </span>
+                                <span
+                                    class="min-amount"
+                                    ng-init="min_amount = item.raw.loanRequest.investRule.minAmount"
+                                >
+                                    {{
+                                        min_amount >= 10000
+                                        ? (min_amount / 10000 + '万')
+                                        : (min_amount | number)
+                                    }}元起投
+                                </span>
+                            </div>
+
+                            <div
+                                class="label-activity"
+                                ng-if="item.activity_info"
+                            >
+                                {{ item.activity_info }}
+                            </div>
+
+                            <div class="tag-list">
+                                <span
+                                    class="tag"
+                                    ng-if="item.raw.loanRequest.brightSpot"
+                                >
+                                    {{ item.raw.loanRequest.brightSpot }}
+                                </span>
+                                <span
+                                    class="tag"
+                                    ng-if="item.raw.loanRequest.brightSpot2"
+                                >
+                                    {{ item.raw.loanRequest.brightSpot2 }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="status" ng-switch="item.status">
+                    <a class="btn btn-plain disabled btn-sm"
+                       ng-switch-when="SCHEDULED"
+                       ng-href="loan/{{ item.id }}"
+                    >预热</a>
+
                     <a class="btn btn-plain btn-sm"
+                       ng-switch-when="OPENED"
+                       ng-href="loan/{{ item.id }}/invest"
+                    >立即抢购</a>
+
+                    <a class="btn btn-gray btn-sm"
+                       ng-switch-when="FINISHED"
+                       ng-href="loan/{{ item.id }}"
+                    >已售罄</a>
+
+                    <a class="btn btn-gray btn-sm"
+                       ng-switch-when="FAKESETTLED"
+                       ng-href="loan/{{ item.id }}"
+                    >已售罄</a>
+
+                    <a class="btn btn-gray btn-sm"
+                       ng-switch-when="FAILED"
+                       ng-href="loan/{{ item.id }}"
+                    >已售罄</a>
+
+                    <a class="btn btn-gray btn-sm"
+                       ng-switch-when="SETTLED"
+                       ng-href="loan/{{ item.id }}"
+                    >计息中</a>
+
+                    <a class="btn btn-gray btn-sm"
                        ng-switch-when="CLEARED"
                        ng-href="loan/{{ item.id }}"
                     >已结息</a>

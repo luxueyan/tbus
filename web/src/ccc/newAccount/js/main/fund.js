@@ -26,6 +26,7 @@ var nameMap = {
     LOAN_REPAY: "贷款还款",
     DISBURSE: "投资还款",
     INVEST_REPAY: "投资还款",
+    INVEST_REDEEM_REPAY:"投资还款",
     CREDIT_ASSIGN: "债权转让",
     TRANSFER: "平台奖励",
     REWARD_REGISTER: "注册奖励",
@@ -249,6 +250,14 @@ function parseList(date) {
 // 先加载一遍数据
 loadInitData(0);
 
+
+var FundRecordOperation = {
+    "FREEZE": "冻结",
+    "RELEASE": "解冻",
+    "IN": "资金转入",
+    "OUT": "资金转出",
+    "REDEEMREQUEST":"赎回申请"
+}
 // tab1,对ajax数据 set到ractive之前的操作
 function tab1Preset(item) {
     // 如果备注是数字，转换成第x期
@@ -260,7 +269,7 @@ function tab1Preset(item) {
         item.description = '';
     }
     // 操作
-    item.operationName = utils.i18n.FundRecordOperation[item.operation];
+    item.operationName = FundRecordOperation[item.operation];
 
     // 时间
     item.dateTime = moment(item.timeRecorded)

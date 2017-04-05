@@ -5,7 +5,14 @@
     <div class="current-container">
 		<div class="box-large">
         <div class="invest-data-wrapper">
-            <p class="detailTitle"><a href="/">我要理财</a> > <span>产品详情</span></p>
+            <p class="detailTitle">
+                <a href="/">
+                {{#if loans.loanRequest.productKey!="ZXLC"}}
+                    我要理财
+                    {{else}}
+                    尊享理财
+                {{/if}}
+                </a> > <span>产品详情</span></p>
             <img src="/ccc/loan/img/line.png">
             <div class="investContainer">
                 <div class="investTitle">
@@ -25,7 +32,11 @@
                     <div class="title_tags02">{{loans.loanRequest.activityInfo}}</div>
                     {{/if}}
                     <div class="rate">
+                        {{#if loans.loanRequest.productKey!="ZXLC"}}
                         预期收益率
+                        {{else}}
+                        业绩比较基准
+                        {{/if}}
                         <span class="color">{{loans.rate}}<span>%</span></span>
                     </div>
                 </div>
@@ -34,8 +45,11 @@
                         <div class="item">
                             <div class="value">
                                 <span>{{loans.durationNewNo}}</span>{{loans.durationNewName}}
-                                {{#if loans.loanRequest.productKey!="NEW" && !loans.loanRequest.activityInfo}}
+                                {{#if loans.loanRequest.productKey!="NEW" && loans.loanRequest.productKey!="ZXLC" && !loans.loanRequest.activityInfo && !loans.loanRequest.cycleProduct}}
                                 <span class="assign_time">7天可转</span>
+                                {{/if}}
+                                {{#if loans.loanRequest.cycleProduct}}
+                                <em class="loop">循环</em>
                                 {{/if}}
                             </div>
                             <div class="name">投资期限</div>
@@ -56,7 +70,7 @@
                             </div>
                             <div class="name">起投金额</div>
                         </div>
-                        {{#if loans.loanRequest.productKey!="NEW"}}
+                        {{#if loans.loanRequest.productKey!="NEW" && loans.loanRequest.productKey!="ZXLC"}}
                         <div class="assign_tip">
                             产品计息后持有7天以上可进行转让（具体转让规则可查看
                             <a href="/help/transfer" target="_blank">帮助中心</a>）
@@ -218,7 +232,7 @@
                         </tr>
                         <tr>
                             <th class="title">可否转让</th>
-                            <th class="content">{{#if loans.loanRequest.productKey!="NEW" && !loans.loanRequest.activityInfo}}7天之后可转让{{else}}不可转让{{/if}}</th>
+                            <th class="content">{{#if loans.loanRequest.productKey!="NEW" && loans.loanRequest.productKey!="ZXLC" && !loans.loanRequest.activityInfo}}7天之后可转让{{else}}不可转让{{/if}}</th>
                         </tr>
                         <tr>
                             <th class="title">投资期限</th>

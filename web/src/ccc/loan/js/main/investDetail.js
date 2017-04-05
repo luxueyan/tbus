@@ -33,7 +33,7 @@ var statusMap = {
 };
 var template = statusMap[CC.loan.status];
 var pagesize = 10;
-
+var selectLength=false;
 
 new Ractive({
     el: ".openTime",
@@ -172,17 +172,6 @@ setTimeout((function () {
     var serverDate = CC.serverDate;
     var openTime = CC.loan.timeOpen;
     serverDate += 1000;
-    //if (CC.loan.status === 'SCHEDULED') {
-    //    var interval = setInterval((function () {
-    //        var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-    //        var textDay = leftTime.day ? leftTime.day : '';
-    //        if (!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
-    //            clearInterval(interval);
-    //        } else {
-    //            $('.left-time-start').html('<span class="text">距离开标时间还有<span style="color:#009ada">' + textDay + '</span>天<span style="color:#009ada;">' + leftTime.hour + '</span>时<span style="color:#009ada">' + leftTime.min + '</span>分<span style="color:#009ada">' + leftTime.sec + '</span>秒</span>')
-    //        }
-    //    }), 1000);
-    //}
 
     if (CC.user) {
         accountService.getUserInfo(function (res) {
@@ -229,10 +218,6 @@ setTimeout((function () {
         var indexnum = couponSelection.indexOf("最低投资额：");
         var minnum = couponSelection.substring(indexnum + 6, couponSelection.length - 1);
 
-        var selectOption = 0;
-        if (this.get('selectOption')) {
-            selectOption = this.get('selectOption').length;
-        }
         if (num < minnum) {
             showErrors('投资额小于奖券最低投资额');
             return false;
@@ -272,14 +257,13 @@ setTimeout((function () {
             showErrors('投标金额不可超过剩余额度 !');
             return false;
         }
-
         if (num > CC.loan.rule.max) {
             showErrors('单次投标金额不可超过' + CC.loan.rule.max + '元!');
             return false;
         }
         if(couponSelection != "不使用红包"){
             var  couponSelectionVal=$("#couponSelection").find("option:selected").val();
-            if (couponSelectionVal == "" && selectOption != "0" && CC.loan.productKey !== 'NEW') {
+            if (couponSelectionVal == "" && selectLength && CC.loan.productKey !== 'NEW') {
                 $("#mask").css("display", "inline");
                 $(".debank").css("display", "inline");
                 return false;
@@ -348,7 +332,6 @@ setTimeout((function () {
     }
 
     function parsedata(o) {
-
         var type = {
             'CASH': '现金券',
             'INTEREST': '加息券',
@@ -373,6 +356,9 @@ setTimeout((function () {
                 o[i].displayValue = parseInt(o[i].couponPackage.parValue) + "元";
             } else if (o[i].couponPackage.type === 'REBATE') {
                 o[i].displayValue = parseInt(o[i].couponPackage.parValue) + "元";
+            }
+            if(!o[i].hide && !o[i].disabled){
+                selectLength=true;
             }
         }
         return o;
@@ -450,7 +436,6 @@ setTimeout((function () {
         } else if (inputNum > 0) {
             investRactive.set('inputNum', inputNum + stepAmount);
         }
-        // console.log(investRactive.get('inputNum'));
 
         showSelect(investRactive.get('inputNum'))
     });
@@ -544,7 +529,6 @@ function mask(str, s, l) {
 //loanService.getLoanProof(CC.loan.requestId, function (imgs) {
 loanService.getLoanDetail(CC.loan.id, function (res) {
     var imgs = res.data.proof.proofImages;
-    //console.log(imgs);
     var relateDataRactive = new Ractive({
         // insurance 担保
         el: ".insurance-wrapper",
@@ -558,7 +542,6 @@ loanService.getLoanDetail(CC.loan.id, function (res) {
         },
         onrender: function () {
             this.set('imgs', this.parseData(res.data.proof.proofImages));
-            console.log(res.data.loan.duration)
             this.set('daysN', res.data.loan.duration.totalDays);
         },
         parseData: function (res) {
@@ -575,7 +558,6 @@ loanService.getLoanDetail(CC.loan.id, function (res) {
 
     // 开始大图浏览
     relateDataRactive.on('begin-big-pic', function (e) {
-        //console.log(e.index.i)
         relateDataRactive.set('currentIndex', e.index.i);
         var options = {
             imgs: imgs,

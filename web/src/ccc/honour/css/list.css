@@ -1,0 +1,137 @@
+.list_box{
+  width: 1200px;
+  margin: auto;
+  background: #fff;
+  margin-top: 24px;
+}
+.list_header{
+  overflow: hidden;
+  padding: 18px 20px;
+  box-shadow:0px 15px 10px -15px #ccc;
+}
+.list_title{
+  float: left;
+  width: 200px;
+  font-size: 18px;
+
+}
+.list_title a{
+  color: #999;
+  margin-left: 20px;
+}
+.list_title span{
+  color: #e4262b;
+}
+.getstatusNum{
+  float: right;
+}
+.getstatusNum ul li{
+  float: left;
+  padding-left: 40px;
+  cursor: pointer;
+}
+.getstatusNum ul li:hover{
+  color: #e4262b;
+}
+.getstatusNum ul li.selected{
+  color: #e4262b;
+}
+
+.list_content{
+  padding: 30px;
+  overflow: hidden;
+}
+
+.invest-list-wrapper {
+  font-size: 18px;
+}
+.invest-list-wrapper table{
+  width: 1140px;
+}
+.invest-list-wrapper table tr th{
+    padding: 10px 15px;
+  }
+.invest-list-wrapper table tr td{
+  padding: 20px 15px;
+}
+.invest-list-wrapper table tr td a{
+  color: #666;
+}
+.invest-list-wrapper table tr{
+  border-bottom: 1px solid #c9c9c9;
+}
+/*.invest-list-wrapper .title{*/
+  /*width: 230px;*/
+/*}*/
+.invest-list-wrapper .rate{
+  /*width: 200px;*/
+  color: #e60012;
+}
+
+/*.invest-list-wrapper .fdurunit{*/
+  /*width: 200px;*/
+/*}*/
+/*.invest-list-wrapper .minAmount{*/
+  /*width: 210px;*/
+/*}*/
+.invest-list-wrapper .status{
+  /*width: 180px;*/
+  color: #999;
+}
+.invest-list-wrapper .operate{
+  width: 122px;
+  color: #999;
+}
+.invest-list-wrapper .investbtn{
+  width: 122px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  display: block;
+  background: #cfa972;
+  color: #fff;
+  text-decoration: none;
+}
+.invest-list-wrapper .investbtn-open{
+  background: #e4262b;
+}
+/*分页*/
+#invest-pager{
+  overflow: hidden;
+    margin-top: 55px;
+}
+#invest-pager ul {
+  float: right;
+}
+#invest-pager ul li{
+  float: left;
+  padding: 0 10px;
+}
+
+
+#invest-pager ul{
+  
+    overflow: hidden;
+}
+
+#invest-pager ul li a{
+  color: #666;
+    cursor: pointer;
+}
+#invest-pager ul .current-page a{
+  color: #cfa972;
+}
+#invest-pager ul li a:hover{
+  color: #cfa972;
+}
+
+.bottom_ad{
+  width: 1200px;
+  margin: 30px auto 80px;
+}
+.bottom_ad img{
+  width: 100%;
+}
+.textCenter {
+  text-align: center;
+}

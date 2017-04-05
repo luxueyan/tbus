@@ -113,8 +113,11 @@ select::-ms-expand { display: none; }
 .invest-data-wrapper .investContainer .content .inner .item .value span.assign_time{
     font-size: 12px;
     color: #e4262b;
-    text-decoration: underline;
-    margin-left: 10px;
+    cursor: pointer;
+}
+.invest-data-wrapper .investContainer .content .inner .item .value .loop{
+    font-size: 12px;
+    color: #e4262b;
     cursor: pointer;
 }
 .invest-data-wrapper .investContainer .content .innerBottom {
@@ -151,7 +154,7 @@ select::-ms-expand { display: none; }
     color: #666;
     position: absolute;
     top: 2px;
-    font-size: 32px;
+    font-size: 22px;
     left: 50%;
     transform: translateX(-50%);
 }

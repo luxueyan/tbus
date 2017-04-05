@@ -17,7 +17,12 @@
                 {{
                     item.raw.canRedeem
                     ? '每期派息'
-                    : ('到期日：' + (item.end_date | date: "yyyy-MM-dd"))
+                    : ('到期日：' +
+                        (
+                            (item.is_cycle_product ? item.raw.endDate : item.end_date)
+                            | date: "yyyy-MM-dd"
+                        )
+                      )
                 }}
             </span>
         </span>
@@ -30,7 +35,9 @@
                 ? (item.rate | number: 1)
                 : item.rate
             }}%</div>
-            <div class="name">预期年收益率</div>
+            <div class="name">
+                {{ item.raw.loan.loanRequest.productKey === 'ZXLC' ? '业绩比较基准' : '预期年收益率' }}
+            </div>
         </div>
         <div class="info-list">
             <div class="info" ng-if="tab2 === 'INHAND'">

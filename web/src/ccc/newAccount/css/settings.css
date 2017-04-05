@@ -1001,6 +1001,14 @@ p.tips {
     border: none;
     color: #fff;
 }
+.tableTipS{
+    position: relative;
+    background:#fff url("/ccc/newAccount/img/icon_tip.png") 80px center no-repeat !important;
+}
+.tableTipS p {
+    width: 238px !important;
+    background: #6f6d6d !important;
+}
 .tableTip {
     position: relative;
     background:#fff url("/ccc/newAccount/img/icon_tip.png") 65px center no-repeat;
@@ -1064,7 +1072,7 @@ p.tips {
     font-weight: normal;
 }
 .canRedeemBtn {
-    width: 480px;
+    width: 482px;
     margin: 40px auto 0;
 }
 .canRedeemBtn button {

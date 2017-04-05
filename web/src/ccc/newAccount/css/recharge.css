@@ -262,7 +262,7 @@ table.tinfo tbody tr {
 .ccc-banks-wrap {
     background: #fff;
     min-height: 748px;
-    margin: 50px 0 0 40px;
+    margin: 30px 0 0 40px;
 }
 .recharge-wrap {
     position: relative;
@@ -404,11 +404,44 @@ table.tinfo tbody tr {
     font-size: 14px;
     line-height: 25px;
 }
+.rechargeTip {
+    width: 100%;
+}
+.rechargeTip h2 {
+    font-size: 14px;
+    line-height: 25px;
+}
+.rechargeTip li {
+    line-height: 25px;
+}
+.posPaySucDiv {
+    width: 300px;
+}
+.posPaySucDiv img {
+    display: block;
+    width: auto;
+    margin: 10px auto;
+}
+.posPaySucDiv a {
+    display: block;
+    width: 100%;
+    color: #fff;
+    font-size: 12px;
+    line-height: 30px;
+    text-align: center;
+    background: #e4252a;
+    text-decoration: none;
+}
+.posPaySucDiv a:hover {
+    text-decoration: none;
+}
 /*placeholder颜色设置*/
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
     color: #d6d6d6;
 }
-::-moz-placeholder { /* Mozilla Firefox 19+ */
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
     color: #d6d6d6;
 }
 input:-ms-input-placeholder,
@@ -606,4 +639,26 @@ textarea::-webkit-input-placeholder {
     background: rgba(111, 109, 109, .6);
     box-shadow: inset 2px 2px 5px #939291;
     border: none;
+}
+.banksTab {
+    width: 100%;
+    overflow: hidden;
+}
+.banksTab li {
+    width: 90px;
+    float: left;
+    line-height: 35px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+.banksTab .active {
+    border: 1px solid #eee;
+    border-bottom: none;
+}
+.banksTab div {
+    width: 700px;
+    height: 1px;
+    float: left;
+    margin-top: 35px;
+    background: #eee;
 }
