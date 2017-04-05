@@ -53,7 +53,7 @@ module.exports = [
 
   // 登录
   {
-    url: '/api/v2/auth/login',
+    url: '/api/v2/token',
     method: 'POST',
     signature: true
   },
