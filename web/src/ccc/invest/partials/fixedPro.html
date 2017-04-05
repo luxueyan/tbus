@@ -29,8 +29,8 @@
                 <div class="info_box">
                     <div>
                         <span>{{durationNewNo}}</span>{{durationNewName}}
-                        <span class="assign_time">{{#if loanRequest.productKey!="NEW" && !loanRequest.activityInfo}}7天可转{{/if}}</span>
-                        {{#if loanRequest.activityInfo}}
+                        <span class="assign_time">{{#if loanRequest.productKey!="NEW" && !loanRequest.activityInfo && !loanRequest.cycleProduct}}7天可转{{/if}}</span>
+                        {{#if loanRequest.cycleProduct}}
                         <em class="loop">循环</em>
                         {{/if}}
                     </div>
