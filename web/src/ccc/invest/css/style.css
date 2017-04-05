@@ -144,6 +144,11 @@
     margin-left: 10px;
     cursor: pointer;
 }
+.loan_info .info_box .loop {
+    font-size: 12px;
+    color: #e4262b;
+    cursor: pointer;
+}
 .loan_info .rate_box {
     /*padding: 5px 100px 0 50px;*/
     width: 200px;
