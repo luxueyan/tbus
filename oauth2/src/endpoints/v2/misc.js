@@ -81,6 +81,9 @@ router.get('/api/v2/context', function (req, res, next) {
     return 'CONTEXT';
 }));
 router.get('/api/v2/confirm_email', auth.pass());
+
+router.post('/api/v2/auth/login', auth.pass());
+
 function import$(obj, src) {
     var own = {}.hasOwnProperty;
     for (var key in src) if (own.call(src, key)) obj[key] = src[key];
