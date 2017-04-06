@@ -93,6 +93,13 @@ var ractive = new Ractive({
         });
 
         this.on('posPay', function (e) {
+            this.set('msg', {
+                AMOUNT_NULL: false,
+                AMOUNT_INVALID: false,
+                AMOUNT_NOTENOUGH: false,
+                CODE_NULL: false,
+                CODE_INVALID: false
+            });
             this.set('step1', true);
             this.set('step2', false);
             this.set('step3', false);
