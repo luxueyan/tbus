@@ -263,16 +263,17 @@ ractive.on('recharge_submit', function (e) {
             return false;
         }
     }
-
-    if ($('.recharge-cbx').prop("checked")) {
-        if (amount > dailyQuota) {//当日限额
-            this.set('msg.AMOUNT_INVALID', true);
-            return false;
-        }
-    } else {
-        if (amount > singleQuota) {//单笔限额
-            this.set('msg.AMOUNT_INVALID', true);
-            return false;
+    if (!this.get('posPayMain')){
+        if ($('.recharge-cbx').prop("checked")) {
+            if (amount > dailyQuota) {//当日限额
+                this.set('msg.AMOUNT_INVALID', true);
+                return false;
+            }
+        } else {
+            if (amount > singleQuota) {//单笔限额
+                this.set('msg.AMOUNT_INVALID', true);
+                return false;
+            }
         }
     }
 
@@ -293,7 +294,7 @@ ractive.on('recharge_submit', function (e) {
                             self.set('step1', false);
                             self.set('posPaySuc', true);
                             self.set('posPayOrderID', r.data);
-                            self.set('amount', '');
+                            self.set('amount', amount);
                             self.set('password', '');
                         }
                     })
