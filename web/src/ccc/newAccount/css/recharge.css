@@ -343,6 +343,9 @@ table.tinfo tbody tr {
     font-size: 18px;
     color: #4a4a4a;
 }
+.bankcards-wrap >p{
+    line-height: 30px;
+}
 .bankcard-box span {
     padding-left: 200px;
     color: #999;
