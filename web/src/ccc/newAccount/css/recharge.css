@@ -344,7 +344,10 @@ table.tinfo tbody tr {
     color: #4a4a4a;
 }
 .bankcards-wrap >p{
-    line-height: 30px;
+    line-height: 50px;
+    font-size: 18px;
+    color: #666;
+    font-family: 微软雅黑;
 }
 .bankcard-box span {
     padding-left: 200px;
@@ -418,7 +421,7 @@ table.tinfo tbody tr {
     line-height: 25px;
 }
 .posPaySucDiv {
-    width: 300px;
+    width: 380px;
 }
 .posPaySucDiv img {
     display: block;
@@ -429,8 +432,8 @@ table.tinfo tbody tr {
     display: block;
     width: 100%;
     color: #fff;
-    font-size: 12px;
-    line-height: 30px;
+    font-size: 18px;
+    line-height: 45px;
     text-align: center;
     background: #e4252a;
     text-decoration: none;
