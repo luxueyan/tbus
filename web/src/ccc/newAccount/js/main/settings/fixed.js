@@ -164,7 +164,7 @@ function init(type) {
                     for (var i = 0; i < datas.length; i++) {
                         var o = datas[i];
                         datas[i].FvalueDate = moment(res.dates[datas[i].loanId].loanRequest.valueDate).format('YYYY-MM-DD');
-                        datas[i].FdueDate = moment(res.dates[datas[i].loanId].loanRequest.dueDate).format('YYYY-MM-DD');
+                        datas[i].FdueDate = moment(res.dates[datas[i].loanId].endDate).format('YYYY-MM-DD');
                         //datas[i].timeFinished = moment(res.dates[datas[i].loanId].timeFinished).format('YYYY-MM-DD');
                         datas[i].timeOpen = moment(res.dates[datas[i].loanId].timeOpen).format('YYYY-MM-DD');
                         //datas[i].timeout = res.dates[datas[i].loanId].timeout/24;
