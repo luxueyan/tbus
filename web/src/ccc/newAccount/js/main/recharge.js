@@ -144,16 +144,17 @@ var ractive = new Ractive({
                     return false;
                 }
             }
-
-            if ($('.recharge-cbx').prop("checked")) {
-                if (value > dailyQuota) {//当日限额
-                    self.set('msg.AMOUNT_INVALID', true);
-                    return false;
-                }
-            } else {
-                if (value > singleQuota) {//单笔限额
-                    self.set('msg.AMOUNT_INVALID', true);
-                    return false;
+            if (!this.get('posPayMain')){
+                if ($('.recharge-cbx').prop("checked")) {
+                    if (value > dailyQuota) {//当日限额
+                        self.set('msg.AMOUNT_INVALID', true);
+                        return false;
+                    }
+                } else {
+                    if (value > singleQuota) {//单笔限额
+                        self.set('msg.AMOUNT_INVALID', true);
+                        return false;
+                    }
                 }
             }
 
