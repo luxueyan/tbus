@@ -76,6 +76,8 @@
 
                 {{#if Fstatus!=='资金冻结'}}
                 <a href="/account/invest/allContracts/{{id}}" class="look_contact">查看合同</a>
+                {{elseif status == 'SETTLED'||status == 'OVERDUE'||status == 'BREACH'}}
+                <a href="/account/invest/allContracts/{{id}}" class="look_contact">查看合同</a>
                 {{/if}}
 
                 {{else}}

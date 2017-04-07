@@ -675,7 +675,7 @@ input[type=button] {
     left: 50%;
     margin-top: -270px;
     margin-left: -350px;
-    z-index: 2;
+    z-index: 20;
     display: none;
     background: #fff;
 }
