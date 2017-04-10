@@ -208,6 +208,7 @@ function init(type) {
                                 datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true : false;
                                 datas[i].submitTime = moment(o.submitTime).format('YYYY-MM-DD');
                                 datas[i].inPrincipal = utils.format.amount(o.inPrincipal, 2);
+                                datas[i].FendDate=moment(datas[i].endDate).format('YYYY-MM-DD');
                                 break;
                         }
 
