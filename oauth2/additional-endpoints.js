@@ -127,6 +127,11 @@ module.exports = function (router, auth, middlewares) {
     router.get('/api/v2/loans/getLoansForHomePage', auth.pass());
     router.get('/api/v3/loans/getMobileHomepageLoans', auth.pass());
 
+    //支付路由相关
+    router.post('/api/v2/payment/router/charge', auth.user());
+    router.get('/api/v2/payment/router/getBankConstraints', auth.user());
+    router.get('/api/v2/payment/router/hasOpenCurrentChannel/:userId', auth.owner());
+
     router.get('/api/v2/statisticsAll', auth.user(), function (req, res) {
         Promise.all([
             request(marketPrefix + '/api/v2/user/' + req.user.id + '/statistics').get('body'),
