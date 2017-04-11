@@ -14,6 +14,8 @@
     "@ccc/validation": "^1.0.5",
     "@ccc/wx": "^1.2.3",
     "@ds/data": "^1.0.0",
+    "@ds/ds": "^1.0.0",
+    "@ds/ds-pack": "^1.0.6",
     "@ds/format": "^3.2.2",
     "@ds/i18n": "^1.2.1",
     "baconflux": "^2.0.3",

@@ -13,8 +13,8 @@ logger.replaceDebug();
 var fs = require('fs');
 var userAgent = require('useragent');
 
-var ds = require('dysonshell');
-var {app, server} = require('dysonshell/instance');
+var ds = require('@ds/ds');
+var {app, server} = require('@ds/ds/instance');
 
 require('./node-global')
 

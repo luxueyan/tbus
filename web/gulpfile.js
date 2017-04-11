@@ -1,2 +1,2 @@
 'use strict';
-require('dysonshell/build')(require('gulp'));
+require('@ds/ds/build')(require('gulp'));

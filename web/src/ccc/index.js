@@ -5,7 +5,7 @@ if ((process.env.HOSTNAME || '').match(/UAT$/)) {
 var path = require('path');
 var config = require('config');
 require('ds-require');
-var ds = require('dysonshell');
+var ds = require('@ds/ds');
 var logger = require('bunyan-hub-logger');
 if ((process.env.NODE_ENV || 'development') !== 'development') {
     logger.replaceConsole();
@@ -19,7 +19,7 @@ require('./node-global')
 
 var port = Number(process.env.PORT || config.port) || 4000;
 
-import {app, server} from 'dysonshell/instance';
+import {app, server} from '@ds/ds/instance';
 
 app.locals.dsLayoutPath = 'ccc/global/views/layouts/default';
 if (config.startOAuthServer) {
