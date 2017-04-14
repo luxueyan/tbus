@@ -129,8 +129,11 @@ module.exports = function (router, auth, middlewares) {
 
     //支付路由相关
     router.post('/api/v2/payment/router/charge', auth.user());
+    router.post('/api/v2/payment/router/withdraw/:userId', auth.owner());
     router.get('/api/v2/payment/router/getBankConstraints', auth.user());
     router.get('/api/v2/payment/router/hasOpenCurrentChannel/:userId', auth.owner());
+    router.post('/api/v2/payment/router/:userId/preBindCard', auth.owner());
+    router.post('/api/v2/payment/router/:userId/confirmBindCard', auth.owner());
 
     router.get('/api/v2/statisticsAll', auth.user(), function (req, res) {
         Promise.all([
