@@ -31,7 +31,11 @@
         </td>
         <td>
             <p class="table-invest-common">
-                {{FendDate}}
+                {{#if loan.loanRequest.cycleProduct}}
+                {{moment(endDate).format('YYYY-MM-DD')}}
+                {{else}}
+                {{FdueDate}}
+                {{/if}}
             </p>
         </td>
         <td>
