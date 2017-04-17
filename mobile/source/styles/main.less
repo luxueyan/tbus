@@ -4285,6 +4285,81 @@ a {
         }
     }
 
+    .POS-link {
+        margin: 90px 20px 10px;
+
+        a {
+            color: #717071;
+
+            .text {
+                margin-left: 3px;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &.POS {
+        .POS-detail {
+            .subject {
+                padding: 1px 15px;
+                background-color: #FFF;
+            }
+
+            .content {
+                margin-top: 10px;
+                padding: 20px;
+                background-color: #FFF;
+
+                .info-list {
+                    color: #585858;
+
+                    > li {
+                        margin-bottom: 10px;
+                    }
+
+                    img {
+                        margin: 10px 0;
+                    }
+                }
+
+                .action {
+                    .flex-display();
+
+                    > .btn {
+                        .flex(1);
+
+                        + .btn {
+                            margin-left: 10px;
+                            margin-top: 0;
+                        }
+
+                        &-plain {
+                            .button-variant(@color-theme-main; #FFF; @color-theme-main);
+                        }
+                    }
+                }
+            }
+
+            .tip {
+                padding: 20px;
+                background-color: #FFF;
+                color: #717071;
+
+                a {
+                    color: inherit;
+                }
+
+                .title {
+                }
+
+                .tip-list {
+                    > li {
+                        margin-bottom: 5px;
+                    }
+                }
+            }
+        }
+    }
 }
 
 /*=============================================================================

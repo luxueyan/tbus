@@ -10,7 +10,8 @@ do (_, angular) ->
 
                 @$rootScope.state = 'dashboard'
 
-                @next_path = @$routeParams.next
+                @is_POS = @$routeParams.tab == 'POS'
+
                 @submit_sending = false
 
                 bank_account = do (list = _.clone @user.bank_account_list) ->
@@ -56,27 +57,40 @@ do (_, angular) ->
 
 
                     .then (data) =>
-                        post_data = {
-                            userId: @user.info.id
-                            clientIp: @user.clientIp
-                            txn_amt: amount
-                            paymentPasswd: @$scope.store.password
-                        }
+                        if @is_POS
+                            post_data = {
+                                depositAmount: amount
+                                paymentPasswd: @$scope.store.password
+                            }
 
-                        @api.payment_pool_recharge(post_data)
+                            return (
+                                @api.payment_pos_recharge(post_data)
 
-                    .then @api.process_response
+                                    .then @api.process_response
 
-                    .then (data) =>
-                        @api.flush_user_info()
-                        @$scope.action_result = { success: true }
+                                    .then (data) =>
+                                        @api.flush_user_info()
+                                        @$scope.POS_data = { order_id: _.get(data, 'data') }
+                            )
 
-                        # @$window.alert @$scope.msg.SUCCEED
+                        else
+                            post_data = {
+                                userId: @user.info.id
+                                clientIp: @user.clientIp
+                                txn_amt: amount
+                                paymentPasswd: @$scope.store.password
+                            }
 
-                        # @$scope.$on '$locationChangeSuccess', =>
-                        #     @$window.location.reload()
+                            return (
+                                @api.payment_pool_recharge(post_data)
 
-                        # @$window.history.back()
+                                    .then @api.process_response
+
+                                    .then (data) =>
+                                        @api.flush_user_info()
+                                        @$scope.action_result = { success: true }
+                            )
+
 
                     .catch (data) =>
                         return if data is 'cancel'
@@ -117,6 +131,14 @@ do (_, angular) ->
                 .then @TAKE_RESPONSE_DATA
                 .catch @TAKE_RESPONSE_ERROR
 
+
+        api.__proto__.payment_pos_recharge = (data) ->
+
+            @$http
+                .post '/api/v2/POS/MYSELF/deposit', data
+
+                .then @TAKE_RESPONSE_DATA
+                .catch @TAKE_RESPONSE_ERROR
 
 
 
