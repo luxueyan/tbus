@@ -15,14 +15,23 @@
             <span class="item">起息日：{{ item.settled_date | date: "yyyy-MM-dd" }}</span>
             <span class="item">
                 {{
-                    item.raw.canRedeem
-                    ? '每期派息'
-                    : ('到期日：' +
+                    item.is_cycle_product
+                    ?
                         (
-                            (item.is_cycle_product ? item.raw.endDate : item.end_date)
-                            | date: "yyyy-MM-dd"
+                           item.raw.canRedeem ||
+                           item.status == 'PROPOSED' ||
+                           item.status == 'FROZEN' ||
+                           item.status == 'FROZEN_FAILED' ||
+                           item.status == 'FAILED' ||
+                           item.status == 'FINISHED' ||
+                           item.status == 'FAKESETTLED' ||
+                           item.status == 'CANCELED' ||
+                           (item.status == 'SETTLED' && !item.have_begun_to_settled)
+
+                           ? '每期派息'
+                           : ('到期日：' + (item.raw.endDate | date: "yyyy-MM-dd"))
                         )
-                      )
+                    : ('到期日：' + (item.end_date | date: "yyyy-MM-dd"))
                 }}
             </span>
         </span>
