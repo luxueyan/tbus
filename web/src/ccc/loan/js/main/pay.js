@@ -143,7 +143,7 @@ payRactive.on("invest-submit", function (e) {
                                     showed: function (ele, box) {
                                         var tipsRactive = new Ractive({
                                             el: $(ele),
-                                            template: '<h1 class="cycleTitle">循环确认</h1><p class="cycleContent">温馨提示：该产品为可循环产品，默认本金自动循环。“开放日（T日） ”指每期产品的到期日，份额持有人在T-10日前点击“赎回”按钮 ， 则当期赎回本金， 否则顺延投资至下一期。 </p><img class="cccBox-line" src="/ccc/loan/img/cccbox_line.png"/><button on-click="clickOk" class="cycleBtn">确定</button>',
+                                            template: '<h1 class="cycleTitle">循环确认</h1><p class="cycleContent">温馨提示：该产品为可循环产品，默认本金自动循环。“开放日（T日） ”指每期产品的到期日，份额持有人在T-15日前点击“赎回”按钮 ， 则当期赎回本金， 否则顺延投资至下一期。 </p><img class="cccBox-line" src="/ccc/loan/img/cccbox_line.png"/><button on-click="clickOk" class="cycleBtn">确定</button>',
                                         });
                                         tipsRactive.on('clickOk', function () {
                                             $(".ccc-box-wrap .bar .close ").click();
