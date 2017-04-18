@@ -134,6 +134,8 @@ module.exports = function (router, auth, middlewares) {
     router.get('/api/v2/payment/router/hasOpenCurrentChannel/:userId', auth.owner());
     router.post('/api/v2/payment/router/:userId/preBindCard', auth.owner());
     router.post('/api/v2/payment/router/:userId/confirmBindCard', auth.owner());
+    router.post('/api/v2/payment/router/:userId/batchDepositSplit', auth.owner());
+    router.post('/api/v2/payment/router/cancelBindCard', auth.user());
 
     router.get('/api/v2/statisticsAll', auth.user(), function (req, res) {
         Promise.all([
