@@ -1,5 +1,5 @@
 
-<div id="dashboard-payment-recharge">
+<div id="dashboard-payment-recharge" ng-hide="self.is_POS">
 
     <nav class="container page-nav">
     <div class="row">
@@ -135,7 +135,212 @@
                 >{{ self.submit_sending ? '充值中...' : '确认充值' }}</button>
             </p>
         </form>
+
+        <div class="POS-link">
+            <a href="dashboard/recharge?tab=POS">
+                <span class="glyphicon glyphicon-barcode"></span>
+                <span class="text">POS机充值</span>
+            </a>
+        </div>
     </section>
+
+
+
+
+    <div class="action-result" ng-show="action_result">
+        <div ng-if="action_result">
+            <style> body { background-color: #FFF; } </style>
+        </div>
+
+        <div ng-show="action_result.success">
+            <div class="content text-center shadow">
+                <div class="icon-wrap">
+                    <img class="icon" width="66" ng-src="assets/image/smile-icon.png">
+                </div>
+
+                <p class="desc">充值成功</p>
+            </div>
+
+            <div class="detail text-center">
+                <p>您已成功充值(元) <span class="num u-color-main">{{ (store.amount || 0) | number: 2 }}</span></p>
+                <p>当前账户金额(元) <span class="num">{{ (self.user.fund.availableAmount + store.amount) | number: 2 }}</span></p>
+            </div>
+
+            <div class="action">
+                <a class="btn btn-theme btn-block" href="list">马上投资</a>
+                <a class="btn btn-plain btn-block" href="dashboard">我的账户</a>
+            </div>
+        </div>
+
+        <div ng-hide="action_result.success">
+            <div class="content text-center shadow">
+                <div class="icon-wrap">
+                    <img class="icon" width="66" ng-src="assets/image/unhappy-icon.png">
+                </div>
+
+                <p class="desc text-muted">充值失败</p>
+
+                <p class="msg">{{ action_result.msg }}</p>
+            </div>
+
+            <div class="action">
+                <a class="btn btn-theme btn-block" href=""
+                   ng-click="action_result = null"
+                >重新充值</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div id="dashboard-payment-recharge" class="POS" ng-show="self.is_POS">
+
+    <nav class="container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" x-go-back>
+            <param class="glyphicon glyphicon-menu-left">
+        </a>
+        <span class="col-xs-6 title">POS机充值</span>
+        <span class="col-xs-3">&nbsp;</span>
+    </div>
+    </nav>
+
+    <div>
+        <param ng-model="msg" ng-init="msg = {
+            INCORRECT_PASSWORD: '交易密码不正确',
+            DEPOSIT_FAILED: '充值失败',
+            UNKNOWN: '系统繁忙，请稍后重试！',
+            ACCESS_DENIED: '登录超时',
+
+            SUCCEED: '充值成功',
+        }">
+    </div>
+
+    <section class="shadow form-wrapper" ng-hide="action_result || POS_data">
+        <form class="form-horizontal form-flatten"
+              name="form"
+              ng-submit="self.submit(store)"
+              autocapitalize="none"
+              autocomplete="off"
+              autocorrect="off"
+              novalidate
+        >
+            <div class="inputs container">
+                <div class="form-group merge" ng-if="store.bank_account">
+                    <div class="form-group-inner container">
+                        <div class="media media-bank">
+                            <div class="media-left">
+                                <img width="30" ng-src="assets/image/bank-icons/{{ bank_account.account.bankCode | lowercase }}.png">
+                            </div>
+                            <div class="media-body media-middle">
+                                <h4 class="media-heading">
+                                    <span class="bank-name">{{ bank_account.account.bankName }}</span>
+                                    {{ bank_account.account.account | string_replace: '^(\\d{3})\\d+(\\d{4})$' : '$1****$2' }}
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group merge">
+                    <div class="form-group-inner">
+                        <label for="amount">当前账户金额(元)：</label>
+                        <input class="form-control input-target input-lg"
+                               type="text"
+                               name="available"
+                               value="{{ self.user.fund.availableAmount | number: 2 }}"
+                               readonly
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group merge form-group-amount"
+                     ng-class="{
+                         'has-error': form.amount.$invalid && form.amount.$dirty
+                     }"
+                >
+                    <div class="form-group-inner">
+                        <label for="amount">请输入充值金额(元)</label>
+                        <div class="form-control-wrap">
+                            <input class="form-control input-target"
+                                   type="number"
+                                   id="amount"
+                                   name="amount"
+                                   ng-model="store.amount"
+                                   placeholder=""
+                                   required
+                            >
+
+                            <div class="help-block"
+                                 ng-show="form.amount.$invalid && form.amount.$dirty"
+                            >
+                                <span ng-show="form.amount.$error.required">请输入充值金额</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="container btn-submit-wrap">
+                <button class="btn btn-theme btn-block btn-lg"
+                        type="submit"
+                        ng-disabled="form.$invalid || self.submit_sending"
+                >{{ self.submit_sending ? '充值中...' : '确认充值' }}</button>
+            </p>
+        </form>
+    </section>
+
+    <section class="POS-detail" ng-show="POS_data">
+        <div class="subject">
+            <div class="media media-bank">
+                <div class="media-left">
+                    <img width="30" ng-src="assets/image/bank-icons/{{ bank_account.account.bankCode | lowercase }}.png">
+                </div>
+                <div class="media-body media-middle">
+                    <h4 class="media-heading">
+                        <span class="bank-name">{{ bank_account.account.bankName }}</span>
+                        {{ bank_account.account.account | string_replace: '^(\\d{3})\\d+(\\d{4})$' : '$1****$2' }}
+                    </h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <ul class="list-unstyled info-list">
+                <li>订单号：{{ POS_data.order_id }}</li>
+                <li>金额：{{ (store.amount || 0) | number: 2 }}元</li>
+                <li>状态：未支付</li>
+                <li><img width="100%" ng-src="/api/v2/POS/generateBarcode/MYSELF/{{ POS_data.order_id }}"></li>
+            </ul>
+
+            <div class="action">
+                <a
+                    class="btn btn-plain btn-block"
+                    ng-href="/api/v2/POS/generateBarcode/MYSELF/{{ POS_data.order_id }}"
+                    target="_self"
+                    download
+                    x-gyro-comment
+                >保存条码到手机</a>
+                <a class="btn btn-theme btn-block" href="dashboard">查看账户</a>
+            </div>
+        </div>
+
+        <div class="tip">
+            <h5 class="title">提示：</h5>
+            <ul class="list-unstyled tip-list">
+                <li>1、充值过程全程免费，不收取任何手续费；</li>
+                <li>2、仅支持本人实名借记卡充值，严禁利用充值功能进行洗钱等违法行为；</li>
+                <li>3、POS支付需要平台工作人员配合刷卡，你可以联系理财经理或客服热线 <a href="tel:4009008868">400-900-8868</a>；</li>
+            </ul>
+        </div>
+    </section>
+
 
 
 
