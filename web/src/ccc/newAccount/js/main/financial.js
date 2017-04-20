@@ -5,10 +5,14 @@ var utils = require('ccc/global/js/lib/utils');
 var ractive = new Ractive({
     el: '.account-invite-wrapper',
     template: require('ccc/newAccount/partials/financial/financial.html'),
+    data: {
+        nextLevel: false
+    },
     oncomplete: function () {
-        $.get('/api/v2/user/MYSELF/invite', function (o) {
+        $.get('/api/v2/user/MYSELF/inviteNew', function (o) {
             if (o.success) {
                 ractive.set('financialList', formatList(o.data.results));
+                ractive.set('summary', o.data.summary);
                 ractive.set('registerDateData', 'up');
                 ractive.set('totalAssetsData', 'up');
                 ractive.set('availableAmountData', 'up');
@@ -116,6 +120,23 @@ ractive.on('arrowA06', function (e) {
         ractive.set('financialList', rows.reverse());
         ractive.set('latestDueTimeData', 'up');
     }
+});
+
+ractive.on('linkNextLevel', function (e) {
+    ractive.set('nextLevel', true);
+    $.get('/api/v2/user/' + e.node.dataset.id + '/inviteNew', function (o) {
+        if (o.success) {
+            ractive.set('financialList', formatList(o.data.results));
+            ractive.set('summary', o.data.summary);
+            ractive.set('registerDateData', 'up');
+            ractive.set('totalAssetsData', 'up');
+            ractive.set('availableAmountData', 'up');
+            ractive.set('previousInvestTimeData', 'up');
+            ractive.set('latestDueAmountData', 'up');
+            ractive.set('latestDueTimeData', 'up');
+            ractive.set('financialListOld', ractive.get('financialList'));
+        }
+    });
 });
 
 // 格式化列表

@@ -142,7 +142,6 @@ module.exports = function (router) {
             title: '汇财富'
         });
     });
-
     //理财师
     router.get('/financial', function (req, res) {
         if (res.locals.user.isMMC) {
