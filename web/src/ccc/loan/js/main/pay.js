@@ -30,7 +30,7 @@ var payRactive = new Ractive({
         var url = '/api/v2/user/MYSELF/fundaccounts';
         $.get(url, function (o) {
             self.set('bankcards', self.parseBankData(o));
-            $.get('/api/v2/baofoo/getBankConstraints', function (r) {
+            $.get('/api/v2/payment/router/getBankConstraints', function (r) {
                 if (r.success) {
                     var item = r.data;
                     for (var i = 0; i < item.length; i++) {

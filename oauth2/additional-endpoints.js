@@ -21,7 +21,7 @@ module.exports = function (router, auth, middlewares) {
      *  router.get('/api/v2/some-api-path', auth.user(), middlewares.captchaRequired);
      */
 
-    // image captcha checker test
+        // image captcha checker test
     router.get('/api/v2/img-captcha-checker-test',
         auth.pass(),
         middlewares.captchaRequired,
@@ -49,7 +49,7 @@ module.exports = function (router, auth, middlewares) {
 
     router.post('/api/v2/coupon/:userId/redeemCouponIgnoreApproval', auth.owner());
     router.post('/api/v2/coupon/:userId/redeemCouponIgnoreApprovalWithCaptcha',
-        sn(function(req){
+        sn(function (req) {
             return req.url = req.url.replace('redeemCouponIgnoreApprovalWithCaptcha', 'redeemCouponIgnoreApproval');
         }),
         auth.owner(),
@@ -178,4 +178,7 @@ module.exports = function (router, auth, middlewares) {
     router.post('/api/v2/POS/:userId/deposit', auth.user());
     //pos支付生成条形码
     router.get('/api/v2/POS/generateBarcode/:userId/:orderId', auth.user());
+
+    //新的银行限额接口地址
+    router.get('/api/v2/payment/router/getBankConstraints', auth.user());
 };

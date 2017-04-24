@@ -48,7 +48,7 @@ var ractive = new Ractive({
                 ractive.set('hasCardO', false);
             }
         });
-        $.get('/api/v2/baofoo/getBankConstraints', function (r) {
+        $.get('/api/v2/payment/router/getBankConstraints', function (r) {
             if (r.success) {
                 for (var i = 0; i < r.data.length; i++) {
                     if (r.data[i].singleQuota >= 10000) {

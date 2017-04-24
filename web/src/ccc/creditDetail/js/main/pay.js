@@ -42,7 +42,7 @@ var payRactive = new Ractive({
 
         console.log(CC.user.bankCards[0].account.bank)
 
-        $.get('/api/v2/baofoo/getBankConstraints', function (r) {
+        $.get('/api/v2/payment/router/getBankConstraints', function (r) {
             if (r.success) {
                 var item = r.data;
                 for (var i = 0; i < item.length; i++) {
