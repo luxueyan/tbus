@@ -65,7 +65,7 @@ do (_, angular, moment, Array, Date) ->
                         api_list = api_list.map (path) =>
                             @$http.get "/api/v2/user/#{ @user.info.id }/#{ path }"
 
-                        api_list.push @$http.get '/api/v2/baofoo/getBankConstraints', cache: true
+                        api_list.push @$http.get '/api/v2/payment/router/getBankConstraints', cache: true
                         api_list.push @$http.get '/getClientIp', cache: true
 
                         return @$q.all api_list
@@ -433,7 +433,7 @@ do (_, angular, moment, Array, Date) ->
 
             get_available_bank_list: ->
 
-                @$http.get '/api/v2/baofoo/getBankConstraints', cache: true
+                @$http.get '/api/v2/payment/router/getBankConstraints', cache: true
 
                     .then TAKE_RESPONSE_DATA
                     .then TAKE_RESPONSE_DATA
