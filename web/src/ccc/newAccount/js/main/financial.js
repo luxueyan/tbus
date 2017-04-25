@@ -123,9 +123,9 @@ ractive.on('arrowA06', function (e) {
 });
 
 ractive.on('linkNextLevel', function (e) {
-    ractive.set('nextLevel', true);
     $.get('/api/v2/user/' + e.node.dataset.id + '/inviteNew', function (o) {
         if (o.success) {
+            ractive.set('nextLevel', true);
             ractive.set('financialList', formatList(o.data.results));
             ractive.set('summary', o.data.summary);
             ractive.set('registerDateData', 'up');
