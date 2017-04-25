@@ -181,4 +181,7 @@ module.exports = function (router, auth, middlewares) {
 
     //新的银行限额接口地址
     router.get('/api/v2/payment/router/getBankConstraints', auth.user());
+
+    //新的获取理财师推荐列表
+    router.get('/api/v2/user/:userId/inviteNew', auth.pass());
 };
