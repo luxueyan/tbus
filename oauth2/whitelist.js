@@ -136,13 +136,6 @@ module.exports = [
         method: 'POST',
         signature: true
     },
-    
-    // (这个应该是投资动态相关的代码里没有用到)
-    {
-        url: '/api/v2/user/:userId/investDynamic/:investId',
-        method: 'GET',
-        signature: true
-    },
 
     // 邀请的好友数量和红包数量
     {
@@ -151,63 +144,14 @@ module.exports = [
         signature: true
     },
 
-    // 1111
-    {
-        url: '/api/v2/hundsun/banks',
-        method: 'GET',
-        signature: true
-    },
-
-    // 1111
-    {
-        url: '/api/v2/hundsun/checkCard/sendSmsCaptcha/:mobile',
-        method: 'GET',
-        signature: true
-    },
-
-    // 1111
-    {
-        url: '/api/v2/hundsun/register/:userId',
-        method: 'POST',
-        signature: true
-    },
-
-    // 1111
-    {
-        url: '/api/v2/hundsun/checkCard/:userId',
-        method: 'POST',
-        signature: true
-    },
-
-    // 1111
-    {
-        url: '/api/v2/hundsun/bindCard/:userId',
-        method: 'POST',
-        signature: true
-    },
-
-    // 1111
-    {
-        url: '/api/v2/hundsun/cancelCard/:userId',
-        method: 'POST',
-        signature: true
-    },
-
-    // 1111
-    {
-        url: '/api/v2/hundsun/setDefaultAccount/:userId',
-        method: 'POST',
-        signature: true
-    },
-
-    // 1111
+    // 兑换红包
     {
         url: '/api/v2/coupon/:userId/redeemCouponIgnoreApproval',
         method: 'POST',
         signature: true
     },
 
-    // 1111
+    // 宝支付银行卡信息列表
     {
         url: '/api/v2/baofoo/getBankConstraints',
         method: 'GET',
@@ -242,21 +186,21 @@ module.exports = [
         signature: true
     },
 
-    // 充值
+    // 宝支付充值
     {
         url: '/api/v2/baofoo/recharge/:userId',
         method: 'POST',
         signature: true
     },
 
-    // 1111
+    // 宝支付充值
     {
         url: '/api/v2/baofoo/charge',
         method: 'POST',
         signature: true
     },
 
-    // 取现
+    // 宝支付取现
     {
         url: '/api/v2/baofoo/withdraw/:userId',
         method: 'POST',
@@ -270,7 +214,7 @@ module.exports = [
         signature: true
     },
 
-    // 1111
+    // 标的成交记录
     {
         url: '/api/v2/creditassign/list/allInvests',
         method: 'GET',
@@ -284,7 +228,7 @@ module.exports = [
         signature: true
     },
 
-    // 1111
+    // 够买产品
     {
         url: '/api/v2/invest/user/:userId/creditAssign/invest',
         method: 'POST',
@@ -326,25 +270,9 @@ module.exports = [
         signature: true
     },
 
-
     // 借款合同模版获取
     {
         url: '/api/v2/loan/loanRequest/:requestId/bind/template',
-        method: 'GET',
-        signature: true
-    },
-
-
-    // (这个应该是投资动态相关的代码里没有用到)
-    {
-        url: '/api/v2/users/getReferralInfo',
-        method: 'POST',
-        signature: true
-    },
-
-    // 1111
-    {
-        url: '/api/v2/user/:userId/accountStatus',
         method: 'GET',
         signature: true
     },
@@ -356,83 +284,47 @@ module.exports = [
         signature: true
     },
 
-    // 1111
-    {
-        url: '/api/v2/loans/getLoansForHomePage',
-        method: 'GET',
-        signature: true
-    },
-
-    // 1111
-    {
-        url: '/api/v3/loans/getMobileHomepageLoans',
-        method: 'GET',
-        signature: true
-    },
-
-    // 支付路由相关
+    // 充值
     {
         url: '/api/v2/payment/router/charge',
         method: 'POST',
         signature: true
     },
 
-    // 支付路由相关
+    // 提现
     {
         url: '/api/v2/payment/router/withdraw/:userId',
         method: 'POST',
         signature: true
     },
 
-    // 支付路由相关
+    // 获取银行卡信息列表
     {
         url: '/api/v2/payment/router/getBankConstraints',
         method: 'GET',
         signature: true
     },
 
-    // 支付路由相关
-    {
-        url: '/api/v2/payment/router/hasOpenCurrentChannel/:userId',
-        method: 'GET',
-        signature: true
-    },
-
-    // 支付路由相关
+    // 绑卡
     {
         url: '/api/v2/payment/router/:userId/preBindCard',
         method: 'POST',
         signature: true
     },
 
-    // 支付路由相关
+    // 确认绑卡
     {
         url: '/api/v2/payment/router/:userId/confirmBindCard',
         method: 'POST',
         signature: true
     },
 
-    // 1111
+    // 获取优惠券列表新
     {
         url: '/api/v2/coupon/:userId/listCouponNew',
         method: 'POST',
         signature: true
     },
-
-    // 1111
-    {
-        url: '/api/v2/POS/query',
-        method: 'POST',
-        signature: true
-    },
-
-    // 1111
-    {
-        url: '/api/v2/POS/notification',
-        method: 'POST',
-        signature: true
-    },
-
 
     // 循环产品-赎回
     {
@@ -440,7 +332,6 @@ module.exports = [
         method: 'POST',
         signature: true
     },
-
 
     // 新的银行限额接口地址
     {

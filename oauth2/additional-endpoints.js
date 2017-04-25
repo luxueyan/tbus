@@ -52,6 +52,7 @@ module.exports = function (router, auth, middlewares) {
     // 邀请的好友数量和红包数量
     router.get('/api/v2/reward/getReferUserCountAndReward/:userId', auth.owner());
 
+    // 恒生相关代码()
     router.get('/api/v2/hundsun/banks', auth.pass());
     router.get('/api/v2/hundsun/checkCard/sendSmsCaptcha/:mobile', auth.user());
     router.post('/api/v2/hundsun/register/:userId', auth.owner());
@@ -60,7 +61,9 @@ module.exports = function (router, auth, middlewares) {
     router.post('/api/v2/hundsun/cancelCard/:userId', auth.owner());
     router.post('/api/v2/hundsun/setDefaultAccount/:userId', auth.owner());
 
+    // 兑换红包
     router.post('/api/v2/coupon/:userId/redeemCouponIgnoreApproval', auth.owner());
+
     router.post('/api/v2/coupon/:userId/redeemCouponIgnoreApprovalWithCaptcha',
         sn(function (req) {
             return req.url = req.url.replace('redeemCouponIgnoreApprovalWithCaptcha', 'redeemCouponIgnoreApproval');
@@ -69,6 +72,7 @@ module.exports = function (router, auth, middlewares) {
         middlewares.captchaRequired
     );
 
+    // 宝支付银行卡信息列表
     router.get('/api/v2/baofoo/getBankConstraints', auth.pass());
 
     // 账户中心我要投资接口
@@ -83,12 +87,13 @@ module.exports = function (router, auth, middlewares) {
     // 银行卡验证
     router.post('/api/v2/user/checkBankcard', auth.user());
 
-    // 充值
+    // 宝支付充值
     router.post('/api/v2/baofoo/recharge/:userId', auth.owner());
 
+    // 宝支付充值
     router.post('/api/v2/baofoo/charge', auth.user());
 
-    // 取现
+    // 宝支付取现
     router.post('/api/v2/baofoo/withdraw/:userId', auth.owner());
 
     // 好友数目与红包数量
@@ -168,20 +173,21 @@ module.exports = function (router, auth, middlewares) {
     router.get('/api/v3/loans/getMobileHomepageLoans', auth.pass());
 
     // 支付路由相关
+    // 充值
     router.post('/api/v2/payment/router/charge', auth.user());
-
+    // 提现
     router.post('/api/v2/payment/router/withdraw/:userId', auth.owner());
-
+    // 获取银行卡信息列表
     router.get('/api/v2/payment/router/getBankConstraints', auth.user());
-
+    //
     router.get('/api/v2/payment/router/hasOpenCurrentChannel/:userId', auth.owner());
-
+    // 绑卡
     router.post('/api/v2/payment/router/:userId/preBindCard', auth.owner());
-
+    // 确认绑卡
     router.post('/api/v2/payment/router/:userId/confirmBindCard', auth.owner());
-
+    // 大额充值
     router.post('/api/v2/payment/router/:userId/batchDepositSplit', auth.owner());
-
+    // 解绑银行卡
     router.post('/api/v2/payment/router/cancelBindCard', auth.user());
 
     router.get('/api/v2/statisticsAll', auth.user(), function (req, res) {
@@ -211,22 +217,21 @@ module.exports = function (router, auth, middlewares) {
     // 验证理财师验证码
     router.post('api/v2/checkSMSCaptcha/:userId', auth.owner());
 
+    // 获取优惠券列表新
     router.post('/api/v2/coupon/:userId/listCouponNew', auth.pass());
 
+    // pos
     router.post('/api/v2/POS/query', auth.pass());
-
     router.post('/api/v2/POS/notification', auth.pass());
-
-    router.get('/api/v2/POS/generateBarcode/:userId/:orderId', auth.user());
-
-    // 循环产品-赎回
-    router.post('/api/v2/invest/redeem', auth.user());
 
     // pos支付生成订单
     router.post('/api/v2/POS/:userId/deposit', auth.user());
 
-    // pos支付生成条形码
+    // pos生成支付条形码
     router.get('/api/v2/POS/generateBarcode/:userId/:orderId', auth.user());
+
+    // 循环产品-赎回
+    router.post('/api/v2/invest/redeem', auth.user());
 
     // 新的银行限额接口地址
     router.get('/api/v2/payment/router/getBankConstraints', auth.user());
