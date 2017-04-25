@@ -588,12 +588,5 @@ module.exports = [
     url: '/api/v2/payment/router/getBankConstraints',
     method: 'GET',
     signature: true
-  },
-
-  // 新的获取理财师推荐列表
-  {
-    url: '/api/v2/user/:userId/inviteNew',
-    method: 'GET',
-    signature: true
   }
 ];
