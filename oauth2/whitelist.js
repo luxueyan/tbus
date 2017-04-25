@@ -324,7 +324,7 @@ module.exports = [
     signature: true
   },
 
-  // 1111
+  // 债转购买接口
   {
     url: '/api/v2/creditassign/autoAssign/:userId',
     method: 'POST',
@@ -338,14 +338,14 @@ module.exports = [
     signature: true
   },
 
-  // 1111
+  // 发送短信验证码
   {
     url: '/api/v2/smsCaptcha',
     method: 'POST',
     signature: true
   },
 
-  // 1111
+  // 大额充值
   {
     url: '/api/v2/baofoo/:userId/batchDepositSplit',
     method: 'POST',
@@ -359,56 +359,56 @@ module.exports = [
     signature: true
   },
 
-  // 1111
+  // 银行卡绑卡
   {
     url: '/api/v2/baofoo/:userId/confirmBindCard',
     method: 'POST',
     signature: true
   },
 
-  // 1111
+  // 银行卡解绑
   {
     url: '/api/v2/baofoo/cancelBindCard',
     method: 'POST',
     signature: true
   },
 
-  // 1111
+  // 投资支付
   {
     url: '/api/v2/baofoo/pay',
     method: 'POST',
     signature: true
   },
 
-  // 1111
+  // 债转默认合同模版获取
   {
     url: '/api/v2/creditassign/template',
     method: 'GET',
     signature: true
   },
 
-  // 1111
+  // 借款合同模版获取
   {
     url: '/api/v2/loan/loanRequest/:requestId/bind/template',
     method: 'GET',
     signature: true
   },
 
-  // 1111
+  // 债转合同获取
   {
     url: '/api/v2/creditassign/getCreditAssignContract/:creditAssignId',
     method: 'GET',
     signature: true
   },
 
-  // 1111
+  // 获取标的估值和转让期限
   {
     url: '/api/v2/creditassign/prepareAssign/step1',
     method: 'GET',
     signature: true
   },
 
-  // 1111
+  // 获取转让折价率
   {
     url: '/api/v2/creditassign/prepareAssign/step2',
     method: 'GET',
@@ -436,7 +436,7 @@ module.exports = [
     signature: true
   },
 
-  // 1111
+  // 兑换红包新接口加校验
   {
     url: '/api/v2/coupon/:userId/redeemCouponIgnoreApprovalWithCaptcha',
     method: 'POST',
@@ -457,56 +457,56 @@ module.exports = [
     signature: true
   },
 
-  // 1111
+  // 支付路由相关
   {
     url: '/api/v2/payment/router/charge',
     method: 'POST',
     signature: true
   },
 
-  // 1111
+  // 支付路由相关
   {
     url: '/api/v2/payment/router/withdraw/:userId',
     method: 'POST',
     signature: true
   },
 
-  // 1111
+  // 支付路由相关
   {
     url: '/api/v2/payment/router/getBankConstraints',
     method: 'GET',
     signature: true
   },
 
-  // 1111
+  // 支付路由相关
   {
     url: '/api/v2/payment/router/hasOpenCurrentChannel/:userId',
     method: 'GET',
     signature: true
   },
 
-  // 1111
+  // 支付路由相关
   {
     url: '/api/v2/payment/router/:userId/preBindCard',
     method: 'POST',
     signature: true
   },
 
-  // 1111
+  // 支付路由相关
   {
     url: '/api/v2/payment/router/:userId/confirmBindCard',
     method: 'POST',
     signature: true
   },
 
-  // 1111
+  // 支付路由相关
   {
     url: '/api/v2/payment/router/:userId/batchDepositSplit',
     method: 'POST',
     signature: true
   },
 
-  // 1111
+  // 支付路由相关
   {
     url: '/api/v2/payment/router/cancelBindCard',
     method: 'POST',
@@ -527,7 +527,7 @@ module.exports = [
     signature: true
   },
 
-  // 1111
+  // 验证理财师验证码
   {
     url: '/api/v2/checkSMSCaptcha/:userId',
     method: 'POST',
@@ -562,30 +562,37 @@ module.exports = [
     signature: true
   },
 
-  // 1111
+  // 循环产品-赎回
   {
     url: '/api/v2/invest/redeem',
     method: 'POST',
     signature: true
   },
 
-  // 1111
+  // pos支付生成订单
   {
     url: '/api/v2/POS/:userId/deposit',
     method: 'POST',
     signature: true
   },
 
-  // 1111
+  // pos支付生成条形码
   {
     url: '/api/v2/POS/generateBarcode/:userId/:orderId',
     method: 'GET',
     signature: true
   },
 
-  // 1111
+  // 新的银行限额接口地址
   {
     url: '/api/v2/payment/router/getBankConstraints',
+    method: 'GET',
+    signature: true
+  },
+
+  // 新的获取理财师推荐列表
+  {
+    url: '/api/v2/user/:userId/inviteNew',
     method: 'GET',
     signature: true
   }
