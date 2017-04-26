@@ -153,6 +153,18 @@ module.exports = function (router) {
         }
     });
 
+    //理财师二级
+    router.get('/financial/:userId', function (req, res) {
+        if (res.locals.user.isMMC) {
+            res.expose(req.params.userId, 'userId');
+            res.render('newAccount/financialTwo', {
+                title: '汇财富'
+            });
+        } else {
+            res.redirect('/newAccount/home/index');
+        }
+    });
+
     router.get('/recharge', async function (req, res) {
         var clientIp = getClientIp(req);
         res.expose(clientIp, 'clientIp');

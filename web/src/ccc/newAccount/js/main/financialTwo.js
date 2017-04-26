@@ -1,11 +1,17 @@
 'use strict';
+
 var utils = require('ccc/global/js/lib/utils');
 
 var ractive = new Ractive({
     el: '.account-invite-wrapper',
-    template: require('ccc/newAccount/partials/financial/financial.html'),
+    template: require('ccc/newAccount/partials/financial/financialTwo.html'),
     oncomplete: function () {
-        $.get('/api/v2/user/MYSELF/inviteNew', function (o) {
+        $.get('/api/v2/user/' + CC.userId, function (r) {
+            if (r.name) {
+                ractive.set('nameNew', r.name);
+            }
+        });
+        $.get('/api/v2/user/' + CC.userId + '/inviteNew', function (o) {
             if (o.success) {
                 ractive.set('financialList', formatList(o.data.results));
                 ractive.set('summary', o.data.summary);

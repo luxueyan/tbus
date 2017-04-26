@@ -25,6 +25,7 @@ financial-content{
     font-size: 15px;
     line-height: 52px;
     text-align: center;
+    border-bottom: 1px solid #dcdcdc;
 }
 .financialTable .arrowA01 {
     background: #efe3d1 url("/ccc/newAccount/img/arrowA.png") right center no-repeat;
