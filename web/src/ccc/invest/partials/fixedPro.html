@@ -64,7 +64,7 @@
             </div>
             <div class="leftAmount">
                 剩余可投资 (元)：<span>
-            {{#if status=== 'FINISHED' ||status=== 'SETTLED'}}
+                {{#if status === 'FINISHED' ||status=== 'SETTLED' ||status === 'FAKESETTLED' || status === 'FAILED'}}
             0.00
             {{else}}
             {{Fbalance}}
