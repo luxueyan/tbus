@@ -16,7 +16,6 @@ var ractive = new Ractive({
                 ractive.set('latestDueAmountData', 'up');
                 ractive.set('latestDueTimeData', 'up');
                 ractive.set('financialListOld', ractive.get('financialList'));
-                ractive.set('peopleName', '222222');
             }
         });
     },
