@@ -378,10 +378,10 @@
                             </div>
 
                             <div class="expire">
-                                <span ng-if="item.couponPackage.timeExpire">
-                                    过期时间：{{ item.couponPackage.timeExpire | date: "yyyy-MM-dd" }}
+                                <span ng-if="item.timeExpire">
+                                    过期时间：{{ item.timeExpire | date: "yyyy-MM-dd" }}
                                 </span>
-                                <span ng-if="!item.couponPackage.timeExpire">永不过期</span>
+                                <span ng-if="!item.timeExpire">永不过期</span>
                             </div>
                         </div>
                     </div>
