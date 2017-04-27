@@ -175,14 +175,14 @@ function init(type) {
                     o[i].totalAmount = o[i].couponPackage.totalAmount;
                     o[i].timeIssued = o[i].couponPackage.timeIssued;
                     o[i].timeStart = o[i].couponPackage.timeStart;
-                    if (o[i].couponPackage.timeExpire == null) {
+                    if (o[i].timeExpire == null) {
                         o[i].timeExpire = "永不过期";
                     } else {
-                        o[i].timeExpire = (new Date(o[i].couponPackage.timeExpire)).Format("yyyy-MM-dd");
+                        o[i].timeExpire = (new Date(o[i].timeExpire)).Format("yyyy-MM-dd");
                     }
                     if (o[i].timeExpire != "永不过期") {
                         if (o[i].displayStatus === '未使用') {
-                            if (o[i].couponPackage.timeExpire < new Date()) {
+                            if (o[i].timeExpire < new Date()) {
                                 o[i].status = 'EXPIRED';
                                 o[i].notUse = false;
                                 o[i].EXPIRED = true;
