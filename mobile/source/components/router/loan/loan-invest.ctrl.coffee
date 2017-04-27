@@ -34,6 +34,7 @@ do (_, angular, Math) ->
                                 return {
                                     id: item.id
                                     couponPackage: info
+                                    timeExpire: item.timeExpire
                                     status: item.status
                                     minimum: info.minimumInvest
                                     maximum: info.maximumInvest

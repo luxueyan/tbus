@@ -143,7 +143,7 @@ do (_, angular) ->
 
                                         @show_coupon({
                                             mobile,
-                                            expire_time: _.get(coupon_8888, 'couponPackage.timeExpire')
+                                            expire_time: _.get(coupon_8888, 'timeExpire')
                                         })
                                 )
 
