@@ -11,7 +11,7 @@ var ractive = new Ractive({
                 ractive.set('nameNew', r.name);
             }
         });
-        $.get('/api/v2/user/' + CC.userId + '/inviteNew', function (o) {
+        $.get('/api/v2/user/' + CC.userId + '/manager/second', function (o) {
             if (o.success) {
                 ractive.set('financialList', formatList(o.data.results));
                 ractive.set('summary', o.data.summary);
@@ -22,7 +22,6 @@ var ractive = new Ractive({
                 ractive.set('latestDueAmountData', 'up');
                 ractive.set('latestDueTimeData', 'up');
                 ractive.set('financialListOld', ractive.get('financialList'));
-                ractive.set('peopleName', '222222');
             }
         });
     },
