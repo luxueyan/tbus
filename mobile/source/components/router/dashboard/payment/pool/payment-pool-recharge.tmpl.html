@@ -224,7 +224,7 @@
 
     <section class="shadow form-wrapper" ng-hide="action_result || POS_data">
         <form class="form-horizontal form-flatten"
-              name="form"
+              name="form2"
               ng-submit="self.submit(store)"
               autocapitalize="none"
               autocomplete="off"
@@ -262,7 +262,7 @@
 
                 <div class="form-group merge form-group-amount"
                      ng-class="{
-                         'has-error': form.amount.$invalid && form.amount.$dirty
+                         'has-error': form2.amount.$invalid && form2.amount.$dirty
                      }"
                 >
                     <div class="form-group-inner">
@@ -278,9 +278,9 @@
                             >
 
                             <div class="help-block"
-                                 ng-show="form.amount.$invalid && form.amount.$dirty"
+                                 ng-show="form2.amount.$invalid && form2.amount.$dirty"
                             >
-                                <span ng-show="form.amount.$error.required">请输入充值金额</span>
+                                <span ng-show="form2.amount.$error.required">请输入充值金额</span>
                             </div>
                         </div>
                     </div>
@@ -290,7 +290,7 @@
             <p class="container btn-submit-wrap">
                 <button class="btn btn-theme btn-block btn-lg"
                         type="submit"
-                        ng-disabled="form.$invalid || self.submit_sending"
+                        ng-disabled="form2.$invalid || self.submit_sending"
                 >{{ self.submit_sending ? '充值中...' : '确认充值' }}</button>
             </p>
         </form>
