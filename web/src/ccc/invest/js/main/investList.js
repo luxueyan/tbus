@@ -245,7 +245,7 @@ if (!CC.key) {
             } else {
                 Boolean = "true";
             }
-            var api = '/api/v2/loan/summaryTotal?newbeeInFront=' + Boolean + '&product=';
+            var api = '/api/v2/loan/summaryTotal?recommedInFront=' + Boolean + '&product=';
             request.get(api + key + '&product=CPTJ&product=NEW')
                 .end()
                 .then(function (r) {
