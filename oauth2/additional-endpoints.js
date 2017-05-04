@@ -177,10 +177,13 @@ module.exports = function (router, auth, middlewares) {
     router.post('/api/v2/payment/router/charge', auth.user());
     // 提现
     router.post('/api/v2/payment/router/withdraw/:userId', auth.owner());
+
     // 获取银行卡信息列表
     router.get('/api/v2/payment/router/getBankConstraints', auth.user());
     //
     router.get('/api/v2/payment/router/hasOpenCurrentChannel/:userId', auth.owner());
+    //获取用户信息和已绑卡信息
+    router.get('/api/v2/payment/router/:userId/userBindCardInfo', auth.owner());
     // 绑卡
     router.post('/api/v2/payment/router/:userId/preBindCard', auth.owner());
     // 确认绑卡
