@@ -19,7 +19,7 @@ do (_, angular, Math) ->
                 return a + rest + b
 
         .filter 'string_replace', ->
-            (text, reg, new_text) -> text.replace /// #{ reg }///, new_text
+            (text = '', reg, new_text) -> text.replace /// #{ reg }///, new_text
 
         .filter 'fund_type_cn', ->
             table = {

@@ -59,12 +59,12 @@ do (_, angular, moment, Array, Date) ->
                             userfund
                             fundaccounts
                             authenticates
-                            inviteCode
                         '
 
                         api_list = api_list.map (path) =>
                             @$http.get "/api/v2/user/#{ @user.info.id }/#{ path }"
 
+                        api_list.push @$http.get '/api/v2/user/MYSELF/inviteCode', cache: true
                         api_list.push @$http.get '/api/v2/payment/router/getBankConstraints', cache: true
                         api_list.push @$http.get '/getClientIp', cache: true
 
