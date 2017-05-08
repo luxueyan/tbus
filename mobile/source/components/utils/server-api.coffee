@@ -526,6 +526,24 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
+            payment_pool_bind_card_sent_captcha: (data) ->
+
+                @$http
+                    .post '/api/v2/payment/router/MYSELF/preBindCard', data
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
+            payment_pool_bind_card: (data) ->
+
+                @$http
+                    .post '/api/v2/payment/router/MYSELF/confirmBindCard', data
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
             get_refer_count_and_reward: (cache = false) ->
 
                 @$http

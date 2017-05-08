@@ -231,24 +231,6 @@ do (_, angular) ->
                 .catch @TAKE_RESPONSE_ERROR
 
 
-        api.__proto__.payment_pool_bind_card_sent_captcha = (data) ->
-
-            @$http
-                .post '/api/v2/baofoo/MYSELF/preBindCard', data
-
-                .then @TAKE_RESPONSE_DATA
-                .catch @TAKE_RESPONSE_ERROR
-
-
-        api.__proto__.payment_pool_bind_card = (data) ->
-
-            @$http
-                .post '/api/v2/baofoo/MYSELF/confirmBindCard', data
-
-                .then @TAKE_RESPONSE_DATA
-                .catch @TAKE_RESPONSE_ERROR
-
-
 
 
 
