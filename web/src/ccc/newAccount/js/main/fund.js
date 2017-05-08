@@ -5,7 +5,8 @@
 require('bootstrap/js/transition');
 require('bootstrap/js/tooltip');
 require('bootstrap/js/dropdown');
-require('eonasdan-bootstrap-datetimepicker');
+//require('eonasdan-bootstrap-datetimepicker');
+require('ccc/newAccount/js/lib/bootstrap-datetimepicker')
 require('ccc/global/js/modules/cccTab');
 require('ccc/global/js/modules/cccPaging');
 var utils = require('ccc/global/js/lib/utils');
