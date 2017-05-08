@@ -224,6 +224,53 @@ var ractive = new Ractive({
 ractive.parseDataNum();
 
 
+// 判断用户的银行卡当前支付路由是否绑卡
+accountService.hasOpenCurrentChannel(function (res1) {
+    if (res1.data) {
+        // 根据用户ID调用用户平台上已有的绑卡信息
+        accountService.userBindCardInfo(function (res2) {
+            if (res2.success) {
+                var cardInfo = {
+                    realName: res2.data.userInfo.name,
+                    idNumber: res2.data.userInfo.idNumber,
+                    accountNumber: res2.data.bankCards[0].account.account,
+                    mobile: res2.data.bankCards[0].account.bankMobile,
+                    bankNmae: res2.data.bankCards[0].account.bank,
+                }
+                // 根据后台取得的绑卡信息，调用新的预绑卡接口
+                accountService.preBindCard(cardInfo, function (res3) {
+                    if (res3.success) {
+                        ractive.set('preBindCardShow', true);
+                        ractive.set('cardInfoAll', cardInfo);
+                        ractive.set('BindCardMobile', cardInfo.mobile.slice(0, 3) + '****' + cardInfo.mobile.slice(7, 11));
+                    }
+                });
+            }
+        });
+    }
+});
+// 根据用户绑卡信息、手机短信验证码调用新的确认绑卡接口，进行绑卡确认
+ractive.on('preBindCardSMSS', function () {
+    var cardInfoAll = ractive.get('cardInfoAll');
+
+    cardInfoAll.smsCode = ractive.get('preBindCardSms');
+
+    accountService.confirmBindcard(cardInfoAll, function (res) {
+        if (res.success) {
+            ractive.set('preBindCardShow', false);
+            ractive.set('preBindCardSms', '');
+        } else {
+            alert(res.error[0].message);
+        }
+    });
+});
+// 取消绑卡
+ractive.on('preBindCardSMSN', function () {
+    ractive.set('preBindCardShow', false);
+    ractive.set('preBindCardSms', '');
+});
+
+
 ractive.on('withDrawSubmit', function () {
     var amount = this.get('amount');
     var pass = this.get('paymentPassword');

@@ -177,16 +177,15 @@ module.exports = function (router, auth, middlewares) {
     router.post('/api/v2/payment/router/charge', auth.user());
     // 提现
     router.post('/api/v2/payment/router/withdraw/:userId', auth.owner());
-
     // 获取银行卡信息列表
     router.get('/api/v2/payment/router/getBankConstraints', auth.user());
-    //
+    // 判断用户的银行卡当前支付路由是否绑卡
     router.get('/api/v2/payment/router/hasOpenCurrentChannel/:userId', auth.owner());
-    //获取用户信息和已绑卡信息
+    // 根据用户ID调用用户平台上已有的绑卡信息
     router.get('/api/v2/payment/router/:userId/userBindCardInfo', auth.owner());
-    // 绑卡
+    // 根据后台取得的绑卡信息，调用新的预绑卡接口
     router.post('/api/v2/payment/router/:userId/preBindCard', auth.owner());
-    // 确认绑卡
+    // 根据用户绑卡信息、手机短信验证码调用新的确认绑卡接口，进行绑卡确认
     router.post('/api/v2/payment/router/:userId/confirmBindCard', auth.owner());
     // 大额充值
     router.post('/api/v2/payment/router/:userId/batchDepositSplit', auth.owner());

@@ -43,7 +43,7 @@
                 </th>
                 <th class="arrowA05" data-latestDueAmount="{{latestDueAmountData}}" on-click="arrowA05">最近到期金额</th>
                 <th class="arrowA06" data-latestDueTime="{{latestDueTimeData}}" on-click="arrowA06">最近到期时间</th>
-                <th align="center">二级推荐</th>
+                <!--<th align="center">二级推荐</th>-->
             </tr>
             {{#financialList}}
             <tr>
@@ -55,13 +55,13 @@
                 <td>{{previousInvestTimeNew?previousInvestTimeNew:'－'}}</td>
                 <td>{{latestDueAmount}}</td>
                 <td>{{latestDueTimeNew?latestDueTimeNew:'－'}}</td>
-                <td>
-                    {{#if hasSecondRecommend}}
-                    <a target="_blank" href="/newAccount/financial/{{user.id}}" class="search search-red">查询</a>
-                    {{else}}
-                    <span class="search">查询</span>
-                    {{/if}}
-                </td>
+                <!--<td>-->
+                    <!--{{#if hasSecondRecommend}}-->
+                    <!--<a target="_blank" href="/newAccount/financial/{{user.id}}" class="search search-red">查询</a>-->
+                    <!--{{else}}-->
+                    <!--<span class="search">查询</span>-->
+                    <!--{{/if}}-->
+                <!--</td>-->
             </tr>
             {{/financialList}}
         </table>
