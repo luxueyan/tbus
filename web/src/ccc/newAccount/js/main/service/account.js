@@ -364,8 +364,8 @@ exports.accountService = {
             });
     },
     // 根据用户绑卡信息、手机短信验证码调用新的确认绑卡接口，进行绑卡确认
-    confirmBindcard: function (cardInfoAll,next) {
-        request('GET', '/api/v2/payment/router/'+CC.user.id+'/confirmBindcard')
+    confirmBindCard: function (cardInfoAll,next) {
+        request('POST', '/api/v2/payment/router/'+CC.user.id+'/confirmBindCard')
             .type('form')
             .send(cardInfoAll)
             .end()
