@@ -235,7 +235,7 @@ accountService.hasOpenCurrentChannel(function (res1) {
                     idNumber: res2.data.userInfo.idNumber,
                     accountNumber: res2.data.bankCards[0].account.account,
                     mobile: res2.data.bankCards[0].account.bankMobile,
-                    bankNmae: res2.data.bankCards[0].account.bank,
+                    bankName: res2.data.bankCards[0].account.bank,
                 }
                 // 根据后台取得的绑卡信息，调用新的预绑卡接口
                 accountService.preBindCard(cardInfo, function (res3) {
@@ -255,7 +255,7 @@ ractive.on('preBindCardSMSS', function () {
 
     cardInfoAll.smsCode = ractive.get('preBindCardSms');
 
-    accountService.confirmBindcard(cardInfoAll, function (res) {
+    accountService.confirmBindCard(cardInfoAll, function (res) {
         if (res.success) {
             ractive.set('preBindCardShow', false);
             ractive.set('preBindCardSms', '');
@@ -264,12 +264,6 @@ ractive.on('preBindCardSMSS', function () {
         }
     });
 });
-// 取消绑卡
-ractive.on('preBindCardSMSN', function () {
-    ractive.set('preBindCardShow', false);
-    ractive.set('preBindCardSms', '');
-});
-
 
 ractive.on('withDrawSubmit', function () {
     var amount = this.get('amount');
