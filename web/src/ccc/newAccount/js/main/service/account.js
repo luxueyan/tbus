@@ -303,7 +303,7 @@ exports.accountService = {
                 next(res.body);
             });
     },
-    //循环产品赎回
+    // 循环产品赎回
     redeemSure: function (investId, currentPeriod, next) {
         request('POST', '/api/v2/invest/redeem')
             .type('form')
@@ -316,7 +316,7 @@ exports.accountService = {
                 next(r.body);
             });
     },
-    //pos生成订单
+    // pos生成订单
     posRecord: function (depositAmount, paymentPasswd, next) {
         request('POST', '/api/v2/POS/'+CC.user.id+'/deposit')
             .type('form')
@@ -329,9 +329,45 @@ exports.accountService = {
                 next(r.body);
             });
     },
-    //pos生成支付条形码
+    // pos生成支付条形码
     generateBarcode: function (orderId,next) {
         request('GET', '/api/v2/POS/generateBarcode/'+CC.user.id+'/'+orderId)
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
+    },
+    // 判断用户的银行卡当前支付路由是否绑卡
+    hasOpenCurrentChannel: function (next) {
+        request('GET', '/api/v2/payment/router/hasOpenCurrentChannel/'+CC.user.id)
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
+    },
+    // 根据用户ID调用用户平台上已有的绑卡信息
+    userBindCardInfo: function (next) {
+        request('GET', '/api/v2/payment/router/'+CC.user.id+'/userBindCardInfo')
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
+    },
+    // 根据后台取得的绑卡信息，调用新的预绑卡接口
+    preBindCard: function (cardInfo,next) {
+        request('POST', '/api/v2/payment/router/'+CC.user.id+'/preBindCard')
+            .type('form')
+            .send(cardInfo)
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
+    },
+    // 根据用户绑卡信息、手机短信验证码调用新的确认绑卡接口，进行绑卡确认
+    confirmBindcard: function (cardInfoAll,next) {
+        request('GET', '/api/v2/payment/router/'+CC.user.id+'/confirmBindcard')
+            .type('form')
+            .send(cardInfoAll)
             .end()
             .then(function (r) {
                 next(r.body);
