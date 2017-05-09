@@ -130,7 +130,7 @@ do (_, angular) ->
         api.__proto__.payment_pool_withdraw = (data) ->
 
             @$http
-                .post '/api/v2/baofoo/withdraw/MYSELF', data
+                .post '/api/v2/payment/router/withdraw/MYSELF', data
 
                 .then @TAKE_RESPONSE_DATA
                 .catch @TAKE_RESPONSE_ERROR

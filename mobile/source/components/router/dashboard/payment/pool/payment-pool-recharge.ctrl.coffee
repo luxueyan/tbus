@@ -126,7 +126,7 @@ do (_, angular) ->
         api.__proto__.payment_pool_recharge = (data) ->
 
             @$http
-                .post '/api/v2/baofoo/charge', data
+                .post '/api/v2/payment/router/charge', data
 
                 .then @TAKE_RESPONSE_DATA
                 .catch @TAKE_RESPONSE_ERROR
