@@ -59,12 +59,12 @@ do (_, angular, moment, Array, Date) ->
                             userfund
                             fundaccounts
                             authenticates
-                            inviteCode
                         '
 
                         api_list = api_list.map (path) =>
                             @$http.get "/api/v2/user/#{ @user.info.id }/#{ path }"
 
+                        api_list.push @$http.get '/api/v2/user/MYSELF/inviteCode', cache: true
                         api_list.push @$http.get '/api/v2/payment/router/getBankConstraints', cache: true
                         api_list.push @$http.get '/getClientIp', cache: true
 
@@ -521,6 +521,24 @@ do (_, angular, moment, Array, Date) ->
 
                 @$http
                     .post '/wx/signature', data, {skip_json_to_form: true}
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
+            payment_pool_bind_card_sent_captcha: (data) ->
+
+                @$http
+                    .post '/api/v2/payment/router/MYSELF/preBindCard', data
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
+            payment_pool_bind_card: (data) ->
+
+                @$http
+                    .post '/api/v2/payment/router/MYSELF/confirmBindCard', data
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR

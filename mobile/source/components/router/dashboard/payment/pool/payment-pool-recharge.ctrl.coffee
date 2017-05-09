@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'RechargeCtrl',
 
-        _.ai '            @user, @api, @$location, @$scope, @$rootScope, @$window, @$routeParams, @$q, @$uibModal, @popup_payment_state, @popup_payment_password', class
-            constructor: (@user, @api, @$location, @$scope, @$rootScope, @$window, @$routeParams, @$q, @$uibModal, @popup_payment_state, @popup_payment_password) ->
+        _.ai '            @user, @api, @$location, @$scope, @$rootScope, @$window, @$routeParams, @$q, @$uibModal, @popup_payment_state, @popup_payment_password, @ensure_open_channel', class
+            constructor: (@user, @api, @$location, @$scope, @$rootScope, @$window, @$routeParams, @$q, @$uibModal, @popup_payment_state, @popup_payment_password, @ensure_open_channel) ->
 
                 @$window.scrollTo 0, 0
 
@@ -55,6 +55,7 @@ do (_, angular) ->
 
                         @$q.reject error: [message: 'INCORRECT_PASSWORD']
 
+                    .then => @ensure_open_channel()
 
                     .then (data) =>
                         if @is_POS
@@ -126,7 +127,7 @@ do (_, angular) ->
         api.__proto__.payment_pool_recharge = (data) ->
 
             @$http
-                .post '/api/v2/baofoo/charge', data
+                .post '/api/v2/payment/router/charge', data
 
                 .then @TAKE_RESPONSE_DATA
                 .catch @TAKE_RESPONSE_ERROR

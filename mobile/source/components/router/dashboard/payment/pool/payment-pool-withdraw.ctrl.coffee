@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'WithdrawCtrl',
 
-        _.ai '            @user, @api, @$location, @$scope, @$rootScope, @$window, @$q, @$uibModal, @popup_payment_state, @popup_payment_password', class
-            constructor: (@user, @api, @$location, @$scope, @$rootScope, @$window, @$q, @$uibModal, @popup_payment_state, @popup_payment_password) ->
+        _.ai '            @user, @api, @$location, @$scope, @$rootScope, @$window, @$q, @$uibModal, @popup_payment_state, @popup_payment_password, @ensure_open_channel', class
+            constructor: (@user, @api, @$location, @$scope, @$rootScope, @$window, @$q, @$uibModal, @popup_payment_state, @popup_payment_password, @ensure_open_channel) ->
 
                 @$window.scrollTo 0, 0
 
@@ -65,6 +65,7 @@ do (_, angular) ->
 
                         @$q.reject error: [message: 'INCORRECT_PASSWORD']
 
+                    .then => @ensure_open_channel()
 
                     .then (data) =>
                         post_data = {
@@ -130,7 +131,7 @@ do (_, angular) ->
         api.__proto__.payment_pool_withdraw = (data) ->
 
             @$http
-                .post '/api/v2/baofoo/withdraw/MYSELF', data
+                .post '/api/v2/payment/router/withdraw/MYSELF', data
 
                 .then @TAKE_RESPONSE_DATA
                 .catch @TAKE_RESPONSE_ERROR

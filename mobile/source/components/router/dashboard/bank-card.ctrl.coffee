@@ -111,7 +111,7 @@ do (_, angular) ->
         api.__proto__.payment_pool_unbind_card = (data) ->
 
             @$http
-                .post '/api/v2/baofoo/cancelBindCard', data
+                .post '/api/v2/payment/router/cancelBindCard', data
 
                 .then @TAKE_RESPONSE_DATA
                 .catch @TAKE_RESPONSE_ERROR

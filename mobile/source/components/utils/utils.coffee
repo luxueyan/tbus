@@ -19,7 +19,7 @@ do (_, angular, Math) ->
                 return a + rest + b
 
         .filter 'string_replace', ->
-            (text, reg, new_text) -> text.replace /// #{ reg }///, new_text
+            (text = '', reg, new_text) -> text.replace /// #{ reg }///, new_text
 
         .filter 'fund_type_cn', ->
             table = {
@@ -345,6 +345,187 @@ do (_, angular) ->
                     do once
 
                 return prompt.result
+
+
+
+        .factory 'ensure_open_channel', _.ai '$uibModal, $rootScope, $http, api', ($uibModal, $rootScope, $http, api) ->
+
+            ->
+                ($http
+                    .get '/api/v2/payment/router/hasOpenCurrentChannel/MYSELF'
+                    .then (res) ->
+                        return if _.get(res, 'data.data') is true
+
+                        prompt = $uibModal.open {
+                            size: 'lg'
+                            animation: false
+                            backdrop: 'static'
+                            windowClass: 'center modal-open-channel'
+
+                            controller: _.ai '$scope, $window, $interval',
+                                (             $scope, $window, $interval) ->
+                                    ($http
+                                        .get '/api/v2/payment/router/MYSELF/userBindCardInfo'
+                                        .then (res) ->
+                                            bank_account = _.get(res, 'data.data.bankCards[0].account', {})
+                                            bank_account.idNumber = _.get(res, 'data.data.userInfo.idNumber')
+                                            bank_account.userId = _.get(res, 'data.data.bankCards[0].userId')
+                                            angular.extend($scope, {bank_account})
+                                    )
+
+                                    angular.extend($scope, {
+                                        store: {}
+                                        captcha: {timer: null, count: 60, count_default: 60, has_sent: false, buffering: false}
+
+                                        fetch_captcha: ->
+                                            {captcha, bank_account} = $scope
+                                            captcha.sending = true
+                                            {name, idNumber, account, bankMobile, bank} = bank_account
+
+                                            post_data = {
+                                                realName: name
+                                                idNumber
+                                                accountNumber: account
+                                                mobile: bankMobile
+                                                bankName: bank
+                                            }
+
+                                            (api.payment_pool_bind_card_sent_captcha(post_data)
+
+                                                .then api.process_response
+
+                                                .then ->
+                                                    captcha.timer = $interval ->
+                                                        captcha.count -= 1
+
+                                                        if captcha.count < 1
+                                                            $interval.cancel captcha.timer
+                                                            captcha.count = captcha.count_default
+                                                            captcha.buffering = false
+                                                    , 1000
+
+                                                    captcha.has_sent = captcha.buffering = true
+
+                                                .catch (data) ->
+                                                    if _.get(data, 'error') is 'access_denied'
+                                                        $window.alert('登录超时')
+                                                        $window.location.reload()
+                                                        return
+
+                                                    msg = _.get data, 'error[0].message'
+                                                    $window.alert(msg or '系统繁忙，请稍后重试！')
+
+                                                .finally ->
+                                                    captcha.sending = false
+                                            )
+
+
+                                        submit: ({captcha}) ->
+                                            unless captcha
+                                                $window.alert('请输入验证码')
+                                                return
+
+                                            $scope.submit_sending = true
+                                            {bank_account} = $scope
+                                            {name, idNumber, account, bankMobile, bank, userId} = bank_account
+
+                                            post_data = {
+                                                realName: name
+                                                idNumber
+                                                accountNumber: account
+                                                mobile: bankMobile
+                                                bankName: bank
+                                                smsCode: captcha
+                                                userId
+                                            }
+
+                                            (api.payment_pool_bind_card(post_data)
+
+                                                .then api.process_response
+
+                                                .then (data) -> prompt.close()
+
+                                                .catch (data) ->
+                                                    if _.get(data, 'error') is 'access_denied'
+                                                        $window.alert('登录超时')
+                                                        $window.location.reload()
+                                                        return
+
+                                                    msg = _.get data, 'error[0].message'
+                                                    $window.alert(msg or '系统繁忙，请稍后重试！')
+
+                                                .finally ->
+                                                    $scope.submit_sending = false
+                                            )
+                                    })
+
+                            template: """
+                                <div class="modal-header">
+                                    <span class="pull-right" ng-click="$dismiss('cancel')">
+                                        <param class="glyphicon glyphicon-remove">
+                                    </span>
+                                    <h4 class="modal-title">请输入手机验证码</h4>
+                                </div>
+
+                                <div class="modal-body">
+                                    <form
+                                        class="form" name="form"
+                                        autocapitalize="none"
+                                        autocomplete="off"
+                                        autocorrect="off"
+                                        novalidate
+                                        ng-submit="submit(store)"
+                                    >
+                                    <div
+                                        class="form-group"
+                                        ng-class="{ init: !captcha.has_sent }"
+                                    >
+                                        <input
+                                            class="form-control" type="tel"
+                                            name="mobile"
+                                            value="{{ bank_account.bankMobile | string_replace: '^(\\\\d{3})(\\\\d{4})(\\\\d{4})$' : '$1****$3' }}"
+                                            readonly
+                                        >
+
+                                        <button class="btn btn-sm btn-action btn-plain" type="button"
+                                                ng-click="fetch_captcha()"
+                                                ng-disabled="captcha.buffering || captcha.sending"
+                                        >
+                                            <span class="text">获取验证码</span>
+                                            <span class="count" ng-show="captcha.buffering">
+                                                {{ captcha.count | number: 0 }}秒
+                                            </span>
+                                            <span class="icon" ng-hide="captcha.buffering">重发</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input
+                                            class="form-control" type="tel"
+                                            name="captcha"
+                                            ng-model="store.captcha"
+                                            placeholder="请输入验证码"
+                                        >
+                                    </div>
+
+                                    <div class="form-group" style="margin-top: 20px;">
+                                        <button
+                                            type="submit"
+                                            class="btn btn-block btn-theme"
+                                            ng-disabled="submit_sending"
+                                        >{{ submit_sending ? '提交中...' : '确定' }}</button>
+                                    </div>
+                                    </form>
+                                </div>
+                            """
+                        }
+
+                        once = $rootScope.$on '$locationChangeStart', ->
+                            prompt?.dismiss('cancel')
+                            do once
+
+                        return prompt.result
+                )
 
 
 

@@ -3,8 +3,8 @@ do (_, angular, Math) ->
 
     angular.module('controller').controller 'LoanInvestCtrl',
 
-        _.ai '            @api, @user, @loan, @$scope, @$rootScope, @$location, @$window, @$q, map_loan_summary, @$uibModal, @popup_payment_state, @popup_payment_password, @view_pdf, @alert', class
-            constructor: (@api, @user, @loan, @$scope, @$rootScope, @$location, @$window, @$q, map_loan_summary, @$uibModal, @popup_payment_state, @popup_payment_password, @view_pdf, @alert) ->
+        _.ai '            @api, @user, @loan, @$scope, @$rootScope, @$location, @$window, @$q, map_loan_summary, @$uibModal, @popup_payment_state, @popup_payment_password, @view_pdf, @alert, @ensure_open_channel', class
+            constructor: (@api, @user, @loan, @$scope, @$rootScope, @$location, @$window, @$q, map_loan_summary, @$uibModal, @popup_payment_state, @popup_payment_password, @view_pdf, @alert, @ensure_open_channel) ->
 
                 @$window.scrollTo 0, 0
 
@@ -213,6 +213,7 @@ do (_, angular, Math) ->
 
                         @$q.reject error: [message: 'INCORRECT_PASSWORD']
 
+                    .then => @ensure_open_channel()
 
                     .then (data) =>
                         post_data = {
