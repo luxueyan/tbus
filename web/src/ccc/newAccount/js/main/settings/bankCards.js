@@ -82,6 +82,12 @@ var ractive = new Ractive({
         });
     }
 });
+var idNumberN = '';
+accountService.userBindCardInfo(function (r) {
+    if (r.data.userInfo.idNumber) {
+        idNumberN = r.data.userInfo.idNumber;
+    }
+});
 
 var accessA = false;
 var accessB = false;
@@ -278,13 +284,14 @@ ractive.on("bind-card-submit", function (e) {
 
     var sendCard = {
         realName: personal,
-        idNumber: idNo,
+        idNumber: idNumberN || idNo,
         accountNumber: cardNo,
         mobile: cardPhone,
         bankName: bankName,
         smsCode: smsCaptcha,
-        userId: CC.user.id,
+        //userId: CC.user.id,
     };
+
     var msg = {
         SEND_CAPTCHA_FAILED: '验证码发送失败',
         SMSCAPTCHA_IS_NOT_CORRECT: '手机验证码不匹配',
@@ -303,9 +310,12 @@ ractive.on("bind-card-submit", function (e) {
         WRONG_RESPONSE: '请求返回结果错误，请联系客服。',
         SUCCEED: '银行卡绑定成功',
     };
+
+
     if (!paymentAuthenticated) {
         $('.btn-box button').text('绑卡中,请稍等...');
-        $.post('/api/v2/baofoo/MYSELF/confirmBindCard', sendCard, function (res) { //bindCard
+        //$.post('/api/v2/baofoo/MYSELF/confirmBindCard', sendCard, function (res) { //bindCard
+        accountService.confirmBindCard(sendCard, function (res) {
             if (res.success) {
                 accountService.initialPassword(pwd, function (r) {
                     if (r.success) {
@@ -399,7 +409,7 @@ ractive.on('sendCode', function () {
 
     var params = {
         realName: realName,
-        idNumber: idNumber,
+        idNumber: idNumberN || idNumber,
         accountNumber: accountNumber,
         mobile: cardPhone,
         bankName: bankName
@@ -414,14 +424,14 @@ ractive.on('sendCode', function () {
     }
 
     if (accessA && accessB && accessC && accessD && accessE) {
-        $.post('/api/web/newAccount/preBindCardNew', params).then(function (r) {
-            // console.log(r);
+        //$.post('/api/web/newAccount/preBindCardNew', params).then(function (r) {
+        accountService.preBindCard(params, function (r) {
+            //console.log(r);
             if (r.success) {
                 ractive.set('hasCardO', true);
                 ractive.set('hasCard1', true);
                 countDown();
             } else {
-
                 CccOk.create({
                     msg: msgN[r.error[0].message] ? msgN[r.error[0].message] : msgN['PRE_BIND_CARD_FAILED'],
                     okText: '确定',
