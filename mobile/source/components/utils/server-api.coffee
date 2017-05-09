@@ -14,7 +14,6 @@ do (_, angular, moment, Array, Date) ->
         _.ai '            @user, @$http, @$q, @param, @$cookies', class
             constructor: (@user, @$http, @$q, @param, @$cookies) ->
 
-                @access_token = 'cookie'
                 @user_fetching_promise = null
 
                 TAKE_RESPONSE_ERROR = _.partial TAKE_RESPONSE_ERROR, @$q
@@ -40,10 +39,6 @@ do (_, angular, moment, Array, Date) ->
 
                 deferred = do @$q.defer
                 @user_fetching_promise = deferred.promise
-
-                unless @access_token
-                    do deferred.reject
-                    return @user_fetching_promise
 
                 if @user.has_logged_in
                     deferred.resolve @user
@@ -452,15 +447,6 @@ do (_, angular, moment, Array, Date) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
-            mobile_encrypt: (mobile) ->
-
-                @$http
-                    .post '/api/v2/users/mobile/encrypt', {mobile}
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_ERROR
-
-
             fetch_register_captcha: ->
 
                 @$http
@@ -575,52 +561,6 @@ do (_, angular, moment, Array, Date) ->
                         cache: cache
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_ERROR
-
-
-            get_user_available_withdraw_amount: (cache = false) ->
-
-                convert_to_day = (date) ->
-                    moment(date.format 'YYYY-MM-DD').unix() * 1000
-
-                query_set = {
-                    type: 'DEPOSIT'
-                    status: 'SUCCESSFUL'
-                    operation: 'IN'
-                    startDate: convert_to_day moment()
-                    endDate: convert_to_day moment().add 1, 'd'
-                    page: 1
-                    pageSize: 10
-                }
-
-                @$http
-                    .get '/api/v2/user/MYSELF/funds/query',
-                        params: query_set
-                        cache: cache
-
-                    .then TAKE_RESPONSE_DATA
-
-                    .then (response) =>
-
-                        totalSize = _.get response, 'totalSize'
-
-                        return response if query_set.pageSize >= totalSize
-
-                        query_set.pageSize = totalSize
-
-                        @$http
-                            .get '/api/v2/user/MYSELF/funds/query',
-                                params: query_set
-                                cache: cache
-
-                            .then TAKE_RESPONSE_DATA
-
-                    .then ({results}) =>
-
-                        recharge_amount_today = _.sum results, (item) -> item.amount
-
-                        return Math.max 0, (@user.fund.availableAmount - recharge_amount_today)
-
                     .catch TAKE_RESPONSE_ERROR
 
 
