@@ -339,13 +339,10 @@ ractive.on("bind-card-submit", function (e) {
 
         });
     } else {
-        //accountService.checkPassword(pwd, function (r) {
-        //if (r) {
         $('.btn-box button').text('绑卡中,请稍等...');
-        $.post('/api/v2/baofoo/MYSELF/confirmBindCard', sendCard, function (res) { //bindCard
+        //$.post('/api/v2/baofoo/MYSELF/confirmBindCard', sendCard, function (res) { //bindCard
+        accountService.confirmBindCard(sendCard, function (res) {
             if (res.success) {
-                //console.log(res);
-
                 ractive.set('step1', false);
                 ractive.set('step2', true);
                 ractive.set('step3', false);
@@ -368,10 +365,6 @@ ractive.on("bind-card-submit", function (e) {
             }
 
         });
-        //} else {
-        //    ractive.set('errMessgaePwd', '交易密码错误');
-        //}
-        //});
     }
 });
 
@@ -426,7 +419,6 @@ ractive.on('sendCode', function () {
     if (accessA && accessB && accessC && accessD && accessE) {
         //$.post('/api/web/newAccount/preBindCardNew', params).then(function (r) {
         accountService.preBindCard(params, function (r) {
-            //console.log(r);
             if (r.success) {
                 ractive.set('hasCardO', true);
                 ractive.set('hasCard1', true);
