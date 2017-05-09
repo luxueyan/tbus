@@ -71,7 +71,7 @@ do (_, angular, moment, Math, Date) ->
             size: 50
             lineWidth: 4
             scaleColor: false
-            lineCap: 'square'
+            lineCap: 'butt'
             barColor: '#D7000F'
             trackColor: '#DBDCDC'
 
@@ -81,7 +81,7 @@ do (_, angular, moment, Math, Date) ->
         # deduction_rate = parseFloat (loanRequest.deductionRate / 100).toFixed(2)
         # basic_rate = rate - deduction_rate
 
-        invest_percent_int = Math.max 1, (item.investPercent * 100) | 0
+        invest_percent_int = item.investPercent * 100
         invest_percent_int = 0 if item.investPercent is 0
 
         invest_percent_int = 100 if item.status not in _.split 'OPENED SCHEDULED'
