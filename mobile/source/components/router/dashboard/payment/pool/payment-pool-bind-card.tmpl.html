@@ -227,12 +227,10 @@
                                    updateOn: 'blur default',
                                    debounce: {blur: 0, default: 1000}
                                }"
-                               pattern="^\d{6}$"
                                autocapitalize="none"
                                autocomplete="off"
                                autocorrect="off"
                                placeholder="请输入短信验证码"
-                               maxlength="6"
                                required
                         >
 
@@ -260,7 +258,6 @@
                          ng-show="form.mobile_captcha.$invalid && form.mobile_captcha.$dirty"
                     >
                         <span ng-show="form.mobile_captcha.$error.required">必须填写</span>
-                        <span ng-show="form.mobile_captcha.$error.pattern">请输入6位数字</span>
                     </div>
                 </div>
 
