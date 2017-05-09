@@ -104,10 +104,6 @@ do (_, angular) ->
                         key = _.get data, 'error[0].message', 'UNKNOWN'
                         msg = @$scope.msg[key] or key
 
-                        if key in _.split 'DEPOSIT_FAILED'
-                            detail = _.get data, 'error[0].value', ''
-                            msg = if detail then "#{ detail }" else ''
-
                         @$scope.action_result = { success: false, msg: msg }
 
                         # @$window.alert msg
