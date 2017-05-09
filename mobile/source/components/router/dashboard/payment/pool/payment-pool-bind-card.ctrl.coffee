@@ -117,10 +117,6 @@ do (_, angular) ->
                         key = _.get data, 'error[0].message', 'UNKNOWN'
                         msg = @$scope.msg[key] or key
 
-                        if key in _.split 'REGISTER_FAILED CHECK_CARD_FAILED BIND_CARD_FAILED'
-                            detail = _.get data, 'error[0].value', ''
-                            msg += if detail then "，#{ detail }" else ''
-
                         if msg.indexOf('TRADE_FAILED') > -1
                             msg = msg.replace('TRADE_FAILED', @$scope.msg['TRADE_FAILED'])
 
