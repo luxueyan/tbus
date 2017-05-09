@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'RechargeCtrl',
 
-        _.ai '            @user, @api, @$location, @$scope, @$rootScope, @$window, @$routeParams, @$q, @$uibModal, @popup_payment_state, @popup_payment_password', class
-            constructor: (@user, @api, @$location, @$scope, @$rootScope, @$window, @$routeParams, @$q, @$uibModal, @popup_payment_state, @popup_payment_password) ->
+        _.ai '            @user, @api, @$location, @$scope, @$rootScope, @$window, @$routeParams, @$q, @$uibModal, @popup_payment_state, @popup_payment_password, @ensure_open_channel', class
+            constructor: (@user, @api, @$location, @$scope, @$rootScope, @$window, @$routeParams, @$q, @$uibModal, @popup_payment_state, @popup_payment_password, @ensure_open_channel) ->
 
                 @$window.scrollTo 0, 0
 
@@ -55,6 +55,7 @@ do (_, angular) ->
 
                         @$q.reject error: [message: 'INCORRECT_PASSWORD']
 
+                    .then => @ensure_open_channel()
 
                     .then (data) =>
                         if @is_POS
