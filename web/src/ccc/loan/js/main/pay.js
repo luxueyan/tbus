@@ -71,9 +71,9 @@ accountService.hasOpenCurrentChannel(function (res1) {
                 // 根据后台取得的绑卡信息，调用新的预绑卡接口
                 accountService.preBindCard(cardInfo, function (res3) {
                     if (res3.success) {
-                        ractive.set('preBindCardShow', true);
-                        ractive.set('cardInfoAll', cardInfo);
-                        ractive.set('BindCardMobile', cardInfo.mobile.slice(0, 3) + '****' + cardInfo.mobile.slice(7, 11));
+                        payRactive.set('preBindCardShow', true);
+                        payRactive.set('cardInfoAll', cardInfo);
+                        payRactive.set('BindCardMobile', cardInfo.mobile.slice(0, 3) + '****' + cardInfo.mobile.slice(7, 11));
                     }
                 });
             }
@@ -81,15 +81,15 @@ accountService.hasOpenCurrentChannel(function (res1) {
     }
 });
 // 根据用户绑卡信息、手机短信验证码调用新的确认绑卡接口，进行绑卡确认
-ractive.on('preBindCardSMSS', function () {
-    var cardInfoAll = ractive.get('cardInfoAll');
+payRactive.on('preBindCardSMSS', function () {
+    var cardInfoAll = payRactive.get('cardInfoAll');
 
-    cardInfoAll.smsCode = ractive.get('preBindCardSms');
+    cardInfoAll.smsCode = payRactive.get('preBindCardSms');
 
     accountService.confirmBindCard(cardInfoAll, function (res) {
         if (res.success) {
-            ractive.set('preBindCardShow', false);
-            ractive.set('preBindCardSms', '');
+            payRactive.set('preBindCardShow', false);
+            payRactive.set('preBindCardSms', '');
         } else {
             alert(res.error[0].message);
         }
