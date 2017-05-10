@@ -352,7 +352,7 @@ do (_, angular) ->
 
             ->
                 ($http
-                    .get '/api/v2/payment/router/hasOpenCurrentChannel/MYSELF'
+                    .get '/api/v2/payment/router/hasOpenCurrentChannel/MYSELF?timestamp=' + _.now()
                     .then (res) ->
                         return if _.get(res, 'data.data') is true
 
