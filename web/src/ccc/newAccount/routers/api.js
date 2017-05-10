@@ -7,7 +7,7 @@ module.exports = function (router) {
             if(r.idNumber){
                 req.body.idNumber = r.idNumber;
             }
-            req.uest.post("/api/v2/baofoo/MYSELF/preBindCard")
+            req.uest.post("/api/v2/payment/router/MYSELF/preBindCard")
                 .send(req.body)
                 .end()
                 .then(function (r) {

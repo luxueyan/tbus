@@ -355,7 +355,7 @@ ractive.on('recharge_submit', function (e) {
 
                         ractive.set('rechargingCount', Math.ceil(count / 60));
 
-                        request.post('/api/v2/baofoo/' + CC.user.id + '/batchDepositSplit')
+                        request.post('/api/v2/payment/router/' + CC.user.id + '/batchDepositSplit')
                             .type("form")
                             .send({
                                 batchId: timestamp,//时间戳
@@ -382,14 +382,15 @@ ractive.on('recharge_submit', function (e) {
                                         ractive.set('rechargeSucRes', '充值成功' + numSuc + '笔，充值总额' + r.body.data.amountSuccessSplited + '元');
                                     } else {
                                         self.set('rechargeErr', true);
-                                        ractive.set('rechargeErrRes', msgResBig[r.body.error[0].type] ? msgResBig[r.body.error[0].type] : r.body.error[0].type);
+                                        ractive.set('rechargeErrRes', r.body.error[0].message);
+                                        //ractive.set('rechargeErrRes', msgResBig[r.body.error[0].type] ? msgResBig[r.body.error[0].type] : r.body.error[0].type);
                                     }
                                     myFunc()
                                 }
                             });
                     } else {
                         $('.submit_btn').text('正在充值中，请稍等...');
-                        request.post('/api/v2/baofoo/charge')
+                        request.post('/api/v2/payment/router/charge')
                             .type("form")
                             .send({
                                 userId: CC.user.id,
@@ -409,7 +410,7 @@ ractive.on('recharge_submit', function (e) {
                                     ractive.set('step1', false);
                                     ractive.set('step2', false);
                                     ractive.set('step3', true);
-                                    ractive.set('failError', msgRes[r.body.error[0].message]);
+                                    ractive.set('failError', r.body.error[0].message);
                                     $('.submit_btn').text('确认充值');
                                     myFunc()
                                 }
