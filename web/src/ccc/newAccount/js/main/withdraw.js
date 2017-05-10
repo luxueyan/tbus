@@ -223,10 +223,10 @@ var ractive = new Ractive({
 
 ractive.parseDataNum();
 
-
+ractive.set('preBindCardShow', false);
 // 判断用户的银行卡当前支付路由是否绑卡
 accountService.hasOpenCurrentChannel(function (res1) {
-    if (res1.data) {
+    if (!res1.data) {
         // 根据用户ID调用用户平台上已有的绑卡信息
         accountService.userBindCardInfo(function (res2) {
             if (res2.success) {
@@ -302,7 +302,7 @@ ractive.on('withDrawSubmit', function () {
                 					//isAcess = true;
 
 
-                $.post('/api/v2/baofoo/withdraw/MYSELF', {
+                $.post('/api/v2/payment/router/withdraw/MYSELF', {
                     paymentPassword: pass,
                     amount: amount,
                     //cardNo: cardNo

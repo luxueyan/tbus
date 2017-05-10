@@ -425,7 +425,7 @@ ractive.on('sendCode', function () {
                 countDown();
             } else {
                 CccOk.create({
-                    msg: msgN[r.error[0].message] ? msgN[r.error[0].message] : msgN['PRE_BIND_CARD_FAILED'],
+                    msg: r.error[0].message,
                     okText: '确定',
                     ok: function () {
                         $('.ccc-box-overlay').remove();
