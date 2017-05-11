@@ -59,31 +59,6 @@ var payRactive = new Ractive({
 });
 
 
-// 判断用户的银行卡当前支付路由是否绑卡
-accountService.hasOpenCurrentChannel(function (res1) {
-    if (!res1.data) {
-        // 根据用户ID调用用户平台上已有的绑卡信息
-        accountService.userBindCardInfo(function (res2) {
-            if (res2.success) {
-                var cardInfo = {
-                    realName: res2.data.userInfo.name,
-                    idNumber: res2.data.userInfo.idNumber,
-                    accountNumber: res2.data.bankCards[0].account.account,
-                    mobile: res2.data.bankCards[0].account.bankMobile,
-                    bankName: res2.data.bankCards[0].account.bank,
-                }
-                // 根据后台取得的绑卡信息，调用新的预绑卡接口
-                accountService.preBindCard(cardInfo, function (res3) {
-                    if (res3.success) {
-                        payRactive.set('preBindCardShow', true);
-                        payRactive.set('cardInfoAll', cardInfo);
-                        payRactive.set('BindCardMobile', cardInfo.mobile.slice(0, 3) + '****' + cardInfo.mobile.slice(7, 11));
-                    }
-                });
-            }
-        });
-    }
-});
 // 根据用户绑卡信息、手机短信验证码调用新的确认绑卡接口，进行绑卡确认
 payRactive.on('preBindCardSMSS', function () {
     var cardInfoAll = payRactive.get('cardInfoAll');
@@ -94,6 +69,7 @@ payRactive.on('preBindCardSMSS', function () {
         if (res.success) {
             payRactive.set('preBindCardShow', false);
             payRactive.set('preBindCardSms', '');
+            payRactive.fire('invest-submit');
         } else {
             alert(res.error[0].message);
         }
@@ -145,46 +121,73 @@ payRactive.on("invest-submit", function (e) {
         return false;
         myFunc();
     } else {
-        accountService.checkPassword(paymentPassword, function (r) {
-            if (!r) {
-                showErrors('请输入正确的交易密码');
-                myFunc();
-            } else {
-                disableErrors();
-                $(".submit_btn").attr("disabled", "true");
-                //if (document.getElementById('agree').checked == true) {
-                //    $('.agree-error').css('visibility', 'hidden');
-                $.post('/api/v2/invest/user/MYSELF/creditAssign/invest', {
-                    clientIp: CC.clientIp,
-                    amount: creditAmountOld,
-                    creditAssignId: creditassignId,
-                    isUseBalance: isUseB
-                }, function (res) {
-                    if (res.success) {
-                        payRactive.set('step1', false);
-                        payRactive.set('step2', true);
-                        payRactive.set('step3', false);
-                        setTimeout(function () {
-                            window.location.href = '/creditList';
-                        }, 5000);
-                        myFunc();
-                    } else {
-                        payRactive.set('step1', false);
-                        payRactive.set('step2', false);
-                        payRactive.set('step3', true);
-                        if (message[res.error[0].message]) {
-                            payRactive.set('failerror', message[res.error[0].message]);
-                        } else {
-                            payRactive.set('failerror', res.error[0].message);
+
+// 判断用户的银行卡当前支付路由是否绑卡
+        accountService.hasOpenCurrentChannel(function (res1) {
+            if (!res1.data) {
+                // 根据用户ID调用用户平台上已有的绑卡信息
+                accountService.userBindCardInfo(function (res2) {
+                    if (res2.success) {
+                        var cardInfo = {
+                            realName: res2.data.userInfo.name,
+                            idNumber: res2.data.userInfo.idNumber,
+                            accountNumber: res2.data.bankCards[0].account.account,
+                            mobile: res2.data.bankCards[0].account.bankMobile,
+                            bankName: res2.data.bankCards[0].account.bank,
                         }
-                        myFunc();
+                        // 根据后台取得的绑卡信息，调用新的预绑卡接口
+                        accountService.preBindCard(cardInfo, function (res3) {
+                            if (res3.success) {
+                                payRactive.set('preBindCardShow', true);
+                                payRactive.set('cardInfoAll', cardInfo);
+                                payRactive.set('BindCardMobile', cardInfo.mobile.slice(0, 3) + '****' + cardInfo.mobile.slice(7, 11));
+                            }
+                        });
                     }
                 });
+            }else {
+                accountService.checkPassword(paymentPassword, function (r) {
+                    if (!r) {
+                        showErrors('请输入正确的交易密码');
+                        myFunc();
+                    } else {
+                        disableErrors();
+                        $(".submit_btn").attr("disabled", "true");
+                        //if (document.getElementById('agree').checked == true) {
+                        //    $('.agree-error').css('visibility', 'hidden');
+                        $.post('/api/v2/invest/user/MYSELF/creditAssign/invest', {
+                            clientIp: CC.clientIp,
+                            amount: creditAmountOld,
+                            creditAssignId: creditassignId,
+                            isUseBalance: isUseB
+                        }, function (res) {
+                            if (res.success) {
+                                payRactive.set('step1', false);
+                                payRactive.set('step2', true);
+                                payRactive.set('step3', false);
+                                setTimeout(function () {
+                                    window.location.href = '/creditList';
+                                }, 5000);
+                                myFunc();
+                            } else {
+                                payRactive.set('step1', false);
+                                payRactive.set('step2', false);
+                                payRactive.set('step3', true);
+                                if (message[res.error[0].message]) {
+                                    payRactive.set('failerror', message[res.error[0].message]);
+                                } else {
+                                    payRactive.set('failerror', res.error[0].message);
+                                }
+                                myFunc();
+                            }
+                        });
 
-                //} else {
-                //    $('.agree-error').css('visibility', 'visible');
-                //    $('.agree-error').html('请先同意用户投资服务协议');
-                //}
+                        //} else {
+                        //    $('.agree-error').css('visibility', 'visible');
+                        //    $('.agree-error').html('请先同意用户投资服务协议');
+                        //}
+                    }
+                });
             }
         });
     }
