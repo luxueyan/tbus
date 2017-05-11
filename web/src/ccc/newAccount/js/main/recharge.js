@@ -205,6 +205,11 @@ ractive.on('preBindCardSMSS', function () {
     });
 });
 
+ractive.on('closeSMSS', function () {
+    ractive.set('preBindCardShow', false);
+    $(".submit_btn").removeAttr("disabled");
+});
+
 ractive.on('recharge_submit', function (e) {
     var msgRes = {
         "PAYMENT_PWD_NOT_MATCHED": "交易密码错误",

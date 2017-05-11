@@ -73,6 +73,11 @@ payRactive.on('preBindCardSMSS', function () {
     });
 });
 
+payRactive.on('closeSMSS', function () {
+    ractive.set('preBindCardShow', false);
+    $("#subBtn").removeAttr("disabled");
+});
+
 payRactive.on("invest-submit", function (e) {
     var message = {
         "PAYMENT_PWD_NOT_MATCHED": "交易密码错误",

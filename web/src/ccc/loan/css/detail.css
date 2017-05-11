@@ -1288,3 +1288,10 @@ select::-ms-expand { display: none; }
     padding: 0;
     background: #f1f1f1;
 }
+.financialClose{
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    padding: 2px;
+    cursor: pointer;
+}
