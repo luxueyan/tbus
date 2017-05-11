@@ -241,7 +241,10 @@ ractive.on('preBindCardSMSS', function () {
         }
     });
 });
-
+ractive.on('closeSMSS', function () {
+    ractive.set('preBindCardShow', false);
+    $(".submit_btn").removeAttr("disabled");
+});
 ractive.on('withDrawSubmit', function () {
     var amount = this.get('amount');
     var pass = this.get('paymentPassword');

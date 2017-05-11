@@ -597,3 +597,76 @@
 .bottom_ad img{
     width: 100%;
 }
+
+/**/
+.financialSMS {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 500;
+    background: rgba(0, 0, 0, .2);
+}
+.financialSMSBody {
+    width: 380px;
+    height: 380px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 501;
+    margin-top: -200px;
+    margin-left: -190px;
+    padding: 40px;
+    background: #fff;
+}
+.financialSMSBody h6 {
+    color: #666;
+    font-size: 18px;
+    margin-top: 20px;
+    line-height: 30px;
+    text-align: center;
+}
+.financialSMSMain {
+    margin: 20px auto;
+    color: #666;
+    font-size: 14px;
+    overflow: hidden;
+}
+.financialSMSMain label {
+    float: left;
+    line-height: 30px;
+}
+.financialSMSMain input {
+    width: 120px;
+    height: 30px;
+    float: right;
+    border: 1px solid #c0c8bd;
+    background: none;
+}
+.financialSMSIpt {
+    width: 100%;
+    height: 30px;
+    padding: 0 10px;
+    border: 1px solid #c0c8bd;
+}
+.financialSMSBody button {
+    width: 100%;
+    margin: 20px auto 0;
+    color: #fff;
+    line-height: 45px;
+    background: #e60012;
+    border: none;
+}
+.financialSMSBody .btn {
+    color: #666;
+    padding: 0;
+    background: #f1f1f1;
+}
+.financialClose{
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    padding: 2px;
+    cursor: pointer;
+}

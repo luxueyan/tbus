@@ -1,6 +1,6 @@
 <div class="ccc-banks-wrap">
-     <!--<div class="bankcard-nav"><span>理财账户</span><span class="shuline">｜</span><span>取现</span></div>-->
-    
+    <!--<div class="bankcard-nav"><span>理财账户</span><span class="shuline">｜</span><span>取现</span></div>-->
+
     {{#if paymentPasswordHasSet}}
     {{#if step1}}
     <div class="recharge-wrap">
@@ -11,62 +11,68 @@
             </div>
             {{/each}}
 
-        </div> 
-            <form role="form" name="withdrawForm" action="/yeepay/withdraw" method="POST" target="_blank" on-submit="withdrawForm">
-                <div class="row">
-                    <div class="rows">
-                        <div class="tipss">账户可用余额(元)：
-                             <span class="ava">{{intNum}}.<span style="">{{pointNum}}
-                             <!--</span>元</span>-->
-                        </div>
-                       
-                    </div>
-           
-                    <div class="rows">
-                        <div class="card-brame">
-                            <div class="img-box">
-                                <img class="" src="/ccc/newAccount/img/recharge_num.png" alt="太合汇·汇财富">
-                            </div>
-                            <input type="text" name="amount" id="withdraw" on-blur="changeValue" class="recharge-input" value="{{amount}}" autocomplete="off" placeholder="请输入提现金额">
-                            <input style="display:none;">
-                        </div>
-
-                        <p class="text-danger" style="color:red;">
-                             {{#msg.AMOUNT_NULL}}请输入提现金额{{/msg.AMOUNT_NULL}}
-                             {{#msg.AMOUNT_INVALID}}输入的金额有误{{/msg.AMOUNT_INVALID}}
-                             {{#msg.AMOUNT_POOR}}您的可用余额不足{{/msg.AMOUNT_POOR}}
-                            
-                        </p>
-                        <!--<p class="warm-tip"><span>手续费2.00元/笔</span></p>-->
-                        <p class="fee-tip">提现费用(元): <span>{{totalFee}}</span></p>
-                        <p class="fee-tip">实际到账金额(元): <span>{{withdrawAmount}}</span></p>
-                        <p class="warm-tip"><span>预计到账时间: 1-2个工作日(双休日和法定节假日除外)之内到账</span></p>
-
-                    </div>
-                
-                    <div class="rows">
-                        <div class="card-brame">
-                            <div class="img-box">
-                                <img class="recharge_pwd" src="/ccc/newAccount/img/recharge_pwd.png" alt="太合汇·汇财富">
-                            </div>
-                            <input type="password" name="paymentPassword" class="inputsMs" placeholder="请输入支付密码" on-blur="checkPassword" autocomplete="off"  value="{{paymentPassword}}" class="recharge-input">
-                            <a href="/newAccount/settings/resetPassword" target="_blank" class="forgot-pwd">忘记密码？</a>
-                        </div>
-
-                         <p class="text-danger" style="color:red;">
-                            {{#msg.CODE_NULL}}请输入支付密码{{/msg.CODE_NULL}}
-                            {{#msg.CODE_INVALID}}输入的密码有误{{/msg.CODE_INVALID}}
-                        </p>
-<!--                        {{submitMessage}}-->
+        </div>
+        <form role="form" name="withdrawForm" action="/yeepay/withdraw" method="POST" target="_blank"
+              on-submit="withdrawForm">
+            <div class="row">
+                <div class="rows">
+                    <div class="tipss">账户可用余额(元)：
+                             <span class="ava">{{intNum}}.</span>{{pointNum}}
                     </div>
                 </div>
-                <div class="row">
-                    <button type="button" class="submit_btn post-btn {{#if disabled}}disabled{{/if}}"  on-click="withDrawSubmit">{{submitText}}</button>
-                    <a href="/help" target="_blank" class="gohelp">帮助中心</a>
-                    <!--<p class="warm-tip">预计一到两个工作日内到账，以实际到账时间为准</p>-->
+                <div class="rows">
+                    <div class="card-brame">
+                        <div class="img-box">
+                            <img class="" src="/ccc/newAccount/img/recharge_num.png" alt="太合汇·汇财富">
+                        </div>
+                        <input type="text" name="amount" id="withdraw" on-blur="changeValue" class="recharge-input"
+                               value="{{amount}}" autocomplete="off" placeholder="请输入提现金额">
+                        <input style="display:none;">
+                    </div>
+
+                    <p class="text-danger" style="color:red;">
+                        {{#msg.AMOUNT_NULL}}请输入提现金额{{/msg.AMOUNT_NULL}}
+                        {{#msg.AMOUNT_INVALID}}输入的金额有误{{/msg.AMOUNT_INVALID}}
+                        {{#msg.AMOUNT_POOR}}您的可用余额不足{{/msg.AMOUNT_POOR}}
+
+                    </p>
+                    <!--<p class="warm-tip"><span>手续费2.00元/笔</span></p>-->
+                    <p class="fee-tip">提现费用(元): <span>{{totalFee}}</span></p>
+
+                    <p class="fee-tip">实际到账金额(元): <span>{{withdrawAmount}}</span></p>
+
+                    <p class="warm-tip"><span>预计到账时间: 1-2个工作日(双休日和法定节假日除外)之内到账</span></p>
+
                 </div>
-          
-            </form>
+
+                <div class="rows">
+                    <div class="card-brame">
+                        <div class="img-box">
+                            <img class="recharge_pwd" src="/ccc/newAccount/img/recharge_pwd.png" alt="太合汇·汇财富">
+                        </div>
+                        <input type="password" name="paymentPassword" class="inputsMs" placeholder="请输入支付密码"
+                               on-blur="checkPassword" autocomplete="off" value="{{paymentPassword}}"
+                               class="recharge-input">
+                        <a href="/newAccount/settings/resetPassword" target="_blank" class="forgot-pwd">忘记密码？</a>
+                    </div>
+
+                    <p class="text-danger" style="color:red;">
+                        {{#msg.CODE_NULL}}请输入支付密码{{/msg.CODE_NULL}}
+                        {{#msg.CODE_INVALID}}输入的密码有误{{/msg.CODE_INVALID}}
+                    </p>
+                    <!--                        {{submitMessage}}-->
+                </div>
+            </div>
+            <div class="row">
+                <button type="button" class="submit_btn post-btn {{#if disabled}}disabled{{/if}}"
+                        on-click="withDrawSubmit">
+                    {{submitText}}
+                </button>
+                <a href="/help" target="_blank" class="gohelp">帮助中心</a>
+                <!--<p class="warm-tip">预计一到两个工作日内到账，以实际到账时间为准</p>-->
+            </div>
+
+        </form>
     </div>
     {{/if}}
     {{#if step2}}
@@ -79,8 +85,8 @@
                 <p>提现成功</p>
                 <!--<p class="bolder">提现<span>{{amount}}元</span></p>-->
                 <!--<div class="button">-->
-                    <!--<button class="close-img btn-after" on-click="close">以后再说</button>-->
-                    <!--<a href="/invest"><button class="btn-after btn-bank">马上去投资</button></a>-->
+                <!--<button class="close-img btn-after" on-click="close">以后再说</button>-->
+                <!--<a href="/invest"><button class="btn-after btn-bank">马上去投资</button></a>-->
                 <!--</div>-->
             </div>
         </div>
@@ -94,19 +100,23 @@
             </div>
             <div class="success-content">
                 <p class="fail-msg">提现失败</p>
+
                 <div class="fail-reason">{{failError}}</div>
                 <div class="button">
                     <!--<button class="close-img btn-after" on-click="close">以后再说</button>-->
-                    <a href="/newAccount/withdraw"><button class="btn-after btn-bank">重新提现</button></a>
+                    <a href="/newAccount/withdraw">
+                        <button class="btn-after btn-bank">重新提现</button>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
     {{/if}}
-    
+
     {{else}}
     <div class="has-line" style="padding:30px 20px;">
-        提现需要先开通支付密码，否则无法进行提现 <a href="/newAccount/settings/password"><span class="btn" style="background-color:#ef9c2c;margin-left:10px;color:#fff">现在去开通</span></a>
+        提现需要先开通支付密码，否则无法进行提现 <a href="/newAccount/settings/password"><span class="btn"
+                                                                           style="background-color:#ef9c2c;margin-left:10px;color:#fff">现在去开通</span></a>
     </div>
     {{/if}}
 </div>
@@ -115,7 +125,9 @@
 {{#if preBindCardShow}}
 <div class="financialSMS">
     <div class="financialSMSBody">
+        <span class="financialClose" on-click="closeSMSS">X</span>
         <h6>请输入收到的手机验证码</h6>
+
         <div class="financialSMSMain">
             <label>已绑定：{{BindCardMobile}}</label>
             <!--<input type="button" id="getSMS" on-click="getSMS" value="获取验证码">-->
