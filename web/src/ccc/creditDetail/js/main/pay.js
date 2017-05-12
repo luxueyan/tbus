@@ -100,7 +100,7 @@ payRactive.on("invest-submit", function (e) {
     var that = this;
     var creditassign = that.get('creditassign');
     var isUseB = that.get('useBankCard');
-    e.original.preventDefault();
+   // e.original.preventDefault();
     var num = this.get('investNum');
     var creditAmountOld = this.get('creditAmount');
     var isUseB = that.get('useBankCard');

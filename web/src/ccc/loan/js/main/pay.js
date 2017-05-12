@@ -109,7 +109,7 @@ payRactive.on("invest-submit", function (e) {
     };
     var that = this;
     $("#subBtn").attr("disabled", "true");
-    e.original.preventDefault();
+   // e.original.preventDefault();
     var num = that.get('investNum'); // 输入的值
     var paymentPassword = that.get('paymentPassword');
     var isUseB = that.get('useBankCard');
