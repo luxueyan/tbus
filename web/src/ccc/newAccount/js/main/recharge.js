@@ -267,12 +267,12 @@ ractive.on('recharge_submit', function (e) {
     });
 
     if (amount === '') {
-        e.original.preventDefault();
+       // e.original.preventDefault();
         this.set('msg.AMOUNT_NULL', true);
         this.$amount.focus();
         return false;
     } else {
-        e.original.preventDefault();
+        //e.original.preventDefault();
         this.$amount.focus();
         if (Number(amount)) {
             amount = Number(amount);
@@ -309,7 +309,7 @@ ractive.on('recharge_submit', function (e) {
     }
 
     if (password === '') {
-        e.original.preventDefault();
+       // e.original.preventDefault();
         this.set('msg.CODE_NULL', true);
         return false;
         myFunc()
