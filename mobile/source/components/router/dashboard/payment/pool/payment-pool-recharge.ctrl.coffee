@@ -55,7 +55,7 @@ do (_, angular) ->
 
                         @$q.reject error: [message: 'INCORRECT_PASSWORD']
 
-                    .then => @ensure_open_channel()
+                    .then => @ensure_open_channel() unless @is_POS
 
                     .then (data) =>
                         if @is_POS
