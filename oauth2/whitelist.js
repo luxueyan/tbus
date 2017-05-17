@@ -88,6 +88,13 @@ module.exports = [
         signature: true
     },
 
+    // 个人账户信息
+    {
+        url: '/api/v2/user/:id/statistics/invest',
+        method: 'GET',
+        signature: true
+    },
+
     // 产品列表
     {
         url: '/api/v2/loans/getLoanWithPage',
