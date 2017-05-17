@@ -267,7 +267,7 @@ ractive.on('recharge_submit', function (e) {
     });
 
     if (amount === '') {
-       // e.original.preventDefault();
+        // e.original.preventDefault();
         this.set('msg.AMOUNT_NULL', true);
         this.$amount.focus();
         return false;
@@ -309,7 +309,7 @@ ractive.on('recharge_submit', function (e) {
     }
 
     if (password === '') {
-       // e.original.preventDefault();
+        // e.original.preventDefault();
         this.set('msg.CODE_NULL', true);
         return false;
         myFunc()
@@ -319,7 +319,7 @@ ractive.on('recharge_submit', function (e) {
         var timestamp = new Date().getTime();
         // 判断用户的银行卡当前支付路由是否绑卡
         accountService.hasOpenCurrentChannel(function (res1) {
-            if (!res1.data) {
+            if (!res1.data && !self.get('posPayMain')) {
                 // 根据用户ID调用用户平台上已有的绑卡信息
                 accountService.userBindCardInfo(function (res2) {
                     if (res2.success) {
@@ -340,7 +340,7 @@ ractive.on('recharge_submit', function (e) {
                         });
                     }
                 });
-            }else{
+            } else {
                 accountService.checkPassword(password, function (res) {
                     if (res) {
                         if (self.get('posPayMain')) {
