@@ -91,9 +91,11 @@
         <h6>请输入收到的手机验证码</h6>
         <div class="financialSMSMain">
             <label>已绑定：{{BindCardMobile}}</label>
-            <!--<input type="button" id="getSMS" on-click="getSMS" value="获取验证码">-->
         </div>
-        <input type="text" class="financialSMSIpt" placeholder="验证码" value="{{preBindCardSms}}">
+        <div class="financialBox">
+            <input type="text" class="financialSMSIpt" placeholder="验证码" value="{{preBindCardSms}}">
+            <span id="code" on-click="getSMS">获取验证码</span>
+        </div>
         <button type="button" on-click="preBindCardSMSS">确定</button>
     </div>
 </div>

@@ -68,11 +68,38 @@ payRactive.on('preBindCardSMSS', function () {
             payRactive.fire('invest-submit');
 
         } else {
+            payRactive.set('preBindCardShow', false);
             alert(res.error[0].message);
         }
     });
 });
+payRactive.on('getSMS', function () {
+    var cardInfo = ractive.get('cardInfoAll');
+    // 根据后台取得的绑卡信息，调用新的预绑卡接口
+    accountService.preBindCard(cardInfo, function (res) {
+        if (res.success) {
+            var obj=$("#code");
 
+            obj.addClass('disabled');
+            var previousText = '获取验证码';
+            var msg = '$秒后重新发送';
+
+            var left = 60;
+            var interval = setInterval((function () {
+                if (left > 0) {
+                    obj.html(msg.replace('$', left--));
+                } else {
+                    obj.html(previousText);
+                    obj.removeClass('disabled');
+                    clearInterval(interval);
+                }
+            }), 1000)
+        }else{
+            alert(res.error[0].message);
+        }
+    });
+
+});
 payRactive.on('closeSMSS', function () {
     payRactive.set('preBindCardShow', false);
     $("#subBtn").removeAttr("disabled");
