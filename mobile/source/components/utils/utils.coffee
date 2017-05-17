@@ -478,15 +478,24 @@ do (_, angular) ->
                                         novalidate
                                         ng-submit="submit(store)"
                                     >
+                                    <div class="form-group">
+                                        <input
+                                            class="form-control" type="tel"
+                                            name="mobile"
+                                            value="{{ bank_account.bankMobile | string_replace: '^(\\\\d{3})(\\\\d{4})(\\\\d{4})$' : '$1****$3' }}"
+                                            readonly
+                                        >
+                                    </div>
+
                                     <div
                                         class="form-group"
                                         ng-class="{ init: !captcha.has_sent }"
                                     >
                                         <input
                                             class="form-control" type="tel"
-                                            name="mobile"
-                                            value="{{ bank_account.bankMobile | string_replace: '^(\\\\d{3})(\\\\d{4})(\\\\d{4})$' : '$1****$3' }}"
-                                            readonly
+                                            name="captcha"
+                                            ng-model="store.captcha"
+                                            placeholder="请输入验证码"
                                         >
 
                                         <button class="btn btn-sm btn-action btn-plain" type="button"
@@ -499,15 +508,6 @@ do (_, angular) ->
                                             </span>
                                             <span class="icon" ng-hide="captcha.buffering">重发</span>
                                         </button>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input
-                                            class="form-control" type="tel"
-                                            name="captcha"
-                                            ng-model="store.captcha"
-                                            placeholder="请输入验证码"
-                                        >
                                     </div>
 
                                     <div class="form-group" style="margin-top: 20px;">
