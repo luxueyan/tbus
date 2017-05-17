@@ -200,11 +200,38 @@ ractive.on('preBindCardSMSS', function () {
             ractive.set('preBindCardSms', '');
             ractive.fire('recharge_submit');
         } else {
+            ractive.set('preBindCardShow', false);
             alert(res.error[0].message);
         }
     });
 });
+ractive.on('getSMS', function () {
+    var cardInfo = ractive.get('cardInfoAll');
+    // 根据后台取得的绑卡信息，调用新的预绑卡接口
+    accountService.preBindCard(cardInfo, function (res) {
+        if (res.success) {
+            var obj=$("#code");
 
+            obj.addClass('disabled');
+            var previousText = '获取验证码';
+            var msg = '$秒后重新发送';
+
+            var left = 60;
+            var interval = setInterval((function () {
+                if (left > 0) {
+                    obj.html(msg.replace('$', left--));
+                } else {
+                    obj.html(previousText);
+                    obj.removeClass('disabled');
+                    clearInterval(interval);
+                }
+            }), 1000)
+        }else{
+            alert(res.error[0].message);
+        }
+    });
+
+});
 ractive.on('closeSMSS', function () {
     ractive.set('preBindCardShow', false);
     $(".submit_btn").removeAttr("disabled");
@@ -330,14 +357,11 @@ ractive.on('recharge_submit', function (e) {
                             mobile: res2.data.bankCards[0].account.bankMobile,
                             bankName: res2.data.bankCards[0].account.bank,
                         }
-                        // 根据后台取得的绑卡信息，调用新的预绑卡接口
-                        accountService.preBindCard(cardInfo, function (res3) {
-                            if (res3.success) {
-                                ractive.set('preBindCardShow', true);
-                                ractive.set('cardInfoAll', cardInfo);
-                                ractive.set('BindCardMobile', cardInfo.mobile.slice(0, 3) + '****' + cardInfo.mobile.slice(7, 11));
-                            }
-                        });
+                        ractive.set('preBindCardShow', true);
+                        ractive.set('cardInfoAll', cardInfo);
+                        ractive.set('BindCardMobile', cardInfo.mobile.slice(0, 3) + '****' + cardInfo.mobile.slice(7, 11));
+                    }else{
+                        myFunc()
                     }
                 });
             } else {
@@ -455,10 +479,3 @@ ractive.on('recharge_submit', function (e) {
     //     });
     // }
 });
-
-// ractive.on('rechargeClose', function (e) {
-//     ractive.set('recharge', false);
-//     ractive.set('recharging', false);
-//     ractive.set('rechargeSuc', false);
-//     ractive.set('rechargeErr', false);
-// });

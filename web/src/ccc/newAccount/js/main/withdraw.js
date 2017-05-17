@@ -100,21 +100,21 @@ var ractive = new Ractive({
             }
 
 
-            var url = '/api/v2/user/MYSELF/calculateWithdrawFee/'+amount;
+            var url = '/api/v2/user/MYSELF/calculateWithdrawFee/' + amount;
             $.ajax({
                 type: 'GET',
                 async: false,
                 url: url,
-                success: function(o){
+                success: function (o) {
                     //alert(1111);
                     self.set('submitText', '确认提现');
                     self.set('totalFee', o.totalFee);
                     self.set('withdrawAmount', o.withdrawAmount);
-                    if(o.withdrawAmount<=0){
+                    if (o.withdrawAmount <= 0) {
                         self.set('withdrawAmount', '到账金额小于0,请调整取现金额');
                     }
                 },
-                error: function(o){
+                error: function (o) {
                     console.info('请求出现错误，' + o.statusText);
                     self.set('error', true);
                 }
@@ -144,24 +144,22 @@ var ractive = new Ractive({
         });
 
         //去除chrome浏览器里的自动填充
-        if(navigator.userAgent.toLowerCase().indexOf("chrome") != -1 || navigator.userAgent.toLowerCase().indexOf("Safari") == -1){
+        if (navigator.userAgent.toLowerCase().indexOf("chrome") != -1 || navigator.userAgent.toLowerCase().indexOf("Safari") == -1) {
             var selectors = document.getElementsByTagName("input");
-            for(var i=0;i<selectors.length;i++){
-                if((selectors[i].type !== "submit") && (selectors[i].type !== "password")){
+            for (var i = 0; i < selectors.length; i++) {
+                if ((selectors[i].type !== "submit") && (selectors[i].type !== "password")) {
                     var input = selectors[i];
                     var inputName = selectors[i].name;
                     var inputid = selectors[i].id;
                     selectors[i].removeAttribute("name");
                     selectors[i].removeAttribute("id");
-                    setTimeout(function(){
-                        input.setAttribute("name",inputName);
-                        input.setAttribute("id",inputid);
-                    },1)
+                    setTimeout(function () {
+                        input.setAttribute("name", inputName);
+                        input.setAttribute("id", inputid);
+                    }, 1)
                 }
             }
         }
-
-
 
 
     },
@@ -177,24 +175,24 @@ var ractive = new Ractive({
         //this.set('disabled', true);
 
         //var _FEE = null;
-         //var url = '/api/v2/user/MYSELF/calculateWithdrawFee/'+amount;
-         //$.ajax({
-         //	type: 'GET',
-         //	async: false,
-         //	url: url,
-         //	success: function(o){
-         //       //alert(1111);
-         //		_FEE = o;
-         //		self.set('submitText', '确认提现');
-         //		self.set('disabled', false);
-         //	},
-         //	error: function(o){
-         //		console.info('请求出现错误，' + o.statusText);
-         //		self.set('error', true);
-         //		self.set('submitText', '确认提现');
-         //		self.set('disabled', false);
-         //	}
-         //});
+        //var url = '/api/v2/user/MYSELF/calculateWithdrawFee/'+amount;
+        //$.ajax({
+        //	type: 'GET',
+        //	async: false,
+        //	url: url,
+        //	success: function(o){
+        //       //alert(1111);
+        //		_FEE = o;
+        //		self.set('submitText', '确认提现');
+        //		self.set('disabled', false);
+        //	},
+        //	error: function(o){
+        //		console.info('请求出现错误，' + o.statusText);
+        //		self.set('error', true);
+        //		self.set('submitText', '确认提现');
+        //		self.set('disabled', false);
+        //	}
+        //});
         //_FEE = {
         //    withdrawAmount: amount
         //}
@@ -237,9 +235,37 @@ ractive.on('preBindCardSMSS', function () {
             ractive.set('preBindCardSms', '');
             ractive.fire('withDrawSubmit');
         } else {
+            $(".submit_btn").removeAttr("disabled");
             alert(res.error[0].message);
         }
     });
+});
+ractive.on('getSMS', function () {
+    var cardInfo = ractive.get('cardInfoAll');
+    // 根据后台取得的绑卡信息，调用新的预绑卡接口
+    accountService.preBindCard(cardInfo, function (res) {
+        if (res.success) {
+            var obj=$("#code");
+
+            obj.addClass('disabled');
+            var previousText = '获取验证码';
+            var msg = '$秒后重新发送';
+
+            var left = 60;
+            var interval = setInterval((function () {
+                if (left > 0) {
+                    obj.html(msg.replace('$', left--));
+                } else {
+                    obj.html(previousText);
+                    obj.removeClass('disabled');
+                    clearInterval(interval);
+                }
+            }), 1000)
+        }else{
+            alert(res.error[0].message);
+        }
+    });
+
 });
 ractive.on('closeSMSS', function () {
     ractive.set('preBindCardShow', false);
@@ -266,7 +292,7 @@ ractive.on('withDrawSubmit', function () {
     } else if (pass === '') {
         this.set('msg.CODE_NULL', true);
     } else if (pass !== '') {
-        $(".submit_btn").attr("disabled","true");
+        $(".submit_btn").attr("disabled", "true");
         // 判断用户的银行卡当前支付路由是否绑卡
         accountService.hasOpenCurrentChannel(function (res1) {
             if (!res1.data) {
@@ -280,17 +306,14 @@ ractive.on('withDrawSubmit', function () {
                             mobile: res2.data.bankCards[0].account.bankMobile,
                             bankName: res2.data.bankCards[0].account.bank,
                         }
-                        // 根据后台取得的绑卡信息，调用新的预绑卡接口
-                        accountService.preBindCard(cardInfo, function (res3) {
-                            if (res3.success) {
-                                ractive.set('preBindCardShow', true);
-                                ractive.set('cardInfoAll', cardInfo);
-                                ractive.set('BindCardMobile', cardInfo.mobile.slice(0, 3) + '****' + cardInfo.mobile.slice(7, 11));
-                            }
-                        });
+                        ractive.set('preBindCardShow', true);
+                        ractive.set('cardInfoAll', cardInfo);
+                        ractive.set('BindCardMobile', cardInfo.mobile.slice(0, 3) + '****' + cardInfo.mobile.slice(7, 11));
+                    }else{
+                        myFunc()
                     }
                 });
-            }else{
+            } else {
                 accountService.checkPassword(pass, function (r) {
                     if (!r) {
                         ractive.set('msg.CODE_INVALID', true);
@@ -330,7 +353,7 @@ ractive.on('withDrawSubmit', function () {
             }
         });
     }
-    function myFunc(){
+    function myFunc() {
         //code
         //执行某段代码后可选择移除disabled属性，让button可以再次被点击
         $(".submit_btn").removeAttr("disabled");
