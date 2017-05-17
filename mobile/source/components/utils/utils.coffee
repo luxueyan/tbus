@@ -371,6 +371,8 @@ do (_, angular) ->
                                             bank_account.idNumber = _.get(res, 'data.data.userInfo.idNumber')
                                             bank_account.userId = _.get(res, 'data.data.bankCards[0].userId')
                                             angular.extend($scope, {bank_account})
+
+                                            $scope.fetch_captcha()
                                     )
 
                                     angular.extend($scope, {
