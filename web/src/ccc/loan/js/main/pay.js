@@ -173,13 +173,9 @@ payRactive.on("invest-submit", function (e) {
                             bankName: res2.data.bankCards[0].account.bank,
                         }
                         // 根据后台取得的绑卡信息，调用新的预绑卡接口
-                        accountService.preBindCard(cardInfo, function (res3) {
-                            if (res3.success) {
-                                payRactive.set('preBindCardShow', true);
-                                payRactive.set('cardInfoAll', cardInfo);
-                                payRactive.set('BindCardMobile', cardInfo.mobile.slice(0, 3) + '****' + cardInfo.mobile.slice(7, 11));
-                            }
-                        });
+                        payRactive.set('preBindCardShow', true);
+                        payRactive.set('cardInfoAll', cardInfo);
+                        payRactive.set('BindCardMobile', cardInfo.mobile.slice(0, 3) + '****' + cardInfo.mobile.slice(7, 11));
                     }
                 });
             }else{
