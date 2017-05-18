@@ -74,7 +74,7 @@ payRactive.on('preBindCardSMSS', function () {
     });
 });
 payRactive.on('getSMS', function () {
-    var cardInfo = ractive.get('cardInfoAll');
+    var cardInfo = payRactive.get('cardInfoAll');
     // 根据后台取得的绑卡信息，调用新的预绑卡接口
     accountService.preBindCard(cardInfo, function (res) {
         if (res.success) {
