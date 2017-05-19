@@ -352,5 +352,12 @@ module.exports = [
         url: '/api/v2/payment/router/getBankConstraints',
         method: 'GET',
         signature: true
-    }
+    },
+
+    // 投标接口
+    {
+        url: '/api/v2/invest/tender/:userId/loan/:loanId',
+        method: 'POST',
+        signature: true
+    },
 ];
