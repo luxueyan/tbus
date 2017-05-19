@@ -356,7 +356,7 @@ module.exports = [
 
     // 投标接口
     {
-        url: '/api/v2/invest/tender/MYSELF/loan/:loanId',
+        url: '/api/v2/invest/tender/:userId/loan/:loanId',
         method: 'POST',
         signature: true
     },
