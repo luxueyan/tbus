@@ -19,6 +19,13 @@ module.exports = [
         signature: true
     },
 
+    //CC.user信息
+    {
+        url: '/api/v2/whoamiplz',
+        method: 'GET',
+        signature: true
+    },
+
     {
         url: '/api/v2/register/check_mobile',
         method: 'POST',
