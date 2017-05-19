@@ -236,6 +236,7 @@ ractive.on('preBindCardSMSS', function () {
             ractive.fire('withDrawSubmit');
         } else {
             $(".submit_btn").removeAttr("disabled");
+            $(".submit_btn").removeAttr("disabled");
             alert(res.error[0].message);
         }
     });
