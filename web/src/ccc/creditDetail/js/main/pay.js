@@ -72,6 +72,7 @@ payRactive.on('preBindCardSMSS', function () {
             payRactive.fire('invest-submit');
         } else {
             payRactive.set('preBindCardShow', false);
+            $(".submit_btn").removeAttr("disabled");
             alert(res.error[0].message);
         }
     });

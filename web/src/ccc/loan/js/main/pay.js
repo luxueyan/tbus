@@ -69,6 +69,7 @@ payRactive.on('preBindCardSMSS', function () {
 
         } else {
             payRactive.set('preBindCardShow', false);
+            $("#subBtn").removeAttr("disabled");
             alert(res.error[0].message);
         }
     });
