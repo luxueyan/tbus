@@ -174,7 +174,7 @@ module.exports = [
 
     // 账户中心我要投资接口
     {
-        url: '/api/v2/user/MYSELF/invests/list/:page/:size',
+        url: '/api/v2/user/MYSELF/invest/list/:page/:size',
         method: 'GET',
         signature: true
     },
