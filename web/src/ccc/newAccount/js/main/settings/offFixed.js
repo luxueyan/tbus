@@ -58,8 +58,19 @@ var offractive = new Ractive({
             if (datas[i].rate > 100) {
                 datas[i].rate = (datas[i].rate / 100).toFixed(2);
             }
-            datas[i].valueDate = moment(datas[i].valueDate).format('YYYY-MM-DD');
-            datas[i].dueDate = moment(datas[i].dueDate).format('YYYY-MM-DD');
+
+            if (datas[i].valueDate) {
+                datas[i].valueDate = moment(datas[i].valueDate).format('YYYY-MM-DD');
+            } else {
+                datas[i].valueDate = '';
+            }
+
+            if (datas[i].dueDate) {
+                datas[i].dueDate = moment(datas[i].dueDate).format('YYYY-MM-DD');
+            } else {
+                datas[i].dueDate = '';
+            }
+
             datas[i].Fstatus = assignStatus[o.status];
         }
         return datas;
