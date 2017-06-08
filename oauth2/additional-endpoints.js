@@ -243,4 +243,6 @@ module.exports = function (router, auth, middlewares) {
 
     // 理财师二级推荐列表
     router.get('/api/v2/user/:userId/manager/second', auth.pass());
+
+    router.get('/api/v2/message/user/:userId/notifications', auth.user());
 };
