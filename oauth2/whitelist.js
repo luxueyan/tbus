@@ -360,4 +360,11 @@ module.exports = [
         method: 'POST',
         signature: true
     },
+
+    //更新消息的查看状态
+    {
+        url: '/api/v2/message/markAsRead/:messageId',
+        method: 'GET',
+        signature: true
+    },
 ];
