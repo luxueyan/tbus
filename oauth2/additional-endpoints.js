@@ -247,5 +247,5 @@ module.exports = function (router, auth, middlewares) {
     router.get('/api/v2/message/user/:userId/notifications', auth.user());
 
     //更新消息的查看状态
-    router.get('/api/v2/message/markAsRead/:messageId', auth.user());
+    router.post('/api/v2/message/markAsRead/:messageId', auth.user());
 };
