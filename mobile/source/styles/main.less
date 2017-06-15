@@ -6130,6 +6130,71 @@ a {
 }
 
 /*=============================================================================
+                                                              [Router] Activity
+----*/
+
+#activity {
+    .tab-wrap {
+        .flex-display();
+        text-align: center;
+        background: #FFF;
+
+        a {
+            .flex(1);
+            font-size: 14px;
+            line-height: 34px;
+            color: #585858;
+
+            &.active {
+                position: relative;
+                color: @color-theme-main;
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    height: 2px;
+                    background-color: @color-theme-main;
+                }
+            }
+        }
+    }
+
+    .list {
+        margin: 0;
+
+        &-wrap {
+        }
+
+        > li {
+            margin: 10px;
+        }
+    }
+
+    .detail {
+        .content {
+            overflow: auto;
+            background-color: #FFF;
+
+            img {
+                max-width: 100% !important;
+                height: auto !important;
+            }
+
+            p:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .loading {
+        padding: 10px;
+    }
+}
+
+/*=============================================================================
                                                                     Page Footer
 ----*/
 
