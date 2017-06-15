@@ -23,7 +23,10 @@
                     <div class="media">
                         <div class="media-body">
                             <h4 class="title">{{ item.title }}</h4>
-                            <p class="summary">{{ item.content | html_to_text }}</p>
+                            <p class="summary">
+                                {{ item.content | html_to_text }}
+                                <span class="more">...<em>[详情]</em></span>
+                            </p>
                         </div>
                         <div class="media-right">
                             <img class="thumb" ng-src="{{ item.url }}">

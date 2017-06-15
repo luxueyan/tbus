@@ -6266,12 +6266,28 @@ a {
         }
 
         .summary {
+            position: relative;
             overflow: hidden;
             margin: 0;
-            max-height: 42px;
+            height: 42px;
             font-size: 13px;
             line-height: 21px;
             color: #585858;
+
+            .more {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                padding-left: 1em;
+                background: -webkit-linear-gradient(left, transparent, #FFF 20%);
+                background: linear-gradient(to right, transparent, #FFF 20%);
+
+                em {
+                    margin-left: 3px;
+                    font-style: normal;
+                    color: @color-theme-main;
+                }
+            }
         }
 
         .thumb {
