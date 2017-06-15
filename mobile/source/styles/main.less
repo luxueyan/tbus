@@ -6034,6 +6034,59 @@ a {
         }
     }
 
+    .common-question {
+        background: #FFF;
+
+        .content {
+            padding: 20px;
+            color: #717071;
+
+            .title {
+                margin: 0 0 15px;
+                font-size: 16px;
+                font-weight: bold;
+                color: @color-theme-main;
+
+                &:before {
+                    content: '?';
+                    display: inline-block;
+                    vertical-align: 1px;
+                    margin-right: 8px;
+                    border: 1px solid @color-theme-main;
+                    border-radius: 50%;
+                    width: 18px;
+                    height: 18px;
+                    line-height: 18px;
+                    text-align: center;
+                    font-size: 13px;
+                }
+            }
+
+            dl {
+                margin-bottom: 0;
+
+                + dl {
+                    margin-top: 15px;
+                }
+
+                dt {
+                    margin-bottom: 5px;
+                    font-weight: normal;
+                    color: @color-theme-main;
+                    line-height: 1.1;
+                }
+
+                dd {
+                    line-height: 20px;
+                }
+            }
+        }
+
+        .loading {
+            padding: 20px;
+        }
+    }
+
    // &.from_app {
    //     .help-detail .panel-body .content dl dt {
    //         border-left: 1px solid #F57E23;

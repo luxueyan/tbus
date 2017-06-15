@@ -52,6 +52,21 @@
                 </div>
             </uib-accordion-group>
         </uib-accordion>
+
+        <div class="common-question" ng-init="common = {name: '常见问题'}; self.query(common)">
+            <div class="content" ng-if="common.list.length">
+                <h3 class="title">常见问题</h3>
+
+                <dl ng-repeat="item in common.list">
+                    <dt ng-bind="item.title"></dt>
+                    <dd ng-bind-html="item.content | sanitize"></dd>
+                </dl>
+            </div>
+
+            <p class="text-center loading" ng-show="common.loading">
+                <img src="assets/image/spinner.gif">
+            </p>
+        </div>
     </section>
 
 </div>
