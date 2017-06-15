@@ -6195,6 +6195,133 @@ a {
 }
 
 /*=============================================================================
+                                                                  [Router] News
+----*/
+
+#news {
+    .tab-wrap {
+        .flex-display();
+        text-align: center;
+        background: #FFF;
+
+        a {
+            .flex(1);
+            font-size: 14px;
+            line-height: 34px;
+            color: #585858;
+
+            &.active {
+                position: relative;
+                color: @color-theme-main;
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    height: 2px;
+                    background-color: @color-theme-main;
+                }
+            }
+        }
+    }
+
+    .list {
+        margin: 0;
+
+        &-wrap {
+        }
+
+        > li {
+            margin: 10px 0;
+            padding: 15px 20px;
+            background: #FFF;
+        }
+
+        .media {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+
+            &-body {
+                width: auto;
+            }
+
+            &-right {
+                width: 80px;
+                text-align: right;
+            }
+        }
+
+        .title {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin: 0 0 8px;
+            font-weight: bold;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #161616;
+        }
+
+        .summary {
+            overflow: hidden;
+            margin: 0;
+            max-height: 42px;
+            font-size: 13px;
+            line-height: 21px;
+            color: #585858;
+        }
+
+        .thumb {
+            width: 70px;
+        }
+
+        .date {
+            margin-top: 5px;
+            color: #A9A9A9;
+            white-space: nowrap;
+            font-size: 12px;
+        }
+    }
+
+    .detail {
+        .detail-inner {
+            padding: 15px 20px;
+            background-color: #FFF;
+        }
+
+        .title {
+            margin: 0 0 5px;
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 1.5;
+            color: #161616;
+        }
+
+        .date {
+            margin: 0 0 15px;
+            text-align: right;
+            color: #A9A9A9;
+        }
+
+        .content {
+            overflow: auto;
+
+            img {
+                max-width: 100% !important;
+                height: auto !important;
+            }
+        }
+    }
+
+    .loading {
+        padding: 10px;
+    }
+}
+
+/*=============================================================================
                                                                     Page Footer
 ----*/
 
