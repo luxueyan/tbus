@@ -6034,6 +6034,59 @@ a {
         }
     }
 
+    .common-question {
+        background: #FFF;
+
+        .content {
+            padding: 20px;
+            color: #717071;
+
+            .title {
+                margin: 0 0 15px;
+                font-size: 16px;
+                font-weight: bold;
+                color: @color-theme-main;
+
+                &:before {
+                    content: '?';
+                    display: inline-block;
+                    vertical-align: 1px;
+                    margin-right: 8px;
+                    border: 1px solid @color-theme-main;
+                    border-radius: 50%;
+                    width: 18px;
+                    height: 18px;
+                    line-height: 18px;
+                    text-align: center;
+                    font-size: 13px;
+                }
+            }
+
+            dl {
+                margin-bottom: 0;
+
+                + dl {
+                    margin-top: 15px;
+                }
+
+                dt {
+                    margin-bottom: 5px;
+                    font-weight: normal;
+                    color: @color-theme-main;
+                    line-height: 1.1;
+                }
+
+                dd {
+                    line-height: 20px;
+                }
+            }
+        }
+
+        .loading {
+            padding: 20px;
+        }
+    }
+
    // &.from_app {
    //     .help-detail .panel-body .content dl dt {
    //         border-left: 1px solid #F57E23;
@@ -6073,6 +6126,214 @@ a {
         .btn {
             .button-size(9px; 9px; 14px; 1; 8px);
         }
+    }
+}
+
+/*=============================================================================
+                                                              [Router] Activity
+----*/
+
+#activity {
+    .tab-wrap {
+        .flex-display();
+        text-align: center;
+        background: #FFF;
+
+        a {
+            .flex(1);
+            font-size: 14px;
+            line-height: 34px;
+            color: #585858;
+
+            &.active {
+                position: relative;
+                color: @color-theme-main;
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    height: 2px;
+                    background-color: @color-theme-main;
+                }
+            }
+        }
+    }
+
+    .list {
+        margin: 0;
+
+        &-wrap {
+        }
+
+        > li {
+            margin: 10px;
+        }
+    }
+
+    .detail {
+        .content {
+            overflow: auto;
+            background-color: #FFF;
+
+            img {
+                max-width: 100% !important;
+                height: auto !important;
+            }
+
+            p:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .loading {
+        padding: 10px;
+    }
+}
+
+/*=============================================================================
+                                                                  [Router] News
+----*/
+
+#news {
+    .tab-wrap {
+        .flex-display();
+        text-align: center;
+        background: #FFF;
+
+        a {
+            .flex(1);
+            font-size: 14px;
+            line-height: 34px;
+            color: #585858;
+
+            &.active {
+                position: relative;
+                color: @color-theme-main;
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    height: 2px;
+                    background-color: @color-theme-main;
+                }
+            }
+        }
+    }
+
+    .list {
+        margin: 0;
+
+        &-wrap {
+        }
+
+        > li {
+            margin: 10px 0;
+            padding: 15px 20px;
+            background: #FFF;
+        }
+
+        .media {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+
+            &-body {
+                width: auto;
+            }
+
+            &-right {
+                width: 80px;
+                text-align: right;
+            }
+        }
+
+        .title {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin: 0 0 8px;
+            font-weight: bold;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #161616;
+        }
+
+        .summary {
+            position: relative;
+            overflow: hidden;
+            margin: 0;
+            height: 42px;
+            font-size: 13px;
+            line-height: 21px;
+            color: #585858;
+
+            .more {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                padding-left: 1em;
+                background: -webkit-linear-gradient(left, transparent, #FFF 20%);
+                background: linear-gradient(to right, transparent, #FFF 20%);
+
+                em {
+                    margin-left: 3px;
+                    font-style: normal;
+                    color: @color-theme-main;
+                }
+            }
+        }
+
+        .thumb {
+            width: 70px;
+        }
+
+        .date {
+            margin-top: 5px;
+            color: #A9A9A9;
+            white-space: nowrap;
+            font-size: 12px;
+        }
+    }
+
+    .detail {
+        .detail-inner {
+            padding: 15px 20px;
+            background-color: #FFF;
+        }
+
+        .title {
+            margin: 0 0 5px;
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 1.5;
+            color: #161616;
+        }
+
+        .date {
+            margin: 0 0 15px;
+            text-align: right;
+            color: #A9A9A9;
+        }
+
+        .content {
+            overflow: auto;
+
+            img {
+                max-width: 100% !important;
+                height: auto !important;
+            }
+        }
+    }
+
+    .loading {
+        padding: 10px;
     }
 }
 

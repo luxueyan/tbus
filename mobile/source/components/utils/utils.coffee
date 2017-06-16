@@ -11,6 +11,9 @@ do (_, angular, Math) ->
         .filter 'sanitize', _.ai '$sce', ($sce) ->
             (html) -> $sce.trustAsHtml html
 
+        .filter 'html_to_text', ->
+            (html) -> angular.element(html).text()
+
         .filter 'string_mask', ->
             (string, fixed, [a, rest..., b] = (string or '').split '') ->
                 return '' unless string

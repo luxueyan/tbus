@@ -1,0 +1,82 @@
+
+<div id="news" ng-if="!self.$routeParams.id">
+
+    <nav class="omit-margin container page-nav" ng-if="!self.is_from_app">
+    <div class="row">
+        <a class="col-xs-3 back" x-go-back>
+            <param class="glyphicon glyphicon-menu-left">
+        </a>
+        <span class="col-xs-6 title">发现</span>
+        <span class="col-xs-3">&nbsp;</span>
+    </div>
+    </nav>
+
+    <section class="tab-wrap">
+        <a ng-click="self.$location.replace().path('activity')">活动</a>
+        <a class="active">资讯</a>
+    </section>
+
+    <section class="list-wrap">
+        <ul class="list-unstyled list">
+            <li ng-repeat="item in list | orderBy: ['-pubDate']">
+                <a ng-href="news?id={{ item.id }}">
+                    <div class="media">
+                        <div class="media-body">
+                            <h4 class="title">{{ item.title }}</h4>
+                            <p class="summary">
+                                {{ item.content | html_to_text }}
+                                <span class="more">...<em>[详情]</em></span>
+                            </p>
+                        </div>
+                        <div class="media-right">
+                            <img class="thumb" ng-src="{{ item.url }}">
+                            <div class="date">{{ item.pubDate | date: 'yyyy-MM-dd' }}</div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+
+        <p class="text-center loading" ng-show="loading">
+            <img src="assets/image/spinner.gif">
+        </p>
+
+        <div class="container not-found" ng-if="!list.length" ng-hide="loading">
+            <div class="icon-wrap">
+                <img class="icon" height="51" ng-src="assets/image/not-found-icon.png">
+            </div>
+            <p class="desc">暂无数据</p>
+        </div>
+    </section>
+
+</div>
+
+
+
+
+
+<div id="news" ng-if="self.$routeParams.id">
+
+    <nav class="omit-margin container page-nav" ng-if="!self.is_from_app">
+    <div class="row">
+        <a class="col-xs-3 back" x-go-back>
+            <span class="glyphicon glyphicon-menu-left"></span>
+        </a>
+        <span class="col-xs-6 title">资讯详情</span>
+        <span class="col-xs-3">&nbsp;</span>
+    </div>
+    </nav>
+
+    <section class="detail">
+        <div class="detail-inner" ng-show="detail">
+            <h3 class="title" ng-bind="detail.title"></h3>
+            <div class="date" ng-bind="detail.pubDate | date: 'yyyy-MM-dd'"></div>
+            <div class="content" ng-bind-html="detail.content | sanitize"></div>
+        </div>
+
+        <p class="text-center loading" ng-show="loading">
+            <img src="assets/image/spinner.gif">
+        </p>
+    </section>
+
+</div>

@@ -585,6 +585,16 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                     return deferred.promise
                     }
 
+                    .when '/activity', {
+                        controller: 'ActivityCtrl as self'
+                        templateUrl: 'components/router/activity/activity.tmpl.html'
+                    }
+
+                    .when '/news', {
+                        controller: 'NewsCtrl as self'
+                        templateUrl: 'components/router/news/news.tmpl.html'
+                    }
+
                     .otherwise redirectTo: '/'
 
 
