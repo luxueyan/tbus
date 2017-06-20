@@ -248,4 +248,7 @@ module.exports = function (router, auth, middlewares) {
 
     //更新消息的查看状态
     router.post('/api/v2/message/markAsRead/:messageId', auth.user());
+
+    //银联回调
+    router.post('/api/v2/chinaPay/reconAsynNotify', auth.pass());
 };
