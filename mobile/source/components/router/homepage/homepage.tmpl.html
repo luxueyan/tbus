@@ -48,7 +48,7 @@
 
     <section class="loan">
         <ul class="list-unstyled loan-list loan-list-NEW text-center">
-            <li ng-repeat="item in list.NEW | limitTo: 1">
+            <li ng-repeat="item in list | limitTo: 1:0">
                 <a ng-href="loan/{{ item.id }}">
                     <div class="inner">
                         <h4 class="title">{{ item.title }}</h4>
@@ -150,7 +150,7 @@
         </ul>
 
         <ul class="list-unstyled loan-list loan-list-CPTJ">
-            <li ng-repeat="item in list.CPTJ | limitTo: 2">
+            <li ng-repeat="item in list | limitTo: 2:1">
                 <a ng-href="loan/{{ item.id }}">
                     <div class="inner">
                         <div class="rate">
