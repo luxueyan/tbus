@@ -31,4 +31,3 @@ do (_, angular) ->
       .get '/api/v2/loans/getLoanWithPage?currentPage=1&pageSize=3&product=QD2&recommedInFront=true&status='
       .then @TAKE_RESPONSE_DATA
       .catch @TAKE_RESPONSE_ERROR
-

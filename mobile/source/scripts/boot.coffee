@@ -472,6 +472,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
 #                                            )
 #                                    )
                     }
+                
 
                     .when '/assignment/:id', {
                         controller: 'AssignmentCtrl as self'
