@@ -78,9 +78,9 @@
                         <div class="rate">
                             <div class="value">
                                 <span class="num">{{
-                                    (item.rate + '').indexOf('.') == -1
-                                    ? (item.rate | number: 1)
-                                    : item.rate
+                                    (item.rate/100 + '').indexOf('.') == -1
+                                    ? (item.rate/100 | number: 1)
+                                    : item.rate/100
                                 }}</span><span class="unit">%</span>
                             </div>
                             <div class="name">
@@ -157,9 +157,9 @@
                         <div class="rate">
                             <div class="value">
                                 <span class="num">{{
-                                    (item.rate + '').indexOf('.') == -1
-                                    ? (item.rate | number: 1)
-                                    : item.rate
+                                    (item.rate/100 + '').indexOf('.') == -1
+                                    ? (item.rate/100 | number: 1)
+                                    : item.rate/100
                                 }}</span><span class="unit">%</span>
                             </div>
                             <div class="name">
