@@ -90,16 +90,16 @@
 
                         <div class="rule">
                             <span class="duration">
-                                期限{{ item.raw.loanRequest.displayDuration.frontShowDuration }}
+                                期限{{ item.loanRequest.displayDuration.frontShowDuration }}
                             </span>
                             <span
                                 class="min-amount"
                                 ng-init="min_amount = item.raw.loanRequest.investRule.minAmount"
                             >
                                 {{
-                                    min_amount >= 10000
-                                    ? (min_amount / 10000 + '万')
-                                    : (min_amount | number)
+                                    item.loanRequest.investRule.minAmount >= 10000
+                                    ? (item.loanRequest.investRule.minAmount / 10000 + '万')
+                                    : (item.loanRequest.investRule.minAmount | number)
                                 }}元起投
                             </span>
                         </div>
@@ -172,16 +172,16 @@
 
                             <div class="rule">
                                 <span class="duration">
-                                    {{ item.raw.loanRequest.displayDuration.frontShowDuration }}
+                                    {{ item.loanRequest.displayDuration.frontShowDuration }}
                                 </span>
                                 <span
                                     class="min-amount"
                                     ng-init="min_amount = item.raw.loanRequest.investRule.minAmount"
                                 >
                                     {{
-                                        min_amount >= 10000
-                                        ? (min_amount / 10000 + '万')
-                                        : (min_amount | number)
+                                        item.loanRequest.investRule.minAmount >= 10000
+                                        ? (item.loanRequest.investRule.minAmount / 10000 + '万')
+                                        : (item.loanRequest.investRule.minAmount | number)
                                     }}元起投
                                 </span>
                             </div>
