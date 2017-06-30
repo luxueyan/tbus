@@ -139,7 +139,7 @@ var ractive = new Ractive({
                     return false;
                 }
             } else {
-                if (value < minQuota + 1) {
+                if (value <= minQuota) {
                     self.set('msg.AMOUNT_NOTENOUGH', true);
                     return false;
                 }
@@ -208,8 +208,8 @@ ractive.on('preBindCardSMSS', function () {
 });
 ractive.on('getSMS', function () {
     var cardInfo = ractive.get('cardInfoAll');
-    var obj=$("#code");
-    if(!obj.hasClass('disabled')){
+    var obj = $("#code");
+    if (!obj.hasClass('disabled')) {
         accountService.preBindCard(cardInfo, function (res) {
             if (res.success) {
                 obj.addClass('disabled');
@@ -226,7 +226,7 @@ ractive.on('getSMS', function () {
                         clearInterval(interval);
                     }
                 }), 1000)
-            }else{
+            } else {
                 alert(res.error[0].message);
             }
         });
@@ -360,7 +360,7 @@ ractive.on('recharge_submit', function (e) {
                         ractive.set('preBindCardShow', true);
                         ractive.set('cardInfoAll', cardInfo);
                         ractive.set('BindCardMobile', cardInfo.mobile.slice(0, 3) + '****' + cardInfo.mobile.slice(7, 11));
-                    }else{
+                    } else {
                         myFunc()
                     }
                 });
