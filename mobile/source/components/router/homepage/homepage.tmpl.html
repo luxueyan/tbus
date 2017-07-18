@@ -48,7 +48,7 @@
 
     <section class="loan">
         <ul class="list-unstyled loan-list loan-list-NEW text-center">
-            <li ng-repeat="item in list.NEW | limitTo: 1">
+            <li ng-repeat="item in list | limitTo: 1:0">
                 <a ng-href="loan/{{ item.id }}">
                     <div class="inner">
                         <h4 class="title">{{ item.title }}</h4>
@@ -63,24 +63,24 @@
                         <div class="tag-list">
                             <span
                                 class="tag"
-                                ng-if="item.raw.loanRequest.brightSpot"
+                                ng-if="item.loanRequest.brightSpot"
                             >
-                                {{ item.raw.loanRequest.brightSpot }}
+                                {{ item.loanRequest.brightSpot }}
                             </span>
                             <span
                                 class="tag"
-                                ng-if="item.raw.loanRequest.brightSpot2"
+                                ng-if="item.loanRequest.brightSpot2"
                             >
-                                {{ item.raw.loanRequest.brightSpot2 }}
+                                {{ item.loanRequest.brightSpot2 }}
                             </span>
                         </div>
 
                         <div class="rate">
                             <div class="value">
                                 <span class="num">{{
-                                    (item.rate + '').indexOf('.') == -1
-                                    ? (item.rate | number: 1)
-                                    : item.rate
+                                    (item.rate/100 + '').indexOf('.') == -1
+                                    ? (item.rate/100 | number: 1)
+                                    : item.rate/100
                                 }}</span><span class="unit">%</span>
                             </div>
                             <div class="name">
@@ -90,16 +90,16 @@
 
                         <div class="rule">
                             <span class="duration">
-                                期限{{ item.raw.loanRequest.displayDuration.frontShowDuration }}
+                                期限{{ item.loanRequest.displayDuration.frontShowDuration }}
                             </span>
                             <span
                                 class="min-amount"
                                 ng-init="min_amount = item.raw.loanRequest.investRule.minAmount"
                             >
                                 {{
-                                    min_amount >= 10000
-                                    ? (min_amount / 10000 + '万')
-                                    : (min_amount | number)
+                                    item.loanRequest.investRule.minAmount >= 10000
+                                    ? (item.loanRequest.investRule.minAmount / 10000 + '万')
+                                    : (item.loanRequest.investRule.minAmount | number)
                                 }}元起投
                             </span>
                         </div>
@@ -149,16 +149,17 @@
             </li>
         </ul>
 
+
         <ul class="list-unstyled loan-list loan-list-CPTJ">
-            <li ng-repeat="item in list.CPTJ | limitTo: 2">
+            <li ng-repeat="item in list | limitTo: 2:1">
                 <a ng-href="loan/{{ item.id }}">
                     <div class="inner">
                         <div class="rate">
                             <div class="value">
                                 <span class="num">{{
-                                    (item.rate + '').indexOf('.') == -1
-                                    ? (item.rate | number: 1)
-                                    : item.rate
+                                    (item.rate/100 + '').indexOf('.') == -1
+                                    ? (item.rate/100 | number: 1)
+                                    : item.rate/100
                                 }}</span><span class="unit">%</span>
                             </div>
                             <div class="name">
@@ -171,16 +172,16 @@
 
                             <div class="rule">
                                 <span class="duration">
-                                    {{ item.raw.loanRequest.displayDuration.frontShowDuration }}
+                                    {{ item.loanRequest.displayDuration.frontShowDuration }}
                                 </span>
                                 <span
                                     class="min-amount"
                                     ng-init="min_amount = item.raw.loanRequest.investRule.minAmount"
                                 >
                                     {{
-                                        min_amount >= 10000
-                                        ? (min_amount / 10000 + '万')
-                                        : (min_amount | number)
+                                        item.loanRequest.investRule.minAmount >= 10000
+                                        ? (item.loanRequest.investRule.minAmount / 10000 + '万')
+                                        : (item.loanRequest.investRule.minAmount | number)
                                     }}元起投
                                 </span>
                             </div>
@@ -195,15 +196,15 @@
                             <div class="tag-list">
                                 <span
                                     class="tag"
-                                    ng-if="item.raw.loanRequest.brightSpot"
+                                    ng-if="item.loanRequest.brightSpot"
                                 >
-                                    {{ item.raw.loanRequest.brightSpot }}
+                                    {{ item.loanRequest.brightSpot }}
                                 </span>
                                 <span
                                     class="tag"
-                                    ng-if="item.raw.loanRequest.brightSpot2"
+                                    ng-if="item.loanRequest.brightSpot2"
                                 >
-                                    {{ item.raw.loanRequest.brightSpot2 }}
+                                    {{ item.loanRequest.brightSpot2 }}
                                 </span>
                             </div>
                         </div>
