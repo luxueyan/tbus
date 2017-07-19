@@ -1,248 +1,218 @@
-
 do (_, angular) ->
+  angular.module('controller').controller 'PaymentPoolBindCardCtrl',
 
-    angular.module('controller').controller 'PaymentPoolBindCardCtrl',
+    _.ai '            @banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @$location, @$interval, @$routeParams, @$uibModal, @toast', class
+      constructor: (@banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @$location, @$interval, @$routeParams, @$uibModal, @toast) ->
+        @$window.scrollTo 0, 0
 
-        _.ai '            @banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @$location, @$interval, @$routeParams, @$uibModal, @toast', class
-            constructor: (@banks, @user, @api, @$scope, @$rootScope, @$window, @$q, @$location, @$interval, @$routeParams, @$uibModal, @toast) ->
+        @$rootScope.state = 'dashboard'
 
-                @$window.scrollTo 0, 0
+        return @$location.path 'dashboard' if @user.has_bank_card
 
-                @$rootScope.state = 'dashboard'
+        angular.extend @$scope, {
+          store: {}
+        }
 
-                return @$location.path 'dashboard' if @user.has_bank_card
+        @next_path = @$routeParams.next or 'dashboard'
 
-                angular.extend @$scope, {
-                    store: {}
-                }
+        @submit_sending = false
 
-                @next_path = @$routeParams.next or 'dashboard'
+        @captcha = {timer: null, count: 60, count_default: 60, has_sent: false, buffering: false}
 
-                @submit_sending = false
+        EXTEND_API @api
 
-                @captcha = {timer: null, count: 60, count_default: 60, has_sent: false, buffering: false}
 
-                EXTEND_API @api
+      send_mobile_captcha: ({user_name, id_number, bank, cardNo, cardPhone}) ->
+        @captcha.sending = true
 
+        post_data = {
+          realName: user_name
+          idNumber: id_number
+          accountNumber: cardNo
+          mobile: cardPhone
+          bankName: bank.bankCode
+        }
 
-            send_mobile_captcha: ({user_name, id_number, bank, cardNo, cardPhone}) ->
+        (@api.payment_pool_bind_card_sent_captcha(post_data)
 
-                @captcha.sending = true
+        .then @api.process_response
 
-                post_data = {
-                    realName: user_name
-                    idNumber: id_number
-                    accountNumber: cardNo
-                    mobile: cardPhone
-                    bankName: bank.bankCode
-                }
+        .then =>
+          @captcha.timer = @$interval =>
+            @captcha.count -= 1
 
-                (@api.payment_pool_bind_card_sent_captcha(post_data)
+            if @captcha.count < 1
+              @$interval.cancel @captcha.timer
+              @captcha.count = @captcha.count_default
+              @captcha.buffering = false
+          , 1000
 
-                    .then @api.process_response
+          @captcha.has_sent = @captcha.buffering = true
 
-                    .then =>
-                        @captcha.timer = @$interval =>
-                            @captcha.count -= 1
+        .catch (data) =>
+          if _.get(data, 'error') is 'access_denied'
+            @$window.alert @$scope.msg.ACCESS_DENIED
+            @$window.location.reload()
+            return
 
-                            if @captcha.count < 1
-                                @$interval.cancel @captcha.timer
-                                @captcha.count = @captcha.count_default
-                                @captcha.buffering = false
-                        , 1000
+          key = _.get data, 'error[0].message', 'UNKNOWN'
+          @$window.alert @$scope.msg[key] or @$scope.msg.PRE_BIND_CARD_FAILED
 
-                        @captcha.has_sent = @captcha.buffering = true
+        .finally =>
+          @captcha.sending = false
+        )
 
-                    .catch (data) =>
-                        if _.get(data, 'error') is 'access_denied'
-                            @$window.alert @$scope.msg.ACCESS_DENIED
-                            @$window.location.reload()
-                            return
 
-                        key = _.get data, 'error[0].message', 'UNKNOWN'
-                        @$window.alert @$scope.msg[key] or @$scope.msg.PRE_BIND_CARD_FAILED
+      bind_card: ({user_name, id_number, bank, cardNo, cardPhone, smsCaptcha, password}) ->
+        @submit_sending = true
 
-                    .finally =>
-                        @captcha.sending = false
-                )
+        (@$q.resolve(!!@user.has_payment_password)
 
+        .then =>
+          post_data = {
+            realName: user_name
+            idNumber: id_number
+            accountNumber: cardNo
+            mobile: cardPhone
+            bankName: bank.bankCode
+            smsCode: smsCaptcha
+            userId: @user.info.id
+          }
 
-            bind_card: ({user_name, id_number, bank, cardNo, cardPhone, smsCaptcha, password}) ->
+          @api.payment_pool_bind_card(post_data)
 
-                @submit_sending = true
+        .then @api.process_response
 
-                (@$q.resolve(!!@user.has_payment_password)
+        .then (data) =>
+          @api.flush_user_info()
 
-                    .then (has_payment_password) =>
-                        if has_payment_password
-                            return
+          if !@user.has_payment_password
+            @api.payment_pool_password_set(password)
+            .then @api.process_response
+            .then (data) =>
+              @user.has_payment_password = true
 
-                        else
-                            return (
-                                @api.payment_pool_password_set(password)
-                                    .then @api.process_response
-                                    .then (data) =>
-                                        @user.has_payment_password = true
-                            )
+          @$window.alert @$scope.msg.SUCCEED
+          @$window.history.back()
 
-                    .then =>
-                        post_data = {
-                            realName: user_name
-                            idNumber: id_number
-                            accountNumber: cardNo
-                            mobile: cardPhone
-                            bankName: bank.bankCode
-                            smsCode: smsCaptcha
-                            userId: @user.info.id
-                        }
+        .catch (data) =>
+          if _.get(data, 'error') is 'access_denied'
+            @$window.alert @$scope.msg.ACCESS_DENIED
+            @$window.location.reload()
+            return
 
-                        @api.payment_pool_bind_card(post_data)
+          @submit_sending = false
 
-                    .then @api.process_response
+          key = _.get data, 'error[0].message', 'UNKNOWN'
+          msg = @$scope.msg[key] or key
 
-                    .then (data) =>
-                        @api.flush_user_info()
+          if msg.indexOf('TRADE_FAILED') > -1
+            msg = msg.replace('TRADE_FAILED', @$scope.msg['TRADE_FAILED'])
 
-                        @$window.alert @$scope.msg.SUCCEED
-                        @$window.history.back()
+          @$window.alert msg
+        )
 
-                    .catch (data) =>
-                        if _.get(data, 'error') is 'access_denied'
-                            @$window.alert @$scope.msg.ACCESS_DENIED
-                            @$window.location.reload()
-                            return
 
-                        @submit_sending = false
+      does_not_exist_id_number: (value) ->
+        @api.check_id_number(value)
 
-                        key = _.get data, 'error[0].message', 'UNKNOWN'
-                        msg = @$scope.msg[key] or key
+        .then @api.process_response
 
-                        if msg.indexOf('TRADE_FAILED') > -1
-                            msg = msg.replace('TRADE_FAILED', @$scope.msg['TRADE_FAILED'])
+        .catch (data) =>
+          if data?.success is false
+            @$q.reject()
+          else
+            @$q.resolve()
 
-                        @$window.alert msg
-                )
 
+      does_not_exist_bank: (value) ->
+        _.every @user.bank_account_list, (item) -> item.account.account isnt value
 
-            does_not_exist_id_number: (value) ->
 
-                @api.check_id_number(value)
+      agreement: (name) ->
+        api_path = '/api/v2/cms/category/DECLARATION/name/' + name
 
-                    .then @api.process_response
+        prompt = @$uibModal.open {
+          size: 'lg'
+          backdrop: 'static'
+          windowClass: 'center'
+          animation: true
+          templateUrl: 'ngt-payment-agreement.tmpl'
 
-                    .catch (data) =>
-                        if data?.success is false
-                            @$q.reject()
-                        else
-                            @$q.resolve()
+          resolve: {
+            content: _.ai '$http', ($http) ->
+              $http
+              .get api_path, {cache: true}
+              .then (response) -> _.get response.data, '[0].content'
+          }
 
+          controller: _.ai '$scope, content',
+            ($scope, content) ->
+              angular.extend $scope, {content}
+        }
 
-            does_not_exist_bank: (value) ->
-                _.every @user.bank_account_list, (item) -> item.account.account isnt value
+        once = @$scope.$on '$locationChangeStart', ->
+          prompt?.dismiss()
+          do once
 
+        return prompt.result
 
-            agreement: (name) ->
 
-                api_path = '/api/v2/cms/category/DECLARATION/name/' + name
+      select_bank: (event, store) ->
+        do event.preventDefault
 
-                prompt = @$uibModal.open {
-                    size: 'lg'
-                    backdrop: 'static'
-                    windowClass: 'center'
-                    animation: true
-                    templateUrl: 'ngt-payment-agreement.tmpl'
+        prompt = @$uibModal.open {
+          size: 'lg'
+          backdrop: 'static'
+          windowClass: 'modal-full-page'
+          openedClass: 'modal-full-page-wrap'
+          animation: false
+          templateUrl: 'ngt-dashboard-payment-bind-card-select-bank.tmpl'
 
-                    resolve: {
-                        content: _.ai '$http', ($http) ->
-                            $http
-                                .get api_path, {cache: true}
-                                .then (response) -> _.get response.data, '[0].content'
-                    }
+          controller: _.ai '$scope',
+            ($scope) =>
+              angular.extend $scope, {
+                banks: @banks
+                select: (bank) =>
+                  store.bank = bank
+                  if bank?.bankCode in ['PSBC', 'SHB']
+                    @toast('此银行需要开通银联在线支付')
+              }
+        }
 
-                    controller: _.ai '$scope, content',
-                        (             $scope, content) ->
-                            angular.extend $scope, {content}
-                }
+        once = @$scope.$on '$locationChangeStart', ->
+          prompt?.dismiss()
+          do once
 
-                once = @$scope.$on '$locationChangeStart', ->
-                    prompt?.dismiss()
-                    do once
+        return prompt.result
 
-                return prompt.result
 
+  EXTEND_API = (api) ->
+    api.__proto__.payment_pool_password_set = (password) ->
+      @$http
+      .post '/api/v2/user/MYSELF/setPaymentPassword',
+        {password}
 
-            select_bank: (event, store) ->
+      .then @TAKE_RESPONSE_DATA
+      .catch @TAKE_RESPONSE_ERROR
 
-                do event.preventDefault
 
-                prompt = @$uibModal.open {
-                    size: 'lg'
-                    backdrop: 'static'
-                    windowClass: 'modal-full-page'
-                    openedClass: 'modal-full-page-wrap'
-                    animation: false
-                    templateUrl: 'ngt-dashboard-payment-bind-card-select-bank.tmpl'
+    api.__proto__.check_id_number = (idNumber) ->
+      @$http
+      .post '/api/v2/users/check/id_number', {idNumber}
 
-                    controller: _.ai '$scope',
-                        (             $scope) =>
-                            angular.extend $scope, {
-                                banks: @banks
-                                select: (bank) =>
-                                    store.bank = bank
-                                    if bank?.bankCode in ['PSBC', 'SHB']
-                                        @toast('此银行需要开通银联在线支付')
-                            }
-                }
+      .then @TAKE_RESPONSE_DATA
+      .catch @TAKE_RESPONSE_ERROR
 
-                once = @$scope.$on '$locationChangeStart', ->
-                    prompt?.dismiss()
-                    do once
 
-                return prompt.result
+  angular.module('directive').directive 'idNumber',
 
+    _.ai 'checkChinaID', (checkChinaID) ->
+      restrict: 'A'
+      require: 'ngModel'
 
+      link: (scope, element, attr, ngModel) ->
+        ngModel.$parsers.push (value) ->
+          ('' + value).trim().toUpperCase()
 
-
-
-
-
-    EXTEND_API = (api) ->
-
-        api.__proto__.payment_pool_password_set = (password) ->
-
-            @$http
-                .post '/api/v2/user/MYSELF/setPaymentPassword',
-                    {password}
-
-                .then @TAKE_RESPONSE_DATA
-                .catch @TAKE_RESPONSE_ERROR
-
-
-        api.__proto__.check_id_number = (idNumber) ->
-
-            @$http
-                .post '/api/v2/users/check/id_number', {idNumber}
-
-                .then @TAKE_RESPONSE_DATA
-                .catch @TAKE_RESPONSE_ERROR
-
-
-
-
-
-
-
-
-    angular.module('directive').directive 'idNumber',
-
-        _.ai 'checkChinaID', (checkChinaID) ->
-
-            restrict: 'A'
-            require: 'ngModel'
-
-            link: (scope, element, attr, ngModel) ->
-
-                ngModel.$parsers.push (value) ->
-                    ('' + value).trim().toUpperCase()
-
-                ngModel.$validators.id_number = checkChinaID
+        ngModel.$validators.id_number = checkChinaID
