@@ -241,7 +241,7 @@
 }
 
 .nav-li .nav-text-active a {
-    color: #e4262b;
+    color: #1D6ED7;
     font-weight: 300;
     background: #fff;
     display: block;
@@ -256,7 +256,7 @@
 .nav-li .icon-active {
     height: 60px;
     width: 52px;
-    border-left: 3px #e4262b solid;
+    border-left: 3px #1D6ED7 solid;
     background: #fff;
     box-shadow: 9px 6px 10px -2px #ccc;
 }
@@ -292,13 +292,13 @@
 }
 
 .nav-li .nav-toggle-menu .active {
-    border-left: 3px #e4262b solid;
+    border-left: 3px #1D6ED7 solid;
     background: #fff;
 }
 
 .nav-li .nav-toggle-menu .active a {
     padding-left: 72px;
-    color: #e4262b;
+    color: #1D6ED7;
 }
 
 .space-40 {

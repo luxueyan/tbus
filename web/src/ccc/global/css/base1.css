@@ -356,9 +356,9 @@
     width: 16px;
 }
 #menu .navactive {
-    color: #e60012;
+    color: #1D6ED7;
     text-decoration: none;
-    border-bottom: 3px solid #e60012;
+    border-bottom: 3px solid #1D6ED7;
 }
 /*计算器*/
 .cc-calculator-wp {
@@ -708,7 +708,7 @@ input[type=button] {
     height: 40px;
     border: 1px solid;
     color: #FFF;
-    background-color: #D7000F;
+    background-color: #1D6ED7;
     border-color: transparent;
     display: block;
     float: left;
