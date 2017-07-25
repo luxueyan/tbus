@@ -8,7 +8,7 @@
     "coffee-script": "1.10.0",
     "cookie-parser": "^1.4.0",
     "express": "^4.13.3",
-    "less": "2.5.3",
+    "less": "2.7.2",
     "less-plugin-clean-css": "^1.5.1",
     "lodash": "^3.10.1",
     "minimist": "^1.2.0",
