@@ -31,7 +31,7 @@ select::-ms-expand { display: none; }
     color: #999;
 }
 .detailTitle span {
-    color: #e4262b;
+    color: #1D6ED7;
 }
 .invest-data-wrapper {
     width: 767px;
@@ -600,7 +600,7 @@ select::-ms-expand { display: none; }
 .do-invest-wrapper .loginBtn {
     height: 45px;
     color: #fff;
-    background-color: #e60012;
+    background: url("/ccc/invest/img/sub_btn_bg.jpg") no-repeat center;
     font-size: 16px;
     line-height: 44px;
     border: none;
@@ -611,7 +611,6 @@ select::-ms-expand { display: none; }
     margin: 0 auto;
 }
 .do-invest-wrapper .loginBtn:hover {
-    background-color: #C71E23;
 }
 .do-invest-wrapper .status .userBlock .invest-button {
     margin-left: 0px;

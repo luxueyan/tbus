@@ -20,7 +20,7 @@
   margin-left: 20px;
 }
 .list_title span{
-  color: #e4262b;
+  color: #1D6ED7;
 }
 .getstatusNum{
   float: right;
@@ -31,10 +31,10 @@
   cursor: pointer;
 }
 .getstatusNum ul li:hover{
-  color: #e4262b;
+  color: #1D6ED7;
 }
 .getstatusNum ul li.selected{
-  color: #e4262b;
+  color: #1D6ED7;
 }
 
 .list_content{
@@ -93,7 +93,7 @@
   text-decoration: none;
 }
 .invest-list-wrapper .investbtn-open{
-  background: #e4262b;
+  background: #1D6ED7;
 }
 /*分页*/
 #invest-pager{
