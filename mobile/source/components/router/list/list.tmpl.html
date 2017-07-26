@@ -8,12 +8,6 @@
                 <a href="list?tab=loan" class="btn btn-tab"
                    ng-class="{ selected: current_tab === 'loan' }"
                 >理财</a>
-                <a href="list?tab=high" class="btn btn-tab"
-                   ng-class="{ selected: current_tab === 'high' }"
-                >高端理财</a>
-                <a href="list?tab=honour" class="btn btn-tab"
-                   ng-class="{ selected: current_tab === 'honour' }"
-                >尊享理财</a>
                 <a href="list?tab=assignment" class="btn btn-tab"
                    ng-class="{ selected: current_tab === 'assignment' }"
                 >转让</a>
@@ -26,14 +20,6 @@
         <div class="content" ng-switch-when="loan">
             <h3 class="title">固定收益</h3>
             <span class="desc">稳健投资 乐享收益</span>
-        </div>
-        <div class="content" ng-switch-when="high">
-            <h3 class="title">固定收益</h3>
-            <span class="desc">稳健投资 乐享收益</span>
-        </div>
-        <div class="content" ng-switch-when="honour">
-            <h3 class="title">尊享理财</h3>
-            <span class="desc">私人定制 尊享服务</span>
         </div>
         <div class="content" ng-switch-when="assignment">
             <h3 class="title">转让专区</h3>
