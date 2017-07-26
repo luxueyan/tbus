@@ -228,19 +228,17 @@ a {
                     .icon {
                         display: block;
                         margin: 0 auto 10px;
-                        border: 1px solid @color-theme-main;
-                        border-radius: 10px;
                         width: 114px/2;
                         height: 114px/2;
 
                         &-bank-card {
                             background: url("@{path-image}/bank-card-icon.png") no-repeat center center;
-                            background-size: 70px/2 48px/2;
+                            background-size: cover;
                         }
 
                         &-payment-password {
                             background: url("@{path-image}/payment-password-icon.png") no-repeat center center;
-                            background-size: 44px/2 60px/2;
+                            background-size: cover;
                         }
                     }
 
@@ -258,7 +256,7 @@ a {
                             top: 27px;
                             left: 0;
                             width: 40px;
-                            border-top: 2px dotted #E18691;
+                            border-top: 2px dotted #1D6ED7;
                         }
                     }
                 }
@@ -2556,14 +2554,14 @@ a {
                 &:nth-child(2) {
                     .name:after,
                     .value:before {
-                        background-color: #E60012;
+                        background-color: @color-theme-main;
                     }
                 }
 
                 &:nth-child(3) {
                     .name:before,
                     .value:before {
-                        background-color: #E60012;
+                        background-color: @color-theme-main;
                     }
                 }
             }
@@ -2630,7 +2628,7 @@ a {
             }
 
             &-title {
-                border-left: 1px solid #D7000F;
+                border-left: 1px solid @color-theme-main;
                 padding-left: 5px;
                 font-size: 14px;
                 color: @color-theme-main;
