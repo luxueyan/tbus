@@ -72,7 +72,7 @@ do (_, angular, moment, Math, Date) ->
             lineWidth: 4
             scaleColor: false
             lineCap: 'butt'
-            barColor: '#D7000F'
+            barColor: '#1D6ED7'
             trackColor: '#DBDCDC'
 
         loanRequest = item.loanRequest

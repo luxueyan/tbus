@@ -11,8 +11,8 @@
             <img height="19" ng-src="assets/image/user-icon.png">
             <small>{{ self.user.info.name || (self.user.info.mobile | string_replace: '^(\\d{3})(\\d{5})(\\d{3})$' : '$1*****$3') }}</small>
         </a>
-        <span class="col-xs-4 text-center logo">
-            <img height="13" ng-src="assets/image/nav-logo-2.png">
+        <span class="col-xs-4 text-center slogen">
+            理财有智&nbsp;&nbsp;上土巴士
         </span>
         <a href="activity" class="col-xs-4 actions">
             <img height="14" ng-src="assets/image/eye-icon.png">
@@ -31,12 +31,12 @@
                 <img width="35" ng-src="assets/image/logo-sm.png">
             </div>
             <div class="item text-wrap">
-                <h4>汇财富  <span class="desc">卓越金融 财富人生</span></h4>
+                <h4>土巴士  <span class="desc">卓越金融 财富人生</span></h4>
                 <p>下载APP <span class="desc">随时随地安全理财</span></p>
             </div>
             <div class="item">
                 <a class="btn btn-theme btn-sm"
-                   href="http://a.app.qq.com/o/simple.jsp?pkgname=com.tahone.client"
+                   href=""
                 >立即下载</a>
             </div>
         </div>
@@ -142,10 +142,6 @@
                        ng-href="loan/{{ item.id }}"
                     >已结息</a>
                 </div>
-
-                <a href="static/invite" class="gift" target="_self">
-                    <img width="55" ng-src="assets/image/gift.png">
-                </a>
             </li>
         </ul>
 

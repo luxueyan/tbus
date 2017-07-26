@@ -1,5 +1,5 @@
 {
-    "name": "theh-mobile",
+    "name": "tbus-mobile",
     "os": ["!win32"],
     "scripts": {
         "start": "cd dist/ && ecstatic",
