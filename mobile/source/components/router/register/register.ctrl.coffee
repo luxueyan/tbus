@@ -21,31 +21,9 @@ do (_, angular) ->
 
                 @captcha = {timer: null, count: 60, count_default: 60, has_sent: false, buffering: false}
 
-                @$scope.has_referral = !!@$scope.store.referral
                 @submit_sending = false
 
-                EXTEND_API @api
-
-                if @$scope.has_referral
-                    @get_referral_info(referral)
-                else
-                    @$rootScope.state = 'dashboard'
-
-
-            get_referral_info: (referral) ->
-
-                @$scope.loading_referral_info = true
-
-                (@api.get_referral_info(referral)
-
-                    .then @api.process_response
-
-                    .then (response) =>
-                        @$scope.referral_info = _.get(response, 'data')
-
-                    .finally =>
-                        @$scope.loading_referral_info = false
-                )
+                @$rootScope.state = 'dashboard'
 
 
             get_verification_code: ({mobile, captcha}) ->
@@ -122,42 +100,15 @@ do (_, angular) ->
                     .then @api.process_response
 
                     .then (data) =>
-                        (@$q.resolve()
-                            .then =>
-                                return @$q.reject() unless @$scope.has_referral
+                        @$scope.is_register_successful = true
 
-                                (@api.get_user_coupons_by_type({type: 'PRINCIPAL'})
+                        @$scope.$on '$locationChangeStart', (event, new_path) =>
+                            event.preventDefault()
+                            @$window.location = new_path
 
-                                    .then @api.process_response
-                                    .then @api.TAKE_RESPONSE_DATA
-
-                                    .then ({results}) =>
-                                        coupon_8888 = _.find(
-                                            results,
-                                            (item) -> item.couponPackage.parValue is 8888
-                                        )
-
-                                        return @$q.reject() unless coupon_8888
-
-                                        @close_form()
-
-                                        @show_coupon({
-                                            mobile,
-                                            expire_time: _.get(coupon_8888, 'timeExpire')
-                                        })
-                                )
-
-                            .catch =>
-                                @$scope.is_register_successful = true
-
-                                @$scope.$on '$locationChangeStart', (event, new_path) =>
-                                    event.preventDefault()
-                                    @$window.location = new_path
-
-                                @$location
-                                    .path 'download-app'
-                                    .search {}
-                        )
+                        @$location
+                            .path 'download-app'
+                            .search {}
 
                     .catch (data) =>
                         key = _.get data, 'error[0].message', 'UNKNOWN'
@@ -194,108 +145,6 @@ do (_, angular) ->
                     do once
 
 
-            popup_form: ({mobile}) ->
-                @submit_sending = true
-
-                unless mobile
-                    @$window.alert('请输入手机号码')
-                    @submit_sending = false
-                    return
-
-                (@api.check_mobile(mobile)
-
-                    .then @api.process_response
-
-                    .then (data) =>
-                        prompt = @$uibModal.open {
-                            size: 'lg'
-                            backdrop: 'static'
-                            windowClass: 'center modal-register'
-                            animation: true
-                            templateUrl: 'ngt-register-form.tmpl'
-
-                            controller: _.ai '$scope',
-                                (             $scope) =>
-                                    @close_form = -> prompt?.close()
-
-                                    unless @captcha.buffering
-                                        @get_verification_code(@$scope.store)
-
-                                    angular.extend $scope, {
-                                        self: @
-                                        store: @$scope.store
-                                    }
-                        }
-
-                        once = @$scope.$on '$locationChangeStart', ->
-                            prompt?.dismiss()
-                            do once
-
-                    .catch (data) =>
-                        key = _.get data, 'error[0].message'
-
-                        if key in _.split 'MOBILE_EXISTS MOBILE_USED'
-                            @confirm_login(mobile)
-                            return
-
-                        @$window.alert(@$scope.msg[key] or @$scope.msg.UNKNOWN)
-
-                    .finally =>
-                        @submit_sending = false
-                )
-
-
-            confirm_login: (mobile) ->
-
-                prompt = @$uibModal.open {
-                    size: 'sm'
-                    keyboard: false
-                    backdrop: 'static'
-                    windowClass: 'center modal-confirm'
-                    animation: false
-                    template: '''
-                        <div class="modal-body text-center">
-                            该手机号已注册
-                        </div>
-
-                        <div class="modal-buttons">
-                            <div class="modal-button" ng-click="$close()">重新输入</div>
-                            <a class="modal-button" ng-href="login?mobile={{ mobile }}">去登录</a>
-                        </div>
-                    '''
-
-                    controller: _.ai '$scope',
-                        (             $scope) ->
-                            angular.extend $scope, { mobile }
-                }
-
-                once = @$scope.$on '$locationChangeStart', ->
-                    prompt?.dismiss()
-                    do once
-
-                return prompt.result
-
-
-            show_coupon: (data) ->
-
-                prompt = @$uibModal.open {
-                    size: 'lg'
-                    backdrop: 'static'
-                    windowClass: 'modal-full-page'
-                    openedClass: 'modal-full-page-wrap'
-                    animation: false
-                    templateUrl: 'ngt-register-coupon.tmpl'
-
-                    controller: _.ai '$scope',
-                        (             $scope) =>
-                            angular.extend $scope, data
-                }
-
-                once = @$scope.$on '$locationChangeStart', ->
-                    prompt?.dismiss()
-                    do once
-
-
 
 
 
@@ -322,19 +171,4 @@ do (_, angular) ->
                 do once
 
             return prompt.result
-
-
-
-
-
-    EXTEND_API = (api) ->
-
-        api.__proto__.get_referral_info= (inviteCode) ->
-
-            @$http
-                .post '/api/v2/users/getReferralInfo', {inviteCode}
-
-                .then @TAKE_RESPONSE_DATA
-                .catch @TAKE_RESPONSE_ERROR
-
 
