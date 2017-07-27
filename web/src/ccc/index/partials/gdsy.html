@@ -1,7 +1,21 @@
 {{#listTJ}}
 <div class="proWrapper">
     <div class="header">
-        <div class="header_title">固定收益</div>
+        <div class="targsBox">
+            {{#if loanRequest.activityInfo}}
+            <span>{{loanRequest.activityInfo}}</span>
+            {{/if}}
+            <span>固定理财</span>
+        </div>
+        <div class="infoBox_title">
+            <a href="loan/{{ id }}">
+                {{#if title.length>11}}
+                {{title.substr(0,11)+'...'}}
+                {{else}}
+                {{title}}
+                {{/if}}
+            </a>
+        </div>
         <div class="header_tags">
             {{#if loanRequest.brightSpot}}
             <span>{{loanRequest.brightSpot}}</span>
@@ -13,32 +27,17 @@
             <span>{{loanRequest.brightSpot3}}</span>
             {{/if}}
         </div>
-        <p class="word">迄今为止100%安全兑付</p>
-        <p class="word">7天-36个月灵活期限</p>
-        {{#if loanRequest.activityInfo}}
-        <div class="header_tags02">{{loanRequest.activityInfo}}</div>
-        {{/if}}
+        <p class="word">迄今为止100%安全兑付,7天-36个月灵活期限</p>
     </div>
-    <img src="/ccc/index/img/line.png">
+    <div class="rateBox">
+        <div class="rate"><span>{{rate}}</span>%</div>
+        <p>年收益率</p>
+    </div>
     <div class="infoBox">
-        <div class="infoBox_title">
-            <a href="loan/{{ id }}">
-                {{#if title.length>11}}
-                    {{title.substr(0,11)+'...'}}
-                {{else}}
-                    {{title}}
-                {{/if}}
-            </a>
-        </div>
-
         <div class="detail-box">
             <div class="investNum">
-                <div class="rate"><span>{{rate}}</span>%</div>
-                <p>年收益率</p>
-            </div>
-            <div class="investNum">
                 <div><span>{{durationNewNo}}</span>{{durationNewName}}</div>
-                <p>期限</p>
+                <p>融资期限</p>
             </div>
             <div class="investNum" style="padding-right: 0px">
                 <div><span>{{minAmount}}</span>{{minAmountUnit}}</div>
@@ -83,7 +82,21 @@
 {{#listNew}}
 <div class="proWrapper">
     <div class="header">
-        <div class="header_title">固定收益</div>
+        <div class="targsBox">
+            {{#if loanRequest.activityInfo}}
+            <span>{{loanRequest.activityInfo}}</span>
+            {{/if}}
+            <span>固定理财</span>
+        </div>
+        <div class="infoBox_title">
+            <a href="loan/{{ id }}">
+                {{#if title.length>11}}
+                {{title.substr(0,11)+'...'}}
+                {{else}}
+                {{title}}
+                {{/if}}
+            </a>
+        </div>
         <div class="header_tags">
             {{#if loanRequest.brightSpot}}
             <span>{{loanRequest.brightSpot}}</span>
@@ -95,32 +108,17 @@
             <span>{{loanRequest.brightSpot3}}</span>
             {{/if}}
         </div>
-        <p class="word">迄今为止100%安全兑付</p>
-        <p class="word">7天-36个月灵活期限</p>
-        {{#if loanRequest.activityInfo}}
-        <div class="header_tags02">{{loanRequest.activityInfo}}</div>
-        {{/if}}
+        <p class="word">迄今为止100%安全兑付,7天-36个月灵活期限</p>
     </div>
-    <img src="/ccc/index/img/line.png">
+    <div class="rateBox">
+        <div class="rate"><span>{{rate}}</span>%</div>
+        <p>年收益率</p>
+    </div>
     <div class="infoBox">
-        <div class="infoBox_title">
-            <a href="loan/{{ id }}">
-                {{#if title.length>11}}
-                {{title.substr(0,11)+'...'}}
-                {{else}}
-                {{title}}
-                {{/if}}
-            </a>
-        </div>
-
         <div class="detail-box">
             <div class="investNum">
-                <div class="rate"><span>{{rate}}</span>%</div>
-                <p>年收益率</p>
-            </div>
-            <div class="investNum">
                 <div><span>{{durationNewNo}}</span>{{durationNewName}}</div>
-                <p>期限</p>
+                <p>融资期限</p>
             </div>
             <div class="investNum" style="padding-right: 0px">
                 <div><span>{{minAmount}}</span>{{minAmountUnit}}</div>
@@ -166,7 +164,21 @@
 {{#listGD}}
 <div class="proWrapper">
     <div class="header">
-        <div class="header_title">固定收益</div>
+        <div class="targsBox">
+            {{#if loanRequest.activityInfo}}
+            <span>{{loanRequest.activityInfo}}</span>
+            {{/if}}
+            <span>固定理财</span>
+        </div>
+        <div class="infoBox_title">
+            <a href="loan/{{ id }}">
+                {{#if title.length>11}}
+                {{title.substr(0,11)+'...'}}
+                {{else}}
+                {{title}}
+                {{/if}}
+            </a>
+        </div>
         <div class="header_tags">
             {{#if loanRequest.brightSpot}}
             <span>{{loanRequest.brightSpot}}</span>
@@ -178,32 +190,17 @@
             <span>{{loanRequest.brightSpot3}}</span>
             {{/if}}
         </div>
-        <p class="word">迄今为止100%安全兑付</p>
-        <p class="word">7天-36个月灵活期限</p>
-        {{#if loanRequest.activityInfo}}
-        <div class="header_tags02">{{loanRequest.activityInfo}}</div>
-        {{/if}}
+        <p class="word">迄今为止100%安全兑付,7天-36个月灵活期限</p>
     </div>
-    <img src="/ccc/index/img/line.png">
+    <div class="rateBox">
+        <div class="rate"><span>{{rate}}</span>%</div>
+        <p>年收益率</p>
+    </div>
     <div class="infoBox">
-        <div class="infoBox_title">
-            <a href="loan/{{ id }}">
-                {{#if title.length>11}}
-                {{title.substr(0,11)+'...'}}
-                {{else}}
-                {{title}}
-                {{/if}}
-            </a>
-        </div>
-
         <div class="detail-box">
             <div class="investNum">
-                <div class="rate"><span>{{rate}}</span>%</div>
-                <p>年收益率</p>
-            </div>
-            <div class="investNum">
                 <div><span>{{durationNewNo}}</span>{{durationNewName}}</div>
-                <p>期限</p>
+                <p>融资期限</p>
             </div>
             <div class="investNum" style="padding-right: 0px">
                 <div><span>{{minAmount}}</span>{{minAmountUnit}}</div>

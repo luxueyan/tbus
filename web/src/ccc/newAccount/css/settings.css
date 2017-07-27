@@ -856,7 +856,7 @@ p.tips {
 }
 .fixedUl .activeUl {
     color: #fff;
-    background: #e60012;
+    background: #1d6ed7;
 }
 .fixed-invest {
     margin-left: 10px;
@@ -1100,18 +1100,18 @@ p.tips {
 }
 .ccc-tab > ul.tabs > li a:hover,
 .ccc-tab > ul.tabs > li a:focus {
-    color: #e60012;
+    color: #1d6ed7;
     text-decoration: none;
     display: inline-block;
     margin: 10px 25px;
     width: inherit;
 }
 .ccc-tab > ul.tabs .active {
-    border-bottom: 2px solid #e60012;
+    border-bottom: 2px solid #1d6ed7;
     margin-bottom: 0px;
 }
 .ccc-tab > ul.tabs .active a {
-    color: #e60012;
+    color: #1d6ed7;
 }
 .fixed-nav {
     margin-top: 30px;
@@ -1178,7 +1178,7 @@ p.tips {
 .open-account-wrapper .account-submit .info-submit {
     width: 200px;
     height: 45px;
-    background: #e4262b;
+    background: #1d6ed7;
     border: none;
     color: white;
     font-size: 18px;

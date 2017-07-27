@@ -41,16 +41,16 @@
     cursor: pointer;
     float: left;
     margin-right: 5px;
-    background: #bb9f6a;
+    background: #eeeeee;
     height: 40px;
 }
 .coupon-content .coupon-nav-view ul li:hover,
 .coupon-content .coupon-nav-view ul li.active {
     box-shadow: 0px 7px 6px -4px #ccc;
-    background: #fff;
+    background: #1d6ed7;
 }
 .coupon-content .coupon-nav-view ul li:hover a {
-    color: #d60303;
+    color: #ffffff;
     /*padding: 0 24px;*/
 }
 .coupon-content-detail {
@@ -59,7 +59,7 @@
 }
 .ccc-tab > ul.ttabs > li a {
     text-decoration: none;
-    color: #fff;
+    color: #666666;
     border-radius: 2px;
     font-size: 18px;
     margin: 10px 0;
@@ -74,7 +74,7 @@
     margin-bottom: 0px;
 }
 .ccc-tab > ul.ttabs .active a {
-    color: #d60303;
+    color: #ffffff;
     padding: 0 100px;
 }
 .ccc-tab > ul.stabs > li a {

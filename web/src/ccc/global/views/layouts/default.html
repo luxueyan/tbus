@@ -7,25 +7,27 @@
 <link rel="stylesheet" href="/ccc/global/css/base.css">
 <link rel="stylesheet" href="/ccc/global/css/base1.css">
 <link rel="shortcut icon" href="/ccc/global/img/web.png">
-<!--[if lt IE 9]><script src="http://wuyongzhiyong.b0.upaiyun.com/iedie/v1.1/script.min.js"></script><![endif]-->
+<!--[if lt IE 9]>
+<script src="http://wuyongzhiyong.b0.upaiyun.com/iedie/v1.1/script.min.js"></script><![endif]-->
 <!--[if lt IE 10]>
 <script src="/ccc/ie8fix/js/dist/console-html5-es5shim-excanvas.js"></script>
 <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 <script src="/ccc/global-common.js" async></script>
-<!--[if IE 8]><link rel="stylesheet" href="/ccc/global/css/ie8.css" /><![endif]-->
-<meta charset="utf-8" />
-<meta name="renderer" content="webkit" />
-<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+<!--[if IE 8]>
+<link rel="stylesheet" href="/ccc/global/css/ie8.css"/><![endif]-->
+<meta charset="utf-8"/>
+<meta name="renderer" content="webkit"/>
+<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge"/>
 <title>{{title}}</title>
 <script>
-    {{{ state }}};
+    {{{state}}};
     window.global = window.global || window;
     window.process = window.process || CC.process;
-//    if(process.env.NODE_ENV === 'development'){
-//        //document.write('<script src="/ccc/template-watch/js/dist/getRactiveTemplate.js"></'+'script>');
-//    }
-//    if(process.env.NODE_ENV === 'development' || process.env.NODE_APP_INSTANCE === 'uat'){document.write('<script src="/ccc/inspect/js/main/inspect.js"></'+'script>');}
+    //    if(process.env.NODE_ENV === 'development'){
+    //        //document.write('<script src="/ccc/template-watch/js/dist/getRactiveTemplate.js"></'+'script>');
+    //    }
+    //    if(process.env.NODE_ENV === 'development' || process.env.NODE_APP_INSTANCE === 'uat'){document.write('<script src="/ccc/inspect/js/main/inspect.js"></'+'script>');}
 </script>
 <script>
     (function (match) {
@@ -36,7 +38,7 @@
 
 </script>
 <script>
-var _hmt = _hmt || [];
+    var _hmt = _hmt || [];
 </script>
 <meta name="Keywords" content="{{keywords}}">
 <meta name="Description" content="{{description}}">
@@ -44,42 +46,21 @@ var _hmt = _hmt || [];
 <!-- 页头 -->
 <div class="mask" id="mask" style="width: 100%;height: 100%;opacity: .5;background-color: #000;position: fixed;z-index: 2000; display: none"></div>
 <div class="s-header" id="s-header-height">
-
     <div class="s-header-info" id="nav-color">
         <div class="s-header-info-content u-pos-r-center">
             <div class="float-left">
-                服务热线：400-900-8868
+                您好，欢迎来到土巴士！
             </div>
             <div class="float-img wx_img">
-                <span>太合汇微信</span>
-                <img src="/ccc/global/img/wx_gzh.jpg" class="wx_gzh" alt="太合汇微信" >
+                <span>微信公众号</span>
+                <img src="/ccc/global/img/wx_gzh.jpg" class="wx_gzh" alt="太合汇微信">
             </div>
             <div class="float-img app">
-                <span>手机太合汇APP</span>
+                <span>手机巴士</span>
                 <img src="/ccc/global/img/sj_app.png" class="app_img" alt="手机太合汇APP" style="width:120px;">
             </div>
-
-            {{#if user}}
-            <a href="/logout" class="text" style="margin-right:5px;margin-left:15px;">退出&nbsp;&nbsp;|</a>
-            {{#if user.name}}
-            <a href="/newAccount/home/index"><div id='head-ractive-container' style="color:#009ada;position:relative;bottom:1px;" class="text"></div>{{user.name}}</a>
-            {{else}}
-            <a href="/newAccount/home/index"><div id='head-ractive-container' style="color:#f58220;position:relative;bottom:1px;" class="text"></div>{{user.mobile}}</a>
-            {{/if}}
-            {{else}}
-            <div class="nav-fastregister">
-                <a href="/register" id="dingbuzhuce" class="text">立即注册</a>
-            </div>
-            <div class="nav-fastlogin">
-                <!--               <span>|</span>-->
-                <a href="/login" id="dingbudenglu" class="text">登录</a>
-            </div>
-            <p style="float:right;">您好，欢迎到来太合汇·汇财富！</p>
-            {{/if}}
-
-
+            <p class="float-right">服务热线：<span>010 - 85181566</span></p>
         </div>
-
     </div>
 
 
@@ -88,23 +69,22 @@ var _hmt = _hmt || [];
             <a href="/" alt="太合汇" title="太合汇" class="global_logo">
                 <img class="s-icon" src="/ccc/global/img/logo.png" alt="太合汇·汇财富">
             </a>
-
+            <div class="logo_title">理财有智 上土巴士</div>
+            <div class="opera">
+                {{#if user}}
+                <a href="/newAccount/home/index"><img src="/ccc/global/img/icon_user.png" style="margin-top: -2px;">&nbsp;&nbsp;我的账户</a>
+                <a href="/logout" class="logout">退出</a>
+                {{else}}
+                <a href="/login">登录</a>
+                <a href="/register">注册</a>
+                {{/if}}
+            </div>
             <ul class="u-nolist-ul">
                 <li><a id="index" href="/">首页</a></li>
                 <li><a id="invest" href="/invest">我要理财</a></li>
-                <!--<li><a id="fund" href="">精选基金</a></li>-->
-                {{#if user}}
-                <li><a id="high" href="/high">高端理财</a></li>
-                <li><a id="honour" href="/honour">尊享理财</a></li>
-                {{else}}
-                <li class="showPop"><a href="#">高端理财</a></li>
-                <li class="showPop"><a href="#">尊享理财</a></li>
-                {{/if}}
                 <li><a id="credit" href="/creditList">转让专区</a></li>
                 <li><a id="guide" href="/guide">新手指引</a></li>
-                <li><a id="account" href="/newAccount/home/index">我的账户</a></li>
             </ul>
-
         </div>
     </div>
 </div>
@@ -115,10 +95,15 @@ var _hmt = _hmt || [];
     <div class="pop_content">
         <div>合格投资者承诺</div>
         <p>根据监管要求，了解及认购高端理财须完成以下承诺要求，给您带来不便，敬请谅解：</p>
+
         <p>1、本人已经或未来提供给平台的所有资料合法、真实、准确、完整，不存在任何虚假陈述、重大遗漏和误导，该等信息资料如发生任何实质性变更，本人将及时通过平台进行修改。</p>
+
         <p>2、本人符合相关法律法规规定的合格投资者标准，即具备相应风险识别能力和风险承担能力，投资于单只私募产品的金额不低于100 万元，且个人金融类资产不低于300万元或者最近三年个人年均收入不低于50万元人民币。</p>
+
         <p>3、本人拟用于购买理财产品的资金为本人自有资金，该资金来源合法，本人未非法汇集他人资金，亦未涉嫌从事任何洗钱活动。</p>
+
         <p>特此承诺！</p>
+
         <p>请详细阅读本提示，点击【确认】，并完成注册登录，方可查看相关产品信息及进行投资。</p>
     </div>
     <div class="pop_btn">
@@ -169,20 +154,23 @@ var _hmt = _hmt || [];
                 </ul>
 
                 <div class="left-guide">
-                    <p>服务热线（工作时间9:00至18:00）</p>
+                    <p style="color: #ffffff;">服务热线</p>
                     <p class="service-phone">400-900-8868</p>
+                    <p style="margin-bottom: 30px">（工作时间9:00至18:00）</p>
                     <p>客服邮箱</p>
-                    <a href="mailto:service@tahone.com">service@tahone.com</a>
+                    <a href="mailto:tubashi@land-bus.com">tubashi@land-bus.com</a>
                 </div>
             </div>
             <div class="footer-info">
                 <div class="right-report">
                     <div class="report-phone">
                         <img src="/ccc/global/img/sj_app.png" alt="扫描二维码下载APP" class="barcode"/>
+
                         <p>扫描二维码下载APP</p>
                     </div>
                     <div class="report-wx">
                         <img src="/ccc/global/img/wx_gzh.jpg" alt="扫二维码关注公众号" class="barcode"/>
+
                         <p>扫二维码关注公众号</p>
                     </div>
                 </div>
@@ -190,8 +178,7 @@ var _hmt = _hmt || [];
         </div>
     </div>
     <div class="footer-copy">
-        版权所有 &copy; 2016 太合汇• 汇财富  | 苏ICP备16041585 | 上海南京西路1168号中信泰富广场35L
-        <span>“ 投资有风险，购买需谨慎 ”</span>
+        版权所有 © 2016 土巴士互联网信息（北京）有限公司 | 苏ICP备16041585 | 北京市东城区王府井大街201号
     </div>
     <!--<p>
         <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260240988'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260240988' type='text/javascript'%3E%3C/script%3E"));</script>
