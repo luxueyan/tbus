@@ -1633,17 +1633,17 @@ a {
             .icon {
                 display: block;
                 margin: 0 auto;
-                background: url("@{path-image}/refresh-icons.png") no-repeat;
-                background-size: 108px/2 196px/2;
                 width: 108px/2;
-                height: 98px/2;
+                height: 108px/2;
                 overflow: hidden;
 
                 &-refresh {
-                    background-position: 0 0;
+                    background: url("@{path-image}/refresh-active.png") no-repeat;
+                    background-size: cover;
 
-                    &.gray {
-                        background-position: 0 -98px/2;
+                    &.over {
+                        background: url("@{path-image}/refresh-over.png") no-repeat;
+                        background-size: cover;
                     }
                 }
             }

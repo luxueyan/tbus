@@ -24,7 +24,7 @@
 
     <div class="info percent">
         <param class="icon icon-refresh"
-               ng-class="{ gray: loan.status == 'FINISHED' }"
+               ng-class="{ over: loan.status == 'FINISHED' }"
         >
         <span class="status" ng-switch="loan.status">
             <span ng-switch-when="OPENED" class="u-color-main"><small>抢购</small></span>
