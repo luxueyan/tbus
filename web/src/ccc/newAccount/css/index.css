@@ -257,13 +257,13 @@
     border-radius: 0;
 }
 .asset_mod .asset_cont .asset_left_cont .box_1 .label {
-    background: #e4262b;
+    background: #fa979d;
 }
 .asset_mod .asset_cont .asset_left_cont .box_2 .label {
-    background: #a6937c;
+    background: #70c8f8;
 }
 .asset_mod .asset_cont .asset_left_cont .box_3 .label {
-    background: #cfa972;
+    background: #69d895;
 }
 .asset_mod .asset_cont .asset_left_cont .box_4 .label {
     background: #a40000;
@@ -348,7 +348,7 @@
     font-size: 12px;
     line-height: 16px;
     text-align: center;
-    background: #e4262b;
+    background: #1d6ed7;
 }
 .asset_mod .asset_cont .svg_cont {
     float: right;

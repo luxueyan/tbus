@@ -1,71 +1,87 @@
 #announce-container {
     width: 1188px;
-    background: #eaeae9;
     margin: auto;
     height: 40px;
     position: relative;
 }
+
 #announce-container .more_public {
     position: absolute;
     right: 0px;
     top: 11px;
     font-weight: 400;
+    font-size: 12px;
+    color: #999999;
 }
+
 #main-container {
-    background: #f5f5f4;
+    background: #f5f5f5;
     padding-bottom: 0px;
 }
+
 .small img {
     margin-right: 8px;
     font-size: 14px;
     color: #666666;
 }
+
 .small {
     font-size: 14px;
     color: #666666;
 }
+
 .total {
     float: right;
 }
+
 .figure {
     color: #ff6c08;
     font-size: 18px;
 }
+
 .rmb {
     margin-left: 24px;
     font-size: 14px;
     color: #666666;
 }
+
 .detail {
     font-size: 14px;
     color: #666666;
 }
+
 .more {
     margin-left: 72px;
 }
+
 .more a {
     color: #949494;
     font-size: 14px;
 }
+
 .essential-box {
     background: #ffffff;
     overflow: hidden;
 }
+
 .essential {
     width: 1000px;
     margin: auto;
 }
+
 .ess-icon {
     float: left;
     width: 120px;
     margin-left: 10px;
     margin-right: 10px;
 }
+
 .ess-icon img {
     margin-left: 10px;
     margin-top: 50px;
     margin-bottom: 20px;
 }
+
 .ess-icon-title {
     font-size: 16px;
     color: #3f3f3f;
@@ -74,28 +90,34 @@
     width: 110px;
     line-height: 36px;
 }
+
 .ess-icon-content span {
     color: #6e6e6e;
     font-size: 12px;
     line-height: 22px;
 }
+
 .ess-icon-content1 {
     margin-right: 8px;
 }
+
 .index-invest {
     margin-top: 36px;
     margin-bottom: 30px;
     margin-left: 50px;
 }
+
 .essential-left {
     width: 560px;
     float: left;
 }
+
 .essential-left p {
     color: #ff6c08;
     font-size: 16px;
     margin-left: 20px;
 }
+
 .essential-right {
     width: 380px;
     float: right;
@@ -104,11 +126,13 @@
     margin-top: 22px;
     margin-bottom: 18px;
 }
+
 .tab-title a {
     width: 186px;
     font-size: 18px;
     color: #333333;
 }
+
 .tab-pane li {
     float: left;
     text-align: center;
@@ -116,12 +140,15 @@
     line-height: 44px;
 
 }
+
 .tab-con-t1 {
     width: 108px;
 }
+
 .tab-con-t2 {
     width: 142px;
 }
+
 .tab-pane ul {
     width: 360px;
     height: 44px;
@@ -129,27 +156,32 @@
     margin-left: 10px;
     margin-top: 12px;
 }
+
 .index-partner {
     width: 1060px;
     margin: auto;
 }
+
 .par-title1 {
     font-size: 18px;
     color: #333333;
     float: left;
 
 }
+
 .par-title2 {
     font-size: 14px;
     color: #ff6c08;
     margin-left: 120px;
     float: left;
 }
+
 .par-title3 {
     color: #003690;
     font-size: 14px;
     float: right;
 }
+
 .par-title {
     line-height: 46px;
     border-bottom: 2px solid #afb1b4;
@@ -157,6 +189,7 @@
     width: 1060px;
     margin: auto;
 }
+
 #icon-grounp {
     width: 982px;
     margin: auto;
@@ -167,11 +200,13 @@
         border-bottom:1px solid #dedede;
     */
 }
+
 #icon-grounp img {
     margin: 0;
     padding: 0;
     border: 1px solid #dddddd;
 }
+
 .company-intro {
     width: 245px;
     height: 119px;
@@ -184,12 +219,14 @@
     top: 0;
     left: 0;
 }
+
 .company-intro p {
     font-size: 12px;
     color: #ffffff;
     margin-left: 10px;
     margin-right: 10px;
 }
+
 .icon-group1 {
     position: relative;
     width: 245px;
@@ -197,44 +234,53 @@
     overflow: hidden;
     float: left;
 }
+
 .banner-account {
     width: 300px;
     height: 320px;
     padding: 10px 16px;
     background: #eceef1;
 }
+
 .qr-code img {
     float: left;
     width: 124px;
 }
+
 .qr-code {
     width: 320px;
 }
+
 #qr-code1 {
     margin-left: 28px;
     margin-right: 16px;
     margin-top: 14px;
 }
+
 #qr-code2 {
     margin-right: 28px;
     margin-top: 14px;
 }
+
 .banner-account-2 {
     font-size: 36px;
     color: #ff5a4c;
     line-height: 36px;
 }
+
 .banner-account1 {
     margin-bottom: 26px;
     font-size: 22px;
     text-align: center;
     font-weight: 600;
 }
+
 .banner-account2 {
     margin-bottom: 20px;
     font-size: 20px;
     padding-left: 41px;
 }
+
 .bannerLogin {
     font-size: 14px;
     text-align: right;
@@ -242,10 +288,12 @@
     padding-right: 22px;
 
 }
+
 .bannerLogin .underline {
     text-decoration: underline;
     color: #2d7dec;
 }
+
 .banner-account .btn-index {
     width: 250px;
     height: 42px;
@@ -255,16 +303,19 @@
     text-align: center;
     line-height: 42px;
 }
+
 .free-register {
     width: 250px;
     height: 42px;
     margin: 0 auto;
     padding-top: 20px;
 }
+
 .free-register a:hover,
 .free-register a:focus {
     text-decoration: none;
 }
+
 .banner-account－box {
     position: absolute;
     top: 50%;
@@ -272,14 +323,17 @@
     left: 50%;
     margin-left: 292px;
 }
+
 .index-partner－box {
     background: #ffffff;
 }
+
 .baby-plan {
     width: 1100px;
     margin: auto;
     overflow: hidden;
 }
+
 .index-internet {
     width: 264px;
     float: left;
@@ -289,30 +343,37 @@
     margin-right: 40px;
     margin-top: 36px;
 }
+
 .index-partner-content {
     height: 374px;
     width: 1060px;
 
 }
+
 .i-invest1 {
     color: #003690;
     font-size: 24px;
 }
+
 .i-invest2 {
     color: #ff6c08;
     font-size: 14px;
 }
+
 .i-invest2t {
     margin-left: 30px;
 }
+
 .i-invest {
     text-align: center;
     margin-top: 46px;
     margin-bottom: 24px;
 }
+
 .broadcast-wrapper {
     border-bottom: 1px #ccc solid;
 }
+
 .broadcast {
     width: 1100px;
     height: 60px;
@@ -320,23 +381,29 @@
     line-height: 60px;
     font-size: 14px;
 }
+
 .broadcast em {
     color: #ef8721;
 }
+
 .broadcast .broXY {
     float: left;
 }
+
 .broadcast .broXY img {
     float: left;
     margin-top: 22px;
 }
+
 .broadcast .broXY em {
     float: left;
 }
+
 .broUser img {
     float: left;
     margin-top: 22px;
 }
+
 /*
 #scrollMsg {
     float:left;
@@ -350,10 +417,12 @@
     width: 900px;
     margin-top: 3px;
 }
+
 #scrollWrap ul,
 #scrollWrap li {
     list-style: none;
 }
+
 #scrollWrap li a {
     display: block;
     width: 100%;
@@ -361,20 +430,24 @@
     text-align: left;
     font-size: 14px;
 }
+
 #scrollWrap #scrollMsg li {
     height: 18px;
     line-height: 18px;
     overflow: hidden;
 }
+
 #scrollWrap #scrollMsg li a {
     display: block;
     width: 100%;
     text-align: left;
     font-size: 14px;
 }
+
 #scrollWrap #scrollMsg li a {
     color: #666;
 }
+
 #userscrollWrap {
     float: right;
     width: 300px;
@@ -382,24 +455,29 @@
     overflow: hidden;
     margin-top: 22px;
 }
+
 #userscrollMsg li {
     height: 18px;
     line-height: 18px;
     cursor: pointer;
 }
+
 .broadcast .broUser {
     float: right;
 }
+
 .strengthProtectBox {
     width: 1100px;
     margin: auto;
 
 }
+
 .strengthProtect {
     float: left;
     margin-right: 27px;
     margin-top: 30px;
 }
+
 /*
 .strengthProtect:hover{
     cursor: pointer;
@@ -410,38 +488,46 @@
     color: #ffffff;
     height: 140px;
 }
+
 .strengthProtect h3 {
     color: #5b9dff;
     font-size: 16px;
     line-height: 42px;
 }
+
 .strengthProtect p {
     color: #999;
     font-size: 14px;
 }
+
 .strengthProtect img {
     float: left;
     transition: .4s all ease;
     animation-play-state: paused;
 }
+
 .strengthProtect img:hover {
     float: left;
     margin-top: -10px;
 }
+
 .strengthProtect-content {
     float: left;
     width: 154px;
     margin-left: 20px;
 }
+
 .productBox {
     width: 1100px;
     margin: auto;
 
     overflow: hidden;
 }
+
 .productBoxTitle {
     overflow: hidden;
 }
+
 .productBoxTitle .titleLeft {
     /*     float: left;*/
     font-size: 24px;
@@ -449,6 +535,7 @@
     line-height: 48px;
     text-align: center;
 }
+
 .productBoxTitle .titleRight {
     float: right;
     font-size: 14px;
@@ -456,27 +543,33 @@
     line-height: 48px;
     margin-top: -12px;
 }
+
 .productBoxTitle .titleRight a:hover {
     color: #009ada
 }
+
 .s-split-view ul li .news {
     font-size: 14px;
     color: #7e7e7e;
 }
+
 .s-split-view ul li .news:hover {
     color: #f06f2e;
 }
+
 /*表格样式*/
 .s-list-table th {
     font-weight: bold;
     color: #4a4a4a;
 }
+
 .s-list-table {
     background: #f5f4f9;
     width: 1100px;
     padding-left: 40px;
     line-height: 50px;
 }
+
 .productBg {
     background: #f2f4f5;
     /*    height:500px;*/
@@ -484,10 +577,12 @@
     clear: both;
     /*	padding-bottom: 50px;*/
 }
+
 /*友情链接*/
 .friend-left {
     float: left;
 }
+
 .friend-right {
     /*float: left;*/
     font-size: 14px;
@@ -496,6 +591,7 @@
     overflow: hidden;
     display: block;
 }
+
 .friend-right a {
     float: left;
     font-size: 14px;
@@ -503,23 +599,28 @@
     margin-right: 16px;
     text-decoration: none;
 }
+
 .friend-right a:hover {
     color: #009ada;
 }
+
 /*轮播图*/
 .middle-box {
     width: 1100px;
     margin: 0 auto;
     position: relative;
 }
+
 .u-float-right:hover {
     color: #009ada
 }
+
 /*图片资讯轮播*/
 #newsBg .carousel-indicators {
     margin: 0 auto;
     margin-left: -35px;
 }
+
 #newsBg .carousel-indicators li {
     width: 10px;
     height: 10px;
@@ -528,57 +629,73 @@
     margin-right: 10px;
     background: #eee;
 }
+
 #newsBg .imgnews-carousel-wrapper {
     float: left;
     width: 292px;
 }
+
 /*首页改版*/
 .banner_header {
-    height: 134px;
+    position: absolute;
+    top: 396px;
+    left: 0;
     width: 100%;
-    background: #fff;
-    box-shadow: 0px 15px 10px -15px #ccc;
     color: #999;
 }
+
 .header_box {
-    width: 1200px;
+    width: 1192px;
     margin: auto;
     overflow: hidden;
+    background-color: #ffffff;
 }
+
 .header_info {
     float: left;
-    margin-top: 48px;
-    padding: 0 75px;
+    padding: 40px 0 40px 60px;
+    width: 396px;
+    border-right: 1px solid #f2f2f2;
 }
+
+.header_info:hover {
+    -webkit-box-shadow: 0 0 15px 0 rgb(149, 189, 229);
+    -moz-box-shadow: 0 0 15px 0 rgb(149, 189, 229);
+    box-shadow: 0px 0px 15px 0px rgb(149, 189, 229);
+}
+
 .header_info img {
     float: left;
     margin-left: 10px;
     margin-top: -4px;
 }
+
 .header_info h2 {
-    float: left;
-    font-size: 36px;
-    border-right: 2px solid #999;
-    padding: 0 10px;
+    font-size: 24px;
     height: 44px;
     line-height: 44px;
-    color: #999;
+    color: #5d5d5d;
 }
+
 .header_info h2 a {
     text-decoration: none;
 }
+
 .header_info .word {
     float: left;
-    margin-left: 10px;
+    margin-left: 40px;
 
 }
+
 .pro_content {
-    width: 1200px;
-    margin: auto;
+    width: 1192px;
+    margin: 106px auto 0;
 }
+
 .pro_content .cwrapper {
-    margin: 25px auto;
+    margin: 25px auto 5px;
 }
+
 .pro_content .title {
     text-align: center;
     font-size: 30px;
@@ -587,42 +704,69 @@
     margin: 30px 0;
     letter-spacing: 1px;
 }
+
 .pro_content .title span {
     font-weight: bold;
 }
+
 .pro_box {
-    width: 1200px;
     position: relative;
 }
+
+.pro_box .pro_detail {
+
+    width: 1222px;
+    margin-left: -15px;
+}
+
 .pro_box .GDSYproductList {
     overflow: hidden;
     color: #999;
+    padding: 15px;
 }
+
 .pro_box .proWrapper {
-    width: 380px;
+    width: 383px;
     float: left;
-    border: 1px solid #e5e5e5;
-    margin-right: 27px;
+    margin-right: 22px;
     background: #fff;
+    padding: 0 48px;
 }
+
+.pro_box .proWrapper:hover {
+    -webkit-box-shadow: 0 0 15px 0 rgb(149, 189, 229);
+    -moz-box-shadow: 0 0 15px 0 rgb(149, 189, 229);
+    box-shadow: 0 0 15px 0 rgb(149, 189, 229);
+}
+
+.pro_box .proWrapper:hover .investbtn-open {
+    background: url(/ccc/index/img/btn_bg.jpg) no-repeat center;
+    background-size: 100%;
+    color: #ffffff;
+    border: none;
+}
+
 .pro_box .proWrapper:last-child {
     margin-right: 0;
 }
+
 .proWrapper .header {
-    padding: 20px 30px;
-    height: 125px;
-    background: url("/ccc/index/img/fixed_icon.png") no-repeat right center;
+    height: auto;
     background-size: 30%;
     position: relative;
 }
+
 .proWrapper .header_title {
     color: #e4262b;
     font-size: 24px;
 }
+
 .proWrapper .header_tags {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     height: 20px;
+    text-align: center;
 }
+
 .proWrapper .header_tags span {
     padding: 2px 4px;
     margin-right: 4px;
@@ -630,6 +774,7 @@
     font-size: 12px;
     border: 1px solid #cfa972;
 }
+
 .proWrapper .header_tags02 {
     position: absolute;
     top: 83px;
@@ -640,62 +785,102 @@
     text-align: center;
     background: #e4262b;
 }
+
 .proWrapper .word {
     font-size: 12px;
-}
-.proWrapper .infoBox_title {
-    font-size: 30px;
     text-align: center;
-    border-bottom: 1px solid #e4262b;
-    margin: 0px 18px;
-    padding: 16px 0;
 }
+
+.targsBox {
+    margin: 28px auto 10px;
+    text-align: center;
+}
+
+.targsBox span {
+    font-size: 12px;
+    padding: 2px 10px;
+    color: #ffffff;
+    background-color: #d6d6d6;
+    border-radius: 3px;
+}
+
+.rateBox {
+    text-align: center;
+    padding: 26px 0 36px;
+    border-bottom: 1px dashed #e3e3e3;
+}
+
+.rateBox .rate {
+    font-size: 24px;
+    color: #f53a31;
+}
+
+.rateBox .rate span {
+    font-size: 60px;
+}
+
+.rateBox p {
+
+}
+
+.proWrapper .infoBox_title {
+    font-size: 24px;
+    text-align: center;
+    margin: 0px 18px;
+    padding: 12px 0;
+}
+
 .proWrapper .infoBox_title a {
     color: #666;
 }
+
 .proWrapper .detail-box {
     overflow: hidden;
     margin-left: 12px;
 }
+
 .proWrapper .detail-box .investNum {
     float: left;
-    padding: 24px;
+    padding: 20px 40px 30px;
 }
-.proWrapper .detail-box .investNum div {
-    margin-top: 8px;
-}
+
 .proWrapper .detail-box .investNum p {
     margin-top: 5px;
 }
+
 .proWrapper .detail-box .investNum div span {
     font-size: 24px;
     color: #666;
 }
+
 .proWrapper .detail-box .investNum .rate {
     color: #e60012;
     margin-top: 0;
 }
+
 .proWrapper .detail-box .investNum .rate span {
     font-size: 30px;
     color: #e60012;
 }
+
 .infoBox a {
     text-decoration: none;
 }
+
 .infoBox .investbtn {
-    width: 328px;
-    height: 36px;
-    line-height: 36px;
-    background: #cfa972;
-    color: #fff;
+    width: 183px;
+    height: 49px;
+    line-height: 49px;
+    color: #666666;
     text-align: center;
-    margin-left: 25px;
-    margin-bottom: 20px;
-    font-size: 18px;
+    margin: 0 auto 42px;
+    font-size: 14px;
+    border: 1px solid #e3e3e3;
 }
+
 .infoBox .investbtn-open {
-    background: #e4262b;
 }
+
 /*轮播公告*/
 /*.cwrapper{*/
 /*-webkit-box-shadow: 0 0 13px  rgb(223, 217, 217);*/
@@ -709,17 +894,20 @@
     float: left;
     width: 1160px;
 }
+
 .announce {
     font-size: 14px;
     color: #a0a0a7;
     padding: 8px 0;
     overflow: hidden;
 }
+
 .announce .announce_left .newest {
     float: left;
     color: #222D4F;
     font-weight: bold;
 }
+
 .announce .newest .bg {
     display: inline-block;
     width: 18px;
@@ -729,6 +917,7 @@
     background-position: 0 -370px;
     vertical-align: middle;
 }
+
 .announce .newest .small {
     display: inline-block;
     vertical-align: middle;
@@ -737,8 +926,8 @@
     font-weight: bold;
     background: url(/ccc/global/img/public_icon.png) no-repeat left center;
     padding-left: 30px;
-    margin-left: 30px;
 }
+
 .announce .newest .big {
     display: inline-block;
     line-height: 24px;
@@ -746,27 +935,32 @@
     width: 1030px;
     overflow-x: hidden;
 }
+
 .announce .newest .big a {
     padding: 0 5px;
     width: 1000px;
     text-decoration: none;
     display: inline-block;
 }
+
 .announce .announce_left .more {
     float: right;
     color: #b5a16b;
     line-height: 24px;
     vertical-align: middle;
 }
+
 .announce .announce_right .more {
     float: right;
     color: #b5a16b;
     margin-top: -22px;
 }
+
 .newest {
     padding-right: 50px;
     position: relative;
 }
+
 .icon-grounp {
     margin-top: 35px;
 }

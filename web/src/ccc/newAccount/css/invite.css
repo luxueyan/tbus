@@ -55,8 +55,8 @@
 }
 
 .btn-default {
-  background: #e4262b;
-  border: 1px solid #e4262b;
+  background: #1d6ed7;
+  border: 1px solid #1d6ed7;
   color: #fff;
   margin-left: 17px;
   width: 135px;
@@ -177,7 +177,7 @@ th {
     font-size: 18px;
     color: #ffffff;
     text-align: center;
-    background-color: #e4262b;
+    background-color: #1d6ed7;
     margin-left: 81px;
     position: absolute;
     top: 5px;

@@ -626,7 +626,7 @@ table tbody tr td {
 }
 
 .infoContent .info_title span {
-    color: #e4262b;
+    color: #1d6ed7;
 }
 
 .info {
@@ -788,12 +788,12 @@ table tbody tr td {
     line-height: 30px;
     color: #fff;
     font-size: 16px;
-    background-color: #e4262b;
-    border: 1px #e4262b solid;
+    background-color: #1d6ed7;
+    border: 1px #1d6ed7 solid;
 }
 
 .home-recharge-btn:hover {
-    background: #C71E23;
+    background: #1d6ed7;
 }
 
 .home-withdraw-btn {
@@ -805,14 +805,14 @@ table tbody tr td {
     /*border-radius: 2px;*/
     text-align: center;
     line-height: 30px;
-    color: #e4262b;
+    color: #1d6ed7;
     font-size: 16px;
-    border: 1px #e4262b solid;
+    border: 1px #1d6ed7 solid;
     background-color: #fff;
 }
 
 .home-withdraw-btn:hover {
-    background: #C71E23;
+    background: #1d6ed7;
     color: #fff;
 }
 

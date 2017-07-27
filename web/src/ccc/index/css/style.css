@@ -17,17 +17,22 @@
     width: 100%;
     margin: 0 auto 0;
 }
+.carousel-wrapper .carousel .carousel-indicators{
+    bottom: 90px;
+}
 .carousel-wrapper .carousel .carousel-indicators li {
-    width: 70px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     margin: 5px;
-    border: 1px #fff solid;
-    background: transparent;
-    border-radius: 0px;
+    background-color: #ffffff;
+    border-radius: 6px;
+    opacity: 0.6;
 }
 .carousel-wrapper .carousel .carousel-indicators .active {
+    width: 30px;
     background-color: #fff;
     margin: 5px;
+    opacity: 1;
 }
 .carousel-wrapper .carousel .carousel-inner img {
     margin: 0 auto;
@@ -750,7 +755,8 @@ a {
 }
 /*合作伙伴*/
 .partnerList {
-    padding-bottom: 35px;
+    background-color: #ffffff;
+    padding: 50px 0 100px;
     margin-top: 42px;
     overflow: hidden;
 }
@@ -762,10 +768,16 @@ a {
     font-size: 18px;
 }
 .partnerList h4 {
-    font-size: 24px;
+    font-size: 30px;
     line-height: 50px;
-    border-bottom: 1px solid #d8d8d8;
-    color: #666;
+    color: #000;
+    text-align: center;
+}
+.partnerList p{
+    font-size: 10px;
+    color: #999999;
+    text-align: center;
+    letter-spacing: 2px;
 }
 .partnerList .icon-single {
     float: left;
@@ -776,15 +788,16 @@ a {
     height: 55px !important;
 }
 #carousel-company {
-    padding: 0 90px;
+    padding: 0;
 }
 /*财富讲堂*/
 .wealthList {
     width: 1200px;
-    margin: 55px auto 0;
+    margin: 75px auto 0;
     overflow: hidden;
 }
 .wealth-grounp {
+    position: relative;
     width: 380px;
     float: left;
     margin-left: 27px;
@@ -793,22 +806,43 @@ a {
 .wealth-grounp:first-child {
     margin-left: 0;
 }
-.wealth-grounp h2 {
-    margin: 15px 15px 15px 30px;
-    color: #737373;
-    font-size: 18px;
-    line-height: 30px;
+.wealth-grounp .pic{
+    position: relative;
+    width: 100%;
+    height: 140px;
 }
-.wealth-grounp h2 a {
-    float: right;
+.wealth-grounp .pic img{
+    width: 100%;
+    height: 100%;
+}
+.wealth-grounp .pic .txt{
+    position: absolute;
+    height: 140px;
+    top: 0;
+    left: 115px;
+}
+.wealth-grounp .pic .txt h2{
+    margin-top: 26px;
+    font-size: 24px;
+    color: #ffffff;
+    text-align: center;
+}
+.wealth-grounp .pic .txt p{
+    font-size: 10px;
+    color: #ffffff;
+    letter-spacing:3px;
+}
+.wealth-grounp .pic .txt a{
+    display: block;
+    width: 80px;
+    line-height: 24px;
     font-size: 12px;
-    padding-top: 8px;
-    line-height: 20px;
+    margin: 16px auto;
+    color: #ffffff;
+    background-color: #30d6a3;
+    text-align: center;
 }
-.wealth-grounp img {
-    width: 380px;
-    height: 96px;
-}
+
 .wealth-grounp ul {
     margin-top: 20px;
 }
