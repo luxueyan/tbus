@@ -11,7 +11,7 @@ var log = require('bunyan-hub-logger')({app: 'web', name: 'wx'})
 module.exports = function (router) {
     router.get('/', function (req, res) {
         _.assign(res.locals, {
-            title: '登录_太合汇平台'
+            title: '登录_土巴士平台'
         });
         res.render();
     });

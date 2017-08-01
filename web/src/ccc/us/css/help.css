@@ -56,12 +56,12 @@
     color: #666666;
 }
 #help-left .active {
-    border-left: 3px solid #e4262b;
+    border-left: 3px solid #1d6ed7;
     background-color: #fff;
-    color: #e4262b;
+    color: #1d6ed7;
 }
 #help-left .activea {
-    color: #e4262b !important;
+    color: #1d6ed7 !important;
 }
 #help-left .usA {
     display: inline-block;
@@ -80,7 +80,7 @@
     font-weight: normal;
 }
 #help-left .active a {
-    color: #e4262b;
+    color: #1d6ed7;
     text-decoration: none;
 
 }
@@ -159,7 +159,7 @@
     padding-right: 15px;
 }
 .invest-wrapper > ul > li a:hover {
-    color: #e4262b
+    color: #1d6ed7
 }
 .article-title {
     color: #666;
