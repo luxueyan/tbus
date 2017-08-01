@@ -876,7 +876,7 @@ p.tips {
     padding: 5px 14px;
     cursor: pointer;
     border: none;
-    background: #e60012;
+    background: #1d6ed7;
 }
 .cycleProduct {
     background: url("/ccc/newAccount/img/cycleProduct.png") left center no-repeat;
@@ -894,7 +894,7 @@ p.tips {
     background: #6f6d6d;
 }
 .fixed-invest .table-invest-common a {
-    color: #e60012;
+    color: #1d6ed7;
     /* padding: 5px; */
 }
 .fixed-invest .look_contact {
