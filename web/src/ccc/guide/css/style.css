@@ -22,7 +22,7 @@
 .step-title {
     text-align: center;
     font-size: 30px;
-    color: #d90202;
+    color: #1d6ed7;
     line-height: 120px;
     padding-top: 20px;
 }
@@ -36,7 +36,7 @@
 }
 
 .model-content > span a{
-    color:#d10010;
+    color:#1d6ed7;
 }
 
 
@@ -58,7 +58,7 @@
 }
 .step-second >span {
     font-size: 30px;
-    color: #e61100;
+    color: #1d6ed7;
     position: absolute;
 }
 .step-tips1{
@@ -110,7 +110,7 @@
     line-height: 70px;
 }
 .tips-title span{
-    color: #d70500;
+    color: #1d6ed7;
 }
 .step-box4{
     background: #eadecd;
@@ -126,7 +126,7 @@
     display: block;
     width: 272px;
     height: 59px;
-    background-color: #e60012;
+    background-color: #1d6ed7;
     font-size: 24px;
     color: #fff;
     line-height: 59px;
@@ -176,7 +176,7 @@
     height: 42px;
     font-size: 18px;
     color: #ffffff;
-    background: #e60012;
+    background: #1d6ed7;
     text-align: center;
     line-height: 42px;
 }

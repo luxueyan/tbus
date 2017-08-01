@@ -469,7 +469,7 @@
 .do-invest-wrapper .btnT {
     width: 270px;
     height: 45px;
-    background: #e60012;
+    background: #1D6ED7;
     color: white;
     border: none;
     font-size: 16px;
@@ -482,7 +482,7 @@
 }
 .do-invest-wrapper button:hover {
     color: white;
-    background: #C71E23;
+    background: #1D6ED7;
 }
 .do-invest-wrapper button:focus {
     color: white;
@@ -793,7 +793,7 @@
     margin-right: 40px;
 }
 .do-invest-wrapper .agree a{
-    color: #E60012;
+    color: #1D6ED7;
 }
 
 .do-invest-wrapper .status .userBlock .shiming {
@@ -835,7 +835,7 @@
 .do-invest-wrapper .loginBtn {
     height: 44px;
     color: #fff;
-    background-color: #e4262b;
+    background-color: #1D6ED7;
     font-size: 18px;
     line-height: 44px;
     padding: 0;

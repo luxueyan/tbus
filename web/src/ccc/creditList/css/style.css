@@ -122,17 +122,17 @@
 }
 
 .invest-list-top ul .activeLi01 {
-    color: #e4262b;
+    color: #1D6ED7;
     background: url("../img/listCT.png") right center no-repeat;
 }
 
 .invest-list-top ul .tacitly.activeLi01 {
-    color: #e4262b;
+    color: #1D6ED7;
     background: none;
 }
 
 .invest-list-top ul .activeLi02 {
-    color: #e4262b;
+    color: #1D6ED7;
     background: url("../img/listCB.png") right center no-repeat;
 }
 
@@ -266,7 +266,7 @@
 }
 
 .loanItemWrapper:hover {
-    border-color: #e4262b;
+    border-color: #1D6ED7;
 }
 .loanItemWrapper .loan_left{
     float: left;
@@ -285,7 +285,7 @@
 }
 .loan_title .title_info h2 a{
     font-size: 24px;
-    color: #e4262b;
+    color: #1D6ED7;
 }
 .loan_title .title_info p{
     font-size: 14px;
@@ -361,7 +361,7 @@
     margin-left: 53px;
 }
 .investBtn .open{
-    background: #e4262b;
+    background: #1D6ED7;
 }
 
 
