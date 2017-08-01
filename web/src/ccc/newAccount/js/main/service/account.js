@@ -274,7 +274,7 @@ exports.accountService = {
             });
     },
     getQuestion: function (next) {
-        request('GET', '/api/v2/survey/99F6776A-DE40-4030-9C64-481CDD3E15BA')
+        request('GET', '/api/v2/survey/2EFFA4FB-0893-49be-9408-C629EC325B12')
             .end()
             .then(function (res) {
                 next(res.body);
