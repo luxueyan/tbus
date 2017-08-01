@@ -466,7 +466,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                                 .then (data) ->
                                                     return if _.isArray(data) and !_.isEmpty(data)
 
-                                                    $window.alert('请下载或直接登录汇财富APP进行风险测评！')
+                                                    $window.alert('请下载或直接登录土巴士APP进行风险测评！')
                                                     $window.history.back()
                                                     return $q.reject()
                                             )
@@ -517,7 +517,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                                 .then (data) ->
                                                     return if _.isArray(data) and !_.isEmpty(data)
 
-                                                    $window.alert('请下载或直接登录汇财富APP进行风险测评！')
+                                                    $window.alert('请下载或直接登录土巴士APP进行风险测评！')
                                                     $window.history.back()
                                                     return $q.reject()
                                             )
