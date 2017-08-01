@@ -12,7 +12,6 @@ require('bootstrap/js/tab');
 var $carousel = $("#my-carousel");
 var IndexService = require('./service').IndexService;
 var InvestListServiceG = require('ccc/invest/js/main/service/list').InvestListService;
-var InvestListServiceH = require('ccc/high/js/main/service/list').InvestListService;
 var utils = require('ccc/global/js/lib/utils');
 var i18n = require('@ds/i18n')['zh-cn'];
 var loginElement = document.getElementsByClassName ? document.getElementsByClassName('info')[0] : $('.info')[0];
@@ -48,23 +47,15 @@ var investRactive = new Ractive({
     oncomplete: function () {
         var paramsI = {
             status: '',
-            pageSize: 2,
+            pageSize: 3,
             currentPage: 1,
             product: 'GDSY',
         };
-        var paramsH = {
-            status: '',
-            pageSize: 1,
-            currentPage: 1,
-            product: 'GDLC',
-        };
-        InvestListServiceG.getLoanListWithCondition(jsonToParams(paramsI), 'true', function (res) {
-            investRactive.set('listTJ', formatItem(res.results.slice(0, 1)));
-            investRactive.set('listNew', formatItem(res.results.slice(1, 2)));
-        });
 
-        InvestListServiceH.getLoanListWithCondition(jsonToParams(paramsH), function (res) {
-            investRactive.set('listGD', formatItem(res.results));
+        InvestListServiceG.getLoanListWithCondition(jsonToParams(paramsI), 'true', function (res) {
+            console.log(res.results);
+            investRactive.set('listGD', formatItem(res.results.slice(0, 1)));
+            investRactive.set('listNew', formatItem(res.results.slice(1, 3)));
         });
     }
 });

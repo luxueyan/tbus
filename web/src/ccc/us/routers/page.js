@@ -99,7 +99,7 @@ module.exports = function (router) {
 
             if (tab.text === '媒体报道') {
                 res.locals.title = '媒体报道-汇财富';
-                res.locals.keywords = '媒体报道,新闻公告,新闻资讯,最新新闻资讯,太合汇,汇财富';
+                res.locals.keywords = '媒体报道,新闻公告,新闻资讯,最新新闻资讯,土巴士,汇财富';
                 res.locals.description = '媒体报道，新闻报道，最新新闻资讯，报道汇财富投资产品汇利精选、汇鑫理财最新新闻资讯、最新活动、获奖名单、奖品等资讯，让您把握最新投资项目新闻资讯。';
             } else {
                 res.locals.title = nameMap[req.params.tab] + '-汇财富';

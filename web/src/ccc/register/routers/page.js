@@ -10,7 +10,7 @@ module.exports = function (router) {
         }
 
         _.assign(res.locals, {
-            title: '注册_太合汇平台'
+            title: '注册_土巴士平台'
         });
         res.expose('/api/web/register/smsCaptcha', 'registerSmsCaptchaApi');
         res.expose('/api/web/register/voiceCaptcha', 'CC.registerVoiceCaptchaApi');
