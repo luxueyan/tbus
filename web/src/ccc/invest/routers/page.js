@@ -13,9 +13,9 @@ module.exports = function (router) {
                 return data;
             });
 
-        res.locals.title = '我的理财-固定收益-定期理财-汇财富';
+        res.locals.title = '我的理财-固定收益-定期理财-土巴士';
         res.locals.keywords = '固定收益,银行理财,定期理财,汇利精选';
-        res.locals.description = '汇财富-我的理财专注于固定收益理财产品，包括世界500强，优质上市公司和信用评级AA+以上等优质资产，帮助投资投者获得低风险的稳定收益。';
+        res.locals.description = '土巴士-我的理财专注于固定收益理财产品，包括世界500强，优质上市公司和信用评级AA+以上等优质资产，帮助投资投者获得低风险的稳定收益。';
 
         res.render('index');
     });
@@ -25,9 +25,9 @@ module.exports = function (router) {
             res.expose('GDSY', 'key');
             res.locals.key = 'GDSY';
 
-            res.locals.title = '我的理财-固定收益-定期理财-汇财富';
+            res.locals.title = '我的理财-固定收益-定期理财-土巴士';
             res.locals.keywords = '固定收益,银行理财,定期理财,汇利精选';
-            res.locals.description = '汇财富-我的理财专注于固定收益理财产品，包括世界500强，优质上市公司和信用评级AA+以上等优质资产，帮助投资投者获得低风险的稳定收益。';
+            res.locals.description = '土巴士-我的理财专注于固定收益理财产品，包括世界500强，优质上市公司和信用评级AA+以上等优质资产，帮助投资投者获得低风险的稳定收益。';
 
         } else if (req.params.key == 'FDSY') {
             res.expose('FDSY', 'key');
@@ -48,9 +48,9 @@ module.exports = function (router) {
                 return data;
             });
 
-        res.locals.title = '我的理财-固定收益-定期理财-汇财富';
+        res.locals.title = '我的理财-固定收益-定期理财-土巴士';
         res.locals.keywords = '固定收益,银行理财,定期理财,汇利精选';
-        res.locals.description = '汇财富-我的理财专注于固定收益理财产品，包括世界500强，优质上市公司和信用评级AA+以上等优质资产，帮助投资投者获得低风险的稳定收益。';
+        res.locals.description = '土巴士-我的理财专注于固定收益理财产品，包括世界500强，优质上市公司和信用评级AA+以上等优质资产，帮助投资投者获得低风险的稳定收益。';
 
         res.render('list');
     });

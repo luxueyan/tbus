@@ -89,7 +89,7 @@
                             {{/if}}
                             {{/if}}
                         </div>
-                        {{#if loans.status=="OPENED"}}
+                        {{#if loans.status=="OPENED" || loans.status=="SCHEDULED"}}
                         <div class="end_time">
                             剩余可投资：<span>{{loans.balance}}</span>元
                         </div>

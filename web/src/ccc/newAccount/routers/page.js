@@ -107,7 +107,7 @@ module.exports = function (router) {
         res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet;
 
         res.render('newAccount/coupon', {
-            title: '汇财富'
+            title: '土巴士'
         });
     });
     router.get('/autobid', async function (req, res) {
@@ -117,13 +117,13 @@ module.exports = function (router) {
         res.expose(user, 'user');
 
         res.render('newAccount/autobid', {
-            title: '汇财富'
+            title: '土巴士'
         });
         return false;
     });
     router.get('/assign', function (req, res) {
         res.render('newAccount/assign', {
-            title: '汇财富'
+            title: '土巴士'
         });
     });
     router.get('/invite', function (req, res) {
@@ -131,7 +131,7 @@ module.exports = function (router) {
         res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet;
 
         res.render('newAccount/invite', {
-            title: '汇财富'
+            title: '土巴士'
         });
     });
     router.get('/risk', function (req, res) {
@@ -139,14 +139,14 @@ module.exports = function (router) {
         res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet;
 
         res.render('newAccount/risk', {
-            title: '汇财富'
+            title: '土巴士'
         });
     });
     //理财师
     router.get('/financial', function (req, res) {
         if (res.locals.user.isMMC) {
             res.render('newAccount/financial', {
-                title: '汇财富'
+                title: '土巴士'
             });
         } else {
             res.redirect('/newAccount/home/index');
@@ -158,7 +158,7 @@ module.exports = function (router) {
         if (res.locals.user.isMMC) {
             res.expose(req.params.userId, 'userId');
             res.render('newAccount/financialTwo', {
-                title: '汇财富'
+                title: '土巴士'
             });
         } else {
             res.redirect('/newAccount/home/index');
@@ -183,7 +183,7 @@ module.exports = function (router) {
         }
 
         res.render('newAccount/recharge', {
-            title: '汇财富'
+            title: '土巴士'
         });
         return false;
     });
@@ -203,13 +203,13 @@ module.exports = function (router) {
         }
 
         res.render('newAccount/withdraw', {
-            title: '汇财富'
+            title: '土巴士'
         });
         return false;
     });
     router.get('/message', function (req, res) {
         res.render('newAccount/message', {
-            title: '汇财富'
+            title: '土巴士'
         });
     });
 
@@ -218,19 +218,19 @@ module.exports = function (router) {
         res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet;
 
         res.render('newAccount/userInfo', {
-            title: '汇财富'
+            title: '土巴士'
         });
         return false;
     });
 
     router.get('/bindingEmail', function (req, res) {
         res.render('newAccount/bindingEmail', {
-            title: '汇财富'
+            title: '土巴士'
         });
     });
     router.get('/invest/*', function (req, res) {
         res.render('newAccount/invest', {
-            title: '汇财富'
+            title: '土巴士'
         });
     });
     router.get('/home/fixed/online', function (req, res) {
@@ -310,7 +310,7 @@ module.exports = function (router) {
     router.get('/fund', function (req, res, next) {
         //res.expose(req.params.name, 'loanl.urlname');
         res.render('/newAccount/fund', {
-            title: '汇财富'
+            title: '土巴士'
         });
 
     });

@@ -46,7 +46,7 @@ module.exports = function (router) {
         req.uest('/api/v2/cms/article/' + req.params.id)
             .end()
             .then(function (r) {
-                res.locals.title = r.body.title+'-财富讲堂-汇财富';
+                res.locals.title = r.body.title+'-财富讲堂-土巴士';
                 res.locals.keywords = r.body.keyword;
                 res.locals.description = r.body.description;
                 // res.locals.description = r.body.content.replace(/<\/?[^>]*>/g, '').slice(0, 100);
@@ -67,7 +67,7 @@ module.exports = function (router) {
         req.uest('/api/v2/cms/article/' + req.params.id)
             .end()
             .then(function (r) {
-                res.locals.title = r.body.title+'-服务协议-汇财富';
+                res.locals.title = r.body.title+'-服务协议-土巴士';
                 res.locals.keywords = r.body.keyword;
                 res.locals.description = r.body.description;
                 // res.locals.description = r.body.content.replace(/<\/?[^>]*>/g, '').slice(0, 100);
@@ -88,7 +88,7 @@ module.exports = function (router) {
         req.uest('/api/v2/cms/article/' + req.params.id)
             .end()
             .then(function (r) {
-                res.locals.title = r.body.title+'-媒体报道-汇财富';
+                res.locals.title = r.body.title+'-媒体报道-土巴士';
                 res.locals.keywords = r.body.keyword;
                 res.locals.description = r.body.description;
                 // res.locals.description = r.body.content.replace(/<\/?[^>]*>/g, '').slice(0, 100);
@@ -109,7 +109,7 @@ module.exports = function (router) {
         req.uest('/api/v2/cms/article/' + req.params.id)
             .end()
             .then(function (r) {
-                res.locals.title = r.body.title+'-合作伙伴介绍-汇财富';
+                res.locals.title = r.body.title+'-合作伙伴介绍-土巴士';
                 res.locals.keywords = r.body.keyword;
                 res.locals.description = r.body.description;
                 // res.locals.description = r.body.content.replace(/<\/?[^>]*>/g, '').slice(0, 100);
