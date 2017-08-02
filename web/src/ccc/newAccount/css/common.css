@@ -883,9 +883,9 @@ table tbody tr td {
 .recharge-success .success-content .btn-after {
     width: 140px;
     height: 45px;
-    border: 1px solid #db0101;
+    border: 1px solid #1d6ed7;
     line-height: 45px;
-    color: #db0101;
+    color: #1d6ed7;
     background: #fff;
 }
 
@@ -895,7 +895,7 @@ table tbody tr td {
 
 .recharge-success .success-content .btn-bank {
     color: #fff;
-    background: #db0101;
+    background: #1d6ed7;
 }
 
 .financialSMS {
