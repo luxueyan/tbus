@@ -127,7 +127,7 @@ input:-webkit-autofill {
 }
 
 .s-login-view .s-login-window button {
-    background-color: #e60012;
+    background-color: #1d6ed7;
     color: #fff;
     font-size: 18px;
     border: none;
@@ -148,7 +148,7 @@ input:-webkit-autofill {
 }
 
 .register-banner a {
-    color: #e60012;
+    color: #1d6ed7;
     /*font-size: 16px;*/
 }
 
