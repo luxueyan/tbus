@@ -5049,27 +5049,7 @@ a {
         padding-left: 30px;
         padding-right: 30px;
         height: 42px;
-        background-color: #D8232A;
-
-        &:before,
-        &:after {
-            .transform(translateY(-50%));
-            content: "";
-            position: absolute;
-            top: 50%;
-            width: 5px;
-            height: 5px;
-            background-color: #FFF;
-            border-radius: 50%;
-        }
-
-        &:before {
-            left: 22px;
-        }
-
-        &:after {
-            right: 22px;
-        }
+        background-color: @color-theme-main;
 
         h2 {
             margin: 0;
