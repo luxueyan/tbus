@@ -7,7 +7,7 @@ module.exports = function (router) {
         }
         res.expose(user, 'user');
 
-        res.locals.title = '高端理财-固定收益-定期理财-汇财富';
+        res.locals.title = '高端理财-固定收益-定期理财-土巴士';
         res.locals.keywords = '高端理财，高收益理财产品，定期，汇鑫理财';
         res.locals.description = '高端理财专注于固定收益理财产品，包括世界500强，优质上市公司和信用评级AA+以上等优质资产，帮助投资投者获得低风险的稳定收益。';
 
@@ -23,7 +23,7 @@ module.exports = function (router) {
         if (req.params.key == 'GDLC') {
             res.expose('GDLC', 'key');
             res.locals.key = 'GDLC';
-            res.locals.title = '高端理财-固定收益-定期理财-汇财富';
+            res.locals.title = '高端理财-固定收益-定期理财-土巴士';
             res.locals.keywords = '高端理财，高收益理财产品，定期，汇鑫理财';
             res.locals.description = '高端理财专注于固定收益理财产品，包括世界500强，优质上市公司和信用评级AA+以上等优质资产，帮助投资投者获得低风险的稳定收益。';
         }
@@ -37,7 +37,7 @@ module.exports = function (router) {
         }
         res.expose(user, 'user');
 
-        res.locals.title = '高端理财-固定收益-定期理财-汇财富';
+        res.locals.title = '高端理财-固定收益-定期理财-土巴士';
         res.locals.keywords = '高端理财，高收益理财产品，定期，汇鑫理财';
         res.locals.description = '高端理财专注于固定收益理财产品，包括世界500强，优质上市公司和信用评级AA+以上等优质资产，帮助投资投者获得低风险的稳定收益。';
 

@@ -76,9 +76,9 @@ module.exports = function (router) {
                     result.userId = result.loanRequest.userId;
                     result.requestId = result.loanRequest.id;
 
-                    res.locals.title = result.loanRequest.title + '-我的理财-汇财富';
+                    res.locals.title = result.loanRequest.title + '-我的理财-土巴士';
                     res.locals.keywords = '汇利精选，固定收益，高收益理财产品，定期理财';
-                    res.locals.description = '汇财富-我的理财专注于固定收益理财产品，包括世界500强，优质上市公司和信用评级AA+以上等优质资产，帮助投资投者获得低风险的稳定收益。';
+                    res.locals.description = '土巴士-我的理财专注于固定收益理财产品，包括世界500强，优质上市公司和信用评级AA+以上等优质资产，帮助投资投者获得低风险的稳定收益。';
                     return result;
                 }),
             invests: req.uest('/api/v2/loan/' + req.params.id + '/invests')

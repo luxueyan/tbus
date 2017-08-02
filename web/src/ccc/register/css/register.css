@@ -475,9 +475,9 @@ h3 {
 .recharge-success .success-content .btn-after {
   width: 196px;
   height: 44px;
-  border: 1px solid #db0101;
+  border: 1px solid #1d6ed7;
   line-height: 44px;
-  color: #db0101;
+  color: #1d6ed7;
   background: #fff;
 }
 
@@ -487,5 +487,5 @@ h3 {
 
 .recharge-success .success-content .btn-bank {
   color: #fff;
-  background: #db0101;
+  background: #1d6ed7;
 }
