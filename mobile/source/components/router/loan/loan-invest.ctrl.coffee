@@ -114,10 +114,11 @@ do (_, angular, Math) ->
                 @api.fetch_invest_analyse(data).then (response) =>
                     @$scope.earning = +response.data?.interest
 
-                (@api.fetch_coupon_list_v2(amount, loan.raw.duration.totalDays)
-                    .then (response) =>
-                        @$scope.coupon_list = @$scope.handle_coupon_list(response.data)
-                )
+                if loan.product_key isnt 'NEW'
+                    (@api.fetch_coupon_list_v2(amount, loan.raw.duration.totalDays)
+                        .then (response) =>
+                            @$scope.coupon_list = @$scope.handle_coupon_list(response.data)
+                    )
 
                 coupon = @$scope.store?.coupon
                 if coupon and coupon.type is 'CASH'
