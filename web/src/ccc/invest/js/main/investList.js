@@ -365,10 +365,10 @@ function ininconut() {
                 //t.replaceWith('<a href="/loan/' + id + '" style="text-decoration:none"><div class="investbtn">立即投资</div></a>');
             } else {
                 t.html('<span class="text" style="color:#666">距离' + tip + '：' +
-                    '<span style="color:#1D6ED7">' + leftTime.day + '</span>天' +
-                    '<span style="color:#1D6ED7">' + leftTime.hour + '</span>时' +
-                    '<span style="color:#1D6ED7">' + leftTime.min + '</span>分' +
-                    '<span style="color:#1D6ED7">' + leftTime.sec + '</span>秒</span>')
+                    '<span style="color:#e60012">' + leftTime.day + '</span>天' +
+                    '<span style="color:#e60012">' + leftTime.hour + '</span>时' +
+                    '<span style="color:#e60012">' + leftTime.min + '</span>分' +
+                    '<span style="color:#e60012">' + leftTime.sec + '</span>秒</span>')
             }
         }), 1000);
     });
