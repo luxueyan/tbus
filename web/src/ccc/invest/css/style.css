@@ -81,7 +81,7 @@
 }
 .loan_title .title_info h2 {
     font-size: 24px;
-    color: #1D6ED7;
+    color: #444;
 }
 .loan_title .title_info p {
     font-size: 14px;
@@ -139,14 +139,14 @@
 }
 .loan_info .info_box .assign_time {
     font-size: 12px;
-    color: #1D6ED7;
+    color: #e60012;
     text-decoration: underline;
     margin-left: 10px;
     cursor: pointer;
 }
 .loan_info .info_box .loop {
     font-size: 12px;
-    color: #1D6ED7;
+    color: #e60012;
     cursor: pointer;
 }
 .loan_info .rate_box {
@@ -170,7 +170,7 @@
     font-size: 24px;
 }
 .loan_info .info_box .rate {
-    color: #1D6ED7;
+    color: #e60012;
     margin-top: 0;
     font-size: 16px;
 }
@@ -202,7 +202,7 @@
 }
 .leftAmount span {
     font-size: 18px;
-    color: #1D6ED7;
+    color: #e60012;
 }
 .percentage {
     overflow: hidden;

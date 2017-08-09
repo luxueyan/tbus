@@ -143,14 +143,17 @@
 }
 .footer-guide .left-guide .service-phone {
     color: #ffffff;
-    font-size: 26px;
+    font-size: 30px;
+    font-family: arial;
+    font-weight: 700;
     margin: 10px 0 2px 0;
 }
 .footer-guide .left-guide a {
-    text-decoration: underline;
+    text-decoration: none;
     color: #ffffff;
     padding-top: 5px;
     display: block;
+    font-family: arial;
 }
 .footer-info {
     float: right;
