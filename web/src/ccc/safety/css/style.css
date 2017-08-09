@@ -193,7 +193,7 @@
 
 .bannerLogin .underline{
     text-decoration:underline;
-    color: #2d7dec;
+    color: #1d6ed7;
 }
 
 .banner-account .btn-index{
@@ -201,7 +201,7 @@
     height: 42px;
     font-size: 18px;
     color: #ffffff;
-    background: #e60012;
+    background: #1d6ed7;
     text-align: center;
     line-height: 42px;
     border-radius: 4px;

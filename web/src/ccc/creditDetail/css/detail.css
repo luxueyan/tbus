@@ -486,7 +486,7 @@
 }
 .do-invest-wrapper button:focus {
     color: white;
-    background: #C71E23;
+    background: #1D6ED7;
 }
 .do-invest-wrapper .shiming{
     text-align: center;
@@ -498,7 +498,7 @@
     margin: 0 auto;
     width: 270px;
     height: 45px;
-    background: #e60012;
+    background: #1D6ED7;
     color: white;
     display: block;
     text-align: center;
