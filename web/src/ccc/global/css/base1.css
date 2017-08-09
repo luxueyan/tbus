@@ -230,7 +230,7 @@
     display: inline-block;
     font-size: 12px;
     height: 30px;
-    padding: 0 20px;
+    padding: 0 35px;
     line-height: 30px;
     text-align: center;
     color: #ffffff;
@@ -240,12 +240,17 @@
     -moz-border-radius: 15px;
     margin-left: 24px;
 }
+.s-header-menu-content .opera a:hover{
+    text-decoration: none;
+}
 .s-header-menu-content .opera a.logout{
     background-color: #e2e2e2;color: #6f6f70;
 }
 .s-header-menu-content .u-nolist-ul li a {
     padding: 0 8px;
     height: 85px;
+    font-size: 14px;
+    font-weight: bolder;
 }
 #family {
     float: right;
@@ -745,4 +750,6 @@ input[type=button] {
     margin-left: 16px;
     padding-left: 17px;
     background: url(/ccc/global/img/logo_line.png) no-repeat center left;
+    letter-spacing: 3px;
+    font-family: 宋体;
 }
