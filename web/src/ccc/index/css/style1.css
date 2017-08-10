@@ -973,6 +973,25 @@
 .icon-grounp {
     margin-top: 35px;
 }
+.wealthList{
+    width: 1230px;
+    padding: 15px;
+}
+
+.wealth-grounp:hover{
+    -webkit-box-shadow: 0 0 15px 0 rgb(149, 189, 229);
+    -moz-box-shadow: 0 0 15px 0 rgb(149, 189, 229);
+    box-shadow: 0 0 15px 0 rgb(149, 189, 229);
+}
+.wealth-grounp .pic .bg{
+    background-color: #000;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 380px;
+    height: 140px;
+}
 .wealth-grounp .pic .txt a{
     opacity: 0.8;
 }

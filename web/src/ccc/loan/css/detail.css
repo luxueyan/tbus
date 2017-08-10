@@ -173,7 +173,7 @@ select::-ms-expand { display: none; }
     color: #828282;
     font-size: 14px;
     overflow: hidden;
-    padding: 20px 0px 40px 36px;
+    padding: 20px 0px 28px 36px;
     border-top: 1px solid #dcdcdc;
 }
 .invest-status .open_time{
