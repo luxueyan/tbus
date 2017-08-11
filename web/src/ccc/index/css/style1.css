@@ -638,7 +638,7 @@
 /*首页改版*/
 .banner_header {
     position: absolute;
-    top: 372px;
+    top: 396px;
     left: 0;
     width: 100%;
     color: #999;
@@ -687,7 +687,7 @@
 
 .pro_content {
     width: 1192px;
-    margin: 106px auto 0;
+    margin: 120px auto 0;
 }
 
 .pro_content .cwrapper {
@@ -974,7 +974,7 @@
     margin-top: 35px;
 }
 .wealthList{
-    width: 1230px;
+    width: 1222px;
     padding: 15px;
 }
 

@@ -309,6 +309,7 @@
     height: 133px;
     font-size: 12px;
     background: #fff;
+    overflow: hidden;
 }
 .side-bar {
     width: 65px;
@@ -760,5 +761,3 @@ input[type=button] {
     letter-spacing: 3px;
     font-family: 宋体;
 }
-
-.carousel-inner{overflow: visible;}

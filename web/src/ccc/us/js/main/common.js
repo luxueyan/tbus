@@ -4,15 +4,15 @@ require('bootstrap/js/tab');
 
 var url = location.pathname;
 if(url=="/us/administration"){
-    $(".usA:nth-child(3)").css("color","#e4262b");
+    $(".usA:nth-child(3)").css("color","#1d6ed7");
     $(".pull-left ul li:nth-child(2)").addClass('active');
     $(".usA").css("display","inline-block")
 }else if(url=="/us/investment"){
-    $(".usA:nth-child(4)").css("color","#e4262b");
+    $(".usA:nth-child(4)").css("color","#1d6ed7");
     $(".pull-left ul li:nth-child(2)").addClass('active');
     $(".usA").css("display","inline-block")
 }else if(url=="/us/risk"){
-    $(".usA:nth-child(5)").css("color","#e4262b");
+    $(".usA:nth-child(5)").css("color","#1d6ed7");
     $(".pull-left ul li:nth-child(2)").addClass('active');
     $(".usA").css("display","inline-block")
 }else if(url=="/us/invest"){
