@@ -798,9 +798,9 @@ a {
 }
 .wealth-grounp {
     position: relative;
-    width: 380px;
+    width: 383px;
     float: left;
-    margin-left: 27px;
+    margin-left: 20px;
     background: #fff;
 }
 .wealth-grounp:first-child {
@@ -845,6 +845,7 @@ a {
 
 .wealth-grounp ul {
     margin-top: 20px;
+    padding-bottom: 20px;
 }
 .wealth-grounp li {
     line-height: 25px;
@@ -858,7 +859,7 @@ a {
 }
 .wealth-grounp li em {
     font-weight: bolder;
-    padding: 0 15px 0 5px;
+    padding: 0 0 0 15px;
 }
 /*新手推荐*/
 .newWrapper .contentwrapper {
