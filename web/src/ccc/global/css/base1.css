@@ -245,6 +245,10 @@
 }
 .s-header-menu-content .opera a:hover{
     text-decoration: none;
+    background-color: #1363ca;
+}
+.s-header-menu-content .opera .register:hover{
+    background-color: #d4d4d4 !important;
 }
 .s-header-menu-content .opera a.logout{
     background-color: #e2e2e2;color: #6f6f70;
@@ -756,3 +760,5 @@ input[type=button] {
     letter-spacing: 3px;
     font-family: 宋体;
 }
+
+.carousel-inner{overflow: visible;}
