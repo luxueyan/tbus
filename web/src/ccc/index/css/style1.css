@@ -15,7 +15,7 @@
 }
 
 #main-container {
-    background: #f5f5f5;
+    background: #f3f3f3;
     padding-bottom: 0px;
 }
 
@@ -664,7 +664,7 @@
 }
 
 .header_info img {
-    width: 396px;
+    width: 397px;
     height: auto;
 }
 
@@ -732,9 +732,9 @@
 }
 
 .pro_box .proWrapper:hover {
-    -webkit-box-shadow: 0 0 15px 0 rgb(149, 189, 229);
-    -moz-box-shadow: 0 0 15px 0 rgb(149, 189, 229);
-    box-shadow: 0 0 15px 0 rgb(149, 189, 229);
+    -webkit-box-shadow: 0 0 20px 0 rgba(204, 204, 204,0.5);
+    -moz-box-shadow: 0 0 20px 0 rgba(204, 204, 204,0.5);
+    box-shadow: 0 0 20px 0 rgba(204, 204, 204,0.5);
 }
 
 .pro_box .proWrapper .investbtn-open:hover {
@@ -979,9 +979,9 @@
 }
 
 .wealth-grounp:hover{
-    -webkit-box-shadow: 0 0 15px 0 rgb(149, 189, 229);
-    -moz-box-shadow: 0 0 15px 0 rgb(149, 189, 229);
-    box-shadow: 0 0 15px 0 rgb(149, 189, 229);
+    -webkit-box-shadow: 0 0 20px 0 rgba(204, 204, 204,0.5);
+    -moz-box-shadow: 0 0 20px 0 rgba(204, 204, 204,0.5);
+    box-shadow: 0 0 20px 0 rgba(204, 204, 204,0.5);
 }
 .wealth-grounp .pic .bg{
     background-color: #000;
