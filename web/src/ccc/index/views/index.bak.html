@@ -1,0 +1,191 @@
+<dsBody layout={{dsLayoutPath}}>
+    <link rel="stylesheet" href="/ccc/index/css/style.css">
+    <link rel="stylesheet" href="/ccc/index/css/style1.css">
+    <link rel="stylesheet" href="/ccc/index/css/loanlist.css">
+
+    <!-- 轮播组件 -->
+    <div class="carousel-wrapper" style="position: relative;overflow: visible;">
+        <div id="my-carousel" class="carousel slide" data-ride="carousel" data-interval="5000">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <!--{{JSON.stringify(carousel)}}-->
+                {{#carousel}}
+                <li data-target="#my-carousel" data-slide-to="{{@index}}"
+                    class="{{#if @index === 0 }}active{{/if}}"></li>
+                {{/}}
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                {{#carousel}}
+                <div class="item {{#if @index === 0}}active{{/if}}" style="background: {{this.bgc}}">
+                    <a href="{{this.url}}" target="_blank">
+                        <div style="height: 467px;background-image:url({{this.content}}); background-repeat:no-repeat; background-position:center;padding-top:467px;">
+                        </div>
+                    </a>
+                </div>
+                {{/carousel}}
+            </div>
+        </div>
+        <div class="banner_header">
+            <div class="header_box">
+                <div class="header_info">
+                    <img src="/ccc/index/img/safe_icon.png" alt="土巴士·土巴士">
+                </div>
+                <div class="header_info">
+                    <img src="/ccc/index/img/zhy_icon.png" alt="土巴士·土巴士">
+                </div>
+                <div class="header_info">
+                    <img src="/ccc/index/img/kk_icon.png" alt="土巴士·土巴士">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--产品展示-->
+    <div class="pro_content">
+        <!-- 公告 -->
+        <div class="cwrapper">
+            <div class="u-pos-r-center wide" id="announce-container">
+                <div class="announce">
+                    <div class="announce_left">
+                        <div class="newest">
+                            <div class="small">土巴士公告:</div>
+                            <div id="scrollWrap">
+                                <!--<ul id="scrollMsg">-->
+                                    {{#latestNew}}
+                                    <li>
+                                        <a target="_blank" href="/us/transfer" style="text-decoration:none">{{{title}}}
+                                        <span style="margin-left: 20px;">{{timeRecorded}}</span>
+                                        </a>
+                                    </li>
+                                    {{/latestNew}}
+                                <!--</ul>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="/us/transfer" class="more_public">更多公告>></a>
+            </div>
+
+        </div>
+
+        <div class="pro_box">
+            <div class="pro_detail">
+                <div class="GDSYproductList"></div>
+            </div>
+            <a href="/invest" style="position: absolute;right: 20px;bottom: -30px;font-weight: 400;font-size: 12px;color: #999;">更多产品>></a>
+        </div>
+    </div>
+
+    <!--财富讲堂-->
+    <div class="wealthList">
+        <div class="wealth-grounp">
+            <div class="pic">
+                <img src="{{mtbdImg.content}}" alt="媒体报道">
+                <div class="txt">
+                    <h2>媒体报道</h2>
+                    <p>MEDIA COVERAGE</p>
+                    <a href="/us/question">查看更多</a>
+                </div>
+            </div>
+            <ul>
+                {{#mtbdNew:num}}
+                {{#if num<5}}
+                <li><a href="/us/article/{{this.id}}" target="_blank"><em>·</em>{{this.title}}</a></li>
+                {{/if}}
+                {{/cfjtNew}}
+            </ul>
+        </div>
+        <div class="wealth-grounp">
+            <div class="pic">
+                <img src="{{gsdtImg.content}}" alt="公司动态">
+                <div class="txt">
+                    <h2>公司动态</h2>
+                    <p>COMPANY DYNAMICS</p>
+                    <a href="/us/company">查看更多</a>
+                </div>
+            </div>
+            <ul>
+                {{#gsdtNew:num}}
+                {{#if num<5}}
+                <li><a href="/us/article/{{this.id}}" target="_blank"><em>·</em>{{this.title}}</a></li>
+                {{/if}}
+                {{/cfjtNew}}
+            </ul>
+        </div>
+        <div class="wealth-grounp">
+            <div class="pic">
+                <img src="{{cfjtImg.content}}" alt="财富讲堂">
+                <div class="txt">
+                    <h2>财富讲堂</h2>
+                    <p>FORTUNE AUDITORIUM</p>
+                    <a href="/us/wealth">查看更多</a>
+                </div>
+            </div>
+            <ul>
+                {{#cfjtNew:num}}
+                {{#if num<5}}
+                <li><a href="/us/article/{{this.id}}" target="_blank"><em>·</em>{{this.title}}</a></li>
+                {{/if}}
+                {{/cfjtNew}}
+            </ul>
+        </div>
+    </div>
+
+
+    <!--合作伙伴-->
+    <div class="partnerList">
+        <div class="partner">
+            <div style="text-align: center"><img src="/ccc/index/img/coop.png"></div>
+            <div class="icon-grounp"></div>
+        </div>
+    </div>
+
+    <script src="/ccc/index/js/main/index.js"></script>
+    <script type="text/javascript">
+        try {
+            var isStoped = false;
+            var oScroll = document.getElementById("scrollWrap");
+            with (oScroll) {
+                noWrap = true;
+            }
+            oScroll.onmouseover = new Function('isStoped = true');
+            oScroll.onmouseout = new Function('isStoped = false');
+            var preTop = 0;
+            var curTop = 0;
+            var stopTime = 0;
+            var oScrollMsg = document.getElementById("scrollMsg");
+            oScroll.appendChild(oScrollMsg.cloneNode(true));
+            init_srolltext();
+        } catch (e) {
+        }
+
+        function init_srolltext() {
+            oScroll.scrollTop = 0;
+            setInterval('scrollUp()', 15);
+        }
+
+        function scrollUp() {
+            if (isStoped)
+                return;
+            curTop += 1;
+            if (curTop == 19) {
+                stopTime += 1;
+                curTop -= 1;
+                if (stopTime == 180) {
+                    curTop = 0;
+                    stopTime = 0;
+                }
+            } else {
+                preTop = oScroll.scrollTop;
+                oScroll.scrollTop += 1;
+                if (preTop == oScroll.scrollTop) {
+                    oScroll.scrollTop = 0;
+                    oScroll.scrollTop += 1;
+                }
+            }
+        }
+    </script>
+</dsBody>
