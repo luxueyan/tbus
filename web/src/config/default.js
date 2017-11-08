@@ -17,7 +17,7 @@ module.exports = {
     port: 4000,
     domain: 'hrjk.uats.cc',
 
-    urlBackend: "http://127.0.0.1:8000/",
+    urlBackend: "http://www.land-bus.com:4100/",
     oauth2client: {
          id:  "client-id-for-node-dev",
          secret: "client-secret-for-node-dev",

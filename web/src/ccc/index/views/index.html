@@ -1,191 +1,197 @@
-<dsBody layout={{dsLayoutPath}}>
-    <link rel="stylesheet" href="/ccc/index/css/style.css">
-    <link rel="stylesheet" href="/ccc/index/css/style1.css">
-    <link rel="stylesheet" href="/ccc/index/css/loanlist.css">
-
-    <!-- 轮播组件 -->
-    <div class="carousel-wrapper" style="position: relative;overflow: visible;">
-        <div id="my-carousel" class="carousel slide" data-ride="carousel" data-interval="5000">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <!--{{JSON.stringify(carousel)}}-->
-                {{#carousel}}
-                <li data-target="#my-carousel" data-slide-to="{{@index}}"
-                    class="{{#if @index === 0 }}active{{/if}}"></li>
-                {{/}}
-            </ol>
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                {{#carousel}}
-                <div class="item {{#if @index === 0}}active{{/if}}" style="background: {{this.bgc}}">
-                    <a href="{{this.url}}" target="_blank">
-                        <div style="height: 467px;background-image:url({{this.content}}); background-repeat:no-repeat; background-position:center;padding-top:467px;">
-                        </div>
-                    </a>
-                </div>
-                {{/carousel}}
-            </div>
-        </div>
-        <div class="banner_header">
-            <div class="header_box">
-                <div class="header_info">
-                    <img src="/ccc/index/img/safe_icon.png" alt="土巴士·土巴士">
-                </div>
-                <div class="header_info">
-                    <img src="/ccc/index/img/zhy_icon.png" alt="土巴士·土巴士">
-                </div>
-                <div class="header_info">
-                    <img src="/ccc/index/img/kk_icon.png" alt="土巴士·土巴士">
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!--产品展示-->
-    <div class="pro_content">
-        <!-- 公告 -->
-        <div class="cwrapper">
-            <div class="u-pos-r-center wide" id="announce-container">
-                <div class="announce">
-                    <div class="announce_left">
-                        <div class="newest">
-                            <div class="small">土巴士公告:</div>
-                            <div id="scrollWrap">
-                                <!--<ul id="scrollMsg">-->
-                                    {{#latestNew}}
-                                    <li>
-                                        <a target="_blank" href="/us/transfer" style="text-decoration:none">{{{title}}}
-                                        <span style="margin-left: 20px;">{{timeRecorded}}</span>
-                                        </a>
-                                    </li>
-                                    {{/latestNew}}
-                                <!--</ul>-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <a href="/us/transfer" class="more_public">更多公告>></a>
-            </div>
-
-        </div>
-
-        <div class="pro_box">
-            <div class="pro_detail">
-                <div class="GDSYproductList"></div>
-            </div>
-            <a href="/invest" style="position: absolute;right: 20px;bottom: -30px;font-weight: 400;font-size: 12px;color: #999;">更多产品>></a>
-        </div>
-    </div>
-
-    <!--财富讲堂-->
-    <div class="wealthList">
-        <div class="wealth-grounp">
-            <div class="pic">
-                <img src="{{mtbdImg.content}}" alt="媒体报道">
-                <div class="txt">
-                    <h2>媒体报道</h2>
-                    <p>MEDIA COVERAGE</p>
-                    <a href="/us/question">查看更多</a>
-                </div>
-            </div>
-            <ul>
-                {{#mtbdNew:num}}
-                {{#if num<5}}
-                <li><a href="/us/article/{{this.id}}" target="_blank"><em>·</em>{{this.title}}</a></li>
-                {{/if}}
-                {{/cfjtNew}}
-            </ul>
-        </div>
-        <div class="wealth-grounp">
-            <div class="pic">
-                <img src="{{gsdtImg.content}}" alt="公司动态">
-                <div class="txt">
-                    <h2>公司动态</h2>
-                    <p>COMPANY DYNAMICS</p>
-                    <a href="/us/company">查看更多</a>
-                </div>
-            </div>
-            <ul>
-                {{#gsdtNew:num}}
-                {{#if num<5}}
-                <li><a href="/us/article/{{this.id}}" target="_blank"><em>·</em>{{this.title}}</a></li>
-                {{/if}}
-                {{/cfjtNew}}
-            </ul>
-        </div>
-        <div class="wealth-grounp">
-            <div class="pic">
-                <img src="{{cfjtImg.content}}" alt="财富讲堂">
-                <div class="txt">
-                    <h2>财富讲堂</h2>
-                    <p>FORTUNE AUDITORIUM</p>
-                    <a href="/us/wealth">查看更多</a>
-                </div>
-            </div>
-            <ul>
-                {{#cfjtNew:num}}
-                {{#if num<5}}
-                <li><a href="/us/article/{{this.id}}" target="_blank"><em>·</em>{{this.title}}</a></li>
-                {{/if}}
-                {{/cfjtNew}}
-            </ul>
-        </div>
-    </div>
-
-
-    <!--合作伙伴-->
-    <div class="partnerList">
-        <div class="partner">
-            <div style="text-align: center"><img src="/ccc/index/img/coop.png"></div>
-            <div class="icon-grounp"></div>
-        </div>
-    </div>
-
-    <script src="/ccc/index/js/main/index.js"></script>
-    <script type="text/javascript">
-        try {
-            var isStoped = false;
-            var oScroll = document.getElementById("scrollWrap");
-            with (oScroll) {
-                noWrap = true;
-            }
-            oScroll.onmouseover = new Function('isStoped = true');
-            oScroll.onmouseout = new Function('isStoped = false');
-            var preTop = 0;
-            var curTop = 0;
-            var stopTime = 0;
-            var oScrollMsg = document.getElementById("scrollMsg");
-            oScroll.appendChild(oScrollMsg.cloneNode(true));
-            init_srolltext();
-        } catch (e) {
-        }
-
-        function init_srolltext() {
-            oScroll.scrollTop = 0;
-            setInterval('scrollUp()', 15);
-        }
-
-        function scrollUp() {
-            if (isStoped)
-                return;
-            curTop += 1;
-            if (curTop == 19) {
-                stopTime += 1;
-                curTop -= 1;
-                if (stopTime == 180) {
-                    curTop = 0;
-                    stopTime = 0;
-                }
-            } else {
-                preTop = oScroll.scrollTop;
-                oScroll.scrollTop += 1;
-                if (preTop == oScroll.scrollTop) {
-                    oScroll.scrollTop = 0;
-                    oScroll.scrollTop += 1;
-                }
-            }
-        }
+<!DOCTYPE html>
+<html>
+<head>
+	<title>理财有智，上土巴士</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="/ccc/index/css/index.css">
+	<link rel="stylesheet" type="text/css" href="/ccc/index/css/animate.min.css">
+	<link rel="stylesheet" type="text/css" href="/ccc/index/css/animate.css">
+	<script type="text/javascript" src="/ccc/index/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/ccc/index/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/ccc/index/js/jquery.fullPage.min.js"></script>
+    <script>
+   $(function(){
+    // if($.browser.msie && $.browser.version < 10){
+    // $('body').addClass('ltie10');
+    // }
+    $.fn.fullpage({
+    slidesColor: ['#fff', '#99999r', '#565895', '#fff', '#fff'],
+    anchors: ['page1', 'page2', 'page3', 'page4', 'page5'],
+    menu: '#menu'
+    });
+    });
     </script>
-</dsBody>
+</head>
+<body>
+<!-- <ul id="menu">
+      <li data-menuanchor="page1" class="active"><a href="#page1" title="证券时报网"></a></li>
+      <li data-menuanchor="page2"><a href="#page2" title="财苑社区"></a></li>
+      <li data-menuanchor="page3"><a href="#page3" title="爱股快信"></a></li>
+      <li data-menuanchor="page4"><a href="#page4" title="股票情报"></a></li>
+      <li data-menuanchor="page5"><a href="#page5" title="新股助手"></a></li>
+ </ul> -->
+  <ul id="menu">
+      <li data-menuanchor="page1" class="active"><span class="menuTitle">01</span><a href="#page1" title="01"></a><span class="linear"></span></li>
+      <li data-menuanchor="page2"><span class="menuTitle">02</span><a href="#page2" title="02"></a><span class="linear"></span></li>
+      <li data-menuanchor="page3"><span class="menuTitle">03</span><a href="#page3" title="03"></a><span class="linear"></span></li>
+      <li data-menuanchor="page4"><span class="menuTitle">04</span><a href="#page4" title="04"></a><span class="linear"></span></li>
+      <li data-menuanchor="page5"><span class="menuTitle">05</span><a href="#page5" title="05"></a><span class="linear"></span></li>
+    </ul>
+ <div class="section section1 active">
+ 	<div class="bg1">
+ 		<img src="/ccc/index/img/bg_01.png">
+ 	</div>
+      <div class="width1002">
+      	<div class="header">
+      		<div class="logo-box"><img class="logoImg" src="/ccc/index/img/tbs_03.png"></div>
+      		<div class="weibo-box logoImg1"><img src="/ccc/index/img/tbs_06.png"><img src="/ccc/index/img/tbs_08.png"></div>
+      	</div>
+      	<div class="textImg-box textImg1">
+      		<img src="/ccc/index/img/step_03.png" alt="">
+      	</div>
+      	<div class="sec1-footer">
+      		<div class="logo-box fl"><img src="/ccc/index/img/tbs_24.png"></div>
+      		<div class="fr" >
+      			<p class="gs">Copyright © 2003-2017 68design.net, All Rights Reserved</p>
+      		</div>
+      	</div>
+      </div>
+ </div>
+ <div class="section section2">
+ 	<div class="bg1">
+ 		<img src="/ccc/index/img/bg_03.png">
+ 	</div>
+ 	<div class="width1002">
+ 		<div class="s2text">
+      		<img class="step02" src="/ccc/index/img/text_07.png">
+      		<div class="company"><p>
+             土巴士互联网信息服务（北京）有限公司（以下简称土巴士）成立于2015年，注册资本金5000万元。作为国内专业运作“互联网+金融”模式的互联网金融信息服务平台，土巴士凭借强大的互联网技术与全面而先进的交易结构，将移动互联网、云计算、大数据等各项能够应用于金融领域的技术结合传统金融机构经营管理体系，同国内银行金融机构及专业的保理公司、保险公司、资产管理机构、评估机构建立了深入的战略合作关系，使投资人在获得资产稳健增值的同时享受到卓越的互联网金融信息服务所带来的优质体验。
+在国内互联网金融市场蓬勃发展的大时代下，土巴士以金融信息服务为支点，深入各个真实的金融场景，为社会提供高效、透明、安全、便捷的金融科技生活服务，着眼未来，打造金融信息服务新引擎。
+          </p></div>
+      	</div>
+      	<div class="buildImg">
+      		<img class="build" src="/ccc/index/img/tbs_28.png">
+    	</div>
+    </div>
+    
+    <div class="sec2-footer">
+    	<ul class="sec2Ul">
+    		<li class="time li1">
+    			<p><span class="font-size60 mid">2015<span class="font-size18">年</span></span><span class="font-size18 mid">成立</span></p>
+    		</li>
+    		<li class="number">
+    			<p><span class="font-size60 mid">5000<span class="font-size18">万</span></span><span class="font-size18 mid">注册资金</span></p>
+    		</li>
+    		<li class="step li1">
+    			<p><span class="font-size30 mid">互联网+金融<span class="font-size18"></span></span><span class="font-size18 mid">模式</span></p>
+    		</li>
+    	</ul>
+    </div>
+ </div>
+ <div class="section section3">
+ 	<div class="bg1">
+ 		<video class="media media--width" autoplay="" poster="https://www.ariane.group/wp-content/uploads/2017/04/home.jpg"  muted="muted">
+        <source src="/ccc/index/img/ezgif-1-e6b683cf4c.mp4" type="video/mp4">
+    </video>
+ 	</div>
+ 	<div class="width1002">
+ 		<div class="section3-imgBox">
+ 			<img src="/ccc/index/img/t_03.png">
+ 			<img class="persent93" src="/ccc/index/img/t_07.png">
+ 		</div>
+ 	</div>
+ </div>
+ <div class="section section4">
+ 	<div class="bg1">
+ 		<img src="/ccc/index/img/bg_07.png">
+ 	</div>
+ 	<div class="width1002">
+ 		<div class="section4-imgBox">
+      <img class="step04" src="/ccc/index/img/step_15.png">
+ 			<ul class="newsUl">
+        <li>
+          <img class="marAuto" src="/ccc/index/img/logo_15.png">
+          <img  class="newDet" src="/ccc/index/img/logo_18.png">
+          <a class="newA" href="">查看详情>></a>
+        </li>
+        <li>
+          <img class="marAuto" src="/ccc/index/img/logo_15.png">
+          <img  class="newDet" src="/ccc/index/img/logo_18.png">
+          <a class="newA" href="">查看详情>></a>
+        </li>
+        <li>
+          <img class="marAuto" src="/ccc/index/img/logo_15.png">
+          <img  class="newDet" src="/ccc/index/img/logo_18.png">
+          <a class="newA" href="">查看详情>></a>
+        </li>
+      </ul>
+      <ul class="newsUlNav">
+        <li class="uLnAVlI actve"></li>
+        <li class="uLnAVlI"></li>
+        <li class="uLnAVlI"></li>
+      </ul>
+ 		</div>
+ 	</div>
+ </div>
+ <div class="section section5">
+ 	<div class="bg1">
+ 		<img src="/ccc/index/img/bg_09.png">
+ 	</div>
+ 	<div class="width1002">
+ 		<div class="section5-imgBox">
+ 			<img class="marAuto" src="/ccc/index/img/step_18.png">
+ 			<ul class="parTant">
+ 				<li><img src="/ccc/index/img/logo_26.png" alt=""></li>
+ 				<li><img src="/ccc/index/img/logo_28.png" alt=""></li>
+ 				<li><img src="/ccc/index/img/logo_30.png" alt=""></li>
+ 				<li><img src="/ccc/index/img/logo_32.png" alt=""></li>
+ 				<li><img src="/ccc/index/img/logo_38.png" alt=""></li>
+ 				<li><img src="/ccc/index/img/logo_39.png" alt=""></li>
+ 				<li><img src="/ccc/index/img/logo_40.png" alt=""></li>
+ 				<li><img src="/ccc/index/img/logo_41.png" alt=""></li>
+ 			</ul>
+ 		</div>
+ 	</div>
+ 	 <div class="sec5-footer">
+    	<div class="width88">
+        <div class="footer-box">
+          <ul class="">
+            <li class="fl"><img src="/ccc/index/img/nav_03.png">北京市东城区王府井大街201号</li>
+            <li class="fl second">Copyright © 2003-2017 68design.net, All Rights Reserved</li>
+            <li class="fl thired"><img src="/ccc/index/img/tbs_24.png"></li>
+            <li class="fl fpb"><img src="/ccc/index/img/tbs_06.png"></li>
+            <li class="fl fpb"><img src="/ccc/index/img/tbs_08.png"></li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+ </div>
+</body>
+</html>
+<script type="text/javascript">
+  
+   $(function(){
+     $('video source').removeAttr('autoplay')
+    $('.active video source').attr('autoplay','autoplay !important')
+
+     $('.newsUlNav li').click(function(){
+      var i =$(this).index();
+      $('.newsUlNav li').removeClass('actve');
+      $(this).addClass('actve');
+       switch (i) {
+        case 0:
+         $('.newsUl').animate({marginLeft:'0'});
+         break;
+         case 1:
+         $('.newsUl').animate({marginLeft:'-104%'});
+         break;
+         case 2:
+         $('.newsUl').animate({marginLeft:'-208%'});
+         break;
+       }
+     })
+   })
+</script>
+<script type="text/javascript" src="/ccc/index/js/index.js"></script>
