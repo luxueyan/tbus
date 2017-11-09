@@ -1,197 +1,336 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>理财有智，上土巴士</title>
-	<meta charset="utf-8">
-	<link rel="stylesheet" href="/ccc/index/css/index.css">
-	<link rel="stylesheet" type="text/css" href="/ccc/index/css/animate.min.css">
-	<link rel="stylesheet" type="text/css" href="/ccc/index/css/animate.css">
-	<script type="text/javascript" src="/ccc/index/js/jquery.min.js"></script>
+    <title>理财有智，上土巴士</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/ccc/index/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/ccc/index/css/animate.min.css">
+    <link rel="shortcut icon" href="/ccc/index/img/icon.ico" />
+    <link rel="stylesheet" type="text/css" href="/ccc/index/css/animate.css">
+    <script type="text/javascript" src="/ccc/index/js/jquery-3.0.0.min.js"></script>
     <script type="text/javascript" src="/ccc/index/js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="/ccc/index/js/jquery.fullPage.min.js"></script>
+    <link href="http://vjs.zencdn.net/5.0.2/video-js.css" rel="stylesheet">
+    <script src="http://vjs.zencdn.net/ie8/1.1.0/videojs-ie8.min.js"></script>
+    <script src="http://vjs.zencdn.net/5.0.2/video.js"></script>
+    <script type="text/javascript" src="/ccc/index/js/jquery.mousewheel.js"></script>
     <script>
-   $(function(){
-    // if($.browser.msie && $.browser.version < 10){
-    // $('body').addClass('ltie10');
-    // }
-    $.fn.fullpage({
-    slidesColor: ['#fff', '#99999r', '#565895', '#fff', '#fff'],
-    anchors: ['page1', 'page2', 'page3', 'page4', 'page5'],
-    menu: '#menu'
-    });
+    $(function() {
+        $.fn.fullpage({
+            slidesColor: ['#fff', '#99999r', '#565895', '#fff', '#fff'],
+            anchors: ['page1', 'page2', 'page3', 'page4', 'page5'],
+            menu: '#menu',
+            normalScrollElements: '.newsDetial'
+        });
+
     });
     </script>
 </head>
-<body>
-<!-- <ul id="menu">
-      <li data-menuanchor="page1" class="active"><a href="#page1" title="证券时报网"></a></li>
-      <li data-menuanchor="page2"><a href="#page2" title="财苑社区"></a></li>
-      <li data-menuanchor="page3"><a href="#page3" title="爱股快信"></a></li>
-      <li data-menuanchor="page4"><a href="#page4" title="股票情报"></a></li>
-      <li data-menuanchor="page5"><a href="#page5" title="新股助手"></a></li>
- </ul> -->
-  <ul id="menu">
-      <li data-menuanchor="page1" class="active"><span class="menuTitle">01</span><a href="#page1" title="01"></a><span class="linear"></span></li>
-      <li data-menuanchor="page2"><span class="menuTitle">02</span><a href="#page2" title="02"></a><span class="linear"></span></li>
-      <li data-menuanchor="page3"><span class="menuTitle">03</span><a href="#page3" title="03"></a><span class="linear"></span></li>
-      <li data-menuanchor="page4"><span class="menuTitle">04</span><a href="#page4" title="04"></a><span class="linear"></span></li>
-      <li data-menuanchor="page5"><span class="menuTitle">05</span><a href="#page5" title="05"></a><span class="linear"></span></li>
-    </ul>
- <div class="section section1 active">
- 	<div class="bg1">
- 		<img src="/ccc/index/img/bg_01.png">
- 	</div>
-      <div class="width1002">
-      	<div class="header">
-      		<div class="logo-box"><img class="logoImg" src="/ccc/index/img/tbs_03.png"></div>
-      		<div class="weibo-box logoImg1"><img src="/ccc/index/img/tbs_06.png"><img src="/ccc/index/img/tbs_08.png"></div>
-      	</div>
-      	<div class="textImg-box textImg1">
-      		<img src="/ccc/index/img/step_03.png" alt="">
-      	</div>
-      	<div class="sec1-footer">
-      		<div class="logo-box fl"><img src="/ccc/index/img/tbs_24.png"></div>
-      		<div class="fr" >
-      			<p class="gs">Copyright © 2003-2017 68design.net, All Rights Reserved</p>
-      		</div>
-      	</div>
-      </div>
- </div>
- <div class="section section2">
- 	<div class="bg1">
- 		<img src="/ccc/index/img/bg_03.png">
- 	</div>
- 	<div class="width1002">
- 		<div class="s2text">
-      		<img class="step02" src="/ccc/index/img/text_07.png">
-      		<div class="company"><p>
-             土巴士互联网信息服务（北京）有限公司（以下简称土巴士）成立于2015年，注册资本金5000万元。作为国内专业运作“互联网+金融”模式的互联网金融信息服务平台，土巴士凭借强大的互联网技术与全面而先进的交易结构，将移动互联网、云计算、大数据等各项能够应用于金融领域的技术结合传统金融机构经营管理体系，同国内银行金融机构及专业的保理公司、保险公司、资产管理机构、评估机构建立了深入的战略合作关系，使投资人在获得资产稳健增值的同时享受到卓越的互联网金融信息服务所带来的优质体验。
-在国内互联网金融市场蓬勃发展的大时代下，土巴士以金融信息服务为支点，深入各个真实的金融场景，为社会提供高效、透明、安全、便捷的金融科技生活服务，着眼未来，打造金融信息服务新引擎。
-          </p></div>
-      	</div>
-      	<div class="buildImg">
-      		<img class="build" src="/ccc/index/img/tbs_28.png">
-    	</div>
-    </div>
-    
-    <div class="sec2-footer">
-    	<ul class="sec2Ul">
-    		<li class="time li1">
-    			<p><span class="font-size60 mid">2015<span class="font-size18">年</span></span><span class="font-size18 mid">成立</span></p>
-    		</li>
-    		<li class="number">
-    			<p><span class="font-size60 mid">5000<span class="font-size18">万</span></span><span class="font-size18 mid">注册资金</span></p>
-    		</li>
-    		<li class="step li1">
-    			<p><span class="font-size30 mid">互联网+金融<span class="font-size18"></span></span><span class="font-size18 mid">模式</span></p>
-    		</li>
-    	</ul>
-    </div>
- </div>
- <div class="section section3">
- 	<div class="bg1">
- 		<video class="media media--width" autoplay="" poster="https://www.ariane.group/wp-content/uploads/2017/04/home.jpg"  muted="muted">
-        <source src="/ccc/index/img/ezgif-1-e6b683cf4c.mp4" type="video/mp4">
-    </video>
- 	</div>
- 	<div class="width1002">
- 		<div class="section3-imgBox">
- 			<img src="/ccc/index/img/t_03.png">
- 			<img class="persent93" src="/ccc/index/img/t_07.png">
- 		</div>
- 	</div>
- </div>
- <div class="section section4">
- 	<div class="bg1">
- 		<img src="/ccc/index/img/bg_07.png">
- 	</div>
- 	<div class="width1002">
- 		<div class="section4-imgBox">
-      <img class="step04" src="/ccc/index/img/step_15.png">
- 			<ul class="newsUl">
-        <li>
-          <img class="marAuto" src="/ccc/index/img/logo_15.png">
-          <img  class="newDet" src="/ccc/index/img/logo_18.png">
-          <a class="newA" href="">查看详情>></a>
-        </li>
-        <li>
-          <img class="marAuto" src="/ccc/index/img/logo_15.png">
-          <img  class="newDet" src="/ccc/index/img/logo_18.png">
-          <a class="newA" href="">查看详情>></a>
-        </li>
-        <li>
-          <img class="marAuto" src="/ccc/index/img/logo_15.png">
-          <img  class="newDet" src="/ccc/index/img/logo_18.png">
-          <a class="newA" href="">查看详情>></a>
-        </li>
-      </ul>
-      <ul class="newsUlNav">
-        <li class="uLnAVlI actve"></li>
-        <li class="uLnAVlI"></li>
-        <li class="uLnAVlI"></li>
-      </ul>
- 		</div>
- 	</div>
- </div>
- <div class="section section5">
- 	<div class="bg1">
- 		<img src="/ccc/index/img/bg_09.png">
- 	</div>
- 	<div class="width1002">
- 		<div class="section5-imgBox">
- 			<img class="marAuto" src="/ccc/index/img/step_18.png">
- 			<ul class="parTant">
- 				<li><img src="/ccc/index/img/logo_26.png" alt=""></li>
- 				<li><img src="/ccc/index/img/logo_28.png" alt=""></li>
- 				<li><img src="/ccc/index/img/logo_30.png" alt=""></li>
- 				<li><img src="/ccc/index/img/logo_32.png" alt=""></li>
- 				<li><img src="/ccc/index/img/logo_38.png" alt=""></li>
- 				<li><img src="/ccc/index/img/logo_39.png" alt=""></li>
- 				<li><img src="/ccc/index/img/logo_40.png" alt=""></li>
- 				<li><img src="/ccc/index/img/logo_41.png" alt=""></li>
- 			</ul>
- 		</div>
- 	</div>
- 	 <div class="sec5-footer">
-    	<div class="width88">
-        <div class="footer-box">
-          <ul class="">
-            <li class="fl"><img src="/ccc/index/img/nav_03.png">北京市东城区王府井大街201号</li>
-            <li class="fl second">Copyright © 2003-2017 68design.net, All Rights Reserved</li>
-            <li class="fl thired"><img src="/ccc/index/img/tbs_24.png"></li>
-            <li class="fl fpb"><img src="/ccc/index/img/tbs_06.png"></li>
-            <li class="fl fpb"><img src="/ccc/index/img/tbs_08.png"></li>
-            
-          </ul>
-        </div>
-      </div>
-    </div>
-    
- </div>
-</body>
-</html>
-<script type="text/javascript">
-  
-   $(function(){
-     $('video source').removeAttr('autoplay')
-    $('.active video source').attr('autoplay','autoplay !important')
 
-     $('.newsUlNav li').click(function(){
-      var i =$(this).index();
-      $('.newsUlNav li').removeClass('actve');
-      $(this).addClass('actve');
-       switch (i) {
-        case 0:
-         $('.newsUl').animate({marginLeft:'0'});
-         break;
-         case 1:
-         $('.newsUl').animate({marginLeft:'-104%'});
-         break;
-         case 2:
-         $('.newsUl').animate({marginLeft:'-208%'});
-         break;
-       }
-     })
-   })
-</script>
-<script type="text/javascript" src="/ccc/index/js/index.js"></script>
+<body>
+    <ul id="menu">
+        <li data-menuanchor="page1" class="active"><span class="menuTitle">01</span><a href="#page1" title="01"></a><span class="linear"></span></li>
+        <li data-menuanchor="page2"><span class="menuTitle">02</span><a href="#page2" title="02"></a><span class="linear"></span></li>
+        <li data-menuanchor="page3"><span class="menuTitle">03</span><a href="#page3" title="03"></a><span class="linear"></span></li>
+        <li data-menuanchor="page4"><span class="menuTitle">04</span><a href="#page4" title="04"></a><span class="linear"></span></li>
+        <li data-menuanchor="page5"><span class="menuTitle">05</span><a href="#page5" title="05"></a><span class="linear"></span></li>
+    </ul>
+    <div class="section section1 active">
+        <div class="bg1">
+            <img src="/ccc/index/img/bg_01.png">
+        </div>
+        <div class="width1002">
+            <div class="header">
+                <div class="logo-box"><img class="logoImg" src="/ccc/index/img/tbs_03.png"></div>
+                <div class="weibo-box logoImg1"><img src="/ccc/index/img/tbs_06.png"><img class="weixin" src="/ccc/index/img/tbs_08.png">
+                    <div class="erBox"><img src="/ccc/index/img/erup.png"></div>
+                </div>
+            </div>
+            <div class="textImg-box textImg1">
+                <img src="/ccc/index/img/step_03.png" alt="">
+            </div>
+            <div class="sec1-footer">
+                <div class="logo-box fl"><img src="/ccc/index/img/tbs_24.png"></div>
+                <div class="fr">
+                    <p class="gs">Copyright © 2003-2017 68design.net, All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+        <div class="i_mobile_fix">
+            <div></div>
+        </div>
+    </div>
+    <div class="section section2">
+        <div class="bg1">
+            <img src="/ccc/index/img/bg_03.png">
+        </div>
+        <div class="width1002">
+            <div class="s2text">
+                <img class="step02" src="/ccc/index/img/text_07.png">
+                <div class="company">
+                    <p>
+                        土巴士互联网信息服务（北京）有限公司（以下简称土巴士）成立于2015年，注册资本金5000万元。作为国内专业运作“互联网+金融”模式的互联网金融信息服务平台，土巴士凭借强大的互联网技术与全面而先进的交易结构，将移动互联网、云计算、大数据等各项能够应用于金融领域的技术结合传统金融机构经营管理体系，同国内银行金融机构及专业的保理公司、保险公司、资产管理机构、评估机构建立了深入的战略合作关系，使投资人在获得资产稳健增值的同时享受到卓越的互联网金融信息服务所带来的优质体验。 在国内互联网金融市场蓬勃发展的大时代下，土巴士以金融信息服务为支点，深入各个真实的金融场景，为社会提供高效、透明、安全、便捷的金融科技生活服务，着眼未来，打造金融信息服务新引擎。
+                    </p>
+                </div>
+            </div>
+            <div class="buildImg">
+                <img class="build" src="/ccc/index/img/tbs_28.png">
+            </div>
+        </div>
+        <div class="sec2-footer">
+            <ul class="sec2Ul">
+                <li class="time li1">
+                    <p><span class="font-size60 mid"><b class="year">2015</b><span class="font-size18">年</span></span><span class="font-size18 mid">成立</span></p>
+                </li>
+                <li class="number">
+                    <p><span class="font-size60 mid"><b class="money">5000</b><span class="font-size18">万</span></span><span class="font-size18 mid">注册资金</span></p>
+                </li>
+                <li class="step li1">
+                    <p><span class="font-size30 mid">互联网+金融<span class="font-size18"></span></span><span class="font-size18 mid moudle">模式</span></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="section section3">
+        <div class="bg1">
+            <video class="wp-video-shortcode" muted='muted' src="/ccc/index/img/ezgif.com-video-cutter.mp4"></video>
+        </div>
+        <div class="width1002">
+            <div class="section3-imgBox">
+                <img class="fkImg" src="/ccc/index/img/t_03.png">
+                <div class="fkjs">
+                    <p>土巴士是一家从事互联网信息服务的平台，平台推送的所有金融产品均来自持牌金融机构。通过独有的RC风控体系预测与标准化测量，聚集风控大数据和人工智能整合联动系统，以大数据风控系统及专业风控团队对金融产品提供风险评测,结合尽调和实地征信对金融产品的整体风险进行评估</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section section4">
+        <div class="bg1">
+            <img src="/ccc/index/img/bg_07.png">
+        </div>
+        <div class="newsDetial fir">
+            <div class="closeImg"><img src="/ccc/index/img/ndetial_03.png"></div>
+            <div class="wid10">
+                <div class="newDetT">
+                    <p>互金国内融资额锐减57% 平台都跑国外上市？00000000000</p>
+                </div>
+                <div class="newShu one">
+                    <p><span class="newDeTime">2017-11-07 08:19:24</span> <span class="laiy">来源：北京商报</span> <span class="zyoz">作者：崔启斌 刘双霞</span></p>
+                </div>
+                <div class="newShu two"><span>摘要：</span>在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>
+                <img src="/ccc/index/img/ndetial_07.png">
+                <div class="zhewen">
+                    <p>网贷之家11月6日发布的数据显示，10月国内互联网金融行业融资速度锐减，共发生9例融资，融资总金额为9.24亿元，融资金额环比下降57.5%，而国外市场融资金额环比上涨137.55%。</p>
+                </div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>
+                <div class="zhewen">
+                    <p>网贷之家11月6日发布的数据显示，10月国内互联网金融行业融资速度锐减，共发生9例融资，融资总金额为9.24亿元，融资金额环比下降57.5%，而国外市场融资金额环比上涨137.55%。</p>
+                </div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>ng-include src="
+                <div class="zhewen">
+                    <p>网贷之家11月6日发布的数据显示，10月国内互联网金融行业融资速度锐减，共发生9例融资，融资总金额为9.24亿元，融资金额环比下降57.5%，而国外市场融资金额环比上涨137.55%。</p>
+                </div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>
+                <div class="zhewen">
+                    <p>网贷之家11月6日发布的数据显示，10月国内互联网金融行业融资速度锐减，共发生9例融资，融资总金额为9.24亿元，融资金额环比下降57.5%，而国外市场融资金额环比上涨137.55%。</p>
+                </div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>
+            </div>
+        </div>
+        <div class="newsDetial sec">
+            <div class="closeImg"><img src="/ccc/index/img/ndetial_03.png"></div>
+            <div class="wid10">
+                <div class="newDetT">
+                    <p>互金国内融资额锐减57% 平台都跑国外上市？ 111111111111</p>
+                </div>
+                <div class="newShu one">
+                    <p><span class="newDeTime">2017-11-07 08:19:24</span> <span class="laiy">来源：北京商报</span> <span class="zyoz">作者：崔启斌 刘双霞</span></p>
+                </div>
+                <div class="newShu two"><span>摘要：</span>在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>
+                <img src="/ccc/index/img/ndetial_07.png">
+                <div class="zhewen">
+                    <p>网贷之家11月6日发布的数据显示，10月国内互联网金融行业融资速度锐减，共发生9例融资，融资总金额为9.24亿元，融资金额环比下降57.5%，而国外市场融资金额环比上涨137.55%。</p>
+                </div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>
+                <div class="zhewen">
+                    <p>网贷之家11月6日发布的数据显示，10月国内互联网金融行业融资速度锐减，共发生9例融资，融资总金额为9.24亿元，融资金额环比下降57.5%，而国外市场融资金额环比上涨137.55%。</p>
+                </div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>ng-include src="
+                <div class="zhewen">
+                    <p>网贷之家11月6日发布的数据显示，10月国内互联网金融行业融资速度锐减，共发生9例融资，融资总金额为9.24亿元，融资金额环比下降57.5%，而国外市场融资金额环比上涨137.55%。</p>
+                </div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>
+                <div class="zhewen">
+                    <p>网贷之家11月6日发布的数据显示，10月国内互联网金融行业融资速度锐减，共发生9例融资，融资总金额为9.24亿元，融资金额环比下降57.5%，而国外市场融资金额环比上涨137.55%。</p>
+                </div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>
+            </div>
+        </div>
+        <div class="newsDetial thir">
+            <div class="closeImg"><img src="/ccc/index/img/ndetial_03.png"></div>
+            <div class="wid10">
+                <div class="newDetT">
+                    <p>互金国内融资额锐减57% 平台都跑国外上市？ 22222222</p>
+                </div>
+                <div class="newShu one">
+                    <p><span class="newDeTime">2017-11-07 08:19:24</span> <span class="laiy">来源：北京商报</span> <span class="zyoz">作者：崔启斌 刘双霞</span></p>
+                </div>
+                <div class="newShu two"><span>摘要：</span>在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>
+                <img src="/ccc/index/img/ndetial_07.png">
+                <div class="zhewen">
+                    <p>网贷之家11月6日发布的数据显示，10月国内互联网金融行业融资速度锐减，共发生9例融资，融资总金额为9.24亿元，融资金额环比下降57.5%，而国外市场融资金额环比上涨137.55%。</p>
+                </div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>
+                <div class="zhewen">
+                    <p>网贷之家11月6日发布的数据显示，10月国内互联网金融行业融资速度锐减，共发生9例融资，融资总金额为9.24亿元，融资金额环比下降57.5%，而国外市场融资金额环比上涨137.55%。</p>
+                </div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>ng-include src="
+                <div class="zhewen">
+                    <p>网贷之家11月6日发布的数据显示，10月国内互联网金融行业融资速度锐减，共发生9例融资，融资总金额为9.24亿元，融资金额环比下降57.5%，而国外市场融资金额环比上涨137.55%。</p>
+                </div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>
+                <div class="zhewen">
+                    <p>网贷之家11月6日发布的数据显示，10月国内互联网金融行业融资速度锐减，共发生9例融资，融资总金额为9.24亿元，融资金额环比下降57.5%，而国外市场融资金额环比上涨137.55%。</p>
+                </div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>
+                <div class="zhewen">
+                    <p>互联网金融企业融资的走向反映了行业的变化趋势。今年以来，国内互联网金融企业融资遇冷，上半年融资额仅为66.09亿元，三季度虽有所回升，但仍然呈现逐月下降的态势，而10月融资速度锐减 ，较9月下降57.5%。在分析人士看来，受国内互金行业监管较严影响，风投资本态度趋谨慎，互联网金融企业纷纷谋求海外上市，而随着互联网金融风险受到空前关注，金融科技企业将受到资本的热捧。</p>
+                </div>
+            </div>
+        </div>
+        <div class="width1002">
+            <div class="section4-imgBox">
+                <img class="step04" src="/ccc/index/img/step_15.png">
+                <ul class="newsUl">
+                    <li class="">
+                        <img class="marAuto" src="/ccc/index/img/logo_15.png">
+                        <img class="newDet" src="/ccc/index/img/logo_18.png">
+                        <a class="newA newA-fir" href="#javascript:;">查看详情>></a>
+                    </li>
+                    <li>
+                        <img class="marAuto row" src="/ccc/index/img/logo_15.png">
+                        <img class="newDet col" src="/ccc/index/img/logo_18.png">
+                        <a class="newA newA-sec col" href="#javascript:;">查看详情>></a>
+                    </li>
+                    <li>
+                        <img class="marAuto row" src="/ccc/index/img/logo_15.png">
+                        <img class="newDet col" src="/ccc/index/img/logo_18.png">
+                        <a class="newA newA-thir col" href="#javascript:;">查看详情>></a>
+                    </li>
+                </ul>
+                <ul class="newsUlNav">
+                    <li class="uLnAVlI actve"></li>
+                    <li class="uLnAVlI"></li>
+                    <li class="uLnAVlI"></li>
+                </ul>
+                <div class="newBox">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section section5">
+        <div class="bg2">
+            <img src="/ccc/index/img/bg_09.png">
+        </div>
+        <div class="width1002">
+            <div class="section5-imgBox">
+                <img class="marAuto bs" src="/ccc/index/img/step_18.png">
+                <ul class="parTant">
+                    <li><img src="/ccc/index/img/logo_26.png" alt=""></li>
+                    <li><img src="/ccc/index/img/logo_28.png" alt=""></li>
+                    <li><img src="/ccc/index/img/logo_30.png" alt=""></li>
+                    <li><img src="/ccc/index/img/logo_32.png" alt=""></li>
+                    <li><img src="/ccc/index/img/logo_38.png" alt=""></li>
+                    <li><img src="/ccc/index/img/logo_39.png" alt=""></li>
+                    <li><img src="/ccc/index/img/logo_40.png" alt=""></li>
+                    <li><img src="/ccc/index/img/logo_41.png" alt=""></li>
+                </ul>
+            </div>
+        </div>
+        <div class="sec5-footer">
+            <div class="width88">
+                <div class="footer-box">
+                    <ul class="">
+                        <li class="fl first">
+                            <!-- <img src="/ccc/index/img/nav_03.png"> -->北京市东城区王府井大街201号</li>
+                        <li class="fl second">Copyright © 2003-2017 68design.net, All Rights Reserved</li>
+                        <li class="fl thired"><img src="/ccc/index/img/tbs_24.png"></li>
+                        <li class="fl fpb"><img src="/ccc/index/img/tbs_06.png"></li>
+                        <li class="fl fpb rati">
+                            <div class="absLute"><img src="/ccc/index/img/erdown.png"></div><img class="weixin" src="/ccc/index/img/tbs_08.png"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/ccc/index/js/index.js"></script>
+</body>
+
+</html>
